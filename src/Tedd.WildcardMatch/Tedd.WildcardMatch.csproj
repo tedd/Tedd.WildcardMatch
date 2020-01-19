@@ -3,11 +3,11 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;netcoreapp3.1;
       netstandard1.2;netstandard1.3;netstandard1.4;netstandard1.5;netstandard1.6;netstandard2.0;netstandard2.1;
-      <!--net46;net461;net462;net47;net471;net472;net48-->
+      net46;net461;net462;net47;net471;net472;net48
     </TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Tedd Hansen</Authors>
-    <Description>Fast and reliable wildcard matcher capable of complex wildcard matching.</Description>
+    <Description>Fast and reliable wildcard (* and ?) matcher capable of complex pattern matching.</Description>
     <Copyright>Tedd Hamsem</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>wildcard matching pattern star questionmark</PackageTags>

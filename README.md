@@ -1,24 +1,10 @@
 
 # Tedd.WildcardMatch
-.Net library providing support for complex wildcard matching.
+Fast and reliable .Net library for wildcard (\* and ?) matching capable of complex pattern matching.
 
-Other examples found on the web and in NuGet fail to implement support for complex wildcard patterns, meaning they may not give the intended result. This library uses the Regex engine in .Net to implement proper wildcard support. This means it both leverages expression compilation and is capable of resolving complex wildcard patterns.
+Available as NuGet package: https://www.nuget.org/packages/Tedd.WildcardMatch
 
-# Tips on performance
-
-## User input
-Remember that overuse of multiple wildcards (especially star) on large amounts of text may lead to high CPU usage. By default the matcher will run infinitely. If you want to limit the time it runs to for example 0.1 seconds then you must provide a timeout parameter when creating class instance.
-
-In case where you take wildcard from user it is advicable to implement a limit so that user can't do Denial Of Service by crafting special wildcard patterns.
-
-## Slow
-Using extension method or static methods invokes parsed execution.
-
-## Faster
-If you intend to reuse same pattern om multiple matches then it may beneficial to use an instanced WildcardMatch.
-
-## Fastest
-Providing the WildcardOptions.Compiled option will cause slightly higher start cost, but give better performance on matches.
+Many (of not most) examples of wildcard matching found on the web and in NuGet fail to implement support for complex wildcard patterns, meaning they may not give the intended result. This library uses the Regex engine in .Net to implement proper wildcard support. This means it both leverages regular expression compilation and is capable of resolving complex wildcard patterns.
 
 # Example
 
@@ -53,13 +39,28 @@ var match3 = wmc.IsMatch("More ipsums");
 
 ```
 
-
 # WildcardOptions
-|Option  |Description  |
+| Option          | Description  |
 |--|--|
-|None|Specifies that no options are set.|
-|IgnoreCase|Specifies case-insensitive matching.  |
-|Singleline| Specifies single-line mode. Changes the meaning of the star (*) and questionmark (?) so they match every character (instead of every character except \n). |
-|Compiled  | Specifies that the regular expression is compiled to an assembly. This yields faster execution but increases startup time. |
-|CultureInvariant| Specifies that cultural differences in language is ignored |
-|RightToLeft| Specifies that the search will be from right to left instead of from left to right. |
+| None            | Specifies that no options are set. |
+| IgnoreCase      | Specifies case-insensitive matching. |
+| Singleline      | Specifies single-line mode. Changes the meaning of the star (*) and questionmark (?) so they match every character (instead of every character except \n). |
+| Compiled        | Specifies that the regular expression is compiled to an assembly. This yields faster execution but increases startup time. |
+| CultureInvariant| Specifies that cultural differences in language is ignored |
+| RightToLeft     | Specifies that the search will be from right to left instead of from left to right. |
+
+# Tips on performance
+
+## User input
+Remember that overuse of multiple wildcards (especially star) on large amounts of text may lead to high CPU usage. By default the matcher will run infinitely. If you want to limit the time it runs to for example 0.1 seconds then you must provide a timeout parameter when creating class instance.
+
+In case where you take wildcard from user it is advicable to implement a limit so that user can't do Denial Of Service by crafting special wildcard patterns.
+
+## Slow
+Using extension method or static methods invokes parsed execution.
+
+## Faster
+If you intend to reuse same pattern om multiple matches then it may beneficial to use an instanced WildcardMatch.
+
+## Fastest
+Providing the WildcardOptions.Compiled option will cause slightly higher start cost, but give better performance on matches.
