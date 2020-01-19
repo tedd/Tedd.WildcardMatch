@@ -9,6 +9,6 @@ namespace Tedd
     internal class InternalUtils
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string StringToWildcard(string wildcard) => Regex.Escape(wildcard).Replace(@"\*", ".*").Replace(@"\?", ".");
+        public static string StringToWildcard(string wildcard) => "^" + Regex.Escape(wildcard).Replace(@"\*", ".*").Replace(@"\?", ".") + "$";
     }
 }
