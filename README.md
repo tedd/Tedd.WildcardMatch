@@ -46,7 +46,7 @@ var match3 = wmc.IsMatch("More ipsums");
 | IgnoreCase      | Specifies case-insensitive matching. |
 | Singleline      | Specifies single-line mode. Changes the meaning of the star (*) and questionmark (?) so they match every character (instead of every character except \n). |
 | Compiled        | Specifies that the regular expression is compiled to an assembly. This yields faster execution but increases startup time. |
-| CultureInvariant| Specifies that cultural differences in language is ignored |
+| CultureInvariant| Specifies that cultural differences in language is ignored. |
 | RightToLeft     | Specifies that the search will be from right to left instead of from left to right. |
 
 # Tips on performance

@@ -11,7 +11,9 @@
     <Copyright>Tedd Hamsem</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>wildcard matching pattern star questionmark</PackageTags>
-    <PackageReleaseNotes>Initial NuGet release</PackageReleaseNotes>
+    <PackageReleaseNotes>Method documentation.
+Exposes Wildcard and WildcardRegex for instanced match.</PackageReleaseNotes>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

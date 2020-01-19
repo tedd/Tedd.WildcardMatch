@@ -18,18 +18,10 @@ namespace Tedd.WildcardMatchTests
         [Fact]
         public void Questionmark_match_space() => Assert.True(TestData._lorem.IsWildcardMatch("finibus?vulputate"));
         [Fact]
-        public void Questionmark_match_newline() => Assert.True(TestData._lorem.IsWildcardMatch(".?\n"));
+        public void Questionmark_match_newline() => Assert.False(TestData._lorem.IsWildcardMatch("\r?\r"));
         [Fact]
         public void Backslash_not_processed() => Assert.True(TestData.loremAdv.IsWildcardMatch("\\?1"));
         [Fact]
         public void Complex_star_pattern() => Assert.True(TestData._lorem.IsWildcardMatch("Lorem*.*.*e*.*Cras*.*i*"));
-    }
-    public class MethodTest
-    {
-        [Fact]
-        public void Questionmark_match_letter()
-        {
-
-        }
     }
 }
