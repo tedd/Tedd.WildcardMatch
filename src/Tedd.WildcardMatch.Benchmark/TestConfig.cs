@@ -23,10 +23,26 @@ namespace TeddWildcardMatchBenchmark
             Add(Job.Default
                 .WithLaunchCount(1)
                 .WithGcForce(true)
-                //.WithId("OutOfProc")
+                .WithId("x64 .Net Core 3.1 Ryu")
                 .With(Platform.X64)
                 .With(Jit.RyuJit)
                 .With(CoreRuntime.Core31));
+
+            Add(Job.Default
+                .WithLaunchCount(1)
+                .WithGcForce(true)
+                .WithId("x64 .Net 4.8 Ryu")
+                .With(Platform.X64)
+                .With(Jit.RyuJit)
+                .With(ClrRuntime.Net48));
+                
+            Add(Job.Default
+                .WithLaunchCount(1)
+                .WithGcForce(true)
+                .WithId("x64 Mono Llvm")
+                .With(Platform.X64)
+                .With(Jit.Llvm)
+                .With(MonoRuntime.Default));
 
             Add(new[] { TargetMethodColumn.Method });
             Add(new[] { new BaselineColumn(), BaselineRatioColumn.RatioMean, BaselineRatioColumn.RatioStdDev });
