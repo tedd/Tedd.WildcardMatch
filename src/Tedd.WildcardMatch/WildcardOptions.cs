@@ -1,7 +1,7 @@
 ﻿using System;
 
-namespace Tedd
-{
+namespace Tedd;
+
     [Flags]
     public enum WildcardOptions
     {
@@ -30,4 +30,3 @@ namespace Tedd
         /// </summary>
         CultureInvariant = 0x0200,
     }
-}

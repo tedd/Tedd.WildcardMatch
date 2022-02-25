@@ -5,7 +5,7 @@ Fast and reliable .Net library for wildcard (\* and ?) matching capable of compl
 Available as NuGet package: https://www.nuget.org/packages/Tedd.WildcardMatch
 
 ## Fast
-One match takes 0.0000003278 on a modern computer. There are faster libraries, but they are not reliable.
+One match takes 0.0000003278 milliseconds on a modern computer. There are at time of writing (jan 2020) faster libraries, but they are not reliable.
 
 ## Reliable
 Many (of not most) examples of wildcard matching found on the web fail to implement proper support for wildcard patterns, meaning they will not always give the intended result. This library uses the Regex engine in .Net to implement proper wildcard support. This means it capable of reliably matching complex wildcard patterns.

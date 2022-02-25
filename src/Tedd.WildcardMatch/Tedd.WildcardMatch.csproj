@@ -1,28 +1,43 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <!--<TargetFrameworks>netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;netcoreapp3.1;
-      netstandard1.2;netstandard1.3;netstandard1.4;netstandard1.5;netstandard1.6;netstandard2.0;netstandard2.1;
-      net46;net461;net462;net47;net471;net472;net48
-    </TargetFrameworks>-->
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Tedd Hansen</Authors>
-    <Description>Fast and reliable wildcard (* and ?) matcher capable of complex pattern matching.</Description>
-    <Copyright>Tedd Hamsem</Copyright>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageTags>wildcard matching pattern star questionmark</PackageTags>
-    <PackageReleaseNotes>Method documentation.
-Exposes Wildcard and WildcardRegex for instanced match.</PackageReleaseNotes>
-    <Version>1.0.2</Version>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0</TargetFrameworks>
+		<!--<TargetFramework>netcoreapp3.1</TargetFramework>-->
+		<Description>Fast and reliable wildcard (* and ?) matcher capable of complex pattern matching.</Description>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageTags>wildcard;matching;pattern;star;questionmark</PackageTags>
+		<PackageReleaseNotes>Updated references.</PackageReleaseNotes>
+		<Version>1.0.3</Version>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<PackageProjectUrl>https://github.com/tedd/Tedd.WildcardMatch</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/tedd/Tedd.WildcardMatch.git</RepositoryUrl>
 
-  <ItemGroup>
-    <None Include="..\..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<RepositoryType>git</RepositoryType>
+		<Authors>tedd</Authors>
+		<Company>Tedd Hansen</Company>
+		<Copyright>Tedd Hansen</Copyright>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<EnableNETAnalyzers>True</EnableNETAnalyzers>
+		<AnalysisLevel>latest-all</AnalysisLevel>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+
+
 
 </Project>
