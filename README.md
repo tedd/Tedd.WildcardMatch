@@ -11,16 +11,25 @@ One match takes 0.0000003278 milliseconds on a modern computer. There are at tim
 Many (of not most) examples of wildcard matching found on the web fail to implement proper support for wildcard patterns, meaning they will not always give the intended result. This library uses the Regex engine in .Net to implement proper wildcard support. This means it capable of reliably matching complex wildcard patterns.
 (See further down for example of how the "FastWildcard"-library advertising "no edge-cases" in the NuGet listing breaks down on a simple match.)
 
+# Architectural Execution Flow
+
+The framework operates via deterministic transpilation of wildcard expressions into compiled Regular Expressions. It is stateless and does not utilize hierarchical data binding or routed event infrastructure.
+The internal mechanical translation maps exact string parity:
+- The wildcard literal `*` transpiles to the regex equivalent `.*`
+- The wildcard literal `?` transpiles to the regex equivalent `.`
+
+This epistemologically ensures accurate and mathematically verifiable execution without unpredictable dynamic binding delays.
+
 # Example
 
 ## Extension method
 ```csharp
 // Standard matching (case sensitive)
-var match = "Lorem ipsum".IsWildcardMatch("or*ips?m");        
+var match = "Lorem ipsum".IsWildcardMatch("*or*ips?m*");
 // Will not match because L in Lorem is incorrect case
-var caseNotMatch = "Lorem ipsum".IsWildcardMatch("lor?m");   
+var caseNotMatch = "Lorem ipsum".IsWildcardMatch("*lor?m*");
 // Set it to ignore case
-var caseMatch = "Lorem ipsum".IsWildcardMatch("lor?m", true); 
+var caseMatch = "Lorem ipsum".IsWildcardMatch("*lor?m*", true);
 ```
 ## Static
 ```csharp
@@ -31,17 +40,20 @@ var andThis = WildcardMatch.IsMatch("lorem", "L?REM", WildcardOptions.IgnoreCase
 ```
 ## Instance
 ```csharp
-var wm = new WildcardMatch("or*ips?m");
+var wm = new WildcardMatch("*or*ips?m*");
 // Standard match
 var match1 = wm.IsMatch("Lorem ipsum");
 // Reuse object for faster second match
 var match2 = wm.IsMatch("Bored Chipsom");
 
 // A compiled instance is slighly slower at startup
-var wmc = new WildcardMatch("or*ips?m", WildcardOptions.Compiled | WildcardOptons.IgnoreCase);
+var wmc = new WildcardMatch("*or*ips?m*", WildcardOptions.Compiled | WildcardOptions.IgnoreCase);
 // But matching is faster
 var match3 = wmc.IsMatch("More ipsums");
 
+// Implementing a timeout to prevent infinite matching
+var wmt = new WildcardMatch("*or*ips?m*", WildcardOptions.None, TimeSpan.FromSeconds(0.1));
+var match4 = wmt.IsMatch("Lorem ipsum");
 ```
 
 # WildcardOptions
