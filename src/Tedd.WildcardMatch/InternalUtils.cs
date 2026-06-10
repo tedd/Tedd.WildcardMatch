@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace Tedd;
 
-    internal class InternalUtils
+    internal static class InternalUtils
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NETSTANDARD2_0
