@@ -1,0 +1,3 @@
+## 2024-05-24 - Tedd.WildcardMatch Test Coverage Expansion
+**Observation:** The test suite had poor architecture using separate classes for extensions, instances, and static method without parameterization. Coverage didn't test options adequately, and multiple tests were failing due to missing fixes for .NET 10.0 runtime changes. The tests also used large strings with static variables rather than parameterization.
+**Strategic Action:** Consolidated tests into a single file (`WildcardMatchTests.cs`), removed unused test data, converted all string matching permutations into `[Theory]` arrays to verify boundary conditions including null references, parameter permutations, and option flags. This results in 100% test coverage with clear execution paths.
