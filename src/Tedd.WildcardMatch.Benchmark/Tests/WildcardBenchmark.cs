@@ -1,4 +1,6 @@
-﻿using BenchmarkDotNet.Attributes;
+extern alias Current;
+extern alias Archive;
+using BenchmarkDotNet.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +9,7 @@ using TeddWildcardMatchBenchmark;
 
 namespace TeddWildcardMatchBenchmark.Tests
 {
+    [MemoryDiagnoser]
     [Config(typeof(TestConfig))]
     public class WildcardBenchmarkComplex
     {
@@ -15,20 +18,20 @@ namespace TeddWildcardMatchBenchmark.Tests
         private static readonly string _textLong = "1234567890" + new string('x', 100) + "aabbaabbccddeeffaabbccddeeffgghhiijjkk aabbaabbccddeeffaabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz" + new string('x', 100) + "1234567890";
 
         private static readonly string _patternComplex = "*1*a*b*c*d*e*f*g*h*i*j*k*l*m*n*o*p*q*r*s*t*u*v*0*";
-        private Tedd.WildcardMatch _twmc;
+        private Current::Tedd.WildcardMatch _twmc;
 
         [GlobalSetup]
         public void Setup()
         {
-            _twmc = new Tedd.WildcardMatch(_patternComplex, Tedd.WildcardOptions.Compiled | Tedd.WildcardOptions.IgnoreCase);
+            _twmc = new Current::Tedd.WildcardMatch(_patternComplex, Current::Tedd.WildcardOptions.Compiled | Current::Tedd.WildcardOptions.IgnoreCase);
         }
 
-     [Benchmark(Description = "T:CS")]
+        [Benchmark(Description = "T:CS")]
         public void T_D_Complex()
         {
             for (var i = 0; i < Iterations; i++)
             {
-                if (!Tedd.WildcardMatch.IsMatch(_textLong, _patternComplex, true))
+                if (!Current::Tedd.WildcardMatch.IsMatch(_textLong, _patternComplex, true))
                     throw new Exception("Incapable of matching");
             }
         }

@@ -1,9 +1,12 @@
-﻿using System;
+extern alias Current;
+extern alias Archive;
+using System;
 using BenchmarkDotNet.Attributes;
 using FastWildcard;
 
 namespace TeddWildcardMatchBenchmark.Tests
 {
+    [MemoryDiagnoser]
     [Config(typeof(TestConfig))]
     public class WildcardBenchmarkSimple
     {
@@ -12,12 +15,12 @@ namespace TeddWildcardMatchBenchmark.Tests
         private static readonly string _textShort = "a*abbaabbccddee";
 
         private static readonly string _patternSimple = "*aa??cc*ee*";
-        private Tedd.WildcardMatch _twm;
+        private Current::Tedd.WildcardMatch _twm;
 
         [GlobalSetup]
         public void Setup()
         {
-            _twm = new Tedd.WildcardMatch(_patternSimple, Tedd.WildcardOptions.Compiled | Tedd.WildcardOptions.IgnoreCase);
+            _twm = new Current::Tedd.WildcardMatch(_patternSimple, Current::Tedd.WildcardOptions.Compiled | Current::Tedd.WildcardOptions.IgnoreCase);
         }
 
         [Benchmark(Description = "T:SS")]
@@ -25,7 +28,7 @@ namespace TeddWildcardMatchBenchmark.Tests
         {
             for (var i = 0; i < Iterations; i++)
             {
-                if (!Tedd.WildcardMatch.IsMatch(_textShort, _patternSimple, true))
+                if (!Current::Tedd.WildcardMatch.IsMatch(_textShort, _patternSimple, true))
                     throw new Exception("Incapable of matching");
             }
         }
