@@ -1,3 +1,7 @@
 ## 2024-06-17 - Architectural Drift: Partial vs. Full String Matching
 **Observation:** A discrepancy exists between the documented examples in README.md and the deterministic execution flow in `InternalUtils.cs`. The framework mathematically enforces full-string matches through automated boundary anchoring (`^` and `$`). The documentation erroneously provides examples that imply partial substring matching (e.g., matching "Lorem ipsum" against `or*ips?m`), which syntactically fail the validation step.
 **Strategic Action:** Update the epistemological interface (README.md) to accurately reflect the framework's strict boundary-anchored matching logic. Synchronize all code blocks to ensure successful deterministic execution under the current framework paradigm. Update `.NET` compatibility declarations where applicable.
+
+## 2024-06-17 - Typological Modernization: Implicit vs. Explicit Variable Declarations
+**Observation:** The documentation's code examples utilized implicit variable declarations (`var`), which, while syntactically valid, obfuscate the explicit Boolean return type of the match operations. In an epistemological context, explicit typological declarations (`bool`) provide superior pedagogical clarity regarding the framework's deterministic outputs.
+**Strategic Action:** Transition all instructional code blocks in README.md from implicit `var` to explicit `bool` to enhance typological transparency and align with contemporary explicit typing paradigms for primitives.
