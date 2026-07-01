@@ -22,7 +22,7 @@ namespace TeddWildcardMatchBenchmark
             wbc.WM_Complex();
             wbc.FW_Complex();
 
-            
+
 
             //var summary1 = BenchmarkRunner.Run<WildcardBenchmarkSimple>();
             var summary2 = BenchmarkRunner.Run<WildcardBenchmarkComplex>();
