@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
-[assembly:CLSCompliant(true)]
+[assembly: CLSCompliant(true)]
 namespace Tedd;
 
 public class WildcardMatch
@@ -35,7 +35,7 @@ public class WildcardMatch
     /// <param name="ignoreCase">Ignore casing.</param>
     /// <returns>True if wildcard pattern matches input string.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsMatch(string input, string wildcard, bool ignoreCase = false) => Regex.IsMatch(input, InternalUtils.StringToWildcard(wildcard), ignoreCase ? RegexOptions.IgnoreCase : RegexOptions.None);
+    public static bool IsMatch(string input, string wildcard, bool ignoreCase = false) => Regex.IsMatch(input, InternalUtils.StringToWildcard(wildcard) ?? string.Empty, ignoreCase ? RegexOptions.IgnoreCase : RegexOptions.None);
     /// <summary>
     /// Check if wildcard string matches input string.
     /// </summary>
@@ -44,7 +44,7 @@ public class WildcardMatch
     /// <param name="options">Options to pass to engine.</param>
     /// <returns>True if wildcard pattern matches input string.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsMatch(string input, string wildcard, WildcardOptions options) => Regex.IsMatch(input, InternalUtils.StringToWildcard(wildcard), (RegexOptions)options);
+    public static bool IsMatch(string input, string wildcard, WildcardOptions options) => Regex.IsMatch(input, InternalUtils.StringToWildcard(wildcard) ?? string.Empty, (RegexOptions)options);
 
     /// <summary>
     /// Creates an instance of wildcard pattern matching suited for reuse.
@@ -68,7 +68,7 @@ public class WildcardMatch
     public WildcardMatch(string wildcard, WildcardOptions options, TimeSpan timeout)
     {
         Wildcard = wildcard;
-        WildcardRegex = InternalUtils.StringToWildcard(wildcard);
+        WildcardRegex = InternalUtils.StringToWildcard(wildcard) ?? string.Empty;
         _regex = new Regex(WildcardRegex, (RegexOptions)options, timeout);
     }
 
