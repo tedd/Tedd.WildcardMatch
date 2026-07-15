@@ -22,5 +22,21 @@ namespace Tedd.WildcardMatchTests
         public void Backslash_not_processed() => Assert.True(TestData.loremAdv.IsWildcardMatch("*\\?1*"));
         [Fact]
         public void Complex_star_pattern() => Assert.True(TestData._lorem.IsWildcardMatch("*Lorem*.*.*e*.*Cras*.*i*"));
+
+        [Theory]
+        [InlineData(null, "*")]
+        [InlineData("test", null)]
+        public void IsWildcardMatch_Null_ThrowsArgumentNullException(string input, string pattern)
+        {
+            Assert.Throws<ArgumentNullException>(() => input.IsWildcardMatch(pattern));
+        }
+
+        [Theory]
+        [InlineData("", "*", true)]
+        [InlineData("", "?", false)]
+        public void IsWildcardMatch_EmptyString_BoundaryChecks(string input, string pattern, bool expected)
+        {
+            Assert.Equal(expected, input.IsWildcardMatch(pattern));
+        }
     }
 }

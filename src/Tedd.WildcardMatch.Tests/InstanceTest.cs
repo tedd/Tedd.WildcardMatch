@@ -1,3 +1,4 @@
+using System;
 using Xunit;
 
 namespace Tedd.WildcardMatchTests
@@ -37,6 +38,19 @@ namespace Tedd.WildcardMatchTests
             Assert.False(wm1.IsMatch(text));
             var wm2 = new WildcardMatch("*?B?D?F?H*", WildcardOptions.IgnoreCase);
             Assert.True(wm2.IsMatch(text));
+        }
+
+        [Fact]
+        public void Constructor_Null_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new WildcardMatch(null));
+        }
+
+        [Fact]
+        public void IsMatch_Null_ThrowsArgumentNullException()
+        {
+            var wm = new WildcardMatch("*");
+            Assert.Throws<ArgumentNullException>(() => wm.IsMatch(null));
         }
     }
 }
