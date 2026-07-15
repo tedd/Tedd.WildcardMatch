@@ -1,3 +1,4 @@
+using System;
 using Xunit;
 
 namespace Tedd.WildcardMatchTests
@@ -19,6 +20,26 @@ namespace Tedd.WildcardMatchTests
         public void IsMatch_options()
         {
             Assert.True(WildcardMatch.IsMatch(TestData._lorem, "*mauris*", WildcardOptions.IgnoreCase));
+        }
+
+        [Theory]
+        [InlineData(null, "*")]
+        [InlineData("test", null)]
+        public void IsMatch_Null_ThrowsArgumentNullException(string input, string pattern)
+        {
+            Assert.Throws<ArgumentNullException>(() => WildcardMatch.IsMatch(input, pattern));
+        }
+
+        [Theory]
+        [InlineData("", "*", true)]
+        [InlineData("", "?", false)]
+        [InlineData("", "", true)]
+        [InlineData("a", "", false)]
+        [InlineData("a", "*", true)]
+        [InlineData("a", "?", true)]
+        public void IsMatch_EmptyString_BoundaryChecks(string input, string pattern, bool expected)
+        {
+            Assert.Equal(expected, WildcardMatch.IsMatch(input, pattern));
         }
     }
 }
