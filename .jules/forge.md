@@ -1,0 +1,3 @@
+## 2024-07-15 - BenchmarkDotNet Version Collision
+**Observation:** BenchmarkDotNet 0.13.1 caused type collision errors (`CS0433: The type 'ConfigAttribute' exists in both 'BenchmarkDotNet.Core, Version=0.10.14.0' and 'BenchmarkDotNet, Version=0.13.1.0'`) when attempting to compile under .NET 10.0 because of the legacy `BenchmarkDotNet.Toolchains.Roslyn` dependency on older `BenchmarkDotNet.Core` assemblies.
+**Strategic Action:** Modernized the benchmark project to use BenchmarkDotNet version 0.13.10 and explicitly removed the obsolete `BenchmarkDotNet.Toolchains.Roslyn` dependency to resolve the collision and restore compilation.
