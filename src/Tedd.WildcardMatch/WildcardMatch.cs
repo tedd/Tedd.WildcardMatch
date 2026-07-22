@@ -35,7 +35,12 @@ public class WildcardMatch
     /// <param name="ignoreCase">Ignore casing.</param>
     /// <returns>True if wildcard pattern matches input string.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsMatch(string input, string wildcard, bool ignoreCase = false) => Regex.IsMatch(input, InternalUtils.StringToWildcard(wildcard), ignoreCase ? RegexOptions.IgnoreCase : RegexOptions.None);
+    public static bool IsMatch(string input, string wildcard, bool ignoreCase = false)
+    {
+        if (input == null) throw new ArgumentNullException(nameof(input));
+        if (wildcard == null) throw new ArgumentNullException(nameof(wildcard));
+        return Regex.IsMatch(input, InternalUtils.StringToWildcard(wildcard), ignoreCase ? RegexOptions.IgnoreCase : RegexOptions.None);
+    }
     /// <summary>
     /// Check if wildcard string matches input string.
     /// </summary>
@@ -67,6 +72,7 @@ public class WildcardMatch
     /// <param name="timeout">How long engine should attempt to resolve pattern. Default is infinitely.</param>
     public WildcardMatch(string wildcard, WildcardOptions options, TimeSpan timeout)
     {
+        if (wildcard == null) throw new ArgumentNullException(nameof(wildcard));
         Wildcard = wildcard;
         WildcardRegex = InternalUtils.StringToWildcard(wildcard);
         _regex = new Regex(WildcardRegex, (RegexOptions)options, timeout);
@@ -78,5 +84,9 @@ public class WildcardMatch
     /// <param name="input">String to match.</param>
     /// <returns>True if wildcard pattern matches input string.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public bool IsMatch(string input) => _regex.IsMatch(input);
+    public bool IsMatch(string input)
+    {
+        if (input == null) throw new ArgumentNullException(nameof(input));
+        return _regex.IsMatch(input);
+    }
 }
