@@ -1,0 +1,3 @@
+## 2024-05-14 - Null Reference and Boundary Condition Coverage
+**Observation:** The codebase previously exhibited 100% statement and branch coverage metrics, yet fundamentally lacked evaluation of anomalous input vectors such as null references, empty strings, and large string allocations, potentially obscuring logical defects at operational boundaries.
+**Strategic Action:** Deployed `xUnit` parameterized testing via `[Theory]/[InlineData]` in `BoundaryTest.cs` to systematically evaluate boundary conditions (null strings yielding `ArgumentNullException`, extreme buffer limits utilizing `ArrayPool<char>` to mitigate GC pressure, and empty strings) to ensure deterministic execution limits and enforce robust test architecture beyond simple line coverage.
