@@ -25,31 +25,31 @@ The framework utilizes deterministic lexical transpilation to convert wildcard p
 ## Extension method
 ```csharp
 // Standard matching (case sensitive)
-var match = "Lorem ipsum".IsWildcardMatch("*or*ips?m");
+bool match = "Lorem ipsum".IsWildcardMatch("*or*ips?m*");
 // Will not match because L in Lorem is incorrect case
-var caseNotMatch = "Lorem ipsum".IsWildcardMatch("l*or?m*");
+bool caseNotMatch = "Lorem ipsum".IsWildcardMatch("l*or?m*");
 // Set it to ignore case
-var caseMatch = "Lorem ipsum".IsWildcardMatch("l*or?m*", true);
+bool caseMatch = "Lorem ipsum".IsWildcardMatch("l*or?m*", true);
 ```
 ## Static
 ```csharp
 // Standard matching (case sensitive)
-var alsoMatch = WildcardMatch.IsMatch("Lorem", "L??em");
+bool alsoMatch = WildcardMatch.IsMatch("Lorem", "L??em");
 // Use Options to set it to ignore case
-var andThis = WildcardMatch.IsMatch("lorem", "L?REM", WildcardOptions.IgnoreCase);
+bool andThis = WildcardMatch.IsMatch("lorem", "L?REM", WildcardOptions.IgnoreCase);
 ```
 ## Instance
 ```csharp
-var wm = new WildcardMatch("*or*ips?m*");
+WildcardMatch wm = new WildcardMatch("*or*ips?m*");
 // Standard match
-var match1 = wm.IsMatch("Lorem ipsum");
+bool match1 = wm.IsMatch("Lorem ipsum");
 // Reuse object for faster second match
-var match2 = wm.IsMatch("Bored Chipsoms");
+bool match2 = wm.IsMatch("Bored Chipsoms");
 
-// A compiled instance is slighly slower at startup
-var wmc = new WildcardMatch("*or*ips?m*", WildcardOptions.Compiled | WildcardOptions.IgnoreCase);
+// A compiled instance is slightly slower at startup
+WildcardMatch wmc = new WildcardMatch("*or*ips?m*", WildcardOptions.Compiled | WildcardOptions.IgnoreCase);
 // But matching is faster
-var match3 = wmc.IsMatch("More ipsums");
+bool match3 = wmc.IsMatch("More ipsums");
 
 ```
 
@@ -68,7 +68,7 @@ var match3 = wmc.IsMatch("More ipsums");
 ## User input
 Remember that overuse of multiple wildcards (especially star) on large amounts of text may lead to high CPU usage. By default the matcher will run infinitely. If you want to limit the time it runs to for example 0.1 seconds then you must provide a timeout parameter when creating class instance.
 
-In case where you take wildcard from user it is advicable to implement a limit so that user can't do Denial Of Service by crafting special wildcard patterns.
+In case where you take wildcard from user it is advisable to implement a limit so that user can't do Denial Of Service by crafting special wildcard patterns.
 
 ## Slow (0.000004 seconds to match)
 Using extension method or static methods invokes parsed execution, this is relatively slow by all means. "Slow" in this context means less than 0.000001 seconds, so unless you are planning to parse a lot of matches you won't notice it.
@@ -77,8 +77,8 @@ Using extension method or static methods invokes parsed execution, this is relat
 If you intend to reuse same pattern om multiple matches then it may beneficial to use an instanced WildcardMatch. By instancing the pattern match you save the setup-time.
 
 ## Fastest: Precompiled
-Providing the WildcardOptions.Compiled option will cause slightly higher start cost as the match is compiled into the assembly, but give better performance on matches. One of the major benefints here is that once object is set up it can perform matching with zero memory allocations, which is good for GC.<br />
-This approach scales very well, giving very high performance on complext pattern matches and will not lead to GC hickups.
+Providing the WildcardOptions.Compiled option will cause slightly higher start cost as the match is compiled into the assembly, but give better performance on matches. One of the major benefits here is that once object is set up it can perform matching with zero memory allocations, which is good for GC.<br />
+This approach scales very well, giving very high performance on complex pattern matches and will not lead to GC hiccups.
 
 # Benchmark
 

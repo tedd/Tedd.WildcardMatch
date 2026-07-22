@@ -1,3 +1,7 @@
 ## 2024-06-17 - Architectural Drift: Partial vs. Full String Matching
 **Observation:** A discrepancy exists between the documented examples in README.md and the deterministic execution flow in `InternalUtils.cs`. The framework mathematically enforces full-string matches through automated boundary anchoring (`^` and `$`). The documentation erroneously provides examples that imply partial substring matching (e.g., matching "Lorem ipsum" against `or*ips?m`), which syntactically fail the validation step.
 **Strategic Action:** Update the epistemological interface (README.md) to accurately reflect the framework's strict boundary-anchored matching logic. Synchronize all code blocks to ensure successful deterministic execution under the current framework paradigm. Update `.NET` compatibility declarations where applicable.
+
+## 2024-10-18 - Documentation Code Examples and Lexical Precision
+**Observation:** README.md examples utilized implicit variable typing (`var`) which reduces typological transparency, and continued to have examples implying partial string matching. Additionally, several grammatical defects ("slighly", "advicable", "benefints", "complext", "hickups") were identified.
+**Strategic Action:** Updated code examples in README.md to use explicit variable declarations (`bool`, `WildcardMatch`). Fixed partial string matching examples to correctly reflect the framework's anchored matching paradigm. Corrected all spelling defects to ensure the epistemological interface maintains a rigorous, professional lexicon.
