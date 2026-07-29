@@ -7,6 +7,7 @@ using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Exporters.Csv;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
+using BenchmarkDotNet.Toolchains.InProcess.Emit;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -48,7 +49,7 @@ namespace TeddWildcardMatchBenchmark
             AddColumn(new[] { new BaselineColumn(), BaselineRatioColumn.RatioMean, BaselineRatioColumn.RatioStdDev });
             AddColumn(new[] { StatisticColumn.StdDev, StatisticColumn.Error, StatisticColumn.Iterations, StatisticColumn.Min, StatisticColumn.Mean, StatisticColumn.Max, StatisticColumn.Median, StatisticColumn.OperationsPerSecond, StatisticColumn.P95, StatisticColumn.P90 });
             AddHardwareCounters(new[] { HardwareCounter.BranchMispredictions, HardwareCounter.BranchInstructions, HardwareCounter.TotalIssues });
-            //// HardwareCounter.CacheMisses, HardwareCounter.BranchMispredictsRetired, HardwareCounter.TotalCycles, HardwareCounter.UnhaltedCoreCycles, HardwareCounter.UnhaltedReferenceCycles, HardwareCounter.BranchInstructionRetired, 
+            //// HardwareCounter.CacheMisses, HardwareCounter.BranchMispredictsRetired, HardwareCounter.TotalCycles, HardwareCounter.UnhaltedCoreCycles, HardwareCounter.UnhaltedReferenceCycles, HardwareCounter.BranchInstructionRetired,
             //Add(ThreadingDiagnoser.Default);
             ////Add(new ConcurrencyVisualizerProfiler());
             //Add(new TailCallDiagnoser());
@@ -57,6 +58,8 @@ namespace TeddWildcardMatchBenchmark
 
             AddAnalyser(EnvironmentAnalyser.Default);
             AddExporter(new[] { RPlotExporter.Default, AsciiDocExporter.Default, CsvExporter.Default, CsvMeasurementsExporter.Default, HtmlExporter.Default, PlainExporter.Default });
+
+            AddJob(Job.Default.WithToolchain(InProcessEmitToolchain.Instance));
 
         }
     }

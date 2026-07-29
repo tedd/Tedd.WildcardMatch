@@ -16,31 +16,31 @@ Many (of not most) examples of wildcard matching found on the web fail to implem
 ## Extension method
 ```csharp
 // Standard matching (case sensitive)
-var match = "Lorem ipsum".IsWildcardMatch("or*ips?m");        
+bool match = "Lorem ipsum".IsWildcardMatch("*or*ips?m*");
 // Will not match because L in Lorem is incorrect case
-var caseNotMatch = "Lorem ipsum".IsWildcardMatch("lor?m");   
+bool caseNotMatch = "Lorem ipsum".IsWildcardMatch("l*or?m*");
 // Set it to ignore case
-var caseMatch = "Lorem ipsum".IsWildcardMatch("lor?m", true); 
+bool caseMatch = "Lorem ipsum".IsWildcardMatch("l*or?m*", true);
 ```
 ## Static
 ```csharp
 // Standard matching (case sensitive)
-var alsoMatch = WildcardMatch.IsMatch("Lorem", "L??em");
+bool alsoMatch = WildcardMatch.IsMatch("Lorem", "L??em");
 // Use Options to set it to ignore case
-var andThis = WildcardMatch.IsMatch("lorem", "L?REM", WildcardOptions.IgnoreCase);
+bool andThis = WildcardMatch.IsMatch("lorem", "L?REM", WildcardOptions.IgnoreCase);
 ```
 ## Instance
 ```csharp
-var wm = new WildcardMatch("or*ips?m");
+var wm = new WildcardMatch("*or*ips?m*");
 // Standard match
-var match1 = wm.IsMatch("Lorem ipsum");
+bool match1 = wm.IsMatch("Lorem ipsum");
 // Reuse object for faster second match
-var match2 = wm.IsMatch("Bored Chipsom");
+bool match2 = wm.IsMatch("Bored Chipsoms");
 
 // A compiled instance is slighly slower at startup
-var wmc = new WildcardMatch("or*ips?m", WildcardOptions.Compiled | WildcardOptons.IgnoreCase);
+var wmc = new WildcardMatch("*or*ips?m*", WildcardOptions.Compiled | WildcardOptions.IgnoreCase);
 // But matching is faster
-var match3 = wmc.IsMatch("More ipsums");
+bool match3 = wmc.IsMatch("More ipsums");
 
 ```
 
