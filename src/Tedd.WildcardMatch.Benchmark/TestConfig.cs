@@ -7,6 +7,7 @@ using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Exporters.Csv;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
+using BenchmarkDotNet.Toolchains.InProcess.Emit;
 using System;
 using System.Collections.Generic;
 using System.Text;
