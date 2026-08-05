@@ -1,8 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0</TargetFrameworks>
-		<!--<TargetFramework>netcoreapp3.1</TargetFramework>-->
 		<Description>Fast and reliable wildcard (* and ?) matcher capable of complex pattern matching.</Description>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageTags>wildcard;matching;pattern;star;questionmark</PackageTags>
@@ -11,13 +10,11 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<PackageProjectUrl>https://github.com/tedd/Tedd.WildcardMatch</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/tedd/Tedd.WildcardMatch.git</RepositoryUrl>
-
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<RepositoryType>git</RepositoryType>
 		<Authors>tedd</Authors>
 		<Company>Tedd Hansen</Company>
 		<Copyright>Tedd Hansen</Copyright>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<EnableNETAnalyzers>True</EnableNETAnalyzers>
@@ -37,7 +34,8 @@
 		</None>
 	</ItemGroup>
 
-
-
+	<ItemGroup>
+	  <PackageReference Include="System.Memory" Version="4.6.3" />
+	</ItemGroup>
 
 </Project>
