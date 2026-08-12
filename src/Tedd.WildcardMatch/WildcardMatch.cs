@@ -1,8 +1,10 @@
-﻿using System;
+using System;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 [assembly:CLSCompliant(true)]
+[assembly:InternalsVisibleTo("Tedd.WildcardMatch.Benchmark")]
+[assembly:InternalsVisibleTo("Tedd.WildcardMatch.Tests")]
 namespace Tedd;
 
 public class WildcardMatch

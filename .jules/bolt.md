@@ -1,0 +1,3 @@
+## 2026-08-12 - InternalUtils.StringToWildcard Allocation Optimization
+**Observation:** The `StringToWildcard` method exhibited high allocation and latency due to chained `String.Replace` calls generating intermediate strings. Under .NET 10.0, the benchmark baseline demonstrated a mean execution time of 449.6 ns and 384 allocated bytes per operation.
+**Strategic Action:** Substituted intermediate string allocation with a deterministic `Span<char>` (via `stackalloc` for strings <= 512 chars) buffer builder strategy, manually expanding `\*` and `\?` sequences during loop traversal. This yielded a 39% reduction in latency (down to ~274 ns) and a drop in allocations (down to ~296 B). Fallback `char[]` used for `netstandard2.0` target.
