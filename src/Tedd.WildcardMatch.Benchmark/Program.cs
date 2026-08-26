@@ -1,6 +1,7 @@
-﻿using BenchmarkDotNet.Running;
-using System;
-using TeddWildcardMatchBenchmark.Tests;
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Running;
+using BenchmarkDotNet.Toolchains.InProcess.Emit;
 
 namespace TeddWildcardMatchBenchmark
 {
@@ -8,24 +9,10 @@ namespace TeddWildcardMatchBenchmark
     {
         static void Main(string[] args)
         {
-            var wbs = new WildcardBenchmarkSimple();
-            wbs.Setup();
-            wbs.TS_Slow();
-            wbs.TS_Precompiled();
-            wbs.WM_Simple();
-            wbs.FW_Simple();
+            var config = DefaultConfig.Instance
+                .AddJob(Job.Default.WithToolchain(InProcessEmitToolchain.Instance));
 
-            var wbc = new WildcardBenchmarkComplex();
-            wbc.Setup();
-            wbc.T_D_Complex();
-            wbc.T_P_Complex();
-            wbc.WM_Complex();
-            wbc.FW_Complex();
-
-            
-
-            //var summary1 = BenchmarkRunner.Run<WildcardBenchmarkSimple>();
-            var summary2 = BenchmarkRunner.Run<WildcardBenchmarkComplex>();
+            BenchmarkRunner.Run<TranspileBenchmark>(config);
         }
     }
 }

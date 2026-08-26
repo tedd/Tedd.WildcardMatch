@@ -2,7 +2,7 @@ using BenchmarkDotNet.Attributes;
 using Tedd;
 using Tedd.Archive;
 
-namespace Tedd.WildcardMatch.Benchmark
+namespace TeddWildcardMatchBenchmark
 {
     [MemoryDiagnoser]
     public class TranspileBenchmark
