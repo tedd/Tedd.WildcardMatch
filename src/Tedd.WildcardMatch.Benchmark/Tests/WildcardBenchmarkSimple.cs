@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using BenchmarkDotNet.Attributes;
 using FastWildcard;
 
@@ -12,12 +12,12 @@ namespace TeddWildcardMatchBenchmark.Tests
         private static readonly string _textShort = "a*abbaabbccddee";
 
         private static readonly string _patternSimple = "*aa??cc*ee*";
-        private Tedd.WildcardMatch _twm;
+        private global::Tedd.WildcardMatch _twm;
 
         [GlobalSetup]
         public void Setup()
         {
-            _twm = new Tedd.WildcardMatch(_patternSimple, Tedd.WildcardOptions.Compiled | Tedd.WildcardOptions.IgnoreCase);
+            _twm = new global::Tedd.WildcardMatch(_patternSimple, global::Tedd.WildcardOptions.Compiled | global::Tedd.WildcardOptions.IgnoreCase);
         }
 
         [Benchmark(Description = "T:SS")]
@@ -25,7 +25,7 @@ namespace TeddWildcardMatchBenchmark.Tests
         {
             for (var i = 0; i < Iterations; i++)
             {
-                if (!Tedd.WildcardMatch.IsMatch(_textShort, _patternSimple, true))
+                if (!global::Tedd.WildcardMatch.IsMatch(_textShort, _patternSimple, true))
                     throw new Exception("Incapable of matching");
             }
         }
@@ -45,7 +45,7 @@ namespace TeddWildcardMatchBenchmark.Tests
         {
             for (var i = 0; i < Iterations; i++)
             {
-                if (!WildcardMatch.StringExtensions.WildcardMatch(_patternSimple, _textShort, true))
+                if (!global::WildcardMatch.StringExtensions.WildcardMatch(_patternSimple, _textShort, true))
                     throw new Exception("Incapable of matching");
             }
         }
