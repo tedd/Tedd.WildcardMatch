@@ -24,8 +24,8 @@ namespace TeddWildcardMatchBenchmark
 
             
 
-            //var summary1 = BenchmarkRunner.Run<WildcardBenchmarkSimple>();
-            var summary2 = BenchmarkRunner.Run<WildcardBenchmarkComplex>();
+            var summary3 = BenchmarkRunner.Run<StringToWildcardBenchmark>();
+            //var summary2 = BenchmarkRunner.Run<WildcardBenchmarkComplex>();
         }
     }
 }

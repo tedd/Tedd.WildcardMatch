@@ -3,6 +3,8 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 [assembly:CLSCompliant(true)]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Tedd.WildcardMatch.Archive")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Tedd.WildcardMatch.Benchmark")]
 namespace Tedd;
 
 public class WildcardMatch

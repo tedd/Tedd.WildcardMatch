@@ -1,0 +1,3 @@
+## 2024-05-19 - InternalUtils.StringToWildcard Allocation Bottleneck
+**Observation:** `InternalUtils.StringToWildcard` utilized `Regex.Escape` chained with multiple `.Replace` calls. This generated significant intermediate string allocations, triggering GC pressure for complex pattern parsing.
+**Strategic Action:** Substituted `Regex.Escape` chain with a precalculated, single-pass `string.Create` implementation (or `StringBuilder` for older targets) utilizing a manual `IsRegexChar` switch expression. This guarantees exact semantic parity while eliminating all intermediate allocations and running in O(n) time and O(n) space.
