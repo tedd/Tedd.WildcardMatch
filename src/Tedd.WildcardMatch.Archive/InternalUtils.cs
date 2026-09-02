@@ -1,0 +1,19 @@
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Text.RegularExpressions;
+
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Tedd.WildcardMatch.Benchmark")]
+
+namespace Tedd.Archive;
+
+internal static class InternalUtils
+{
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NETSTANDARD2_0
+    public static string StringToWildcard(string wildcard) => "^" + Regex.Escape(wildcard).Replace(@"\*", ".*").Replace(@"\?", ".") + "$";
+#else
+    public static string StringToWildcard(string wildcard) => "^" + Regex.Escape(wildcard).Replace(@"\*", ".*", StringComparison.Ordinal).Replace(@"\?", ".", StringComparison.Ordinal) + "$";
+#endif
+}
