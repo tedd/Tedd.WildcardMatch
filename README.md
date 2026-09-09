@@ -20,36 +20,42 @@ The framework utilizes deterministic lexical transpilation to convert wildcard p
 3. **Boundary Anchoring:** The entire pattern is anchored using `^` (start of string) and `$` (end of string). **Note:** This mathematically enforces a full-string match. Substring matches are not supported unless explicitly declared via `*` prefixes and suffixes.
 4. **Regex Execution:** The transpiled pattern is evaluated by the .NET Regular Expression engine.
 
+### Established Capabilities vs. Planned Enhancements (Hypotheses)
+
+To mitigate speculative assumptions and maintain epistemological precision, the internal mechanics of the framework are explicitly delineated as follows:
+* **Established Capabilities:** Deterministic lexical transpilation and execution via the .NET Regular Expression engine as outlined above.
+* **Planned Future Enhancements (Hypotheses):** Hierarchical data binding, routed event infrastructure, and integration of retro-computing DOS-era controls operating with modern binding contexts. These structural components are purely hypothetical roadmap considerations and do not currently exist within the operational execution flow.
+
 # Example
 
 ## Extension method
 ```csharp
 // Standard matching (case sensitive)
-var match = "Lorem ipsum".IsWildcardMatch("*or*ips?m");
+bool match = "Lorem ipsum".IsWildcardMatch("*or*ips?m");
 // Will not match because L in Lorem is incorrect case
-var caseNotMatch = "Lorem ipsum".IsWildcardMatch("l*or?m*");
+bool caseNotMatch = "Lorem ipsum".IsWildcardMatch("l*or?m*");
 // Set it to ignore case
-var caseMatch = "Lorem ipsum".IsWildcardMatch("l*or?m*", true);
+bool caseMatch = "Lorem ipsum".IsWildcardMatch("l*or?m*", true);
 ```
 ## Static
 ```csharp
 // Standard matching (case sensitive)
-var alsoMatch = WildcardMatch.IsMatch("Lorem", "L??em");
+bool alsoMatch = WildcardMatch.IsMatch("Lorem", "L??em");
 // Use Options to set it to ignore case
-var andThis = WildcardMatch.IsMatch("lorem", "L?REM", WildcardOptions.IgnoreCase);
+bool andThis = WildcardMatch.IsMatch("lorem", "L?REM", WildcardOptions.IgnoreCase);
 ```
 ## Instance
 ```csharp
-var wm = new WildcardMatch("*or*ips?m*");
+WildcardMatch wm = new("*or*ips?m*");
 // Standard match
-var match1 = wm.IsMatch("Lorem ipsum");
+bool match1 = wm.IsMatch("Lorem ipsum");
 // Reuse object for faster second match
-var match2 = wm.IsMatch("Bored Chipsoms");
+bool match2 = wm.IsMatch("Bored Chipsoms");
 
 // A compiled instance is slighly slower at startup
-var wmc = new WildcardMatch("*or*ips?m*", WildcardOptions.Compiled | WildcardOptions.IgnoreCase);
+WildcardMatch wmc = new("*or*ips?m*", WildcardOptions.Compiled | WildcardOptions.IgnoreCase);
 // But matching is faster
-var match3 = wmc.IsMatch("More ipsums");
+bool match3 = wmc.IsMatch("More ipsums");
 
 ```
 
