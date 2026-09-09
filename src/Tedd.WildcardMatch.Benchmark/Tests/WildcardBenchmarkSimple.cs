@@ -1,62 +1,55 @@
-﻿using System;
+using System;
 using BenchmarkDotNet.Attributes;
-using FastWildcard;
+using BenchmarkDotNet.Diagnostics.Windows.Configs;
+using BenchmarkDotNet.Order;
+using Tedd;
 
 namespace TeddWildcardMatchBenchmark.Tests
 {
-    [Config(typeof(TestConfig))]
+    [Config(typeof(TeddWildcardMatchBenchmark.TestConfig))]
+    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
+    [MemoryDiagnoser]
     public class WildcardBenchmarkSimple
     {
-        private const int Iterations = 1000;
-
-        private static readonly string _textShort = "a*abbaabbccddee";
-
-        private static readonly string _patternSimple = "*aa??cc*ee*";
-        private Tedd.WildcardMatch _twm;
-
         [GlobalSetup]
         public void Setup()
         {
-            _twm = new Tedd.WildcardMatch(_patternSimple, Tedd.WildcardOptions.Compiled | Tedd.WildcardOptions.IgnoreCase);
         }
 
-        [Benchmark(Description = "T:SS")]
-        public void TS_Slow()
+        [Benchmark(Description = "Tedd:Simple,Slow")]
+        public void TestTeddSimpleSlow()
         {
-            for (var i = 0; i < Iterations; i++)
+            for (int i = 0; i < 1000; i++)
             {
-                if (!Tedd.WildcardMatch.IsMatch(_textShort, _patternSimple, true))
-                    throw new Exception("Incapable of matching");
+                var isMatch = Tedd.WildcardMatch.IsMatch("abcd", "*a?c*");
             }
         }
 
-        [Benchmark(Baseline = true, Description = "T:SP")]
-        public void TS_Precompiled()
+        [Benchmark(Description = "Archive:Simple,Slow")]
+        public void TestArchiveSimpleSlow()
         {
-            for (var i = 0; i < Iterations; i++)
+            for (int i = 0; i < 1000; i++)
             {
-                if (!_twm.IsMatch(_textShort))
-                    throw new Exception("Incapable of matching");
+                var isMatch = System.Text.RegularExpressions.Regex.IsMatch("abcd", Tedd.Archive.InternalUtilsArchive.StringToWildcard("*a?c*"));
             }
         }
 
-        [Benchmark(Description = "WM:S")]
-        public void WM_Simple()
+        [Benchmark(Description = "Tedd:Simple,Precompiled")]
+        public void TestTeddSimplePrecompiled()
         {
-            for (var i = 0; i < Iterations; i++)
+            var match = new Tedd.WildcardMatch("*a?c*", WildcardOptions.Compiled);
+            for (int i = 0; i < 1000; i++)
             {
-                if (!WildcardMatch.StringExtensions.WildcardMatch(_patternSimple, _textShort, true))
-                    throw new Exception("Incapable of matching");
+                var isMatch = match.IsMatch("abcd");
             }
         }
 
-        [Benchmark(Description = "FW:S")]
-        public void FW_Simple()
+        [Benchmark(Description = "FastWildcard:Simple")]
+        public void TestFastWildcardSimple()
         {
-            for (var i = 0; i < Iterations; i++)
+            for (int i = 0; i < 1000; i++)
             {
-                if (!FastWildcard.FastWildcard.IsMatch(_textShort, _patternSimple, new MatchSettings() { StringComparison = StringComparison.CurrentCultureIgnoreCase }))
-                    throw new Exception("Incapable of matching");
+                var isMatch = FastWildcard.FastWildcard.IsMatch("abcd", "*a?c*");
             }
         }
     }

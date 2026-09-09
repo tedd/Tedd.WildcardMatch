@@ -1,65 +1,62 @@
-﻿using BenchmarkDotNet.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using FastWildcard;
-using TeddWildcardMatchBenchmark;
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Diagnostics.Windows.Configs;
+using BenchmarkDotNet.Order;
+using System.Text.RegularExpressions;
+using Tedd;
 
 namespace TeddWildcardMatchBenchmark.Tests
 {
-    [Config(typeof(TestConfig))]
-    public class WildcardBenchmarkComplex
+
+    [Config(typeof(TeddWildcardMatchBenchmark.TestConfig))]
+    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
+    [MemoryDiagnoser]
+    //[NativeMemoryProfiler]
+    //[EtwProfiler]
+    public class WildcardBenchmark
     {
-        private const int Iterations = 1000;
+        private string _lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
-        private static readonly string _textLong = "1234567890" + new string('x', 100) + "aabbaabbccddeeffaabbccddeeffgghhiijjkk aabbaabbccddeeffaabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz" + new string('x', 100) + "1234567890";
-
-        private static readonly string _patternComplex = "*1*a*b*c*d*e*f*g*h*i*j*k*l*m*n*o*p*q*r*s*t*u*v*0*";
-        private Tedd.WildcardMatch _twmc;
 
         [GlobalSetup]
         public void Setup()
         {
-            _twmc = new Tedd.WildcardMatch(_patternComplex, Tedd.WildcardOptions.Compiled | Tedd.WildcardOptions.IgnoreCase);
         }
 
-     [Benchmark(Description = "T:CS")]
-        public void T_D_Complex()
+
+        [Benchmark(Description = "Tedd:Complex,Slow")]
+        public void TestTeddComplexSlow()
         {
-            for (var i = 0; i < Iterations; i++)
+            for (int i = 0; i < 1000; i++)
             {
-                if (!Tedd.WildcardMatch.IsMatch(_textLong, _patternComplex, true))
-                    throw new Exception("Incapable of matching");
+                var isMatch = Tedd.WildcardMatch.IsMatch(_lorem, "*ipsum*ad??in*sit*");
             }
         }
 
-        [Benchmark(Description = "T:CP")]
-        public void T_P_Complex()
+        [Benchmark(Description = "Archive:Complex,Slow")]
+        public void TestArchiveComplexSlow()
         {
-            for (var i = 0; i < Iterations; i++)
+            for (int i = 0; i < 1000; i++)
             {
-                if (!_twmc.IsMatch(_textLong))
-                    throw new Exception("Incapable of matching");
+                var isMatch = Regex.IsMatch(_lorem, Tedd.Archive.InternalUtilsArchive.StringToWildcard("*ipsum*ad??in*sit*"));
             }
         }
 
-        [Benchmark(Description = "WM")]
-        public void WM_Complex()
+        [Benchmark(Description = "Tedd:Complex,Precompiled")]
+        public void TestTeddComplexPrecompiled()
         {
-            for (var i = 0; i < Iterations; i++)
+            var match = new Tedd.WildcardMatch("*ipsum*ad??in*sit*", WildcardOptions.Compiled);
+            for (int i = 0; i < 1000; i++)
             {
-                if (!WildcardMatch.StringExtensions.WildcardMatch(_patternComplex, _textLong, true))
-                    throw new Exception("Incapable of matching");
+                var isMatch = match.IsMatch(_lorem);
             }
         }
 
-        [Benchmark(Description = "FW")]
-        public void FW_Complex()
+        [Benchmark(Description = "FastWildcard:Complex")]
+        public void TestFastWildcardComplex()
         {
-            for (var i = 0; i < Iterations; i++)
+            for (int i = 0; i < 1000; i++)
             {
-                if (!FastWildcard.FastWildcard.IsMatch(_textLong, _patternComplex, new MatchSettings() { StringComparison = StringComparison.CurrentCultureIgnoreCase }))
-                    throw new Exception("Incapable of matching");
+                var isMatch = FastWildcard.FastWildcard.IsMatch(_lorem, "*ipsum*ad??in*sit*");
             }
         }
     }
