@@ -1,0 +1,4 @@
+
+## 2024-05-18 - Tedd.WildcardMatch Boundary & Edge-Case Coverage
+**Observation:** Coverage deficits existed for boundary cases (e.g., handling null inputs and empty strings) and error propagation pathways (e.g., ArgumentNullException, RegexMatchTimeoutException) across instance initialization and static extension methods. Also, test performance evaluation under memory pressure was missing for large buffer allocations.
+**Strategic Action:** Added parameterized [Theory]/[InlineData] xUnit test fixtures (`BoundaryTest.cs`, `TimeoutTest.cs`) to explicitly trigger exception boundaries and validate empty string handling scenarios. In addition, established `PerformanceBoundaryTest.cs` utilizing `ArrayPool<T>` and `Span<T>` to execute massive inputs (e.g., 10,000 characters) efficiently to validate extreme input conditions without escalating GC allocations.
