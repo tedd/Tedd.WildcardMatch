@@ -4,6 +4,7 @@ using FastWildcard;
 
 namespace TeddWildcardMatchBenchmark.Tests
 {
+    [MemoryDiagnoser]
     [Config(typeof(TestConfig))]
     public class WildcardBenchmarkSimple
     {
