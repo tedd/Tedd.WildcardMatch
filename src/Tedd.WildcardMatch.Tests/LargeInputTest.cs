@@ -11,7 +11,7 @@ namespace Tedd.WildcardMatchTests
         [InlineData(10000, "*")]
         [InlineData(10000, "a*")]
         [InlineData(10000, "*a")]
-        public void Match_LargeInput_PerformsWithinLimits(int size, string pattern)
+        public void Match_LargeInput_ReturnsTrue(int size, string pattern)
         {
             var pool = ArrayPool<char>.Shared;
             char[] buffer = pool.Rent(size);
