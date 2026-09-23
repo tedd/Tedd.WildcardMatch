@@ -1,4 +1,4 @@
-﻿using BenchmarkDotNet.Running;
+using BenchmarkDotNet.Running;
 using System;
 using TeddWildcardMatchBenchmark.Tests;
 
@@ -22,9 +22,7 @@ namespace TeddWildcardMatchBenchmark
             wbc.WM_Complex();
             wbc.FW_Complex();
 
-            
-
-            //var summary1 = BenchmarkRunner.Run<WildcardBenchmarkSimple>();
+            var summary = BenchmarkRunner.Run<BenchmarkStringToWildcard>();
             var summary2 = BenchmarkRunner.Run<WildcardBenchmarkComplex>();
         }
     }
