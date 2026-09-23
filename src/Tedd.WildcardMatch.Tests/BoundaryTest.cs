@@ -63,19 +63,13 @@ namespace Tedd.WildcardMatchTests
         }
 
         [Theory]
-        [InlineData("", "")]
-        [InlineData("", "*")]
-        [InlineData("a", "*")]
-        [InlineData("a", "?")]
-        [InlineData("", "?")]
-        public void IsMatch_EmptyStrings(string input, string wildcard)
+        [InlineData("", "", true)]
+        [InlineData("", "*", true)]
+        [InlineData("a", "*", true)]
+        [InlineData("a", "?", true)]
+        [InlineData("", "?", false)]
+        public void IsMatch_EmptyStrings(string input, string wildcard, bool expected)
         {
-            var expected = input == "" && wildcard == "" ? true :
-                           input == "" && wildcard == "*" ? true :
-                           input == "a" && wildcard == "*" ? true :
-                           input == "a" && wildcard == "?" ? true :
-                           input == "" && wildcard == "?" ? false : false;
-
             Assert.Equal(expected, WildcardMatch.IsMatch(input, wildcard));
             Assert.Equal(expected, input.IsWildcardMatch(wildcard));
             var wm = new WildcardMatch(wildcard);
