@@ -23,7 +23,7 @@ namespace TeddWildcardMatchBenchmark.Tests
             _twmc = new Tedd.WildcardMatch(_patternComplex, Tedd.WildcardOptions.Compiled | Tedd.WildcardOptions.IgnoreCase);
         }
 
-     [Benchmark(Description = "T:CS")]
+        [Benchmark(Description = "T:CS")]
         public void T_D_Complex()
         {
             for (var i = 0; i < Iterations; i++)

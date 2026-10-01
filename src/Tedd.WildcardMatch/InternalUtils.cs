@@ -6,9 +6,9 @@ using System.Text.RegularExpressions;
 
 namespace Tedd;
 
-    internal static class InternalUtils
-    {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+internal static class InternalUtils
+{
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NETSTANDARD2_0
     public static string StringToWildcard(string wildcard) => "^" + Regex.Escape(wildcard).Replace(@"\*", ".*").Replace(@"\?", ".") + "$";
 #else
