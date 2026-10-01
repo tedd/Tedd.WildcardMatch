@@ -18,11 +18,11 @@ namespace Tedd;
         /// </summary>
         Singleline = 0x0010, // "s"
         /// <summary>
-        /// Specifies that the regular expression is compiled to an assembly. This yields faster execution but increases startup time.
+        /// Compiles the Regex-backed engine. The direct engine accepts this flag without additional compilation.
         /// </summary>
         Compiled = 0x0008, // "c"
         /// <summary>
-        /// Specifies that the search will be from right to left instead of from left to right.
+        /// Searches from right to left in the Regex-backed engine; the direct engine preserves the same Boolean result.
         /// </summary>
         RightToLeft = 0x0040, // "r"
         /// <summary>

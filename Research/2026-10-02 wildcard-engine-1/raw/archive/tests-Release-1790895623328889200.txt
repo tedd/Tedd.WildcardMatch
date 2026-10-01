@@ -1,0 +1,70 @@
+  Determining projects to restore...
+D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\Tedd.WildcardMatch.Tests.csproj : warning NU1903: Package 'Newtonsoft.Json' 9.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr
+  All projects are up-to-date for restore.
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(385,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\Tedd.WildcardMatch.Tests.csproj::TargetFramework=net8.0]
+D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\Tedd.WildcardMatch.Tests.csproj : warning NU1903: Package 'Newtonsoft.Json' 9.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr [TargetFramework=net8.0]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(385,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\Tedd.WildcardMatch.Tests.csproj::TargetFramework=net10.0]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(385,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\Tedd.WildcardMatch.Tests.csproj::TargetFramework=net11.0]
+D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\Tedd.WildcardMatch.Tests.csproj : warning NU1903: Package 'Newtonsoft.Json' 9.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr [TargetFramework=net10.0]
+D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\Tedd.WildcardMatch.Tests.csproj : warning NU1903: Package 'Newtonsoft.Json' 9.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr [TargetFramework=net11.0]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(385,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch\Tedd.WildcardMatch.csproj::TargetFramework=net11.0]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(385,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch\Tedd.WildcardMatch.csproj::TargetFramework=net10.0]
+  Tedd.WildcardMatch -> D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch\bin\Release\netstandard2.1\Tedd.WildcardMatch.dll
+  Tedd.WildcardMatch -> D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch\bin\Release\net10.0\Tedd.WildcardMatch.dll
+  Tedd.WildcardMatch -> D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch\bin\Release\net11.0\Tedd.WildcardMatch.dll
+  Tedd.WildcardMatch.Tests -> D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\bin\Release\net8.0\Tedd.WildcardMatch.Tests.dll
+  Tedd.WildcardMatch.Tests -> D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\bin\Release\net10.0\Tedd.WildcardMatch.Tests.dll
+  Tedd.WildcardMatch.Tests -> D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\bin\Release\net11.0\Tedd.WildcardMatch.Tests.dll
+Test run for D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\bin\Release\net10.0\Tedd.WildcardMatch.Tests.dll (.NETCoreApp,Version=v10.0)
+Test run for D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\bin\Release\net8.0\Tedd.WildcardMatch.Tests.dll (.NETCoreApp,Version=v8.0)
+Test run for D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\bin\Release\net11.0\Tedd.WildcardMatch.Tests.dll (.NETCoreApp,Version=v11.0)
+A total of 1 test files matched the specified pattern.
+A total of 1 test files matched the specified pattern.A total of 1 test files matched the specified pattern.
+
+[xUnit.net 00:00:04.40]     Tedd.WildcardMatchTests.EngineFuzzTest.SeededUnicodeFuzzAcrossAllEntryPoints(seed: 19373, culture: "") [FAIL]
+[xUnit.net 00:00:04.40]     Tedd.WildcardMatchTests.EngineFuzzTest.SeededUnicodeFuzzAcrossAllEntryPoints(seed: 38417, culture: "tr-TR") [FAIL]
+[xUnit.net 00:00:04.41]     Tedd.WildcardMatchTests.EngineFuzzTest.SeededUnicodeFuzzAcrossAllEntryPoints(seed: 92741, culture: "en-US") [FAIL]
+[xUnit.net 00:00:04.41]     Tedd.WildcardMatchTests.EngineFuzzTest.SeededUnicodeFuzzAcrossAllEntryPoints(seed: 68129, culture: "az-Latn-AZ") [FAIL]
+  Failed Tedd.WildcardMatchTests.EngineFuzzTest.SeededUnicodeFuzzAcrossAllEntryPoints(seed: 19373, culture: "") [24 ms]
+  Error Message:
+   seed=19373, trial=145, flags=2144, input=\u0024\u0041\u0000\u000B\u005B\u002A\uFFFF\u000A\u2028\u005B\u017F\u007C\u0069\u005E\u0024\u2029\u005E\u000C\u03C2\u0069\u0020, pattern=\u002A\u0024\u0041\u0000\u000B\u002A\u003F\u002A\u002A\uFFFF\u000A\u2028\u005B\u017F\u007C\u0069\u005E\u0024\u2029\u003F\u000C\u03C2\u0069\u002A\u0020
+Expected: True
+Actual:   False
+  Stack Trace:
+     at Tedd.WildcardMatchTests.EngineFuzzTest.SeededUnicodeFuzzAcrossAllEntryPoints(Int32 seed, String culture) in D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\EngineFuzzTest.cs:line 109
+   at System.RuntimeMethodHandle.InvokeMethod(ObjectHandleOnStack target, Void** arguments, ObjectHandleOnStack sig, BOOL isConstructor, ObjectHandleOnStack result)
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Tedd.WildcardMatchTests.EngineFuzzTest.SeededUnicodeFuzzAcrossAllEntryPoints(seed: 38417, culture: "tr-TR") [6 ms]
+  Error Message:
+   seed=38417, trial=43, flags=626, input=\u000B\u0061\u0085\u017F\u007B\u0029\uFFFF\u000A\u0029\u002B\u002E\u0028\u03C3\u00DF\u005D\u0029\u000D\u0028\u000D\u0069\u00C5\u0130\u0049\u0042\u0009\u0131\u002B\uFFFF\u212A, pattern=\u000B\u0061\u002A\u0085\u017F\u007B\u0029\u003F\u000A\u003F\u002B\u002E\u002A\u0028\u002A\u03C3\u00DF\u005D\u002A\u0029\u000D\u0028\u000D\u0069\u00C5\u003F\u0049\u0042\u0009\u003F\u002A\u002B\u002A\uFFFF\u212A\u002A
+Expected: True
+Actual:   False
+  Stack Trace:
+     at Tedd.WildcardMatchTests.EngineFuzzTest.SeededUnicodeFuzzAcrossAllEntryPoints(Int32 seed, String culture) in D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\EngineFuzzTest.cs:line 109
+   at InvokeStub_EngineFuzzTest.SeededUnicodeFuzzAcrossAllEntryPoints(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Tedd.WildcardMatchTests.EngineFuzzTest.SeededUnicodeFuzzAcrossAllEntryPoints(seed: 92741, culture: "en-US") [< 1 ms]
+  Error Message:
+   seed=92741, trial=1, flags=544, input=\u007B\u0062\u0024\u000B\u0069\u0000\u0049\uD800\u000B\u0085\uFFFF\u0062\u0024\u002B\u000A\u0130\u0041\u007D\u0042\uD800, pattern=\u003F\u0062\u0024\u002A\u000B\u0069\u002A\u003F\u0049\u003F\u000B\u0085\u003F\u0062\u0024\u002B\u000A\u0130\u0041\u003F\u003F\u002A\u003F
+Expected: True
+Actual:   False
+  Stack Trace:
+     at Tedd.WildcardMatchTests.EngineFuzzTest.SeededUnicodeFuzzAcrossAllEntryPoints(Int32 seed, String culture) in D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\EngineFuzzTest.cs:line 109
+   at InvokeStub_EngineFuzzTest.SeededUnicodeFuzzAcrossAllEntryPoints(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Tedd.WildcardMatchTests.EngineFuzzTest.SeededUnicodeFuzzAcrossAllEntryPoints(seed: 68129, culture: "az-Latn-AZ") [5 ms]
+  Error Message:
+   seed=68129, trial=13, flags=609, input=\u007D\u000B\u00C5\u0131\u2029\u00DF\u000B\u007D\u0000\u017F\u0085\u03C3\u0131\u000A\u007D\u0049\u0028\u002B\u002A\u2028\u0023\u0041\uDC00\u000A\u005E\u007C\u0085\u007B, pattern=\u007D\u000B\u00C5\u002A\u0131\u2029\u002A\u00DF\u002A\u000B\u007D\u0000\u017F\u0085\u003F\u002A\u0131\u002A\u000A\u003F\u003F\u002A\u0028\u002B\u002A\u003F\u0023\u002A\u0041\uDC00\u000A\u005E\u007C\u0085\u003F
+Expected: True
+Actual:   False
+  Stack Trace:
+     at Tedd.WildcardMatchTests.EngineFuzzTest.SeededUnicodeFuzzAcrossAllEntryPoints(Int32 seed, String culture) in D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\EngineFuzzTest.cs:line 109
+   at InvokeStub_EngineFuzzTest.SeededUnicodeFuzzAcrossAllEntryPoints(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+
+Passed!  - Failed:     0, Passed:   209, Skipped:     0, Total:   209, Duration: 10 s - Tedd.WildcardMatch.Tests.dll (net8.0)
+
+Passed!  - Failed:     0, Passed:   209, Skipped:     0, Total:   209, Duration: 12 s - Tedd.WildcardMatch.Tests.dll (net10.0)
+
+Failed!  - Failed:     4, Passed:   208, Skipped:     0, Total:   212, Duration: 28 s - Tedd.WildcardMatch.Tests.dll (net11.0)

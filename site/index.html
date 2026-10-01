@@ -25,7 +25,7 @@
       <div class="hero-copy">
         <p class="eyebrow"><span></span> Pattern matching for .NET</p>
         <h1>Simple patterns.<br><em>Precise matches.</em></h1>
-        <p class="lede">Match strings with <code>*</code> and <code>?</code>. Tedd.WildcardMatch translates wildcard patterns to .NET regular expressions, with reusable matchers, compiled execution, case options, and explicit timeouts.</p>
+        <p class="lede">Match strings with <code>*</code> and <code>?</code>. Choose direct <code>WildcardMatch</code> execution or the <code>WildcardMatchRegex</code> engine, with reusable matchers, case options, and explicit timeouts.</p>
         <p class="hero-evidence">Choose a static call for convenience or reuse a pattern for repeated matches. Compare throughput, allocations, and construction cost against three other NuGet libraries in the <a href="#benchmarks">published .NET 10 benchmarks</a>.</p>
         <div class="hero-badges">
           <a href="https://www.nuget.org/packages/Tedd.WildcardMatch"><img src="https://img.shields.io/nuget/v/Tedd.WildcardMatch?logo=nuget&amp;label=NuGet" alt="NuGet package version" height="20"></a>
@@ -46,14 +46,14 @@
             <div><code>report-1.txt</code><span class="match-no">NO MATCH</span></div>
             <div><code>report-001.txt</code><span class="match-no">NO MATCH</span></div>
           </div>
-          <div class="diagram-result"><span>REGEX TRANSLATION</span><code>^report-..\.txt$</code></div>
+          <div class="diagram-result"><span>EQUIVALENT REGEX</span><code>^report-..\.txt$</code></div>
         </div>
-        <figcaption>Literal regex characters are escaped. Wildcard tokens become regex operators; anchors constrain the match.</figcaption>
+        <figcaption>Both engines share wildcard semantics. WildcardRegex exposes the equivalent anchored expression for inspection.</figcaption>
       </figure>
     </section>
     <section class="fact-strip" aria-label="Library characteristics">
       <p><strong>Two wildcard tokens</strong><span>Star for a sequence, question mark for one character</span></p>
-      <p><strong>Reusable patterns</strong><span>Translate once and match multiple strings</span></p>
+      <p><strong>Reusable patterns</strong><span>Retain a pattern and match multiple strings</span></p>
       <p><strong>Regex controls</strong><span>Case, culture, direction, and line handling</span></p>
       <p><strong>Portable package</strong><span>.NET Standard 2.1 with native .NET 10 and 11 targets</span></p>
     </section>
@@ -67,11 +67,11 @@
       <p class="algorithm-note">Patterns translate to <code>^…$</code>. .NET permits <code>$</code> before a final newline. Wildcards exclude <code>\n</code> unless <code>Singleline</code> is set. <a href="#behavior">See matching behavior</a>.</p>
     </section>
     <section class="section-shell model-section" id="model">
-      <div class="section-intro"><div><p class="eyebrow">Choose an API</p><h2>The right lifetime<br>for your pattern.</h2></div><p>Use the same wildcard syntax through extension methods, static calls, or an instance. Reuse avoids translating the pattern on every match.</p></div>
+      <div class="section-intro"><div><p class="eyebrow">Choose an API</p><h2>The right lifetime<br>for your pattern.</h2></div><p>Use the same wildcard syntax through extension methods, static calls, or an instance. Direct calls avoid Regex translation; instances retain pattern classification and case behavior.</p></div>
       <div class="api-detail-grid">
-        <article class="api-detail"><span class="step">01 / Convenient</span><h3>Extension or static call</h3><p><code>text.IsWildcardMatch(pattern)</code> and <code>WildcardMatch.IsMatch(text, pattern)</code> translate the pattern per call and use the runtime regex cache.</p></article>
-        <article class="api-detail"><span class="step">02 / Repeated matches</span><h3>Reusable instance</h3><p><code>new WildcardMatch(pattern)</code> keeps its regex for repeated inputs. Inspect <code>WildcardRegex</code> to see the generated expression.</p></article>
-        <article class="api-detail"><span class="step">03 / Hot patterns</span><h3>Compiled instance</h3><p><code>WildcardOptions.Compiled</code> trades higher construction cost for compiled regex execution. Measure that tradeoff for your workload.</p></article>
+        <article class="api-detail"><span class="step">01 / Convenient</span><h3>Extension or static call</h3><p><code>text.IsWildcardMatch(pattern)</code> and <code>WildcardMatch.IsMatch(text, pattern)</code> match directly without Regex translation or per-match buffers.</p></article>
+        <article class="api-detail"><span class="step">02 / Repeated matches</span><h3>Reusable instance</h3><p><code>new WildcardMatch(pattern)</code> retains its pattern and case behavior. Inspect <code>WildcardRegex</code> for a lazily generated equivalent expression.</p></article>
+        <article class="api-detail"><span class="step">03 / Regex execution</span><h3>Compiled Regex instance</h3><p><code>new WildcardMatchRegex(pattern, WildcardOptions.Compiled)</code> compiles Regex execution. The direct engine accepts this flag without additional compilation.</p></article>
       </div>
       <p class="model-note">Options: <code>IgnoreCase</code>, <code>CultureInvariant</code>, <code>Singleline</code>, <code>Compiled</code>, and <code>RightToLeft</code>. Combine flags with <code>|</code>.</p>
     </section>
@@ -96,7 +96,6 @@ using Tedd;
 
 var matcher = new WildcardMatch(
     "report-*.txt",
-    WildcardOptions.Compiled |
     WildcardOptions.CultureInvariant,
     TimeSpan.FromMilliseconds(100));
 
@@ -110,6 +109,7 @@ Console.WriteLine(matcher.WildcardRegex);</code></pre></div>
     </section>
     <section class="section-shell benchmark-section" id="benchmarks">
       <div class="section-intro"><div><p class="eyebrow">Measured on .NET 10</p><h2>Performance,<br>with the conditions.</h2></div><p>Four workloads, four packages, and three Tedd API modes. Compare measured time and allocations per match, then examine the cost of constructing reusable patterns.</p></div>
+      <p class="model-note">This snapshot measures the Regex-backed implementation at its recorded source revision. Its static and reused rows describe that Regex API; direct-engine performance requires measurements of the current source.</p>
       <div class="benchmark-controls"><label for="comparison-fixture">Workload</label><select id="comparison-fixture"><option value="Literal">Literal</option><option value="Simple" selected>Question marks</option><option value="MultiStar">Multiple stars</option><option value="LongText">Long text</option></select><span>Throughput in millions of matches per second · higher is faster</span></div>
       <!-- BENCHMARK_CONTENT_START -->
 <figure class="bar-chart package-chart"><figcaption><span>Matching throughput</span><strong id="chart-workload">Question marks</strong><small>Pattern: <code id="chart-pattern">report-??.txt</code> · millions of matches/s</small></figcaption><div id="chart-rows">
@@ -166,7 +166,7 @@ Console.WriteLine(matcher.WildcardRegex);</code></pre></div>
         <p><strong>Anchors.</strong> <code>^</code> and <code>$</code> constrain the match. A final <code>\n</code> may remain after the match because of .NET's end-anchor semantics.</p>
         <p><strong>Line handling.</strong> <code>*</code> and <code>?</code> exclude line feeds by default. <code>Singleline</code> lets them consume line feeds too.</p>
         <p><strong>Case and culture.</strong> Matching is case-sensitive by default. Combine <code>IgnoreCase</code> with <code>CultureInvariant</code> for culture-independent regex casing.</p>
-        <p><strong>Pattern lifetime.</strong> Compiling a regex costs more up front. Reuse it across inputs; inspect the construction measurements before choosing compilation.</p>
+        <p><strong>Pattern lifetime.</strong> Direct instances retain pattern classification and case behavior. WildcardMatchRegex supports compiled execution with an additional construction cost.</p>
       </div>
     </section>
   </main>

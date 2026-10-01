@@ -1,0 +1,10 @@
+  Determining projects to restore...
+C:\Program Files\dotnet\sdk\10.0.401\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.TargetFrameworkInference.targets(184,5): error NETSDK1045: The current .NET SDK does not support targeting .NET 11.0.  Either target .NET 10.0 or lower, or use a version of the .NET SDK that supports .NET 11.0. Download the .NET SDK from https://aka.ms/dotnet/download [D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch\Tedd.WildcardMatch.csproj::TargetFramework=net11.0]
+
+Build FAILED.
+
+C:\Program Files\dotnet\sdk\10.0.401\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.TargetFrameworkInference.targets(184,5): error NETSDK1045: The current .NET SDK does not support targeting .NET 11.0.  Either target .NET 10.0 or lower, or use a version of the .NET SDK that supports .NET 11.0. Download the .NET SDK from https://aka.ms/dotnet/download [D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch\Tedd.WildcardMatch.csproj::TargetFramework=net11.0]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:00.84

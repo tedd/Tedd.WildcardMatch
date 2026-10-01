@@ -4,9 +4,9 @@ BenchmarkDotNet 0.15.8 runs on .NET 10. The library project targets .NET Standar
 
 | Library / mode | Version | Timed work |
 | --- | --- | --- |
-| Tedd.WildcardMatch static | Project source | Pattern translation and cached regex matching |
-| Tedd.WildcardMatch reused | Project source | Matching with a prepared regex |
-| Tedd.WildcardMatch compiled | Project source | Matching with a prepared compiled regex |
+| Tedd.WildcardMatch static | Project source | Direct wildcard matching |
+| Tedd.WildcardMatch reused | Project source | Direct matching with retained pattern classification |
+| Tedd.WildcardMatchRegex compiled | Project source | Matching with a prepared compiled Regex |
 | FastWildcard | 3.1.0 | Static matching with reused ordinal settings |
 | WildcardMatch | 1.0.7 | Static extension call |
 | DotNet.Glob | 3.1.3 | Matching with a parsed glob |
@@ -21,7 +21,7 @@ A dynamic-programming matcher independently determines the expected result for e
 
 Matching returns the number of successful matches to retain observable work. Each API is called through a delegate. The reported time and allocations are per match because `OperationsPerInvoke` is 256. Instance creation and first-use setup are excluded from these measurements; static APIs perform their own per-call setup.
 
-Construction benchmarks measure reusable Tedd, compiled Tedd, and parsed DotNet.Glob objects. They exclude first-match JIT costs. Static-only competitors have no equivalent reusable-pattern construction API in this suite.
+Construction benchmarks measure reusable direct Tedd, compiled Tedd Regex, and parsed DotNet.Glob objects. They exclude first-match JIT costs. Static-only competitors have no equivalent reusable-pattern construction API in this suite.
 
 ## Run
 
@@ -45,7 +45,7 @@ For more precise measurements, omit `--job short` and inspect the resulting repo
 
 ## Website snapshot
 
-The checked-in snapshot uses one launch, three warmups, and three measured iterations. Error is BenchmarkDotNet's 99.9% confidence-interval half-width. Short runs can produce wide intervals; the snapshot should support workload-specific comparisons, not close rankings.
+The checked-in snapshot measures the Regex-backed implementation at its recorded source revision, using one launch, three warmups, and three measured iterations. Its static/reused rows describe that revision's Regex API. Error is BenchmarkDotNet's 99.9% confidence-interval half-width. Short runs can produce wide intervals; the snapshot should support workload-specific comparisons, not close rankings.
 
 To export a complete short run to the site:
 

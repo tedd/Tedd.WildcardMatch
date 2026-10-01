@@ -34,7 +34,7 @@ public static class Comparison
     {
         "TeddStatic" => input => global::Tedd.WildcardMatch.IsMatch(input, pattern),
         "TeddReused" => new global::Tedd.WildcardMatch(pattern).IsMatch,
-        "TeddCompiled" => new global::Tedd.WildcardMatch(pattern, global::Tedd.WildcardOptions.Compiled).IsMatch,
+        "TeddCompiled" => new global::Tedd.WildcardMatchRegex(pattern, global::Tedd.WildcardOptions.Compiled).IsMatch,
         "FastWildcard" => Fast(pattern),
         "WildcardMatch" => input => global::WildcardMatch.StringExtensions.WildcardMatch(pattern, input, false),
         "DotNetGlob" => Glob.Parse(pattern).IsMatch,

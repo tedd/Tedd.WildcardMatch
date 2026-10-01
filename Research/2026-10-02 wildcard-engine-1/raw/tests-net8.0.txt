@@ -1,0 +1,10 @@
+  Determining projects to restore...
+  Restored D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\Tedd.WildcardMatch.Tests.csproj (in 1.02 sec).
+  1 of 2 projects are up-to-date for restore.
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(385,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\Tedd.WildcardMatch.Tests.csproj::TargetFramework=net8.0]
+  Tedd.WildcardMatch -> D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch\bin\Release\netstandard2.1\Tedd.WildcardMatch.dll
+  Tedd.WildcardMatch.Tests -> D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\bin\Release\net8.0\Tedd.WildcardMatch.Tests.dll
+Test run for D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\bin\Release\net8.0\Tedd.WildcardMatch.Tests.dll (.NETCoreApp,Version=v8.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   209, Skipped:     0, Total:   209, Duration: 11 s - Tedd.WildcardMatch.Tests.dll (net8.0)

@@ -1,0 +1,73 @@
+
+Welcome to .NET 10.0!
+---------------------
+SDK Version: 10.0.401
+
+----------------
+Installed an ASP.NET Core HTTPS development certificate.
+To trust the certificate, run 'dotnet dev-certs https --trust'
+Learn about HTTPS: https://aka.ms/dotnet-https
+
+----------------
+Write your first app: https://aka.ms/dotnet-hello-world
+Find out what's new: https://aka.ms/dotnet-whats-new
+Explore documentation: https://aka.ms/dotnet-docs
+Report issues and find source on GitHub: https://github.com/dotnet/core
+Use 'dotnet --help' to see available commands or visit: https://aka.ms/dotnet-cli
+--------------------------------------------------------------------------------------
+  Determining projects to restore...
+  Restored D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch\Tedd.WildcardMatch.csproj (in 1.26 sec).
+D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\Tedd.WildcardMatch.Tests.csproj : warning NU1903: Package 'Newtonsoft.Json' 9.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr
+  Restored D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\Tedd.WildcardMatch.Tests.csproj (in 1.6 sec).
+D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\Tedd.WildcardMatch.Tests.csproj : warning NU1903: Package 'Newtonsoft.Json' 9.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr
+  Tedd.WildcardMatch -> D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch\bin\Release\netstandard2.0\Tedd.WildcardMatch.dll
+  Tedd.WildcardMatch.Tests -> D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\bin\Release\net10.0\Tedd.WildcardMatch.Tests.dll
+Test run for D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\bin\Release\net10.0\Tedd.WildcardMatch.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.52] Tedd.WildcardMatch.Tests: Skipping test case with duplicate ID '77066b97ddb9107ed30eef274aae3161e8c51cf3' ('Tedd.WildcardMatchTests.EngineContractTest.EdgeCase_AllEntryPoints(regex: False, input: "\xd800", pattern: "?", expected: True)' and 'Tedd.WildcardMatchTests.EngineContractTest.EdgeCase_AllEntryPoints(regex: False, input: "\xdc00", pattern: "?", expected: True)')
+[xUnit.net 00:00:00.52] Tedd.WildcardMatch.Tests: Skipping test case with duplicate ID 'e45d133cd10cd46f21ea666cdce3d97139aa3272' ('Tedd.WildcardMatchTests.EngineContractTest.EdgeCase_AllEntryPoints(regex: True, input: "\xd800", pattern: "?", expected: True)' and 'Tedd.WildcardMatchTests.EngineContractTest.EdgeCase_AllEntryPoints(regex: True, input: "\xdc00", pattern: "?", expected: True)')
+[xUnit.net 00:00:00.67]     Tedd.WildcardMatchTests.EngineContractTest.EdgeCase_AllEntryPoints(regex: True, input: "abaac", pattern: "*a?ac", expected: True) [FAIL]
+[xUnit.net 00:00:00.68]     Tedd.WildcardMatchTests.EngineContractTest.EdgeCase_AllEntryPoints(regex: False, input: "abaac", pattern: "*a?ac", expected: True) [FAIL]
+  Failed Tedd.WildcardMatchTests.EngineContractTest.EdgeCase_AllEntryPoints(regex: True, input: "abaac", pattern: "*a?ac", expected: True) [2 ms]
+  Error Message:
+   Assert.Equal() Failure
+Expected: True
+Actual:   False
+  Stack Trace:
+     at Tedd.WildcardMatchTests.EngineContractTest.EdgeCase_AllEntryPoints(Boolean regex, String input, String pattern, Boolean expected) in D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\EngineContractTest.cs:line 53
+   at InvokeStub_EngineContractTest.EdgeCase_AllEntryPoints(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Tedd.WildcardMatchTests.EngineContractTest.EdgeCase_AllEntryPoints(regex: False, input: "abaac", pattern: "*a?ac", expected: True) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure
+Expected: True
+Actual:   False
+  Stack Trace:
+     at Tedd.WildcardMatchTests.EngineContractTest.EdgeCase_AllEntryPoints(Boolean regex, String input, String pattern, Boolean expected) in D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\EngineContractTest.cs:line 53
+   at InvokeStub_EngineContractTest.EdgeCase_AllEntryPoints(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:09.68]     Tedd.WildcardMatchTests.EngineFuzzTest.LongSegmentAndRetryFuzz(seed: 17293) [FAIL]
+  Failed Tedd.WildcardMatchTests.EngineFuzzTest.LongSegmentAndRetryFuzz(seed: 17293) [2 s]
+  Error Message:
+   System.Text.RegularExpressions.RegexMatchTimeoutException : The Regex engine has timed out while trying to match a pattern to an input string. This can occur for many reasons, including very large inputs or excessive backtracking caused by nested quantifiers, back-references and other factors.
+  Stack Trace:
+     at System.Text.RegularExpressions.RegexRunner.<CheckTimeout>g__ThrowRegexTimeout|25_0()
+   at System.Text.RegularExpressions.RegexInterpreter.TryMatchAtCurrentPosition(ReadOnlySpan`1 inputSpan)
+   at System.Text.RegularExpressions.RegexInterpreter.Scan(ReadOnlySpan`1 text)
+   at Tedd.WildcardMatchTests.EngineFuzzTest.LongSegmentAndRetryFuzz(Int32 seed) in D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\EngineFuzzTest.cs:line 137
+   at System.RuntimeMethodHandle.InvokeMethod(ObjectHandleOnStack target, Void** arguments, ObjectHandleOnStack sig, BOOL isConstructor, ObjectHandleOnStack result)
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+[xUnit.net 00:00:12.80]     Tedd.WildcardMatchTests.EngineFuzzTest.LongSegmentAndRetryFuzz(seed: 97131) [FAIL]
+  Failed Tedd.WildcardMatchTests.EngineFuzzTest.LongSegmentAndRetryFuzz(seed: 97131) [3 s]
+  Error Message:
+   System.Text.RegularExpressions.RegexMatchTimeoutException : The Regex engine has timed out while trying to match a pattern to an input string. This can occur for many reasons, including very large inputs or excessive backtracking caused by nested quantifiers, back-references and other factors.
+  Stack Trace:
+     at System.Text.RegularExpressions.RegexRunner.<CheckTimeout>g__ThrowRegexTimeout|25_0()
+   at System.Text.RegularExpressions.RegexInterpreter.TryMatchAtCurrentPosition(ReadOnlySpan`1 inputSpan)
+   at System.Text.RegularExpressions.RegexInterpreter.Scan(ReadOnlySpan`1 text)
+   at Tedd.WildcardMatchTests.EngineFuzzTest.LongSegmentAndRetryFuzz(Int32 seed) in D:\Workspaces\AI\wildcard-engine\Tedd.WildcardMatch.Tests\EngineFuzzTest.cs:line 137
+   at InvokeStub_EngineFuzzTest.LongSegmentAndRetryFuzz(Object, Span`1)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+
+Failed!  - Failed:     4, Passed:   201, Skipped:     0, Total:   205, Duration: 12 s - Tedd.WildcardMatch.Tests.dll (net10.0)

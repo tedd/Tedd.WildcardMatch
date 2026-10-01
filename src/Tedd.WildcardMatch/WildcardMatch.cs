@@ -1,82 +1,71 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
+using System;
+using System.Threading;
 
-[assembly:CLSCompliant(true)]
+[assembly: CLSCompliant(true)]
 namespace Tedd;
 
+/// <summary>Matches literal UTF-16 characters, '*' and '?' without a regular expression engine.</summary>
 public class WildcardMatch
 {
-    private readonly Regex _regex;
+    private readonly WildcardOptions _options;
+    private readonly TimeSpan _timeout;
+    private readonly int _caseBehavior;
+    private readonly bool _literal;
+    private readonly string _matchPattern;
+    private string? _wildcardRegex;
 
-    /// <summary>
-    /// Wildcard pattern this instance will match.
-    /// </summary>
-    public string Wildcard
-    {
-        get;
-        private set;
-    }
+    /// <summary>The original wildcard pattern.</summary>
+    public string Wildcard { get; private set; }
 
-    /// <summary>
-    /// Regex pattern used by the underlying regex engine to match wildcard.
-    /// </summary>
+    /// <summary>The equivalent anchored Regex pattern, generated lazily for inspection.</summary>
     public string WildcardRegex
     {
-        get;
-        private set;
+        get
+        {
+            string? value = Volatile.Read(ref _wildcardRegex);
+            if (value != null) return value;
+            value = InternalUtils.StringToWildcard(Wildcard);
+            return Interlocked.CompareExchange(ref _wildcardRegex, value, null) ?? value;
+        }
+        private set => _wildcardRegex = value;
     }
 
-    /// <summary>
-    /// Check if wildcard string matches input string.
-    /// </summary>
-    /// <param name="input">The string to search.</param>
-    /// <param name="wildcard">The wildcard pattern to search for.</param>
-    /// <param name="ignoreCase">Ignore casing.</param>
-    /// <returns>True if wildcard pattern matches input string.</returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsMatch(string input, string wildcard, bool ignoreCase = false) => Regex.IsMatch(input, InternalUtils.StringToWildcard(wildcard), ignoreCase ? RegexOptions.IgnoreCase : RegexOptions.None);
-    /// <summary>
-    /// Check if wildcard string matches input string.
-    /// </summary>
-    /// <param name="input">The string to search.</param>
-    /// <param name="wildcard">The wildcard pattern to search for.</param>
-    /// <param name="options">Options to pass to engine.</param>
-    /// <returns>True if wildcard pattern matches input string.</returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsMatch(string input, string wildcard, WildcardOptions options) => Regex.IsMatch(input, InternalUtils.StringToWildcard(wildcard), (RegexOptions)options);
+    /// <summary>Matches using the calling thread's culture when ignoring case.</summary>
+    public static bool IsMatch(string input, string wildcard, bool ignoreCase = false) =>
+        IsMatch(input, wildcard, ignoreCase ? WildcardOptions.IgnoreCase : WildcardOptions.None);
 
-    /// <summary>
-    /// Creates an instance of wildcard pattern matching suited for reuse.
-    /// </summary>
-    /// <param name="wildcard">Wildcard pattern to match.</param>
-    public WildcardMatch(string wildcard) : this(wildcard, WildcardOptions.None, Regex.InfiniteMatchTimeout) { }
+    /// <summary>Matches without constructing a matcher or translating the pattern.</summary>
+    public static bool IsMatch(string input, string wildcard, WildcardOptions options)
+    {
+        WildcardEngine.ValidatePattern(wildcard);
+        WildcardEngine.ValidateOptions(options);
+        string pattern = WildcardEngine.GetMatchingPattern(wildcard, options);
+        return WildcardEngine.IsMatch(input, pattern, options, WildcardEngine.GetCaseBehavior(options),
+            WildcardEngine.IsLiteral(pattern), WildcardEngine.InfiniteTimeout, wildcard);
+    }
 
-    /// <summary>
-    /// Creates an instance of wildcard pattern matching suited for reuse.
-    /// </summary>
-    /// <param name="wildcard">Wildcard pattern to match.</param>
-    /// <param name="options">Option flags to pass to engine. Default is None.</param>
-    public WildcardMatch(string wildcard, WildcardOptions options) : this(wildcard, options, Regex.InfiniteMatchTimeout) { }
+    /// <summary>Creates a reusable, thread-safe matcher.</summary>
+    public WildcardMatch(string wildcard) : this(wildcard, WildcardOptions.None, WildcardEngine.InfiniteTimeout) { }
 
-    /// <summary>
-    /// Creates an instance of wildcard pattern matching suited for reuse.
-    /// </summary>
-    /// <param name="wildcard">Wildcard pattern to match.</param>
-    /// <param name="options">Option flags to pass to engine. Default is None.</param>
-    /// <param name="timeout">How long engine should attempt to resolve pattern. Default is infinitely.</param>
+    /// <summary>Creates a matcher that captures the construction-time case culture.</summary>
+    public WildcardMatch(string wildcard, WildcardOptions options) : this(wildcard, options, WildcardEngine.InfiniteTimeout) { }
+
+    /// <summary>Creates a matcher with a cooperative per-call timeout.</summary>
+    /// <remarks>Compiled and RightToLeft preserve Boolean results without changing execution strategy.</remarks>
     public WildcardMatch(string wildcard, WildcardOptions options, TimeSpan timeout)
     {
+        WildcardEngine.ValidatePattern(wildcard);
+        WildcardEngine.ValidateOptions(options);
+        WildcardEngine.ValidateTimeout(timeout);
         Wildcard = wildcard;
-        WildcardRegex = InternalUtils.StringToWildcard(wildcard);
-        _regex = new Regex(WildcardRegex, (RegexOptions)options, timeout);
+        _options = options;
+        _timeout = timeout;
+        _caseBehavior = WildcardEngine.GetCaseBehavior(options);
+        _matchPattern = WildcardEngine.GetMatchingPattern(wildcard, options);
+        _literal = WildcardEngine.IsLiteral(_matchPattern);
     }
 
-    /// <summary>
-    /// Check if current wildcard matches input string.
-    /// </summary>
-    /// <param name="input">String to match.</param>
-    /// <returns>True if wildcard pattern matches input string.</returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public bool IsMatch(string input) => _regex.IsMatch(input);
+    /// <summary>Matches using call-local state; concurrent calls may reuse this instance.</summary>
+    public bool IsMatch(string input) =>
+        WildcardEngine.IsMatch(input, _matchPattern, _options, _caseBehavior, _literal, _timeout, Wildcard);
 }

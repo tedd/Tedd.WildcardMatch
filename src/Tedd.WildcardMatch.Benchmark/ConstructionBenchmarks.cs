@@ -14,7 +14,7 @@ public class ConstructionBenchmarks
     public object TeddReused() => new global::Tedd.WildcardMatch(Pattern);
 
     [Benchmark]
-    public object TeddCompiled() => new global::Tedd.WildcardMatch(Pattern, global::Tedd.WildcardOptions.Compiled);
+    public object TeddCompiled() => new global::Tedd.WildcardMatchRegex(Pattern, global::Tedd.WildcardOptions.Compiled);
 
     [Benchmark]
     public object DotNetGlob() => Glob.Parse(Pattern);

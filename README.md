@@ -21,6 +21,13 @@ Building requires the SDK in [global.json](global.json), currently [.NET 11 RC1]
 
 ## Usage
 
+`WildcardMatch` uses a direct iterative engine with constant match-state memory and no per-match buffers. `WildcardMatchRegex` provides the same matching API through .NET Regex:
+
+```csharp
+bool direct = WildcardMatch.IsMatch("report-01.txt", "report-??.txt");
+bool regex = WildcardMatchRegex.IsMatch("report-01.txt", "report-??.txt");
+```
+
 ```csharp
 using Tedd;
 
@@ -39,7 +46,7 @@ using Tedd;
 
 var matcher = new WildcardMatch(
     "report-*.txt",
-    WildcardOptions.Compiled | WildcardOptions.CultureInvariant,
+    WildcardOptions.CultureInvariant,
     TimeSpan.FromMilliseconds(100));
 
 bool first = matcher.IsMatch("report-01.txt");
@@ -49,26 +56,30 @@ Console.WriteLine(matcher.WildcardRegex); // ^report-.*\.txt$
 
 ## Matching behavior
 
-Patterns are escaped and translated to .NET regex expressions: `*` becomes `.*`, `?` becomes `.`, and `^` / `$` anchors are applied. Use stars at both ends for substring matching.
+The direct engine interprets the wildcard pattern itself. The Regex engine escapes literal characters, translates `*` to `.*` and `?` to `.`, and applies `^` / `$` anchors. Both engines use the same matching semantics. Use stars at both ends for substring matching. Backslashes are literal, and `?` consumes one UTF-16 code unit, including an isolated surrogate.
+
+`WildcardRegex` exposes the equivalent Regex expression on either engine; the direct engine generates it lazily. Ignoring case uses Regex-compatible Unicode lowercase groups and culture rules. Instances capture the construction-time culture; static calls use the current culture.
 
 .NET's `$` anchor can match immediately before a final `\n`. Wildcards exclude `\n` by default; `Singleline` permits line feeds. Slashes and bracket expressions have no special glob semantics.
 
 | Option | Behavior |
 | --- | --- |
-| `None` | Case-sensitive regex matching. |
+| `None` | Case-sensitive matching. |
 | `IgnoreCase` | Case-insensitive matching using regex culture rules. |
 | `CultureInvariant` | Culture-independent regex casing. |
 | `Singleline` | Wildcards can consume line feeds. |
-| `Compiled` | Compile regex execution; increases construction cost. |
-| `RightToLeft` | Execute regex matching from right to left. |
+| `Compiled` | Compile `WildcardMatchRegex`; the direct engine accepts the flag without extra compilation. |
+| `RightToLeft` | Reverse Regex execution; the direct engine preserves the Boolean result using its forward algorithm. |
 
 The default timeout is infinite. For untrusted patterns, use the instance constructor with an explicit timeout and handle `RegexMatchTimeoutException`.
 
 ## Performance
 
-Static calls translate the pattern on each invocation and use the runtime regex cache. Reusable instances retain the regex. Compiled instances incur additional construction cost; their matching benefit depends on the workload.
+Direct static calls avoid pattern translation and Regex cache lookup. Reusable direct instances retain the pattern, classification, and case behavior. Matching uses constant auxiliary memory; star retries have polynomial worst-case work, so a timeout remains useful for large adversarial inputs.
 
-The [published comparison](https://tedd.github.io/Tedd.WildcardMatch/#benchmarks) measures matching and allocations against FastWildcard 3.1.0, WildcardMatch 1.0.7, and DotNet.Glob 3.1.3 on .NET 10. It covers literal, question-mark, multi-star, and long-text fixtures, with both matches and misses. An independent dynamic-programming oracle validates every measured input. Reusable-pattern construction is measured separately.
+`WildcardMatchRegex` static calls translate the pattern and use the runtime Regex cache. Its instances retain a Regex; `Compiled` increases construction cost and may improve repeated matching. Choose the engine according to the workload and pattern lifetime.
+
+The [published comparison](https://tedd.github.io/Tedd.WildcardMatch/#benchmarks) measures the Regex-backed implementation at its recorded source revision against FastWildcard 3.1.0, WildcardMatch 1.0.7, and DotNet.Glob 3.1.3 on .NET 10. It covers literal, question-mark, multi-star, and long-text fixtures, with both matches and misses. The current harness compares direct static/reused calls and compiled `WildcardMatchRegex`. An independent dynamic-programming oracle validates every measured input. Reusable-pattern construction is measured separately.
 
 The website includes the full tables, source revision, runtime and machine details, and confidence intervals. Results describe the selected corpus and API lifetimes; they do not establish a universal library ranking. [Measurement data](site/assets/package-comparison.json) and [benchmark commands](src/Tedd.WildcardMatch.Benchmark/README.md) are included in the repository.
 

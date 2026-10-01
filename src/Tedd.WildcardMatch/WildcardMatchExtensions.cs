@@ -1,5 +1,4 @@
 ﻿using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
 
 namespace Tedd;
 
@@ -13,5 +12,8 @@ namespace Tedd;
         /// <param name="ignoreCase">Ignore casing.</param>
         /// <returns>True if wildcard pattern matches input string.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsWildcardMatch(this string input, string wildcard, bool ignoreCase = false) => Regex.IsMatch(input, InternalUtils.StringToWildcard(wildcard), ignoreCase ? RegexOptions.IgnoreCase : RegexOptions.None);
+        public static bool IsWildcardMatch(this string input, string wildcard, bool ignoreCase = false) => WildcardMatch.IsMatch(input, wildcard, ignoreCase);
+
+        /// <summary>Matches using the Regex-backed engine.</summary>
+        public static bool IsWildcardMatchRegex(this string input, string wildcard, bool ignoreCase = false) => WildcardMatchRegex.IsMatch(input, wildcard, ignoreCase);
     }
