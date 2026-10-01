@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
-[assembly:CLSCompliant(true)]
+[assembly: CLSCompliant(true)]
 namespace Tedd;
 
 public class WildcardMatch
