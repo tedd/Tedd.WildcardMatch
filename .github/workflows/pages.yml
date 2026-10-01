@@ -2,7 +2,7 @@ name: Publish documentation site
 
 on:
   push:
-    branches: [main]
+    branches: [deploy]
     paths:
       - site/**
       - .github/workflows/pages.yml
@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   publish:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/deploy'
     runs-on: ubuntu-latest
     permissions:
       contents: read

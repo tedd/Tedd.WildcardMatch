@@ -32,7 +32,7 @@
           <a href="https://github.com/tedd/Tedd.WildcardMatch/actions/workflows/nuget-publish.yml"><img src="https://github.com/tedd/Tedd.WildcardMatch/actions/workflows/nuget-publish.yml/badge.svg?branch=main" alt="Build and test status" height="20"></a>
         </div>
         <div class="hero-actions"><a class="button primary" href="#examples">Start matching ↓</a><a class="button secondary" href="#benchmarks">Compare performance ↓</a></div>
-        <ul class="hero-checks"><li>.NET Standard 2.0</li><li>No runtime package dependencies</li><li>LGPL-2.1</li></ul>
+        <ul class="hero-checks"><li>.NET Standard 2.1 · .NET 10 / 11</li><li>No runtime package dependencies</li><li>LGPL-2.1</li></ul>
       </div>
       <figure class="index-figure">
         <div class="window-bar" aria-hidden="true"><span></span><span></span><span></span><b>One pattern · many inputs</b><i>* ?</i></div>
@@ -55,7 +55,7 @@
       <p><strong>Two wildcard tokens</strong><span>Star for a sequence, question mark for one character</span></p>
       <p><strong>Reusable patterns</strong><span>Translate once and match multiple strings</span></p>
       <p><strong>Regex controls</strong><span>Case, culture, direction, and line handling</span></p>
-      <p><strong>Portable package</strong><span>.NET Standard 2.0; benchmarks run on .NET 10</span></p>
+      <p><strong>Portable package</strong><span>.NET Standard 2.1 with native .NET 10 and 11 targets</span></p>
     </section>
     <section class="section-shell algorithms-section" id="patterns">
       <div class="section-intro"><div><p class="eyebrow">Pattern language</p><h2>Small syntax.<br>Useful control.</h2></div><p>Patterns use two operators. Every other character is literal, including dots, brackets, and regular-expression punctuation.</p></div>
@@ -76,7 +76,7 @@
       <p class="model-note">Options: <code>IgnoreCase</code>, <code>CultureInvariant</code>, <code>Singleline</code>, <code>Compiled</code>, and <code>RightToLeft</code>. Combine flags with <code>|</code>.</p>
     </section>
     <section class="section-shell examples-section" id="examples">
-      <div class="section-intro"><div><p class="eyebrow">Start matching</p><h2>Install. Match.<br>Reuse.</h2></div><p>The package targets .NET Standard 2.0. These examples use the <code>Tedd</code> namespace.</p></div>
+      <div class="section-intro"><div><p class="eyebrow">Start matching</p><h2>Install. Match.<br>Reuse.</h2></div><p>The 2.x package targets .NET Standard 2.1, .NET 10, and .NET 11. .NET 8 and 9 use its Standard assembly. .NET Framework is not supported. These examples use the <code>Tedd</code> namespace.</p></div>
       <div class="install-command"><code id="install">dotnet add package Tedd.WildcardMatch</code><button type="button" data-copy-target="install">Copy</button></div>
       <div class="example-grid">
         <div class="code-window"><div class="window-bar"><span></span><span></span><span></span><b>Convenience API</b><button type="button" data-copy-target="example-static">Copy</button></div><pre><code id="example-static">using Tedd;

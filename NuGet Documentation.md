@@ -1,27 +1,39 @@
 # NuGet releases
 
-The library targets .NET Standard 2.0. Build, tests, benchmark validation, and package verification run on .NET 10 through [nuget-publish.yml](.github/workflows/nuget-publish.yml).
+The version 2.x package targets .NET Standard 2.1, .NET 10, and .NET 11. .NET 8 and 9 use the .NET Standard 2.1 assembly. .NET Framework is not supported.
+
+Builds use the SDK specified in [global.json](global.json), currently .NET 11 RC1. The test suite runs on .NET 8, 10, and 11 through [nuget-publish.yml](.github/workflows/nuget-publish.yml).
 
 ## Configuration
 
 Set the repository secret `NUGET_API_KEY` to a NuGet.org API key permitted to publish `Tedd.WildcardMatch`. The publishing job uses the `nuget` GitHub environment; configure its reviewers or restrictions if release approval is required.
 
-Pull requests, manual workflow runs, and ordinary pushes to `main` verify the package. Only a `vMAJOR.MINOR.PATCH` tag publishes it. The tag must match the project's `Version` exactly and point to a commit belonging to `main`.
+Only pushes and manual workflow runs on the `deploy` branch publish NuGet packages. Pushes to `main`, pull requests, and manual runs on other branches build, test, validate the benchmark corpus, and verify the package without publishing. Tags do not trigger publication.
+
+The [Pages workflow](.github/workflows/pages.yml) also requires `deploy`. Enable GitHub Pages with **GitHub Actions** as its build source.
 
 ## Release procedure
 
-1. Set a previously unpublished version in `src/Tedd.WildcardMatch/Tedd.WildcardMatch.csproj`.
+1. Set a previously unpublished `MAJOR.MINOR.PATCH` version in `src/Tedd.WildcardMatch/Tedd.WildcardMatch.csproj`.
 2. Commit and push that change to `main`.
-3. Wait for the build, tests, benchmark correctness checks, and package verification to pass.
-4. Create and push the corresponding version tag. For example, a project version of `1.0.4` requires:
+3. Wait for the .NET 8, 10, and 11 tests, benchmark correctness checks, and package verification to pass.
+4. Promote the validated commit to `deploy` and push that branch:
 
 ```sh
-git tag v1.0.4
-git push origin v1.0.4
+git switch deploy
+git merge --ff-only main
+git push origin deploy
 ```
 
-The workflow publishes the verified package artifact and its adjacent `.snupkg` symbol package. `--skip-duplicate` permits reruns after a successful upload. An invalid version tag or a commit outside `main` fails before publication.
+If `deploy` does not exist, create it from the validated `main` commit:
+
+```sh
+git switch -c deploy main
+git push -u origin deploy
+```
+
+Pushing `deploy` publishes the verified NuGet package and its adjacent `.snupkg` symbol package. Site changes deploy to GitHub Pages. A manual Pages run must also select `deploy`. `--skip-duplicate` permits NuGet reruns after a successful upload.
 
 ## Package contents
 
-The package contains the library, README, and LGPL-2.1 license. Symbols use the `snupkg` format. Publishing does not change the version, create commits, or create tags.
+The package contains one assembly for each target, the README, and the LGPL-2.1 license. Symbols use the `snupkg` format. Publishing does not change the version or create commits or tags.

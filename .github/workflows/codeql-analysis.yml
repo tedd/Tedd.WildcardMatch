@@ -2,10 +2,10 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, deploy ]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ main ]
+    branches: [ main, deploy ]
   schedule:
     - cron: '20 2 * * 4'
 
@@ -32,6 +32,14 @@ jobs:
       with:
         languages: ${{ matrix.language }}
         build-mode: manual
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          8.0.x
+          10.0.x
+        global-json-file: global.json
 
     - name: Build C# code
       run: |

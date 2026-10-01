@@ -1,12 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0</TargetFrameworks>
-		<!--<TargetFramework>netcoreapp3.1</TargetFramework>-->
+		<TargetFrameworks>netstandard2.1;net10.0;net11.0</TargetFrameworks>
 		<Description>Fast and reliable wildcard (* and ?) matcher capable of complex pattern matching.</Description>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageTags>wildcard;matching;pattern;star;questionmark</PackageTags>
-		<Version>1.0.3</Version>
+		<Version>2.0.0</Version>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<PackageProjectUrl>https://github.com/tedd/Tedd.WildcardMatch</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/tedd/Tedd.WildcardMatch.git</RepositoryUrl>

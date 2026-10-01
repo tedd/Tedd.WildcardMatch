@@ -1,6 +1,6 @@
 # Tedd.WildcardMatch
 
-Wildcard string matching for .NET Standard 2.0. Patterns use `*` for zero or more characters and `?` for one UTF-16 code unit. Other characters are literal.
+Wildcard string matching for .NET Standard 2.1, .NET 10, and .NET 11. Patterns use `*` for zero or more characters and `?` for one UTF-16 code unit. Other characters are literal.
 
 [NuGet](https://www.nuget.org/packages/Tedd.WildcardMatch) · [Website](https://tedd.github.io/Tedd.WildcardMatch/) · [Comparative benchmarks](src/Tedd.WildcardMatch.Benchmark/README.md)
 
@@ -12,6 +12,12 @@ Wildcard string matching for .NET Standard 2.0. Patterns use `*` for zero or mor
 ```sh
 dotnet add package Tedd.WildcardMatch
 ```
+
+## Compatibility
+
+The 2.x package includes `netstandard2.1`, `net10.0`, and `net11.0` assemblies. .NET 8 and 9 use the .NET Standard 2.1 assembly; .NET 10 and 11 use their native targets. .NET Framework is not supported.
+
+Building requires the SDK in [global.json](global.json), currently [.NET 11 RC1](https://dotnet.microsoft.com/en-us/download/dotnet/11.0). Tests require .NET 8, 10, and 11 runtimes.
 
 ## Usage
 
@@ -73,9 +79,9 @@ dotnet build src/Tedd.WildcardMatch.sln --configuration Release
 dotnet test src/Tedd.WildcardMatch.Tests --configuration Release
 ```
 
-The SDK is pinned to the .NET 10 release family. [nuget-publish.yml](.github/workflows/nuget-publish.yml) builds, tests, validates the benchmark corpus, and packs on pushes to `main` and pull requests. Publishing requires a version tag matching the project `Version`; see the [release procedure](NuGet%20Documentation.md).
+The SDK is pinned in `global.json`. [nuget-publish.yml](.github/workflows/nuget-publish.yml) builds, tests .NET 8/10/11, validates the benchmark corpus, and packs on pushes to `main` and `deploy` and on pull requests. NuGet publication requires a push or manual run on `deploy`; see the [release procedure](NuGet%20Documentation.md).
 
-The static website is in `site/`. Its [Pages workflow](.github/workflows/pages.yml) deploys from `main` when GitHub Pages is enabled with **GitHub Actions** as its build source.
+The static website is in `site/`. Its [Pages workflow](.github/workflows/pages.yml) deploys exclusively from `deploy` when GitHub Pages is enabled with **GitHub Actions** as its build source.
 
 ## License
 

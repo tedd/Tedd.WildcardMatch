@@ -1,6 +1,6 @@
 # Comparative benchmarks
 
-BenchmarkDotNet 0.15.8 runs on .NET 10. The library project targets .NET Standard 2.0.
+BenchmarkDotNet 0.15.8 runs on .NET 10. The library project targets .NET Standard 2.1, .NET 10, and .NET 11. Building uses the SDK specified in the repository's `global.json`.
 
 | Library / mode | Version | Timed work |
 | --- | --- | --- |
