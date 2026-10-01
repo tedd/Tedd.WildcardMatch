@@ -1,31 +1,14 @@
-﻿using BenchmarkDotNet.Running;
-using System;
-using TeddWildcardMatchBenchmark.Tests;
+using BenchmarkDotNet.Running;
+using Tedd.WildcardMatchBenchmark;
 
-namespace TeddWildcardMatchBenchmark
+var validation = Comparison.Validate();
+if (args.Length > 0 && args[0] == "--validate-packages")
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            var wbs = new WildcardBenchmarkSimple();
-            wbs.Setup();
-            wbs.TS_Slow();
-            wbs.TS_Precompiled();
-            wbs.WM_Simple();
-            wbs.FW_Simple();
-
-            var wbc = new WildcardBenchmarkComplex();
-            wbc.Setup();
-            wbc.T_D_Complex();
-            wbc.T_P_Complex();
-            wbc.WM_Complex();
-            wbc.FW_Complex();
-
-            
-
-            //var summary1 = BenchmarkRunner.Run<WildcardBenchmarkSimple>();
-            var summary2 = BenchmarkRunner.Run<WildcardBenchmarkComplex>();
-        }
-    }
+    var json = System.Text.Json.JsonSerializer.Serialize(validation,
+        new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+    if (args.Length > 1) File.WriteAllText(args[1], json);
+    Console.WriteLine(json);
+    return;
 }
+
+BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);

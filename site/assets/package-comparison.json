@@ -1,0 +1,484 @@
+{
+  "measuredAt": "2026-10-02T00:42:46.4975824+02:00",
+  "librarySourceRevision": "0f0784d880efea33bfaeae8539d26b87e8f25fef",
+  "environment": {
+    "BenchmarkDotNetCaption": "BenchmarkDotNet",
+    "BenchmarkDotNetVersion": "0.15.8",
+    "OsVersion": "Windows 11 (10.0.26200.9457/25H2/2025Update/HudsonValley2)",
+    "ProcessorName": "AMD Ryzen 9 5950X",
+    "PhysicalProcessorCount": 1,
+    "PhysicalCoreCount": 16,
+    "LogicalCoreCount": 32,
+    "RuntimeVersion": ".NET 10.0.12 (10.0.12, 10.0.1226.42308)",
+    "Architecture": "X64",
+    "HasAttachedDebugger": false,
+    "HasRyuJit": true,
+    "Configuration": "RELEASE",
+    "DotNetCliVersion": "10.0.401",
+    "ChronometerFrequency": {
+      "Hertz": 10000000
+    },
+    "HardwareTimerKind": "Unknown"
+  },
+  "job": {
+    "warmupCount": 3,
+    "launchCount": 1,
+    "name": "ShortRun",
+    "batchSize": 256,
+    "iterationCount": 3
+  },
+  "libraries": {
+    "TeddStatic": {
+      "mode": "Static call",
+      "label": "Tedd · static",
+      "version": "source",
+      "package": "Tedd.WildcardMatch"
+    },
+    "TeddReused": {
+      "mode": "Reusable regex",
+      "label": "Tedd · reused",
+      "version": "source",
+      "package": "Tedd.WildcardMatch"
+    },
+    "TeddCompiled": {
+      "mode": "Reusable compiled regex",
+      "label": "Tedd · compiled",
+      "version": "source",
+      "package": "Tedd.WildcardMatch"
+    },
+    "FastWildcard": {
+      "mode": "Static call, reused settings",
+      "label": "FastWildcard",
+      "version": "3.1.0",
+      "package": "FastWildcard"
+    },
+    "WildcardMatch": {
+      "mode": "Static extension call",
+      "label": "WildcardMatch",
+      "version": "1.0.7",
+      "package": "WildcardMatch"
+    },
+    "DotNetGlob": {
+      "mode": "Reusable parsed glob",
+      "label": "DotNet.Glob",
+      "version": "3.1.3",
+      "package": "DotNet.Glob"
+    }
+  },
+  "workloads": [
+    {
+      "label": "Literal",
+      "name": "Literal",
+      "pattern": "report-2026.txt"
+    },
+    {
+      "label": "Question marks",
+      "name": "Simple",
+      "pattern": "report-??.txt"
+    },
+    {
+      "label": "Multiple stars",
+      "name": "MultiStar",
+      "pattern": "*a?c*e*"
+    },
+    {
+      "label": "Long text",
+      "name": "LongText",
+      "pattern": "*alpha*beta??*omega*"
+    }
+  ],
+  "matching": [
+    {
+      "workload": "Literal",
+      "library": "DotNetGlob",
+      "meanNs": 17.40408440430959,
+      "errorNs": 2.4072222502687994,
+      "stdDevNs": 0.13194797487885918,
+      "allocatedBytes": 0,
+      "samplesNs": [
+        17.388278245925903,
+        17.54322350025177,
+        17.2807514667511
+      ]
+    },
+    {
+      "workload": "Literal",
+      "library": "FastWildcard",
+      "meanNs": 77.94498602549235,
+      "errorNs": 14.955977101881377,
+      "stdDevNs": 0.8197875749559388,
+      "allocatedBytes": 0,
+      "samplesNs": [
+        78.40458154678345,
+        76.99850797653198,
+        78.43186855316162
+      ]
+    },
+    {
+      "workload": "Literal",
+      "library": "TeddCompiled",
+      "meanNs": 40.78380068143209,
+      "errorNs": 1.9420548927936592,
+      "stdDevNs": 0.10645058227552087,
+      "allocatedBytes": 0,
+      "samplesNs": [
+        40.90644121170044,
+        40.7296359539032,
+        40.71532487869263
+      ]
+    },
+    {
+      "workload": "Literal",
+      "library": "TeddReused",
+      "meanNs": 102.80552506446838,
+      "errorNs": 15.840377356290539,
+      "stdDevNs": 0.8682645373712731,
+      "allocatedBytes": 0,
+      "samplesNs": [
+        102.003413438797,
+        103.72748970985413,
+        102.68567204475403
+      ]
+    },
+    {
+      "workload": "Literal",
+      "library": "TeddStatic",
+      "meanNs": 204.91837660471597,
+      "errorNs": 108.93994895604578,
+      "stdDevNs": 5.9713662278385105,
+      "allocatedBytes": 120,
+      "samplesNs": [
+        211.79242134094238,
+        201.0146141052246,
+        201.94809436798096
+      ]
+    },
+    {
+      "workload": "Literal",
+      "library": "WildcardMatch",
+      "meanNs": 40.8129354317983,
+      "errorNs": 10.117904863300065,
+      "stdDevNs": 0.5545965091425726,
+      "allocatedBytes": 48,
+      "samplesNs": [
+        41.34759306907654,
+        40.850865840911865,
+        40.240347385406494
+      ]
+    },
+    {
+      "workload": "LongText",
+      "library": "DotNetGlob",
+      "meanNs": 3311.4462534586587,
+      "errorNs": 2292.4304582211666,
+      "stdDevNs": 125.65584938371269,
+      "allocatedBytes": 0,
+      "samplesNs": [
+        3419.9386596679688,
+        3340.635299682617,
+        3173.7648010253906
+      ]
+    },
+    {
+      "workload": "LongText",
+      "library": "FastWildcard",
+      "meanNs": 196.5068817138672,
+      "errorNs": 279.79951232736516,
+      "stdDevNs": 15.336755473893495,
+      "allocatedBytes": 0,
+      "samplesNs": [
+        183.5240364074707,
+        192.5675630569458,
+        213.42904567718506
+      ]
+    },
+    {
+      "workload": "LongText",
+      "library": "TeddCompiled",
+      "meanNs": 204.01586691538492,
+      "errorNs": 334.0858760815449,
+      "stdDevNs": 18.312374264431543,
+      "allocatedBytes": 0,
+      "samplesNs": [
+        192.8384780883789,
+        225.14941692352295,
+        194.05970573425293
+      ]
+    },
+    {
+      "workload": "LongText",
+      "library": "TeddReused",
+      "meanNs": 12929.579671223959,
+      "errorNs": 7944.150179445504,
+      "stdDevNs": 435.44567943168215,
+      "allocatedBytes": 0,
+      "samplesNs": [
+        12962.763977050781,
+        12478.4912109375,
+        13347.483825683594
+      ]
+    },
+    {
+      "workload": "LongText",
+      "library": "TeddStatic",
+      "meanNs": 13649.359639485678,
+      "errorNs": 17130.4142322083,
+      "stdDevNs": 938.9758118609433,
+      "allocatedBytes": 192,
+      "samplesNs": [
+        14687.139892578125,
+        13402.378845214844,
+        12858.560180664062
+      ]
+    },
+    {
+      "workload": "LongText",
+      "library": "WildcardMatch",
+      "meanNs": 9259.869893391928,
+      "errorNs": 7634.806089952698,
+      "stdDevNs": 418.489485983087,
+      "allocatedBytes": 32184,
+      "samplesNs": [
+        9366.514587402344,
+        8798.37646484375,
+        9614.718627929688
+      ]
+    },
+    {
+      "workload": "MultiStar",
+      "library": "DotNetGlob",
+      "meanNs": 58.26478401819865,
+      "errorNs": 50.77963334081487,
+      "stdDevNs": 2.783403062871882,
+      "allocatedBytes": 0,
+      "samplesNs": [
+        58.9918315410614,
+        60.61251163482666,
+        55.190008878707886
+      ]
+    },
+    {
+      "workload": "MultiStar",
+      "library": "FastWildcard",
+      "meanNs": 60.13336777687073,
+      "errorNs": 49.72937916416251,
+      "stdDevNs": 2.7258350872926154,
+      "allocatedBytes": 0,
+      "samplesNs": [
+        60.79636812210083,
+        57.13719129562378,
+        62.46654391288757
+      ]
+    },
+    {
+      "workload": "MultiStar",
+      "library": "TeddCompiled",
+      "meanNs": 60.64998308817545,
+      "errorNs": 37.31847580102779,
+      "stdDevNs": 2.0455515924885983,
+      "allocatedBytes": 0,
+      "samplesNs": [
+        59.8609983921051,
+        59.11641716957092,
+        62.97253370285034
+      ]
+    },
+    {
+      "workload": "MultiStar",
+      "library": "TeddReused",
+      "meanNs": 234.2046022415161,
+      "errorNs": 182.9563983705693,
+      "stdDevNs": 10.028457593988586,
+      "allocatedBytes": 0,
+      "samplesNs": [
+        237.9638910293579,
+        241.8102502822876,
+        222.83966541290283
+      ]
+    },
+    {
+      "workload": "MultiStar",
+      "library": "TeddStatic",
+      "meanNs": 283.65801970163983,
+      "errorNs": 290.3102787990707,
+      "stdDevNs": 15.91288605353204,
+      "allocatedBytes": 104,
+      "samplesNs": [
+        268.5163736343384,
+        300.2437114715576,
+        282.21397399902344
+      ]
+    },
+    {
+      "workload": "MultiStar",
+      "library": "WildcardMatch",
+      "meanNs": 144.71096197764078,
+      "errorNs": 12.254643807828174,
+      "stdDevNs": 0.6717183812687514,
+      "allocatedBytes": 479,
+      "samplesNs": [
+        144.20197010040283,
+        144.45860385894775,
+        145.47231197357178
+      ]
+    },
+    {
+      "workload": "Simple",
+      "library": "DotNetGlob",
+      "meanNs": 20.6760436296463,
+      "errorNs": 8.881619094073372,
+      "stdDevNs": 0.4868315141975484,
+      "allocatedBytes": 0,
+      "samplesNs": [
+        20.15618085861206,
+        20.75074017047882,
+        21.121209859848022
+      ]
+    },
+    {
+      "workload": "Simple",
+      "library": "FastWildcard",
+      "meanNs": 75.63529213269551,
+      "errorNs": 75.7630608924195,
+      "stdDevNs": 4.152829035317437,
+      "allocatedBytes": 0,
+      "samplesNs": [
+        74.20470714569092,
+        80.31430244445801,
+        72.38686680793762
+      ]
+    },
+    {
+      "workload": "Simple",
+      "library": "TeddCompiled",
+      "meanNs": 35.66147883733114,
+      "errorNs": 11.291982258513514,
+      "stdDevNs": 0.6189516531813758,
+      "allocatedBytes": 0,
+      "samplesNs": [
+        34.9879115819931,
+        36.205220222473145,
+        35.79130470752716
+      ]
+    },
+    {
+      "workload": "Simple",
+      "library": "TeddReused",
+      "meanNs": 87.0789647102356,
+      "errorNs": 24.012526608963036,
+      "stdDevNs": 1.3162076154055142,
+      "allocatedBytes": 0,
+      "samplesNs": [
+        85.81581115722656,
+        86.9786024093628,
+        88.44248056411743
+      ]
+    },
+    {
+      "workload": "Simple",
+      "library": "TeddStatic",
+      "meanNs": 155.27067184448242,
+      "errorNs": 85.85798848893972,
+      "stdDevNs": 4.706166082929395,
+      "allocatedBytes": 136,
+      "samplesNs": [
+        160.57591438293457,
+        151.59883499145508,
+        153.63726615905762
+      ]
+    },
+    {
+      "workload": "Simple",
+      "library": "WildcardMatch",
+      "meanNs": 38.25657566388448,
+      "errorNs": 4.274839068901484,
+      "stdDevNs": 0.23431835511307447,
+      "allocatedBytes": 48,
+      "samplesNs": [
+        38.40395212173462,
+        37.986379861831665,
+        38.37939500808716
+      ]
+    }
+  ],
+  "construction": [
+    {
+      "pattern": "*a?c*e*",
+      "library": "TeddReused",
+      "meanNs": 1780.0374348958333,
+      "errorNs": 933.8492408831984,
+      "stdDevNs": 51.18742823307604,
+      "allocatedBytes": 2000,
+      "samplesNs": [
+        1755.8645248413086,
+        1838.8347625732422,
+        1745.4130172729492
+      ]
+    },
+    {
+      "pattern": "*a?c*e*",
+      "library": "TeddCompiled",
+      "meanNs": 8872.488403320312,
+      "errorNs": 8122.7434837088595,
+      "stdDevNs": 445.2349811140849,
+      "allocatedBytes": 12696,
+      "samplesNs": [
+        9104.788208007812,
+        9153.530883789062,
+        8359.146118164062
+      ]
+    },
+    {
+      "pattern": "*a?c*e*",
+      "library": "DotNetGlob",
+      "meanNs": 776.96320215861,
+      "errorNs": 210.59795028378707,
+      "stdDevNs": 11.543584332722691,
+      "allocatedBytes": 1792,
+      "samplesNs": [
+        783.6186408996582,
+        783.6371421813965,
+        763.6338233947754
+      ]
+    },
+    {
+      "pattern": "report-??.txt",
+      "library": "TeddReused",
+      "meanNs": 1609.760316212972,
+      "errorNs": 119.59058095535217,
+      "stdDevNs": 6.555163309030963,
+      "allocatedBytes": 2024,
+      "samplesNs": [
+        1602.9982566833496,
+        1610.1958274841309,
+        1616.0868644714355
+      ]
+    },
+    {
+      "pattern": "report-??.txt",
+      "library": "TeddCompiled",
+      "meanNs": 5824.4140625,
+      "errorNs": 793.44531758247,
+      "stdDevNs": 43.49141539400018,
+      "allocatedBytes": 8448,
+      "samplesNs": [
+        5803.9825439453125,
+        5874.359130859375,
+        5794.9005126953125
+      ]
+    },
+    {
+      "pattern": "report-??.txt",
+      "library": "DotNetGlob",
+      "meanNs": 524.0400791168213,
+      "errorNs": 51.75656780749292,
+      "stdDevNs": 2.836952137724914,
+      "allocatedBytes": 976,
+      "samplesNs": [
+        525.4420757293701,
+        520.7750797271729,
+        525.9030818939209
+      ]
+    }
+  ]
+}

@@ -1,19 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
-    <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.13.1" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.15.8" />
+    <PackageReference Include="DotNet.Glob" Version="3.1.3" />
     <PackageReference Include="FastWildcard" Version="3.1.0" />
     <PackageReference Include="WildcardMatch" Version="1.0.7" />
+    <ProjectReference Include="../Tedd.WildcardMatch/Tedd.WildcardMatch.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Tedd.WildcardMatch\Tedd.WildcardMatch.csproj" />
-  </ItemGroup>
-
 </Project>

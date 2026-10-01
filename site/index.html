@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7faf9">
+  <meta name="description" content="Wildcard matching for .NET with * and ?, reusable compiled patterns, regex options and measured comparisons against FastWildcard, WildcardMatch and DotNet.Glob.">
+  <meta property="og:title" content="Tedd.WildcardMatch — wildcard matching for .NET">
+  <meta property="og:description" content="Simple patterns. Reusable matchers. Transparent performance comparisons.">
+  <meta property="og:type" content="website">
+  <title>Tedd.WildcardMatch — wildcard matching for .NET</title>
+  <link rel="icon" href="assets/wildcard-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Tedd.WildcardMatch home"><img src="assets/wildcard-icon.svg" width="34" height="34" alt=""><span>TEDD<span class="brand-slash">/</span>WILDCARDMATCH</span></a>
+    <nav aria-label="Primary navigation"><a href="#model">Choose an API</a><a href="#patterns">Patterns</a><a href="#examples">Examples</a><a href="#benchmarks">Benchmarks</a><a class="nav-cta" href="https://github.com/tedd/Tedd.WildcardMatch">Source ↗</a></nav>
+  </header>
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> Pattern matching for .NET</p>
+        <h1>Simple patterns.<br><em>Precise matches.</em></h1>
+        <p class="lede">Match strings with <code>*</code> and <code>?</code>. Tedd.WildcardMatch translates wildcard patterns to .NET regular expressions, with reusable matchers, compiled execution, case options, and explicit timeouts.</p>
+        <p class="hero-evidence">Choose a static call for convenience or reuse a pattern for repeated matches. Compare throughput, allocations, and construction cost against three other NuGet libraries in the <a href="#benchmarks">published .NET 10 benchmarks</a>.</p>
+        <div class="hero-badges">
+          <a href="https://www.nuget.org/packages/Tedd.WildcardMatch"><img src="https://img.shields.io/nuget/v/Tedd.WildcardMatch?logo=nuget&amp;label=NuGet" alt="NuGet package version" height="20"></a>
+          <a href="https://github.com/tedd/Tedd.WildcardMatch/actions/workflows/nuget-publish.yml"><img src="https://github.com/tedd/Tedd.WildcardMatch/actions/workflows/nuget-publish.yml/badge.svg?branch=main" alt="Build and test status" height="20"></a>
+        </div>
+        <div class="hero-actions"><a class="button primary" href="#examples">Start matching ↓</a><a class="button secondary" href="#benchmarks">Compare performance ↓</a></div>
+        <ul class="hero-checks"><li>.NET Standard 2.0</li><li>No runtime package dependencies</li><li>LGPL-2.1</li></ul>
+      </div>
+      <figure class="index-figure">
+        <div class="window-bar" aria-hidden="true"><span></span><span></span><span></span><b>One pattern · many inputs</b><i>* ?</i></div>
+        <div class="diagram-panel">
+          <div class="diagram-heading"><span>WILDCARD PATTERN</span><strong>Case-sensitive matching</strong></div>
+          <div class="pattern-display"><span class="literal">report-</span><span class="token">??</span><span class="literal">.txt</span></div>
+          <div class="pattern-caption">Two characters between the prefix and extension.</div>
+          <div class="match-list">
+            <div><code>report-01.txt</code><span class="match-yes">MATCH</span></div>
+            <div><code>report-aa.txt</code><span class="match-yes">MATCH</span></div>
+            <div><code>report-1.txt</code><span class="match-no">NO MATCH</span></div>
+            <div><code>report-001.txt</code><span class="match-no">NO MATCH</span></div>
+          </div>
+          <div class="diagram-result"><span>REGEX TRANSLATION</span><code>^report-..\.txt$</code></div>
+        </div>
+        <figcaption>Literal regex characters are escaped. Wildcard tokens become regex operators; anchors constrain the match.</figcaption>
+      </figure>
+    </section>
+    <section class="fact-strip" aria-label="Library characteristics">
+      <p><strong>Two wildcard tokens</strong><span>Star for a sequence, question mark for one character</span></p>
+      <p><strong>Reusable patterns</strong><span>Translate once and match multiple strings</span></p>
+      <p><strong>Regex controls</strong><span>Case, culture, direction, and line handling</span></p>
+      <p><strong>Portable package</strong><span>.NET Standard 2.0; benchmarks run on .NET 10</span></p>
+    </section>
+    <section class="section-shell algorithms-section" id="patterns">
+      <div class="section-intro"><div><p class="eyebrow">Pattern language</p><h2>Small syntax.<br>Useful control.</h2></div><p>Patterns use two operators. Every other character is literal, including dots, brackets, and regular-expression punctuation.</p></div>
+      <div class="algorithm-grid">
+        <article><span class="step">01 / Sequence</span><h3><code>*</code> → zero or more</h3><p><code>report-*.txt</code> matches <code>report-.txt</code> and <code>report-summary.txt</code>. Use stars at both ends for substring matching.</p></article>
+        <article><span class="step">02 / Character</span><h3><code>?</code> → exactly one</h3><p><code>report-??.txt</code> requires two UTF-16 code units in that position. It matches <code>report-01.txt</code>.</p></article>
+        <article><span class="step">03 / Literal</span><h3>Punctuation stays literal</h3><p><code>file[1].txt</code> matches that literal filename. This is string matching: slashes have no special path semantics.</p></article>
+      </div>
+      <p class="algorithm-note">Patterns translate to <code>^…$</code>. .NET permits <code>$</code> before a final newline. Wildcards exclude <code>\n</code> unless <code>Singleline</code> is set. <a href="#behavior">See matching behavior</a>.</p>
+    </section>
+    <section class="section-shell model-section" id="model">
+      <div class="section-intro"><div><p class="eyebrow">Choose an API</p><h2>The right lifetime<br>for your pattern.</h2></div><p>Use the same wildcard syntax through extension methods, static calls, or an instance. Reuse avoids translating the pattern on every match.</p></div>
+      <div class="api-detail-grid">
+        <article class="api-detail"><span class="step">01 / Convenient</span><h3>Extension or static call</h3><p><code>text.IsWildcardMatch(pattern)</code> and <code>WildcardMatch.IsMatch(text, pattern)</code> translate the pattern per call and use the runtime regex cache.</p></article>
+        <article class="api-detail"><span class="step">02 / Repeated matches</span><h3>Reusable instance</h3><p><code>new WildcardMatch(pattern)</code> keeps its regex for repeated inputs. Inspect <code>WildcardRegex</code> to see the generated expression.</p></article>
+        <article class="api-detail"><span class="step">03 / Hot patterns</span><h3>Compiled instance</h3><p><code>WildcardOptions.Compiled</code> trades higher construction cost for compiled regex execution. Measure that tradeoff for your workload.</p></article>
+      </div>
+      <p class="model-note">Options: <code>IgnoreCase</code>, <code>CultureInvariant</code>, <code>Singleline</code>, <code>Compiled</code>, and <code>RightToLeft</code>. Combine flags with <code>|</code>.</p>
+    </section>
+    <section class="section-shell examples-section" id="examples">
+      <div class="section-intro"><div><p class="eyebrow">Start matching</p><h2>Install. Match.<br>Reuse.</h2></div><p>The package targets .NET Standard 2.0. These examples use the <code>Tedd</code> namespace.</p></div>
+      <div class="install-command"><code id="install">dotnet add package Tedd.WildcardMatch</code><button type="button" data-copy-target="install">Copy</button></div>
+      <div class="example-grid">
+        <div class="code-window"><div class="window-bar"><span></span><span></span><span></span><b>Convenience API</b><button type="button" data-copy-target="example-static">Copy</button></div><pre><code id="example-static">using Tedd;
+
+// Extension method.
+bool first = "report-01.txt"
+    .IsWildcardMatch("report-??.txt"); // true
+
+// Static method, with case handling.
+bool second = WildcardMatch.IsMatch(
+    "REPORT-01.TXT",
+    "report-??.txt",
+    WildcardOptions.IgnoreCase |
+    WildcardOptions.CultureInvariant); // true</code></pre></div>
+        <div class="code-window"><div class="window-bar"><span></span><span></span><span></span><b>Reusable pattern with a timeout</b><button type="button" data-copy-target="example-instance">Copy</button></div><pre><code id="example-instance">using System;
+using Tedd;
+
+var matcher = new WildcardMatch(
+    "report-*.txt",
+    WildcardOptions.Compiled |
+    WildcardOptions.CultureInvariant,
+    TimeSpan.FromMilliseconds(100));
+
+bool first = matcher.IsMatch("report-01.txt");
+bool second = matcher.IsMatch("report-summary.txt");
+
+// Generated regex: ^report-.*\.txt$
+Console.WriteLine(matcher.WildcardRegex);</code></pre></div>
+      </div>
+      <div class="source-note"><div><strong>Bound execution for untrusted patterns.</strong><p>The default timeout is infinite. Instance constructors accept a <code>TimeSpan</code>; a timeout raises <code>RegexMatchTimeoutException</code>.</p></div><a href="https://github.com/tedd/Tedd.WildcardMatch/tree/main/src/Tedd.WildcardMatch">API source ↗</a></div>
+    </section>
+    <section class="section-shell benchmark-section" id="benchmarks">
+      <div class="section-intro"><div><p class="eyebrow">Measured on .NET 10</p><h2>Performance,<br>with the conditions.</h2></div><p>Four workloads, four packages, and three Tedd API modes. Compare measured time and allocations per match, then examine the cost of constructing reusable patterns.</p></div>
+      <div class="benchmark-controls"><label for="comparison-fixture">Workload</label><select id="comparison-fixture"><option value="Literal">Literal</option><option value="Simple" selected>Question marks</option><option value="MultiStar">Multiple stars</option><option value="LongText">Long text</option></select><span>Throughput in millions of matches per second · higher is faster</span></div>
+      <!-- BENCHMARK_CONTENT_START -->
+<figure class="bar-chart package-chart"><figcaption><span>Matching throughput</span><strong id="chart-workload">Question marks</strong><small>Pattern: <code id="chart-pattern">report-??.txt</code> · millions of matches/s</small></figcaption><div id="chart-rows">
+<div class="bar-row"><span>DotNet.Glob</span><div class="bar-track"><i class="bar other" style="width:100.00%"></i></div><b>48.37</b></div>
+<div class="bar-row comparison-ours"><span>Tedd &#183; compiled</span><div class="bar-track"><i class="bar ours" style="width:57.98%"></i></div><b>28.04</b></div>
+<div class="bar-row"><span>WildcardMatch</span><div class="bar-track"><i class="bar other" style="width:54.05%"></i></div><b>26.14</b></div>
+<div class="bar-row"><span>FastWildcard</span><div class="bar-track"><i class="bar other" style="width:27.34%"></i></div><b>13.22</b></div>
+<div class="bar-row comparison-ours"><span>Tedd &#183; reused</span><div class="bar-track"><i class="bar ours" style="width:23.74%"></i></div><b>11.48</b></div>
+<div class="bar-row comparison-ours"><span>Tedd &#183; static</span><div class="bar-track"><i class="bar ours" style="width:13.32%"></i></div><b>6.44</b></div>
+</div></figure><div class="results-panel"><div class="results-heading"><h3>Matching · all workloads</h3><p>Time and allocations per match · lower is better</p></div><div class="table-scroll"><table><caption>Matching performance across all workloads and APIs</caption><thead><tr><th scope="col">Workload / pattern</th><th scope="col">Library / API</th><th scope="col">Mean (ns)</th><th scope="col">Error (ns)</th><th scope="col">Std. dev. (ns)</th><th scope="col">Allocated (B)</th></tr></thead><tbody>
+<tr><th scope="row">Literal<br><code>report-2026.txt</code></th><td><a href="https://www.nuget.org/packages/DotNet.Glob">DotNet.Glob</a></td><td>17.40</td><td>2.41</td><td>0.13</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Literal<br><code>report-2026.txt</code></th><td><a href="https://www.nuget.org/packages/Tedd.WildcardMatch">Tedd &#183; compiled</a></td><td>40.78</td><td>1.94</td><td>0.11</td><td>0</td></tr>
+<tr><th scope="row">Literal<br><code>report-2026.txt</code></th><td><a href="https://www.nuget.org/packages/WildcardMatch">WildcardMatch</a></td><td>40.81</td><td>10.12</td><td>0.55</td><td>48</td></tr>
+<tr><th scope="row">Literal<br><code>report-2026.txt</code></th><td><a href="https://www.nuget.org/packages/FastWildcard">FastWildcard</a></td><td>77.94</td><td>14.96</td><td>0.82</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Literal<br><code>report-2026.txt</code></th><td><a href="https://www.nuget.org/packages/Tedd.WildcardMatch">Tedd &#183; reused</a></td><td>102.81</td><td>15.84</td><td>0.87</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Literal<br><code>report-2026.txt</code></th><td><a href="https://www.nuget.org/packages/Tedd.WildcardMatch">Tedd &#183; static</a></td><td>204.92</td><td>108.94</td><td>5.97</td><td>120</td></tr>
+<tr><th scope="row">Question marks<br><code>report-??.txt</code></th><td><a href="https://www.nuget.org/packages/DotNet.Glob">DotNet.Glob</a></td><td>20.68</td><td>8.88</td><td>0.49</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Question marks<br><code>report-??.txt</code></th><td><a href="https://www.nuget.org/packages/Tedd.WildcardMatch">Tedd &#183; compiled</a></td><td>35.66</td><td>11.29</td><td>0.62</td><td>0</td></tr>
+<tr><th scope="row">Question marks<br><code>report-??.txt</code></th><td><a href="https://www.nuget.org/packages/WildcardMatch">WildcardMatch</a></td><td>38.26</td><td>4.27</td><td>0.23</td><td>48</td></tr>
+<tr><th scope="row">Question marks<br><code>report-??.txt</code></th><td><a href="https://www.nuget.org/packages/FastWildcard">FastWildcard</a></td><td>75.64</td><td>75.76</td><td>4.15</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Question marks<br><code>report-??.txt</code></th><td><a href="https://www.nuget.org/packages/Tedd.WildcardMatch">Tedd &#183; reused</a></td><td>87.08</td><td>24.01</td><td>1.32</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Question marks<br><code>report-??.txt</code></th><td><a href="https://www.nuget.org/packages/Tedd.WildcardMatch">Tedd &#183; static</a></td><td>155.27</td><td>85.86</td><td>4.71</td><td>136</td></tr>
+<tr><th scope="row">Multiple stars<br><code>*a?c*e*</code></th><td><a href="https://www.nuget.org/packages/DotNet.Glob">DotNet.Glob</a></td><td>58.26</td><td>50.78</td><td>2.78</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars<br><code>*a?c*e*</code></th><td><a href="https://www.nuget.org/packages/FastWildcard">FastWildcard</a></td><td>60.13</td><td>49.73</td><td>2.73</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Multiple stars<br><code>*a?c*e*</code></th><td><a href="https://www.nuget.org/packages/Tedd.WildcardMatch">Tedd &#183; compiled</a></td><td>60.65</td><td>37.32</td><td>2.05</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars<br><code>*a?c*e*</code></th><td><a href="https://www.nuget.org/packages/WildcardMatch">WildcardMatch</a></td><td>144.71</td><td>12.25</td><td>0.67</td><td>479</td></tr>
+<tr class="comparison-ours"><th scope="row">Multiple stars<br><code>*a?c*e*</code></th><td><a href="https://www.nuget.org/packages/Tedd.WildcardMatch">Tedd &#183; reused</a></td><td>234.20</td><td>182.96</td><td>10.03</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Multiple stars<br><code>*a?c*e*</code></th><td><a href="https://www.nuget.org/packages/Tedd.WildcardMatch">Tedd &#183; static</a></td><td>283.66</td><td>290.31</td><td>15.91</td><td>104</td></tr>
+<tr><th scope="row">Long text<br><code>*alpha*beta??*omega*</code></th><td><a href="https://www.nuget.org/packages/FastWildcard">FastWildcard</a></td><td>196.51</td><td>279.80</td><td>15.34</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Long text<br><code>*alpha*beta??*omega*</code></th><td><a href="https://www.nuget.org/packages/Tedd.WildcardMatch">Tedd &#183; compiled</a></td><td>204.02</td><td>334.09</td><td>18.31</td><td>0</td></tr>
+<tr><th scope="row">Long text<br><code>*alpha*beta??*omega*</code></th><td><a href="https://www.nuget.org/packages/DotNet.Glob">DotNet.Glob</a></td><td>3,311.45</td><td>2,292.43</td><td>125.66</td><td>0</td></tr>
+<tr><th scope="row">Long text<br><code>*alpha*beta??*omega*</code></th><td><a href="https://www.nuget.org/packages/WildcardMatch">WildcardMatch</a></td><td>9,259.87</td><td>7,634.81</td><td>418.49</td><td>32,184</td></tr>
+<tr class="comparison-ours"><th scope="row">Long text<br><code>*alpha*beta??*omega*</code></th><td><a href="https://www.nuget.org/packages/Tedd.WildcardMatch">Tedd &#183; reused</a></td><td>12,929.58</td><td>7,944.15</td><td>435.45</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Long text<br><code>*alpha*beta??*omega*</code></th><td><a href="https://www.nuget.org/packages/Tedd.WildcardMatch">Tedd &#183; static</a></td><td>13,649.36</td><td>17,130.41</td><td>938.98</td><td>192</td></tr>
+</tbody></table></div></div><div class="results-panel"><div class="results-heading"><h3>Pattern construction</h3><p>One reusable object · first-match JIT excluded</p></div><div class="table-scroll"><table><caption>Construction cost for reusable matchers</caption><thead><tr><th scope="col">Pattern</th><th scope="col">Library / API</th><th scope="col">Mean (ns)</th><th scope="col">Error (ns)</th><th scope="col">Std. dev. (ns)</th><th scope="col">Allocated (B)</th></tr></thead><tbody>
+<tr><th scope="row"><code>*a?c*e*</code></th><td>Tedd &#183; reused</td><td>1,780.04</td><td>933.85</td><td>51.19</td><td>2,000</td></tr>
+<tr><th scope="row"><code>*a?c*e*</code></th><td>Tedd &#183; compiled</td><td>8,872.49</td><td>8,122.74</td><td>445.23</td><td>12,696</td></tr>
+<tr><th scope="row"><code>*a?c*e*</code></th><td>DotNet.Glob</td><td>776.96</td><td>210.60</td><td>11.54</td><td>1,792</td></tr>
+<tr><th scope="row"><code>report-??.txt</code></th><td>Tedd &#183; reused</td><td>1,609.76</td><td>119.59</td><td>6.56</td><td>2,024</td></tr>
+<tr><th scope="row"><code>report-??.txt</code></th><td>Tedd &#183; compiled</td><td>5,824.41</td><td>793.45</td><td>43.49</td><td>8,448</td></tr>
+<tr><th scope="row"><code>report-??.txt</code></th><td>DotNet.Glob</td><td>524.04</td><td>51.76</td><td>2.84</td><td>976</td></tr>
+</tbody></table></div></div>
+<!-- BENCHMARK_CONTENT_END -->
+      <!-- BENCHMARK_METHOD_START -->
+<p class="benchmark-method" id="benchmark-method">Measured 2026-10-02 &#183; AMD Ryzen 9 5950X &#183; Windows 11 (10.0.26200.9457/25H2/2025Update/HudsonValley2) &#183; .NET 10.0.12 (10.0.12, 10.0.1226.42308) &#183; SDK 10.0.401 &#183; BenchmarkDotNet 0.15.8. ShortRun: one launch, three warmups, three measured iterations. Error is the 99.9% confidence-interval half-width; short runs can have wide intervals. Compare broad differences, not close rankings. Library source: <a href="https://github.com/tedd/Tedd.WildcardMatch/commit/0f0784d880efea33bfaeae8539d26b87e8f25fef">0f0784d</a>.</p>
+<!-- BENCHMARK_METHOD_END -->
+      <p class="benchmark-method">Each invocation checks 256 inputs with both matches and misses. BenchmarkDotNet normalizes results per match. Tedd instances and DotNet.Glob patterns are prepared outside matching measurements; static APIs translate or parse during execution. Every adapter uses delegate dispatch. Construction is measured separately. Fixtures use case-sensitive ASCII without path separators, newlines, or glob-specific syntax.</p>
+      <p class="benchmark-method">All 24 library/workload combinations pass an independent dynamic-programming oracle for this corpus. This validates the measured inputs; it does not establish equivalent behavior across every pattern language or edge case. FastWildcard 3.1.0 is deprecated and retained for comparison with the earlier benchmark.</p>
+      <div class="evidence-links"><a href="assets/package-comparison.json">Complete measurements (JSON)</a><a href="assets/matching-report.md">Matching report</a><a href="assets/construction-report.md">Construction report</a><a href="assets/validation.json">Correctness results</a><a href="https://github.com/tedd/Tedd.WildcardMatch/tree/main/src/Tedd.WildcardMatch.Benchmark">Benchmark source ↗</a></div>
+    </section>
+    <section class="section-shell boundaries-section" id="behavior">
+      <div><p class="eyebrow">Matching behavior</p><h2>Regex semantics.<br>Explicit choices.</h2></div>
+      <div class="boundary-list">
+        <p><strong>Anchors.</strong> <code>^</code> and <code>$</code> constrain the match. A final <code>\n</code> may remain after the match because of .NET's end-anchor semantics.</p>
+        <p><strong>Line handling.</strong> <code>*</code> and <code>?</code> exclude line feeds by default. <code>Singleline</code> lets them consume line feeds too.</p>
+        <p><strong>Case and culture.</strong> Matching is case-sensitive by default. Combine <code>IgnoreCase</code> with <code>CultureInvariant</code> for culture-independent regex casing.</p>
+        <p><strong>Pattern lifetime.</strong> Compiling a regex costs more up front. Reuse it across inputs; inspect the construction measurements before choosing compilation.</p>
+      </div>
+    </section>
+  </main>
+  <footer><p>Tedd.WildcardMatch · Tedd Hansen · LGPL-2.1</p><div><a href="https://www.nuget.org/packages/Tedd.WildcardMatch">NuGet ↗</a><a href="https://github.com/tedd/Tedd.WildcardMatch">GitHub ↗</a><a href="https://github.com/tedd/Tedd.WildcardMatch/blob/main/LICENSE">License ↗</a><a href="https://tedd.github.io/Tedd.RTree/">Tedd.RTree ↗</a></div></footer>
+</body>
+</html>

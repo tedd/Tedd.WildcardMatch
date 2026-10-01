@@ -6,18 +6,20 @@
 		<Description>Fast and reliable wildcard (* and ?) matcher capable of complex pattern matching.</Description>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageTags>wildcard;matching;pattern;star;questionmark</PackageTags>
-		<PackageReleaseNotes>Updated references.</PackageReleaseNotes>
 		<Version>1.0.3</Version>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<PackageProjectUrl>https://github.com/tedd/Tedd.WildcardMatch</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/tedd/Tedd.WildcardMatch.git</RepositoryUrl>
 
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>Tedd.WildcardMatch</PackageId>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<Deterministic>true</Deterministic>
+		<ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
 		<RepositoryType>git</RepositoryType>
 		<Authors>tedd</Authors>
 		<Company>Tedd Hansen</Company>
 		<Copyright>Tedd Hansen</Copyright>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<EnableNETAnalyzers>True</EnableNETAnalyzers>
