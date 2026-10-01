@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <DefineConstants>$(DefineConstants);NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.15.8" />
+    <ProjectReference Include="Library/Tedd.WildcardMatch.csproj" />
+    <ProjectReference Include="Baseline/Tedd.WildcardMatch.Baseline.csproj" Aliases="BaselineLibrary" />
+    <Compile Remove="InternalUtils.cs;WildcardMatch.cs;WildcardMatchExtensions.cs;WildcardOptions.cs;Library/**/*.cs;Baseline/**/*.cs" />
+  </ItemGroup>
+</Project>

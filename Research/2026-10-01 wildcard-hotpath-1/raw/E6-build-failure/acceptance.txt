@@ -1,0 +1,110 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 26 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore --nodeReuse:false /p:UseSharedCompilation=false /p:Deterministic=true /p:Optimize=true /p:ArtifactsPath="D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation-net10-cpu30-1/" /p:OutDir="D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation-net10-cpu30-1\bin\Release\net10.0/" /p:OutputPath="D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation-net10-cpu30-1\bin\Release\net10.0/" /p:PublishDir="D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation-net10-cpu30-1\publish/" in D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation-net10-cpu30-1
+// command took 2.97 sec and exited with 0
+// start dotnet  build -c Release --no-restore --nodeReuse:false /p:UseSharedCompilation=false /p:Deterministic=true /p:Optimize=true /p:ArtifactsPath="D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation-net10-cpu30-1/" /p:OutDir="D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation-net10-cpu30-1\bin\Release\net10.0/" /p:OutputPath="D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation-net10-cpu30-1\bin\Release\net10.0/" /p:PublishDir="D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation-net10-cpu30-1\publish/" --output "D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation-net10-cpu30-1\bin\Release\net10.0/" in D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation-net10-cpu30-1
+// command took 8.81 sec and exited with 1
+// ***** Done, took 00:00:11 (11.86 sec)   *****
+// Found 26 benchmarks:
+//   Acceptance.Before: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=complex]
+//   Acceptance.After: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=complex]
+//   Acceptance.Before: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=empty]
+//   Acceptance.After: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=empty]
+//   Acceptance.Before: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=escaped]
+//   Acceptance.After: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=escaped]
+//   Acceptance.Before: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=literal]
+//   Acceptance.After: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=literal]
+//   Acceptance.Before: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=long-cluster]
+//   Acceptance.After: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=long-cluster]
+//   Acceptance.Before: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=long-literal]
+//   Acceptance.After: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=long-literal]
+//   Acceptance.Before: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=long-mixed]
+//   Acceptance.After: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=long-mixed]
+//   Acceptance.Before: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=long-pair]
+//   Acceptance.After: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=long-pair]
+//   Acceptance.Before: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=long-prefix]
+//   Acceptance.After: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=long-prefix]
+//   Acceptance.Before: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=long-suffix]
+//   Acceptance.After: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=long-suffix]
+//   Acceptance.Before: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=miss]
+//   Acceptance.After: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=miss]
+//   Acceptance.Before: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=simple]
+//   Acceptance.After: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=simple]
+//   Acceptance.Before: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=unicode]
+//   Acceptance.After: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=unicode]
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// Build Error: Standard output: 
+  
+ Standard error: 
+ D:\Workspaces\AI\wildcard-hotpath\rig\Library\InternalUtils.cs(22,19): warning CA2208: Method StringToWildcard passes 'str' as the paramName argument to a ArgumentNullException constructor. Replace this argument with one of the method's parameter names. Note that the provided parameter name should have the exact casing as declared on the method. (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2208) [D:\Workspaces\AI\wildcard-hotpath\rig\Library\Tedd.WildcardMatch.csproj::TargetFramework=netstandard2.0]
+  Tedd.WildcardMatch -> D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation-net10-cpu30-1\bin\Release\net10.0\Tedd.WildcardMatch.Baseline.dll
+  Tedd.WildcardMatch -> D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation-net10-cpu30-1\bin\Release\net10.0\Tedd.WildcardMatch.dll
+CSC : error CS0006: Metadata file 'D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation-net10-cpu30-1\bin\Release\net10.0\Tedd.WildcardMatch.Baseline.dll' could not be found [D:\Workspaces\AI\wildcard-hotpath\rig\Investigation.csproj]
+Build FAILED.
+D:\Workspaces\AI\wildcard-hotpath\rig\Library\InternalUtils.cs(22,19): warning CA2208: Method StringToWildcard passes 'str' as the paramName argument to a ArgumentNullException constructor. Replace this argument with one of the method's parameter names. Note that the provided parameter name should have the exact casing as declared on the method. (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2208) [D:\Workspaces\AI\wildcard-hotpath\rig\Library\Tedd.WildcardMatch.csproj::TargetFramework=netstandard2.0]
+CSC : error CS0006: Metadata file 'D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation-net10-cpu30-1\bin\Release\net10.0\Tedd.WildcardMatch.Baseline.dll' could not be found [D:\Workspaces\AI\wildcard-hotpath\rig\Investigation.csproj]
+    1 Warning(s)
+    1 Error(s)
+Time Elapsed 00:00:08.35
+
+// BenchmarkDotNet has failed to build the auto-generated boilerplate code.
+// It can be found in D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation-net10-cpu30-1
+// Please follow the troubleshooting guide: https://benchmarkdotnet.org/articles/guides/troubleshooting.html
+
+// ** Remained 0 (0.0%) benchmark(s) to run. Estimated finish 2026-10-01 23:48 (0h 0m from now) **
+Successfully reverted power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  D:\Workspaces\AI\wildcard-hotpath\bdn-actual\results\Acceptance-report.csv
+  D:\Workspaces\AI\wildcard-hotpath\bdn-actual\results\Acceptance-report-github.md
+  D:\Workspaces\AI\wildcard-hotpath\bdn-actual\results\Acceptance-report.html
+  D:\Workspaces\AI\wildcard-hotpath\bdn-actual\results\Acceptance-report-full-compressed.json
+
+// * Detailed results *
+Acceptance.Before: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=complex]
+Runtime = ; GC = 
+There are not any results runs
+
+// * Summary *
+
+BenchmarkDotNet v0.15.8, Windows 11 (10.0.26200.9457/25H2/2025Update/HudsonValley2)
+AMD Ryzen 9 5950X 3.40GHz, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 10.0.401
+  [Host] : .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+
+Job=net10-cpu30  Affinity=01000000000000000000000000000000  IterationCount=10  
+IterationTime=300ms  LaunchCount=2  WarmupCount=5  
+
+| Method | Case    | Mean | Error | Ratio | RatioSD | Alloc Ratio |
+|------- |-------- |-----:|------:|------:|--------:|------------:|
+| Before | complex |   NA |    NA |     ? |       ? |           ? |
+
+Benchmarks with issues:
+  Acceptance.Before: net10-cpu30(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=300ms, LaunchCount=2, WarmupCount=5) [Case=complex]
+
+// * Warnings *
+BaselineCustomAnalyzer
+  Summary -> A question mark '?' symbol indicates that it was not possible to compute the (Ratio, RatioSD, Alloc Ratio) column(s) because the baseline or benchmark could not be found, or the baseline value is too close to zero.
+
+// * Legends *
+  Case        : Value of the 'Case' parameter
+  Mean        : Arithmetic mean of all measurements
+  Error       : Half of 99.9% confidence interval
+  Ratio       : Mean of the ratio distribution ([Current]/[Baseline])
+  RatioSD     : Standard deviation of the ratio distribution ([Current]/[Baseline])
+  Alloc Ratio : Allocated memory ratio distribution ([Current]/[Baseline])
+  1 ns        : 1 Nanosecond (0.000000001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:00:00 (0.47 sec), executed benchmarks: 0
+
+Global total time: 00:00:13 (13.61 sec), executed benchmarks: 0
+// * Artifacts cleanup *
+Artifacts cleanup is finished

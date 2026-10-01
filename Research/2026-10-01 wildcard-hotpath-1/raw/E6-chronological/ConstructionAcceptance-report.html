@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>ConstructionAcceptance-20261002-000014</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.15.8, Windows 11 (10.0.26200.9457/25H2/2025Update/HudsonValley2)
+AMD Ryzen 9 5950X 3.40GHz, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 10.0.401
+  [Host]      : .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+  net10-cpu30 : .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+</code></pre>
+<pre><code>Job=net10-cpu30  Affinity=01000000000000000000000000000000  IterationCount=10  
+IterationTime=300ms  LaunchCount=2  WarmupCount=5  
+</code></pre>
+
+<table>
+<thead><tr><th>Method</th><th>Case</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Ratio</th><th>RatioSD</th><th>Gen0</th><th>Allocated</th><th>Alloc Ratio</th>
+</tr>
+</thead><tbody><tr><td>Before</td><td>long-mixed</td><td>122.421 &mu;s</td><td>18.014 &mu;s</td><td>20.744 &mu;s</td><td>1.02</td><td>0.22</td><td>2.5803</td><td>43.62 KB</td><td>1.00</td>
+</tr><tr><td>After</td><td>long-mixed</td><td>98.289 &mu;s</td><td>28.604 &mu;s</td><td>30.606 &mu;s</td><td>0.82</td><td>0.28</td><td>2.3585</td><td>39.33 KB</td><td>0.90</td>
+</tr><tr><td>Before</td><td>simple</td><td>6.027 &mu;s</td><td>1.133 &mu;s</td><td>1.212 &mu;s</td><td>1.04</td><td>0.31</td><td>0.1912</td><td>3.33 KB</td><td>1.00</td>
+</tr><tr><td>After</td><td>simple</td><td>4.998 &mu;s</td><td>1.393 &mu;s</td><td>1.604 &mu;s</td><td>0.87</td><td>0.34</td><td>0.1974</td><td>3.23 KB</td><td>0.97</td>
+</tr></tbody></table>
+</body>
+</html>

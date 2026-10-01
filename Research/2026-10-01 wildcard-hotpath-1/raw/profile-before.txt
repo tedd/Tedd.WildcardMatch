@@ -1,0 +1,11 @@
+
+Provider Name                           Keywords            Level               Enabled By
+Microsoft-DotNETCore-SampleProfiler     0x0000000000000000  Informational(4)    --providers
+
+Launching: dotnet D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation.dll --profile 
+Process        : C:\Program Files\dotnet\dotnet.exe
+Output File    : D:\Workspaces\AI\wildcard-hotpath\before.nettrace
+
+
+Trace completed.
+Process exited with code '0'.

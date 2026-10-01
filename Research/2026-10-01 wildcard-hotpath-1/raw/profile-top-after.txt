@@ -1,0 +1,31 @@
+Top 30 Functions (Exclusive)                                                  Inclusive           Exclusive           
+1.  RegexInterpreter.TryMatchAtCurrentPosition(value class System.ReadOnly    96.36%              95.79%              
+2.  Investigation!Program.Main(class System.String[])                         99.66%              1.25%               
+3.  InternalUtils.StringToWildcard(class System.String)                       0.83%               0.83%               
+4.  PackedSpanHelpers.IndexOf(int16&,int16,int32)                             0.57%               0.57%               
+5.  Regex.IsMatch(class System.String,class System.String,value class Syst    93.59%              0.57%               
+6.  Thread.PollGC()                                                           0.51%               0.51%               
+7.  GlobalizationMode.LoadIcu()                                               0.1%                0.1%                
+8.  Guid.TryFormatCore(value class System.Span`1<!!0>,int32&,value class S    0.03%               0.03%               
+9.  RegexCache.Get(value class Key)                                           0.03%               0.03%               
+10. Console.get_OutputEncoding()                                              0.03%               0.03%               
+11. GenericsHelpers.ClassWithSlotAndModule(int,value class GenericHandleAr    0.02%               0.02%               
+12. .cctor()                                                                  0.02%               0.02%               
+13. Array.Sort(!!0[],int32,int32,class System.Collections.Generic.ICompare    0.02%               0.02%               
+14. EtwEventProvider.TryReadRegistryFilterData(int32,value class System.Di    0.05%               0.02%               
+15. SearchValues.Create(value class System.ReadOnlySpan`1<wchar>)             0.02%               0.02%               
+16. Utf8Utility.TranscodeToUtf16(unsigned int8*,int32,wchar*,int32,unsigne    0.02%               0.02%               
+17. DynamicMethod.GetILGenerator(int32)                                       0.01%               0.01%               
+18. .cctor()                                                                  0.03%               0.01%               
+19. EventSource.EnsureDescriptorsInitialized()                                0.28%               0.01%               
+20. IndexOfAnyAsciiSearcher.IndexOfAnyLookup(value class System.Runtime.In    0.01%               0.01%               
+21. CustomAttribute.GetPropertyOrFieldData(class System.Reflection.Runtime    0.08%               0.01%               
+22. __Canon].TryAdd(!0,!1)                                                    0.01%               0.01%               
+23. MethodBaseInvoker.InvokeDirectByRefWithFewArgs(class System.Object,val    0.01%               0.01%               
+24. GenericsHelpers.MethodWithSlotAndModule(int,value class GenericHandleA    0.01%               0.01%               
+25. IndexOfAnyAsciiSearcher.IndexOfAny(int16&,int32,value class AsciiState    0.03%               0.01%               
+26. EtwEventProvider.HandleEnableNotification(class System.Diagnostics.Tra    0.06%               0.01%               
+27. RegexParser.Parse(class System.String,value class System.Text.RegularE    0.01%               0.01%               
+28. __Canon].PopulateLiteralFields(value class Filter,class System.Runtime    0.01%               0.01%               
+29. Guid.ToString(class System.String,class System.IFormatProvider)           0.03%               0.01%               
+30. WildcardMatch.IsMatch(class System.String,class System.String,bool)       0.5%                0.01%               

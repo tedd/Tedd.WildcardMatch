@@ -1,0 +1,10 @@
+  Determining projects to restore...
+D:\Workspaces\AI\wildcard-hotpath\validation\Tedd.WildcardMatch.Tests\Tedd.WildcardMatch.Tests.csproj : warning NU1903: Package 'Newtonsoft.Json' 9.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr
+  All projects are up-to-date for restore.
+D:\Workspaces\AI\wildcard-hotpath\validation\Tedd.WildcardMatch.Tests\Tedd.WildcardMatch.Tests.csproj : warning NU1903: Package 'Newtonsoft.Json' 9.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr
+  Tedd.WildcardMatch -> D:\Workspaces\AI\wildcard-hotpath\validation\Tedd.WildcardMatch\bin\Release\netstandard2.0\Tedd.WildcardMatch.dll
+  Tedd.WildcardMatch.Tests -> D:\Workspaces\AI\wildcard-hotpath\validation\Tedd.WildcardMatch.Tests\bin\Release\net10.0\Tedd.WildcardMatch.Tests.dll
+Test run for D:\Workspaces\AI\wildcard-hotpath\validation\Tedd.WildcardMatch.Tests\bin\Release\net10.0\Tedd.WildcardMatch.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    46, Skipped:     0, Total:    46, Duration: 460 ms - Tedd.WildcardMatch.Tests.dll (net10.0)

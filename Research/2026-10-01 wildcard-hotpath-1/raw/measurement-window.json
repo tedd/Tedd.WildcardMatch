@@ -1,0 +1,12 @@
+{
+  "startedUtc": "2026-10-01T22:08:30.148898+00:00",
+  "endedUtc": "2026-10-01T22:12:39.511640+00:00",
+  "phases": [
+    "tests",
+    "followup",
+    "paired",
+    "diagnostics-after"
+  ],
+  "lock": "C:\\Users\\tedd\\.codex\\locks\\performance-measurement.lock",
+  "note": "Driver execution window fully contained in one skill-wrapper lock acquisition."
+}

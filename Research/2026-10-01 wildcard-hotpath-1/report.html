@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Scientific performance report</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #f5f6f8;
+      --surface: #fcfcfd;
+      --ink: #0f1217;
+      --ink-2: #4a5160;
+      --muted: #767d8b;
+      --grid: #e3e6eb;
+      --axis: #c3c8d1;
+      --hairline: rgba(15, 18, 23, .10);
+      --before: #a9cbf3;
+      --mid: #5f97dc;
+      --after: #1d5aa6;
+      --good: #006300;
+      --slower: #d9822b;
+      --noeffect: #b9c0cb;
+      --adopted-bg: #e4f2e4;
+      --adopted-ink: #0b4f0b;
+      --decision-bg: #fbf0da;
+      --decision-ink: #6b4a00;
+      --info-bg: #e3edfb;
+      --info-ink: #184f95;
+      --neutral-bg: #eceef1;
+      --neutral-ink: #4a5160;
+      --sans: "IBM Plex Sans", Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, ui-monospace, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 40px 16px 64px;
+      background: var(--page);
+      color: var(--ink);
+      font: 15px/1.55 var(--sans);
+    }
+    a { color: var(--after); overflow-wrap: anywhere; }
+    code, .mono { font-family: var(--mono); font-size: .86em; }
+    h1, h2, h3 { margin: 0; font-weight: 600; text-wrap: balance; }
+    h1 { font-size: clamp(1.9rem, 1.25rem + 2vw, 2.65rem); line-height: 1.15; letter-spacing: -.012em; }
+    h2 { font-size: 1.25rem; line-height: 1.3; }
+    h3 { font-size: 1rem; line-height: 1.35; }
+    p { margin: 0; }
+    ul, ol { margin: 0; padding-left: 1.25em; display: grid; gap: 6px; }
+
+    .wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 40px; }
+    .report-head { display: grid; gap: 12px; }
+    .eyebrow { font: .78rem/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+    .lede { color: var(--ink-2); max-width: 78ch; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; color: var(--muted); font: .74rem/1.4 var(--mono); }
+    .report-status { display: inline-flex; padding: 2px 9px; border-radius: 999px; background: var(--info-bg); color: var(--info-ink); font: 500 .72rem/1.5 var(--sans); text-transform: capitalize; }
+
+    .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-top: 8px; }
+    .kpi, .card, .chart, .table-wrap, .panel {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 10px;
+    }
+    .kpi { padding: 16px 18px; display: grid; gap: 6px; }
+    .kpi-label { color: var(--ink-2); font-size: .86rem; }
+    .kpi-value { font-size: 2rem; font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; }
+    .kpi-value small { margin-left: 3px; color: var(--ink-2); font-size: 1rem; font-weight: 500; }
+    .kpi-delta { color: var(--ink-2); font-size: .86rem; }
+    .kpi-delta strong { font-weight: 600; }
+    .kpi-delta .good { color: var(--good); }
+    .kpi-delta .bad { color: var(--slower); }
+    .kpi-steps { color: var(--muted); font: .72rem/1.4 var(--mono); }
+
+    section { display: grid; gap: 14px; }
+    section > p { color: var(--ink-2); max-width: 82ch; }
+    .panel { padding: 18px 20px; }
+    .scope-grid, .evidence-grid, .outcome-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .card { padding: 16px 18px; display: grid; gap: 6px; min-width: 0; }
+    .card p { color: var(--ink-2); }
+    .card .small, .small { color: var(--muted); font-size: .8rem; }
+    .card .metric { font: 500 .78rem/1.4 var(--mono); color: var(--muted); }
+
+    .charts { display: grid; gap: 20px; }
+    .chart { margin: 0; padding: 20px 20px 16px; display: grid; gap: 16px; overflow-x: auto; overflow-y: hidden; }
+    .chart-head { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; justify-content: space-between; }
+    .chart-head p { color: var(--ink-2); font-size: .9rem; }
+    .legend { display: flex; gap: 16px; flex-wrap: wrap; color: var(--ink-2); font-size: .86rem; }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .swatch { width: 14px; height: 10px; border-radius: 0 3px 3px 0; display: inline-block; background: var(--swatch); }
+
+    .plot { display: grid; gap: 14px; }
+    .chart-row { display: grid; grid-template-columns: minmax(160px, 250px) 1fr; gap: 16px; align-items: center; }
+    .row-label { display: grid; gap: 2px; }
+    .row-label b { font-weight: 500; font-size: .95rem; }
+    .row-label small { color: var(--muted); font: .74rem/1.35 var(--mono); }
+    .track { position: relative; min-width: 0; }
+    .bar-plot-area { position: relative; display: grid; gap: 2px; margin-right: var(--bar-label-gutter, 0px); padding-block: 2px; }
+    .gridline { position: absolute; z-index: 0; top: -6px; bottom: -6px; width: 1px; background: var(--grid); }
+    .gridline.zero { background: var(--axis); }
+    .bar-line { position: relative; height: 16px; }
+    .bar { position: absolute; z-index: 1; left: 0; top: 1px; height: 14px; border-radius: 0 4px 4px 0; background: var(--bar-color); }
+    .whisker { position: absolute; z-index: 2; top: 7px; height: 1px; background: var(--ink); opacity: .65; pointer-events: none; }
+    .whisker::before, .whisker::after { content: ""; position: absolute; top: -3px; width: 1px; height: 7px; background: var(--ink); }
+    .whisker::before { left: 0; }
+    .whisker::after { right: 0; }
+    .bar-value { position: absolute; z-index: 3; top: -1px; color: var(--ink-2); font: .78rem/1.4 var(--mono); white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .bar-value strong { color: var(--ink); font-weight: 500; }
+    .bar-value .improve { color: var(--good); margin-left: 6px; }
+    .bar-value .regress { color: var(--slower); margin-left: 6px; }
+    .axis { display: grid; grid-template-columns: minmax(160px, 250px) 1fr; gap: 16px; }
+    .axis-ticks { position: relative; height: 18px; color: var(--muted); font: .72rem/1.4 var(--mono); font-variant-numeric: tabular-nums; }
+    .axis-ticks span { position: absolute; transform: translateX(-50%); }
+    .axis-ticks span:first-child { transform: none; }
+    .axis-ticks span:last-child { transform: translateX(-100%); }
+    .axis .axis-ticks { margin-right: var(--bar-label-gutter, 0px); }
+
+    .effects { display: grid; gap: 20px; }
+    .effect-group { display: grid; gap: 8px; }
+    .effect-head { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+    .effect-head b { font-weight: 600; font-size: .95rem; }
+    .effect-head small { color: var(--muted); font: .74rem/1.4 var(--mono); }
+    .effect-row { display: grid; grid-template-columns: minmax(170px, 290px) 1fr; gap: 16px; align-items: center; }
+    .effect-label { font-size: .86rem; line-height: 1.3; }
+    .effect-label .id { margin-right: 6px; color: var(--muted); font: .74rem/1.3 var(--mono); }
+    .effect-track { position: relative; height: 18px; }
+    .effect-plot-area { position: absolute; inset: 0 var(--effect-right-gutter, 0px) 0 var(--effect-left-gutter, 0px); }
+    .effect-bar { position: absolute; z-index: 1; top: 3px; height: 12px; }
+    .effect-bar.faster { background: var(--after); border-radius: 3px 0 0 3px; }
+    .effect-bar.slower { background: var(--slower); border-radius: 0 3px 3px 0; }
+    .effect-bar.mixed { background: var(--noeffect); }
+    .effect-grid, .effect-zero { position: absolute; z-index: 0; top: -4px; bottom: -4px; width: 1px; background: var(--grid); }
+    .effect-zero { background: var(--axis); }
+    .effect-whisker { position: absolute; z-index: 2; top: 9px; height: 1px; background: var(--ink); opacity: .65; }
+    .effect-whisker::before, .effect-whisker::after { content: ""; position: absolute; top: -3px; width: 1px; height: 7px; background: var(--ink); }
+    .effect-whisker::before { left: 0; }
+    .effect-whisker::after { right: 0; }
+    .effect-value { position: absolute; z-index: 3; top: 0; color: var(--ink-2); font: .76rem/1.4 var(--mono); white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .effect-value strong { color: var(--ink); font-weight: 500; }
+    .effect-axis { display: grid; grid-template-columns: minmax(170px, 290px) 1fr; gap: 16px; }
+    .effect-axis .axis-ticks { margin-left: var(--effect-left-gutter, 0px); margin-right: var(--effect-right-gutter, 0px); }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+    thead th { color: var(--ink-2); font-size: .8rem; font-weight: 500; white-space: nowrap; }
+    tbody tr:last-child td { border-bottom: 0; }
+    td.id { color: var(--muted); font: .8rem/1.5 var(--mono); white-space: nowrap; }
+    td.num { text-align: right; font: .8rem/1.5 var(--mono); white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .hypothesis-table { min-width: 820px; }
+    .hypothesis-table th:nth-child(1) { width: 68px; }
+    .hypothesis-table th:nth-child(2) { width: 37%; }
+    .hypothesis-table th:nth-child(4) { width: 160px; }
+    .cell-note { margin-top: 3px; color: var(--muted); font-size: .78rem; }
+    .chip { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 999px; font-size: .76rem; font-weight: 500; white-space: nowrap; }
+    .chip.retained { background: var(--adopted-bg); color: var(--adopted-ink); }
+    .chip.decision-required, .chip.inconclusive { background: var(--decision-bg); color: var(--decision-ink); }
+    .chip.pending { background: var(--info-bg); color: var(--info-ink); }
+    .chip.rejected, .chip.blocked, .chip.not-applicable { background: var(--neutral-bg); color: var(--neutral-ink); }
+
+    dl { display: grid; grid-template-columns: minmax(150px, 220px) 1fr; margin: 0; }
+    dt, dd { margin: 0; padding: 8px 0; border-bottom: 1px solid var(--grid); }
+    dt { padding-right: 18px; color: var(--muted); font-weight: 500; }
+    .code-note { padding-left: 13px; border-left: 3px solid var(--mid); }
+    .code-note + .code-note { margin-top: 14px; }
+    .empty { color: var(--muted); font-style: italic; }
+    footer { color: var(--muted); text-align: center; font: .72rem/1.4 var(--mono); }
+
+    @media (max-width: 700px) {
+      body { padding: 24px 10px 48px; }
+      .wrap { gap: 30px; }
+      .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .kpi { padding: 12px; }
+      .kpi-value { font-size: 1.6rem; }
+      .kpi-steps { display: none; }
+      .scope-grid, .evidence-grid, .outcome-grid { grid-template-columns: 1fr; }
+      .chart { padding: 16px 12px 14px; }
+      .chart-row, .axis, .effect-row, .effect-axis { grid-template-columns: 1fr; gap: 5px; }
+      .axis > div:first-child, .effect-axis > div:first-child { display: none; }
+      .effect-value .secondary { display: none; }
+      dl { grid-template-columns: 1fr; }
+      dt { padding-bottom: 0; border-bottom: 0; }
+    }
+
+    @media print {
+      body { padding: 0; background: #fff; font-size: 11px; }
+      .wrap { max-width: none; gap: 18px; }
+      .chart, .table-wrap, .panel, .kpi, .card { break-inside: avoid; background: #fff; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="report-head">
+      <p class="eyebrow" id="eyebrow"></p>
+      <h1 id="title"></h1>
+      <p class="lede" id="headline"></p>
+      <div class="meta"><span class="report-status" id="status"></span><span id="generated"></span></div>
+      <div class="kpis" id="scorecards" aria-label="Performance outcomes"></div>
+    </header>
+
+    <section>
+      <h2>Scope and scientific question</h2>
+      <div class="scope-grid">
+        <article class="card"><h3>Scope</h3><p id="scope"></p></article>
+        <article class="card"><h3>Question</h3><p id="question"></p></article>
+      </div>
+    </section>
+
+    <div class="charts" id="charts"></div>
+
+    <section id="measurements-section">
+      <h2>Every measurement</h2>
+      <p>Recorded medians, observed ranges, and run counts for every comparison series.</p>
+      <div class="table-wrap"><table id="measurements-table"><thead><tr><th>Metric</th><th>Workload</th><th>Round</th><th class="num">Median</th><th class="num">Range</th><th class="num">Runs</th></tr></thead><tbody></tbody></table></div>
+    </section>
+
+    <figure class="chart" id="effects-chart">
+      <div class="chart-head">
+        <div><h2>Effect of each variant against the control</h2><p>Change against a control measured in the same period. Bars are medians; whiskers span the runs. Grey means the runs disagreed on direction.</p></div>
+        <div class="legend" aria-hidden="true"><span><i class="swatch" style="--swatch:var(--after)"></i>Faster</span><span><i class="swatch" style="--swatch:var(--slower)"></i>Slower</span><span><i class="swatch" style="--swatch:var(--noeffect)"></i>No consistent effect</span></div>
+      </div>
+      <div class="effects" id="effects"></div>
+    </figure>
+
+    <section>
+      <h2 id="hypothesis-title">Hypotheses</h2>
+      <p>Claims are recorded before measurement and tested against the declared baseline. Results smaller than environmental variation remain inconclusive.</p>
+      <div class="table-wrap"><table class="hypothesis-table"><thead><tr><th>#</th><th>Hypothesis</th><th>Measured</th><th>Verdict</th></tr></thead><tbody id="hypotheses"></tbody></table></div>
+    </section>
+
+    <section>
+      <h2>Outcomes</h2>
+      <div class="outcome-grid">
+        <article class="card"><h3>Retained changes</h3><div id="retainedChanges"></div></article>
+        <article class="card"><h3>Decisions required</h3><div id="decisions"></div></article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Environment and baseline epoch</h2>
+      <div class="panel"><dl id="environment"></dl></div>
+    </section>
+
+    <section>
+      <h2>Hotspot evidence</h2>
+      <div class="evidence-grid" id="hotspots"></div>
+    </section>
+
+    <section>
+      <h2>Investigation-area coverage</h2>
+      <div class="evidence-grid" id="areas"></div>
+    </section>
+
+    <section>
+      <h2>Correctness evidence</h2>
+      <div class="panel" id="correctness"></div>
+    </section>
+
+    <section>
+      <h2>Generated-code observations</h2>
+      <div class="panel" id="generatedCode"></div>
+    </section>
+
+    <section>
+      <h2>Threats to validity</h2>
+      <div class="panel" id="validityThreats"></div>
+    </section>
+
+    <section>
+      <h2>Reproduction procedure</h2>
+      <div class="panel" id="reproduction"></div>
+    </section>
+
+    <section>
+      <h2>Artifacts</h2>
+      <div class="panel" id="artifacts"></div>
+    </section>
+
+    <footer>Generated from the Scientific Performance standard report template.</footer>
+  </main>
+
+  <script id="report-data" type="application/json">{"title":"Wildcard translation hot-path investigation","generatedAt":"2026-10-02T00:19:47.955155+02:00","status":"complete","scope":"Safe dependency-free local optimization of the netstandard2.0 library, executed on .NET 10 x64. Complete static calls and construction-plus-one-match; no external consuming application supplied.","question":"Can fused wildcard translation remove measured Escape/Replace work while preserving exact regex text, options, null exceptions, culture and newline behavior, without credible \u003e5% caller regressions?","primaryMetric":"ns/call","summary":{"baseline":647.1839904785156,"final":447.8370666503906,"unit":"ns/call","changePercent":-30.802202582411166,"headline":"Simple complete static call: 647.2 → 447.8 ns, -30.8%; allocation 224 → 128 B. Long/sparse and noise-sensitive results are shown individually; no aggregate application speedup is claimed."},"scorecards":[{"title":"simple","value":447.8370666503906,"baseline":647.1839904785156,"unit":"ns/call","wallChangePercent":-30.802202582411166,"secondaryMetric":"managed allocation","secondaryChangePercent":-42.85714285714286,"progression":"224 → 128 B/call"},{"title":"escaped","value":335.21575927734375,"baseline":552.2705078125,"unit":"ns/call","wallChangePercent":-39.302252331903986,"secondaryMetric":"managed allocation","secondaryChangePercent":-41.269841269841265,"progression":"504 → 296 B/call"},{"title":"long-mixed","value":1403.094482421875,"baseline":4203.411865234375,"unit":"ns/call","wallChangePercent":-66.62010463389029,"secondaryMetric":"managed allocation","secondaryChangePercent":-39.01345291479821,"progression":"5352 → 3264 B/call"},{"title":"empty","value":80.97782135009766,"baseline":106.53486251831055,"unit":"ns/call","wallChangePercent":-23.98936889210357,"secondaryMetric":"managed allocation","secondaryChangePercent":-100.0,"progression":"32 → 0 B/call"}],"environment":[{"label":"Baseline revision","value":"f3e8565; initial checkout clean. Only helper implementation changes; baseline helper snapshot versioned."},{"label":"Final helper SHA-256","value":"4f21b3c86cccdeef6155ffcac31a7dc0cecac58eb592a5df7eedb27733edcafa"},{"label":"Acceptance epoch","value":"E7: actual original/candidate netstandard2.0 assemblies, distinct assembly names/extern alias; SDK 10.0.401. Investigation allocated 2026-10-01; completed 2026-10-02."},{"label":"Runtime","value":".NET 10.0.12, x64 RyuJIT; tiered compilation/PGO defaults enabled; Concurrent Workstation GC. No diagnostic tiering override used for acceptance."},{"label":"CPU/ISA","value":"AMD Ryzen 9 5950X, 16 cores/32 logical processors; AVX2/BMI1/BMI2/FMA/SSE/POPCNT available; runtime reports VectorSize=256."},{"label":"OS/power/affinity","value":"Windows 11 26200.9457, High performance power scheme; E6/E7 workers pinned to logical CPU 30."},{"label":"Primary comparison","value":"Three fresh processes; nine ABBA/BAAB blocks per case, common count, \u003e=20ms calibration target, 500ms joint warmup per case. 54 samples per method/case. No sample removed; delegate/loop lower-bound calibration 1.24 ns, 1.25 ns, 1.24 ns. Includes observable checksum and managed allocation accounting."},{"label":"BDN diagnostic comparison","value":"E6: two independent BDN launches, five warmups/ten target measurements, 300ms target. Severe multimodal/nonstationary host effects; this chronological comparison is not the adoption basis. Full unfiltered measurements remain linked."},{"label":"Host isolation","value":"Fixed OS-backed C:\\Users\\tedd\\.codex\\locks\\performance-measurement.lock covers builds/tests/warmup/profiling/measurement. Active desktop apps remain uncoordinated; CPU-delta snapshots retained."},{"label":"Fixture/epoch evolution","value":"E1 common-count screen; E2 per-variant counts; E3 integrated candidate; E4 sparse fixtures; E5 target/pinning/surrogate control; E6 actual API and 300ms BDN; E7 density boundary and interleaved drift control. E5 BDN withdrawn; E6 timing noise-sensitive."},{"label":"Build/storage","value":"Disposable builds/traces under D:\\Workspaces\\AI\\wildcard-hotpath; versioned evidence here. Packaging disabled in staged csproj; internal visibility enabled only in experimental copy."}],"hotspots":[{"name":"RegexInterpreter.TryMatchAtCurrentPosition","location":".NET Regex runtime","inclusivePercent":94.3,"exclusivePercent":93.67,"evidence":"E2 mixed six-fixture CPU sampling, raw/profile-top-before.txt","limit":"Backtracking dominates the time-weighted complex workload; runtime engine changes are outside the fixed contract/local policy."},{"name":"RegexParser.EscapeImpl","location":"InternalUtils.StringToWildcard → Regex.Escape","inclusivePercent":18.35,"exclusivePercent":13.72,"evidence":"E2 short-workload CPU sampling, raw/profile-short-top-before.txt","limit":"Repeated escaping and intermediate strings."},{"name":"String.Replace","location":"InternalUtils.StringToWildcard","inclusivePercent":14.32,"exclusivePercent":6.48,"evidence":"E2 short-workload CPU sampling; ReplaceHelper listed separately; inclusive/exclusive shares are not summed.","limit":"Two replacement traversals and intermediate strings."}],"areas":[{"name":"M1","boundary":"Per-call result/buffer allocations","evidence":"Compared builder, upper-bound array, exact array and empty constant. Retained result strings must remain owned; buffer reuse would add ownership/state and pooling dependencies. Native/uninitialized allocation exceeds the safe local change policy.","catalogue":"optimize-code M1","hypothesisIds":["H-002","H-003","H-004","H-009"],"disposition":"Tested"},{"name":"M2","boundary":"Temporary translation buffer","evidence":"Stack emission needs unsafe pointer-based string construction or a Span package for netstandard2.0. Outside the preregistered dependency-free safe policy; no stack speedup is claimed.","catalogue":"optimize-code M2","hypothesisIds":[],"disposition":"Not applicable within declared policy"},{"name":"M3","boundary":"String and output-array indexes","evidence":"Safe bounded loops inspected in Tier1; output range-check helper edges remain. No evidence attributes a material caller share to these guards separately from allocation/emission.","catalogue":"optimize-code M3","hypothesisIds":["H-003","H-004"],"disposition":"Tested"},{"name":"M4","boundary":"Remaining bounds checks","evidence":"No unsafe lifetime/range transformation adopted. Removing guards with raw pointers changes the declared safety/maintenance policy; potential is not claimed exhausted.","catalogue":"optimize-code M4","hypothesisIds":[],"disposition":"Not applicable within declared policy"},{"name":"M5","boundary":"Library object layout","evidence":"Three references in a reusable wrapper; no measured object graph traversal or wide-record stream to reorganize.","catalogue":"optimize-code M5","hypothesisIds":[],"disposition":"Not applicable within declared policy"},{"name":"M6","boundary":"Pattern read and buffer write","evidence":"Sequential small strings/arrays; no latency-bound indirect-address or software-prefetch evidence.","catalogue":"optimize-code M6","hypothesisIds":[],"disposition":"Not applicable within declared policy"},{"name":"M7","boundary":"Escape/Replace/Concat intermediates","evidence":"Measured removal/fusion and library bulk scanning; no byte codec, fixed-width serialized record or overlap-copy kernel for packed stores.","catalogue":"optimize-code M7","hypothesisIds":["H-001","H-003","H-004","H-006","H-008","H-011","H-015"],"disposition":"Tested"},{"name":"C1","boundary":"Sequential emission cursor","evidence":"Output cursor depends on token width; no independent numerical reductions or independent useful accumulators. No latency/throughput claim from timing alone.","catalogue":"optimize-code C1","hypothesisIds":[],"disposition":"Not applicable within declared policy"},{"name":"C2","boundary":"Wildcard and escape dispatch","evidence":"Literal, wildcard, control-character and Unicode distributions contrast branch/dispatch behavior. No hardware branch counters available; do not infer misses.","catalogue":"optimize-code C2","hypothesisIds":["H-001","H-006","H-007","H-013","H-015"],"disposition":"Tested"},{"name":"C3","boundary":"Bulk literal/wildcard scanning","evidence":"Reuse runtime vectorized searches/escaping; relative-density route corrects a measured fixed-count counterexample. Explicit AVX2/Vector256 requires retargeting or new dependency for this netstandard2.0 library, contrary to compatibility policy.","catalogue":"optimize-code C3","hypothesisIds":["H-005","H-011","H-012","H-014","H-015","H-016"],"disposition":"Tested"},{"name":"C4","boundary":"Token classification","evidence":"No divisions, bit reductions, floating-point math or byte-endian work to strength-reduce. Table dispatch is covered under R1.","catalogue":"optimize-code C4","hypothesisIds":["H-007"],"disposition":"Tested"},{"name":"C5","boundary":"Translator","evidence":"No grid, neighborhood or stencil updates.","catalogue":"optimize-code C5","hypothesisIds":[],"disposition":"Not applicable within declared policy"},{"name":"S1","boundary":"Classifier","evidence":"Tiny ASCII bool table tested; no bulk membership, entity-signature or bitmap-update workload.","catalogue":"optimize-code S1","hypothesisIds":["H-007"],"disposition":"Tested"},{"name":"S2","boundary":"Regex pattern cache","evidence":"Lookup is owned by runtime RegexCache; conversion has no dictionary lookup duplication. Additional translation caches add retained patterns and shared mutation excluded by the declared local policy.","catalogue":"optimize-code S2","hypothesisIds":[],"disposition":"Not applicable within declared policy"},{"name":"S3","boundary":"Read-only classifier","evidence":"Direct 128-entry array replaces hashing. Frozen collections are unavailable in netstandard2.0 and unnecessary for this bounded domain.","catalogue":"optimize-code S3","hypothesisIds":["H-007"],"disposition":"Tested"},{"name":"S4","boundary":"Repeated conversion and instance preparation","evidence":"Measured conversion plus construction. Existing reusable instance already amortizes preparation. No mutable query plan or invalidation protocol; no new pattern cache policy introduced.","catalogue":"optimize-code S4","hypothesisIds":["H-011","H-015"],"disposition":"Tested"},{"name":"S5","boundary":"Consecutive wildcard runs","evidence":"Collapsing stars or rewriting greedy quantifiers changes observable WildcardRegex text and possibly timeout/backtracking behavior; incompatible with the fixed semantic contract.","catalogue":"optimize-code S5","hypothesisIds":[],"disposition":"Not applicable within declared policy"},{"name":"R1","boundary":"Stable ASCII token decisions","evidence":"Table and specialized routing tested; no per-character reflection or delegate discovery in production.","catalogue":"optimize-code R1","hypothesisIds":["H-007","H-011","H-013","H-015"],"disposition":"Tested"},{"name":"R2","boundary":"AggressiveInlining and public callers","evidence":"Identical forced-inline clone versus matched normal wrappers; captured optimized callers. No large value structs, boxing or virtual calls in production matcher.","catalogue":"optimize-code R2","hypothesisIds":["H-010"],"disposition":"Tested"},{"name":"R3","boundary":"Options","evidence":"Options are per-call/per-instance API inputs, not startup-frozen feature flags; freezing them would change semantics.","catalogue":"optimize-code R3","hypothesisIds":[],"disposition":"Not applicable within declared policy"},{"name":"T1","boundary":"Immutable library state","evidence":"No independently mutated cache-line fields or scaling evidence.","catalogue":"optimize-code T1","hypothesisIds":[],"disposition":"Not applicable within declared policy"},{"name":"T2","boundary":"Matching ownership","evidence":"Instance Regex/runtime cache own their concurrency protocol; translator has only call-local storage and immutable tables.","catalogue":"optimize-code T2","hypothesisIds":[],"disposition":"Not applicable within declared policy"},{"name":"T3","boundary":"Synchronization","evidence":"No library locks/spin loops; rewriting runtime RegexCache synchronization is outside this library's implementation.","catalogue":"optimize-code T3","hypothesisIds":[],"disposition":"Not applicable within declared policy"},{"name":"T4","boundary":"One synchronous match","evidence":"No queues or I/O. Parallelizing one small translation adds scheduling and changes resource use without a supported caller workload.","catalogue":"optimize-code T4","hypothesisIds":[],"disposition":"Not applicable within declared policy"}],"series":[{"title":"Complete static API — short cases (E7)","description":"Medians across three independent interleaved processes; whiskers span all 54 raw samples per method. No filtering; includes equal delegate/loop overhead. Lower is better.","unit":"ns/call","lowerIsBetter":true,"rounds":["Before","After"],"rows":[{"label":"empty","detail":"managed allocation 32 → 0 B/call","measurements":[{"median":106.53486251831055,"min":83.27274322509766,"max":304.1341781616211,"n":54},{"median":80.97782135009766,"min":63.791847229003906,"max":254.61902618408203,"n":54,"changePercent":-23.98936889210357}]},{"label":"literal","detail":"managed allocation 48 → 48 B/call","measurements":[{"median":140.34862518310547,"min":121.41532897949219,"max":177.2216796875,"n":54},{"median":127.47154235839844,"min":114.86968994140625,"max":166.9727325439453,"n":54,"changePercent":-9.175068731814772}]},{"label":"simple","detail":"managed allocation 224 → 128 B/call","measurements":[{"median":647.1839904785156,"min":545.3277587890625,"max":872.0794677734375,"n":54},{"median":447.8370666503906,"min":376.53961181640625,"max":518.4097290039062,"n":54,"changePercent":-30.802202582411166}]},{"label":"miss","detail":"managed allocation 232 → 152 B/call","measurements":[{"median":429.73175048828125,"min":392.41485595703125,"max":516.8853759765625,"n":54},{"median":339.3409729003906,"min":304.6417236328125,"max":400.555419921875,"n":54,"changePercent":-21.034232980268364}]},{"label":"escaped","detail":"managed allocation 504 → 296 B/call","measurements":[{"median":552.2705078125,"min":521.0067749023438,"max":583.1802368164062,"n":54},{"median":335.21575927734375,"min":300.5340576171875,"max":393.310546875,"n":54,"changePercent":-39.302252331903986}]},{"label":"unicode","detail":"managed allocation 168 → 104 B/call","measurements":[{"median":388.7153625488281,"min":331.842041015625,"max":440.9370422363281,"n":54},{"median":271.4641571044922,"min":230.0872802734375,"max":337.37030029296875,"n":54,"changePercent":-30.16376936468713}]}]},{"title":"Complete static API — long/adversarial cases (E7)","description":"Same epoch and iteration policy. Interpret small/overlapping effects cautiously on this active desktop.","unit":"ns/call","lowerIsBetter":true,"rounds":["Before","After"],"rows":[{"label":"long-literal","detail":"managed allocation 2080 → 2080 B/call","measurements":[{"median":1475.9613037109375,"min":1192.059326171875,"max":1837.200927734375,"n":54},{"median":1359.38720703125,"min":1091.4306640625,"max":1791.705322265625,"n":54,"changePercent":-7.898181096387214}]},{"label":"long-mixed","detail":"managed allocation 5352 → 3264 B/call","measurements":[{"median":4203.411865234375,"min":3826.0009765625,"max":4511.614990234375,"n":54},{"median":1403.094482421875,"min":1087.58544921875,"max":1745.83740234375,"n":54,"changePercent":-66.62010463389029}]},{"label":"long-prefix","detail":"managed allocation 6232 → 6232 B/call","measurements":[{"median":2025.0213623046875,"min":1797.265625,"max":2966.680908203125,"n":54},{"median":1974.31640625,"min":1688.19580078125,"max":2676.66015625,"n":54,"changePercent":-2.5039220325547507}]},{"label":"long-suffix","detail":"managed allocation 6240 → 6240 B/call","measurements":[{"median":19988.134765625,"min":16804.296875,"max":22465.771484375,"n":54},{"median":19798.92578125,"min":17404.58984375,"max":23086.23046875,"n":54,"changePercent":-0.9466065072784913}]},{"label":"long-pair","detail":"managed allocation 8320 → 8320 B/call","measurements":[{"median":19956.0546875,"min":16894.82421875,"max":23394.43359375,"n":54},{"median":20089.501953125,"min":17651.5625,"max":23578.22265625,"n":54,"changePercent":0.6687056520675361}]},{"label":"long-cluster","detail":"managed allocation 8352 → 8352 B/call","measurements":[{"median":20463.7451171875,"min":17691.6015625,"max":27078.3203125,"n":54},{"median":20879.5166015625,"min":17592.3828125,"max":26898.14453125,"n":54,"changePercent":2.0317467892316143}]},{"label":"long-five-prefix","detail":"managed allocation 6264 → 6264 B/call","measurements":[{"median":1918.9117431640625,"min":1605.18798828125,"max":2524.896240234375,"n":54},{"median":1916.2200927734375,"min":1656.610107421875,"max":2575.396728515625,"n":54,"changePercent":-0.1402696293987371}]},{"label":"long-five-suffix","detail":"managed allocation 6264 → 6264 B/call","measurements":[{"median":2112.9302978515625,"min":1609.43603515625,"max":3517.46826171875,"n":54},{"median":2200.4486083984375,"min":1691.66259765625,"max":4588.824462890625,"n":54,"changePercent":4.142034909332515}]},{"label":"complex","detail":"managed allocation 528 → 400 B/call","measurements":[{"median":62149.0234375,"min":56632.421875,"max":72358.0078125,"n":54},{"median":60832.8125,"min":54421.09375,"max":70325,"n":54,"changePercent":-2.117830441573465}]}]},{"title":"Construction plus one match (E7)","description":"Interleaved actual original/final instance APIs; includes translation, Regex construction, wrapper allocation and matching, plus identical delegate/loop overhead.","unit":"ns/call","lowerIsBetter":true,"rounds":["Before","After"],"rows":[{"label":"simple","detail":"managed allocation 3408 → 3312 B/call","measurements":[{"median":2500.872802734375,"min":2042.67578125,"max":3106.298828125,"n":54},{"median":2207.04345703125,"min":1781.45751953125,"max":6153.5888671875,"n":54,"changePercent":-11.749071979265047}]},{"label":"long-mixed","detail":"managed allocation 42360 → 40272 B/call","measurements":[{"median":31110.400390625,"min":26423.828125,"max":36119.04296875,"n":54},{"median":27853.955078125,"min":22946.19140625,"max":32386.71875,"n":54,"changePercent":-10.467384770404042}]}]}],"effectGroups":[{"name":"E7 conversion screen: simple","control":"Baseline converter 213.7 ns/call; nine paired-order trials, pinned CPU 30.","items":[{"hypothesisId":"H-001","label":"H-001 Builder","effect":-0.7000501805768202,"range":[-0.7141877998629198,-0.669385865430167],"note":"kernel only"},{"hypothesisId":"H-002","label":"H-002 Preallocated","effect":-0.6901772309852015,"range":[-0.7434201734778172,-0.5943729295179346],"note":"kernel only"},{"hypothesisId":"H-003","label":"H-003 MaxArray","effect":-0.6697892271662764,"range":[-0.7626737207833227,-0.571031814027873],"note":"kernel only"},{"hypothesisId":"H-004","label":"H-004 ExactArray","effect":-0.535677920491076,"range":[-0.6352440594781088,-0.4327129026730637],"note":"kernel only"},{"hypothesisId":"H-005","label":"H-005 LiteralFast","effect":-0.577507425177062,"range":[-0.6841166966324894,-0.5192224574563942],"note":"kernel only"},{"hypothesisId":"H-006","label":"H-006 Runs","effect":-0.6564287490673961,"range":[-0.6992327145618727,-0.5962552074193948],"note":"kernel only"},{"hypothesisId":"H-007","label":"H-007 TableArray","effect":-0.7712374973191133,"range":[-0.8158574882161427,-0.7316246527121184],"note":"kernel only"},{"hypothesisId":"H-008","label":"H-008 EscapedFusion","effect":-0.3041132926488461,"range":[-0.46834758734632387,-0.20084512778739438],"note":"kernel only"},{"hypothesisId":"H-009","label":"H-009 EmptyFast","effect":-0.7211880275611862,"range":[-0.7675087467806988,-0.6597678514561277],"note":"kernel only"},{"hypothesisId":"H-011","label":"H-011 NoWildcardFast","effect":-0.7582486612408155,"range":[-0.7927438165119782,-0.7071041873826096],"note":"kernel only"},{"hypothesisId":"H-012","label":"H-012 SeparateSearch","effect":-0.7535458447580355,"range":[-0.8114142451042324,-0.6935811744512488],"note":"kernel only"},{"hypothesisId":"H-013","label":"H-013 Combined","effect":-0.7379896659851827,"range":[-0.8021207906117886,-0.684122425956178],"note":"kernel only"},{"hypothesisId":"H-014","label":"H-014 SparseFallback","effect":-0.7359619718916436,"range":[-0.768633983672676,-0.6490703219860439],"note":"kernel only"},{"hypothesisId":"H-015","label":"H-015 SparseSelective","effect":-0.718660854045672,"range":[-0.7553604402546286,-0.6860032818829804],"note":"kernel only"},{"hypothesisId":"H-016","label":"H-016 SparseDensity","effect":-0.7119286735693668,"range":[-0.7605918047524175,-0.6726138586299604],"note":"kernel only"}]},{"name":"E7 conversion screen: long-literal","control":"Baseline converter 367.0 ns/call; nine paired-order trials, pinned CPU 30.","items":[{"hypothesisId":"H-001","label":"H-001 Builder","effect":13.150626752046202,"range":[11.808343982041098,13.765946388949967],"note":"kernel only"},{"hypothesisId":"H-002","label":"H-002 Preallocated","effect":11.129886328673946,"range":[9.75820402948926,12.673459734321415],"note":"kernel only"},{"hypothesisId":"H-003","label":"H-003 MaxArray","effect":15.65635616855129,"range":[12.690469219918558,18.449564429027554],"note":"kernel only"},{"hypothesisId":"H-004","label":"H-004 ExactArray","effect":24.265734789080234,"range":[19.998270034333164,31.689547644272096],"note":"kernel only"},{"hypothesisId":"H-005","label":"H-005 LiteralFast","effect":-0.38726644793645315,"range":[-0.4368725180524121,-0.3187678653527095],"note":"kernel only"},{"hypothesisId":"H-006","label":"H-006 Runs","effect":10.165194462755439,"range":[8.358635190163149,11.26086956521739],"note":"kernel only"},{"hypothesisId":"H-007","label":"H-007 TableArray","effect":9.028407759162205,"range":[7.0580210671732,11.217430722535378],"note":"kernel only"},{"hypothesisId":"H-008","label":"H-008 EscapedFusion","effect":4.60766556157516,"range":[3.9315732041625635,5.9798894579382385],"note":"kernel only"},{"hypothesisId":"H-009","label":"H-009 EmptyFast","effect":14.942996971714122,"range":[11.909163495062945,18.649178130789547],"note":"kernel only"},{"hypothesisId":"H-011","label":"H-011 NoWildcardFast","effect":-0.35795241936154465,"range":[-0.3887365927660821,-0.05093555093555091],"note":"kernel only"},{"hypothesisId":"H-012","label":"H-012 SeparateSearch","effect":-0.3850148429639362,"range":[-0.3964669314453463,-0.20322525836048533],"note":"kernel only"},{"hypothesisId":"H-013","label":"H-013 Combined","effect":-0.32422379554481096,"range":[-0.4041033454874511,-0.16628974189949797],"note":"kernel only"},{"hypothesisId":"H-014","label":"H-014 SparseFallback","effect":-0.015513728198929377,"range":[-0.13629467969020304,0.15949387330841347],"note":"kernel only"},{"hypothesisId":"H-015","label":"H-015 SparseSelective","effect":-0.40343705759368464,"range":[-0.554826454843723,-0.28565574589721554],"note":"kernel only"},{"hypothesisId":"H-016","label":"H-016 SparseDensity","effect":-0.392070454152996,"range":[-0.4600752001293765,-0.26725068463029966],"note":"kernel only"}]},{"name":"E7 conversion screen: long-prefix","control":"Baseline converter 944.6 ns/call; nine paired-order trials, pinned CPU 30.","items":[{"hypothesisId":"H-001","label":"H-001 Builder","effect":5.1000622907953375,"range":[3.6630392433463648,5.803024989910084],"note":"kernel only"},{"hypothesisId":"H-002","label":"H-002 Preallocated","effect":4.0230447065984745,"range":[3.6178737571832524,4.745221942236868],"note":"kernel only"},{"hypothesisId":"H-003","label":"H-003 MaxArray","effect":5.602251455240147,"range":[4.696615889811183,6.5621299344919874],"note":"kernel only"},{"hypothesisId":"H-004","label":"H-004 ExactArray","effect":9.90154422691736,"range":[8.779804797956764,10.979699461298553],"note":"kernel only"},{"hypothesisId":"H-005","label":"H-005 LiteralFast","effect":6.246785699891177,"range":[5.619725951264051,7.291164974775651],"note":"kernel only"},{"hypothesisId":"H-006","label":"H-006 Runs","effect":3.571360517662315,"range":[3.1238255951838,4.379897930252339],"note":"kernel only"},{"hypothesisId":"H-007","label":"H-007 TableArray","effect":3.1825641025641023,"range":[2.8658213992520296,3.538247232851207],"note":"kernel only"},{"hypothesisId":"H-008","label":"H-008 EscapedFusion","effect":1.6395296246042514,"range":[1.442488369971723,1.9408785055685231],"note":"kernel only"},{"hypothesisId":"H-009","label":"H-009 EmptyFast","effect":6.049970184853906,"range":[5.0718229817419695,7.0823607526918515],"note":"kernel only"},{"hypothesisId":"H-011","label":"H-011 NoWildcardFast","effect":3.1586165772212285,"range":[2.6356899248660155,3.6740582800284294],"note":"kernel only"},{"hypothesisId":"H-012","label":"H-012 SeparateSearch","effect":3.20885712663761,"range":[2.7214549791293976,3.650306667284192],"note":"kernel only"},{"hypothesisId":"H-013","label":"H-013 Combined","effect":3.0552606610764927,"range":[2.6042141749521117,3.619483293700375],"note":"kernel only"},{"hypothesisId":"H-014","label":"H-014 SparseFallback","effect":0.08110880324127501,"range":[-0.10278892638876225,0.205840275448528],"note":"kernel only"},{"hypothesisId":"H-015","label":"H-015 SparseSelective","effect":-0.09785130981798762,"range":[-0.22466308884913533,-0.06414825374198152],"note":"kernel only"},{"hypothesisId":"H-016","label":"H-016 SparseDensity","effect":-0.12481023202074348,"range":[-0.18941655359565812,-0.03844526502038614],"note":"kernel only"}]},{"name":"E7 conversion screen: long-mixed","control":"Baseline converter 4075.7 ns/call; nine paired-order trials, pinned CPU 30.","items":[{"hypothesisId":"H-001","label":"H-001 Builder","effect":-0.35644493761996165,"range":[-0.43622635406308774,-0.3079133067770239],"note":"kernel only"},{"hypothesisId":"H-002","label":"H-002 Preallocated","effect":-0.40600368741683923,"range":[-0.4888464257047358,-0.18421341459477958],"note":"kernel only"},{"hypothesisId":"H-003","label":"H-003 MaxArray","effect":-0.3140092006420163,"range":[-0.3901747838382902,-0.04689103950520046],"note":"kernel only"},{"hypothesisId":"H-004","label":"H-004 ExactArray","effect":0.06665951115960955,"range":[-0.021227137892551706,0.14200520132723526],"note":"kernel only"},{"hypothesisId":"H-005","label":"H-005 LiteralFast","effect":-0.30300661706355125,"range":[-0.3677393964329797,-0.2530876551897786],"note":"kernel only"},{"hypothesisId":"H-006","label":"H-006 Runs","effect":-0.3583406997450581,"range":[-0.4247450730025001,-0.2312003959380572],"note":"kernel only"},{"hypothesisId":"H-007","label":"H-007 TableArray","effect":-0.5662869860439029,"range":[-0.602921972900768,-0.5194569353164995],"note":"kernel only"},{"hypothesisId":"H-008","label":"H-008 EscapedFusion","effect":-0.026864963946825138,"range":[-0.10622252039630531,0.03928539400694375],"note":"kernel only"},{"hypothesisId":"H-009","label":"H-009 EmptyFast","effect":-0.3189737421865513,"range":[-0.4035233793772688,-0.2774712092130518],"note":"kernel only"},{"hypothesisId":"H-011","label":"H-011 NoWildcardFast","effect":-0.5583949687762966,"range":[-0.6249625618478274,-0.5098325582587084],"note":"kernel only"},{"hypothesisId":"H-012","label":"H-012 SeparateSearch","effect":-0.5581633322792174,"range":[-0.6471321324007322,-0.49208553262955856],"note":"kernel only"},{"hypothesisId":"H-013","label":"H-013 Combined","effect":-0.5575087169464378,"range":[-0.5751924533252237,-0.4862903590266704],"note":"kernel only"},{"hypothesisId":"H-014","label":"H-014 SparseFallback","effect":-0.5506826106314944,"range":[-0.6143287378284499,-0.510719165617523],"note":"kernel only"},{"hypothesisId":"H-015","label":"H-015 SparseSelective","effect":-0.5556095872837818,"range":[-0.6054972408829175,-0.5152538007212086],"note":"kernel only"},{"hypothesisId":"H-016","label":"H-016 SparseDensity","effect":-0.516824734813514,"range":[-0.6089461372360845,-0.47973547699200925],"note":"kernel only"}]}],"hypotheses":[{"id":"H-001","claim":"Fuse escaping, replacements and anchors in a StringBuilder","mechanism":"M7/C2","source":"src/Tedd.WildcardMatch/InternalUtils.cs:StringToWildcard","caller":"WildcardMatch.IsMatch, WildcardMatchExtensions.IsWildcardMatch, WildcardMatch constructor","observation":"Escape/Replace sampled costs and allocation; literal and sparse-pattern regressions in earlier screens. See plan.md for chronology.","prediction":"Reduce ns/call or bytes/call on the affected workloads beyond noise, with no credible \u003e5% regression against original complete calls.","falsification":"Semantic difference, no repeatable targeted gain, disproportionate change burden, or credible complete-call regression beyond the preregistered limit.","change":"Experiment Variants.Builder in rig/Program.cs; production adoption restricted as stated in the verdict.","changeScope":"local","maintainability":"Candidate remains reproducible in the rig; its extra production implementation is not retained.","codeComments":"No production candidate retained; experiment is explained here and in plan.md.","result":"simple: 213.7 → 68.6 ns/call (-67.9%); long-literal: 367.0 → 4990.8 ns/call (+1259.9%); long-prefix: 944.6 → 5778.6 ns/call (+511.7%); long-mixed: 4075.7 → 2612.0 ns/call (-35.9%); escaped: 335.5 → 269.4 ns/call (-19.7%)","measurements":[{"workload":"simple","baseline":{"median":213.720703125,"min":208.29315185546875,"max":251.20849609375,"n":9},"candidate":{"median":68.56040954589844,"min":61.083984375,"max":72.22747802734375,"n":9},"effectPercent":-67.92055774503083},{"workload":"long-literal","baseline":{"median":367.0013427734375,"min":300.9185791015625,"max":458.65478515625,"n":9},"candidate":{"median":4990.8203125,"min":4362.2314453125,"max":5951.5869140625,"n":9},"effectPercent":1259.8915673670992},{"workload":"long-prefix","baseline":{"median":944.64111328125,"min":861.083984375,"max":1070.60546875,"n":9},"candidate":{"median":5778.564453125,"min":4236.865234375,"max":6448.14453125,"n":9},"effectPercent":511.7206176907669},{"workload":"long-mixed","baseline":{"median":4075.732421875,"min":3781.5185546875,"max":4222.1435546875,"n":9},"candidate":{"median":2611.9873046875,"min":2297.79052734375,"max":2839.75830078125,"n":9},"effectPercent":-35.913670616142134},{"workload":"escaped","baseline":{"median":335.455322265625,"min":306.915283203125,"max":399.0234375,"n":9},"candidate":{"median":269.354248046875,"min":253.50189208984375,"max":301.5167236328125,"n":9},"effectPercent":-19.704881643347104}],"effectPercent":-67.92055774503083,"state":"rejected","decision":"Superseded","decisionRationale":"Removes intermediate strings, but scalar literal scanning and builder/chunk allocation lose to the bounded-array strategy. Standalone long-literal regression is unacceptable.","evidence":["raw/screen-followup.json","rig/Program.cs","plan.md"],"risks":["Screening timings are kernel results except matched H-010 wrappers; acceptance applies to the integrated complete API, not every individual component."]},{"id":"H-002","claim":"Preallocate builder capacity to remove chunk growth","mechanism":"M1/M7","source":"src/Tedd.WildcardMatch/InternalUtils.cs:StringToWildcard","caller":"WildcardMatch.IsMatch, WildcardMatchExtensions.IsWildcardMatch, WildcardMatch constructor","observation":"Escape/Replace sampled costs and allocation; literal and sparse-pattern regressions in earlier screens. See plan.md for chronology.","prediction":"Reduce ns/call or bytes/call on the affected workloads beyond noise, with no credible \u003e5% regression against original complete calls.","falsification":"Semantic difference, no repeatable targeted gain, disproportionate change burden, or credible complete-call regression beyond the preregistered limit.","change":"Experiment Variants.Preallocated in rig/Program.cs; production adoption restricted as stated in the verdict.","changeScope":"local","maintainability":"Candidate remains reproducible in the rig; its extra production implementation is not retained.","codeComments":"No production candidate retained; experiment is explained here and in plan.md.","result":"simple: 213.7 → 71.2 ns/call (-66.7%); long-literal: 367.0 → 4234.4 ns/call (+1053.8%); long-prefix: 944.6 → 4943.9 ns/call (+423.4%); long-mixed: 4075.7 → 2459.8 ns/call (-39.6%); escaped: 335.5 → 213.8 ns/call (-36.3%)","measurements":[{"workload":"simple","baseline":{"median":213.720703125,"min":208.29315185546875,"max":251.20849609375,"n":9},"candidate":{"median":71.23756408691406,"min":60.32829284667969,"max":86.69090270996094,"n":9},"effectPercent":-66.66791609549921},{"workload":"long-literal","baseline":{"median":367.0013427734375,"min":300.9185791015625,"max":458.65478515625,"n":9},"candidate":{"median":4234.3994140625,"min":3944.6533203125,"max":5067.822265625,"n":9},"effectPercent":1053.783084841883},{"workload":"long-prefix","baseline":{"median":944.64111328125,"min":861.083984375,"max":1070.60546875,"n":9},"candidate":{"median":4943.9208984375,"min":4244.7998046875,"max":5427.1728515625,"n":9},"effectPercent":423.36499321573945},{"workload":"long-mixed","baseline":{"median":4075.732421875,"min":3781.5185546875,"max":4222.1435546875,"n":9},"candidate":{"median":2459.8388671875,"min":2083.3251953125,"max":3084.912109375,"n":9},"effectPercent":-39.64670364557751},{"workload":"escaped","baseline":{"median":335.455322265625,"min":306.915283203125,"max":399.0234375,"n":9},"candidate":{"median":213.78936767578125,"min":194.305419921875,"max":232.8704833984375,"n":9},"effectPercent":-36.26889976528811}],"effectPercent":-66.66791609549921,"state":"rejected","decision":"Superseded","decisionRationale":"Reduces growth on wildcard inputs but does not fix literal scanning; overprovisioned chunks retain a larger allocation burden than arrays.","evidence":["raw/screen-followup.json","rig/Program.cs","plan.md"],"risks":["Screening timings are kernel results except matched H-010 wrappers; acceptance applies to the integrated complete API, not every individual component."],"parentId":"H-001"},{"id":"H-003","claim":"Use a bounded char array and one final string","mechanism":"M1/M7","source":"src/Tedd.WildcardMatch/InternalUtils.cs:StringToWildcard","caller":"WildcardMatch.IsMatch, WildcardMatchExtensions.IsWildcardMatch, WildcardMatch constructor","observation":"Escape/Replace sampled costs and allocation; literal and sparse-pattern regressions in earlier screens. See plan.md for chronology.","prediction":"Reduce ns/call or bytes/call on the affected workloads beyond noise, with no credible \u003e5% regression against original complete calls.","falsification":"Semantic difference, no repeatable targeted gain, disproportionate change burden, or credible complete-call regression beyond the preregistered limit.","change":"Experiment Variants.MaxArray in rig/Program.cs; production adoption restricted as stated in the verdict.","changeScope":"local","maintainability":"Safe, dependency-free code; added branching/buffer/escape-set invariants require the durable report and exhaustive oracle tests.","codeComments":"Adjacent production comments reference the run and retained hypotheses; trivial empty return needs no additional commentary.","result":"simple: 213.7 → 70.7 ns/call (-66.9%); long-literal: 367.0 → 5916.0 ns/call (+1512.0%); long-prefix: 944.6 → 6285.8 ns/call (+565.4%); long-mixed: 4075.7 → 2839.8 ns/call (-30.3%); escaped: 335.5 → 234.5 ns/call (-30.1%)","measurements":[{"workload":"simple","baseline":{"median":213.720703125,"min":208.29315185546875,"max":251.20849609375,"n":9},"candidate":{"median":70.66383361816406,"min":59.618377685546875,"max":91.67938232421875,"n":9},"effectPercent":-66.93636480466071},{"workload":"long-literal","baseline":{"median":367.0013427734375,"min":300.9185791015625,"max":458.65478515625,"n":9},"candidate":{"median":5916.015625,"min":5012.20703125,"max":6555.56640625,"n":9},"effectPercent":1511.9874603979742},{"workload":"long-prefix","baseline":{"median":944.64111328125,"min":861.083984375,"max":1070.60546875,"n":9},"candidate":{"median":6285.83984375,"min":5589.111328125,"max":6742.822265625,"n":9},"effectPercent":565.420947211992},{"workload":"long-mixed","baseline":{"median":4075.732421875,"min":3781.5185546875,"max":4222.1435546875,"n":9},"candidate":{"median":2839.794921875,"min":2569.0673828125,"max":3604.19921875,"n":9},"effectPercent":-30.32430424938003},{"workload":"escaped","baseline":{"median":335.455322265625,"min":306.915283203125,"max":399.0234375,"n":9},"candidate":{"median":234.49859619140625,"min":222.0184326171875,"max":252.7984619140625,"n":9},"effectPercent":-30.095431305835053}],"effectPercent":-66.93636480466071,"state":"retained","decision":"Adopted with guards","decisionRationale":"Retained only in dense/short wildcard paths with H-007/H-011/H-015. The unrestricted array variant regresses long literals and sparse wildcards; standalone adoption was rejected.","evidence":["raw/screen-followup.json","rig/Program.cs","plan.md"],"risks":["Screening timings are kernel results except matched H-010 wrappers; acceptance applies to the integrated complete API, not every individual component."]},{"id":"H-004","claim":"Count exact output length before allocation","mechanism":"M1/M7","source":"src/Tedd.WildcardMatch/InternalUtils.cs:StringToWildcard","caller":"WildcardMatch.IsMatch, WildcardMatchExtensions.IsWildcardMatch, WildcardMatch constructor","observation":"Escape/Replace sampled costs and allocation; literal and sparse-pattern regressions in earlier screens. See plan.md for chronology.","prediction":"Reduce ns/call or bytes/call on the affected workloads beyond noise, with no credible \u003e5% regression against original complete calls.","falsification":"Semantic difference, no repeatable targeted gain, disproportionate change burden, or credible complete-call regression beyond the preregistered limit.","change":"Experiment Variants.ExactArray in rig/Program.cs; production adoption restricted as stated in the verdict.","changeScope":"local","maintainability":"Candidate remains reproducible in the rig; its extra production implementation is not retained.","codeComments":"No production candidate retained; experiment is explained here and in plan.md.","result":"simple: 213.7 → 99.5 ns/call (-53.4%); long-literal: 367.0 → 9272.6 ns/call (+2426.6%); long-prefix: 944.6 → 10315.5 ns/call (+992.0%); long-mixed: 4075.7 → 4352.6 ns/call (+6.8%); escaped: 335.5 → 343.5 ns/call (+2.4%)","measurements":[{"workload":"simple","baseline":{"median":213.720703125,"min":208.29315185546875,"max":251.20849609375,"n":9},"candidate":{"median":99.49874877929688,"min":87.31231689453125,"max":121.24099731445312,"n":9},"effectPercent":-53.44449680146219},{"workload":"long-literal","baseline":{"median":367.0013427734375,"min":300.9185791015625,"max":458.65478515625,"n":9},"candidate":{"median":9272.55859375,"min":8003.02734375,"max":10078.125,"n":9},"effectPercent":2426.5734789080234},{"workload":"long-prefix","baseline":{"median":944.64111328125,"min":861.083984375,"max":1070.60546875,"n":9},"candidate":{"median":10315.52734375,"min":9302.63671875,"max":11028.02734375,"n":9},"effectPercent":992.0049105123733},{"workload":"long-mixed","baseline":{"median":4075.732421875,"min":3781.5185546875,"max":4222.1435546875,"n":9},"candidate":{"median":4352.6123046875,"min":3878.2958984375,"max":4607.1533203125,"n":9},"effectPercent":6.793377340633278},{"workload":"escaped","baseline":{"median":335.455322265625,"min":306.915283203125,"max":399.0234375,"n":9},"candidate":{"median":343.5211181640625,"min":323.87847900390625,"max":387.811279296875,"n":9},"effectPercent":2.404432233765763}],"effectPercent":-53.44449680146219,"state":"rejected","decision":"Rejected","decisionRationale":"The second classification traversal lowers bytes modestly but loses time against the upper-bound array; complete caller priorities favor the single pass.","evidence":["raw/screen-followup.json","rig/Program.cs","plan.md"],"risks":["Screening timings are kernel results except matched H-010 wrappers; acceptance applies to the integrated complete API, not every individual component."],"parentId":"H-003"},{"id":"H-005","claim":"Detect all escape characters before a literal bypass","mechanism":"C3/R1","source":"src/Tedd.WildcardMatch/InternalUtils.cs:StringToWildcard","caller":"WildcardMatch.IsMatch, WildcardMatchExtensions.IsWildcardMatch, WildcardMatch constructor","observation":"Escape/Replace sampled costs and allocation; literal and sparse-pattern regressions in earlier screens. See plan.md for chronology.","prediction":"Reduce ns/call or bytes/call on the affected workloads beyond noise, with no credible \u003e5% regression against original complete calls.","falsification":"Semantic difference, no repeatable targeted gain, disproportionate change burden, or credible complete-call regression beyond the preregistered limit.","change":"Experiment Variants.LiteralFast in rig/Program.cs; production adoption restricted as stated in the verdict.","changeScope":"local","maintainability":"Candidate remains reproducible in the rig; its extra production implementation is not retained.","codeComments":"No production candidate retained; experiment is explained here and in plan.md.","result":"simple: 213.7 → 92.3 ns/call (-56.8%); long-literal: 367.0 → 208.0 ns/call (-43.3%); long-prefix: 944.6 → 7087.9 ns/call (+650.3%); long-mixed: 4075.7 → 2824.5 ns/call (-30.7%); escaped: 335.5 → 267.9 ns/call (-20.1%)","measurements":[{"workload":"simple","baseline":{"median":213.720703125,"min":208.29315185546875,"max":251.20849609375,"n":9},"candidate":{"median":92.26226806640625,"min":79.35256958007812,"max":105.279541015625,"n":9},"effectPercent":-56.83044893762852},{"workload":"long-literal","baseline":{"median":367.0013427734375,"min":300.9185791015625,"max":458.65478515625,"n":9},"candidate":{"median":208.0078125,"min":192.36602783203125,"max":274.32098388671875,"n":9},"effectPercent":-43.32232930591473},{"workload":"long-prefix","baseline":{"median":944.64111328125,"min":861.083984375,"max":1070.60546875,"n":9},"candidate":{"median":7087.890625,"min":6106.640625,"max":7639.35546875,"n":9},"effectPercent":650.326290624798},{"workload":"long-mixed","baseline":{"median":4075.732421875,"min":3781.5185546875,"max":4222.1435546875,"n":9},"candidate":{"median":2824.462890625,"min":2588.671875,"max":2897.021484375,"n":9},"effectPercent":-30.700482802410423},{"workload":"escaped","baseline":{"median":335.455322265625,"min":306.915283203125,"max":399.0234375,"n":9},"candidate":{"median":267.8924560546875,"min":236.61041259765625,"max":308.4259033203125,"n":9},"effectPercent":-20.14064518476738}],"effectPercent":-56.83044893762852,"state":"rejected","decision":"Superseded","decisionRationale":"Avoids long-literal scalar emission but scans a broad escape set and still regresses short literals. H-011 reuses Regex.Escape and searches only wildcard tokens.","evidence":["raw/screen-followup.json","rig/Program.cs","plan.md"],"risks":["Screening timings are kernel results except matched H-010 wrappers; acceptance applies to the integrated complete API, not every individual component."],"parentId":"H-003"},{"id":"H-006","claim":"Append ordinary runs in bulk","mechanism":"M7/C2","source":"src/Tedd.WildcardMatch/InternalUtils.cs:StringToWildcard","caller":"WildcardMatch.IsMatch, WildcardMatchExtensions.IsWildcardMatch, WildcardMatch constructor","observation":"Escape/Replace sampled costs and allocation; literal and sparse-pattern regressions in earlier screens. See plan.md for chronology.","prediction":"Reduce ns/call or bytes/call on the affected workloads beyond noise, with no credible \u003e5% regression against original complete calls.","falsification":"Semantic difference, no repeatable targeted gain, disproportionate change burden, or credible complete-call regression beyond the preregistered limit.","change":"Experiment Variants.Runs in rig/Program.cs; production adoption restricted as stated in the verdict.","changeScope":"local","maintainability":"Candidate remains reproducible in the rig; its extra production implementation is not retained.","codeComments":"No production candidate retained; experiment is explained here and in plan.md.","result":"simple: 213.7 → 73.0 ns/call (-65.8%); long-literal: 367.0 → 3796.9 ns/call (+934.6%); long-prefix: 944.6 → 4534.8 ns/call (+380.1%); long-mixed: 4075.7 → 2581.9 ns/call (-36.7%); escaped: 335.5 → 240.4 ns/call (-28.3%)","measurements":[{"workload":"simple","baseline":{"median":213.720703125,"min":208.29315185546875,"max":251.20849609375,"n":9},"candidate":{"median":73.02017211914062,"min":69.32296752929688,"max":94.79217529296875,"n":9},"effectPercent":-65.83383310486634},{"workload":"long-literal","baseline":{"median":367.0013427734375,"min":300.9185791015625,"max":458.65478515625,"n":9},"candidate":{"median":3796.9482421875,"min":3359.814453125,"max":4438.76953125,"n":9},"effectPercent":934.5870163563642},{"workload":"long-prefix","baseline":{"median":944.64111328125,"min":861.083984375,"max":1070.60546875,"n":9},"candidate":{"median":4534.765625,"min":4132.03125,"max":4632.5439453125,"n":9},"effectPercent":380.05168960392837},{"workload":"long-mixed","baseline":{"median":4075.732421875,"min":3781.5185546875,"max":4222.1435546875,"n":9},"candidate":{"median":2581.8603515625,"min":2353.7841796875,"max":3147.705078125,"n":9},"effectPercent":-36.65284949263816},{"workload":"escaped","baseline":{"median":335.455322265625,"min":306.915283203125,"max":399.0234375,"n":9},"candidate":{"median":240.386962890625,"min":225.40130615234375,"max":301.22222900390625,"n":9},"effectPercent":-28.34009570422663}],"effectPercent":-65.83383310486634,"state":"rejected","decision":"Rejected","decisionRationale":"Run tracking reduces Append calls but still classifies every input character; the long-literal scan remains slower than library bulk scanning.","evidence":["raw/screen-followup.json","rig/Program.cs","plan.md"],"risks":["Screening timings are kernel results except matched H-010 wrappers; acceptance applies to the integrated complete API, not every individual component."],"parentId":"H-002"},{"id":"H-007","claim":"Use an ASCII escape-classification table","mechanism":"R1/C2","source":"src/Tedd.WildcardMatch/InternalUtils.cs:StringToWildcard","caller":"WildcardMatch.IsMatch, WildcardMatchExtensions.IsWildcardMatch, WildcardMatch constructor","observation":"Escape/Replace sampled costs and allocation; literal and sparse-pattern regressions in earlier screens. See plan.md for chronology.","prediction":"Reduce ns/call or bytes/call on the affected workloads beyond noise, with no credible \u003e5% regression against original complete calls.","falsification":"Semantic difference, no repeatable targeted gain, disproportionate change burden, or credible complete-call regression beyond the preregistered limit.","change":"Experiment Variants.TableArray in rig/Program.cs; production adoption restricted as stated in the verdict.","changeScope":"local","maintainability":"Safe, dependency-free code; added branching/buffer/escape-set invariants require the durable report and exhaustive oracle tests.","codeComments":"Adjacent production comments reference the run and retained hypotheses; trivial empty return needs no additional commentary.","result":"simple: 213.7 → 50.8 ns/call (-76.2%); long-literal: 367.0 → 3560.2 ns/call (+870.1%); long-prefix: 944.6 → 4006.7 ns/call (+324.1%); long-mixed: 4075.7 → 1774.6 ns/call (-56.5%); escaped: 335.5 → 160.9 ns/call (-52.0%)","measurements":[{"workload":"simple","baseline":{"median":213.720703125,"min":208.29315185546875,"max":251.20849609375,"n":9},"candidate":{"median":50.79612731933594,"min":42.39959716796875,"max":56.304931640625,"n":9},"effectPercent":-76.23247229837789},{"workload":"long-literal","baseline":{"median":367.0013427734375,"min":300.9185791015625,"max":458.65478515625,"n":9},"candidate":{"median":3560.1806640625,"min":3127.4658203125,"max":3794.140625,"n":9},"effectPercent":870.0729259348572},{"workload":"long-prefix","baseline":{"median":944.64111328125,"min":861.083984375,"max":1070.60546875,"n":9},"candidate":{"median":4006.689453125,"min":3701.708984375,"max":4281.103515625,"n":9},"effectPercent":324.1493829553531},{"workload":"long-mixed","baseline":{"median":4075.732421875,"min":3781.5185546875,"max":4222.1435546875,"n":9},"candidate":{"median":1774.6337890625,"min":1618.3837890625,"max":1842.83447265625,"n":9},"effectPercent":-56.45853050760144},{"workload":"escaped","baseline":{"median":335.455322265625,"min":306.915283203125,"max":399.0234375,"n":9},"candidate":{"median":160.89324951171875,"min":128.11737060546875,"max":207.71942138671875,"n":9},"effectPercent":-52.03735375993887}],"effectPercent":-76.23247229837789,"state":"retained","decision":"Adopted with guards","decisionRationale":"The table outperforms the switch-classified array on targeted wildcard cases. Unicode is guarded before indexing; only the tiny immutable classification table is retained.","evidence":["raw/screen-followup.json","rig/Program.cs","plan.md"],"risks":["Screening timings are kernel results except matched H-010 wrappers; acceptance applies to the integrated complete API, not every individual component."],"parentId":"H-003"},{"id":"H-008","claim":"Keep Regex.Escape but fuse replacements and anchors","mechanism":"M7","source":"src/Tedd.WildcardMatch/InternalUtils.cs:StringToWildcard","caller":"WildcardMatch.IsMatch, WildcardMatchExtensions.IsWildcardMatch, WildcardMatch constructor","observation":"Escape/Replace sampled costs and allocation; literal and sparse-pattern regressions in earlier screens. See plan.md for chronology.","prediction":"Reduce ns/call or bytes/call on the affected workloads beyond noise, with no credible \u003e5% regression against original complete calls.","falsification":"Semantic difference, no repeatable targeted gain, disproportionate change burden, or credible complete-call regression beyond the preregistered limit.","change":"Experiment Variants.EscapedFusion in rig/Program.cs; production adoption restricted as stated in the verdict.","changeScope":"local","maintainability":"Candidate remains reproducible in the rig; its extra production implementation is not retained.","codeComments":"No production candidate retained; experiment is explained here and in plan.md.","result":"simple: 213.7 → 152.4 ns/call (-28.7%); long-literal: 367.0 → 2007.1 ns/call (+446.9%); long-prefix: 944.6 → 2614.9 ns/call (+176.8%); long-mixed: 4075.7 → 3948.9 ns/call (-3.1%); escaped: 335.5 → 384.2 ns/call (+14.5%)","measurements":[{"workload":"simple","baseline":{"median":213.720703125,"min":208.29315185546875,"max":251.20849609375,"n":9},"candidate":{"median":152.386474609375,"min":133.55560302734375,"max":167.66204833984375,"n":9},"effectPercent":-28.698309344299744},{"workload":"long-literal","baseline":{"median":367.0013427734375,"min":300.9185791015625,"max":458.65478515625,"n":9},"candidate":{"median":2007.11669921875,"min":1892.87109375,"max":2261.8896484375,"n":9},"effectPercent":446.8962821909379},{"workload":"long-prefix","baseline":{"median":944.64111328125,"min":861.083984375,"max":1070.60546875,"n":9},"candidate":{"median":2614.94140625,"min":2429.7607421875,"max":2663.9404296875,"n":9},"effectPercent":176.81850487820637},{"workload":"long-mixed","baseline":{"median":4075.732421875,"min":3781.5185546875,"max":4222.1435546875,"n":9},"candidate":{"median":3948.876953125,"min":3642.7978515625,"max":4108.7158203125,"n":9},"effectPercent":-3.112458219022174},{"workload":"escaped","baseline":{"median":335.455322265625,"min":306.915283203125,"max":399.0234375,"n":9},"candidate":{"median":384.2437744140625,"min":350.1739501953125,"max":465.1092529296875,"n":9},"effectPercent":14.54394934589982}],"effectPercent":-28.698309344299744,"state":"rejected","decision":"Rejected","decisionRationale":"An escaped intermediate plus scalar builder traversal retains allocation/scan costs and fails to beat direct emission on the targeted patterns.","evidence":["raw/screen-followup.json","rig/Program.cs","plan.md"],"risks":["Screening timings are kernel results except matched H-010 wrappers; acceptance applies to the integrated complete API, not every individual component."]},{"id":"H-009","claim":"Return the constant anchored regex for empty patterns","mechanism":"M1/R2","source":"src/Tedd.WildcardMatch/InternalUtils.cs:StringToWildcard","caller":"WildcardMatch.IsMatch, WildcardMatchExtensions.IsWildcardMatch, WildcardMatch constructor","observation":"Escape/Replace sampled costs and allocation; literal and sparse-pattern regressions in earlier screens. See plan.md for chronology.","prediction":"Reduce ns/call or bytes/call on the affected workloads beyond noise, with no credible \u003e5% regression against original complete calls.","falsification":"Semantic difference, no repeatable targeted gain, disproportionate change burden, or credible complete-call regression beyond the preregistered limit.","change":"Experiment Variants.EmptyFast in rig/Program.cs; production adoption restricted as stated in the verdict.","changeScope":"local","maintainability":"Safe, dependency-free code; added branching/buffer/escape-set invariants require the durable report and exhaustive oracle tests.","codeComments":"Adjacent production comments reference the run and retained hypotheses; trivial empty return needs no additional commentary.","result":"simple: 213.7 → 58.4 ns/call (-72.7%); long-literal: 367.0 → 5838.2 ns/call (+1490.8%); long-prefix: 944.6 → 7013.3 ns/call (+642.4%); long-mixed: 4075.7 → 2643.0 ns/call (-35.2%); escaped: 335.5 → 234.2 ns/call (-30.2%)","measurements":[{"workload":"simple","baseline":{"median":213.720703125,"min":208.29315185546875,"max":251.20849609375,"n":9},"candidate":{"median":58.403778076171875,"min":52.538299560546875,"max":79.88052368164062,"n":9},"effectPercent":-72.67284955448939},{"workload":"long-literal","baseline":{"median":367.0013427734375,"min":300.9185791015625,"max":458.65478515625,"n":9},"candidate":{"median":5838.232421875,"min":5162.451171875,"max":6496.826171875,"n":9},"effectPercent":1490.7932046665946},{"workload":"long-prefix","baseline":{"median":944.64111328125,"min":861.083984375,"max":1070.60546875,"n":9},"candidate":{"median":7013.28125,"min":5516.89453125,"max":7594.82421875,"n":9},"effectPercent":642.428119144537},{"workload":"long-mixed","baseline":{"median":4075.732421875,"min":3781.5185546875,"max":4222.1435546875,"n":9},"candidate":{"median":2643.017578125,"min":2431.0791015625,"max":2940.91796875,"n":9},"effectPercent":-35.152328353559916},{"workload":"escaped","baseline":{"median":335.455322265625,"min":306.915283203125,"max":399.0234375,"n":9},"candidate":{"median":234.222412109375,"min":218.902587890625,"max":309.9029541015625,"n":9},"effectPercent":-30.177762413347644}],"effectPercent":-72.67284955448939,"state":"retained","decision":"Adopted in H-013","decisionRationale":"Removes the empty-pattern result allocation. The nonempty array path alone is not adopted; the constant is combined with guarded literal/dense paths.","evidence":["raw/screen-followup.json","rig/Program.cs","plan.md"],"risks":["Screening timings are kernel results except matched H-010 wrappers; acceptance applies to the integrated complete API, not every individual component."],"parentId":"H-003"},{"id":"H-010","claim":"Remove forced inlining from the enlarged translator","mechanism":"R2","source":"src/Tedd.WildcardMatch/InternalUtils.cs:StringToWildcard","caller":"WildcardMatch.IsMatch, WildcardMatchExtensions.IsWildcardMatch, WildcardMatch constructor","observation":"Escape/Replace sampled costs and allocation; literal and sparse-pattern regressions in earlier screens. See plan.md for chronology.","prediction":"Reduce ns/call or bytes/call on the affected workloads beyond noise, with no credible \u003e5% regression against original complete calls.","falsification":"Semantic difference, no repeatable targeted gain, disproportionate change burden, or credible complete-call regression beyond the preregistered limit.","change":"Experiment Variants.generated clone in rig/Program.cs; production adoption restricted as stated in the verdict.","changeScope":"local","maintainability":"Safe, dependency-free code; added branching/buffer/escape-set invariants require the durable report and exhaustive oracle tests.","codeComments":"Adjacent production comments reference the run and retained hypotheses; trivial empty return needs no additional commentary.","result":"simple: 531.4 → 534.2 ns/call (+0.5%); long-literal: 1266.0 → 1204.6 ns/call (-4.8%); long-prefix: 1534.8 → 1686.0 ns/call (+9.9%); long-mixed: 2125.7 → 1387.3 ns/call (-34.7%); escaped: 440.2 → 370.2 ns/call (-15.9%)","measurements":[{"workload":"simple","baseline":{"median":531.3507080078125,"min":452.166748046875,"max":581.23779296875,"n":9},"candidate":{"median":534.222412109375,"min":489.6575927734375,"max":543.7103271484375,"n":9},"effectPercent":0.5404536134579363},{"workload":"long-literal","baseline":{"median":1265.966796875,"min":1231.170654296875,"max":1373.809814453125,"n":9},"candidate":{"median":1204.58984375,"min":1052.67333984375,"max":1391.83349609375,"n":9},"effectPercent":-4.848227716280329},{"workload":"long-prefix","baseline":{"median":1534.80224609375,"min":1402.23388671875,"max":1762.98828125,"n":9},"candidate":{"median":1686.03515625,"min":1377.5146484375,"max":1800.03662109375,"n":9},"effectPercent":9.853576285880173},{"workload":"long-mixed","baseline":{"median":2125.69580078125,"min":1940.02685546875,"max":3521.71630859375,"n":9},"candidate":{"median":1387.3046875,"min":1292.49267578125,"max":2515.90576171875,"n":9},"effectPercent":-34.73644314533959},{"workload":"escaped","baseline":{"median":440.216064453125,"min":393.707275390625,"max":485.21728515625,"n":9},"candidate":{"median":370.166015625,"min":335.6536865234375,"max":496.484375,"n":9},"effectPercent":-15.91265164644714}],"effectPercent":0.5404536134579363,"state":"retained","decision":"Adopted; timing mixed","decisionRationale":"Matched wrapper timing has mixed effects: normal dense conversion improves, while some sparse cases favor forcing. Tier1 caller size is 39 bytes normally versus 1107 bytes forced. Retain the compact caller to limit duplication; the full integrated baseline comparison, not this one-process screen, establishes acceptance. No universal inlining or branch-miss claim is made.","evidence":["raw/inlining.json","disassembly/asm-inlining.txt","rig/Program.cs","plan.md"],"risks":["Screening timings are kernel results except matched H-010 wrappers; acceptance applies to the integrated complete API, not every individual component."]},{"id":"H-011","claim":"Bypass wildcard rewriting when no wildcard occurs","mechanism":"C3/R1/M7","source":"src/Tedd.WildcardMatch/InternalUtils.cs:StringToWildcard","caller":"WildcardMatch.IsMatch, WildcardMatchExtensions.IsWildcardMatch, WildcardMatch constructor","observation":"Escape/Replace sampled costs and allocation; literal and sparse-pattern regressions in earlier screens. See plan.md for chronology.","prediction":"Reduce ns/call or bytes/call on the affected workloads beyond noise, with no credible \u003e5% regression against original complete calls.","falsification":"Semantic difference, no repeatable targeted gain, disproportionate change burden, or credible complete-call regression beyond the preregistered limit.","change":"Experiment Variants.NoWildcardFast in rig/Program.cs; production adoption restricted as stated in the verdict.","changeScope":"local","maintainability":"Safe, dependency-free code; added branching/buffer/escape-set invariants require the durable report and exhaustive oracle tests.","codeComments":"Adjacent production comments reference the run and retained hypotheses; trivial empty return needs no additional commentary.","result":"simple: 213.7 → 53.5 ns/call (-75.0%); long-literal: 367.0 → 235.6 ns/call (-35.8%); long-prefix: 944.6 → 3935.9 ns/call (+316.7%); long-mixed: 4075.7 → 1824.7 ns/call (-55.2%); escaped: 335.5 → 171.2 ns/call (-49.0%)","measurements":[{"workload":"simple","baseline":{"median":213.720703125,"min":208.29315185546875,"max":251.20849609375,"n":9},"candidate":{"median":53.49273681640625,"min":49.49760437011719,"max":68.76678466796875,"n":9},"effectPercent":-74.97072766735207},{"workload":"long-literal","baseline":{"median":367.0013427734375,"min":300.9185791015625,"max":458.65478515625,"n":9},"candidate":{"median":235.63232421875,"min":204.73785400390625,"max":285.59112548828125,"n":9},"effectPercent":-35.79524193615447},{"workload":"long-prefix","baseline":{"median":944.64111328125,"min":861.083984375,"max":1070.60546875,"n":9},"candidate":{"median":3935.9130859375,"min":3434.1552734375,"max":4415.3076171875,"n":9},"effectPercent":316.65697486593007},{"workload":"long-mixed","baseline":{"median":4075.732421875,"min":3781.5185546875,"max":4222.1435546875,"n":9},"candidate":{"median":1824.7314453125,"min":1528.55224609375,"max":1893.07861328125,"n":9},"effectPercent":-55.229361095470274},{"workload":"escaped","baseline":{"median":335.455322265625,"min":306.915283203125,"max":399.0234375,"n":9},"candidate":{"median":171.21429443359375,"min":152.7740478515625,"max":221.16241455078125,"n":9},"effectPercent":-48.96062662615309}],"effectPercent":-74.97072766735207,"state":"retained","decision":"Adopted","decisionRationale":"A two-character IndexOfAny plus Regex.Escape preserves bulk literal scanning and the exact escape contract. Wildcard inputs continue to use fused conversion.","evidence":["raw/screen-followup.json","rig/Program.cs","plan.md"],"risks":["Screening timings are kernel results except matched H-010 wrappers; acceptance applies to the integrated complete API, not every individual component."],"parentId":"H-007"},{"id":"H-012","claim":"Use two short-circuited character searches instead","mechanism":"C3/R1","source":"src/Tedd.WildcardMatch/InternalUtils.cs:StringToWildcard","caller":"WildcardMatch.IsMatch, WildcardMatchExtensions.IsWildcardMatch, WildcardMatch constructor","observation":"Escape/Replace sampled costs and allocation; literal and sparse-pattern regressions in earlier screens. See plan.md for chronology.","prediction":"Reduce ns/call or bytes/call on the affected workloads beyond noise, with no credible \u003e5% regression against original complete calls.","falsification":"Semantic difference, no repeatable targeted gain, disproportionate change burden, or credible complete-call regression beyond the preregistered limit.","change":"Experiment Variants.SeparateSearch in rig/Program.cs; production adoption restricted as stated in the verdict.","changeScope":"local","maintainability":"Candidate remains reproducible in the rig; its extra production implementation is not retained.","codeComments":"No production candidate retained; experiment is explained here and in plan.md.","result":"simple: 213.7 → 52.4 ns/call (-75.5%); long-literal: 367.0 → 226.0 ns/call (-38.4%); long-prefix: 944.6 → 3945.5 ns/call (+317.7%); long-mixed: 4075.7 → 1814.8 ns/call (-55.5%); escaped: 335.5 → 177.5 ns/call (-47.1%)","measurements":[{"workload":"simple","baseline":{"median":213.720703125,"min":208.29315185546875,"max":251.20849609375,"n":9},"candidate":{"median":52.391815185546875,"min":47.37434387207031,"max":64.28642272949219,"n":9},"effectPercent":-75.48584932602239},{"workload":"long-literal","baseline":{"median":367.0013427734375,"min":300.9185791015625,"max":458.65478515625,"n":9},"candidate":{"median":226.019287109375,"min":211.8499755859375,"max":279.35943603515625,"n":9},"effectPercent":-38.414588513125835},{"workload":"long-prefix","baseline":{"median":944.64111328125,"min":861.083984375,"max":1070.60546875,"n":9},"candidate":{"median":3945.458984375,"min":3742.87109375,"max":4289.8681640625,"n":9},"effectPercent":317.6675066227305},{"workload":"long-mixed","baseline":{"median":4075.732421875,"min":3781.5185546875,"max":4222.1435546875,"n":9},"candidate":{"median":1814.80712890625,"min":1444.7509765625,"max":2067.37060546875,"n":9},"effectPercent":-55.472858837200945},{"workload":"escaped","baseline":{"median":335.455322265625,"min":306.915283203125,"max":399.0234375,"n":9},"candidate":{"median":177.5390625,"min":153.192138671875,"max":229.35791015625,"n":9},"effectPercent":-47.07519877731482}],"effectPercent":-75.48584932602239,"state":"inconclusive","decision":"Not adopted","decisionRationale":"Search-order benefits vary by fixture and epoch; no stable advantage warrants maintaining a second selection strategy.","evidence":["raw/screen-followup.json","rig/Program.cs","plan.md"],"risks":["Screening timings are kernel results except matched H-010 wrappers; acceptance applies to the integrated complete API, not every individual component."],"parentId":"H-011"},{"id":"H-013","claim":"Combine the empty constant and literal/dense paths","mechanism":"R1/M1","source":"src/Tedd.WildcardMatch/InternalUtils.cs:StringToWildcard","caller":"WildcardMatch.IsMatch, WildcardMatchExtensions.IsWildcardMatch, WildcardMatch constructor","observation":"Escape/Replace sampled costs and allocation; literal and sparse-pattern regressions in earlier screens. See plan.md for chronology.","prediction":"Reduce ns/call or bytes/call on the affected workloads beyond noise, with no credible \u003e5% regression against original complete calls.","falsification":"Semantic difference, no repeatable targeted gain, disproportionate change burden, or credible complete-call regression beyond the preregistered limit.","change":"Experiment Variants.Combined in rig/Program.cs; production adoption restricted as stated in the verdict.","changeScope":"moderate","maintainability":"Safe, dependency-free code; added branching/buffer/escape-set invariants require the durable report and exhaustive oracle tests.","codeComments":"Adjacent production comments reference the run and retained hypotheses; trivial empty return needs no additional commentary.","result":"simple: 213.7 → 58.2 ns/call (-72.8%); long-literal: 367.0 → 244.3 ns/call (-33.4%); long-prefix: 944.6 → 3858.7 ns/call (+308.5%); long-mixed: 4075.7 → 1865.2 ns/call (-54.2%); escaped: 335.5 → 171.4 ns/call (-48.9%)","measurements":[{"workload":"simple","baseline":{"median":213.720703125,"min":208.29315185546875,"max":251.20849609375,"n":9},"candidate":{"median":58.19892883300781,"min":49.70893859863281,"max":65.79513549804688,"n":9},"effectPercent":-72.76869859492803},{"workload":"long-literal","baseline":{"median":367.0013427734375,"min":300.9185791015625,"max":458.65478515625,"n":9},"candidate":{"median":244.2840576171875,"min":220.52764892578125,"max":298.57025146484375,"n":9},"effectPercent":-33.437830016880234},{"workload":"long-prefix","baseline":{"median":944.64111328125,"min":861.083984375,"max":1070.60546875,"n":9},"candidate":{"median":3858.69140625,"min":3507.8857421875,"max":4197.2900390625,"n":9},"effectPercent":308.48226400465205},{"workload":"long-mixed","baseline":{"median":4075.732421875,"min":3781.5185546875,"max":4222.1435546875,"n":9},"candidate":{"median":1865.24658203125,"min":1659.14306640625,"max":1995.751953125,"n":9},"effectPercent":-54.23530327898312},{"workload":"escaped","baseline":{"median":335.455322265625,"min":306.915283203125,"max":399.0234375,"n":9},"candidate":{"median":171.4202880859375,"min":159.35821533203125,"max":199.70245361328125,"n":9},"effectPercent":-48.89921944651662}],"effectPercent":-72.76869859492803,"state":"retained","decision":"Adopted with H-015","decisionRationale":"Independent component screens justify the combination, but E4 found a 66% long-prefix regression. The final combination includes H-015; H-013 alone is not claimed acceptable.","evidence":["raw/screen-followup.json","rig/Program.cs","plan.md"],"risks":["Screening timings are kernel results except matched H-010 wrappers; acceptance applies to the integrated complete API, not every individual component."],"parentId":"H-011"},{"id":"H-014","claim":"Use bulk baseline conversion on long sparse wildcards","mechanism":"C3/R1/M7","source":"src/Tedd.WildcardMatch/InternalUtils.cs:StringToWildcard","caller":"WildcardMatch.IsMatch, WildcardMatchExtensions.IsWildcardMatch, WildcardMatch constructor","observation":"Escape/Replace sampled costs and allocation; literal and sparse-pattern regressions in earlier screens. See plan.md for chronology.","prediction":"Reduce ns/call or bytes/call on the affected workloads beyond noise, with no credible \u003e5% regression against original complete calls.","falsification":"Semantic difference, no repeatable targeted gain, disproportionate change burden, or credible complete-call regression beyond the preregistered limit.","change":"Experiment Variants.SparseFallback in rig/Program.cs; production adoption restricted as stated in the verdict.","changeScope":"local","maintainability":"Candidate remains reproducible in the rig; its extra production implementation is not retained.","codeComments":"No production candidate retained; experiment is explained here and in plan.md.","result":"simple: 213.7 → 60.2 ns/call (-71.8%); long-literal: 367.0 → 359.3 ns/call (-2.1%); long-prefix: 944.6 → 979.7 ns/call (+3.7%); long-mixed: 4075.7 → 1872.2 ns/call (-54.1%); escaped: 335.5 → 170.3 ns/call (-49.2%)","measurements":[{"workload":"simple","baseline":{"median":213.720703125,"min":208.29315185546875,"max":251.20849609375,"n":9},"candidate":{"median":60.184478759765625,"min":55.2215576171875,"max":73.20709228515625,"n":9},"effectPercent":-71.83965901302261},{"workload":"long-literal","baseline":{"median":367.0013427734375,"min":300.9185791015625,"max":458.65478515625,"n":9},"candidate":{"median":359.3048095703125,"min":303.3233642578125,"max":434.9639892578125,"n":9},"effectPercent":-2.0971403387688214},{"workload":"long-prefix","baseline":{"median":944.64111328125,"min":861.083984375,"max":1070.60546875,"n":9},"candidate":{"median":979.67529296875,"min":960.55908203125,"max":1097.0458984375,"n":9},"effectPercent":3.7087290818634155},{"workload":"long-mixed","baseline":{"median":4075.732421875,"min":3781.5185546875,"max":4222.1435546875,"n":9},"candidate":{"median":1872.20458984375,"min":1488.19580078125,"max":2002.001953125,"n":9},"effectPercent":-54.06458530507601},{"workload":"escaped","baseline":{"median":335.455322265625,"min":306.915283203125,"max":399.0234375,"n":9},"candidate":{"median":170.3125,"min":162.33062744140625,"max":211.6485595703125,"n":9},"effectPercent":-49.229453612561635}],"effectPercent":-71.83965901302261,"state":"rejected","decision":"Superseded by H-015","decisionRationale":"Restores sparse-pattern scanning, but still invokes Replace for wildcard kinds that are absent. H-015 retains the fallback mechanism while eliminating those unnecessary scans.","evidence":["raw/screen-followup.json","rig/Program.cs","plan.md"],"risks":["Screening timings are kernel results except matched H-010 wrappers; acceptance applies to the integrated complete API, not every individual component."],"parentId":"H-013"},{"id":"H-015","claim":"Skip replacement scans for absent wildcard kinds","mechanism":"C3/R1/M7","source":"src/Tedd.WildcardMatch/InternalUtils.cs:StringToWildcard","caller":"WildcardMatch.IsMatch, WildcardMatchExtensions.IsWildcardMatch, WildcardMatch constructor","observation":"Escape/Replace sampled costs and allocation; literal and sparse-pattern regressions in earlier screens. See plan.md for chronology.","prediction":"Reduce ns/call or bytes/call on the affected workloads beyond noise, with no credible \u003e5% regression against original complete calls.","falsification":"Semantic difference, no repeatable targeted gain, disproportionate change burden, or credible complete-call regression beyond the preregistered limit.","change":"Experiment Variants.SparseSelective in rig/Program.cs; production adoption restricted as stated in the verdict.","changeScope":"moderate","maintainability":"Safe, dependency-free code; added branching/buffer/escape-set invariants require the durable report and exhaustive oracle tests.","codeComments":"Adjacent production comments reference the run and retained hypotheses; trivial empty return needs no additional commentary.","result":"simple: 213.7 → 62.8 ns/call (-70.6%); long-literal: 367.0 → 196.7 ns/call (-46.4%); long-prefix: 944.6 → 848.0 ns/call (-10.2%); long-mixed: 4075.7 → 1777.9 ns/call (-56.4%); escaped: 335.5 → 170.7 ns/call (-49.1%)","measurements":[{"workload":"simple","baseline":{"median":213.720703125,"min":208.29315185546875,"max":251.20849609375,"n":9},"candidate":{"median":62.792205810546875,"min":58.68988037109375,"max":66.6534423828125,"n":9},"effectPercent":-70.61950251313685},{"workload":"long-literal","baseline":{"median":367.0013427734375,"min":300.9185791015625,"max":458.65478515625,"n":9},"candidate":{"median":196.685791015625,"min":165.41290283203125,"max":278.14788818359375,"n":9},"effectPercent":-46.4073374965699},{"workload":"long-prefix","baseline":{"median":944.64111328125,"min":861.083984375,"max":1070.60546875,"n":9},"candidate":{"median":847.991943359375,"min":766.552734375,"max":905.572509765625,"n":9},"effectPercent":-10.231310977579632},{"workload":"long-mixed","baseline":{"median":4075.732421875,"min":3781.5185546875,"max":4222.1435546875,"n":9},"candidate":{"median":1777.86865234375,"min":1605.74951171875,"max":1975.69580078125,"n":9},"effectPercent":-56.3791616249955},{"workload":"escaped","baseline":{"median":335.455322265625,"min":306.915283203125,"max":399.0234375,"n":9},"candidate":{"median":170.74432373046875,"min":143.98040771484375,"max":193.511962890625,"n":9},"effectPercent":-49.1007259693237}],"effectPercent":-70.61950251313685,"state":"retained","decision":"Adopted with H-016","decisionRationale":"Record star/question presence and invoke only needed replacements. The fixed four-token cutoff is not retained: H-016 fixes its five-token sparse counterexample.","evidence":["raw/screen-followup.json","rig/Program.cs","plan.md"],"risks":["Screening timings are kernel results except matched H-010 wrappers; acceptance applies to the integrated complete API, not every individual component."],"parentId":"H-014"},{"id":"H-016","claim":"Use relative wildcard density for the sparse fallback","mechanism":"C3/R1/M7","source":"src/Tedd.WildcardMatch/InternalUtils.cs:StringToWildcard","caller":"WildcardMatch.IsMatch, WildcardMatchExtensions.IsWildcardMatch, WildcardMatch constructor","observation":"Escape/Replace sampled costs and allocation; literal and sparse-pattern regressions in earlier screens. See plan.md for chronology.","prediction":"Reduce ns/call or bytes/call on the affected workloads beyond noise, with no credible \u003e5% regression against original complete calls.","falsification":"Semantic difference, no repeatable targeted gain, disproportionate change burden, or credible complete-call regression beyond the preregistered limit.","change":"Experiment Variants.SparseDensity in rig/Program.cs; production adoption restricted as stated in the verdict.","changeScope":"local","maintainability":"Safe, dependency-free code; added branching/buffer/escape-set invariants require the durable report and exhaustive oracle tests.","codeComments":"Adjacent production comments reference the run and retained hypotheses; trivial empty return needs no additional commentary.","result":"simple: 213.7 → 62.9 ns/call (-70.6%); long-literal: 367.0 → 210.4 ns/call (-42.7%); long-prefix: 944.6 → 802.0 ns/call (-15.1%); long-mixed: 4075.7 → 1926.3 ns/call (-52.7%); escaped: 335.5 → 168.7 ns/call (-49.7%)","measurements":[{"workload":"simple","baseline":{"median":213.720703125,"min":208.29315185546875,"max":251.20849609375,"n":9},"candidate":{"median":62.877655029296875,"min":59.900665283203125,"max":68.19229125976562,"n":9},"effectPercent":-70.57952079049578},{"workload":"long-literal","baseline":{"median":367.0013427734375,"min":300.9185791015625,"max":458.65478515625,"n":9},"candidate":{"median":210.418701171875,"min":191.41082763671875,"max":268.5943603515625,"n":9},"effectPercent":-42.66541381518223},{"workload":"long-prefix","baseline":{"median":944.64111328125,"min":861.083984375,"max":1070.60546875,"n":9},"candidate":{"median":802.008056640625,"min":765.71044921875,"max":915.472412109375,"n":9},"effectPercent":-15.099179427537635},{"workload":"long-mixed","baseline":{"median":4075.732421875,"min":3781.5185546875,"max":4222.1435546875,"n":9},"candidate":{"median":1926.30615234375,"min":1591.71142578125,"max":2120.458984375,"n":9},"effectPercent":-52.73717818164392},{"workload":"escaped","baseline":{"median":335.455322265625,"min":306.915283203125,"max":399.0234375,"n":9},"candidate":{"median":168.68133544921875,"min":155.51605224609375,"max":195.2911376953125,"n":9},"effectPercent":-49.71570750168301}],"effectPercent":-70.57952079049578,"state":"retained","decision":"Adopted","decisionRationale":"The fixed cutoff regresses long-five-prefix/suffix by 54%/66% in its falsifying screen. Relative density (at most one wildcard per 32 code units) restores bulk conversion for both and retains large baseline-relative dense gains. The cutoff is measured routing, not a universal optimum.","evidence":["raw/screen-followup.json","rig/Program.cs","plan.md"],"risks":["Screening timings are kernel results except matched H-010 wrappers; acceptance applies to the integrated complete API, not every individual component."],"parentId":"H-015"}],"retainedChanges":["Fused bounded char-buffer emission and ASCII escape lookup for short/dense wildcard patterns; exact UTF-16 output and initialized-prefix proof documented adjacent to code.","Keep bulk Regex.Escape for patterns without wildcards, and selective bulk Replace for long sparse patterns at wildcard density at most 1/32. Empty pattern returns a constant anchored regex.","Remove forced inlining from the enlarged translator; preserve small public wrapper hints. No public API, Regex options, dependency, target framework or matching engine changed.","New independent oracle tests preserve every UTF-16 code unit, randomized cultures/options, escapes, long inputs and null exception parameter names."],"decisions":["Largest per-launch median paired effect: +4.27%; below the preregistered +5% regression limit. Every block and launch is retained in raw/paired-effects.json. Small/overlapping effects, including complex matching, remain inconclusive.","No adoption decision requested within the declared safe local policy. Pattern caches, unsafe emission, retargeting and a custom matching engine remain broader opportunities, not exhausted potential.","Stopping condition: sixteen distinct local hypotheses have tested dispositions, every catalogue category is covered, and integrated caller/constructor checks completed. Fewer than twenty because this library contains one translation helper; additional candidates would require a different state/safety/dependency/compatibility policy or duplicate an already falsified mechanism."],"correctness":["47 xUnit tests pass in Release against the actual netstandard2.0 project, including prefix/suffix routing boundaries for lengths 127/128/129/256/1024 and zero through 34 wildcards.","Research rig reports 1,164,576 candidate/reference assertions per execution, plus production translation comparisons for all 65,536 UTF-16 code units for each variant.","Independent oracle uses original Regex.Escape + two literal Replace calls, not the optimized classification/emission logic. Random seed 19373; en-US and tr-TR; IgnoreCase, Singleline, RightToLeft, CultureInvariant and IgnorePatternWhitespace.","Result copy uses only [0,position); allocation capacity is checked 2*inputLength+2; every input unit emits at most two chars. Escaping excludes literal closing bracket/brace exactly as Regex.Escape does.","Null wildcard preserves Regex.Escape parameter name str. Existing timeout/options validation and matching continue in unchanged Regex code."],"generatedCode":[{"hypothesisId":"H-007","summary":"ASCII classification is a guarded table load; control remapping and wildcard dispatch remain scalar. Array bounds guards remain; no elimination claim.","before":"Switch/range branches in Variants.Array's non-table path.","after":"Guarded escape table lookup, initialized output stores, then string constructor; full Tier0/Instrumented Tier0/Tier1 retained.","artifact":"disassembly/asm-after.txt"},{"hypothesisId":"H-010","summary":"Normal translator remains a call in optimized ProductionCaller; forced clone is expanded into ForcedCaller. Both wrappers use the same three-argument Regex overload.","before":"ForcedCaller integrates the translator body into a 1107-byte caller.","after":"ProductionCaller is 39 bytes, with a call to StringToWildcard followed by Regex.IsMatch.","artifact":"disassembly/asm-inlining.txt"},{"hypothesisId":"H-011","summary":"Keep library scanning rather than manually scalarizing long literal input.","before":"Baseline generated code exposes runtime AVX2 search paths and two String.Replace calls.","after":"Literal route retains Regex.Escape and eliminates both replacements; dense route avoids Escape/Replace intermediates.","artifact":"disassembly/asm-before.txt"}],"validityThreats":["Active desktop interference, CPU frequency/thermal variation and fixed before/after BDN order can confound small differences. Pinning and the cooperative lock cannot silence unrelated processes; raw host snapshots and all BDN diagnostics remain visible.","Fixed repeated fixtures favor cache/predictor training. Static cache cardinality is below Regex.CacheSize; constructor benchmarks cover preparation, but no external workload or high-cardinality cache churn is supplied.","Screening boxes bool results uniformly (+24 B) and invokes delegates; final allocation claims use the interleaved harness returning bool directly and thread allocation counters. BDN is supporting diagnostic evidence. Screen comparisons are within epoch; no cross-epoch raw timing ratio is used.","E6 BDN default outlier removal and multimodal warnings must be considered; chronological method ordering produced implausibly large swings on identical regexes. E7 uses interleaving and no filtering; launch-summary.json exposes independent processes. Neither method establishes a universal application gain.","Mixed CPU sampling is dominated by the complex fixture; short profiling is a workload contrast, not a sum of exclusive shares or evidence of a universal application gain.","Only the installed .NET 10 x64 configuration is timed. netstandard2.0 API compatibility is preserved, but earlier runtime/other-ISA performance is unmeasured.","Length 128 and density 1/32 are measured routing choices, not universal optima. Near-maximum .NET string sizes/OutOfMemory timing are not exercised; checked output capacity rejects integer overflow safely.","An early E4 unfiltered screening file was overwritten before archival was fixed. Its reported 66% long-prefix median regression is preserved in plan.md; E7 repeats every candidate with full raw trials. Final claims use complete E7 evidence.","Source lookup: dotnet/runtime v10.0.0 RegexParser.Escape and its escape set; semantic confidence additionally comes from local differential tests against executing .NET 10.0.12. https://github.com/dotnet/runtime/blob/v10.0.0/src/libraries/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexParser.cs"],"reproduction":["From an inspected checkout, run python C:\\Users\\tedd\\.codex\\skills\\scientific-method-performance\\scripts\\run_with_performance_lock.py --cwd D:\\Workspaces\\AI\\wildcard-hotpath -- python \"\u003cthis-run\u003e\\run.py\" finish.","Use run.py validate for primary acceptance: tests, full candidate screen, three interleaved API/constructor processes, matched inlining screen and final profiles/native code. run.py measure additionally reproduces the BDN diagnostic sequence. Windows x64 with SDK 10.0.401 and dotnet-trace is assumed.","Baseline profile reproduction: same wrapper and run.py diagnostics-before; use run.py before for a fresh baseline screen. Do not compare epochs if compiler/runtime/workloads change.","After results, run python build_report.py, then the skill's scripts/render_report.py report-data.json report.html. Renderer owns the standard HTML template; do not hand-edit generated report."],"artifacts":[{"label":"Preregistered method and epoch chronology","path":"plan.md"},{"label":"Reproducible rig and all candidate implementations","path":"rig/Program.cs"},{"label":"Execution/staging driver","path":"run.py"},{"label":"Baseline source snapshot","path":"baseline/InternalUtils.cs.txt"},{"label":"Primary interleaved comparison — launch 1","path":"raw/paired-1.json"},{"label":"Primary interleaved comparison — launch 2","path":"raw/paired-2.json"},{"label":"Primary interleaved comparison — launch 3","path":"raw/paired-3.json"},{"label":"Noisy API-identical E6 static BDN JSON","path":"raw/Acceptance-report-full-compressed.json"},{"label":"Noisy E6 construction BDN JSON","path":"raw/ConstructionAcceptance-report-full-compressed.json"},{"label":"Independent launch summary","path":"raw/launch-summary.json"},{"label":"Paired block effects and launch acceptance","path":"raw/paired-effects.json"},{"label":"Complete API screening and allocations","path":"raw/screen-followup.json"},{"label":"Earlier epochs and withdrawn surrogate-control results","path":"raw/"},{"label":"Correctness log","path":"raw/tests.txt"},{"label":"Final short-workload profile","path":"raw/profile-short-top-after.txt"},{"label":"Final mixed-workload profile","path":"raw/profile-top-after.txt"},{"label":"Optimized native code and diagnostic tiers","path":"disassembly/"},{"label":"Report data/generation","path":"build_report.py"}]}</script>
+  <script>
+    (() => {
+      "use strict";
+      const data = JSON.parse(document.getElementById("report-data").textContent);
+      const $ = id => document.getElementById(id);
+      const text = (node, value) => { node.textContent = value ?? ""; return node; };
+      const el = (tag, className, value) => {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (value !== undefined) text(node, value);
+        return node;
+      };
+      const number = value => Number.isFinite(value) ? value.toLocaleString(undefined, { maximumFractionDigits: 3 }) : "—";
+      const signedPercent = value => Number.isFinite(value) ? `${value > 0 ? "+" : value < 0 ? "−" : ""}${number(Math.abs(value))}%` : "—";
+      const effectPercent = value => signedPercent(value * 100);
+      const roundColors = ["var(--before)", "var(--mid)", "var(--after)", "#123d72", "#739ecf"];
+
+      function niceMax(value) {
+        if (!Number.isFinite(value) || value <= 0) return 1;
+        const magnitude = 10 ** Math.floor(Math.log10(value));
+        for (const step of [1, 1.2, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10]) {
+          if (step * magnitude >= value) return step * magnitude;
+        }
+        return 10 * magnitude;
+      }
+
+      function safeHref(value) {
+        if (typeof value !== "string") return "#";
+        if (!/^[a-z][a-z0-9+.-]*:/i.test(value)) return value;
+        try {
+          const protocol = new URL(value).protocol;
+          return ["http:", "https:", "file:"].includes(protocol) ? value : "#";
+        } catch { return "#"; }
+      }
+
+      document.title = `${data.title} — Scientific performance report`;
+      text($("eyebrow"), `${data.primaryMetric} · performance investigation`);
+      text($("title"), data.title);
+      text($("headline"), data.summary.headline);
+      text($("status"), data.status.replaceAll("-", " "));
+      text($("generated"), `Generated ${data.generatedAt}`);
+      text($("scope"), data.scope);
+      text($("question"), data.question);
+
+      const scorecards = $("scorecards");
+      if (!data.scorecards.length) {
+        scorecards.append(el("p", "empty", "No headline measurements recorded."));
+      }
+      for (const item of data.scorecards) {
+        const card = el("article", "kpi");
+        card.append(el("div", "kpi-label", item.title));
+        const value = el("div", "kpi-value", number(item.value));
+        value.append(el("small", "", item.unit));
+        card.append(value);
+        const delta = el("div", "kpi-delta");
+        if (Number.isFinite(item.wallChangePercent)) {
+          const higherIsBetter = item.higherIsBetter === true;
+          const good = higherIsBetter ? item.wallChangePercent > 0 : item.wallChangePercent < 0;
+          const arrow = item.wallChangePercent > 0 ? "▲" : item.wallChangePercent < 0 ? "▼" : "◆";
+          const primary = el("strong", good ? "good" : item.wallChangePercent === 0 ? "" : "bad", `${arrow} ${signedPercent(item.wallChangePercent)} ${item.changeLabel || "wall"}`);
+          delta.append(primary);
+          if (Number.isFinite(item.baseline)) delta.append(document.createTextNode(` from ${number(item.baseline)} ${item.unit}`));
+        }
+        if (item.secondaryMetric && Number.isFinite(item.secondaryChangePercent)) {
+          delta.append(document.createTextNode(` · ${item.secondaryMetric} ${signedPercent(item.secondaryChangePercent)}`));
+        }
+        card.append(delta);
+        if (item.progression) card.append(el("div", "kpi-steps", item.progression));
+        scorecards.append(card);
+      }
+
+      function addGrid(track, maximum) {
+        const step = niceMax(maximum) / 4;
+        for (let value = 0; value <= maximum + step / 10; value += step) {
+          const line = el("i", `gridline${value === 0 ? " zero" : ""}`);
+          line.style.left = `${value / maximum * 100}%`;
+          track.append(line);
+        }
+      }
+
+      function renderSeries(series) {
+        const figure = el("figure", "chart");
+        const head = el("div", "chart-head");
+        const intro = el("div", "");
+        intro.append(el("h2", "", series.title), el("p", "", series.description || `Values in ${series.unit}.`));
+        const legend = el("div", "legend");
+        series.rounds.forEach((round, index) => {
+          const entry = el("span", "");
+          const swatch = el("i", "swatch"); swatch.style.setProperty("--swatch", roundColors[index % roundColors.length]);
+          entry.append(swatch, document.createTextNode(round)); legend.append(entry);
+        });
+        head.append(intro, legend); figure.append(head);
+
+        const plot = el("div", "plot");
+        const maximum = niceMax(Math.max(1, ...series.rows.flatMap(row => row.measurements.map(item => item.max ?? item.median))) * 1.18);
+        for (const row of series.rows) {
+          const rowNode = el("div", "chart-row");
+          const label = el("div", "row-label"); label.append(el("b", "", row.label));
+          if (row.detail) label.append(el("small", "", row.detail));
+          const track = el("div", "track");
+          const plotArea = el("div", "bar-plot-area"); addGrid(plotArea, maximum);
+          row.measurements.forEach((measurement, index) => {
+            const line = el("div", "bar-line");
+            const ratio = Math.max(0, measurement.median / maximum * 100);
+            const bar = el("i", "bar");
+            bar.style.width = `${ratio}%`; bar.style.setProperty("--bar-color", roundColors[index % roundColors.length]);
+            bar.title = `${row.label}, ${series.rounds[index]}: ${number(measurement.median)} ${series.unit}`;
+            line.append(bar);
+            if (Number.isFinite(measurement.min) && Number.isFinite(measurement.max)) {
+              const whisker = el("i", "whisker");
+              whisker.style.left = `${Math.max(0, measurement.min / maximum * 100)}%`;
+              whisker.style.width = `${Math.max(0, (measurement.max - measurement.min) / maximum * 100)}%`;
+              line.append(whisker);
+            }
+            const rangeEnd = Number.isFinite(measurement.max) ? Math.max(measurement.median, measurement.max) : measurement.median;
+            const labelAnchor = Math.max(0, rangeEnd / maximum * 100);
+            const value = el("span", "bar-value"); value.style.left = `calc(${labelAnchor}% + 8px)`;
+            value.append(el("strong", "", `${number(measurement.median)} ${series.unit}`));
+            if (Number.isFinite(measurement.changePercent)) {
+              const improved = series.lowerIsBetter === false ? measurement.changePercent > 0 : measurement.changePercent < 0;
+              value.append(el("span", improved ? "improve" : measurement.changePercent === 0 ? "" : "regress", signedPercent(measurement.changePercent)));
+            }
+            line.append(value); plotArea.append(line);
+          });
+          track.append(plotArea);
+          rowNode.append(label, track); plot.append(rowNode);
+        }
+        const axis = el("div", "axis"); axis.append(el("div", ""));
+        const ticks = el("div", "axis-ticks");
+        const step = maximum / 4;
+        for (let value = 0; value <= maximum + step / 10; value += step) {
+          const tick = el("span", "", number(value)); tick.style.left = `${value / maximum * 100}%`; ticks.append(tick);
+        }
+        axis.append(ticks); plot.append(axis); figure.append(plot);
+        return figure;
+      }
+
+      const charts = $("charts");
+      for (const series of data.series) charts.append(renderSeries(series));
+      if (!data.series.length) {
+        charts.hidden = true;
+        $("measurements-section").hidden = true;
+      }
+
+      const measurementBody = $("measurements-table").querySelector("tbody");
+      for (const series of data.series) {
+        for (const row of series.rows) {
+          row.measurements.forEach((measurement, index) => {
+            const tr = document.createElement("tr");
+            const range = Number.isFinite(measurement.min) && Number.isFinite(measurement.max)
+              ? `${number(measurement.min)}–${number(measurement.max)} ${series.unit}` : "—";
+            tr.append(
+              el("td", "", series.title), el("td", "", row.label), el("td", "", series.rounds[index]),
+              el("td", "num", `${number(measurement.median)} ${series.unit}`), el("td", "num", range),
+              el("td", "num", Number.isFinite(measurement.n) ? number(measurement.n) : "—")
+            );
+            measurementBody.append(tr);
+          });
+        }
+      }
+
+      function effectScale() {
+        const values = data.effectGroups.flatMap(group => group.items.flatMap(item => [item.effect, item.range[0], item.range[1]]));
+        const low = Math.min(-.05, ...values), high = Math.max(.05, ...values);
+        const pad = Math.max(.02, (high - low) * .08);
+        return { min: low - pad, max: high + pad };
+      }
+
+      if (!data.effectGroups.length) $("effects-chart").hidden = true;
+      else {
+        const scale = effectScale();
+        const x = value => (value - scale.min) / (scale.max - scale.min) * 100;
+        const effects = $("effects");
+        for (const group of data.effectGroups) {
+          const groupNode = el("div", "effect-group");
+          const head = el("div", "effect-head"); head.append(el("b", "", group.name));
+          if (group.control) head.append(el("small", "", group.control));
+          groupNode.append(head);
+          for (const item of group.items) {
+            const row = el("div", "effect-row");
+            const label = el("div", "effect-label");
+            if (item.hypothesisId) label.append(el("span", "id", item.hypothesisId));
+            label.append(document.createTextNode(item.label));
+            const track = el("div", "effect-track");
+            const plotArea = el("div", "effect-plot-area");
+            for (let i = 0; i <= 6; i++) {
+              const point = scale.min + (scale.max - scale.min) * i / 6;
+              const grid = el("i", Math.abs(point) < (scale.max - scale.min) / 100 ? "effect-zero" : "effect-grid");
+              grid.style.left = `${x(point)}%`; plotArea.append(grid);
+            }
+            const zero = el("i", "effect-zero"); zero.style.left = `${x(0)}%`; plotArea.append(zero);
+            const start = Math.min(0, item.effect), end = Math.max(0, item.effect);
+            const mixed = item.range[0] <= 0 && item.range[1] >= 0;
+            const direction = mixed ? "mixed" : item.effect < 0 ? "faster" : "slower";
+            const bar = el("i", `effect-bar ${direction}`); bar.style.left = `${x(start)}%`; bar.style.width = `${Math.abs(x(end) - x(start))}%`;
+            bar.title = `${item.label}: ${effectPercent(item.effect)}`; plotArea.append(bar);
+            const whisker = el("i", "effect-whisker"); whisker.style.left = `${x(item.range[0])}%`; whisker.style.width = `${Math.max(0, x(item.range[1]) - x(item.range[0]))}%`; plotArea.append(whisker);
+            const value = el("span", "effect-value");
+            if (item.effect < 0) {
+              const labelAnchor = Math.min(item.effect, item.range[0]);
+              value.dataset.side = "left";
+              value.style.left = `calc(${x(labelAnchor)}% - 8px)`;
+              value.style.transform = "translateX(-100%)";
+            } else {
+              const labelAnchor = Math.max(item.effect, item.range[1]);
+              value.dataset.side = "right";
+              value.style.left = `calc(${x(labelAnchor)}% + 8px)`;
+            }
+            value.append(el("strong", "", effectPercent(item.effect)));
+            if (item.secondaryMetric && Number.isFinite(item.secondaryEffect)) value.append(el("span", "secondary", ` · ${item.secondaryMetric} ${effectPercent(item.secondaryEffect)}`));
+            plotArea.append(value); track.append(plotArea); row.append(label, track); groupNode.append(row);
+          }
+          effects.append(groupNode);
+        }
+        const axis = el("div", "effect-axis"); axis.append(el("div", ""));
+        const ticks = el("div", "axis-ticks");
+        for (let i = 0; i <= 6; i++) {
+          const point = scale.min + (scale.max - scale.min) * i / 6;
+          const tick = el("span", "", effectPercent(point)); tick.style.left = `${x(point)}%`; ticks.append(tick);
+        }
+        axis.append(ticks); effects.append(axis);
+      }
+
+      function updateLabelGutters() {
+        for (const figure of charts.querySelectorAll(".chart")) {
+          let width = 0;
+          for (const label of figure.querySelectorAll(".bar-value")) width = Math.max(width, label.getBoundingClientRect().width);
+          const trackWidth = figure.querySelector(".track")?.getBoundingClientRect().width ?? 0;
+          const gutter = Math.min(Math.ceil(width) + 12, Math.max(0, trackWidth - 160));
+          figure.style.setProperty("--bar-label-gutter", `${gutter}px`);
+        }
+        const effects = $("effects");
+        let left = 0, right = 0;
+        for (const label of effects.querySelectorAll(".effect-value")) {
+          const width = label.getBoundingClientRect().width;
+          if (label.dataset.side === "left") left = Math.max(left, width);
+          else right = Math.max(right, width);
+        }
+        left = Math.ceil(left) + 12;
+        right = Math.ceil(right) + 12;
+        const trackWidth = effects.querySelector(".effect-track")?.getBoundingClientRect().width ?? 0;
+        const budget = Math.max(0, trackWidth - 180);
+        const total = left + right;
+        const factor = total > budget && total > 0 ? budget / total : 1;
+        effects.style.setProperty("--effect-left-gutter", `${Math.floor(left * factor)}px`);
+        effects.style.setProperty("--effect-right-gutter", `${Math.floor(right * factor)}px`);
+      }
+
+      updateLabelGutters();
+      document.fonts?.ready.then(updateLabelGutters);
+      window.addEventListener("resize", updateLabelGutters, { passive: true });
+
+      const hypothesisBody = $("hypotheses");
+      text($("hypothesis-title"), `${data.hypotheses.length} ${data.hypotheses.length === 1 ? "hypothesis" : "hypotheses"}`);
+      if (!data.hypotheses.length) {
+        const row = document.createElement("tr"); const cell = el("td", "empty", "None recorded."); cell.colSpan = 4; row.append(cell); hypothesisBody.append(row);
+      }
+      const icons = { retained: "✓", rejected: "×", inconclusive: "○", "decision-required": "○", pending: "…", blocked: "!", "not-applicable": "—" };
+      for (const item of data.hypotheses) {
+        const row = document.createElement("tr");
+        row.append(el("td", "id", item.id));
+        const claim = el("td", ""); claim.append(document.createTextNode(item.claim));
+        if (item.mechanism) claim.append(el("div", "cell-note", item.mechanism));
+        if (item.change) claim.append(el("div", "cell-note", `Change: ${item.change}`));
+        if (item.changeScope) claim.append(el("div", "cell-note", `Scope: ${item.changeScope}`));
+        if (item.maintainability) claim.append(el("div", "cell-note", `Maintainability: ${item.maintainability}`));
+        if (item.codeComments) claim.append(el("div", "cell-note", `Code comments: ${item.codeComments}`));
+        const measured = el("td", "", item.result || "Not yet measured.");
+        if (item.prediction && !item.result) measured.append(el("div", "cell-note", `Prediction: ${item.prediction}`));
+        if (item.decisionRationale) measured.append(el("div", "cell-note", `Decision: ${item.decisionRationale}`));
+        const verdict = el("td", ""); verdict.append(el("span", `chip ${item.state}`, `${icons[item.state]} ${item.decision}`));
+        row.append(claim, measured, verdict); hypothesisBody.append(row);
+      }
+
+      function renderList(id, items, ordered = false) {
+        const host = $(id);
+        if (!items.length) { host.append(el("p", "empty", "None recorded.")); return; }
+        const list = document.createElement(ordered ? "ol" : "ul");
+        items.forEach(item => list.append(el("li", "", item))); host.append(list);
+      }
+      renderList("retainedChanges", data.retainedChanges);
+      renderList("decisions", data.decisions);
+      renderList("correctness", data.correctness);
+      renderList("validityThreats", data.validityThreats);
+      renderList("reproduction", data.reproduction, true);
+
+      const environment = $("environment");
+      if (!data.environment.length) environment.replaceWith(el("p", "empty", "None recorded."));
+      else for (const item of data.environment) environment.append(el("dt", "", item.label), el("dd", "", item.value));
+
+      const hotspots = $("hotspots");
+      if (!data.hotspots.length) hotspots.append(el("p", "empty", "None recorded."));
+      for (const item of data.hotspots) {
+        const card = el("article", "card"); card.append(el("h3", "", item.name));
+        if (item.location) card.append(el("div", "small mono", item.location));
+        const shares = [];
+        if (Number.isFinite(item.inclusivePercent)) shares.push(`${number(item.inclusivePercent)}% inclusive`);
+        if (Number.isFinite(item.exclusivePercent)) shares.push(`${number(item.exclusivePercent)}% exclusive`);
+        if (shares.length) card.append(el("div", "metric", shares.join(" · ")));
+        if (item.evidence) card.append(el("p", "", item.evidence));
+        if (item.limit) card.append(el("p", "small", `Suspected limit: ${item.limit}`)); hotspots.append(card);
+      }
+
+      const areas = $("areas");
+      if (!data.areas.length) areas.append(el("p", "empty", "None recorded."));
+      for (const item of data.areas) {
+        const card = el("article", "card"); card.append(el("h3", "", item.name));
+        if (item.boundary) card.append(el("p", "", item.boundary));
+        if (item.evidence) card.append(el("p", "small", `Evidence: ${item.evidence}`));
+        if (item.catalogue) card.append(el("p", "small", `Catalogue: ${item.catalogue}`));
+        if (item.hypothesisIds?.length) card.append(el("div", "metric", item.hypothesisIds.join(" · ")));
+        if (item.disposition) card.append(el("p", "", item.disposition)); areas.append(card);
+      }
+
+      const generated = $("generatedCode");
+      if (!data.generatedCode.length) generated.append(el("p", "empty", "None recorded."));
+      for (const item of data.generatedCode) {
+        const note = el("article", "code-note"); note.append(el("h3", "", `${item.hypothesisId || "Unlinked"}: ${item.summary || "Observation"}`));
+        if (item.before) note.append(el("p", "", `Before: ${item.before}`));
+        if (item.after) note.append(el("p", "", `After: ${item.after}`));
+        if (item.artifact) { const link = el("a", "", item.artifact); link.href = safeHref(item.artifact); note.append(link); }
+        generated.append(note);
+      }
+
+      const artifacts = $("artifacts");
+      if (!data.artifacts.length) artifacts.append(el("p", "empty", "None recorded."));
+      else {
+        const list = document.createElement("ul");
+        for (const item of data.artifacts) {
+          const entry = document.createElement("li"); const link = el("a", "", item.label || item.path);
+          link.href = safeHref(item.path); entry.append(link); list.append(entry);
+        }
+        artifacts.append(list);
+      }
+    })();
+  </script>
+</body>
+</html>

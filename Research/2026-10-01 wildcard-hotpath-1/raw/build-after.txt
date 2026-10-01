@@ -1,0 +1,12 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+D:\Workspaces\AI\wildcard-hotpath\rig\Program.cs(224,6): warning CS3016: Arrays as attribute arguments is not CLS-compliant [D:\Workspaces\AI\wildcard-hotpath\rig\Investigation.csproj]
+  Investigation -> D:\Workspaces\AI\wildcard-hotpath\rig\bin\Release\net10.0\Investigation.dll
+
+Build succeeded.
+
+D:\Workspaces\AI\wildcard-hotpath\rig\Program.cs(224,6): warning CS3016: Arrays as attribute arguments is not CLS-compliant [D:\Workspaces\AI\wildcard-hotpath\rig\Investigation.csproj]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.67

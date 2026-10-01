@@ -1,0 +1,2 @@
+Differential assertions passed: 1164576
+Paired samples: 612; delegate/loop calibration 1.25 ns/call

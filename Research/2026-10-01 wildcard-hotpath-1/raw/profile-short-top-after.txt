@@ -1,0 +1,31 @@
+Top 30 Functions (Exclusive)                                                  Inclusive           Exclusive           
+1.  RegexInterpreter.TryMatchAtCurrentPosition(value class System.ReadOnly    52.58%              50.33%              
+2.  InternalUtils.StringToWildcard(class System.String)                       15.68%              11.44%              
+3.  Regex.IsMatch(class System.String,class System.String,value class Syst    68.07%              10.54%              
+4.  Thread.<PollGC>g__PollGCWorker|70_0()                                     7.88%               7.88%               
+5.  Investigation!Program.Main(class System.String[])                         99.63%              4.85%               
+6.  RegexInterpreter.Scan(value class System.ReadOnlySpan`1<wchar>)           55.36%              1.73%               
+7.  PackedSpanHelpers.IndexOfAny(int16&,int16,int16,int32)                    1.7%                1.7%                
+8.  CultureInfo.get_CurrentCulture()                                          1.44%               1.44%               
+9.  RegexRunner.InitializeForScan(class System.Text.RegularExpressions.Reg    1.4%                1.4%                
+10. Match.AddMatch(int32,int32,int32)                                         1.14%               1.14%               
+11. SpanHelpers.Memmove(unsigned int8&,unsigned int8&,unsigned int)           1.13%               1.13%               
+12. RegexInterpreter.MatchString(class System.String,value class System.Re    1.12%               1.12%               
+13. SpanHelpers.SequenceEqual(unsigned int8&,unsigned int8&,unsigned int)     1.05%               1.05%               
+14. RegexFindOptimizations.TryFindNextStartingPositionLeftToRight(value cl    1.05%               1.05%               
+15. IndexOfAnyAsciiSearcher.IndexOfAnyCore(int16&,int32,value class AsciiS    0.58%               0.57%               
+16. String.Ctor(wchar[],int32,int32)                                          1.41%               0.56%               
+17. Thread.PollGC()                                                           0.56%               0.56%               
+18. RegexParser.ScanRegex()                                                   0.47%               0.47%               
+19. RegexRunner.InitializeTimeout(value class System.TimeSpan)                0.3%                0.3%                
+20. String.FastAllocateString(int)                                            0.28%               0.28%               
+21. EventSource.InitializeDefaultEventSources()                               0.34%               0.08%               
+22. Guid.TryFormatCore(value class System.Span`1<!!0>,int32&,value class S    0.03%               0.03%               
+23. Utf8Utility.TranscodeToUtf16(unsigned int8*,int32,wchar*,int32,unsigne    0.02%               0.02%               
+24. __Canon].Initialize(int32)                                                0.02%               0.02%               
+25. GenericsHelpers.MethodWithSlotAndModule(int,value class GenericHandleA    0.02%               0.02%               
+26. ManifestBuilder.CreateManifestString()                                    0.03%               0.02%               
+27. il!Interop.GetRandomBytes(unsigned int8*,int32)                           0.02%               0.02%               
+28. .cctor()                                                                  0.03%               0.02%               
+29. ModuleHandle.GetDynamicMethod(value class System.Runtime.CompilerServi    0.02%               0.02%               
+30. Guid.ToString(class System.String,class System.IFormatProvider)           0.04%               0.01%               

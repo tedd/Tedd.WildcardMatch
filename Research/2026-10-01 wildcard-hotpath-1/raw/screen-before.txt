@@ -1,0 +1,2 @@
+Differential assertions passed: 882432
+Screening samples: 1377

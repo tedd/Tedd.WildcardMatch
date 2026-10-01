@@ -1,0 +1,31 @@
+Top 30 Functions (Exclusive)                                                  Inclusive           Exclusive           
+1.  RegexInterpreter.TryMatchAtCurrentPosition(value class System.ReadOnly    40.96%              39.54%              
+2.  RegexParser.EscapeImpl(value class System.ReadOnlySpan`1<wchar>,int32)    18.35%              13.72%              
+3.  Investigation!Program.Main(class System.String[])                         99.22%              10.91%              
+4.  Regex.IsMatch(class System.String,class System.String,value class Syst    52.39%              6.92%               
+5.  String.Replace(class System.String,class System.String)                   14.32%              6.48%               
+6.  SpanHelpers.Memmove(unsigned int8&,unsigned int8&,unsigned int)           5.31%               5.31%               
+7.  SpanHelpers.IndexOf(wchar&,int32,wchar&,int32)                            5.43%               4.84%               
+8.  Thread.<PollGC>g__PollGCWorker|70_0()                                     1.79%               1.79%               
+9.  RegexInterpreter.Scan(value class System.ReadOnlySpan`1<wchar>)           42.77%              1.15%               
+10. SpanHelpers.SequenceEqual(unsigned int8&,unsigned int8&,unsigned int)     1.13%               1.13%               
+11. RegexRunner.InitializeForScan(class System.Text.RegularExpressions.Reg    1.01%               1.01%               
+12. CultureInfo.get_CurrentCulture()                                          1.02%               0.91%               
+13. PackedSpanHelpers.IndexOf(int16&,int16,int32)                             0.69%               0.69%               
+14. String.ReplaceHelper(int32,class System.String,value class System.Read    2.42%               0.69%               
+15. RegexFindOptimizations.TryFindNextStartingPositionLeftToRight(value cl    0.66%               0.66%               
+16. Match.AddMatch(int32,int32,int32)                                         0.49%               0.49%               
+17. RegexRunner.InitializeTimeout(value class System.TimeSpan)                0.36%               0.36%               
+18. SpanHelpers.NonPackedIndexOfValueType(!!0&,!!0,int32)                     0.36%               0.36%               
+19. IndexOfAnyAsciiSearcher.IndexOfAnyLookup(value class System.Runtime.In    0.33%               0.33%               
+20. Int16].FirstIndexOverlapped(!0&,!0&,!0&,value class System.Runtime.Int    0.31%               0.31%               
+21. IndexOfAnyAsciiSearcher.IndexOfAny(int16&,int32,value class AsciiState    1.12%               0.29%               
+22. IndexOfAnyAsciiSearcher.IndexOfAnyCore(int16&,int32,value class AsciiS    0.95%               0.29%               
+23. __Canon].Sort(value class System.Span`1<!0>,class System.Collections.G    0.25%               0.25%               
+24. RegexInterpreter.MatchString(class System.String,value class System.Re    0.2%                0.2%                
+25. String.Ctor(value class System.ReadOnlySpan`1<wchar>)                     0.56%               0.17%               
+26. ValueStringBuilder.Append(value class System.ReadOnlySpan`1<wchar>)       0.18%               0.16%               
+27. SearchValues.Create(value class System.ReadOnlySpan`1<wchar>)             0.16%               0.16%               
+28. .ctor()                                                                   0.15%               0.15%               
+29. StaticsHelpers.GetGCThreadStaticBase(value class System.Runtime.Compil    0.11%               0.11%               
+30. RuntimeType.GetMethodCandidates(class System.String,int32,value class     0.1%                0.1%                

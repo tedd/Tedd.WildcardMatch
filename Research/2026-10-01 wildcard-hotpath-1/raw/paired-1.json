@@ -1,0 +1,6126 @@
+{
+  "launch": 1,
+  "overheadNs": 1.2391090393066406,
+  "samples": [
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 524288,
+      "ns": 66.39766693115234,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 524288,
+      "ns": 85.81676483154297,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 524288,
+      "ns": 85.0851058959961,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 524288,
+      "ns": 65.73219299316406,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 524288,
+      "ns": 90.64083099365234,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 524288,
+      "ns": 92.15946197509766,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 524288,
+      "ns": 177.88772583007812,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 524288,
+      "ns": 244.63253021240234,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 524288,
+      "ns": 95.46146392822266,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 524288,
+      "ns": 111.56558990478516,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 524288,
+      "ns": 145.37601470947266,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 524288,
+      "ns": 82.34577178955078,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 524288,
+      "ns": 109.4350814819336,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 524288,
+      "ns": 81.0089111328125,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 524288,
+      "ns": 80.94673156738281,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 524288,
+      "ns": 109.4472885131836,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 524288,
+      "ns": 86.31973266601562,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 524288,
+      "ns": 114.12429809570312,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 524288,
+      "ns": 113.62781524658203,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 524288,
+      "ns": 80.28106689453125,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 524288,
+      "ns": 109.19208526611328,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 524288,
+      "ns": 83.89358520507812,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 524288,
+      "ns": 82.15293884277344,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 524288,
+      "ns": 111.79962158203125,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 524288,
+      "ns": 79.39491271972656,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 524288,
+      "ns": 109.36145782470703,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 524288,
+      "ns": 111.78836822509766,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 524288,
+      "ns": 84.64374542236328,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 524288,
+      "ns": 111.9375228881836,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 524288,
+      "ns": 83.27445983886719,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 524288,
+      "ns": 82.72514343261719,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 524288,
+      "ns": 109.2254638671875,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 524288,
+      "ns": 83.31546783447266,
+      "bytes": 0
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 524288,
+      "ns": 110.43376922607422,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 524288,
+      "ns": 109.332275390625,
+      "bytes": 32
+    },
+    {
+      "workload": "empty",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 524288,
+      "ns": 83.49285125732422,
+      "bytes": 0
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 262144,
+      "ns": 126.47323608398438,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 262144,
+      "ns": 137.91465759277344,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 262144,
+      "ns": 146.43707275390625,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 262144,
+      "ns": 128.38401794433594,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 262144,
+      "ns": 136.46926879882812,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 262144,
+      "ns": 126.11885070800781,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 262144,
+      "ns": 124.43771362304688,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 262144,
+      "ns": 129.7565460205078,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 262144,
+      "ns": 125.76141357421875,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 262144,
+      "ns": 140.32135009765625,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 262144,
+      "ns": 136.03782653808594,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 262144,
+      "ns": 117.96493530273438,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 262144,
+      "ns": 137.3638153076172,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 262144,
+      "ns": 119.12345886230469,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 262144,
+      "ns": 122.89505004882812,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 262144,
+      "ns": 127.50473022460938,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 262144,
+      "ns": 126.52473449707031,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 262144,
+      "ns": 142.1611785888672,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 262144,
+      "ns": 141.778564453125,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 262144,
+      "ns": 124.34768676757812,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 262144,
+      "ns": 123.28948974609375,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 262144,
+      "ns": 126.55906677246094,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 262144,
+      "ns": 119.09561157226562,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 262144,
+      "ns": 137.09945678710938,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 262144,
+      "ns": 131.4281463623047,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 262144,
+      "ns": 136.34414672851562,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 262144,
+      "ns": 130.71022033691406,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 262144,
+      "ns": 122.607421875,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 262144,
+      "ns": 135.7074737548828,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 262144,
+      "ns": 135.41336059570312,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 262144,
+      "ns": 120.53871154785156,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 262144,
+      "ns": 140.3759002685547,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 262144,
+      "ns": 123.01254272460938,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 262144,
+      "ns": 141.81289672851562,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 262144,
+      "ns": 143.56727600097656,
+      "bytes": 48
+    },
+    {
+      "workload": "literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 262144,
+      "ns": 129.42733764648438,
+      "bytes": 48
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 65536,
+      "ns": 418.1610107421875,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 65536,
+      "ns": 673.9227294921875,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 65536,
+      "ns": 667.584228515625,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 65536,
+      "ns": 458.7860107421875,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 65536,
+      "ns": 667.6406860351562,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 65536,
+      "ns": 438.87939453125,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 65536,
+      "ns": 505.1666259765625,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 65536,
+      "ns": 872.0794677734375,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 65536,
+      "ns": 446.01593017578125,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 65536,
+      "ns": 629.5166015625,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 65536,
+      "ns": 675.35400390625,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 65536,
+      "ns": 476.5167236328125,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 65536,
+      "ns": 636.639404296875,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 65536,
+      "ns": 448.2421875,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 65536,
+      "ns": 482.55615234375,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 65536,
+      "ns": 678.1585693359375,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 65536,
+      "ns": 460.21270751953125,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 65536,
+      "ns": 635.2035522460938,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 65536,
+      "ns": 653.9093017578125,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 65536,
+      "ns": 438.4033203125,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 65536,
+      "ns": 673.47412109375,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 65536,
+      "ns": 473.0010986328125,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 65536,
+      "ns": 444.5098876953125,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 65536,
+      "ns": 628.668212890625,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 65536,
+      "ns": 468.084716796875,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 65536,
+      "ns": 610.3073120117188,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 65536,
+      "ns": 676.2466430664062,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 65536,
+      "ns": 472.88665771484375,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 65536,
+      "ns": 638.9236450195312,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 65536,
+      "ns": 448.42681884765625,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 65536,
+      "ns": 464.27154541015625,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 65536,
+      "ns": 635.498046875,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 65536,
+      "ns": 427.65960693359375,
+      "bytes": 128
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 65536,
+      "ns": 647.1649169921875,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 65536,
+      "ns": 605.9539794921875,
+      "bytes": 224
+    },
+    {
+      "workload": "simple",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 65536,
+      "ns": 496.4263916015625,
+      "bytes": 128
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 65536,
+      "ns": 308.0596923828125,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 65536,
+      "ns": 410.5438232421875,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 65536,
+      "ns": 413.5467529296875,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 65536,
+      "ns": 336.480712890625,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 65536,
+      "ns": 396.5667724609375,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 65536,
+      "ns": 346.57135009765625,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 65536,
+      "ns": 338.35601806640625,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 65536,
+      "ns": 474.45068359375,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 65536,
+      "ns": 312.19329833984375,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 65536,
+      "ns": 437.58697509765625,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 65536,
+      "ns": 435.9619140625,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 65536,
+      "ns": 339.3157958984375,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 65536,
+      "ns": 429.73785400390625,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 65536,
+      "ns": 323.75640869140625,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 65536,
+      "ns": 357.0220947265625,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 65536,
+      "ns": 417.3095703125,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 65536,
+      "ns": 344.27337646484375,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 65536,
+      "ns": 403.94744873046875,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 65536,
+      "ns": 392.41485595703125,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 65536,
+      "ns": 323.492431640625,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 65536,
+      "ns": 429.72564697265625,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 65536,
+      "ns": 323.78997802734375,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 65536,
+      "ns": 338.427734375,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 65536,
+      "ns": 440.94696044921875,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 65536,
+      "ns": 390.54107666015625,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 65536,
+      "ns": 436.5264892578125,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 65536,
+      "ns": 506.4422607421875,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 65536,
+      "ns": 389.46380615234375,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 65536,
+      "ns": 428.06854248046875,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 65536,
+      "ns": 327.58026123046875,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 65536,
+      "ns": 330.61981201171875,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 65536,
+      "ns": 442.77191162109375,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 65536,
+      "ns": 340.2435302734375,
+      "bytes": 152
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 65536,
+      "ns": 428.6712646484375,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 65536,
+      "ns": 411.93084716796875,
+      "bytes": 232
+    },
+    {
+      "workload": "miss",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 65536,
+      "ns": 323.3062744140625,
+      "bytes": 152
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 512,
+      "ns": 57171.6796875,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 512,
+      "ns": 59238.4765625,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 512,
+      "ns": 62867.3828125,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 512,
+      "ns": 63910.15625,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 512,
+      "ns": 63191.9921875,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 512,
+      "ns": 58864.0625,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 512,
+      "ns": 56555.078125,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 512,
+      "ns": 66062.890625,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 512,
+      "ns": 60301.171875,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 512,
+      "ns": 61989.2578125,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 512,
+      "ns": 63817.578125,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 512,
+      "ns": 64315.8203125,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 512,
+      "ns": 60980.6640625,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 512,
+      "ns": 62391.796875,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 512,
+      "ns": 62757.03125,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 512,
+      "ns": 57092.3828125,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 512,
+      "ns": 59379.6875,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 512,
+      "ns": 62564.6484375,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 512,
+      "ns": 62773.6328125,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 512,
+      "ns": 61793.5546875,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 512,
+      "ns": 62784.375,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 512,
+      "ns": 61416.2109375,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 512,
+      "ns": 63222.4609375,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 512,
+      "ns": 62583.203125,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 512,
+      "ns": 64496.484375,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 512,
+      "ns": 65087.6953125,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 512,
+      "ns": 60360.15625,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 512,
+      "ns": 65217.3828125,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 512,
+      "ns": 62211.71875,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 512,
+      "ns": 62600.9765625,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 512,
+      "ns": 61721.6796875,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 512,
+      "ns": 62205.078125,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 512,
+      "ns": 62107.03125,
+      "bytes": 400
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 512,
+      "ns": 63933.0078125,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 512,
+      "ns": 63048.4375,
+      "bytes": 528
+    },
+    {
+      "workload": "complex",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 512,
+      "ns": 62660.3515625,
+      "bytes": 400
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 65536,
+      "ns": 336.5631103515625,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 65536,
+      "ns": 538.57421875,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 65536,
+      "ns": 538.0538940429688,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 65536,
+      "ns": 338.46435546875,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 65536,
+      "ns": 567.83447265625,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 65536,
+      "ns": 333.96453857421875,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 65536,
+      "ns": 353.12652587890625,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 65536,
+      "ns": 559.0316772460938,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 65536,
+      "ns": 343.91937255859375,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 65536,
+      "ns": 554.7836303710938,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 65536,
+      "ns": 552.7923583984375,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 65536,
+      "ns": 329.48455810546875,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 65536,
+      "ns": 566.0568237304688,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 65536,
+      "ns": 367.5018310546875,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 65536,
+      "ns": 341.0400390625,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 65536,
+      "ns": 542.6239013671875,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 65536,
+      "ns": 340.10467529296875,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 65536,
+      "ns": 550.6729125976562,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 65536,
+      "ns": 553.7857055664062,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 65536,
+      "ns": 333.83636474609375,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 65536,
+      "ns": 570.7748413085938,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 65536,
+      "ns": 333.0108642578125,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 65536,
+      "ns": 335.65521240234375,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 65536,
+      "ns": 565.9744262695312,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 65536,
+      "ns": 344.48394775390625,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 65536,
+      "ns": 562.091064453125,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 65536,
+      "ns": 540.5288696289062,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 65536,
+      "ns": 348.10791015625,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 65536,
+      "ns": 576.7486572265625,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 65536,
+      "ns": 343.4814453125,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 65536,
+      "ns": 330.7830810546875,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 65536,
+      "ns": 539.3478393554688,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 65536,
+      "ns": 338.8092041015625,
+      "bytes": 296
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 65536,
+      "ns": 564.6392822265625,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 65536,
+      "ns": 560.699462890625,
+      "bytes": 504
+    },
+    {
+      "workload": "escaped",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 65536,
+      "ns": 345.3155517578125,
+      "bytes": 296
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 1349.578857421875,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 1443.9208984375,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 1544.451904296875,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 1367.022705078125,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 1474.920654296875,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 1463.39111328125,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 1532.452392578125,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 1712.5,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 1560.577392578125,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 1606.54296875,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 1622.430419921875,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 1791.705322265625,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 1774.86572265625,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 1514.483642578125,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 1482.232666015625,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 1672.9248046875,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 1527.008056640625,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 1609.307861328125,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 1774.18212890625,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 1287.07275390625,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 1488.18359375,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 1465.24658203125,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 1455.255126953125,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 1549.23095703125,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 1334.72900390625,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 1429.60205078125,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 1565.179443359375,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 1439.984130859375,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 1570.758056640625,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 1464.874267578125,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 1431.463623046875,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 1557.40966796875,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 1535.8154296875,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 1477.001953125,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 1539.07470703125,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-literal",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 1390.435791015625,
+      "bytes": 2080
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 2252.435302734375,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 2280.7861328125,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 2176.7822265625,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 2132.635498046875,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 2082.2509765625,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 2205.810546875,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 2208.67919921875,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 2212.066650390625,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 2676.66015625,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 2044.49462890625,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 2966.680908203125,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 2544.22607421875,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 1982.415771484375,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 1959.2041015625,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 1989.88037109375,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 2048.272705078125,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 1982.720947265625,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 2066.845703125,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 2090.081787109375,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 2085.46142578125,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 1937.738037109375,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 1936.9384765625,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 1845.0439453125,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 1953.631591796875,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 2007.843017578125,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 2030.059814453125,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 2028.668212890625,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 1983.056640625,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 1910.992431640625,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 2051.171875,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 1952.423095703125,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 1944.20166015625,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 1965.911865234375,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 2038.46435546875,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 1999.4140625,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 1993.212890625,
+      "bytes": 6232
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 2048,
+      "ns": 21162.255859375,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 2048,
+      "ns": 20887.451171875,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 2048,
+      "ns": 20643.017578125,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 2048,
+      "ns": 20581.8359375,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 2048,
+      "ns": 21203.173828125,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 2048,
+      "ns": 19638.818359375,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 2048,
+      "ns": 18682.2265625,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 2048,
+      "ns": 19105.517578125,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 2048,
+      "ns": 20494.970703125,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 2048,
+      "ns": 20494.82421875,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 2048,
+      "ns": 20719.3359375,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 2048,
+      "ns": 20836.181640625,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 2048,
+      "ns": 20819.677734375,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 2048,
+      "ns": 19412.40234375,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 2048,
+      "ns": 19802.5390625,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 2048,
+      "ns": 20738.916015625,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 2048,
+      "ns": 20825.68359375,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 2048,
+      "ns": 21352.197265625,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 2048,
+      "ns": 21220.21484375,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 2048,
+      "ns": 20784.47265625,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 2048,
+      "ns": 19642.822265625,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 2048,
+      "ns": 20390.52734375,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 2048,
+      "ns": 20892.96875,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 2048,
+      "ns": 19602.099609375,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 2048,
+      "ns": 20095.5078125,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 2048,
+      "ns": 20865.283203125,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 2048,
+      "ns": 20175.78125,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 2048,
+      "ns": 20871.38671875,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 2048,
+      "ns": 20568.5546875,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 2048,
+      "ns": 22009.765625,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 2048,
+      "ns": 20868.115234375,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 2048,
+      "ns": 21139.74609375,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 2048,
+      "ns": 22330.6640625,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 2048,
+      "ns": 22465.771484375,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 2048,
+      "ns": 21423.73046875,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 2048,
+      "ns": 20513.134765625,
+      "bytes": 6240
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 1024,
+      "ns": 21403.125,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 1024,
+      "ns": 19689.74609375,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 1024,
+      "ns": 23394.43359375,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 1024,
+      "ns": 21115.0390625,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 1024,
+      "ns": 20398.828125,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 1024,
+      "ns": 23578.22265625,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 1024,
+      "ns": 19707.6171875,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 1024,
+      "ns": 20617.48046875,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 1024,
+      "ns": 20086.81640625,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 1024,
+      "ns": 19666.6015625,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 1024,
+      "ns": 20177.9296875,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 1024,
+      "ns": 18747.8515625,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 1024,
+      "ns": 18074.31640625,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 1024,
+      "ns": 19032.91015625,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 1024,
+      "ns": 20718.06640625,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 1024,
+      "ns": 18769.23828125,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 1024,
+      "ns": 19224.12109375,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 1024,
+      "ns": 20775.48828125,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 1024,
+      "ns": 19259.375,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 1024,
+      "ns": 22521.58203125,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 1024,
+      "ns": 22233.7890625,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 1024,
+      "ns": 22919.62890625,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 1024,
+      "ns": 20009.5703125,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 1024,
+      "ns": 18601.85546875,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 1024,
+      "ns": 19050.68359375,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 1024,
+      "ns": 18119.62890625,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 1024,
+      "ns": 19371.77734375,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 1024,
+      "ns": 19404.98046875,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 1024,
+      "ns": 20767.1875,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 1024,
+      "ns": 17651.5625,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 1024,
+      "ns": 20735.44921875,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 1024,
+      "ns": 20169.7265625,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 1024,
+      "ns": 19497.94921875,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 1024,
+      "ns": 17273.4375,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 1024,
+      "ns": 18366.6015625,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-pair",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 1024,
+      "ns": 22449.609375,
+      "bytes": 8320
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 1024,
+      "ns": 20776.46484375,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 1024,
+      "ns": 19814.84375,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 1024,
+      "ns": 21158.0078125,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 1024,
+      "ns": 21845.80078125,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 1024,
+      "ns": 20142.08984375,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 1024,
+      "ns": 21070.8984375,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 1024,
+      "ns": 20102.5390625,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 1024,
+      "ns": 19913.37890625,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 1024,
+      "ns": 21410.3515625,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 1024,
+      "ns": 21260.64453125,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 1024,
+      "ns": 22168.26171875,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 1024,
+      "ns": 23424.4140625,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 1024,
+      "ns": 21027.24609375,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 1024,
+      "ns": 22734.765625,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 1024,
+      "ns": 24191.69921875,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 1024,
+      "ns": 22518.26171875,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 1024,
+      "ns": 22482.03125,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 1024,
+      "ns": 19546.19140625,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 1024,
+      "ns": 21552.05078125,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 1024,
+      "ns": 20549.12109375,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 1024,
+      "ns": 18490.8203125,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 1024,
+      "ns": 23169.921875,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 1024,
+      "ns": 21297.75390625,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 1024,
+      "ns": 24947.55859375,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 1024,
+      "ns": 22600.68359375,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 1024,
+      "ns": 24221.6796875,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 1024,
+      "ns": 27078.3203125,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 1024,
+      "ns": 26898.14453125,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 1024,
+      "ns": 21060.83984375,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 1024,
+      "ns": 21632.421875,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 1024,
+      "ns": 22997.0703125,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 1024,
+      "ns": 23001.171875,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 1024,
+      "ns": 22590.625,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 1024,
+      "ns": 23102.05078125,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 1024,
+      "ns": 19073.14453125,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-cluster",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 1024,
+      "ns": 20711.1328125,
+      "bytes": 8352
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 1868.365478515625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 2056.21337890625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 1797.650146484375,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 1762.5244140625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 1717.3828125,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 1857.32421875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 1990.05126953125,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 1878.52783203125,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 1735.107421875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 1792.822265625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 2161.77978515625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 2066.0888671875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 1918.4814453125,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 1719.061279296875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 1829.7119140625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 1848.66943359375,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 1900.238037109375,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 1605.18798828125,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 1738.43994140625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 1761.70654296875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 1948.92578125,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 2132.183837890625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 2075.8544921875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 2059.06982421875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 2129.13818359375,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 2158.056640625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 2266.522216796875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 2171.282958984375,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 1959.55810546875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 2094.8974609375,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 1881.93359375,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 1670.513916015625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 2155.94482421875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 2332.354736328125,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 2131.927490234375,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-prefix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 1986.846923828125,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 2102.142333984375,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 2104.9560546875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 2130.780029296875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 2302.34375,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 2211.871337890625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 2290.63720703125,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 2362.0361328125,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 2074.7314453125,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 2235.02197265625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 2137.994384765625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 2142.68798828125,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 2071.710205078125,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 1999.3408203125,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 2129.779052734375,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 2332.2998046875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 2181.43310546875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 2400.494384765625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 2206.79931640625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 2193.51806640625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 2291.796875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 2097.03369140625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 2376.373291015625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 2371.795654296875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 2170.159912109375,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 2104.937744140625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 2038.427734375,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 2173.91357421875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 2019.415283203125,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 2213.037109375,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 2208.8134765625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 2303.167724609375,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 2182.87353515625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 2141.46728515625,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 2159.100341796875,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 2180.841064453125,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-five-suffix",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 2310.5224609375,
+      "bytes": 6264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 1433.69140625,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 4422.698974609375,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 4327.520751953125,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 16384,
+      "ns": 1333.14208984375,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 4445.42236328125,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 1678.912353515625,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 1474.609375,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 16384,
+      "ns": 4178.167724609375,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 1440.411376953125,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 4150.30517578125,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 4299.969482421875,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 16384,
+      "ns": 1559.979248046875,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 4279.296875,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 1371.563720703125,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 1415.057373046875,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 16384,
+      "ns": 4112.20703125,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 1524.542236328125,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 4324.456787109375,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 4255.401611328125,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 16384,
+      "ns": 1470.42236328125,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 4331.4453125,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 1538.0859375,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 1455.57861328125,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 16384,
+      "ns": 4376.055908203125,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 1600.921630859375,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 4382.476806640625,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 4423.736572265625,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 16384,
+      "ns": 1692.78564453125,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 4337.78076171875,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 1528.45458984375,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 1359.027099609375,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 16384,
+      "ns": 4250.439453125,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 1503.6376953125,
+      "bytes": 3264
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 4305.8837890625,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 4400.140380859375,
+      "bytes": 5352
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 16384,
+      "ns": 1666.107177734375,
+      "bytes": 3264
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 131072,
+      "ns": 295.8793640136719,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 131072,
+      "ns": 392.352294921875,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 131072,
+      "ns": 381.6108703613281,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 131072,
+      "ns": 294.54498291015625,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 131072,
+      "ns": 430.4328918457031,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 131072,
+      "ns": 288.9244079589844,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 131072,
+      "ns": 290.7356262207031,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 131072,
+      "ns": 427.2003173828125,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 131072,
+      "ns": 287.8181457519531,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 131072,
+      "ns": 417.27142333984375,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 131072,
+      "ns": 413.31329345703125,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 131072,
+      "ns": 254.27017211914062,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 131072,
+      "ns": 379.6760559082031,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 131072,
+      "ns": 268.7995910644531,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 131072,
+      "ns": 262.8471374511719,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 131072,
+      "ns": 379.7691345214844,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 131072,
+      "ns": 273.2330322265625,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 131072,
+      "ns": 395.22857666015625,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 131072,
+      "ns": 386.44256591796875,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 131072,
+      "ns": 271.1250305175781,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 131072,
+      "ns": 386.309814453125,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 131072,
+      "ns": 256.2385559082031,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 131072,
+      "ns": 253.95584106445312,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 131072,
+      "ns": 385.333251953125,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 131072,
+      "ns": 284.1941833496094,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 131072,
+      "ns": 408.77685546875,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 131072,
+      "ns": 387.9325866699219,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 131072,
+      "ns": 277.94036865234375,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 131072,
+      "ns": 380.9539794921875,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 131072,
+      "ns": 273.6885070800781,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 131072,
+      "ns": 278.0845642089844,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 131072,
+      "ns": 379.0794372558594,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 131072,
+      "ns": 273.7495422363281,
+      "bytes": 104
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 131072,
+      "ns": 415.2687072753906,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 131072,
+      "ns": 399.55291748046875,
+      "bytes": 168
+    },
+    {
+      "workload": "unicode",
+      "kind": "static",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 131072,
+      "ns": 283.6723327636719,
+      "bytes": 104
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 4096,
+      "ns": 2510.9375,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 4096,
+      "ns": 3023.876953125,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 4096,
+      "ns": 2582.861328125,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 4096,
+      "ns": 6153.5888671875,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 4096,
+      "ns": 2919.6533203125,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 4096,
+      "ns": 2002.294921875,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 4096,
+      "ns": 2073.4619140625,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 4096,
+      "ns": 2277.3193359375,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 4096,
+      "ns": 2214.697265625,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 4096,
+      "ns": 2283.837890625,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 4096,
+      "ns": 2419.4091796875,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 4096,
+      "ns": 2235.7666015625,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 4096,
+      "ns": 2667.96875,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 4096,
+      "ns": 2093.8720703125,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 4096,
+      "ns": 2204.00390625,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 4096,
+      "ns": 2222.265625,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 4096,
+      "ns": 2155.1025390625,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 4096,
+      "ns": 2362.4755859375,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 4096,
+      "ns": 2316.0400390625,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 4096,
+      "ns": 2337.98828125,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 4096,
+      "ns": 2419.873046875,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 4096,
+      "ns": 2117.529296875,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 4096,
+      "ns": 1886.7919921875,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 4096,
+      "ns": 2459.8876953125,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 4096,
+      "ns": 2084.8876953125,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 4096,
+      "ns": 2042.67578125,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 4096,
+      "ns": 2371.97265625,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 4096,
+      "ns": 2210.0830078125,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 4096,
+      "ns": 2495.7275390625,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 4096,
+      "ns": 2340.6494140625,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 4096,
+      "ns": 2233.837890625,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 4096,
+      "ns": 2700.146484375,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 4096,
+      "ns": 2934.814453125,
+      "bytes": 3312
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 4096,
+      "ns": 2477.3681640625,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 4096,
+      "ns": 2441.8701171875,
+      "bytes": 3408
+    },
+    {
+      "workload": "simple",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 4096,
+      "ns": 2090.3564453125,
+      "bytes": 3312
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 1024,
+      "ns": 26853.3203125,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 1024,
+      "ns": 31286.328125,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 0,
+      "count": 1024,
+      "ns": 27907.91015625,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 0,
+      "count": 1024,
+      "ns": 26060.05859375,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 1024,
+      "ns": 31197.16796875,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 1024,
+      "ns": 26945.01953125,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 1,
+      "count": 1024,
+      "ns": 27573.73046875,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 1,
+      "count": 1024,
+      "ns": 36119.04296875,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 1024,
+      "ns": 32386.71875,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 1024,
+      "ns": 30231.640625,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 2,
+      "count": 1024,
+      "ns": 32676.953125,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 2,
+      "count": 1024,
+      "ns": 26461.42578125,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 1024,
+      "ns": 31588.671875,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 1024,
+      "ns": 27599.12109375,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 3,
+      "count": 1024,
+      "ns": 28232.51953125,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 3,
+      "count": 1024,
+      "ns": 31183.984375,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 1024,
+      "ns": 28640.91796875,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 1024,
+      "ns": 34939.6484375,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 4,
+      "count": 1024,
+      "ns": 32438.57421875,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 4,
+      "count": 1024,
+      "ns": 27548.4375,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 1024,
+      "ns": 30519.3359375,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 1024,
+      "ns": 26985.05859375,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 5,
+      "count": 1024,
+      "ns": 27214.94140625,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 5,
+      "count": 1024,
+      "ns": 31364.84375,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 1024,
+      "ns": 30080.56640625,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 1024,
+      "ns": 31240.0390625,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 6,
+      "count": 1024,
+      "ns": 32270.99609375,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 6,
+      "count": 1024,
+      "ns": 29102.44140625,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 1024,
+      "ns": 31032.91015625,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 1024,
+      "ns": 28544.3359375,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 7,
+      "count": 1024,
+      "ns": 28981.4453125,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 7,
+      "count": 1024,
+      "ns": 30285.64453125,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 1024,
+      "ns": 28115.91796875,
+      "bytes": 40272
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 1024,
+      "ns": 31997.65625,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "Before",
+      "launch": 1,
+      "block": 8,
+      "count": 1024,
+      "ns": 34761.71875,
+      "bytes": 42360
+    },
+    {
+      "workload": "long-mixed",
+      "kind": "construction",
+      "variant": "After",
+      "launch": 1,
+      "block": 8,
+      "count": 1024,
+      "ns": 30316.796875,
+      "bytes": 40272
+    }
+  ]
+}

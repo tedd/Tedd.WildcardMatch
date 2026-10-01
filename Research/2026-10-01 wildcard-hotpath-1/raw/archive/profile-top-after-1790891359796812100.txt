@@ -1,0 +1,31 @@
+Top 30 Functions (Exclusive)                                                  Inclusive           Exclusive           
+1.  RegexInterpreter.TryMatchAtCurrentPosition(value class System.ReadOnly    97.77%              96.92%              
+2.  PackedSpanHelpers.IndexOf(int16&,int16,int32)                             0.56%               0.56%               
+3.  String.Concat(class System.String[])                                      0.5%                0.5%                
+4.  Investigation!Program.Main(class System.String[])                         99.63%              0.44%               
+5.  SpanHelpers.SequenceEqual(unsigned int8&,unsigned int8&,unsigned int)     0.28%               0.28%               
+6.  Match.AddMatch(int32,int32,int32)                                         0.28%               0.28%               
+7.  InternalUtils.StringToWildcard(class System.String)                       0.56%               0.28%               
+8.  SpanHelpers.Memmove(unsigned int8&,unsigned int8&,unsigned int)           0.28%               0.28%               
+9.  EventSource.DefineEventPipeEvents()                                       0.07%               0.07%               
+10. Guid.ToString(class System.String,class System.IFormatProvider)           0.04%               0.03%               
+11. String.Ctor(wchar,int32)                                                  0.02%               0.02%               
+12. Console.get_OutputEncoding()                                              0.02%               0.02%               
+13. InvokerEmitUtil.CreateInvokeDelegate_ObjSpanArgs(class System.Reflecti    0.02%               0.02%               
+14. __Canon].PopulateNestedClasses(value class Filter)                        0.02%               0.02%               
+15. SearchValues.Create(value class System.ReadOnlySpan`1<wchar>)             0.02%               0.02%               
+16. RuntimeAssembly.GetTypeCore(value class System.Runtime.CompilerService    0.01%               0.01%               
+17. CustomAttribute.AddCustomAttributes(value class ListBuilder`1<class Sy    0.1%                0.01%               
+18. __Canon].PopulateMethods(value class Filter)                              0.01%               0.01%               
+19. Utf8Utility.TranscodeToUtf16(unsigned int8*,int32,wchar*,int32,unsigne    0.01%               0.01%               
+20. il!Interop+Advapi32.RegOpenKeyEx(class Internal.Win32.SafeHandles.Safe    0.01%               0.01%               
+21. GlobalizationMode.LoadIcu()                                               0.01%               0.01%               
+22. IndexOfAnyAsciiSearcher.IndexOfAnyCore(int16&,int32,value class AsciiS    0.01%               0.01%               
+23. TypeNameParserHelpers.GetFullTypeNameLength(value class System.ReadOnl    0.04%               0.01%               
+24. EventSource.CreateManifestAndDescriptors(class System.Type,class Syste    0.2%                0.01%               
+25. RuntimeMethodInfo.InvokePropertySetter(class System.Object,value class    0.03%               0.01%               
+26. RuntimeType.SplitName(class System.String,class System.String&,class S    0.01%               0.01%               
+27. __Canon].Initialize(int32)                                                0.01%               0.01%               
+28. ManifestBuilder.CreateManifestString()                                    0.03%               0.01%               
+29. CultureData.GetLocaleInfoEx(class System.String,unsigned int32)           0.01%               0.01%               
+30. Guid.TryFormatCore(value class System.Span`1<!!0>,int32&,value class S    0.01%               0.01%               

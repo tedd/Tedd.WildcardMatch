@@ -1,0 +1,2 @@
+Differential assertions passed: 1164576
+Inlining samples: 270; wrappers both call Regex.IsMatch with explicit RegexOptions.None
