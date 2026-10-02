@@ -10,8 +10,8 @@
   <meta property="og:type" content="website">
   <title>Tedd.WildcardMatch — wildcard matching for .NET</title>
   <link rel="icon" href="assets/wildcard-icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=2.2.0">
-  <script src="app.js?v=2.2.0" defer></script>
+  <link rel="stylesheet" href="styles.css?v=2.2.0-2">
+  <script src="app.js?v=2.2.0-2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -26,7 +26,7 @@
         <p class="eyebrow"><span></span> Pattern matching for .NET</p>
         <h1>Highly optimized.<br><em>Fast wildcard matching.</em></h1>
         <p class="lede">Match strings and character spans with <code>*</code> and <code>?</code>. Choose direct <code>WildcardMatch</code> execution or the <code>WildcardMatchRegex</code> string engine, with reusable matchers, case options, and explicit timeouts.</p>
-        <p class="hero-evidence"><strong>4.24× DotNet.Glob throughput</strong> for the reusable direct matcher in our question-mark benchmark. <a href="#benchmarks">Compare the measured workloads</a>.</p>
+        <p class="hero-evidence"><strong>4.24× the throughput of the next-fastest tested library</strong> for the reusable direct matcher in our question-mark benchmark. <a href="#benchmarks">Compare the measured workloads</a>.</p>
         <div class="hero-badges">
           <a href="https://www.nuget.org/packages/Tedd.WildcardMatch"><img src="https://img.shields.io/nuget/v/Tedd.WildcardMatch?logo=nuget&amp;label=NuGet" alt="NuGet package version" height="20"></a>
           <a href="https://github.com/tedd/Tedd.WildcardMatch/actions/workflows/nuget-publish.yml"><img src="https://github.com/tedd/Tedd.WildcardMatch/actions/workflows/nuget-publish.yml/badge.svg?branch=main" alt="Build and test status" height="20"></a>
@@ -64,7 +64,7 @@
         <article><span class="step">02 / Character</span><h3><code>?</code> → exactly one</h3><p><code>report-??.txt</code> requires two UTF-16 code units in that position. It matches <code>report-01.txt</code>.</p></article>
         <article><span class="step">03 / Literal</span><h3>Punctuation stays literal</h3><p><code>file[1].txt</code> matches that literal filename. This is string matching: slashes have no special path semantics.</p></article>
       </div>
-      <p class="algorithm-note">Patterns translate to <code>^…$</code>. .NET permits <code>$</code> before a final newline. Wildcards exclude <code>\n</code> unless <code>Singleline</code> is set. <a href="#behavior">See matching behavior</a>.</p>
+      <p class="algorithm-note">Patterns translate to <code>^…$</code>. .NET permits <code>$</code> before a final newline. Wildcards exclude <code>\n</code> unless <code>Singleline</code> is set.</p>
     </section>
     <section class="section-shell model-section" id="model">
       <div class="section-intro"><div><p class="eyebrow">Choose an API</p><h2>The right lifetime<br>for your pattern.</h2></div><p>Use the same wildcard syntax through extension methods, static calls, or an instance. Direct calls avoid Regex translation; instances retain pattern classification and case behavior.</p></div>
@@ -104,8 +104,7 @@ bool second = matcher.IsMatch("report-summary.txt");
 
 // Generated regex: ^report-.*\.txt$
 Console.WriteLine(matcher.WildcardRegex);</code></pre></div>
-      </div>
-      <div class="code-window"><div class="window-bar"><span></span><span></span><span></span><b>Borrow string, array, or stack-buffer slices</b><button type="button" data-copy-target="example-spans">Copy</button></div><pre><code id="example-spans">using System;
+        <div class="code-window span-example"><div class="window-bar"><span></span><span></span><span></span><b>Borrow string, array, or stack-buffer slices</b><button type="button" data-copy-target="example-spans">Copy</button></div><pre><code id="example-spans">using System;
 using Tedd;
 
 ReadOnlySpan&lt;char&gt; input = "[report-01.txt]".AsSpan(1, 13);
@@ -115,6 +114,7 @@ bool first = WildcardMatch.IsMatch(input, pattern);
 bool second = input.IsWildcardMatch(pattern);
 var matcher = new WildcardMatch(pattern); // Copies the pattern once.
 bool third = matcher.IsMatch(input);</code></pre></div>
+      </div>
       <p class="model-note">Static span calls borrow both slices. Reusable matchers borrow each input and own a copy of a span pattern. Ordinary matching avoids creating strings. <code>Span&lt;char&gt;</code> also supports the extension method; <code>ReadOnlyMemory&lt;char&gt;</code> callers use <code>.Span</code>. Keep buffers stable during each call. Default spans represent empty text. Timeout diagnostics materialize their text; .NET 11 vertical-tab normalization with numeric <code>IgnorePatternWhitespace</code> options uses stack or pooled scratch storage.</p>
       <div class="source-note"><div><strong>Bound execution for untrusted patterns.</strong><p>The default timeout is infinite. Instance constructors accept a <code>TimeSpan</code>; a timeout raises <code>RegexMatchTimeoutException</code>.</p></div><a href="https://github.com/tedd/Tedd.WildcardMatch/tree/main/src/Tedd.WildcardMatch">API source ↗</a></div>
     </section>
@@ -137,7 +137,7 @@ bool third = matcher.IsMatch(input);</code></pre></div>
 <div class="bar-row comparison-ours"><span>Tedd Regex &#183; reused</span><div class="bar-track"><i class="bar ours" style="width:6.41%"></i></div><b>12.05</b></div>
 <div class="bar-row"><span>FastWildcard</span><div class="bar-track"><i class="bar other" style="width:6.32%"></i></div><b>11.88</b></div>
 <div class="bar-row comparison-ours"><span>Tedd Regex &#183; static</span><div class="bar-track"><i class="bar ours" style="width:2.89%"></i></div><b>5.44</b></div>
-</div></figure><p class="chart-summary">Reusable direct matcher: <strong data-direct-speedup>4.24×</strong> DotNet.Glob throughput on this workload.</p></div>
+</div></figure><p class="chart-summary">Reusable direct matcher: <strong data-direct-speedup>4.24×</strong> the throughput of the next-fastest tested library on this workload.</p></div>
 <div class="benchmark-chart" data-comparison-chart="long"><div class="benchmark-controls"><label for="comparison-fixture-long">Long strings</label><select id="comparison-fixture-long" data-fixture-select>
 <option value="LongText" selected>Long text</option>
 </select><span>Every input exceeds 1,000 UTF-16 code units</span></div><figure class="bar-chart package-chart"><figcaption><span>Long strings · matching throughput</span><strong data-chart-workload>Long text</strong><small>Pattern: <code data-chart-pattern>*alpha*beta??*omega*</code> · millions of matches/s</small></figcaption><div data-chart-rows aria-live="polite">
@@ -149,22 +149,13 @@ bool third = matcher.IsMatch(input);</code></pre></div>
 <div class="bar-row"><span>WildcardMatch</span><div class="bar-track"><i class="bar other" style="width:1.56%"></i></div><b>0.07</b></div>
 <div class="bar-row comparison-ours"><span>Tedd Regex &#183; reused</span><div class="bar-track"><i class="bar ours" style="width:0.91%"></i></div><b>0.04</b></div>
 <div class="bar-row comparison-ours"><span>Tedd Regex &#183; static</span><div class="bar-track"><i class="bar ours" style="width:0.89%"></i></div><b>0.04</b></div>
-</div></figure><p class="chart-summary">Reusable direct matcher: <strong data-direct-speedup>32.08×</strong> DotNet.Glob throughput on this workload.</p></div>
+</div></figure><p class="chart-summary">Reusable direct matcher: <strong data-direct-speedup>1.17×</strong> the throughput of the next-fastest tested library on this workload.</p></div>
 </div>
 <!-- BENCHMARK_CONTENT_END -->
       <!-- BENCHMARK_METHOD_START -->
 <p class="benchmark-method" id="benchmark-method">Measured 2026-10-02 &#183; AMD Ryzen 9 5950X &#183; .NET 10 &#183; three processes with optimized JIT. Reusable patterns are prepared before timing. Results depend on workload and API lifetime; full timings, intervals, allocations and configuration are linked below. Library source: <a href="https://github.com/tedd/Tedd.WildcardMatch/commit/5043403f7c154b63a417a09161be98862ee82510">5043403</a>.</p>
 <!-- BENCHMARK_METHOD_END -->
       <div class="evidence-links"><a href="assets/package-comparison.json">Complete measurements (JSON)</a><a href="assets/matching-report.md">Matching report</a><a href="assets/construction-report.md">Construction report</a><a href="assets/validation.json">Correctness results</a><a href="https://github.com/tedd/Tedd.WildcardMatch/tree/main/src/Tedd.WildcardMatch.Benchmark">Benchmark source ↗</a></div>
-    </section>
-    <section class="section-shell boundaries-section" id="behavior">
-      <div><p class="eyebrow">Matching behavior</p><h2>Regex semantics.<br>Explicit choices.</h2></div>
-      <div class="boundary-list">
-        <p><strong>Anchors.</strong> <code>^</code> and <code>$</code> constrain the match. A final <code>\n</code> may remain after the match because of .NET's end-anchor semantics.</p>
-        <p><strong>Line handling.</strong> <code>*</code> and <code>?</code> exclude line feeds by default. <code>Singleline</code> lets them consume line feeds too.</p>
-        <p><strong>Case and culture.</strong> Matching is case-sensitive by default. Combine <code>IgnoreCase</code> with <code>CultureInvariant</code> for culture-independent regex casing.</p>
-        <p><strong>Pattern lifetime.</strong> Direct instances retain pattern classification and case behavior. WildcardMatchRegex supports compiled execution with an additional construction cost.</p>
-      </div>
     </section>
   </main>
   <footer><p>Tedd.WildcardMatch · Tedd Hansen · LGPL-2.1</p><div><a href="https://www.nuget.org/packages/Tedd.WildcardMatch">NuGet ↗</a><a href="https://github.com/tedd/Tedd.WildcardMatch">GitHub ↗</a><a href="https://github.com/tedd/Tedd.WildcardMatch/blob/main/LICENSE">License ↗</a><a href="https://tedd.github.io/Tedd.RTree/">Tedd.RTree ↗</a></div></footer>

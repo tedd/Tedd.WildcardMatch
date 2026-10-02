@@ -122,8 +122,8 @@ foreach ($group in $inputGroups) {
         $null = $builder.AppendLine(('<div class="{0}"><span>{1}</span><div class="bar-track"><i class="bar {2}" style="width:{3}%"></i></div><b>{4}</b></div>' -f $rowClass, (Html $libraries[$row.library].label), $barClass, $width, (Number $rate)))
     }
     $direct = $matching | Where-Object { $_.workload -eq $group.initial -and $_.library -eq 'TeddDirectReused' }
-    $glob = $matching | Where-Object { $_.workload -eq $group.initial -and $_.library -eq 'DotNetGlob' }
-    $null = $builder.AppendLine(('</div></figure><p class="chart-summary">Reusable direct matcher: <strong data-direct-speedup>{0}×</strong> DotNet.Glob throughput on this workload.</p></div>' -f (Number ($glob.meanNs / $direct.meanNs) 'F2')))
+    $competitor = $rows | Where-Object { -not $_.library.StartsWith('Tedd') } | Select-Object -First 1
+    $null = $builder.AppendLine(('</div></figure><p class="chart-summary">Reusable direct matcher: <strong data-direct-speedup>{0}×</strong> the throughput of the next-fastest tested library on this workload.</p></div>' -f (Number ($competitor.meanNs / $direct.meanNs) 'F2')))
 }
 $null = $builder.AppendLine('</div>')
 $hostInfo = $data.environment
@@ -140,8 +140,8 @@ $methodContent = "<!-- BENCHMARK_METHOD_START -->`n$method`n<!-- BENCHMARK_METHO
 $index = [regex]::Replace($index, $contentPattern, [Text.RegularExpressions.MatchEvaluator]{ param($match) $content })
 $index = [regex]::Replace($index, $methodPattern, [Text.RegularExpressions.MatchEvaluator]{ param($match) $methodContent })
 $simpleDirect = $matching | Where-Object { $_.workload -eq 'Simple' -and $_.library -eq 'TeddDirectReused' }
-$simpleGlob = $matching | Where-Object { $_.workload -eq 'Simple' -and $_.library -eq 'DotNetGlob' }
-$hero = '<p class="hero-evidence"><strong>' + (Number ($simpleGlob.meanNs / $simpleDirect.meanNs) 'F2') + '× DotNet.Glob throughput</strong> for the reusable direct matcher in our question-mark benchmark. <a href="#benchmarks">Compare the measured workloads</a>.</p>'
+$simpleCompetitor = $matching | Where-Object { $_.workload -eq 'Simple' -and -not $_.library.StartsWith('Tedd') } | Sort-Object meanNs | Select-Object -First 1
+$hero = '<p class="hero-evidence"><strong>' + (Number ($simpleCompetitor.meanNs / $simpleDirect.meanNs) 'F2') + '× the throughput of the next-fastest tested library</strong> for the reusable direct matcher in our question-mark benchmark. <a href="#benchmarks">Compare the measured workloads</a>.</p>'
 $index = [regex]::Replace($index, '(?s)<p class="hero-evidence">.*?</p>', [Text.RegularExpressions.MatchEvaluator]{ param($match) $hero })
 $index.TrimEnd() | Set-Content -LiteralPath $indexPath -Encoding utf8
 Write-Host "Exported $($matching.Count) matching and $($construction.Count) construction measurements."

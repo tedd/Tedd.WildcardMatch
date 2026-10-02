@@ -34,8 +34,8 @@ if (comparisonCharts.length) {
         const rows = data.matching.filter((item) => item.workload === workload.name).sort((a, b) => a.meanNs - b.meanNs);
         const peak = 1000 / rows[0].meanNs;
         const direct = rows.find((row) => row.library === "TeddDirectReused");
-        const glob = rows.find((row) => row.library === "DotNetGlob");
-        chart.querySelector("[data-direct-speedup]").textContent = `${(glob.meanNs / direct.meanNs).toFixed(2)}×`;
+        const competitor = rows.find((row) => !row.library.startsWith("Tedd"));
+        chart.querySelector("[data-direct-speedup]").textContent = `${(competitor.meanNs / direct.meanNs).toFixed(2)}×`;
         chart.querySelector("[data-chart-workload]").textContent = workload.label;
         chart.querySelector("[data-chart-pattern]").textContent = workload.pattern;
         chart.querySelector("[data-chart-rows]").replaceChildren(...rows.map((row) => {

@@ -131,6 +131,7 @@ h1 em { color: var(--aqua); font-style: normal; }
 .examples-section .eyebrow { color: #65d2c6; }
 .examples-section .section-intro > p { color: #b4c9c7; }
 .example-grid { max-width: 1450px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.2rem; margin: auto; }
+.span-example { grid-column: 1 / -1; }
 .code-window { min-width: 0; padding-top: 34px; overflow: hidden; background: #09161c; border: 1px solid #46626a; }
 .code-window .window-bar button { margin-left: auto; padding: .2rem .5rem; color: #9ee5db; background: #172f36; border: 1px solid #31575c; cursor: pointer; font-size: .66rem; }
 .code-window .window-bar button:hover { color: #fff; background: #24565a; }
