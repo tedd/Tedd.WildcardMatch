@@ -1,0 +1,53 @@
+Test run for D:\Workspaces\AI\wildcard-span-release\source\src\Tedd.WildcardMatch.Tests\bin\Release\net11.0\Tedd.WildcardMatch.Tests.dll (.NETCoreApp,Version=v11.0)
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.72]     Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(seed: 912743, culture: "en-US") [FAIL]
+[xUnit.net 00:00:00.72]     Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(seed: 782113, culture: "az-Latn-AZ") [FAIL]
+[xUnit.net 00:00:00.72]     Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(seed: 145721, culture: "") [FAIL]
+  Failed Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(seed: 912743, culture: "en-US") [5 ms]
+  Error Message:
+   System.ArgumentOutOfRangeException : Specified argument was out of the range of valid values. (Parameter 'options')
+  Stack Trace:
+     at System.Text.RegularExpressions.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument arg)
+   at System.Text.RegularExpressions.Regex.ValidateOptions(RegexOptions options)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, CultureInfo culture)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout)
+   at Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(Int32 seed, String culture) in D:\Workspaces\AI\wildcard-span-release\source\src\Tedd.WildcardMatch.Tests\SpanContractTest.cs:line 43
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(seed: 782113, culture: "az-Latn-AZ") [< 1 ms]
+  Error Message:
+   System.ArgumentOutOfRangeException : Specified argument was out of the range of valid values. (Parameter 'options')
+  Stack Trace:
+     at System.Text.RegularExpressions.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument arg)
+   at System.Text.RegularExpressions.Regex.ValidateOptions(RegexOptions options)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, CultureInfo culture)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout)
+   at Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(Int32 seed, String culture) in D:\Workspaces\AI\wildcard-span-release\source\src\Tedd.WildcardMatch.Tests\SpanContractTest.cs:line 43
+   at InvokeStub_SpanContractTest.SeededGuardedBufferFuzz(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(seed: 145721, culture: "") [< 1 ms]
+  Error Message:
+   System.ArgumentOutOfRangeException : Specified argument was out of the range of valid values. (Parameter 'options')
+  Stack Trace:
+     at System.Text.RegularExpressions.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument arg)
+   at System.Text.RegularExpressions.Regex.ValidateOptions(RegexOptions options)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, CultureInfo culture)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout)
+   at Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(Int32 seed, String culture) in D:\Workspaces\AI\wildcard-span-release\source\src\Tedd.WildcardMatch.Tests\SpanContractTest.cs:line 43
+   at InvokeStub_SpanContractTest.SeededGuardedBufferFuzz(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:00.72]     Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(seed: 318721, culture: "tr-TR") [FAIL]
+  Failed Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(seed: 318721, culture: "tr-TR") [< 1 ms]
+  Error Message:
+   System.ArgumentOutOfRangeException : Specified argument was out of the range of valid values. (Parameter 'options')
+  Stack Trace:
+     at System.Text.RegularExpressions.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument arg)
+   at System.Text.RegularExpressions.Regex.ValidateOptions(RegexOptions options)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, CultureInfo culture)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout)
+   at Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(Int32 seed, String culture) in D:\Workspaces\AI\wildcard-span-release\source\src\Tedd.WildcardMatch.Tests\SpanContractTest.cs:line 43
+   at InvokeStub_SpanContractTest.SeededGuardedBufferFuzz(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+Results File: D:\Workspaces\AI\wildcard-span-release\logs\Release-net11.0.trx
+
+Failed!  - Failed:     4, Passed:   231, Skipped:     0, Total:   235, Duration: 31 s - Tedd.WildcardMatch.Tests.dll (net11.0)

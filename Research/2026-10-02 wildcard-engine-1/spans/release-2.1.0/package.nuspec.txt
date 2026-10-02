@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Tedd.WildcardMatch</id>
+    <version>2.1.0</version>
+    <authors>tedd</authors>
+    <license type="file">LICENSE</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/tedd/Tedd.WildcardMatch</projectUrl>
+    <description>Fast and reliable wildcard (* and ?) matcher capable of complex pattern matching.</description>
+    <copyright>Tedd Hansen</copyright>
+    <tags>wildcard matching pattern star questionmark</tags>
+    <repository type="git" url="https://github.com/tedd/Tedd.WildcardMatch.git" />
+    <dependencies>
+      <group targetFramework="net10.0" />
+      <group targetFramework="net11.0" />
+      <group targetFramework=".NETStandard2.1" />
+    </dependencies>
+  </metadata>
+</package>

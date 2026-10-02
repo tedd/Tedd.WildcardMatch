@@ -1,0 +1,8 @@
+  Determining projects to restore...
+D:\Workspaces\AI\wildcard-span-release\consumer\Consumer.csproj : error NU1301: The local source 'D:\Workspaces\AI\wildcard-span-release\consumer\https:\api.nuget.org\v3\index.json' doesn't exist.
+D:\Workspaces\AI\wildcard-span-release\consumer\Consumer.csproj : error NU1301: The local source 'D:\Workspaces\AI\wildcard-span-release\consumer\https:\api.nuget.org\v3\index.json' doesn't exist.
+D:\Workspaces\AI\wildcard-span-release\consumer\Consumer.csproj : error NU1301: The local source 'D:\Workspaces\AI\wildcard-span-release\consumer\https:\api.nuget.org\v3\index.json' doesn't exist.
+D:\Workspaces\AI\wildcard-span-release\consumer\Consumer.csproj : error NU1301: The local source 'D:\Workspaces\AI\wildcard-span-release\consumer\https:\api.nuget.org\v3\index.json' doesn't exist.
+D:\Workspaces\AI\wildcard-span-release\consumer\Consumer.csproj : error NU1301: The local source 'D:\Workspaces\AI\wildcard-span-release\consumer\https:\api.nuget.org\v3\index.json' doesn't exist.
+D:\Workspaces\AI\wildcard-span-release\consumer\Consumer.csproj : error NU1301: The local source 'D:\Workspaces\AI\wildcard-span-release\consumer\https:\api.nuget.org\v3\index.json' doesn't exist.
+  Failed to restore D:\Workspaces\AI\wildcard-span-release\consumer\Consumer.csproj (in 20 ms).

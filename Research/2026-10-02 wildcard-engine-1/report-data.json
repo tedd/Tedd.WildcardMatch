@@ -1,6 +1,6 @@
 {
   "title": "Direct wildcard engine: correctness and performance",
-  "generatedAt": "2026-10-02T03:57:53.882227+02:00",
+  "generatedAt": "2026-10-02T02:25:33.395438+00:00",
   "status": "complete",
   "scope": "Requested engine rewrite and validation, rather than an exhaustive search for all optimization opportunities. Direct WildcardMatch and preserved WildcardMatchRegex; .NET Standard 2.1/.NET 10/.NET 11 source targets, timed on .NET 10 x64. Continuation: catalogue-driven optimization of committed direct engine 4bc779e; original charts remain historical. New control/candidate charts share a distinct .NET 10 direct-engine epoch. No application throughput claim. Borrowed UTF-16 API continuation: preserve existing strings and add static/reusable span matching, owned span-pattern constructors and mutable/read-only span extensions. Allocation removal is a local caller result; no application throughput claim.",
   "question": "Can a direct iterative wildcard engine preserve the Regex contract and improve common complete calls while avoiding per-match buffers? Which additional measured mechanisms improve the committed direct engine? Can borrowed slices remove caller materialization while retaining owned-string performance and all semantic invariants?",
@@ -7784,7 +7784,12 @@
     "All 54 integrated static/reused samples per fixture allocate zero managed bytes. Original thirteen-case geometric mean time changes are -1.9% static, -2.3% reused and -0.9% construction; targeted retry/question/literal improvements are much larger. Some tiny short and repeated-star calls regress; complete charts and paired variability remain visible.",
     "Borrowed API: Release 221 tests pass on .NET 8 and .NET 10; 224 on .NET 11. Eight span-focused Debug tests pass on each runtime. Independent exhaustive DP and seeded Unicode/long-segment differential fuzz suites exercise both string and span static/instance entry points.",
     "Span tests cover default/empty spans, guarded nonzero slices, exact tails and length boundaries, stack buffers, mutable arrays, ReadOnlyMemory.Span, source mutation after copied construction, culture capture, flags/invalid timeout/null-string overloads, finite successful allocation-free matches and exact timeout diagnostics limited to borrowed slices.",
-    "All retained default matching samples allocate zero managed bytes. Reusable span constructors copy the pattern once; benchmark setup includes that copy in construction-plus-match. Normalization first-use/pool costs are recorded separately in final/net11.0-cold.json, so warm zero allocation is not a cold-pool guarantee."
+    "All retained default matching samples allocate zero managed bytes. Reusable span constructors copy the pattern once; benchmark setup includes that copy in construction-plus-match. Normalization first-use/pool costs are recorded separately in final/net11.0-cold.json, so warm zero allocation is not a cold-pool guarantee.",
+    "Release 2.1.0 assurance: Full Release AND Debug suites pass: 232 tests each on .NET 8/10 and 235 each on .NET 11. These are test-case counts; exhaustive/fuzz cases run inside individual tests. Historical span/performance test counts above remain the original epoch's evidence.",
+    "Release 2.1.0 assurance: Static and prepared spans now participate in all 65,534 literal UTF-16 pattern code points with five case variants across four cultures (1,310,680 comparisons per API/runtime), exhaustive .NET 11 line anchors, Unicode newline sequences and numeric option validation. Existing independent DP exhaustive tests cover 945,252 short input/pattern/Singleline combinations per runtime; seeded Unicode fuzz and 10,000 DP long-segment trials remain.",
+    "Release 2.1.0 assurance: 12,000 additional seeded guarded-array cases across invariant, en-US, tr-TR and az-Latn-AZ verify exact slice extents, all span extensions, owned preparation, finite timeouts, RightToLeft result parity and unchanged caller buffers. Added overlapping input/pattern storage, concurrent captured-culture reuse, concurrent stack/pool normalization, 65,535/65,536/1,000,000-code-unit fixtures and reuse after timeouts.",
+    "Release 2.1.0 assurance: Initial guarded-fuzz attempts exposed oracle constraints: the non-backtracking Regex 1,000-node limit and its incompatibility with .NET 11 AnyNewLine. Rejections remain in initial-oracle-limit.txt and initial-oracle-options.txt. Final short fuzz uses non-backtracking when compatible and a five-second interpreter oracle for AnyNewLine; separate long-input and normalization fixtures remain. All 24 benchmark competitor combinations pass 256 inputs each. Packed 2.1.0 consumers compile and execute the public span and preserved string APIs against all three package target selections.",
+    "Release 2.1.0 assurance: Production C# hashes match the final measured span epoch exactly; this release changes tests, version and documentation. No new performance measurements or performance claims. Website fragment, asset and copy-button references validate locally; actual deployment is verified separately."
   ],
   "generatedCode": [
     {
@@ -7854,7 +7859,8 @@
     "Run optimization/summarize.py, optimization/extend_report.py, then the skill renderer for report-data.json/report.html. The extension reads the immutable original report at 4bc779e and preserves its charts; generated HTML is never edited by hand.",
     "From the repository: python C:/Users/tedd/.codex/skills/scientific-method-performance/scripts/run_with_performance_lock.py --cwd D:/SourceCode/Tedd.WildcardMatch -- python -B \"Research/2026-10-02 wildcard-engine-1/spans/run.py\" --phase all --epoch final",
     "Run spans/summarize.py final, spans/extend_report.py, then the standard skill renderer for report-data.json/report.html. The extension reads the immutable report at 0c39b9d; do not run the older optimization extension afterwards, because it reconstructs an earlier historical deliverable.",
-    "Isolated span-parent experiments: add --control-epoch <parent> --screening --epoch <new-name>. Initial parent source snapshots are in spans/; H-027/H-029/H-030 snapshots in their own subdirectories. Current driver uses the documented priming epoch and clean disassembly files."
+    "Isolated span-parent experiments: add --control-epoch <parent> --screening --epoch <new-name>. Initial parent source snapshots are in spans/; H-027/H-029/H-030 snapshots in their own subdirectories. Current driver uses the documented priming epoch and clean disassembly files.",
+    "Release assurance: run spans/release-2.1.0/validate.py under the fixed performance lock, then append_report.py and the standard renderer. All scratch builds/caches remain in D:/Workspaces/AI/wildcard-span-release."
   ],
   "artifacts": [
     {
@@ -7984,6 +7990,22 @@
     {
       "label": "Span caller profile",
       "path": "spans/final/profile-summary.json"
+    },
+    {
+      "label": "2.1.0 release validation summary",
+      "path": "spans/release-2.1.0/summary.json"
+    },
+    {
+      "label": "2.1.0 validation driver",
+      "path": "spans/release-2.1.0/validate.py"
+    },
+    {
+      "label": "2.1.0 source and package hashes",
+      "path": "spans/release-2.1.0/identity.json"
+    },
+    {
+      "label": "Independent oracle limit rejected fixture",
+      "path": "spans/release-2.1.0/initial-oracle-limit.txt"
     }
   ]
 }

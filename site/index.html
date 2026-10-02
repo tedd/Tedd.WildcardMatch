@@ -25,7 +25,7 @@
       <div class="hero-copy">
         <p class="eyebrow"><span></span> Pattern matching for .NET</p>
         <h1>Simple patterns.<br><em>Precise matches.</em></h1>
-        <p class="lede">Match strings with <code>*</code> and <code>?</code>. Choose direct <code>WildcardMatch</code> execution or the <code>WildcardMatchRegex</code> engine, with reusable matchers, case options, and explicit timeouts.</p>
+        <p class="lede">Match strings and character spans with <code>*</code> and <code>?</code>. Choose direct <code>WildcardMatch</code> execution or the <code>WildcardMatchRegex</code> string engine, with reusable matchers, case options, and explicit timeouts.</p>
         <p class="hero-evidence">Choose a static call for convenience or reuse a pattern for repeated matches. Compare throughput, allocations, and construction cost against three other NuGet libraries in the <a href="#benchmarks">published .NET 10 benchmarks</a>.</p>
         <div class="hero-badges">
           <a href="https://www.nuget.org/packages/Tedd.WildcardMatch"><img src="https://img.shields.io/nuget/v/Tedd.WildcardMatch?logo=nuget&amp;label=NuGet" alt="NuGet package version" height="20"></a>
@@ -76,7 +76,7 @@
       <p class="model-note">Options: <code>IgnoreCase</code>, <code>CultureInvariant</code>, <code>Singleline</code>, <code>Compiled</code>, and <code>RightToLeft</code>. Combine flags with <code>|</code>.</p>
     </section>
     <section class="section-shell examples-section" id="examples">
-      <div class="section-intro"><div><p class="eyebrow">Start matching</p><h2>Install. Match.<br>Reuse.</h2></div><p>The 2.x package targets .NET Standard 2.1, .NET 10, and .NET 11. .NET 8 and 9 use its Standard assembly. .NET Framework is not supported. These examples use the <code>Tedd</code> namespace.</p></div>
+      <div class="section-intro"><div><p class="eyebrow">Start matching</p><h2>Install. Match.<br>Reuse.</h2></div><p>Version 2.1.0 adds span matching. The package targets .NET Standard 2.1, .NET 10, and .NET 11. .NET 8 and 9 use its Standard assembly. .NET Framework is not supported. These examples use the <code>Tedd</code> namespace.</p></div>
       <div class="install-command"><code id="install">dotnet add package Tedd.WildcardMatch</code><button type="button" data-copy-target="install">Copy</button></div>
       <div class="example-grid">
         <div class="code-window"><div class="window-bar"><span></span><span></span><span></span><b>Convenience API</b><button type="button" data-copy-target="example-static">Copy</button></div><pre><code id="example-static">using Tedd;
@@ -105,6 +105,17 @@ bool second = matcher.IsMatch("report-summary.txt");
 // Generated regex: ^report-.*\.txt$
 Console.WriteLine(matcher.WildcardRegex);</code></pre></div>
       </div>
+      <div class="code-window"><div class="window-bar"><span></span><span></span><span></span><b>Borrow string, array, or stack-buffer slices</b><button type="button" data-copy-target="example-spans">Copy</button></div><pre><code id="example-spans">using System;
+using Tedd;
+
+ReadOnlySpan&lt;char&gt; input = "[report-01.txt]".AsSpan(1, 13);
+ReadOnlySpan&lt;char&gt; pattern = "report-??.txt".AsSpan();
+
+bool first = WildcardMatch.IsMatch(input, pattern);
+bool second = input.IsWildcardMatch(pattern);
+var matcher = new WildcardMatch(pattern); // Copies the pattern once.
+bool third = matcher.IsMatch(input);</code></pre></div>
+      <p class="model-note">Static span calls borrow both slices. Reusable matchers borrow each input and own a copy of a span pattern. Ordinary matching avoids creating strings. <code>Span&lt;char&gt;</code> also supports the extension method; <code>ReadOnlyMemory&lt;char&gt;</code> callers use <code>.Span</code>. Keep buffers stable during each call. Default spans represent empty text. Timeout diagnostics materialize their text; .NET 11 vertical-tab normalization with numeric <code>IgnorePatternWhitespace</code> options uses stack or pooled scratch storage.</p>
       <div class="source-note"><div><strong>Bound execution for untrusted patterns.</strong><p>The default timeout is infinite. Instance constructors accept a <code>TimeSpan</code>; a timeout raises <code>RegexMatchTimeoutException</code>.</p></div><a href="https://github.com/tedd/Tedd.WildcardMatch/tree/main/src/Tedd.WildcardMatch">API source ↗</a></div>
     </section>
     <section class="section-shell benchmark-section" id="benchmarks">

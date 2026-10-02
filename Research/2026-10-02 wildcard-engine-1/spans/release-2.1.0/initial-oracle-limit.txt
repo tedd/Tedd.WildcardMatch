@@ -1,0 +1,49 @@
+Test run for D:\Workspaces\AI\wildcard-span-release\source\src\Tedd.WildcardMatch.Tests\bin\Release\net8.0\Tedd.WildcardMatch.Tests.dll (.NETCoreApp,Version=v8.0)
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.71]     Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(seed: 912743, culture: "en-US") [FAIL]
+[xUnit.net 00:00:00.72]     Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(seed: 782113, culture: "az-Latn-AZ") [FAIL]
+  Failed Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(seed: 912743, culture: "en-US") [14 ms]
+  Error Message:
+   System.NotSupportedException : The specified pattern with RegexOptions.NonBacktracking could result in an automata as large as '2265' nodes, which is larger than the configured limit of '1000'.
+  Stack Trace:
+     at System.Text.RegularExpressions.Symbolic.SymbolicRegexRunnerFactory..ctor(RegexTree regexTree, RegexOptions options, TimeSpan matchTimeout)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, CultureInfo culture)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout)
+   at Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(Int32 seed, String culture) in D:\Workspaces\AI\wildcard-span-release\source\src\Tedd.WildcardMatch.Tests\SpanContractTest.cs:line 43
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(seed: 782113, culture: "az-Latn-AZ") [< 1 ms]
+  Error Message:
+   System.NotSupportedException : The specified pattern with RegexOptions.NonBacktracking could result in an automata as large as '1760' nodes, which is larger than the configured limit of '1000'.
+  Stack Trace:
+     at System.Text.RegularExpressions.Symbolic.SymbolicRegexRunnerFactory..ctor(RegexTree regexTree, RegexOptions options, TimeSpan matchTimeout)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, CultureInfo culture)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout)
+   at Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(Int32 seed, String culture) in D:\Workspaces\AI\wildcard-span-release\source\src\Tedd.WildcardMatch.Tests\SpanContractTest.cs:line 43
+   at InvokeStub_SpanContractTest.SeededGuardedBufferFuzz(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:00.72]     Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(seed: 145721, culture: "") [FAIL]
+[xUnit.net 00:00:00.72]     Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(seed: 318721, culture: "tr-TR") [FAIL]
+  Failed Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(seed: 145721, culture: "") [< 1 ms]
+  Error Message:
+   System.NotSupportedException : The specified pattern with RegexOptions.NonBacktracking could result in an automata as large as '1385' nodes, which is larger than the configured limit of '1000'.
+  Stack Trace:
+     at System.Text.RegularExpressions.Symbolic.SymbolicRegexRunnerFactory..ctor(RegexTree regexTree, RegexOptions options, TimeSpan matchTimeout)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, CultureInfo culture)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout)
+   at Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(Int32 seed, String culture) in D:\Workspaces\AI\wildcard-span-release\source\src\Tedd.WildcardMatch.Tests\SpanContractTest.cs:line 43
+   at InvokeStub_SpanContractTest.SeededGuardedBufferFuzz(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(seed: 318721, culture: "tr-TR") [< 1 ms]
+  Error Message:
+   System.NotSupportedException : The specified pattern with RegexOptions.NonBacktracking could result in an automata as large as '2100' nodes, which is larger than the configured limit of '1000'.
+  Stack Trace:
+     at System.Text.RegularExpressions.Symbolic.SymbolicRegexRunnerFactory..ctor(RegexTree regexTree, RegexOptions options, TimeSpan matchTimeout)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, CultureInfo culture)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout)
+   at Tedd.WildcardMatchTests.SpanContractTest.SeededGuardedBufferFuzz(Int32 seed, String culture) in D:\Workspaces\AI\wildcard-span-release\source\src\Tedd.WildcardMatch.Tests\SpanContractTest.cs:line 43
+   at InvokeStub_SpanContractTest.SeededGuardedBufferFuzz(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+Results File: D:\Workspaces\AI\wildcard-span-release\logs\Release-net8.0.trx
+
+Failed!  - Failed:     4, Passed:   228, Skipped:     0, Total:   232, Duration: 11 s - Tedd.WildcardMatch.Tests.dll (net8.0)

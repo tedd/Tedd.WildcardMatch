@@ -142,6 +142,7 @@ public class EngineFuzzTest
             bool expected = Oracle(input, pattern, singleline);
             Assert.Equal(expected, WildcardMatch.IsMatch(input, pattern, options));
             Assert.Equal(expected, WildcardMatch.IsMatch(input.AsSpan(), pattern.AsSpan(), options));
+            Assert.Equal(expected, new WildcardMatch(pattern.AsSpan(), options).IsMatch(input.AsSpan()));
             // Keep the Regex oracle bounded on arbitrary long star runs. Interpreter
             // backtracking can time out independently of matching correctness.
             Assert.Equal(expected, new WildcardMatchRegex(pattern, options | (WildcardOptions)RegexOptions.NonBacktracking, TimeSpan.FromSeconds(2)).IsMatch(input));
@@ -165,15 +166,23 @@ public class EngineFuzzTest
                 if (c == '*' || c == '?') continue;
                 string pattern = c.ToString();
                 var regex = new WildcardMatchRegex(pattern, WildcardOptions.IgnoreCase);
+                var prepared = new WildcardMatch(pattern.AsSpan(), WildcardOptions.IgnoreCase);
                 foreach (char other in new[] { c, char.ToLowerInvariant(c), char.ToUpperInvariant(c), char.ToLower(c), char.ToUpper(c) })
                 {
                     string input = other.ToString();
                     Assert.True(regex.IsMatch(input) == WildcardMatch.IsMatch(input, pattern, true), $"culture={culture}, pattern=U+{code:X4}, input=U+{(int)other:X4}");
+                    bool expected = regex.IsMatch(input);
+                    Assert.Equal(expected, WildcardMatch.IsMatch(input.AsSpan(), pattern.AsSpan(), true));
+                    Assert.Equal(expected, prepared.IsMatch(input.AsSpan()));
                 }
             }
             foreach (char c in "IiİıKkKSsſΣσς")
                 foreach (char other in "IiİıKkKSsſΣσς")
-                    Assert.Equal(WildcardMatchRegex.IsMatch(other.ToString(), c.ToString(), true), WildcardMatch.IsMatch(other.ToString(), c.ToString(), true));
+                {
+                    bool expected = WildcardMatchRegex.IsMatch(other.ToString(), c.ToString(), true);
+                    Assert.Equal(expected, WildcardMatch.IsMatch(other.ToString(), c.ToString(), true));
+                    Assert.Equal(expected, WildcardMatch.IsMatch(other.ToString().AsSpan(), c.ToString().AsSpan(), true));
+                }
         }
         finally { CultureInfo.CurrentCulture = previous; }
     }
@@ -191,7 +200,11 @@ public class EngineFuzzTest
                 var direct = new WildcardMatch(pattern, (WildcardOptions)flags);
                 var regex = new WildcardMatchRegex(pattern, (WildcardOptions)flags);
                 foreach (string input in inputs)
+                {
                     Assert.True(regex.IsMatch(input) == direct.IsMatch(input), $"flags={flags}, input={Escape(input)}, pattern={Escape(pattern)}");
+                    Assert.Equal(regex.IsMatch(input), direct.IsMatch(input.AsSpan()));
+                    Assert.Equal(regex.IsMatch(input), WildcardMatch.IsMatch(input.AsSpan(), pattern.AsSpan(), (WildcardOptions)flags));
+                }
             }
     }
 
@@ -208,6 +221,8 @@ public class EngineFuzzTest
                         bool expected = Regex.IsMatch(input, Reference(pattern), (RegexOptions)flags);
                         bool actual = regex ? WildcardMatchRegex.IsMatch(input, pattern, (WildcardOptions)flags) : WildcardMatch.IsMatch(input, pattern, (WildcardOptions)flags);
                         Assert.True(expected == actual, $"flags={flags}, input={Escape(input)}, pattern={Escape(pattern)}");
+                        Assert.Equal(expected, WildcardMatch.IsMatch(input.AsSpan(), pattern.AsSpan(), (WildcardOptions)flags));
+                        Assert.Equal(expected, new WildcardMatch(pattern.AsSpan(), (WildcardOptions)flags).IsMatch(input.AsSpan()));
                     }
     }
 #endif

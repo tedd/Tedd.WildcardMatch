@@ -1,0 +1,5 @@
+Test run for D:\Workspaces\AI\wildcard-span-release\source\src\Tedd.WildcardMatch.Tests\bin\Debug\net8.0\Tedd.WildcardMatch.Tests.dll (.NETCoreApp,Version=v8.0)
+A total of 1 test files matched the specified pattern.
+Results File: D:\Workspaces\AI\wildcard-span-release\logs\Debug-net8.0.trx
+
+Passed!  - Failed:     0, Passed:   232, Skipped:     0, Total:   232, Duration: 28 s - Tedd.WildcardMatch.Tests.dll (net8.0)

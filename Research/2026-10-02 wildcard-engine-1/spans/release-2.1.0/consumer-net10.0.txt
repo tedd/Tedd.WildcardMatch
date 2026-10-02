@@ -1,0 +1,1 @@
+Packed span and string APIs passed on 10.0.12

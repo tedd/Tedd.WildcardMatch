@@ -1,0 +1,6 @@
+Test run for D:\Workspaces\AI\wildcard-span-release\source\src\Tedd.WildcardMatch.Tests\bin\Release\net10.0\Tedd.WildcardMatch.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+WARNING: Overwriting results file: D:\Workspaces\AI\wildcard-span-release\logs\Release-net10.0.trx
+Results File: D:\Workspaces\AI\wildcard-span-release\logs\Release-net10.0.trx
+
+Passed!  - Failed:     0, Passed:   232, Skipped:     0, Total:   232, Duration: 24 s - Tedd.WildcardMatch.Tests.dll (net10.0)

@@ -102,12 +102,22 @@ public class EngineContractTest
             Exception actual = Record.Exception(() => { if (regex) new WildcardMatchRegex("a*", options); else new WildcardMatch("a*", options); });
             Assert.True(expected?.GetType() == actual?.GetType(), $"Regex option bits {bits}: expected {expected?.GetType().Name ?? "valid"}, actual {actual?.GetType().Name ?? "valid"}");
             if (expected is ArgumentException e) Assert.Equal(e.ParamName, ((ArgumentException)actual).ParamName);
+            Exception spanConstructor = Record.Exception(() => new WildcardMatch("a*".AsSpan(), options));
+            Exception spanStatic = Record.Exception(() => WildcardMatch.IsMatch("a".AsSpan(), "a*".AsSpan(), options));
+            Assert.Equal(expected?.GetType(), spanConstructor?.GetType());
+            Assert.Equal(expected?.GetType(), spanStatic?.GetType());
+            if (expected is ArgumentException invalid)
+            {
+                Assert.Equal(invalid.ParamName, ((ArgumentException)spanConstructor).ParamName);
+                Assert.Equal(invalid.ParamName, ((ArgumentException)spanStatic).ParamName);
+            }
             if (expected != null) continue;
             foreach (var pair in new[] { ("a\nb", "*b"), ("a\nb\nc", "b"), ("x\n\n", ""),
                 ("a\nb", "a*b"), ("a\nb", "a\nb"), (" a#\t", " a#\t"), ("\r\n", "?"), ("\n\n", "*\n*"), ("ab", "a\vb"), ("a\vb", "a\vb") })
             {
                 bool result = new Regex(Reference(pair.Item2), (RegexOptions)bits).IsMatch(pair.Item1);
                 Assert.Equal(result, regex ? WildcardMatchRegex.IsMatch(pair.Item1, pair.Item2, options) : WildcardMatch.IsMatch(pair.Item1, pair.Item2, options));
+                Assert.Equal(result, WildcardMatch.IsMatch(pair.Item1.AsSpan(), pair.Item2.AsSpan(), options));
             }
         }
     }

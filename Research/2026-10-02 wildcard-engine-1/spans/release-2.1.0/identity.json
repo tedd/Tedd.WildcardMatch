@@ -1,0 +1,94 @@
+{
+  "startedUtc": "2026-10-02T02:25:12.597663+00:00",
+  "finishedUtc": "2026-10-02T02:25:18.802701+00:00",
+  "commands": [
+    {
+      "command": [
+        "dotnet",
+        "pack",
+        "src/Tedd.WildcardMatch/Tedd.WildcardMatch.csproj",
+        "--no-build",
+        "--no-restore",
+        "-c",
+        "Release",
+        "-o",
+        "D:\\Workspaces\\AI\\wildcard-span-release\\nuget"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "dotnet",
+        "restore",
+        "--source",
+        "D:\\Workspaces\\AI\\wildcard-span-release\\nuget"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "dotnet",
+        "run",
+        "--no-restore",
+        "-c",
+        "Release",
+        "-f",
+        "net8.0"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "dotnet",
+        "run",
+        "--no-restore",
+        "-c",
+        "Release",
+        "-f",
+        "net10.0"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "dotnet",
+        "run",
+        "--no-restore",
+        "-c",
+        "Release",
+        "-f",
+        "net11.0"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "version": "2.1.0",
+  "work": "D:\\Workspaces\\AI\\wildcard-span-release",
+  "resumedPack": true,
+  "hashes": {
+    "src\\Tedd.WildcardMatch\\InternalUtils.cs": "4f21b3c86cccdeef6155ffcac31a7dc0cecac58eb592a5df7eedb27733edcafa",
+    "src\\Tedd.WildcardMatch\\WildcardEngine.cs": "54cc039904c806fcefc7654d934881eff71155147ff8b683cd437a222d71e8da",
+    "src\\Tedd.WildcardMatch\\WildcardEngine.Spans.cs": "4349e6800587ee6fff0cbce87082355a3239d33986baa5457ad5d9bfc4db699b",
+    "src\\Tedd.WildcardMatch\\WildcardMatch.cs": "653497b991b0063fff580db3b4b7f15ee2239921c2f6836d04238460adae6b72",
+    "src\\Tedd.WildcardMatch\\WildcardMatchExtensions.cs": "395ac02229ae89309f6258d2db07472615fbd3cf7b2653d183e904d47adc904d",
+    "src\\Tedd.WildcardMatch\\WildcardMatchRegex.cs": "1f7771890d03b21f51b10c8c8ad31da127bb3770a38a108d7de3bc13f9b6da60",
+    "src\\Tedd.WildcardMatch\\WildcardOptions.cs": "ddd70ad88b5548e2564016f8c63e6e8054d1d6c6c1b27d3c2179ca947552f4db",
+    "src\\Tedd.WildcardMatch.Tests\\BoundaryTest.cs": "f0ff9e98dda339b5980cc5c46fab4aaf04881f481fdf634f25c7006315a82421",
+    "src\\Tedd.WildcardMatch.Tests\\EngineContractTest.cs": "ede917b6b55bc15873e07a9e9e1dd95e1aa9318e35b43f292f5570a1684c8570",
+    "src\\Tedd.WildcardMatch.Tests\\EngineFuzzTest.cs": "b3ac8ce12311653474cb8a88397f567fbd5dcca53cf4c3fc94ad4a26aece9e8f",
+    "src\\Tedd.WildcardMatch.Tests\\ExtensionsTest.cs": "f451353b9392e57efa9825c0aea05db8f77a5729f68b28b0806f0a0e3cb248d3",
+    "src\\Tedd.WildcardMatch.Tests\\InstanceTest.cs": "41a3a1551b117b3eff7ecbd4f2be3dd16dff350af7a7c8d254948ca0f1c95d9f",
+    "src\\Tedd.WildcardMatch.Tests\\LargeInputTest.cs": "138d25ba8c1398accd1bfe2b1b01c0ad81a5624181c16b9126afb29e0bcdf8d7",
+    "src\\Tedd.WildcardMatch.Tests\\MethodTest.cs": "a56eb7de2dbbce50fa9e71c7ccc4c3eb47b410353a813db8a34d6aa2bc305b22",
+    "src\\Tedd.WildcardMatch.Tests\\OptimizationBoundaryTest.cs": "224deadf4b434cc3e2dbe632eda4e6110a1eb5180bca45ec152c751c4a3aab47",
+    "src\\Tedd.WildcardMatch.Tests\\SpanContractTest.cs": "55ae106c9d4cbf071940025d4ab7a486e22e69710f21356bda0500c1a5ea0d8a",
+    "src\\Tedd.WildcardMatch.Tests\\SpanTest.cs": "6f27655b887cbdd4aa186a407f60fa23e48177ad2bc36ff16cf4d8de599a2025",
+    "src\\Tedd.WildcardMatch.Tests\\TestData.cs": "7bc5e3b0dfad92d55fa6a57fdc8192cba49841dbbc7973e88184eea8aba4bdb3",
+    "src\\Tedd.WildcardMatch.Tests\\TranslationTest.cs": "0bedc91059a21495ba2339c6902cf5280683831bb91984071472aabe6b4dfe06"
+  },
+  "packages": {
+    "Tedd.WildcardMatch.2.1.0.nupkg": "5daf323a645089e9759caa9c950d2933df64ac1ccda55f7f32c7bea0cbc46494",
+    "Tedd.WildcardMatch.2.1.0.snupkg": "feb09674ff808789283080215331fcd85ccb1b91b591caa77671ede2956921c2"
+  },
+  "lock": "C:\\Users\\tedd\\.codex\\locks\\performance-measurement.lock"
+}

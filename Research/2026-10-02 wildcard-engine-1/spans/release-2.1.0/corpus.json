@@ -1,0 +1,218 @@
+[
+  {
+    "Workload": "Literal",
+    "Library": "TeddStatic",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Literal",
+    "Library": "TeddReused",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Literal",
+    "Library": "TeddCompiled",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Literal",
+    "Library": "FastWildcard",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Literal",
+    "Library": "WildcardMatch",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Literal",
+    "Library": "DotNetGlob",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Simple",
+    "Library": "TeddStatic",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Simple",
+    "Library": "TeddReused",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Simple",
+    "Library": "TeddCompiled",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Simple",
+    "Library": "FastWildcard",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Simple",
+    "Library": "WildcardMatch",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Simple",
+    "Library": "DotNetGlob",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "MultiStar",
+    "Library": "TeddStatic",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "MultiStar",
+    "Library": "TeddReused",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "MultiStar",
+    "Library": "TeddCompiled",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "MultiStar",
+    "Library": "FastWildcard",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "MultiStar",
+    "Library": "WildcardMatch",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "MultiStar",
+    "Library": "DotNetGlob",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "LongText",
+    "Library": "TeddStatic",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "LongText",
+    "Library": "TeddReused",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "LongText",
+    "Library": "TeddCompiled",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "LongText",
+    "Library": "FastWildcard",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "LongText",
+    "Library": "WildcardMatch",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "LongText",
+    "Library": "DotNetGlob",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  }
+]
