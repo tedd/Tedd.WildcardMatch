@@ -94,7 +94,7 @@ Direct static calls avoid pattern translation and Regex cache lookup. Reusable d
 
 `WildcardMatchRegex` static calls translate the pattern and use the runtime Regex cache. Its instances retain a Regex; `Compiled` increases construction cost and may improve repeated matching. Choose the engine according to the workload and pattern lifetime.
 
-The [published comparison](https://tedd.github.io/Tedd.WildcardMatch/#benchmarks) measures the Regex-backed implementation at its recorded source revision against FastWildcard 3.1.0, WildcardMatch 1.0.7, and DotNet.Glob 3.1.3 on .NET 10. It covers literal, question-mark, multi-star, and long-text fixtures, with both matches and misses. The current harness compares direct static/reused calls and compiled `WildcardMatchRegex`. An independent dynamic-programming oracle validates every measured input. Reusable-pattern construction is measured separately.
+The [published comparison](https://tedd.no/Tedd.WildcardMatch/#benchmarks) measures direct static/reused and Regex static/reused/compiled calls against FastWildcard 3.1.0, WildcardMatch 1.0.7, and DotNet.Glob 3.1.3 on .NET 10. It covers literal, question-mark, multi-star, and long-text fixtures, with both matches and misses. An independent dynamic-programming oracle validates every measured input. Reusable-pattern construction is measured separately.
 
 The website includes the full tables, source revision, runtime and machine details, and confidence intervals. Results describe the selected corpus and API lifetimes; they do not establish a universal library ranking. [Measurement data](site/assets/package-comparison.json) and [benchmark commands](src/Tedd.WildcardMatch.Benchmark/README.md) are included in the repository.
 
@@ -105,7 +105,7 @@ dotnet build src/Tedd.WildcardMatch.sln --configuration Release
 dotnet test src/Tedd.WildcardMatch.Tests --configuration Release
 ```
 
-The SDK is pinned in `global.json`. [nuget-publish.yml](.github/workflows/nuget-publish.yml) builds, tests .NET 8/10/11, validates the benchmark corpus, and packs on pushes to `main` and `deploy` and on pull requests. NuGet publication requires a push or manual run on `deploy`; see the [release procedure](NuGet%20Documentation.md).
+The SDK is pinned in `global.json`. [nuget-publish.yml](.github/workflows/nuget-publish.yml) builds, tests .NET 8/10/11, validates the benchmark corpus, and packs on pushes to `main` and `deploy` and on pull requests. NuGet publication requires a version change pushed to `deploy` or a manual run on `deploy`; see the [release procedure](NuGet%20Documentation.md).
 
 The static website is in `site/`. Its [Pages workflow](.github/workflows/pages.yml) deploys exclusively from `deploy` when GitHub Pages is enabled with **GitHub Actions** as its build source.
 

@@ -14,15 +14,17 @@ $constructionPath = Join-Path $ArtifactsDirectory 'results/Tedd.WildcardMatchBen
 $matchingReport = Get-Content -LiteralPath $matchingPath -Raw | ConvertFrom-Json
 $constructionReport = Get-Content -LiteralPath $constructionPath -Raw | ConvertFrom-Json
 foreach ($report in @($matchingReport, $constructionReport)) {
-    if (@($report.Benchmarks | Where-Object DisplayInfo -NotMatch 'ShortRun\(IterationCount=3, LaunchCount=1, WarmupCount=3\)').Count -gt 0) {
-        throw 'The website exporter requires a ShortRun with one launch and three warmup/measurement iterations.'
+    if (@($report.Benchmarks | Where-Object DisplayInfo -NotMatch 'ShortRun\(IterationCount=10, LaunchCount=1, WarmupCount=3\)').Count -gt 0) {
+        throw 'The website exporter requires a ShortRun with one launch, three warmups and ten measured iterations.'
     }
 }
 $validation = @(Get-Content -LiteralPath $ValidationPath -Raw | ConvertFrom-Json)
 $libraries = [ordered]@{
-    TeddStatic = @{ label = 'Tedd · static'; package = 'Tedd.WildcardMatch'; version = 'source'; mode = 'Static call' }
-    TeddReused = @{ label = 'Tedd · reused'; package = 'Tedd.WildcardMatch'; version = 'source'; mode = 'Reusable regex' }
-    TeddCompiled = @{ label = 'Tedd · compiled'; package = 'Tedd.WildcardMatch'; version = 'source'; mode = 'Reusable compiled regex' }
+    TeddDirectStatic = @{ label = 'Tedd direct · static'; package = 'Tedd.WildcardMatch'; version = 'source'; mode = 'Direct static call' }
+    TeddDirectReused = @{ label = 'Tedd direct · reused'; package = 'Tedd.WildcardMatch'; version = 'source'; mode = 'Reusable direct matcher' }
+    TeddRegexStatic = @{ label = 'Tedd Regex · static'; package = 'Tedd.WildcardMatch'; version = 'source'; mode = 'Translation and Regex cache lookup per call' }
+    TeddRegexReused = @{ label = 'Tedd Regex · reused'; package = 'Tedd.WildcardMatch'; version = 'source'; mode = 'Reusable interpreted Regex' }
+    TeddRegexCompiled = @{ label = 'Tedd Regex · compiled'; package = 'Tedd.WildcardMatch'; version = 'source'; mode = 'Reusable compiled Regex' }
     FastWildcard = @{ label = 'FastWildcard'; package = 'FastWildcard'; version = '3.1.0'; mode = 'Static call, reused settings' }
     WildcardMatch = @{ label = 'WildcardMatch'; package = 'WildcardMatch'; version = '1.0.7'; mode = 'Static extension call' }
     DotNetGlob = @{ label = 'DotNet.Glob'; package = 'DotNet.Glob'; version = '3.1.3'; mode = 'Reusable parsed glob' }
@@ -60,18 +62,29 @@ $construction = @($constructionReport.Benchmarks | ForEach-Object {
     }
 })
 # Fail closed if a benchmark is absent; never present a partial run as a complete comparison.
-if ($matching.Count -ne 24 -or $construction.Count -ne 6 -or $validation.Count -ne 24) {
-    throw 'Expected 24 matching cases, 6 construction cases and 24 validation results.'
+if ($matching.Count -ne 32 -or $construction.Count -ne 8 -or $validation.Count -ne 32) {
+    throw 'Expected 32 matching cases, 8 construction cases and 32 validation results.'
 }
 $uniqueCases = @($matching | ForEach-Object { "$($_.workload)/$($_.library)" } | Select-Object -Unique)
-if ($uniqueCases.Count -ne 24) { throw 'Duplicate matching cases.' }
+if ($uniqueCases.Count -ne 32) { throw 'Duplicate matching cases.' }
+foreach ($workload in $workloads) {
+    foreach ($library in $libraries.Keys) {
+        if ("$($workload.name)/$library" -notin $uniqueCases) { throw "Missing case: $($workload.name)/$library" }
+    }
+}
+$constructionCases = @($construction | ForEach-Object { "$($_.pattern)/$($_.library)" } | Select-Object -Unique)
+foreach ($pattern in @('report-??.txt', '*a?c*e*')) {
+    foreach ($library in @('TeddDirectReused', 'TeddRegexReused', 'TeddRegexCompiled', 'DotNetGlob')) {
+        if ("$pattern/$library" -notin $constructionCases) { throw "Missing construction case: $pattern/$library" }
+    }
+}
 $assets = Join-Path $SiteDirectory 'assets'
 $null = New-Item -ItemType Directory -Force -Path $assets
 $data = [ordered]@{
     measuredAt = [DateTimeOffset]::Now.ToString('o')
     librarySourceRevision = $SourceRevision
     environment = $matchingReport.HostEnvironmentInfo
-    job = @{ name = 'ShortRun'; launchCount = 1; warmupCount = 3; iterationCount = 3; batchSize = 256 }
+    job = @{ name = 'ShortRun'; launchCount = 1; warmupCount = 3; iterationCount = 10; batchSize = 256 }
     libraries = $libraries; workloads = $workloads; matching = $matching; construction = $construction
 }
 $data | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath (Join-Path $assets 'package-comparison.json') -Encoding utf8
@@ -109,7 +122,7 @@ foreach ($row in $construction) {
 $null = $builder.AppendLine('</tbody></table></div></div>')
 $hostInfo = $data.environment
 $method = '<p class="benchmark-method" id="benchmark-method">' +
-    (Html "Measured $($data.measuredAt.Substring(0,10)) · $($hostInfo.ProcessorName) · $($hostInfo.OsVersion) · $($hostInfo.RuntimeVersion) · SDK $($hostInfo.DotNetCliVersion) · BenchmarkDotNet 0.15.8. ShortRun: one launch, three warmups, three measured iterations. Error is the 99.9% confidence-interval half-width; short runs can have wide intervals. Compare broad differences, not close rankings.") +
+    (Html "Measured $($data.measuredAt.Substring(0,10)) · $($hostInfo.ProcessorName) · $($hostInfo.OsVersion) · $($hostInfo.RuntimeVersion) · SDK $($hostInfo.DotNetCliVersion) · BenchmarkDotNet 0.15.8. ShortRun: one launch, three warmups, ten measured iterations. Error is the 99.9% confidence-interval half-width. Compare intervals before interpreting close rankings; results describe these fixtures and API lifetimes.") +
     ' Library source: <a href="https://github.com/tedd/Tedd.WildcardMatch/commit/' + (Html $SourceRevision) + '">' + (Html $SourceRevision.Substring(0,7)) + '</a>.</p>'
 $indexPath = Join-Path $SiteDirectory 'index.html'
 $index = Get-Content -LiteralPath $indexPath -Raw

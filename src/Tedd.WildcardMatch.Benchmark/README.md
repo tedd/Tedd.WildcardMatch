@@ -6,6 +6,8 @@ BenchmarkDotNet 0.15.8 runs on .NET 10. The library project targets .NET Standar
 | --- | --- | --- |
 | Tedd.WildcardMatch static | Project source | Direct wildcard matching |
 | Tedd.WildcardMatch reused | Project source | Direct matching with retained pattern classification |
+| Tedd.WildcardMatchRegex static | Project source | Pattern translation, Regex cache lookup, and matching |
+| Tedd.WildcardMatchRegex reused | Project source | Matching with a prepared interpreted Regex |
 | Tedd.WildcardMatchRegex compiled | Project source | Matching with a prepared compiled Regex |
 | FastWildcard | 3.1.0 | Static matching with reused ordinal settings |
 | WildcardMatch | 1.0.7 | Static extension call |
@@ -21,7 +23,7 @@ A dynamic-programming matcher independently determines the expected result for e
 
 Matching returns the number of successful matches to retain observable work. Each API is called through a delegate. The reported time and allocations are per match because `OperationsPerInvoke` is 256. Instance creation and first-use setup are excluded from these measurements; static APIs perform their own per-call setup.
 
-Construction benchmarks measure reusable direct Tedd, compiled Tedd Regex, and parsed DotNet.Glob objects. They exclude first-match JIT costs. Static-only competitors have no equivalent reusable-pattern construction API in this suite.
+Construction benchmarks measure reusable direct Tedd, interpreted and compiled Tedd Regex, and parsed DotNet.Glob objects. They exclude first-match JIT costs. Static-only competitors have no equivalent reusable-pattern construction API in this suite.
 
 ## Run
 
@@ -32,22 +34,22 @@ dotnet build src/Tedd.WildcardMatch.sln -c Release
 dotnet run --project src/Tedd.WildcardMatch.Benchmark -c Release --no-build -- --validate-packages
 ```
 
-A short run provides an initial comparison:
+A run with ten measured iterations reproduces the website's configuration:
 
 ```powershell
 $results = 'D:\Workspaces\AI\wildcard-benchmarks'
 New-Item -ItemType Directory -Force -Path $results
 dotnet run --project src/Tedd.WildcardMatch.Benchmark -c Release --no-build -- --validate-packages "$results/validation.json"
-dotnet run --project src/Tedd.WildcardMatch.Benchmark -c Release --no-build -- --filter '*' --job short --artifacts "$results/artifacts"
+dotnet run --project src/Tedd.WildcardMatch.Benchmark -c Release --no-build -- --filter '*' --job short --iterationCount 10 --artifacts "$results/artifacts"
 ```
 
 For more precise measurements, omit `--job short` and inspect the resulting reports. Close unrelated workloads and compare intervals before interpreting small differences.
 
 ## Website snapshot
 
-The checked-in snapshot measures the Regex-backed implementation at its recorded source revision, using one launch, three warmups, and three measured iterations. Its static/reused rows describe that revision's Regex API. Error is BenchmarkDotNet's 99.9% confidence-interval half-width. Short runs can produce wide intervals; the snapshot should support workload-specific comparisons, not close rankings.
+The checked-in snapshot compares both direct and Regex engines at its recorded source revision, using one launch, three warmups, and ten measured iterations. Direct static/reused and Regex static/reused/compiled calls use identical string inputs and default case-sensitive options. Error is BenchmarkDotNet's 99.9% confidence-interval half-width. Compare intervals before interpreting close rankings; results describe the selected corpus and API lifetimes.
 
-To export a complete short run to the site:
+To export a complete run with this configuration to the site:
 
 ```powershell
 ./src/Tedd.WildcardMatch.Benchmark/Export-SiteBenchmarks.ps1 `
@@ -56,6 +58,6 @@ To export a complete short run to the site:
     -SourceRevision (git rev-parse HEAD)
 ```
 
-The exporter writes JSON, correctness results, raw Markdown reports, and static HTML tables with a throughput chart. It requires all 24 matching cases and six construction cases to have valid measurements and matching correctness records. A partial run fails instead of producing a misleading snapshot.
+The exporter writes JSON, correctness results, raw Markdown reports, and static HTML tables with a throughput chart. It requires all 32 matching cases and eight construction cases to have valid measurements and matching correctness records. A partial run fails instead of producing a misleading snapshot.
 
 Use a clean checkout and record the tested source revision. The website selector updates the chart; the complete tables remain available without JavaScript.

@@ -11,10 +11,13 @@ public class ConstructionBenchmarks
     public string Pattern { get; set; } = null!;
 
     [Benchmark(Baseline = true)]
-    public object TeddReused() => new global::Tedd.WildcardMatch(Pattern);
+    public object TeddDirectReused() => new global::Tedd.WildcardMatch(Pattern);
 
     [Benchmark]
-    public object TeddCompiled() => new global::Tedd.WildcardMatchRegex(Pattern, global::Tedd.WildcardOptions.Compiled);
+    public object TeddRegexReused() => new global::Tedd.WildcardMatchRegex(Pattern);
+
+    [Benchmark]
+    public object TeddRegexCompiled() => new global::Tedd.WildcardMatchRegex(Pattern, global::Tedd.WildcardOptions.Compiled);
 
     [Benchmark]
     public object DotNetGlob() => Glob.Parse(Pattern);

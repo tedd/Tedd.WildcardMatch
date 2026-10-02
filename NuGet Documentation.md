@@ -8,7 +8,7 @@ Builds use the SDK specified in [global.json](global.json), currently .NET 11 RC
 
 Set the repository secret `NUGET_API_KEY` to a NuGet.org API key permitted to publish `Tedd.WildcardMatch`. The publishing job uses the `nuget` GitHub environment; configure its reviewers or restrictions if release approval is required.
 
-Only pushes and manual workflow runs on the `deploy` branch publish NuGet packages. Pushes to `main`, pull requests, and manual runs on other branches build, test, validate the benchmark corpus, and verify the package without publishing. Tags do not trigger publication.
+Only pushes that change the package version and manual workflow runs on the `deploy` branch publish NuGet packages. Creating `deploy` also publishes its initial version. Documentation and benchmark updates with an unchanged version build and test without publishing NuGet. Pushes to `main`, pull requests, and manual runs on other branches build, test, validate the benchmark corpus, and verify the package without publishing. Tags do not trigger publication.
 
 The [Pages workflow](.github/workflows/pages.yml) also requires `deploy`. Enable GitHub Pages with **GitHub Actions** as its build source.
 
@@ -32,7 +32,7 @@ git switch -c deploy main
 git push -u origin deploy
 ```
 
-Pushing `deploy` publishes the verified NuGet package and its adjacent `.snupkg` symbol package. Site changes deploy to GitHub Pages. A manual Pages run must also select `deploy`. `--skip-duplicate` permits NuGet reruns after a successful upload.
+Pushing a new version to `deploy` publishes the verified NuGet package and its adjacent `.snupkg` symbol package. Site changes deploy to GitHub Pages. Manual NuGet and Pages runs must also select `deploy`; a manual NuGet run can retry an unchanged version after a failed release. `--skip-duplicate` permits NuGet reruns after a successful upload.
 
 ## Package contents
 

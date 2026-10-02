@@ -15,7 +15,8 @@ public static class Comparison
 {
     public const int BatchSize = 256;
     public static readonly string[] Libraries =
-        ["TeddStatic", "TeddReused", "TeddCompiled", "FastWildcard", "WildcardMatch", "DotNetGlob"];
+        ["TeddDirectStatic", "TeddDirectReused", "TeddRegexStatic", "TeddRegexReused",
+            "TeddRegexCompiled", "FastWildcard", "WildcardMatch", "DotNetGlob"];
     public static readonly Fixture[] Fixtures =
     [
         Create("Literal", "report-2026.txt", ["report-2026.txt", "report-2025.txt", "xreport-2026.txt", "report-2026.txtx"]),
@@ -32,9 +33,11 @@ public static class Comparison
 
     public static Func<string, bool> CreateMatcher(string library, string pattern) => library switch
     {
-        "TeddStatic" => input => global::Tedd.WildcardMatch.IsMatch(input, pattern),
-        "TeddReused" => new global::Tedd.WildcardMatch(pattern).IsMatch,
-        "TeddCompiled" => new global::Tedd.WildcardMatchRegex(pattern, global::Tedd.WildcardOptions.Compiled).IsMatch,
+        "TeddDirectStatic" => input => global::Tedd.WildcardMatch.IsMatch(input, pattern),
+        "TeddDirectReused" => new global::Tedd.WildcardMatch(pattern).IsMatch,
+        "TeddRegexStatic" => input => global::Tedd.WildcardMatchRegex.IsMatch(input, pattern),
+        "TeddRegexReused" => new global::Tedd.WildcardMatchRegex(pattern).IsMatch,
+        "TeddRegexCompiled" => new global::Tedd.WildcardMatchRegex(pattern, global::Tedd.WildcardOptions.Compiled).IsMatch,
         "FastWildcard" => Fast(pattern),
         "WildcardMatch" => input => global::WildcardMatch.StringExtensions.WildcardMatch(pattern, input, false),
         "DotNetGlob" => Glob.Parse(pattern).IsMatch,
