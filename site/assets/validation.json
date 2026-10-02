@@ -1,7 +1,7 @@
 [
   {
     "Workload": "Literal",
-    "Library": "TeddStatic",
+    "Library": "TeddDirectStatic",
     "Checked": 256,
     "Failures": 0,
     "FirstInput": null,
@@ -10,7 +10,7 @@
   },
   {
     "Workload": "Literal",
-    "Library": "TeddReused",
+    "Library": "TeddDirectReused",
     "Checked": 256,
     "Failures": 0,
     "FirstInput": null,
@@ -19,7 +19,25 @@
   },
   {
     "Workload": "Literal",
-    "Library": "TeddCompiled",
+    "Library": "TeddRegexStatic",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Literal",
+    "Library": "TeddRegexReused",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Literal",
+    "Library": "TeddRegexCompiled",
     "Checked": 256,
     "Failures": 0,
     "FirstInput": null,
@@ -55,7 +73,7 @@
   },
   {
     "Workload": "Simple",
-    "Library": "TeddStatic",
+    "Library": "TeddDirectStatic",
     "Checked": 256,
     "Failures": 0,
     "FirstInput": null,
@@ -64,7 +82,7 @@
   },
   {
     "Workload": "Simple",
-    "Library": "TeddReused",
+    "Library": "TeddDirectReused",
     "Checked": 256,
     "Failures": 0,
     "FirstInput": null,
@@ -73,7 +91,25 @@
   },
   {
     "Workload": "Simple",
-    "Library": "TeddCompiled",
+    "Library": "TeddRegexStatic",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Simple",
+    "Library": "TeddRegexReused",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Simple",
+    "Library": "TeddRegexCompiled",
     "Checked": 256,
     "Failures": 0,
     "FirstInput": null,
@@ -109,7 +145,7 @@
   },
   {
     "Workload": "MultiStar",
-    "Library": "TeddStatic",
+    "Library": "TeddDirectStatic",
     "Checked": 256,
     "Failures": 0,
     "FirstInput": null,
@@ -118,7 +154,7 @@
   },
   {
     "Workload": "MultiStar",
-    "Library": "TeddReused",
+    "Library": "TeddDirectReused",
     "Checked": 256,
     "Failures": 0,
     "FirstInput": null,
@@ -127,7 +163,25 @@
   },
   {
     "Workload": "MultiStar",
-    "Library": "TeddCompiled",
+    "Library": "TeddRegexStatic",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "MultiStar",
+    "Library": "TeddRegexReused",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "MultiStar",
+    "Library": "TeddRegexCompiled",
     "Checked": 256,
     "Failures": 0,
     "FirstInput": null,
@@ -163,7 +217,7 @@
   },
   {
     "Workload": "LongText",
-    "Library": "TeddStatic",
+    "Library": "TeddDirectStatic",
     "Checked": 256,
     "Failures": 0,
     "FirstInput": null,
@@ -172,7 +226,7 @@
   },
   {
     "Workload": "LongText",
-    "Library": "TeddReused",
+    "Library": "TeddDirectReused",
     "Checked": 256,
     "Failures": 0,
     "FirstInput": null,
@@ -181,7 +235,25 @@
   },
   {
     "Workload": "LongText",
-    "Library": "TeddCompiled",
+    "Library": "TeddRegexStatic",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "LongText",
+    "Library": "TeddRegexReused",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "LongText",
+    "Library": "TeddRegexCompiled",
     "Checked": 256,
     "Failures": 0,
     "FirstInput": null,

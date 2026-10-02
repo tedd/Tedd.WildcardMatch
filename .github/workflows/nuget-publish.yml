@@ -39,7 +39,7 @@ jobs:
               $current = [xml](Get-Content -LiteralPath $path -Raw)
               $previousText = git show "${env:PREVIOUS_REVISION}:$path"
               if ($LASTEXITCODE -ne 0) { throw 'Cannot verify the previous release version.' }
-              $previous = [xml]($previousText -join "`n")
+              $previous = [xml](($previousText -join "`n").TrimStart([char]0xFEFF))
               $changed = [string]$current.Project.PropertyGroup.Version -cne [string]$previous.Project.PropertyGroup.Version
             }
           }

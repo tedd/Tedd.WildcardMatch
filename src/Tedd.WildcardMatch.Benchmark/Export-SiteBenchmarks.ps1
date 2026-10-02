@@ -14,8 +14,8 @@ $constructionPath = Join-Path $ArtifactsDirectory 'results/Tedd.WildcardMatchBen
 $matchingReport = Get-Content -LiteralPath $matchingPath -Raw | ConvertFrom-Json
 $constructionReport = Get-Content -LiteralPath $constructionPath -Raw | ConvertFrom-Json
 foreach ($report in @($matchingReport, $constructionReport)) {
-    if (@($report.Benchmarks | Where-Object DisplayInfo -NotMatch 'ShortRun\(IterationCount=10, LaunchCount=1, WarmupCount=3\)').Count -gt 0) {
-        throw 'The website exporter requires a ShortRun with one launch, three warmups and ten measured iterations.'
+    if (@($report.Benchmarks | Where-Object DisplayInfo -NotMatch '\(IterationCount=10, LaunchCount=1, WarmupCount=3\)').Count -gt 0) {
+        throw 'The website exporter requires one launch, three warmups and ten measured iterations.'
     }
 }
 $validation = @(Get-Content -LiteralPath $ValidationPath -Raw | ConvertFrom-Json)
@@ -84,7 +84,7 @@ $data = [ordered]@{
     measuredAt = [DateTimeOffset]::Now.ToString('o')
     librarySourceRevision = $SourceRevision
     environment = $matchingReport.HostEnvironmentInfo
-    job = @{ name = 'ShortRun'; launchCount = 1; warmupCount = 3; iterationCount = 10; batchSize = 256 }
+    job = @{ name = 'ShortRun with ten measured iterations'; launchCount = 1; warmupCount = 3; iterationCount = 10; batchSize = 256 }
     libraries = $libraries; workloads = $workloads; matching = $matching; construction = $construction
 }
 $data | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath (Join-Path $assets 'package-comparison.json') -Encoding utf8
@@ -122,7 +122,7 @@ foreach ($row in $construction) {
 $null = $builder.AppendLine('</tbody></table></div></div>')
 $hostInfo = $data.environment
 $method = '<p class="benchmark-method" id="benchmark-method">' +
-    (Html "Measured $($data.measuredAt.Substring(0,10)) · $($hostInfo.ProcessorName) · $($hostInfo.OsVersion) · $($hostInfo.RuntimeVersion) · SDK $($hostInfo.DotNetCliVersion) · BenchmarkDotNet 0.15.8. ShortRun: one launch, three warmups, ten measured iterations. Error is the 99.9% confidence-interval half-width. Compare intervals before interpreting close rankings; results describe these fixtures and API lifetimes.") +
+    (Html "Measured $($data.measuredAt.Substring(0,10)) · $($hostInfo.ProcessorName) · $($hostInfo.OsVersion) · $($hostInfo.RuntimeVersion) · SDK $($hostInfo.DotNetCliVersion) · BenchmarkDotNet 0.15.8. One launch, three warmups, ten measured iterations. Error is the 99.9% confidence-interval half-width. Compare intervals before interpreting close rankings; results describe these fixtures and API lifetimes.") +
     ' Library source: <a href="https://github.com/tedd/Tedd.WildcardMatch/commit/' + (Html $SourceRevision) + '">' + (Html $SourceRevision.Substring(0,7)) + '</a>.</p>'
 $indexPath = Join-Path $SiteDirectory 'index.html'
 $index = Get-Content -LiteralPath $indexPath -Raw
