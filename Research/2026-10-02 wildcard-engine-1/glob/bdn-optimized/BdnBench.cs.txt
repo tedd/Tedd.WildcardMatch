@@ -1,0 +1,42 @@
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Exporters.Json;
+using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Running;
+using Tedd.WildcardMatchBenchmark;
+
+// Separate optimized-JIT epoch: the first default-tiered BDN run exposed instrumented Tier0.
+var config = DefaultConfig.Instance.AddJob(Job.Default.WithAffinity(new IntPtr(1L << 30))
+    .WithEnvironmentVariable("DOTNET_TieredCompilation", "0"));
+BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args, config);
+
+[MemoryDiagnoser]
+[JsonExporterAttribute.Full]
+[DisassemblyDiagnoser(maxDepth: 3, exportCombinedDisassemblyReport: true)]
+public class GlobAcceptance
+{
+    [Params("Literal", "Simple", "MultiStar", "LongText")]
+    public string Workload { get; set; } = "";
+    [Params("TeddDirectReused", "TeddDirectStatic", "DotNetGlob")]
+    public string Library { get; set; } = "";
+    private string[] _inputs = null!;
+    private Func<string, bool> _match = null!;
+
+    [GlobalSetup]
+    public void Setup()
+    {
+        Fixture fixture = Comparison.Fixtures.Single(f => f.Name == Workload);
+        _inputs = fixture.Inputs;
+        _match = Comparison.CreateMatcher(Library, fixture.Pattern);
+        foreach (string input in _inputs)
+            if (_match(input) != Comparison.ExpectedMatch(input, fixture.Pattern)) throw new InvalidOperationException("Independent oracle mismatch");
+    }
+
+    [Benchmark(OperationsPerInvoke = Comparison.BatchSize)]
+    public int Match()
+    {
+        int matches = 0;
+        foreach (string input in _inputs) if (_match(input)) matches++;
+        return matches;
+    }
+}

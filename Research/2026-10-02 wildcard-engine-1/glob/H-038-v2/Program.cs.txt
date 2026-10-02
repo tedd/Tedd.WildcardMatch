@@ -1,0 +1,122 @@
+extern alias control;
+using System.Diagnostics;
+using System.Runtime;
+using System.Runtime.InteropServices;
+using System.Runtime.Intrinsics.X86;
+using System.Text.Json;
+using System.Text.RegularExpressions;
+using DotNet.Globbing;
+using Tedd;
+using Control = control::Tedd.WildcardMatch;
+using ControlOptions = control::Tedd.WildcardOptions;
+
+int launch = int.Parse(args[0]);
+bool acceptance = args.Contains("--acceptance");
+Process.GetCurrentProcess().ProcessorAffinity = (nint)(1L << 30);
+var random = new Random(763199);
+string[] Vary(Func<int, string> make) => Enumerable.Range(0, 256).Select(make).ToArray();
+string[] Repeat(params string[] seeds) => Vary(i => seeds[i % seeds.Length]);
+var fixtures = new (string Name, string Pattern, string[] Inputs, WildcardOptions Options)[] {
+    ("Literal", "report-2026.txt", Repeat("report-2026.txt", "report-2025.txt", "xreport-2026.txt", "report-2026.txtx"), 0),
+    ("Simple", "report-??.txt", Repeat("report-01.txt", "report-aa.txt", "report-1.txt", "report-001.txt"), 0),
+    ("MultiStar", "*a?c*e*", Repeat("xabcyef", "abce", "abcd", "ababcd", "aZc-long-e-tail", "acex"), 0),
+    ("LongText", "*alpha*beta??*omega*", Repeat(new string('x',512)+"alpha-middle-beta42-tail-omega"+new string('z',512),
+        new string('x',512)+"alpha-middle-beta42-tail-delta"+new string('z',512),new string('x',512)+"alpha-beta12-omega"+new string('z',512),
+        new string('x',512)+"alpha-beta1-omega"+new string('z',512)), 0),
+    ("SimpleVaried", "report-??.txt", Vary(i => "report-" + (char)random.Next(32,65536) + (char)random.Next(32,65536) + (i%2==0 ? ".txt" : ".txZ")), 0),
+    ("SimpleLateMiss", "report-??.txt", Vary(i => "report-" + i.ToString("X2")[..2] + ".txZ"), 0),
+    ("SimpleFirstMiss", "report-??.txt", Vary(i => "Xeport-" + i.ToString("X2")[..2] + ".txt"), 0),
+    ("SimpleLF", "report-??.txt", Repeat("report-01.txt\n", "report-\na.txt", "report-aa.txt", "report-01.tx\n"), 0),
+    ("LiteralVaried", "report-2026.txt", Vary(i => i%2==0 ? new string("report-2026.txt".ToCharArray()) : "report-"+random.Next(1000,9999)+".txt"), 0),
+    ("Dense", string.Concat(Enumerable.Repeat("ab??",128)), Repeat(string.Concat(Enumerable.Repeat("abXY",128)), new string('x',512)), 0),
+    ("Question16", new string('?',16), Repeat(new string('x',16),new string('x',15),new string('x',16)+"\n",new string('x',7)+"\n"+new string('x',8)),0),
+    ("Question32", new string('?',32), Repeat(new string('x',32),new string('x',31),new string('x',32)+"\n",new string('x',17)+"\n"+new string('x',14)),0),
+    ("RetryNearMiss", "*aaaaaaaaaaaaaab*", Repeat(string.Concat(Enumerable.Repeat("aaaaaaaaaaaaaac",128)),new string('a',256)+"b"),0),
+    ("MixedAnchorNearMiss", "*a?c*e*", Repeat(string.Concat(Enumerable.Repeat("abx",128))+"aZce",string.Concat(Enumerable.Repeat("abx",128))+"aZcx"),0),
+    ("IgnoreCase", "report-??.txt", Repeat("REPORT-01.TXT","report-AA.txt","REPort-1.txt"),WildcardOptions.IgnoreCase),
+    ("Tiny", "a?b", Repeat("axb","ayb","ab","a\nb"),0),
+    ("Empty", "", Repeat("","x","\n","xx"),0)
+};
+var rows = new List<object>();
+var validation = new List<object>();
+var methods = new List<(string Fixture, string Mode, string Engine, Func<int> Action)>();
+foreach (var f in fixtures)
+{
+    bool Expected(string input) => Regex.IsMatch(input,"^"+Regex.Escape(f.Pattern).Replace(@"\*",".*").Replace(@"\?",".")+"$", (RegexOptions)f.Options);
+    var prepared = new WildcardMatch(f.Pattern,f.Options);
+    var baseline = new Control(f.Pattern,(ControlOptions)f.Options);
+    Glob? glob;
+    try { glob=Glob.Parse(f.Pattern); }
+    catch(ArgumentException) { glob=null; validation.Add(new {fixture=f.Name,mode="glob",engine="glob",constructorError="ArgumentException"}); }
+    var engineMethods = new List<(string Mode,string Engine,Func<string,bool> Match)> {
+        ("static","control",s=>Control.IsMatch(s,f.Pattern,(ControlOptions)f.Options)),
+        ("static","candidate",s=>WildcardMatch.IsMatch(s,f.Pattern,f.Options)),
+        ("reused","control",baseline.IsMatch),("reused","candidate",prepared.IsMatch),
+        ("span-static","control",s=>Control.IsMatch(s.AsSpan(),f.Pattern.AsSpan(),(ControlOptions)f.Options)),
+        ("span-static","candidate",s=>WildcardMatch.IsMatch(s.AsSpan(),f.Pattern.AsSpan(),f.Options)),
+        ("span-reused","control",s=>baseline.IsMatch(s.AsSpan())),
+        ("span-reused","candidate",s=>prepared.IsMatch(s.AsSpan()))
+    };
+    if(glob!=null) engineMethods.Add(("glob","glob",glob.IsMatch));
+    foreach (var m in engineMethods)
+    {
+        int failures = f.Inputs.Count(input=>m.Match(input)!=Expected(input));
+        validation.Add(new {fixture=f.Name,mode=m.Mode,engine=m.Engine,failures});
+        if (failures!=0) { if(m.Engine!="glob") throw new Exception("Oracle mismatch "+f.Name+"/"+m.Mode); else continue; }
+        int Batch() { int count=0; foreach(string input in f.Inputs) if(m.Match(input)) count++; return count; }
+        methods.Add((f.Name,m.Mode,m.Engine,Batch));
+    }
+    if (f.Name is "Literal" or "Simple" or "MultiStar" or "LongText") {
+        int Construct(Func<bool> action) { int count=0; for(int i=0;i<256;i++) if(action()) count++; return count; }
+        methods.Add((f.Name,"construction","control",()=>Construct(()=>new Control(f.Pattern,(ControlOptions)f.Options).IsMatch(f.Inputs[0]))));
+        methods.Add((f.Name,"construction","candidate",()=>Construct(()=>new WildcardMatch(f.Pattern,f.Options).IsMatch(f.Inputs[0]))));
+        methods.Add((f.Name,"construction","glob",()=>Construct(()=>Glob.Parse(f.Pattern).IsMatch(f.Inputs[0]))));
+    }
+}
+File.WriteAllText("validation.json",JsonSerializer.Serialize(validation,new JsonSerializerOptions{WriteIndented=true}));
+bool asm=args.Contains("--asm-only"),profile=args.Contains("--profile");
+if(asm||profile) {
+    int sum=0;
+    foreach(var m in methods.Where(m=>m.Engine=="candidate" && (m.Mode is "static" or "reused"))) {
+        long until=Stopwatch.GetTimestamp()+Stopwatch.Frequency/(profile?2:10);
+        while(Stopwatch.GetTimestamp()<until) sum^=m.Action();
+    }
+    Console.WriteLine("Diagnostic checksum "+sum); return;
+}
+// Prime every public route jointly before calibration; default tiering/PGO stays enabled.
+long prime=Stopwatch.GetTimestamp()+Stopwatch.Frequency;
+int sink=0;
+while(Stopwatch.GetTimestamp()<prime) foreach(var m in methods) sink^=m.Action();
+Thread.Sleep(500);
+foreach(var group in methods.GroupBy(m=>(m.Fixture,m.Mode)).Where(g=>g.Key.Mode!="glob")) {
+    var actions=group.ToList();
+    var globMethod=methods.FirstOrDefault(m=>m.Fixture==group.Key.Fixture && m.Engine=="glob" && m.Mode=="glob");
+    if(group.Key.Mode!="construction" && globMethod.Action!=null) actions.Add(globMethod);
+    long until=Stopwatch.GetTimestamp()+Stopwatch.Frequency/20;
+    while(Stopwatch.GetTimestamp()<until) foreach(var m in actions) sink^=m.Action();
+    var counts=new int[actions.Count];
+    double target=acceptance?20_000_000:5_000_000;
+    for(int index=0;index<actions.Count;index++) {
+        int count=1;
+        while(Measure(actions[index].Action,count).Ns*count*256<target && count<1<<22) count*=2;
+        counts[index]=count;
+    }
+    for(int block=0;block<(acceptance?9:4);block++) {
+        int[] order=actions.Count==3 ? ((block+launch)%2==0 ? new[]{0,1,2,2,1,0}:new[]{2,1,0,0,1,2}) : ((block+launch)%2==0?new[]{0,1,1,0}:new[]{1,0,0,1});
+        foreach(int index in order) {
+            int count=counts[index]; var m=actions[index]; var result=Measure(m.Action,count);
+            rows.Add(new {fixture=m.Fixture,mode=group.Key.Mode,engine=m.Engine,launch,block,ns=result.Ns,bytes=result.Bytes,checksum=result.Checksum,count});
+        }
+    }
+}
+File.WriteAllText("results.json",JsonSerializer.Serialize(new {launch,acceptance,protocol="v2: per-engine duration calibration, same 256 inputs and rotating order",source="see epoch source snapshots and identity hashes",runtime=RuntimeInformation.FrameworkDescription,
+    architecture=RuntimeInformation.ProcessArchitecture.ToString(),serverGc=GCSettings.IsServerGC,affinity="CPU 30",avx2=Avx2.IsSupported,sse2=Sse2.IsSupported,
+    tiering="runtime defaults",fixtures=fixtures.Select(f=>new {name=f.Name,pattern=f.Pattern,options=(int)f.Options,inputs=f.Inputs}),samples=rows},new JsonSerializerOptions{WriteIndented=true}));
+Console.WriteLine($"Launch {launch}: {rows.Count} raw samples; sink {sink}");
+
+static (double Ns,double Bytes,int Checksum) Measure(Func<int> action,int count) {
+    long before=GC.GetAllocatedBytesForCurrentThread(); int sum=0; long start=Stopwatch.GetTimestamp();
+    for(int i=0;i<count;i++) sum^=action();
+    long elapsed=Stopwatch.GetTimestamp()-start; long bytes=GC.GetAllocatedBytesForCurrentThread()-before;
+    return(elapsed*1e9/Stopwatch.Frequency/count/256,(double)bytes/count/256,sum);
+}

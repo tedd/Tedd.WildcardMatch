@@ -1,0 +1,30 @@
+[
+  {
+    "fixture": "Literal",
+    "glob": 15.310561470709693,
+    "prepared": 5.9199965080394055,
+    "static": 14.92519944960071,
+    "globOverPrepared": 2.5862450171917875
+  },
+  {
+    "fixture": "Simple",
+    "glob": 22.625539013637802,
+    "prepared": 5.511308929658946,
+    "static": 19.835694761533322,
+    "globOverPrepared": 4.105293189405358
+  },
+  {
+    "fixture": "MultiStar",
+    "glob": 59.66800677875643,
+    "prepared": 21.735075532317705,
+    "static": 38.160923168290395,
+    "globOverPrepared": 2.745240369192026
+  },
+  {
+    "fixture": "LongText",
+    "glob": 7346.051929615162,
+    "prepared": 179.3782400249528,
+    "static": 212.49111265604785,
+    "globOverPrepared": 40.9528598819638
+  }
+]

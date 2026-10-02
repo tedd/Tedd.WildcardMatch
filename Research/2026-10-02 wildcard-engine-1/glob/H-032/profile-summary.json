@@ -1,0 +1,287 @@
+{
+  "note": "Sampled stack residence; not exact retired CPU counters or an application trace",
+  "inclusive": [
+    [
+      "Process64 dotnet (166896) Args:  D:\\Workspaces\\AI\\wildcard-glob\\rig\\bin\\Release\\net10.0\\GlobBench.dll 0 --profile ",
+      16593.505859375
+    ],
+    [
+      "(Non-Activities)",
+      16593.505859375
+    ],
+    [
+      "Threads",
+      16593.505859375
+    ],
+    [
+      "Thread (590272)",
+      16593.505859375
+    ],
+    [
+      "GlobBench!Program.<Main>$(class System.String[])",
+      16546.38671544189
+    ],
+    [
+      "CPU_TIME",
+      16523.079535167697
+    ],
+    [
+      "GlobBench!Program+<>c__DisplayClass0_4.<<Main>$>g__Batch|21()",
+      14783.22136364746
+    ],
+    [
+      "Tedd.WildcardMatch!Tedd.DefaultWildcardEngine.Window(value class System.ReadOnlySpan`1<wchar>,value class System.ReadOnlySpan`1<wchar>,bool,int32,int32)",
+      7447.900564413455
+    ],
+    [
+      "Tedd.WildcardMatch!Tedd.WildcardMatch.IsMatch(class System.String,class System.String,value class Tedd.WildcardOptions)",
+      6522.204413122563
+    ],
+    [
+      "System.Private.CoreLib.il!System.SpanHelpers.IndexOf(wchar&,int32,wchar&,int32)",
+      1270.1619303802463
+    ],
+    [
+      "System.Private.CoreLib.il!System.PackedSpanHelpers.IndexOfAny(int16&,int16,int16,int32)",
+      1125.8231751007086
+    ],
+    [
+      "System.Private.CoreLib.il!System.Threading.Thread.<PollGC>g__PollGCWorker|70_0()",
+      1002.9371936096201
+    ],
+    [
+      "Tedd.WildcardMatch!Tedd.WildcardEngine.IsMatch(class System.String,class System.String,value class Tedd.WildcardOptions,int32,bool,value class System.TimeSpan,class System.String,int32,int32,int32)",
+      634.9587821960449
+    ],
+    [
+      "System.Linq.il!System.Linq.Enumerable.Count(class System.Collections.Generic.IEnumerable`1<!!0>,class System.Func`2<!!0,bool>)",
+      436.28369754638663
+    ],
+    [
+      "GlobBench!Program+<>c__DisplayClass0_4.<<Main>$>b__20(class System.String)",
+      436.28369754638663
+    ],
+    [
+      "System.Private.CoreLib.il!System.PackedSpanHelpers.IndexOf(int16&,int16,int32)",
+      333.696892761232
+    ],
+    [
+      "GlobBench!Program+<>c__DisplayClass0_2.<<Main>$>g__Expected|9(class System.String)",
+      304.6151960876464
+    ],
+    [
+      "System.Private.CoreLib.il!System.SpanHelpers.SequenceEqual(unsigned int8&,unsigned int8&,unsigned int)",
+      299.63489841308547
+    ],
+    [
+      "GlobBench!Program+<>c__DisplayClass0_2.<<Main>$>b__15(class System.String)",
+      200.8285909301751
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Stopwatch.GetTimestamp()",
+      142.23190307617188
+    ],
+    [
+      "System.Private.CoreLib.il!System.Buffers.AsciiCharSearchValues`2[System.Buffers.IndexOfAnyAsciiSearcher+Default,System.Buffers.SearchValues+FalseConst].IndexOfAny(value class System.ReadOnlySpan`1<wchar>)",
+      135.35209974479673
+    ],
+    [
+      "System.Private.CoreLib.il!System.Buffers.IndexOfAnyAsciiSearcher.IndexOfAny(int16&,int32,value class AsciiState&)",
+      135.35209974479673
+    ],
+    [
+      "System.Private.CoreLib.il!System.Buffers.IndexOfAnyAsciiSearcher.IndexOfAnyCore(int16&,int32,value class AsciiState&)",
+      133.76309974479673
+    ],
+    [
+      "System.Text.RegularExpressions.il!System.Text.RegularExpressions.RegexParser.Escape(class System.String)",
+      132.23409970092771
+    ],
+    [
+      "System.Text.RegularExpressions.il!System.Text.RegularExpressions.RegexParser.EscapeImpl(value class System.ReadOnlySpan`1<wchar>,int32)",
+      132.23409970092771
+    ],
+    [
+      "DotNet.Glob!DotNet.Globbing.Glob.IsMatch(class System.String)",
+      131.66849899291992
+    ],
+    [
+      "DotNet.Glob!DotNet.Globbing.Evaluation.GlobTokenEvaluator.IsMatch(class System.String)",
+      131.66849899291992
+    ],
+    [
+      "DotNet.Glob!DotNet.Globbing.Evaluation.CompositeTokenEvaluator.IsMatch(value class System.ReadOnlySpan`1<wchar>,int32,int32&)",
+      131.66849899291992
+    ],
+    [
+      "DotNet.Glob!DotNet.Globbing.Evaluation.WildcardTokenEvaluator.IsMatch(value class System.ReadOnlySpan`1<wchar>,int32,int32&)",
+      131.66849899291992
+    ],
+    [
+      "System.Text.RegularExpressions.il!System.Text.RegularExpressions.Regex.IsMatch(class System.String)",
+      105.69059753417963
+    ],
+    [
+      "System.Text.RegularExpressions.il!System.Text.RegularExpressions.Regex.RunSingleMatch(value class System.Text.RegularExpressions.RegexRunnerMode,int32,class System.String,int32,int32,int32)",
+      105.69059753417963
+    ],
+    [
+      "System.Text.RegularExpressions.il!System.Text.RegularExpressions.Regex.ScanInternal(value class System.Text.RegularExpressions.RegexRunnerMode,bool,class System.String,int32,class System.Text.RegularExpressions.RegexRunner,value class System.ReadOnlySpan`1<wchar>,bool)",
+      105.69059753417963
+    ],
+    [
+      "System.Text.RegularExpressions.il!System.Text.RegularExpressions.RegexInterpreter.Scan(value class System.ReadOnlySpan`1<wchar>)",
+      105.69059753417963
+    ],
+    [
+      "System.Text.RegularExpressions.il!System.Text.RegularExpressions.RegexInterpreter.TryMatchAtCurrentPosition(value class System.ReadOnlySpan`1<wchar>)",
+      105.69059753417963
+    ],
+    [
+      "System.Private.CoreLib.il!System.Threading.Thread.PollGC()",
+      76.30619812011719
+    ]
+  ],
+  "exclusive": [
+    [
+      "CPU_TIME",
+      16523.079535167697
+    ],
+    [
+      "UNMANAGED_CODE_TIME",
+      70.41789771461487
+    ],
+    [
+      "GlobBench!Program.<Main>$(class System.String[])",
+      0.0061608825672010425
+    ],
+    [
+      "GlobBench!Program+<>c__DisplayClass0_4.<<Main>$>g__Batch|21()",
+      0.001153601072019228
+    ],
+    [
+      "Thread (590272)",
+      0.0008406341570044162
+    ],
+    [
+      "Tedd.WildcardMatch!Tedd.WildcardMatch.IsMatch(class System.String,class System.String,value class Tedd.WildcardOptions)",
+      0.00015721130353085755
+    ],
+    [
+      "Tedd.WildcardMatch!Tedd.DefaultWildcardEngine.Window(value class System.ReadOnlySpan`1<wchar>,value class System.ReadOnlySpan`1<wchar>,bool,int32,int32)",
+      9.323730409960262e-05
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Stopwatch.GetTimestamp()",
+      7.62939453125e-06
+    ],
+    [
+      "System.Private.CoreLib.il!System.SpanHelpers.IndexOf(wchar&,int32,wchar&,int32)",
+      3.8085922824393492e-06
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.EventSource.Initialize(value class System.Guid,class System.String,class System.String[])",
+      3.2199859560932964e-06
+    ],
+    [
+      "GlobBench!Program+<>c__DisplayClass0_4.<<Main>$>b__20(class System.String)",
+      2.4658203301441972e-06
+    ],
+    [
+      "GlobBench!Program+<>c__DisplayClass0_2.<<Main>$>g__Expected|9(class System.String)",
+      1.6479492046528321e-06
+    ],
+    [
+      "System.Private.CoreLib.il!System.Buffers.IndexOfAnyAsciiSearcher.IndexOfAnyCore(int16&,int32,value class AsciiState&)",
+      8.056640581344254e-07
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.ManifestBuilder.CreateManifestString()",
+      3.219604494120176e-07
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.EtwEventProvider.TryReadRegistryFilterData(int32,value class System.Diagnostics.Tracing.ControllerCommand&,unsigned int8[]&)",
+      2.819061286629676e-07
+    ],
+    [
+      "System.Private.CoreLib.il!System.Reflection.CustomAttribute.AddCustomAttributes(value class ListBuilder`1<class System.Object>&,class System.Reflection.RuntimeModule,int32,class System.RuntimeType,bool,value class ListBuilder`1<class System.Object>)",
+      2.752304055775312e-07
+    ],
+    [
+      "System.Private.CoreLib.il!System.Reflection.RuntimeMethodInfo.InvokePropertySetter(class System.Object,value class System.Reflection.BindingFlags,class System.Reflection.Binder,class System.Object,class System.Globalization.CultureInfo)",
+      1.804351796863557e-07
+    ],
+    [
+      "System.Private.CoreLib.il!System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(class System.Object,value class System.Span`1<class System.Object>,value class System.Reflection.BindingFlags)",
+      5.7983399415206804e-08
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.EventSource.CreateManifestAndDescriptors(class System.Type,class System.String,class System.Diagnostics.Tracing.EventSource,value class System.Diagnostics.Tracing.EventManifestOptions)",
+      5.493163968139925e-08
+    ],
+    [
+      "System.Private.CoreLib.il!System.String.IndexOfAny(wchar[])",
+      4.882895154878497e-08
+    ],
+    [
+      "System.Private.CoreLib.il!System.Guid.ToString(class System.String,class System.IFormatProvider)",
+      3.52859501617786e-08
+    ],
+    [
+      "System.Private.CoreLib.il!System.Reflection.Metadata.TypeNameParserHelpers.GetFullTypeNameLength(value class System.ReadOnlySpan`1<wchar>,bool&)",
+      3.356933575560106e-08
+    ],
+    [
+      "System.Private.CoreLib.il!System.Reflection.Metadata.TypeNameParserHelpers..cctor()",
+      2.8610230629055877e-08
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.ManifestBuilder.CreateManifest()",
+      1.6784674983227887e-08
+    ],
+    [
+      "System.Private.CoreLib.il!System.Buffers.IndexOfAnyAsciiSearcher.IndexOfAny(int16&,int32,value class AsciiState&)",
+      1.3351439065445447e-08
+    ],
+    [
+      "Process64 dotnet (166896) Args:  D:\\Workspaces\\AI\\wildcard-glob\\rig\\bin\\Release\\net10.0\\GlobBench.dll 0 --profile ",
+      0.0
+    ],
+    [
+      "(Non-Activities)",
+      0.0
+    ],
+    [
+      "Threads",
+      0.0
+    ],
+    [
+      "System.Private.CoreLib.il!System.AppContext.Setup(wchar**,wchar**,int32)",
+      0.0
+    ],
+    [
+      "System.Private.CoreLib.il!System.Collections.Generic.Dictionary`2[System.__Canon,System.__Canon]..ctor(int32,class System.Collections.Generic.IEqualityComparer`1<!0>)",
+      0.0
+    ],
+    [
+      "System.Private.CoreLib.il!System.Collections.Generic.NonRandomizedStringEqualityComparer.GetStringComparer(class System.Object)",
+      0.0
+    ],
+    [
+      "System.Private.CoreLib.il!System.Collections.Generic.NonRandomizedStringEqualityComparer..cctor()",
+      0.0
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.EventSource.InitializeDefaultEventSources()",
+      0.0
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.NativeRuntimeEventSource..cctor()",
+      0.0
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.NativeRuntimeEventSource..ctor()",
+      0.0
+    ]
+  ]
+}

@@ -1,0 +1,182 @@
+[
+  {
+    "fixture": "Literal",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "Literal",
+    "engine": "candidate",
+    "constructorBytes": 96.4
+  },
+  {
+    "fixture": "Simple",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "Simple",
+    "engine": "candidate",
+    "constructorBytes": 208.4
+  },
+  {
+    "fixture": "MultiStar",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "MultiStar",
+    "engine": "candidate",
+    "constructorBytes": 416.4
+  },
+  {
+    "fixture": "LongText",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "LongText",
+    "engine": "candidate",
+    "constructorBytes": 568.4
+  },
+  {
+    "fixture": "SimpleVaried",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "SimpleVaried",
+    "engine": "candidate",
+    "constructorBytes": 208.4
+  },
+  {
+    "fixture": "SimpleLateMiss",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "SimpleLateMiss",
+    "engine": "candidate",
+    "constructorBytes": 208.4
+  },
+  {
+    "fixture": "SimpleFirstMiss",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "SimpleFirstMiss",
+    "engine": "candidate",
+    "constructorBytes": 208.4
+  },
+  {
+    "fixture": "SimpleLF",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "SimpleLF",
+    "engine": "candidate",
+    "constructorBytes": 208.4
+  },
+  {
+    "fixture": "LiteralVaried",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "LiteralVaried",
+    "engine": "candidate",
+    "constructorBytes": 96.4
+  },
+  {
+    "fixture": "Dense",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "Dense",
+    "engine": "candidate",
+    "constructorBytes": 2280.4
+  },
+  {
+    "fixture": "Question16",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "Question16",
+    "engine": "candidate",
+    "constructorBytes": 208.4
+  },
+  {
+    "fixture": "Question32",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "Question32",
+    "engine": "candidate",
+    "constructorBytes": 208.4
+  },
+  {
+    "fixture": "QuestionLong",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "QuestionLong",
+    "engine": "candidate",
+    "constructorBytes": 208.4
+  },
+  {
+    "fixture": "RetryNearMiss",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "RetryNearMiss",
+    "engine": "candidate",
+    "constructorBytes": 296.4
+  },
+  {
+    "fixture": "MixedAnchorNearMiss",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "MixedAnchorNearMiss",
+    "engine": "candidate",
+    "constructorBytes": 416.4
+  },
+  {
+    "fixture": "IgnoreCase",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "IgnoreCase",
+    "engine": "candidate",
+    "constructorBytes": 96.4
+  },
+  {
+    "fixture": "Tiny",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "Tiny",
+    "engine": "candidate",
+    "constructorBytes": 208.4
+  },
+  {
+    "fixture": "Empty",
+    "engine": "control",
+    "constructorBytes": 72.4
+  },
+  {
+    "fixture": "Empty",
+    "engine": "candidate",
+    "constructorBytes": 96.4
+  }
+]

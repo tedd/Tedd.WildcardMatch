@@ -1,0 +1,68 @@
+using System;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+namespace Tedd;
+
+internal sealed class PreparedPattern
+{
+    private readonly string _pattern;
+    private readonly bool _singleline;
+    private readonly ulong _p0, _p1, _p2, _p3, _m0, _m1, _m2, _m3;
+
+    private PreparedPattern(string pattern, bool singleline)
+    {
+        _pattern = pattern;
+        _singleline = singleline;
+        if (pattern.Length >= 4 && pattern.Length <= 16)
+        {
+            Span<char> mask = stackalloc char[pattern.Length];
+            for (int i = 0; i < mask.Length; i++) mask[i] = pattern[i] == '?' ? '\0' : '\uffff';
+            _p0 = Read4(pattern.AsSpan(), 0); _m0 = Read4(mask, 0);
+            _p1 = Read4(pattern.AsSpan(), pattern.Length - 4); _m1 = Read4(mask, pattern.Length - 4);
+            if (pattern.Length > 8)
+            {
+                _p2 = Read4(pattern.AsSpan(), 4); _m2 = Read4(mask, 4);
+                _p3 = Read4(pattern.AsSpan(), pattern.Length - 8); _m3 = Read4(mask, pattern.Length - 8);
+            }
+        }
+    }
+
+    internal static PreparedPattern? Create(string pattern, bool singleline) =>
+        pattern.IndexOf('*') < 0 && pattern.IndexOf('?') >= 0 ? new PreparedPattern(pattern, singleline) : null;
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static ulong Read4(ReadOnlySpan<char> text, int offset) => MemoryMarshal.Read<ulong>(MemoryMarshal.AsBytes(text.Slice(offset, 4)));
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private ulong Bad(ulong input, ulong pattern, ulong mask)
+    {
+        ulong bad = (input ^ pattern) & mask;
+        if (!_singleline)
+        {
+            const ulong low = 0x7FFF7FFF7FFF7FFFUL, high = 0x8000800080008000UL;
+            ulong x = input ^ 0x000A000A000A000AUL;
+            bad |= ~(((x & low) + low) | x | low) & high & ~mask;
+        }
+        return bad;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal bool IsMatch(ReadOnlySpan<char> input)
+    {
+        int length = _pattern.Length;
+        if (input.Length != length && !(input.Length == length + 1 && input[length] == '\n')) return false;
+        if (length >= 4 && length <= 16)
+        {
+            ulong bad = Bad(Read4(input, 0), _p0, _m0) | Bad(Read4(input, length - 4), _p1, _m1);
+            if (length > 8) bad |= Bad(Read4(input, 4), _p2, _m2) | Bad(Read4(input, length - 8), _p3, _m3);
+            return bad == 0;
+        }
+        for (int i = 0; i < length; i++)
+        {
+            char token = _pattern[i];
+            if (token == '?' ? !_singleline && input[i] == '\n' : token != input[i]) return false;
+        }
+        return true;
+    }
+}

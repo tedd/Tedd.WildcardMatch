@@ -1,0 +1,4 @@
+Unhandled exception. System.ArgumentNullException: Value cannot be null.
+   at DotNet.Globbing.Glob.Parse(String pattern, GlobOptions options)
+   at DotNet.Globbing.Glob.Parse(String pattern)
+   at Program.<Main>$(String[] args) in D:\Workspaces\AI\wildcard-glob\rig\Program.cs:line 47

@@ -1,0 +1,866 @@
+[
+  {
+    "fixture": "Literal",
+    "mode": "static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Literal",
+    "mode": "static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Literal",
+    "mode": "reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Literal",
+    "mode": "reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Literal",
+    "mode": "span-static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Literal",
+    "mode": "span-static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Literal",
+    "mode": "span-reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Literal",
+    "mode": "span-reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Literal",
+    "mode": "glob",
+    "engine": "glob",
+    "failures": 0
+  },
+  {
+    "fixture": "Simple",
+    "mode": "static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Simple",
+    "mode": "static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Simple",
+    "mode": "reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Simple",
+    "mode": "reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Simple",
+    "mode": "span-static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Simple",
+    "mode": "span-static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Simple",
+    "mode": "span-reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Simple",
+    "mode": "span-reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Simple",
+    "mode": "glob",
+    "engine": "glob",
+    "failures": 0
+  },
+  {
+    "fixture": "MultiStar",
+    "mode": "static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "MultiStar",
+    "mode": "static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "MultiStar",
+    "mode": "reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "MultiStar",
+    "mode": "reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "MultiStar",
+    "mode": "span-static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "MultiStar",
+    "mode": "span-static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "MultiStar",
+    "mode": "span-reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "MultiStar",
+    "mode": "span-reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "MultiStar",
+    "mode": "glob",
+    "engine": "glob",
+    "failures": 0
+  },
+  {
+    "fixture": "LongText",
+    "mode": "static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "LongText",
+    "mode": "static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "LongText",
+    "mode": "reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "LongText",
+    "mode": "reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "LongText",
+    "mode": "span-static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "LongText",
+    "mode": "span-static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "LongText",
+    "mode": "span-reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "LongText",
+    "mode": "span-reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "LongText",
+    "mode": "glob",
+    "engine": "glob",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleVaried",
+    "mode": "static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleVaried",
+    "mode": "static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleVaried",
+    "mode": "reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleVaried",
+    "mode": "reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleVaried",
+    "mode": "span-static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleVaried",
+    "mode": "span-static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleVaried",
+    "mode": "span-reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleVaried",
+    "mode": "span-reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleVaried",
+    "mode": "glob",
+    "engine": "glob",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLateMiss",
+    "mode": "static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLateMiss",
+    "mode": "static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLateMiss",
+    "mode": "reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLateMiss",
+    "mode": "reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLateMiss",
+    "mode": "span-static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLateMiss",
+    "mode": "span-static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLateMiss",
+    "mode": "span-reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLateMiss",
+    "mode": "span-reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLateMiss",
+    "mode": "glob",
+    "engine": "glob",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleFirstMiss",
+    "mode": "static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleFirstMiss",
+    "mode": "static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleFirstMiss",
+    "mode": "reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleFirstMiss",
+    "mode": "reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleFirstMiss",
+    "mode": "span-static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleFirstMiss",
+    "mode": "span-static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleFirstMiss",
+    "mode": "span-reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleFirstMiss",
+    "mode": "span-reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleFirstMiss",
+    "mode": "glob",
+    "engine": "glob",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLF",
+    "mode": "static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLF",
+    "mode": "static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLF",
+    "mode": "reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLF",
+    "mode": "reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLF",
+    "mode": "span-static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLF",
+    "mode": "span-static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLF",
+    "mode": "span-reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLF",
+    "mode": "span-reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "SimpleLF",
+    "mode": "glob",
+    "engine": "glob",
+    "failures": 128
+  },
+  {
+    "fixture": "LiteralVaried",
+    "mode": "static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "LiteralVaried",
+    "mode": "static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "LiteralVaried",
+    "mode": "reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "LiteralVaried",
+    "mode": "reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "LiteralVaried",
+    "mode": "span-static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "LiteralVaried",
+    "mode": "span-static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "LiteralVaried",
+    "mode": "span-reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "LiteralVaried",
+    "mode": "span-reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "LiteralVaried",
+    "mode": "glob",
+    "engine": "glob",
+    "failures": 0
+  },
+  {
+    "fixture": "Dense",
+    "mode": "static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Dense",
+    "mode": "static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Dense",
+    "mode": "reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Dense",
+    "mode": "reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Dense",
+    "mode": "span-static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Dense",
+    "mode": "span-static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Dense",
+    "mode": "span-reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Dense",
+    "mode": "span-reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Dense",
+    "mode": "glob",
+    "engine": "glob",
+    "failures": 0
+  },
+  {
+    "fixture": "Question16",
+    "mode": "static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Question16",
+    "mode": "static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Question16",
+    "mode": "reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Question16",
+    "mode": "reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Question16",
+    "mode": "span-static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Question16",
+    "mode": "span-static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Question16",
+    "mode": "span-reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Question16",
+    "mode": "span-reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Question16",
+    "mode": "glob",
+    "engine": "glob",
+    "failures": 128
+  },
+  {
+    "fixture": "Question32",
+    "mode": "static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Question32",
+    "mode": "static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Question32",
+    "mode": "reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Question32",
+    "mode": "reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Question32",
+    "mode": "span-static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Question32",
+    "mode": "span-static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Question32",
+    "mode": "span-reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Question32",
+    "mode": "span-reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Question32",
+    "mode": "glob",
+    "engine": "glob",
+    "failures": 128
+  },
+  {
+    "fixture": "RetryNearMiss",
+    "mode": "static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "RetryNearMiss",
+    "mode": "static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "RetryNearMiss",
+    "mode": "reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "RetryNearMiss",
+    "mode": "reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "RetryNearMiss",
+    "mode": "span-static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "RetryNearMiss",
+    "mode": "span-static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "RetryNearMiss",
+    "mode": "span-reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "RetryNearMiss",
+    "mode": "span-reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "RetryNearMiss",
+    "mode": "glob",
+    "engine": "glob",
+    "failures": 0
+  },
+  {
+    "fixture": "IgnoreCase",
+    "mode": "static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "IgnoreCase",
+    "mode": "static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "IgnoreCase",
+    "mode": "reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "IgnoreCase",
+    "mode": "reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "IgnoreCase",
+    "mode": "span-static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "IgnoreCase",
+    "mode": "span-static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "IgnoreCase",
+    "mode": "span-reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "IgnoreCase",
+    "mode": "span-reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "IgnoreCase",
+    "mode": "glob",
+    "engine": "glob",
+    "failures": 86
+  },
+  {
+    "fixture": "Tiny",
+    "mode": "static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Tiny",
+    "mode": "static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Tiny",
+    "mode": "reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Tiny",
+    "mode": "reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Tiny",
+    "mode": "span-static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Tiny",
+    "mode": "span-static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Tiny",
+    "mode": "span-reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Tiny",
+    "mode": "span-reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Tiny",
+    "mode": "glob",
+    "engine": "glob",
+    "failures": 64
+  },
+  {
+    "fixture": "Empty",
+    "mode": "glob",
+    "engine": "glob",
+    "constructorError": "ArgumentException"
+  },
+  {
+    "fixture": "Empty",
+    "mode": "static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Empty",
+    "mode": "static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Empty",
+    "mode": "reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Empty",
+    "mode": "reused",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Empty",
+    "mode": "span-static",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Empty",
+    "mode": "span-static",
+    "engine": "candidate",
+    "failures": 0
+  },
+  {
+    "fixture": "Empty",
+    "mode": "span-reused",
+    "engine": "control",
+    "failures": 0
+  },
+  {
+    "fixture": "Empty",
+    "mode": "span-reused",
+    "engine": "candidate",
+    "failures": 0
+  }
+]

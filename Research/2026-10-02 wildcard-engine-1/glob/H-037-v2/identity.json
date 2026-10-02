@@ -1,0 +1,28 @@
+{
+  "startedUtc": "2026-10-02T10:25:22.362482+00:00",
+  "endedUtc": "2026-10-02T10:27:04.285050+00:00",
+  "hashes": {
+    "DefaultWildcardEngine.cs": "6614189557ab00301a03811720b0f0792800eef1e646ac98a94094bb1a1b998e",
+    "InternalUtils.cs": "88b1e62038132f55029150bdaee71a9750d96579d3d12dcad49305b36dfe3e58",
+    "WildcardEngine.cs": "306c93ac3ede26a403a9a9d557285a7bb2b9d804721860f188eac33955275dd3",
+    "WildcardEngine.Spans.cs": "9549cc67c5928def0bae09a5585042cc3b915e4b43f6cc3aa99a6548ae7d2c13",
+    "WildcardMatch.cs": "70e0256adf68456e4b7c8581cd3addb25929ef39956330deca47109ca52df82c",
+    "WildcardMatchExtensions.cs": "6beeaebc4f2533b0cdce7a3df989f71fa559554bc65b0befcf69127461595486",
+    "WildcardMatchRegex.cs": "1f7771890d03b21f51b10c8c8ad31da127bb3770a38a108d7de3bc13f9b6da60",
+    "WildcardOptions.cs": "edfd118f67af3ebf4099d081e2a74ec50d79b8f6209a2dd4b4852b4367d82ebf"
+  },
+  "variant": "H-037",
+  "controlVariant": "H-032",
+  "controlHashes": {
+    "DefaultWildcardEngine.cs": "ca93b3ca4596e4c697b14f1c314a4d8a3c459d68a72b0061637e1810aee9acb7",
+    "InternalUtils.cs": "88b1e62038132f55029150bdaee71a9750d96579d3d12dcad49305b36dfe3e58",
+    "WildcardEngine.cs": "306c93ac3ede26a403a9a9d557285a7bb2b9d804721860f188eac33955275dd3",
+    "WildcardEngine.Spans.cs": "9549cc67c5928def0bae09a5585042cc3b915e4b43f6cc3aa99a6548ae7d2c13",
+    "WildcardMatch.cs": "70e0256adf68456e4b7c8581cd3addb25929ef39956330deca47109ca52df82c",
+    "WildcardMatchExtensions.cs": "6beeaebc4f2533b0cdce7a3df989f71fa559554bc65b0befcf69127461595486",
+    "WildcardMatchRegex.cs": "1f7771890d03b21f51b10c8c8ad31da127bb3770a38a108d7de3bc13f9b6da60",
+    "WildcardOptions.cs": "edfd118f67af3ebf4099d081e2a74ec50d79b8f6209a2dd4b4852b4367d82ebf"
+  },
+  "acceptance": false,
+  "lock": "C:\\Users\\tedd\\.codex\\locks\\performance-measurement.lock"
+}

@@ -1,0 +1,98 @@
+using System;
+using System.Runtime.CompilerServices;
+
+namespace Tedd;
+
+internal static class DefaultWildcardEngine
+{
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal static bool IsMatch(ReadOnlySpan<char> input, ReadOnlySpan<char> pattern, bool singleline, bool literal, int prefix = -1, int suffix = -1)
+    {
+        if (literal)
+            return (input.Length == pattern.Length || (input.Length > 0 && input.Length - 1 == pattern.Length && input[input.Length - 1] == '\n'))
+                && input.Slice(0, pattern.Length).SequenceEqual(pattern);
+        return Window(input, pattern, singleline, prefix, suffix)
+            || (input.Length > 0 && input[input.Length - 1] == '\n' && Window(input.Slice(0, input.Length - 1), pattern, singleline, prefix, suffix));
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static bool Accept(char token, char value, bool singleline) => token == '?' ? singleline || value != '\n' : token == value;
+
+    private static int FindLiteral(ReadOnlySpan<char> input, int start, int end, ReadOnlySpan<char> pattern, int token, int patternEnd)
+    {
+        int next = token + 1;
+        while (next < patternEnd && pattern[next] != '*' && pattern[next] != '?') next++;
+        int offset = input.Slice(start, end - start).IndexOf(pattern.Slice(token, next - token));
+        return offset < 0 ? -1 : start + offset;
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static bool Window(ReadOnlySpan<char> input, ReadOnlySpan<char> pattern, bool singleline, int prefix, int suffix)
+    {
+        int text = 0, token = 0, end = input.Length, patternEnd = pattern.Length;
+        if (patternEnd >= 32)
+        {
+            if (prefix < 0) prefix = pattern.IndexOfAny('*', '?');
+            if (prefix > 0)
+            {
+                if (prefix > end || !input.Slice(0, prefix).SequenceEqual(pattern.Slice(0, prefix))) return false;
+                text = token = prefix;
+            }
+            if (suffix < 0) suffix = patternEnd - pattern.LastIndexOfAny('*', '?') - 1;
+            if (suffix > 0)
+            {
+                if (suffix > end - text || !input.Slice(end - suffix, suffix).SequenceEqual(pattern.Slice(patternEnd - suffix, suffix))) return false;
+                patternEnd -= suffix; end -= suffix;
+            }
+            if (token == 0 && patternEnd >= 32 && pattern[0] == '?' && pattern[1] == '?')
+            {
+                int run = 2;
+                while (run < patternEnd && pattern[run] == '?') run++;
+                if (run > end || (!singleline && input.Slice(0, run).IndexOf('\n') >= 0)) return false;
+                token = text = run;
+            }
+        }
+        while (token < patternEnd && pattern[token] != '*')
+        {
+            if (text == end || !Accept(pattern[token], input[text], singleline)) return false;
+            token++; text++;
+        }
+        if (token == patternEnd) return text == end;
+        while (pattern[patternEnd - 1] != '*')
+        {
+            if (text == end || !Accept(pattern[patternEnd - 1], input[end - 1], singleline)) return false;
+            patternEnd--; end--;
+        }
+        int retryToken = -1, retryText = 0;
+        while (text < end)
+        {
+            if (token < patternEnd && pattern[token] == '*')
+            {
+                do { token++; } while (token < patternEnd && pattern[token] == '*');
+                if (token == patternEnd) return singleline || input.Slice(text, end - text).IndexOf('\n') < 0;
+                if (pattern[token] != '?')
+                {
+                    int found = FindLiteral(input, text, end, pattern, token, patternEnd);
+                    if (found < 0 || (!singleline && input.Slice(text, found - text).IndexOf('\n') >= 0)) return false;
+                    text = found;
+                }
+                retryToken = token; retryText = text;
+            }
+            else if (token < patternEnd && Accept(pattern[token], input[text], singleline)) { token++; text++; }
+            else if (retryToken >= 0 && retryText < end && (singleline || input[retryText] != '\n'))
+            {
+                if (pattern[retryToken] != '?')
+                {
+                    int found = FindLiteral(input, retryText + 1, end, pattern, retryToken, patternEnd);
+                    if (found < 0 || (!singleline && input.Slice(retryText, found - retryText).IndexOf('\n') >= 0)) return false;
+                    text = retryText = found;
+                }
+                else text = ++retryText;
+                token = retryToken;
+            }
+            else return false;
+        }
+        while (token < patternEnd && pattern[token] == '*') token++;
+        return token == patternEnd;
+    }
+}

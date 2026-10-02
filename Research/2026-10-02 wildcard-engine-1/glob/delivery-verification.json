@@ -1,0 +1,18 @@
+{
+  "productionNormalizedTextMatchesFinal": {
+    "CompiledSegments.cs": true,
+    "DefaultWildcardEngine.cs": true,
+    "FixedPattern.cs": true,
+    "InternalUtils.cs": true,
+    "ShortPattern.cs": true,
+    "WildcardEngine.cs": true,
+    "WildcardEngine.Spans.cs": true,
+    "WildcardMatch.cs": true,
+    "WildcardMatchExtensions.cs": true,
+    "WildcardMatchRegex.cs": true,
+    "WildcardOptions.cs": true
+  },
+  "sourceNormalization": "UTF-8 BOM removed and CRLF/LF normalized for comparison; raw evidence source byte hashes remain in identity.json",
+  "rawArchivesVerified": 75,
+  "hypothesisCount": 57
+}

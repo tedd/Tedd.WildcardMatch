@@ -1,0 +1,66 @@
+using System;
+using System.Runtime.CompilerServices;
+#if NET10_0_OR_GREATER
+using System.Runtime.InteropServices;
+using System.Runtime.Intrinsics;
+#endif
+
+namespace Tedd;
+
+internal sealed class PreparedPattern
+{
+    private readonly string _pattern;
+    private readonly bool _singleline;
+#if NET10_0_OR_GREATER
+    private readonly Vector128<ushort> _pattern0, _pattern1, _mask0, _mask1;
+#endif
+
+    private PreparedPattern(string pattern, bool singleline)
+    {
+        _pattern = pattern;
+        _singleline = singleline;
+#if NET10_0_OR_GREATER
+        if (pattern.Length >= 8 && pattern.Length <= 16)
+        {
+            Span<ushort> mask = stackalloc ushort[pattern.Length];
+            for (int i = 0; i < mask.Length; i++) mask[i] = pattern[i] == '?' ? (ushort)0 : ushort.MaxValue;
+            ref ushort p = ref Unsafe.As<char, ushort>(ref MemoryMarshal.GetReference(pattern.AsSpan()));
+            _pattern0 = Vector128.LoadUnsafe(ref p);
+            _pattern1 = Vector128.LoadUnsafe(ref p, (nuint)(pattern.Length - 8));
+            _mask0 = Vector128.LoadUnsafe(ref MemoryMarshal.GetReference(mask));
+            _mask1 = Vector128.LoadUnsafe(ref MemoryMarshal.GetReference(mask), (nuint)(pattern.Length - 8));
+        }
+#endif
+    }
+
+    internal static PreparedPattern? Create(string pattern, bool singleline) =>
+        pattern.IndexOf('*') < 0 && pattern.IndexOf('?') >= 0 ? new PreparedPattern(pattern, singleline) : null;
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal bool IsMatch(ReadOnlySpan<char> input)
+    {
+        int length = _pattern.Length;
+        if (input.Length != length && !(input.Length == length + 1 && input[length] == '\n')) return false;
+#if NET10_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated && length >= 8 && length <= 16)
+        {
+            ref ushort text = ref Unsafe.As<char, ushort>(ref MemoryMarshal.GetReference(input));
+            Vector128<ushort> a = Vector128.LoadUnsafe(ref text);
+            Vector128<ushort> b = Vector128.LoadUnsafe(ref text, (nuint)(length - 8));
+            Vector128<ushort> bad = ((a ^ _pattern0) & _mask0) | ((b ^ _pattern1) & _mask1);
+            if (!_singleline)
+            {
+                Vector128<ushort> lf = Vector128.Create((ushort)'\n');
+                bad |= (Vector128.Equals(a, lf) & ~_mask0) | (Vector128.Equals(b, lf) & ~_mask1);
+            }
+            return Vector128.EqualsAll(bad, Vector128<ushort>.Zero);
+        }
+#endif
+        for (int i = 0; i < length; i++)
+        {
+            char token = _pattern[i];
+            if (token == '?' ? !_singleline && input[i] == '\n' : token != input[i]) return false;
+        }
+        return true;
+    }
+}

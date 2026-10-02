@@ -1,6 +1,7 @@
 using System;
 using System.Buffers;
 using System.Threading;
+using System.Runtime.CompilerServices;
 
 [assembly: CLSCompliant(true)]
 namespace Tedd;
@@ -8,6 +9,10 @@ namespace Tedd;
 /// <summary>Matches literal UTF-16 characters, '*' and '?' without a regular expression engine.</summary>
 public class WildcardMatch
 {
+    private readonly FixedPattern? _fixed;
+    private readonly ShortPattern? _short;
+    private readonly CompiledSegments? _segments;
+    private readonly bool _fast;
     private readonly WildcardOptions _options;
     private readonly TimeSpan _timeout;
     private readonly int _caseBehavior;
@@ -43,6 +48,11 @@ public class WildcardMatch
         WildcardEngine.ValidatePattern(wildcard);
         WildcardEngine.ValidateOptions(options);
         string pattern = WildcardEngine.GetMatchingPattern(wildcard, options);
+        if (((int)options & 0x803) == 0)
+        {
+            if (input is null) throw new ArgumentNullException(nameof(input));
+            return DefaultWildcardEngine.IsMatch(input.AsSpan(), pattern.AsSpan(), (options & WildcardOptions.Singleline) != 0, WildcardEngine.IsLiteral(pattern));
+        }
         return WildcardEngine.IsMatch(input, pattern, options, WildcardEngine.GetCaseBehavior(options),
             WildcardEngine.IsLiteral(pattern), WildcardEngine.InfiniteTimeout, wildcard);
     }
@@ -58,6 +68,8 @@ public class WildcardMatch
         WildcardEngine.ValidateOptions(options);
         if (WildcardEngine.RequiresNormalization(wildcard, options))
             return MatchNormalized(input, wildcard, options);
+        if (((int)options & 0x803) == 0)
+            return DefaultWildcardEngine.IsMatch(input, wildcard, (options & WildcardOptions.Singleline) != 0, wildcard.IndexOfAny('*', '?') < 0);
         return WildcardEngine.IsMatch(input, wildcard, options, WildcardEngine.GetCaseBehavior(options),
             wildcard.IndexOfAny('*', '?') < 0, WildcardEngine.InfiniteTimeout, null);
     }
@@ -112,6 +124,18 @@ public class WildcardMatch
         _caseBehavior = WildcardEngine.GetCaseBehavior(options);
         _matchPattern = WildcardEngine.GetMatchingPattern(wildcard, options);
         _literal = WildcardEngine.IsLiteral(_matchPattern);
+        _fast = _caseBehavior == 0 && timeout == WildcardEngine.InfiniteTimeout && ((int)options & 0x802) == 0;
+        // H-035/H-054/H-055/H-057: immutable pattern plans; never cache inputs.
+        if (_fast && !_literal)
+        {
+            bool singleline = (options & WildcardOptions.Singleline) != 0;
+            _fixed = FixedPattern.Create(_matchPattern, singleline);
+            if (_fixed == null)
+            {
+                _short = ShortPattern.Create(_matchPattern, singleline);
+                _segments = CompiledSegments.Create(_matchPattern, singleline);
+            }
+        }
         // H-020: the normalized pattern is immutable; prepare the question run
         // once so reusable matches pay only the input bounds/newline check.
         if (_matchPattern.Length >= 32 && _matchPattern[0] == '?' && _matchPattern[1] == '?')
@@ -130,11 +154,32 @@ public class WildcardMatch
     }
 
     /// <summary>Matches using call-local state; concurrent calls may reuse this instance.</summary>
-    public bool IsMatch(string input) =>
-        WildcardEngine.IsMatch(input, _matchPattern, _options, _caseBehavior, _literal, _timeout, Wildcard, _prefix, _suffix, _leadingQuestions);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public bool IsMatch(string input)
+    {
+        if (input is null) throw new ArgumentNullException(nameof(input));
+        if (_fast) return MatchFast(input.AsSpan());
+        return WildcardEngine.IsMatch(input, _matchPattern, _options, _caseBehavior, _literal, _timeout, Wildcard, _prefix, _suffix, _leadingQuestions);
+    }
 
     /// <summary>Matches a borrowed input slice without copying or retaining it.</summary>
-    public bool IsMatch(ReadOnlySpan<char> input) =>
-        WildcardEngine.IsMatch(input, _matchPattern.AsSpan(), _options, _caseBehavior, _literal, _timeout,
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public bool IsMatch(ReadOnlySpan<char> input)
+    {
+        if (_fast) return MatchFast(input);
+        return WildcardEngine.IsMatch(input, _matchPattern.AsSpan(), _options, _caseBehavior, _literal, _timeout,
             Wildcard, _prefix, _suffix, _leadingQuestions);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private bool MatchFast(ReadOnlySpan<char> input)
+    {
+        bool singleline = (_options & WildcardOptions.Singleline) != 0;
+        if (_literal) return DefaultWildcardEngine.IsMatch(input, _matchPattern.AsSpan(), singleline, true);
+        if (_fixed != null) return _fixed.IsMatch(input);
+        // H-057: bound per-character bitmap work; long text uses literal search.
+        if (_short != null && input.Length <= 32) return _short.IsMatch(input);
+        if (_segments != null && input.Length > 32) return _segments.IsMatch(input);
+        return DefaultWildcardEngine.IsMatch(input, _matchPattern.AsSpan(), singleline, false, _prefix, _suffix);
+    }
 }

@@ -1,0 +1,3169 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 12 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore --nodeReuse:false /p:UseSharedCompilation=false /p:Deterministic=true /p:Optimize=true /p:ArtifactsPath="D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1/" /p:OutDir="D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0/" /p:OutputPath="D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0/" /p:PublishDir="D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\publish/" in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1
+// command took 2.35 sec and exited with 0
+// start dotnet  build -c Release --no-restore --nodeReuse:false /p:UseSharedCompilation=false /p:Deterministic=true /p:Optimize=true /p:ArtifactsPath="D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1/" /p:OutDir="D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0/" /p:OutputPath="D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0/" /p:PublishDir="D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\publish/" --output "D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0/" in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1
+// command took 9.97 sec and exited with 0
+// ***** Done, took 00:00:12 (12.47 sec)   *****
+// Found 12 benchmarks:
+//   GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Literal, Library=DotNetGlob]
+//   GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Literal, Library=TeddDirectReused]
+//   GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Literal, Library=TeddDirectStatic]
+//   GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=LongText, Library=DotNetGlob]
+//   GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=LongText, Library=TeddDirectReused]
+//   GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=LongText, Library=TeddDirectStatic]
+//   GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=MultiStar, Library=DotNetGlob]
+//   GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=MultiStar, Library=TeddDirectReused]
+//   GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=MultiStar, Library=TeddDirectStatic]
+//   GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Simple, Library=DotNetGlob]
+//   GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Simple, Library=TeddDirectReused]
+//   GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Simple, Library=TeddDirectStatic]
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Literal, Library=DotNetGlob]
+// *** Execute ***
+// Launch: 1 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2952 2168 --benchmarkName "GlobAcceptance.Match(Workload: \"Literal\", Library: \"DotNetGlob\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 0 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 219000.00 ns, 855.4688 ns/op
+WorkloadJitting  1: 256 op, 336700.00 ns, 1.3152 us/op
+
+OverheadJitting  2: 4096 op, 393700.00 ns, 96.1182 ns/op
+WorkloadJitting  2: 4096 op, 1014900.00 ns, 247.7783 ns/op
+
+WorkloadPilot    1: 4096 op, 586600.00 ns, 143.2129 ns/op
+WorkloadPilot    2: 700416 op, 98147500.00 ns, 140.1274 ns/op
+WorkloadPilot    3: 716800 op, 95326500.00 ns, 132.9890 ns/op
+WorkloadPilot    4: 753664 op, 99656400.00 ns, 132.2292 ns/op
+WorkloadPilot    5: 757760 op, 102981900.00 ns, 135.9031 ns/op
+WorkloadPilot    6: 737280 op, 99679600.00 ns, 135.1991 ns/op
+WorkloadPilot    7: 741376 op, 100856600.00 ns, 136.0397 ns/op
+WorkloadPilot    8: 737280 op, 98924400.00 ns, 134.1748 ns/op
+WorkloadPilot    9: 745472 op, 99998500.00 ns, 134.1412 ns/op
+
+OverheadWarmup   1: 745472 op, 5100.00 ns, 0.0068 ns/op
+OverheadWarmup   2: 745472 op, 4900.00 ns, 0.0066 ns/op
+OverheadWarmup   3: 745472 op, 4800.00 ns, 0.0064 ns/op
+OverheadWarmup   4: 745472 op, 4800.00 ns, 0.0064 ns/op
+OverheadWarmup   5: 745472 op, 4900.00 ns, 0.0066 ns/op
+OverheadWarmup   6: 745472 op, 4800.00 ns, 0.0064 ns/op
+OverheadWarmup   7: 745472 op, 4800.00 ns, 0.0064 ns/op
+
+OverheadActual   1: 745472 op, 4900.00 ns, 0.0066 ns/op
+OverheadActual   2: 745472 op, 8100.00 ns, 0.0109 ns/op
+OverheadActual   3: 745472 op, 5000.00 ns, 0.0067 ns/op
+OverheadActual   4: 745472 op, 4900.00 ns, 0.0066 ns/op
+OverheadActual   5: 745472 op, 5000.00 ns, 0.0067 ns/op
+OverheadActual   6: 745472 op, 4700.00 ns, 0.0063 ns/op
+OverheadActual   7: 745472 op, 4900.00 ns, 0.0066 ns/op
+OverheadActual   8: 745472 op, 5000.00 ns, 0.0067 ns/op
+OverheadActual   9: 745472 op, 4900.00 ns, 0.0066 ns/op
+OverheadActual  10: 745472 op, 5000.00 ns, 0.0067 ns/op
+OverheadActual  11: 745472 op, 7500.00 ns, 0.0101 ns/op
+OverheadActual  12: 745472 op, 7400.00 ns, 0.0099 ns/op
+OverheadActual  13: 745472 op, 4900.00 ns, 0.0066 ns/op
+OverheadActual  14: 745472 op, 7700.00 ns, 0.0103 ns/op
+OverheadActual  15: 745472 op, 7300.00 ns, 0.0098 ns/op
+OverheadActual  16: 745472 op, 7600.00 ns, 0.0102 ns/op
+OverheadActual  17: 745472 op, 7200.00 ns, 0.0097 ns/op
+OverheadActual  18: 745472 op, 7400.00 ns, 0.0099 ns/op
+OverheadActual  19: 745472 op, 7900.00 ns, 0.0106 ns/op
+OverheadActual  20: 745472 op, 4900.00 ns, 0.0066 ns/op
+
+WorkloadWarmup   1: 745472 op, 103768700.00 ns, 139.1987 ns/op
+WorkloadWarmup   2: 745472 op, 99061600.00 ns, 132.8844 ns/op
+WorkloadWarmup   3: 745472 op, 97565300.00 ns, 130.8772 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 745472 op, 97060900.00 ns, 130.2006 ns/op
+WorkloadActual   2: 745472 op, 98232100.00 ns, 131.7717 ns/op
+WorkloadActual   3: 745472 op, 97352100.00 ns, 130.5912 ns/op
+WorkloadActual   4: 745472 op, 100615700.00 ns, 134.9691 ns/op
+WorkloadActual   5: 745472 op, 97503200.00 ns, 130.7939 ns/op
+WorkloadActual   6: 745472 op, 96526100.00 ns, 129.4832 ns/op
+WorkloadActual   7: 745472 op, 98182700.00 ns, 131.7054 ns/op
+WorkloadActual   8: 745472 op, 97846700.00 ns, 131.2547 ns/op
+WorkloadActual   9: 745472 op, 99493000.00 ns, 133.4631 ns/op
+WorkloadActual  10: 745472 op, 97699500.00 ns, 131.0572 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 745472 op, 97055900.00 ns, 130.1939 ns/op
+WorkloadResult   2: 745472 op, 98227100.00 ns, 131.7650 ns/op
+WorkloadResult   3: 745472 op, 97347100.00 ns, 130.5845 ns/op
+WorkloadResult   4: 745472 op, 97498200.00 ns, 130.7872 ns/op
+WorkloadResult   5: 745472 op, 96521100.00 ns, 129.4765 ns/op
+WorkloadResult   6: 745472 op, 98177700.00 ns, 131.6987 ns/op
+WorkloadResult   7: 745472 op, 97841700.00 ns, 131.2480 ns/op
+WorkloadResult   8: 745472 op, 97694500.00 ns, 131.0505 ns/op
+// GC:  0 0 0 336 745472
+// Threading:  0 0 745472
+
+// AfterAll
+// Benchmark Process 123312 has exited with code 0.
+// Launch: 2 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2928 2932 --benchmarkName "GlobAcceptance.Match(Workload: \"Literal\", Library: \"DotNetGlob\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 0 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 216500.00 ns, 845.7031 ns/op
+WorkloadJitting  1: 256 op, 335600.00 ns, 1.3109 us/op
+
+OverheadJitting  2: 4096 op, 383500.00 ns, 93.6279 ns/op
+WorkloadJitting  2: 4096 op, 976100.00 ns, 238.3057 ns/op
+
+WorkloadPilot    1: 4096 op, 578700.00 ns, 141.2842 ns/op
+WorkloadPilot    2: 708608 op, 92590500.00 ns, 130.6653 ns/op
+WorkloadPilot    3: 765952 op, 100823400.00 ns, 131.6315 ns/op
+WorkloadPilot    4: 761856 op, 100155200.00 ns, 131.4621 ns/op
+
+OverheadWarmup   1: 761856 op, 5200.00 ns, 0.0068 ns/op
+OverheadWarmup   2: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadWarmup   3: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadWarmup   4: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadWarmup   5: 761856 op, 4900.00 ns, 0.0064 ns/op
+OverheadWarmup   6: 761856 op, 4900.00 ns, 0.0064 ns/op
+
+OverheadActual   1: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadActual   2: 761856 op, 5100.00 ns, 0.0067 ns/op
+OverheadActual   3: 761856 op, 5100.00 ns, 0.0067 ns/op
+OverheadActual   4: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadActual   5: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadActual   6: 761856 op, 4900.00 ns, 0.0064 ns/op
+OverheadActual   7: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadActual   8: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadActual   9: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadActual  10: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadActual  11: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadActual  12: 761856 op, 4900.00 ns, 0.0064 ns/op
+OverheadActual  13: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadActual  14: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadActual  15: 761856 op, 5000.00 ns, 0.0066 ns/op
+
+WorkloadWarmup   1: 761856 op, 97860400.00 ns, 128.4500 ns/op
+WorkloadWarmup   2: 761856 op, 97401600.00 ns, 127.8478 ns/op
+WorkloadWarmup   3: 761856 op, 97602200.00 ns, 128.1111 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 761856 op, 97793300.00 ns, 128.3619 ns/op
+WorkloadActual   2: 761856 op, 97461900.00 ns, 127.9269 ns/op
+WorkloadActual   3: 761856 op, 121730900.00 ns, 159.7820 ns/op
+WorkloadActual   4: 761856 op, 121462000.00 ns, 159.4291 ns/op
+WorkloadActual   5: 761856 op, 96894000.00 ns, 127.1815 ns/op
+WorkloadActual   6: 761856 op, 97960200.00 ns, 128.5810 ns/op
+WorkloadActual   7: 761856 op, 97336500.00 ns, 127.7623 ns/op
+WorkloadActual   8: 761856 op, 97408800.00 ns, 127.8572 ns/op
+WorkloadActual   9: 761856 op, 100617800.00 ns, 132.0693 ns/op
+WorkloadActual  10: 761856 op, 108929800.00 ns, 142.9795 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 761856 op, 97788300.00 ns, 128.3554 ns/op
+WorkloadResult   2: 761856 op, 97456900.00 ns, 127.9204 ns/op
+WorkloadResult   3: 761856 op, 96889000.00 ns, 127.1750 ns/op
+WorkloadResult   4: 761856 op, 97955200.00 ns, 128.5744 ns/op
+WorkloadResult   5: 761856 op, 97331500.00 ns, 127.7558 ns/op
+WorkloadResult   6: 761856 op, 97403800.00 ns, 127.8507 ns/op
+WorkloadResult   7: 761856 op, 100612800.00 ns, 132.0628 ns/op
+WorkloadResult   8: 761856 op, 108924800.00 ns, 142.9730 ns/op
+// GC:  0 0 0 336 761856
+// Threading:  0 0 761856
+
+// AfterAll
+// Benchmark Process 499108 has exited with code 0.
+// Launch: 3 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 1432 2152 --benchmarkName "GlobAcceptance.Match(Workload: \"Literal\", Library: \"DotNetGlob\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 0 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 268400.00 ns, 1.0484 us/op
+WorkloadJitting  1: 256 op, 378300.00 ns, 1.4777 us/op
+
+OverheadJitting  2: 4096 op, 486800.00 ns, 118.8477 ns/op
+WorkloadJitting  2: 4096 op, 1004800.00 ns, 245.3125 ns/op
+
+WorkloadPilot    1: 4096 op, 622200.00 ns, 151.9043 ns/op
+WorkloadPilot    2: 659456 op, 102044900.00 ns, 154.7410 ns/op
+WorkloadPilot    3: 647168 op, 87510700.00 ns, 135.2210 ns/op
+WorkloadPilot    4: 741376 op, 97988500.00 ns, 132.1711 ns/op
+WorkloadPilot    5: 757760 op, 100662400.00 ns, 132.8421 ns/op
+WorkloadPilot    6: 753664 op, 99230400.00 ns, 131.6640 ns/op
+WorkloadPilot    7: 761856 op, 101380600.00 ns, 133.0706 ns/op
+
+OverheadWarmup   1: 761856 op, 5200.00 ns, 0.0068 ns/op
+OverheadWarmup   2: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadWarmup   3: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadWarmup   4: 761856 op, 4900.00 ns, 0.0064 ns/op
+OverheadWarmup   5: 761856 op, 4900.00 ns, 0.0064 ns/op
+OverheadWarmup   6: 761856 op, 4800.00 ns, 0.0063 ns/op
+
+OverheadActual   1: 761856 op, 5100.00 ns, 0.0067 ns/op
+OverheadActual   2: 761856 op, 5400.00 ns, 0.0071 ns/op
+OverheadActual   3: 761856 op, 5100.00 ns, 0.0067 ns/op
+OverheadActual   4: 761856 op, 6700.00 ns, 0.0088 ns/op
+OverheadActual   5: 761856 op, 5100.00 ns, 0.0067 ns/op
+OverheadActual   6: 761856 op, 5100.00 ns, 0.0067 ns/op
+OverheadActual   7: 761856 op, 4900.00 ns, 0.0064 ns/op
+OverheadActual   8: 761856 op, 6300.00 ns, 0.0083 ns/op
+OverheadActual   9: 761856 op, 5100.00 ns, 0.0067 ns/op
+OverheadActual  10: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadActual  11: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadActual  12: 761856 op, 4800.00 ns, 0.0063 ns/op
+OverheadActual  13: 761856 op, 5000.00 ns, 0.0066 ns/op
+OverheadActual  14: 761856 op, 4900.00 ns, 0.0064 ns/op
+OverheadActual  15: 761856 op, 5000.00 ns, 0.0066 ns/op
+
+WorkloadWarmup   1: 761856 op, 102235500.00 ns, 134.1927 ns/op
+WorkloadWarmup   2: 761856 op, 102868700.00 ns, 135.0238 ns/op
+WorkloadWarmup   3: 761856 op, 108636800.00 ns, 142.5949 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 761856 op, 99619700.00 ns, 130.7592 ns/op
+WorkloadActual   2: 761856 op, 100419200.00 ns, 131.8086 ns/op
+WorkloadActual   3: 761856 op, 101023300.00 ns, 132.6016 ns/op
+WorkloadActual   4: 761856 op, 99818100.00 ns, 131.0196 ns/op
+WorkloadActual   5: 761856 op, 99118200.00 ns, 130.1010 ns/op
+WorkloadActual   6: 761856 op, 99509800.00 ns, 130.6150 ns/op
+WorkloadActual   7: 761856 op, 99463500.00 ns, 130.5542 ns/op
+WorkloadActual   8: 761856 op, 99507100.00 ns, 130.6114 ns/op
+WorkloadActual   9: 761856 op, 103726700.00 ns, 136.1500 ns/op
+WorkloadActual  10: 761856 op, 99953300.00 ns, 131.1971 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 761856 op, 99614600.00 ns, 130.7525 ns/op
+WorkloadResult   2: 761856 op, 100414100.00 ns, 131.8019 ns/op
+WorkloadResult   3: 761856 op, 101018200.00 ns, 132.5949 ns/op
+WorkloadResult   4: 761856 op, 99813000.00 ns, 131.0129 ns/op
+WorkloadResult   5: 761856 op, 99113100.00 ns, 130.0943 ns/op
+WorkloadResult   6: 761856 op, 99504700.00 ns, 130.6083 ns/op
+WorkloadResult   7: 761856 op, 99458400.00 ns, 130.5475 ns/op
+WorkloadResult   8: 761856 op, 99502000.00 ns, 130.6047 ns/op
+WorkloadResult   9: 761856 op, 99948200.00 ns, 131.1904 ns/op
+// GC:  0 0 0 0 761856
+// Threading:  0 0 761856
+
+// AfterAll
+// Benchmark Process 581700 has exited with code 0.
+
+Mean = 130.747 ns, StdErr = 0.591 ns (0.45%), N = 25, StdDev = 2.953 ns
+Min = 127.175 ns, Q1 = 129.476 ns, Median = 130.608 ns, Q3 = 131.248 ns, Max = 142.973 ns
+IQR = 1.771 ns, LowerFence = 126.819 ns, UpperFence = 133.905 ns
+ConfidenceInterval = [128.535 ns; 132.959 ns] (CI 99.9%), Margin = 2.212 ns (1.69% of Mean)
+Skewness = 2.63, Kurtosis = 11.99, MValue = 2
+
+// ** Remained 11 (91.7%) benchmark(s) to run. Estimated finish 2026-10-02 13:25 (0h 1m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Literal, Library=TeddDirectReused]
+// *** Execute ***
+// Launch: 1 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2832 2836 --benchmarkName "GlobAcceptance.Match(Workload: \"Literal\", Library: \"TeddDirectReused\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 1 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 220100.00 ns, 859.7656 ns/op
+WorkloadJitting  1: 256 op, 424700.00 ns, 1.6590 us/op
+
+OverheadJitting  2: 4096 op, 398800.00 ns, 97.3633 ns/op
+WorkloadJitting  2: 4096 op, 550200.00 ns, 134.3262 ns/op
+
+WorkloadPilot    1: 4096 op, 173000.00 ns, 42.2363 ns/op
+WorkloadPilot    2: 2371584 op, 100495400.00 ns, 42.3748 ns/op
+WorkloadPilot    3: 2363392 op, 98979000.00 ns, 41.8801 ns/op
+WorkloadPilot    4: 2387968 op, 100450700.00 ns, 42.0653 ns/op
+WorkloadPilot    5: 2379776 op, 100075300.00 ns, 42.0524 ns/op
+
+OverheadWarmup   1: 2379776 op, 15300.00 ns, 0.0064 ns/op
+OverheadWarmup   2: 2379776 op, 15100.00 ns, 0.0063 ns/op
+OverheadWarmup   3: 2379776 op, 15000.00 ns, 0.0063 ns/op
+OverheadWarmup   4: 2379776 op, 15100.00 ns, 0.0063 ns/op
+OverheadWarmup   5: 2379776 op, 15100.00 ns, 0.0063 ns/op
+OverheadWarmup   6: 2379776 op, 15100.00 ns, 0.0063 ns/op
+OverheadWarmup   7: 2379776 op, 15100.00 ns, 0.0063 ns/op
+
+OverheadActual   1: 2379776 op, 15100.00 ns, 0.0063 ns/op
+OverheadActual   2: 2379776 op, 15100.00 ns, 0.0063 ns/op
+OverheadActual   3: 2379776 op, 15100.00 ns, 0.0063 ns/op
+OverheadActual   4: 2379776 op, 15200.00 ns, 0.0064 ns/op
+OverheadActual   5: 2379776 op, 15100.00 ns, 0.0063 ns/op
+OverheadActual   6: 2379776 op, 15100.00 ns, 0.0063 ns/op
+OverheadActual   7: 2379776 op, 15100.00 ns, 0.0063 ns/op
+OverheadActual   8: 2379776 op, 15100.00 ns, 0.0063 ns/op
+OverheadActual   9: 2379776 op, 15200.00 ns, 0.0064 ns/op
+OverheadActual  10: 2379776 op, 15100.00 ns, 0.0063 ns/op
+OverheadActual  11: 2379776 op, 15100.00 ns, 0.0063 ns/op
+OverheadActual  12: 2379776 op, 15100.00 ns, 0.0063 ns/op
+OverheadActual  13: 2379776 op, 15200.00 ns, 0.0064 ns/op
+OverheadActual  14: 2379776 op, 15100.00 ns, 0.0063 ns/op
+OverheadActual  15: 2379776 op, 15100.00 ns, 0.0063 ns/op
+
+WorkloadWarmup   1: 2379776 op, 100987100.00 ns, 42.4355 ns/op
+WorkloadWarmup   2: 2379776 op, 102950900.00 ns, 43.2608 ns/op
+WorkloadWarmup   3: 2379776 op, 112736000.00 ns, 47.3725 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 2379776 op, 133896700.00 ns, 56.2644 ns/op
+WorkloadActual   2: 2379776 op, 106013900.00 ns, 44.5478 ns/op
+WorkloadActual   3: 2379776 op, 101745600.00 ns, 42.7543 ns/op
+WorkloadActual   4: 2379776 op, 100951500.00 ns, 42.4206 ns/op
+WorkloadActual   5: 2379776 op, 101998600.00 ns, 42.8606 ns/op
+WorkloadActual   6: 2379776 op, 100947100.00 ns, 42.4187 ns/op
+WorkloadActual   7: 2379776 op, 100558400.00 ns, 42.2554 ns/op
+WorkloadActual   8: 2379776 op, 101090100.00 ns, 42.4788 ns/op
+WorkloadActual   9: 2379776 op, 99794300.00 ns, 41.9343 ns/op
+WorkloadActual  10: 2379776 op, 101794200.00 ns, 42.7747 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 2379776 op, 101730500.00 ns, 42.7479 ns/op
+WorkloadResult   2: 2379776 op, 100936400.00 ns, 42.4142 ns/op
+WorkloadResult   3: 2379776 op, 101983500.00 ns, 42.8542 ns/op
+WorkloadResult   4: 2379776 op, 100932000.00 ns, 42.4124 ns/op
+WorkloadResult   5: 2379776 op, 100543300.00 ns, 42.2491 ns/op
+WorkloadResult   6: 2379776 op, 101075000.00 ns, 42.4725 ns/op
+WorkloadResult   7: 2379776 op, 99779200.00 ns, 41.9280 ns/op
+WorkloadResult   8: 2379776 op, 101779100.00 ns, 42.7684 ns/op
+// GC:  0 0 0 336 2379776
+// Threading:  0 0 2379776
+
+// AfterAll
+// Benchmark Process 687288 has exited with code 0.
+// Launch: 2 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 1432 2800 --benchmarkName "GlobAcceptance.Match(Workload: \"Literal\", Library: \"TeddDirectReused\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 1 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 219500.00 ns, 857.4219 ns/op
+WorkloadJitting  1: 256 op, 313300.00 ns, 1.2238 us/op
+
+OverheadJitting  2: 4096 op, 383600.00 ns, 93.6523 ns/op
+WorkloadJitting  2: 4096 op, 599300.00 ns, 146.3135 ns/op
+
+WorkloadPilot    1: 4096 op, 172200.00 ns, 42.0410 ns/op
+WorkloadPilot    2: 2379776 op, 100799300.00 ns, 42.3566 ns/op
+WorkloadPilot    3: 2363392 op, 99814800.00 ns, 42.2337 ns/op
+WorkloadPilot    4: 2371584 op, 99813700.00 ns, 42.0874 ns/op
+WorkloadPilot    5: 2379776 op, 100632300.00 ns, 42.2865 ns/op
+WorkloadPilot    6: 2367488 op, 99409700.00 ns, 41.9895 ns/op
+WorkloadPilot    7: 2383872 op, 102452800.00 ns, 42.9775 ns/op
+
+OverheadWarmup   1: 2383872 op, 15600.00 ns, 0.0065 ns/op
+OverheadWarmup   2: 2383872 op, 15100.00 ns, 0.0063 ns/op
+OverheadWarmup   3: 2383872 op, 15100.00 ns, 0.0063 ns/op
+OverheadWarmup   4: 2383872 op, 15000.00 ns, 0.0063 ns/op
+OverheadWarmup   5: 2383872 op, 15100.00 ns, 0.0063 ns/op
+OverheadWarmup   6: 2383872 op, 15200.00 ns, 0.0064 ns/op
+OverheadWarmup   7: 2383872 op, 15100.00 ns, 0.0063 ns/op
+
+OverheadActual   1: 2383872 op, 15400.00 ns, 0.0065 ns/op
+OverheadActual   2: 2383872 op, 15300.00 ns, 0.0064 ns/op
+OverheadActual   3: 2383872 op, 15300.00 ns, 0.0064 ns/op
+OverheadActual   4: 2383872 op, 15300.00 ns, 0.0064 ns/op
+OverheadActual   5: 2383872 op, 15300.00 ns, 0.0064 ns/op
+OverheadActual   6: 2383872 op, 15100.00 ns, 0.0063 ns/op
+OverheadActual   7: 2383872 op, 15000.00 ns, 0.0063 ns/op
+OverheadActual   8: 2383872 op, 15000.00 ns, 0.0063 ns/op
+OverheadActual   9: 2383872 op, 21600.00 ns, 0.0091 ns/op
+OverheadActual  10: 2383872 op, 15100.00 ns, 0.0063 ns/op
+OverheadActual  11: 2383872 op, 15200.00 ns, 0.0064 ns/op
+OverheadActual  12: 2383872 op, 15000.00 ns, 0.0063 ns/op
+OverheadActual  13: 2383872 op, 15000.00 ns, 0.0063 ns/op
+OverheadActual  14: 2383872 op, 15000.00 ns, 0.0063 ns/op
+OverheadActual  15: 2383872 op, 15100.00 ns, 0.0063 ns/op
+
+WorkloadWarmup   1: 2383872 op, 102023400.00 ns, 42.7973 ns/op
+WorkloadWarmup   2: 2383872 op, 102600600.00 ns, 43.0395 ns/op
+WorkloadWarmup   3: 2383872 op, 102941000.00 ns, 43.1823 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 2383872 op, 101049800.00 ns, 42.3889 ns/op
+WorkloadActual   2: 2383872 op, 102602400.00 ns, 43.0402 ns/op
+WorkloadActual   3: 2383872 op, 107452600.00 ns, 45.0748 ns/op
+WorkloadActual   4: 2383872 op, 102006700.00 ns, 42.7903 ns/op
+WorkloadActual   5: 2383872 op, 104615400.00 ns, 43.8847 ns/op
+WorkloadActual   6: 2383872 op, 103585400.00 ns, 43.4526 ns/op
+WorkloadActual   7: 2383872 op, 102110800.00 ns, 42.8340 ns/op
+WorkloadActual   8: 2383872 op, 104289800.00 ns, 43.7481 ns/op
+WorkloadActual   9: 2383872 op, 105634600.00 ns, 44.3122 ns/op
+WorkloadActual  10: 2383872 op, 101982900.00 ns, 42.7804 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 2383872 op, 101034700.00 ns, 42.3826 ns/op
+WorkloadResult   2: 2383872 op, 102587300.00 ns, 43.0339 ns/op
+WorkloadResult   3: 2383872 op, 107437500.00 ns, 45.0685 ns/op
+WorkloadResult   4: 2383872 op, 101991600.00 ns, 42.7840 ns/op
+WorkloadResult   5: 2383872 op, 104600300.00 ns, 43.8783 ns/op
+WorkloadResult   6: 2383872 op, 103570300.00 ns, 43.4463 ns/op
+WorkloadResult   7: 2383872 op, 102095700.00 ns, 42.8277 ns/op
+WorkloadResult   8: 2383872 op, 104274700.00 ns, 43.7417 ns/op
+WorkloadResult   9: 2383872 op, 105619500.00 ns, 44.3059 ns/op
+WorkloadResult  10: 2383872 op, 101967800.00 ns, 42.7740 ns/op
+// GC:  0 0 0 336 2383872
+// Threading:  0 0 2383872
+
+// AfterAll
+// Benchmark Process 232684 has exited with code 0.
+// Launch: 3 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2780 2148 --benchmarkName "GlobAcceptance.Match(Workload: \"Literal\", Library: \"TeddDirectReused\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 1 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 289400.00 ns, 1.1305 us/op
+WorkloadJitting  1: 256 op, 319600.00 ns, 1.2484 us/op
+
+OverheadJitting  2: 4096 op, 388700.00 ns, 94.8975 ns/op
+WorkloadJitting  2: 4096 op, 549600.00 ns, 134.1797 ns/op
+
+WorkloadPilot    1: 4096 op, 179100.00 ns, 43.7256 ns/op
+WorkloadPilot    2: 2289664 op, 101056600.00 ns, 44.1360 ns/op
+WorkloadPilot    3: 2269184 op, 98711400.00 ns, 43.5008 ns/op
+WorkloadPilot    4: 2301952 op, 101556100.00 ns, 44.1174 ns/op
+WorkloadPilot    5: 2269184 op, 103256800.00 ns, 45.5039 ns/op
+
+OverheadWarmup   1: 2269184 op, 14800.00 ns, 0.0065 ns/op
+OverheadWarmup   2: 2269184 op, 14500.00 ns, 0.0064 ns/op
+OverheadWarmup   3: 2269184 op, 14300.00 ns, 0.0063 ns/op
+OverheadWarmup   4: 2269184 op, 14400.00 ns, 0.0063 ns/op
+OverheadWarmup   5: 2269184 op, 14400.00 ns, 0.0063 ns/op
+OverheadWarmup   6: 2269184 op, 22200.00 ns, 0.0098 ns/op
+OverheadWarmup   7: 2269184 op, 14400.00 ns, 0.0063 ns/op
+
+OverheadActual   1: 2269184 op, 14700.00 ns, 0.0065 ns/op
+OverheadActual   2: 2269184 op, 14700.00 ns, 0.0065 ns/op
+OverheadActual   3: 2269184 op, 14800.00 ns, 0.0065 ns/op
+OverheadActual   4: 2269184 op, 14400.00 ns, 0.0063 ns/op
+OverheadActual   5: 2269184 op, 14500.00 ns, 0.0064 ns/op
+OverheadActual   6: 2269184 op, 14300.00 ns, 0.0063 ns/op
+OverheadActual   7: 2269184 op, 22200.00 ns, 0.0098 ns/op
+OverheadActual   8: 2269184 op, 21500.00 ns, 0.0095 ns/op
+OverheadActual   9: 2269184 op, 21000.00 ns, 0.0093 ns/op
+OverheadActual  10: 2269184 op, 14400.00 ns, 0.0063 ns/op
+OverheadActual  11: 2269184 op, 14500.00 ns, 0.0064 ns/op
+OverheadActual  12: 2269184 op, 14300.00 ns, 0.0063 ns/op
+OverheadActual  13: 2269184 op, 14400.00 ns, 0.0063 ns/op
+OverheadActual  14: 2269184 op, 14400.00 ns, 0.0063 ns/op
+OverheadActual  15: 2269184 op, 14400.00 ns, 0.0063 ns/op
+
+WorkloadWarmup   1: 2269184 op, 102908500.00 ns, 45.3504 ns/op
+WorkloadWarmup   2: 2269184 op, 101208000.00 ns, 44.6011 ns/op
+WorkloadWarmup   3: 2269184 op, 119277600.00 ns, 52.5641 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 2269184 op, 106078400.00 ns, 46.7474 ns/op
+WorkloadActual   2: 2269184 op, 101424200.00 ns, 44.6963 ns/op
+WorkloadActual   3: 2269184 op, 97518100.00 ns, 42.9750 ns/op
+WorkloadActual   4: 2269184 op, 101647700.00 ns, 44.7948 ns/op
+WorkloadActual   5: 2269184 op, 98141400.00 ns, 43.2496 ns/op
+WorkloadActual   6: 2269184 op, 99138900.00 ns, 43.6892 ns/op
+WorkloadActual   7: 2269184 op, 102209200.00 ns, 45.0423 ns/op
+WorkloadActual   8: 2269184 op, 99498800.00 ns, 43.8478 ns/op
+WorkloadActual   9: 2269184 op, 97190600.00 ns, 42.8306 ns/op
+WorkloadActual  10: 2269184 op, 97844900.00 ns, 43.1190 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 2269184 op, 106063900.00 ns, 46.7410 ns/op
+WorkloadResult   2: 2269184 op, 101409700.00 ns, 44.6899 ns/op
+WorkloadResult   3: 2269184 op, 97503600.00 ns, 42.9686 ns/op
+WorkloadResult   4: 2269184 op, 101633200.00 ns, 44.7884 ns/op
+WorkloadResult   5: 2269184 op, 98126900.00 ns, 43.2433 ns/op
+WorkloadResult   6: 2269184 op, 99124400.00 ns, 43.6828 ns/op
+WorkloadResult   7: 2269184 op, 102194700.00 ns, 45.0359 ns/op
+WorkloadResult   8: 2269184 op, 99484300.00 ns, 43.8414 ns/op
+WorkloadResult   9: 2269184 op, 97176100.00 ns, 42.8242 ns/op
+WorkloadResult  10: 2269184 op, 97830400.00 ns, 43.1126 ns/op
+// GC:  0 0 0 336 2269184
+// Threading:  0 0 2269184
+
+// AfterAll
+// Benchmark Process 104608 has exited with code 0.
+
+Mean = 43.393 ns, StdErr = 0.206 ns (0.47%), N = 28, StdDev = 1.088 ns
+Min = 41.928 ns, Q1 = 42.763 ns, Median = 43.001 ns, Q3 = 43.851 ns, Max = 46.741 ns
+IQR = 1.087 ns, LowerFence = 41.132 ns, UpperFence = 45.482 ns
+ConfidenceInterval = [42.635 ns; 44.152 ns] (CI 99.9%), Margin = 0.759 ns (1.75% of Mean)
+Skewness = 1.18, Kurtosis = 4.05, MValue = 2
+
+// ** Remained 10 (83.3%) benchmark(s) to run. Estimated finish 2026-10-02 13:25 (0h 1m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Literal, Library=TeddDirectStatic]
+// *** Execute ***
+// Launch: 1 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2740 2788 --benchmarkName "GlobAcceptance.Match(Workload: \"Literal\", Library: \"TeddDirectStatic\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 2 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 220000.00 ns, 859.3750 ns/op
+WorkloadJitting  1: 256 op, 316100.00 ns, 1.2348 us/op
+
+OverheadJitting  2: 4096 op, 388800.00 ns, 94.9219 ns/op
+WorkloadJitting  2: 4096 op, 594800.00 ns, 145.2148 ns/op
+
+WorkloadPilot    1: 4096 op, 221300.00 ns, 54.0283 ns/op
+WorkloadPilot    2: 1851392 op, 100745300.00 ns, 54.4160 ns/op
+WorkloadPilot    3: 1839104 op, 99656100.00 ns, 54.1873 ns/op
+WorkloadPilot    4: 1847296 op, 99861900.00 ns, 54.0584 ns/op
+WorkloadPilot    5: 1851392 op, 99913100.00 ns, 53.9665 ns/op
+WorkloadPilot    6: 1855488 op, 99801400.00 ns, 53.7871 ns/op
+WorkloadPilot    7: 1859584 op, 99707100.00 ns, 53.6180 ns/op
+WorkloadPilot    8: 1867776 op, 100393600.00 ns, 53.7503 ns/op
+WorkloadPilot    9: 1863680 op, 99926100.00 ns, 53.6176 ns/op
+WorkloadPilot   10: 1867776 op, 100072900.00 ns, 53.5786 ns/op
+
+OverheadWarmup   1: 1867776 op, 12100.00 ns, 0.0065 ns/op
+OverheadWarmup   2: 1867776 op, 11900.00 ns, 0.0064 ns/op
+OverheadWarmup   3: 1867776 op, 11800.00 ns, 0.0063 ns/op
+OverheadWarmup   4: 1867776 op, 11800.00 ns, 0.0063 ns/op
+OverheadWarmup   5: 1867776 op, 11900.00 ns, 0.0064 ns/op
+OverheadWarmup   6: 1867776 op, 11800.00 ns, 0.0063 ns/op
+OverheadWarmup   7: 1867776 op, 11800.00 ns, 0.0063 ns/op
+
+OverheadActual   1: 1867776 op, 11900.00 ns, 0.0064 ns/op
+OverheadActual   2: 1867776 op, 12000.00 ns, 0.0064 ns/op
+OverheadActual   3: 1867776 op, 11900.00 ns, 0.0064 ns/op
+OverheadActual   4: 1867776 op, 11900.00 ns, 0.0064 ns/op
+OverheadActual   5: 1867776 op, 11900.00 ns, 0.0064 ns/op
+OverheadActual   6: 1867776 op, 11800.00 ns, 0.0063 ns/op
+OverheadActual   7: 1867776 op, 11900.00 ns, 0.0064 ns/op
+OverheadActual   8: 1867776 op, 11800.00 ns, 0.0063 ns/op
+OverheadActual   9: 1867776 op, 11800.00 ns, 0.0063 ns/op
+OverheadActual  10: 1867776 op, 11900.00 ns, 0.0064 ns/op
+OverheadActual  11: 1867776 op, 11800.00 ns, 0.0063 ns/op
+OverheadActual  12: 1867776 op, 11800.00 ns, 0.0063 ns/op
+OverheadActual  13: 1867776 op, 11900.00 ns, 0.0064 ns/op
+OverheadActual  14: 1867776 op, 11800.00 ns, 0.0063 ns/op
+OverheadActual  15: 1867776 op, 12000.00 ns, 0.0064 ns/op
+
+WorkloadWarmup   1: 1867776 op, 101622900.00 ns, 54.4085 ns/op
+WorkloadWarmup   2: 1867776 op, 103260200.00 ns, 55.2851 ns/op
+WorkloadWarmup   3: 1867776 op, 100558300.00 ns, 53.8385 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 1867776 op, 102853600.00 ns, 55.0674 ns/op
+WorkloadActual   2: 1867776 op, 100649900.00 ns, 53.8876 ns/op
+WorkloadActual   3: 1867776 op, 103139700.00 ns, 55.2206 ns/op
+WorkloadActual   4: 1867776 op, 100281500.00 ns, 53.6903 ns/op
+WorkloadActual   5: 1867776 op, 100491400.00 ns, 53.8027 ns/op
+WorkloadActual   6: 1867776 op, 100237300.00 ns, 53.6667 ns/op
+WorkloadActual   7: 1867776 op, 100261600.00 ns, 53.6797 ns/op
+WorkloadActual   8: 1867776 op, 101145100.00 ns, 54.1527 ns/op
+WorkloadActual   9: 1867776 op, 100892400.00 ns, 54.0174 ns/op
+WorkloadActual  10: 1867776 op, 100591200.00 ns, 53.8561 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 1867776 op, 100638000.00 ns, 53.8812 ns/op
+WorkloadResult   2: 1867776 op, 100269600.00 ns, 53.6840 ns/op
+WorkloadResult   3: 1867776 op, 100479500.00 ns, 53.7963 ns/op
+WorkloadResult   4: 1867776 op, 100225400.00 ns, 53.6603 ns/op
+WorkloadResult   5: 1867776 op, 100249700.00 ns, 53.6733 ns/op
+WorkloadResult   6: 1867776 op, 101133200.00 ns, 54.1463 ns/op
+WorkloadResult   7: 1867776 op, 100880500.00 ns, 54.0110 ns/op
+WorkloadResult   8: 1867776 op, 100579300.00 ns, 53.8498 ns/op
+// GC:  0 0 0 0 1867776
+// Threading:  0 0 1867776
+
+// AfterAll
+// Benchmark Process 461236 has exited with code 0.
+// Launch: 2 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2836 2144 --benchmarkName "GlobAcceptance.Match(Workload: \"Literal\", Library: \"TeddDirectStatic\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 2 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 219700.00 ns, 858.2031 ns/op
+WorkloadJitting  1: 256 op, 319200.00 ns, 1.2469 us/op
+
+OverheadJitting  2: 4096 op, 385100.00 ns, 94.0186 ns/op
+WorkloadJitting  2: 4096 op, 630000.00 ns, 153.8086 ns/op
+
+WorkloadPilot    1: 4096 op, 238800.00 ns, 58.3008 ns/op
+WorkloadPilot    2: 1716224 op, 100769200.00 ns, 58.7156 ns/op
+WorkloadPilot    3: 1703936 op, 100065300.00 ns, 58.7260 ns/op
+
+OverheadWarmup   1: 1703936 op, 11100.00 ns, 0.0065 ns/op
+OverheadWarmup   2: 1703936 op, 11000.00 ns, 0.0065 ns/op
+OverheadWarmup   3: 1703936 op, 10900.00 ns, 0.0064 ns/op
+OverheadWarmup   4: 1703936 op, 10900.00 ns, 0.0064 ns/op
+OverheadWarmup   5: 1703936 op, 10900.00 ns, 0.0064 ns/op
+OverheadWarmup   6: 1703936 op, 10900.00 ns, 0.0064 ns/op
+OverheadWarmup   7: 1703936 op, 10900.00 ns, 0.0064 ns/op
+
+OverheadActual   1: 1703936 op, 10900.00 ns, 0.0064 ns/op
+OverheadActual   2: 1703936 op, 11100.00 ns, 0.0065 ns/op
+OverheadActual   3: 1703936 op, 10900.00 ns, 0.0064 ns/op
+OverheadActual   4: 1703936 op, 11000.00 ns, 0.0065 ns/op
+OverheadActual   5: 1703936 op, 10900.00 ns, 0.0064 ns/op
+OverheadActual   6: 1703936 op, 11000.00 ns, 0.0065 ns/op
+OverheadActual   7: 1703936 op, 10800.00 ns, 0.0063 ns/op
+OverheadActual   8: 1703936 op, 10800.00 ns, 0.0063 ns/op
+OverheadActual   9: 1703936 op, 10900.00 ns, 0.0064 ns/op
+OverheadActual  10: 1703936 op, 10900.00 ns, 0.0064 ns/op
+OverheadActual  11: 1703936 op, 11000.00 ns, 0.0065 ns/op
+OverheadActual  12: 1703936 op, 10800.00 ns, 0.0063 ns/op
+OverheadActual  13: 1703936 op, 10900.00 ns, 0.0064 ns/op
+OverheadActual  14: 1703936 op, 10900.00 ns, 0.0064 ns/op
+OverheadActual  15: 1703936 op, 10800.00 ns, 0.0063 ns/op
+
+WorkloadWarmup   1: 1703936 op, 98762500.00 ns, 57.9614 ns/op
+WorkloadWarmup   2: 1703936 op, 98949800.00 ns, 58.0713 ns/op
+WorkloadWarmup   3: 1703936 op, 99386400.00 ns, 58.3275 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 1703936 op, 98531200.00 ns, 57.8256 ns/op
+WorkloadActual   2: 1703936 op, 98667000.00 ns, 57.9053 ns/op
+WorkloadActual   3: 1703936 op, 98542700.00 ns, 57.8324 ns/op
+WorkloadActual   4: 1703936 op, 98716700.00 ns, 57.9345 ns/op
+WorkloadActual   5: 1703936 op, 98568200.00 ns, 57.8474 ns/op
+WorkloadActual   6: 1703936 op, 99171200.00 ns, 58.2012 ns/op
+WorkloadActual   7: 1703936 op, 98632600.00 ns, 57.8852 ns/op
+WorkloadActual   8: 1703936 op, 98499800.00 ns, 57.8072 ns/op
+WorkloadActual   9: 1703936 op, 99055300.00 ns, 58.1332 ns/op
+WorkloadActual  10: 1703936 op, 98830300.00 ns, 58.0012 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 1703936 op, 98520300.00 ns, 57.8192 ns/op
+WorkloadResult   2: 1703936 op, 98656100.00 ns, 57.8989 ns/op
+WorkloadResult   3: 1703936 op, 98531800.00 ns, 57.8260 ns/op
+WorkloadResult   4: 1703936 op, 98705800.00 ns, 57.9281 ns/op
+WorkloadResult   5: 1703936 op, 98557300.00 ns, 57.8410 ns/op
+WorkloadResult   6: 1703936 op, 99160300.00 ns, 58.1949 ns/op
+WorkloadResult   7: 1703936 op, 98621700.00 ns, 57.8788 ns/op
+WorkloadResult   8: 1703936 op, 98488900.00 ns, 57.8008 ns/op
+WorkloadResult   9: 1703936 op, 99044400.00 ns, 58.1268 ns/op
+WorkloadResult  10: 1703936 op, 98819400.00 ns, 57.9948 ns/op
+// GC:  0 0 0 336 1703936
+// Threading:  0 0 1703936
+
+// AfterAll
+// Benchmark Process 497440 has exited with code 0.
+// Launch: 3 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2688 2696 --benchmarkName "GlobAcceptance.Match(Workload: \"Literal\", Library: \"TeddDirectStatic\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 2 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 217000.00 ns, 847.6563 ns/op
+WorkloadJitting  1: 256 op, 314900.00 ns, 1.2301 us/op
+
+OverheadJitting  2: 4096 op, 385200.00 ns, 94.0430 ns/op
+WorkloadJitting  2: 4096 op, 601500.00 ns, 146.8506 ns/op
+
+WorkloadPilot    1: 4096 op, 221700.00 ns, 54.1260 ns/op
+WorkloadPilot    2: 1851392 op, 99451100.00 ns, 53.7169 ns/op
+WorkloadPilot    3: 1863680 op, 100886200.00 ns, 54.1328 ns/op
+WorkloadPilot    4: 1847296 op, 98283600.00 ns, 53.2040 ns/op
+WorkloadPilot    5: 1880064 op, 100376000.00 ns, 53.3897 ns/op
+WorkloadPilot    6: 1875968 op, 100375200.00 ns, 53.5058 ns/op
+
+OverheadWarmup   1: 1875968 op, 12400.00 ns, 0.0066 ns/op
+OverheadWarmup   2: 1875968 op, 11900.00 ns, 0.0063 ns/op
+OverheadWarmup   3: 1875968 op, 11900.00 ns, 0.0063 ns/op
+OverheadWarmup   4: 1875968 op, 11800.00 ns, 0.0063 ns/op
+OverheadWarmup   5: 1875968 op, 11900.00 ns, 0.0063 ns/op
+OverheadWarmup   6: 1875968 op, 11900.00 ns, 0.0063 ns/op
+
+OverheadActual   1: 1875968 op, 12000.00 ns, 0.0064 ns/op
+OverheadActual   2: 1875968 op, 12000.00 ns, 0.0064 ns/op
+OverheadActual   3: 1875968 op, 12000.00 ns, 0.0064 ns/op
+OverheadActual   4: 1875968 op, 11900.00 ns, 0.0063 ns/op
+OverheadActual   5: 1875968 op, 15100.00 ns, 0.0080 ns/op
+OverheadActual   6: 1875968 op, 14200.00 ns, 0.0076 ns/op
+OverheadActual   7: 1875968 op, 11900.00 ns, 0.0063 ns/op
+OverheadActual   8: 1875968 op, 11900.00 ns, 0.0063 ns/op
+OverheadActual   9: 1875968 op, 11900.00 ns, 0.0063 ns/op
+OverheadActual  10: 1875968 op, 11900.00 ns, 0.0063 ns/op
+OverheadActual  11: 1875968 op, 11900.00 ns, 0.0063 ns/op
+OverheadActual  12: 1875968 op, 11900.00 ns, 0.0063 ns/op
+OverheadActual  13: 1875968 op, 11900.00 ns, 0.0063 ns/op
+OverheadActual  14: 1875968 op, 11800.00 ns, 0.0063 ns/op
+OverheadActual  15: 1875968 op, 11900.00 ns, 0.0063 ns/op
+
+WorkloadWarmup   1: 1875968 op, 103121700.00 ns, 54.9699 ns/op
+WorkloadWarmup   2: 1875968 op, 100584500.00 ns, 53.6174 ns/op
+WorkloadWarmup   3: 1875968 op, 101174900.00 ns, 53.9321 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 1875968 op, 104508900.00 ns, 55.7093 ns/op
+WorkloadActual   2: 1875968 op, 100729200.00 ns, 53.6945 ns/op
+WorkloadActual   3: 1875968 op, 107467800.00 ns, 57.2866 ns/op
+WorkloadActual   4: 1875968 op, 135231900.00 ns, 72.0865 ns/op
+WorkloadActual   5: 1875968 op, 100648800.00 ns, 53.6517 ns/op
+WorkloadActual   6: 1875968 op, 100261300.00 ns, 53.4451 ns/op
+WorkloadActual   7: 1875968 op, 100881400.00 ns, 53.7757 ns/op
+WorkloadActual   8: 1875968 op, 99842200.00 ns, 53.2217 ns/op
+WorkloadActual   9: 1875968 op, 101953400.00 ns, 54.3471 ns/op
+WorkloadActual  10: 1875968 op, 108392900.00 ns, 57.7797 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 1875968 op, 104497000.00 ns, 55.7030 ns/op
+WorkloadResult   2: 1875968 op, 100717300.00 ns, 53.6882 ns/op
+WorkloadResult   3: 1875968 op, 107455900.00 ns, 57.2802 ns/op
+WorkloadResult   4: 1875968 op, 100636900.00 ns, 53.6453 ns/op
+WorkloadResult   5: 1875968 op, 100249400.00 ns, 53.4388 ns/op
+WorkloadResult   6: 1875968 op, 100869500.00 ns, 53.7693 ns/op
+WorkloadResult   7: 1875968 op, 99830300.00 ns, 53.2154 ns/op
+WorkloadResult   8: 1875968 op, 101941500.00 ns, 54.3407 ns/op
+WorkloadResult   9: 1875968 op, 108381000.00 ns, 57.7734 ns/op
+// GC:  0 0 0 336 1875968
+// Threading:  0 0 1875968
+
+// AfterAll
+// Benchmark Process 400780 has exited with code 0.
+
+Mean = 55.662 ns, StdErr = 0.395 ns (0.71%), N = 27, StdDev = 2.055 ns
+Min = 53.215 ns, Q1 = 53.729 ns, Median = 54.341 ns, Q3 = 57.833 ns, Max = 58.195 ns
+IQR = 4.105 ns, LowerFence = 47.572 ns, UpperFence = 63.991 ns
+ConfidenceInterval = [54.196 ns; 57.127 ns] (CI 99.9%), Margin = 1.466 ns (2.63% of Mean)
+Skewness = 0.13, Kurtosis = 1.03, MValue = 3.57
+
+// ** Remained 9 (75.0%) benchmark(s) to run. Estimated finish 2026-10-02 13:25 (0h 1m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=LongText, Library=DotNetGlob]
+// *** Execute ***
+// Launch: 1 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2660 2664 --benchmarkName "GlobAcceptance.Match(Workload: \"LongText\", Library: \"DotNetGlob\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 3 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 250000.00 ns, 976.5625 ns/op
+WorkloadJitting  1: 256 op, 15161800.00 ns, 59.2258 us/op
+
+WorkloadPilot    1: 1024 op, 56411200.00 ns, 55.0891 us/op
+WorkloadPilot    2: 1792 op, 97719300.00 ns, 54.5309 us/op
+
+WorkloadWarmup   1: 1792 op, 97849600.00 ns, 54.6036 us/op
+WorkloadWarmup   2: 1792 op, 97086200.00 ns, 54.1776 us/op
+WorkloadWarmup   3: 1792 op, 96322600.00 ns, 53.7515 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 1792 op, 96399800.00 ns, 53.7945 us/op
+WorkloadActual   2: 1792 op, 96813400.00 ns, 54.0253 us/op
+WorkloadActual   3: 1792 op, 97078400.00 ns, 54.1732 us/op
+WorkloadActual   4: 1792 op, 96707100.00 ns, 53.9660 us/op
+WorkloadActual   5: 1792 op, 96825400.00 ns, 54.0320 us/op
+WorkloadActual   6: 1792 op, 101037700.00 ns, 56.3826 us/op
+WorkloadActual   7: 1792 op, 97005300.00 ns, 54.1324 us/op
+WorkloadActual   8: 1792 op, 97358200.00 ns, 54.3294 us/op
+WorkloadActual   9: 1792 op, 96693000.00 ns, 53.9581 us/op
+WorkloadActual  10: 1792 op, 107061800.00 ns, 59.7443 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1792 op, 96399800.00 ns, 53.7945 us/op
+WorkloadResult   2: 1792 op, 96813400.00 ns, 54.0253 us/op
+WorkloadResult   3: 1792 op, 97078400.00 ns, 54.1732 us/op
+WorkloadResult   4: 1792 op, 96707100.00 ns, 53.9660 us/op
+WorkloadResult   5: 1792 op, 96825400.00 ns, 54.0320 us/op
+WorkloadResult   6: 1792 op, 97005300.00 ns, 54.1324 us/op
+WorkloadResult   7: 1792 op, 97358200.00 ns, 54.3294 us/op
+WorkloadResult   8: 1792 op, 96693000.00 ns, 53.9581 us/op
+// GC:  0 0 0 336 1792
+// Threading:  0 0 1792
+
+// AfterAll
+// Benchmark Process 749960 has exited with code 0.
+// Launch: 2 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2736 2128 --benchmarkName "GlobAcceptance.Match(Workload: \"LongText\", Library: \"DotNetGlob\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 3 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 223500.00 ns, 873.0469 ns/op
+WorkloadJitting  1: 256 op, 16152000.00 ns, 63.0938 us/op
+
+WorkloadPilot    1: 1024 op, 61965800.00 ns, 60.5135 us/op
+WorkloadPilot    2: 1536 op, 93040600.00 ns, 60.5733 us/op
+
+WorkloadWarmup   1: 1536 op, 94603800.00 ns, 61.5910 us/op
+WorkloadWarmup   2: 1536 op, 93582800.00 ns, 60.9263 us/op
+WorkloadWarmup   3: 1536 op, 92128300.00 ns, 59.9794 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 1536 op, 96453100.00 ns, 62.7950 us/op
+WorkloadActual   2: 1536 op, 95573500.00 ns, 62.2223 us/op
+WorkloadActual   3: 1536 op, 95049000.00 ns, 61.8809 us/op
+WorkloadActual   4: 1536 op, 94388400.00 ns, 61.4508 us/op
+WorkloadActual   5: 1536 op, 91912400.00 ns, 59.8388 us/op
+WorkloadActual   6: 1536 op, 92084000.00 ns, 59.9505 us/op
+WorkloadActual   7: 1536 op, 93684800.00 ns, 60.9927 us/op
+WorkloadActual   8: 1536 op, 92079700.00 ns, 59.9477 us/op
+WorkloadActual   9: 1536 op, 91247100.00 ns, 59.4057 us/op
+WorkloadActual  10: 1536 op, 91490000.00 ns, 59.5638 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1536 op, 96453100.00 ns, 62.7950 us/op
+WorkloadResult   2: 1536 op, 95573500.00 ns, 62.2223 us/op
+WorkloadResult   3: 1536 op, 95049000.00 ns, 61.8809 us/op
+WorkloadResult   4: 1536 op, 94388400.00 ns, 61.4508 us/op
+WorkloadResult   5: 1536 op, 91912400.00 ns, 59.8388 us/op
+WorkloadResult   6: 1536 op, 92084000.00 ns, 59.9505 us/op
+WorkloadResult   7: 1536 op, 93684800.00 ns, 60.9927 us/op
+WorkloadResult   8: 1536 op, 92079700.00 ns, 59.9477 us/op
+WorkloadResult   9: 1536 op, 91247100.00 ns, 59.4057 us/op
+WorkloadResult  10: 1536 op, 91490000.00 ns, 59.5638 us/op
+// GC:  0 0 0 336 1536
+// Threading:  0 0 1536
+
+// AfterAll
+// Benchmark Process 95028 has exited with code 0.
+// Launch: 3 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 1220 2728 --benchmarkName "GlobAcceptance.Match(Workload: \"LongText\", Library: \"DotNetGlob\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 3 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 305000.00 ns, 1.1914 us/op
+WorkloadJitting  1: 256 op, 16156400.00 ns, 63.1109 us/op
+
+WorkloadPilot    1: 1024 op, 62044600.00 ns, 60.5904 us/op
+WorkloadPilot    2: 1536 op, 92655100.00 ns, 60.3223 us/op
+
+WorkloadWarmup   1: 1536 op, 92715900.00 ns, 60.3619 us/op
+WorkloadWarmup   2: 1536 op, 92686000.00 ns, 60.3424 us/op
+WorkloadWarmup   3: 1536 op, 92862600.00 ns, 60.4574 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 1536 op, 92306400.00 ns, 60.0953 us/op
+WorkloadActual   2: 1536 op, 91925300.00 ns, 59.8472 us/op
+WorkloadActual   3: 1536 op, 92233500.00 ns, 60.0479 us/op
+WorkloadActual   4: 1536 op, 91651600.00 ns, 59.6690 us/op
+WorkloadActual   5: 1536 op, 92020200.00 ns, 59.9090 us/op
+WorkloadActual   6: 1536 op, 92028100.00 ns, 59.9141 us/op
+WorkloadActual   7: 1536 op, 92055300.00 ns, 59.9318 us/op
+WorkloadActual   8: 1536 op, 91777700.00 ns, 59.7511 us/op
+WorkloadActual   9: 1536 op, 91785200.00 ns, 59.7560 us/op
+WorkloadActual  10: 1536 op, 91658100.00 ns, 59.6732 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1536 op, 92306400.00 ns, 60.0953 us/op
+WorkloadResult   2: 1536 op, 91925300.00 ns, 59.8472 us/op
+WorkloadResult   3: 1536 op, 92233500.00 ns, 60.0479 us/op
+WorkloadResult   4: 1536 op, 91651600.00 ns, 59.6690 us/op
+WorkloadResult   5: 1536 op, 92020200.00 ns, 59.9090 us/op
+WorkloadResult   6: 1536 op, 92028100.00 ns, 59.9141 us/op
+WorkloadResult   7: 1536 op, 92055300.00 ns, 59.9318 us/op
+WorkloadResult   8: 1536 op, 91777700.00 ns, 59.7511 us/op
+WorkloadResult   9: 1536 op, 91785200.00 ns, 59.7560 us/op
+WorkloadResult  10: 1536 op, 91658100.00 ns, 59.6732 us/op
+// GC:  0 0 0 336 1536
+// Threading:  0 0 1536
+
+// AfterAll
+// Benchmark Process 383336 has exited with code 0.
+
+Mean = 58.538 us, StdErr = 0.568 us (0.97%), N = 28, StdDev = 3.005 us
+Min = 53.795 us, Q1 = 54.290 us, Median = 59.797 us, Q3 = 59.975 us, Max = 62.795 us
+IQR = 5.685 us, LowerFence = 45.764 us, UpperFence = 68.502 us
+ConfidenceInterval = [56.443 us; 60.633 us] (CI 99.9%), Margin = 2.095 us (3.58% of Mean)
+Skewness = -0.64, Kurtosis = 1.78, MValue = 2.89
+
+// ** Remained 8 (66.7%) benchmark(s) to run. Estimated finish 2026-10-02 13:25 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=LongText, Library=TeddDirectReused]
+// *** Execute ***
+// Launch: 1 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2804 2780 --benchmarkName "GlobAcceptance.Match(Workload: \"LongText\", Library: \"TeddDirectReused\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 4 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 216000.00 ns, 843.7500 ns/op
+WorkloadJitting  1: 256 op, 418400.00 ns, 1.6344 us/op
+
+OverheadJitting  2: 4096 op, 384400.00 ns, 93.8477 ns/op
+WorkloadJitting  2: 4096 op, 2288500.00 ns, 558.7158 ns/op
+
+WorkloadPilot    1: 4096 op, 2064700.00 ns, 504.0771 ns/op
+WorkloadPilot    2: 200704 op, 86034400.00 ns, 428.6631 ns/op
+WorkloadPilot    3: 233472 op, 97662400.00 ns, 418.3046 ns/op
+WorkloadPilot    4: 241664 op, 100410200.00 ns, 415.4951 ns/op
+
+OverheadWarmup   1: 241664 op, 1900.00 ns, 0.0079 ns/op
+OverheadWarmup   2: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadWarmup   3: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadWarmup   4: 241664 op, 1600.00 ns, 0.0066 ns/op
+OverheadWarmup   5: 241664 op, 1700.00 ns, 0.0070 ns/op
+OverheadWarmup   6: 241664 op, 1700.00 ns, 0.0070 ns/op
+
+OverheadActual   1: 241664 op, 1900.00 ns, 0.0079 ns/op
+OverheadActual   2: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadActual   3: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadActual   4: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadActual   5: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadActual   6: 241664 op, 1700.00 ns, 0.0070 ns/op
+OverheadActual   7: 241664 op, 1700.00 ns, 0.0070 ns/op
+OverheadActual   8: 241664 op, 1700.00 ns, 0.0070 ns/op
+OverheadActual   9: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadActual  10: 241664 op, 1700.00 ns, 0.0070 ns/op
+OverheadActual  11: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadActual  12: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadActual  13: 241664 op, 1700.00 ns, 0.0070 ns/op
+OverheadActual  14: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadActual  15: 241664 op, 1700.00 ns, 0.0070 ns/op
+
+WorkloadWarmup   1: 241664 op, 100459800.00 ns, 415.7003 ns/op
+WorkloadWarmup   2: 241664 op, 101750400.00 ns, 421.0408 ns/op
+WorkloadWarmup   3: 241664 op, 100612600.00 ns, 416.3326 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 241664 op, 101198400.00 ns, 418.7566 ns/op
+WorkloadActual   2: 241664 op, 100553300.00 ns, 416.0872 ns/op
+WorkloadActual   3: 241664 op, 100251400.00 ns, 414.8380 ns/op
+WorkloadActual   4: 241664 op, 100251200.00 ns, 414.8371 ns/op
+WorkloadActual   5: 241664 op, 100424300.00 ns, 415.5534 ns/op
+WorkloadActual   6: 241664 op, 100437600.00 ns, 415.6084 ns/op
+WorkloadActual   7: 241664 op, 100719100.00 ns, 416.7733 ns/op
+WorkloadActual   8: 241664 op, 100611400.00 ns, 416.3276 ns/op
+WorkloadActual   9: 241664 op, 99908100.00 ns, 413.4174 ns/op
+WorkloadActual  10: 241664 op, 100319100.00 ns, 415.1181 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 241664 op, 100551500.00 ns, 416.0798 ns/op
+WorkloadResult   2: 241664 op, 100249600.00 ns, 414.8305 ns/op
+WorkloadResult   3: 241664 op, 100249400.00 ns, 414.8297 ns/op
+WorkloadResult   4: 241664 op, 100422500.00 ns, 415.5460 ns/op
+WorkloadResult   5: 241664 op, 100435800.00 ns, 415.6010 ns/op
+WorkloadResult   6: 241664 op, 100717300.00 ns, 416.7658 ns/op
+WorkloadResult   7: 241664 op, 100609600.00 ns, 416.3202 ns/op
+WorkloadResult   8: 241664 op, 99906300.00 ns, 413.4099 ns/op
+WorkloadResult   9: 241664 op, 100317300.00 ns, 415.1106 ns/op
+// GC:  0 0 0 336 241664
+// Threading:  0 0 241664
+
+// AfterAll
+// Benchmark Process 683728 has exited with code 0.
+// Launch: 2 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2752 1180 --benchmarkName "GlobAcceptance.Match(Workload: \"LongText\", Library: \"TeddDirectReused\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 4 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 215300.00 ns, 841.0156 ns/op
+WorkloadJitting  1: 256 op, 415600.00 ns, 1.6234 us/op
+
+OverheadJitting  2: 4096 op, 386600.00 ns, 94.3848 ns/op
+WorkloadJitting  2: 4096 op, 2327300.00 ns, 568.1885 ns/op
+
+WorkloadPilot    1: 4096 op, 2065100.00 ns, 504.1748 ns/op
+WorkloadPilot    2: 200704 op, 89050900.00 ns, 443.6927 ns/op
+WorkloadPilot    3: 225280 op, 96949900.00 ns, 430.3529 ns/op
+WorkloadPilot    4: 233472 op, 100706800.00 ns, 431.3442 ns/op
+
+OverheadWarmup   1: 233472 op, 1900.00 ns, 0.0081 ns/op
+OverheadWarmup   2: 233472 op, 1700.00 ns, 0.0073 ns/op
+OverheadWarmup   3: 233472 op, 1600.00 ns, 0.0069 ns/op
+OverheadWarmup   4: 233472 op, 1600.00 ns, 0.0069 ns/op
+OverheadWarmup   5: 233472 op, 1700.00 ns, 0.0073 ns/op
+OverheadWarmup   6: 233472 op, 1600.00 ns, 0.0069 ns/op
+OverheadWarmup   7: 233472 op, 1800.00 ns, 0.0077 ns/op
+
+OverheadActual   1: 233472 op, 1800.00 ns, 0.0077 ns/op
+OverheadActual   2: 233472 op, 1700.00 ns, 0.0073 ns/op
+OverheadActual   3: 233472 op, 1800.00 ns, 0.0077 ns/op
+OverheadActual   4: 233472 op, 1700.00 ns, 0.0073 ns/op
+OverheadActual   5: 233472 op, 1800.00 ns, 0.0077 ns/op
+OverheadActual   6: 233472 op, 1600.00 ns, 0.0069 ns/op
+OverheadActual   7: 233472 op, 1600.00 ns, 0.0069 ns/op
+OverheadActual   8: 233472 op, 1700.00 ns, 0.0073 ns/op
+OverheadActual   9: 233472 op, 1600.00 ns, 0.0069 ns/op
+OverheadActual  10: 233472 op, 1700.00 ns, 0.0073 ns/op
+OverheadActual  11: 233472 op, 1600.00 ns, 0.0069 ns/op
+OverheadActual  12: 233472 op, 1700.00 ns, 0.0073 ns/op
+OverheadActual  13: 233472 op, 1600.00 ns, 0.0069 ns/op
+OverheadActual  14: 233472 op, 1700.00 ns, 0.0073 ns/op
+OverheadActual  15: 233472 op, 1700.00 ns, 0.0073 ns/op
+
+WorkloadWarmup   1: 233472 op, 100162800.00 ns, 429.0142 ns/op
+WorkloadWarmup   2: 233472 op, 100343700.00 ns, 429.7890 ns/op
+WorkloadWarmup   3: 233472 op, 101468800.00 ns, 434.6080 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 233472 op, 101376400.00 ns, 434.2122 ns/op
+WorkloadActual   2: 233472 op, 102801200.00 ns, 440.3149 ns/op
+WorkloadActual   3: 233472 op, 99843000.00 ns, 427.6444 ns/op
+WorkloadActual   4: 233472 op, 100291700.00 ns, 429.5663 ns/op
+WorkloadActual   5: 233472 op, 100082800.00 ns, 428.6715 ns/op
+WorkloadActual   6: 233472 op, 100036200.00 ns, 428.4719 ns/op
+WorkloadActual   7: 233472 op, 100767300.00 ns, 431.6034 ns/op
+WorkloadActual   8: 233472 op, 100298300.00 ns, 429.5946 ns/op
+WorkloadActual   9: 233472 op, 100058600.00 ns, 428.5679 ns/op
+WorkloadActual  10: 233472 op, 99713800.00 ns, 427.0910 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 233472 op, 101374700.00 ns, 434.2050 ns/op
+WorkloadResult   2: 233472 op, 99841300.00 ns, 427.6371 ns/op
+WorkloadResult   3: 233472 op, 100290000.00 ns, 429.5590 ns/op
+WorkloadResult   4: 233472 op, 100081100.00 ns, 428.6643 ns/op
+WorkloadResult   5: 233472 op, 100034500.00 ns, 428.4647 ns/op
+WorkloadResult   6: 233472 op, 100765600.00 ns, 431.5961 ns/op
+WorkloadResult   7: 233472 op, 100296600.00 ns, 429.5873 ns/op
+WorkloadResult   8: 233472 op, 100056900.00 ns, 428.5606 ns/op
+WorkloadResult   9: 233472 op, 99712100.00 ns, 427.0838 ns/op
+// GC:  0 0 0 336 233472
+// Threading:  0 0 233472
+
+// AfterAll
+// Benchmark Process 711728 has exited with code 0.
+// Launch: 3 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2128 2792 --benchmarkName "GlobAcceptance.Match(Workload: \"LongText\", Library: \"TeddDirectReused\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 4 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 217000.00 ns, 847.6563 ns/op
+WorkloadJitting  1: 256 op, 472100.00 ns, 1.8441 us/op
+
+OverheadJitting  2: 4096 op, 390500.00 ns, 95.3369 ns/op
+WorkloadJitting  2: 4096 op, 2325600.00 ns, 567.7734 ns/op
+
+WorkloadPilot    1: 4096 op, 2021600.00 ns, 493.5547 ns/op
+WorkloadPilot    2: 204800 op, 90811200.00 ns, 443.4141 ns/op
+WorkloadPilot    3: 229376 op, 97791700.00 ns, 426.3380 ns/op
+WorkloadPilot    4: 237568 op, 98783400.00 ns, 415.8111 ns/op
+WorkloadPilot    5: 241664 op, 100939000.00 ns, 417.6832 ns/op
+
+OverheadWarmup   1: 241664 op, 2000.00 ns, 0.0083 ns/op
+OverheadWarmup   2: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadWarmup   3: 241664 op, 1700.00 ns, 0.0070 ns/op
+OverheadWarmup   4: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadWarmup   5: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadWarmup   6: 241664 op, 1700.00 ns, 0.0070 ns/op
+OverheadWarmup   7: 241664 op, 1700.00 ns, 0.0070 ns/op
+
+OverheadActual   1: 241664 op, 1900.00 ns, 0.0079 ns/op
+OverheadActual   2: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadActual   3: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadActual   4: 241664 op, 1700.00 ns, 0.0070 ns/op
+OverheadActual   5: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadActual   6: 241664 op, 1700.00 ns, 0.0070 ns/op
+OverheadActual   7: 241664 op, 1700.00 ns, 0.0070 ns/op
+OverheadActual   8: 241664 op, 1700.00 ns, 0.0070 ns/op
+OverheadActual   9: 241664 op, 1600.00 ns, 0.0066 ns/op
+OverheadActual  10: 241664 op, 2400.00 ns, 0.0099 ns/op
+OverheadActual  11: 241664 op, 1800.00 ns, 0.0074 ns/op
+OverheadActual  12: 241664 op, 1700.00 ns, 0.0070 ns/op
+OverheadActual  13: 241664 op, 1700.00 ns, 0.0070 ns/op
+OverheadActual  14: 241664 op, 1700.00 ns, 0.0070 ns/op
+OverheadActual  15: 241664 op, 1700.00 ns, 0.0070 ns/op
+
+WorkloadWarmup   1: 241664 op, 101691300.00 ns, 420.7962 ns/op
+WorkloadWarmup   2: 241664 op, 100413600.00 ns, 415.5091 ns/op
+WorkloadWarmup   3: 241664 op, 100325300.00 ns, 415.1438 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 241664 op, 105491700.00 ns, 436.5222 ns/op
+WorkloadActual   2: 241664 op, 101718900.00 ns, 420.9104 ns/op
+WorkloadActual   3: 241664 op, 101101900.00 ns, 418.3573 ns/op
+WorkloadActual   4: 241664 op, 100050300.00 ns, 414.0058 ns/op
+WorkloadActual   5: 241664 op, 100283900.00 ns, 414.9724 ns/op
+WorkloadActual   6: 241664 op, 100072900.00 ns, 414.0993 ns/op
+WorkloadActual   7: 241664 op, 100358900.00 ns, 415.2828 ns/op
+WorkloadActual   8: 241664 op, 100347100.00 ns, 415.2340 ns/op
+WorkloadActual   9: 241664 op, 100329100.00 ns, 415.1595 ns/op
+WorkloadActual  10: 241664 op, 100382100.00 ns, 415.3788 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 241664 op, 101717200.00 ns, 420.9034 ns/op
+WorkloadResult   2: 241664 op, 101100200.00 ns, 418.3503 ns/op
+WorkloadResult   3: 241664 op, 100048600.00 ns, 413.9988 ns/op
+WorkloadResult   4: 241664 op, 100282200.00 ns, 414.9654 ns/op
+WorkloadResult   5: 241664 op, 100071200.00 ns, 414.0923 ns/op
+WorkloadResult   6: 241664 op, 100357200.00 ns, 415.2758 ns/op
+WorkloadResult   7: 241664 op, 100345400.00 ns, 415.2269 ns/op
+WorkloadResult   8: 241664 op, 100327400.00 ns, 415.1524 ns/op
+WorkloadResult   9: 241664 op, 100380400.00 ns, 415.3718 ns/op
+// GC:  0 0 0 0 241664
+// Threading:  0 0 241664
+
+// AfterAll
+// Benchmark Process 684532 has exited with code 0.
+
+Mean = 420.266 ns, StdErr = 1.327 ns (0.32%), N = 27, StdDev = 6.893 ns
+Min = 413.410 ns, Q1 = 415.132 ns, Median = 416.080 ns, Q3 = 428.051 ns, Max = 434.205 ns
+IQR = 12.919 ns, LowerFence = 395.753 ns, UpperFence = 447.430 ns
+ConfidenceInterval = [415.349 ns; 425.183 ns] (CI 99.9%), Margin = 4.917 ns (1.17% of Mean)
+Skewness = 0.67, Kurtosis = 1.66, MValue = 2
+
+// ** Remained 7 (58.3%) benchmark(s) to run. Estimated finish 2026-10-02 13:25 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=LongText, Library=TeddDirectStatic]
+// *** Execute ***
+// Launch: 1 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 1216 1408 --benchmarkName "GlobAcceptance.Match(Workload: \"LongText\", Library: \"TeddDirectStatic\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 5 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 218600.00 ns, 853.9063 ns/op
+WorkloadJitting  1: 256 op, 448800.00 ns, 1.7531 us/op
+
+OverheadJitting  2: 4096 op, 386600.00 ns, 94.3848 ns/op
+WorkloadJitting  2: 4096 op, 3614300.00 ns, 882.3975 ns/op
+
+WorkloadPilot    1: 4096 op, 3069000.00 ns, 749.2676 ns/op
+WorkloadPilot    2: 135168 op, 86363800.00 ns, 638.9367 ns/op
+WorkloadPilot    3: 159744 op, 98260600.00 ns, 615.1129 ns/op
+WorkloadPilot    4: 163840 op, 100400800.00 ns, 612.7979 ns/op
+
+OverheadWarmup   1: 163840 op, 1500.00 ns, 0.0092 ns/op
+OverheadWarmup   2: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadWarmup   3: 163840 op, 1200.00 ns, 0.0073 ns/op
+OverheadWarmup   4: 163840 op, 1200.00 ns, 0.0073 ns/op
+OverheadWarmup   5: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadWarmup   6: 163840 op, 1400.00 ns, 0.0085 ns/op
+OverheadWarmup   7: 163840 op, 1400.00 ns, 0.0085 ns/op
+OverheadWarmup   8: 163840 op, 1300.00 ns, 0.0079 ns/op
+
+OverheadActual   1: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual   2: 163840 op, 1400.00 ns, 0.0085 ns/op
+OverheadActual   3: 163840 op, 1400.00 ns, 0.0085 ns/op
+OverheadActual   4: 163840 op, 1600.00 ns, 0.0098 ns/op
+OverheadActual   5: 163840 op, 1400.00 ns, 0.0085 ns/op
+OverheadActual   6: 163840 op, 1200.00 ns, 0.0073 ns/op
+OverheadActual   7: 163840 op, 1200.00 ns, 0.0073 ns/op
+OverheadActual   8: 163840 op, 1200.00 ns, 0.0073 ns/op
+OverheadActual   9: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual  10: 163840 op, 1200.00 ns, 0.0073 ns/op
+OverheadActual  11: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual  12: 163840 op, 1200.00 ns, 0.0073 ns/op
+OverheadActual  13: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual  14: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual  15: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual  16: 163840 op, 1200.00 ns, 0.0073 ns/op
+OverheadActual  17: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual  18: 163840 op, 1400.00 ns, 0.0085 ns/op
+OverheadActual  19: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual  20: 163840 op, 1300.00 ns, 0.0079 ns/op
+
+WorkloadWarmup   1: 163840 op, 103681900.00 ns, 632.8241 ns/op
+WorkloadWarmup   2: 163840 op, 100878800.00 ns, 615.7153 ns/op
+WorkloadWarmup   3: 163840 op, 101006000.00 ns, 616.4917 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 163840 op, 103277800.00 ns, 630.3577 ns/op
+WorkloadActual   2: 163840 op, 103855800.00 ns, 633.8855 ns/op
+WorkloadActual   3: 163840 op, 100744600.00 ns, 614.8962 ns/op
+WorkloadActual   4: 163840 op, 100053800.00 ns, 610.6799 ns/op
+WorkloadActual   5: 163840 op, 100514800.00 ns, 613.4937 ns/op
+WorkloadActual   6: 163840 op, 99564800.00 ns, 607.6953 ns/op
+WorkloadActual   7: 163840 op, 100043200.00 ns, 610.6152 ns/op
+WorkloadActual   8: 163840 op, 100057700.00 ns, 610.7037 ns/op
+WorkloadActual   9: 163840 op, 100172700.00 ns, 611.4056 ns/op
+WorkloadActual  10: 163840 op, 100141100.00 ns, 611.2128 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 163840 op, 100743300.00 ns, 614.8883 ns/op
+WorkloadResult   2: 163840 op, 100052500.00 ns, 610.6720 ns/op
+WorkloadResult   3: 163840 op, 100513500.00 ns, 613.4857 ns/op
+WorkloadResult   4: 163840 op, 99563500.00 ns, 607.6874 ns/op
+WorkloadResult   5: 163840 op, 100041900.00 ns, 610.6073 ns/op
+WorkloadResult   6: 163840 op, 100056400.00 ns, 610.6958 ns/op
+WorkloadResult   7: 163840 op, 100171400.00 ns, 611.3977 ns/op
+WorkloadResult   8: 163840 op, 100139800.00 ns, 611.2048 ns/op
+// GC:  0 0 0 336 163840
+// Threading:  0 0 163840
+
+// AfterAll
+// Benchmark Process 99716 has exited with code 0.
+// Launch: 2 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2128 2064 --benchmarkName "GlobAcceptance.Match(Workload: \"LongText\", Library: \"TeddDirectStatic\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 5 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 216700.00 ns, 846.4844 ns/op
+WorkloadJitting  1: 256 op, 449200.00 ns, 1.7547 us/op
+
+OverheadJitting  2: 4096 op, 385000.00 ns, 93.9941 ns/op
+WorkloadJitting  2: 4096 op, 3622400.00 ns, 884.3750 ns/op
+
+WorkloadPilot    1: 4096 op, 3137100.00 ns, 765.8936 ns/op
+WorkloadPilot    2: 131072 op, 82774600.00 ns, 631.5201 ns/op
+WorkloadPilot    3: 159744 op, 99034800.00 ns, 619.9594 ns/op
+WorkloadPilot    4: 163840 op, 100268900.00 ns, 611.9928 ns/op
+
+OverheadWarmup   1: 163840 op, 1500.00 ns, 0.0092 ns/op
+OverheadWarmup   2: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadWarmup   3: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadWarmup   4: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadWarmup   5: 163840 op, 1200.00 ns, 0.0073 ns/op
+OverheadWarmup   6: 163840 op, 1200.00 ns, 0.0073 ns/op
+
+OverheadActual   1: 163840 op, 1400.00 ns, 0.0085 ns/op
+OverheadActual   2: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual   3: 163840 op, 1400.00 ns, 0.0085 ns/op
+OverheadActual   4: 163840 op, 1200.00 ns, 0.0073 ns/op
+OverheadActual   5: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual   6: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual   7: 163840 op, 1200.00 ns, 0.0073 ns/op
+OverheadActual   8: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual   9: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual  10: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual  11: 163840 op, 1200.00 ns, 0.0073 ns/op
+OverheadActual  12: 163840 op, 1100.00 ns, 0.0067 ns/op
+OverheadActual  13: 163840 op, 1400.00 ns, 0.0085 ns/op
+OverheadActual  14: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual  15: 163840 op, 1800.00 ns, 0.0110 ns/op
+OverheadActual  16: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual  17: 163840 op, 1200.00 ns, 0.0073 ns/op
+OverheadActual  18: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual  19: 163840 op, 1300.00 ns, 0.0079 ns/op
+OverheadActual  20: 163840 op, 1300.00 ns, 0.0079 ns/op
+
+WorkloadWarmup   1: 163840 op, 100498900.00 ns, 613.3966 ns/op
+WorkloadWarmup   2: 163840 op, 99560100.00 ns, 607.6666 ns/op
+WorkloadWarmup   3: 163840 op, 99964600.00 ns, 610.1355 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 163840 op, 100350800.00 ns, 612.4927 ns/op
+WorkloadActual   2: 163840 op, 99969900.00 ns, 610.1678 ns/op
+WorkloadActual   3: 163840 op, 100400400.00 ns, 612.7954 ns/op
+WorkloadActual   4: 163840 op, 99959300.00 ns, 610.1031 ns/op
+WorkloadActual   5: 163840 op, 100069000.00 ns, 610.7727 ns/op
+WorkloadActual   6: 163840 op, 99770200.00 ns, 608.9490 ns/op
+WorkloadActual   7: 163840 op, 100286500.00 ns, 612.1002 ns/op
+WorkloadActual   8: 163840 op, 100846900.00 ns, 615.5206 ns/op
+WorkloadActual   9: 163840 op, 106651800.00 ns, 650.9509 ns/op
+WorkloadActual  10: 163840 op, 107488900.00 ns, 656.0602 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 163840 op, 100349500.00 ns, 612.4847 ns/op
+WorkloadResult   2: 163840 op, 99968600.00 ns, 610.1599 ns/op
+WorkloadResult   3: 163840 op, 100399100.00 ns, 612.7875 ns/op
+WorkloadResult   4: 163840 op, 99958000.00 ns, 610.0952 ns/op
+WorkloadResult   5: 163840 op, 100067700.00 ns, 610.7648 ns/op
+WorkloadResult   6: 163840 op, 99768900.00 ns, 608.9410 ns/op
+WorkloadResult   7: 163840 op, 100285200.00 ns, 612.0923 ns/op
+WorkloadResult   8: 163840 op, 100845600.00 ns, 615.5127 ns/op
+// GC:  0 0 0 336 163840
+// Threading:  0 0 163840
+
+// AfterAll
+// Benchmark Process 384980 has exited with code 0.
+// Launch: 3 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2776 2728 --benchmarkName "GlobAcceptance.Match(Workload: \"LongText\", Library: \"TeddDirectStatic\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 5 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 233000.00 ns, 910.1563 ns/op
+WorkloadJitting  1: 256 op, 648500.00 ns, 2.5332 us/op
+
+OverheadJitting  2: 4096 op, 402500.00 ns, 98.2666 ns/op
+WorkloadJitting  2: 4096 op, 3861900.00 ns, 942.8467 ns/op
+
+WorkloadPilot    1: 4096 op, 4285000.00 ns, 1.0461 us/op
+WorkloadPilot    2: 98304 op, 68693700.00 ns, 698.7885 ns/op
+WorkloadPilot    3: 143360 op, 95855600.00 ns, 668.6356 ns/op
+WorkloadPilot    4: 151552 op, 99095600.00 ns, 653.8719 ns/op
+WorkloadPilot    5: 155648 op, 102417600.00 ns, 658.0078 ns/op
+
+OverheadWarmup   1: 155648 op, 1400.00 ns, 0.0090 ns/op
+OverheadWarmup   2: 155648 op, 1300.00 ns, 0.0084 ns/op
+OverheadWarmup   3: 155648 op, 1200.00 ns, 0.0077 ns/op
+OverheadWarmup   4: 155648 op, 1200.00 ns, 0.0077 ns/op
+OverheadWarmup   5: 155648 op, 1200.00 ns, 0.0077 ns/op
+OverheadWarmup   6: 155648 op, 1200.00 ns, 0.0077 ns/op
+OverheadWarmup   7: 155648 op, 1200.00 ns, 0.0077 ns/op
+
+OverheadActual   1: 155648 op, 1400.00 ns, 0.0090 ns/op
+OverheadActual   2: 155648 op, 1300.00 ns, 0.0084 ns/op
+OverheadActual   3: 155648 op, 1300.00 ns, 0.0084 ns/op
+OverheadActual   4: 155648 op, 1200.00 ns, 0.0077 ns/op
+OverheadActual   5: 155648 op, 1300.00 ns, 0.0084 ns/op
+OverheadActual   6: 155648 op, 1200.00 ns, 0.0077 ns/op
+OverheadActual   7: 155648 op, 1200.00 ns, 0.0077 ns/op
+OverheadActual   8: 155648 op, 1200.00 ns, 0.0077 ns/op
+OverheadActual   9: 155648 op, 1200.00 ns, 0.0077 ns/op
+OverheadActual  10: 155648 op, 1200.00 ns, 0.0077 ns/op
+OverheadActual  11: 155648 op, 1200.00 ns, 0.0077 ns/op
+OverheadActual  12: 155648 op, 1300.00 ns, 0.0084 ns/op
+OverheadActual  13: 155648 op, 1300.00 ns, 0.0084 ns/op
+OverheadActual  14: 155648 op, 1300.00 ns, 0.0084 ns/op
+OverheadActual  15: 155648 op, 1200.00 ns, 0.0077 ns/op
+OverheadActual  16: 155648 op, 1200.00 ns, 0.0077 ns/op
+OverheadActual  17: 155648 op, 1300.00 ns, 0.0084 ns/op
+
+WorkloadWarmup   1: 155648 op, 102560800.00 ns, 658.9278 ns/op
+WorkloadWarmup   2: 155648 op, 100879300.00 ns, 648.1246 ns/op
+WorkloadWarmup   3: 155648 op, 100719100.00 ns, 647.0954 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 155648 op, 100412300.00 ns, 645.1243 ns/op
+WorkloadActual   2: 155648 op, 100761700.00 ns, 647.3691 ns/op
+WorkloadActual   3: 155648 op, 100348700.00 ns, 644.7156 ns/op
+WorkloadActual   4: 155648 op, 100477000.00 ns, 645.5399 ns/op
+WorkloadActual   5: 155648 op, 101726500.00 ns, 653.5677 ns/op
+WorkloadActual   6: 155648 op, 100564700.00 ns, 646.1034 ns/op
+WorkloadActual   7: 155648 op, 100557400.00 ns, 646.0565 ns/op
+WorkloadActual   8: 155648 op, 100103700.00 ns, 643.1416 ns/op
+WorkloadActual   9: 155648 op, 100181600.00 ns, 643.6421 ns/op
+WorkloadActual  10: 155648 op, 100169200.00 ns, 643.5624 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 155648 op, 100411100.00 ns, 645.1165 ns/op
+WorkloadResult   2: 155648 op, 100760500.00 ns, 647.3614 ns/op
+WorkloadResult   3: 155648 op, 100347500.00 ns, 644.7079 ns/op
+WorkloadResult   4: 155648 op, 100475800.00 ns, 645.5322 ns/op
+WorkloadResult   5: 155648 op, 100563500.00 ns, 646.0957 ns/op
+WorkloadResult   6: 155648 op, 100556200.00 ns, 646.0488 ns/op
+WorkloadResult   7: 155648 op, 100102500.00 ns, 643.1339 ns/op
+WorkloadResult   8: 155648 op, 100180400.00 ns, 643.6344 ns/op
+WorkloadResult   9: 155648 op, 100168000.00 ns, 643.5547 ns/op
+// GC:  0 0 0 336 155648
+// Threading:  0 0 155648
+
+// AfterAll
+// Benchmark Process 699812 has exited with code 0.
+
+Mean = 623.547 ns, StdErr = 3.307 ns (0.53%), N = 25, StdDev = 16.536 ns
+Min = 607.687 ns, Q1 = 610.696 ns, Median = 612.787 ns, Q3 = 643.634 ns, Max = 647.361 ns
+IQR = 32.939 ns, LowerFence = 561.288 ns, UpperFence = 693.042 ns
+ConfidenceInterval = [611.160 ns; 635.933 ns] (CI 99.9%), Margin = 12.387 ns (1.99% of Mean)
+Skewness = 0.53, Kurtosis = 1.26, MValue = 3.13
+
+// ** Remained 6 (50.0%) benchmark(s) to run. Estimated finish 2026-10-02 13:25 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=MultiStar, Library=DotNetGlob]
+// *** Execute ***
+// Launch: 1 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2672 1216 --benchmarkName "GlobAcceptance.Match(Workload: \"MultiStar\", Library: \"DotNetGlob\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 6 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 212500.00 ns, 830.0781 ns/op
+WorkloadJitting  1: 256 op, 435100.00 ns, 1.6996 us/op
+
+OverheadJitting  2: 4096 op, 386300.00 ns, 94.3115 ns/op
+WorkloadJitting  2: 4096 op, 2854800.00 ns, 696.9727 ns/op
+
+WorkloadPilot    1: 4096 op, 2755300.00 ns, 672.6807 ns/op
+WorkloadPilot    2: 151552 op, 81380500.00 ns, 536.9807 ns/op
+WorkloadPilot    3: 188416 op, 95533000.00 ns, 507.0323 ns/op
+WorkloadPilot    4: 200704 op, 101152400.00 ns, 503.9880 ns/op
+
+OverheadWarmup   1: 200704 op, 1700.00 ns, 0.0085 ns/op
+OverheadWarmup   2: 200704 op, 1600.00 ns, 0.0080 ns/op
+OverheadWarmup   3: 200704 op, 1400.00 ns, 0.0070 ns/op
+OverheadWarmup   4: 200704 op, 1400.00 ns, 0.0070 ns/op
+OverheadWarmup   5: 200704 op, 1600.00 ns, 0.0080 ns/op
+OverheadWarmup   6: 200704 op, 1500.00 ns, 0.0075 ns/op
+OverheadWarmup   7: 200704 op, 1500.00 ns, 0.0075 ns/op
+
+OverheadActual   1: 200704 op, 1600.00 ns, 0.0080 ns/op
+OverheadActual   2: 200704 op, 1600.00 ns, 0.0080 ns/op
+OverheadActual   3: 200704 op, 1500.00 ns, 0.0075 ns/op
+OverheadActual   4: 200704 op, 1600.00 ns, 0.0080 ns/op
+OverheadActual   5: 200704 op, 1500.00 ns, 0.0075 ns/op
+OverheadActual   6: 200704 op, 1500.00 ns, 0.0075 ns/op
+OverheadActual   7: 200704 op, 1500.00 ns, 0.0075 ns/op
+OverheadActual   8: 200704 op, 1500.00 ns, 0.0075 ns/op
+OverheadActual   9: 200704 op, 1500.00 ns, 0.0075 ns/op
+OverheadActual  10: 200704 op, 1600.00 ns, 0.0080 ns/op
+OverheadActual  11: 200704 op, 1600.00 ns, 0.0080 ns/op
+OverheadActual  12: 200704 op, 2300.00 ns, 0.0115 ns/op
+OverheadActual  13: 200704 op, 1500.00 ns, 0.0075 ns/op
+OverheadActual  14: 200704 op, 1500.00 ns, 0.0075 ns/op
+OverheadActual  15: 200704 op, 1600.00 ns, 0.0080 ns/op
+
+WorkloadWarmup   1: 200704 op, 100715900.00 ns, 501.8131 ns/op
+WorkloadWarmup   2: 200704 op, 102078700.00 ns, 508.6032 ns/op
+WorkloadWarmup   3: 200704 op, 100234400.00 ns, 499.4141 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 200704 op, 100120500.00 ns, 498.8466 ns/op
+WorkloadActual   2: 200704 op, 100414100.00 ns, 500.3094 ns/op
+WorkloadActual   3: 200704 op, 100327200.00 ns, 499.8764 ns/op
+WorkloadActual   4: 200704 op, 99823700.00 ns, 497.3678 ns/op
+WorkloadActual   5: 200704 op, 99885000.00 ns, 497.6732 ns/op
+WorkloadActual   6: 200704 op, 99841200.00 ns, 497.4550 ns/op
+WorkloadActual   7: 200704 op, 100988600.00 ns, 503.1718 ns/op
+WorkloadActual   8: 200704 op, 99372400.00 ns, 495.1192 ns/op
+WorkloadActual   9: 200704 op, 100043100.00 ns, 498.4609 ns/op
+WorkloadActual  10: 200704 op, 99667100.00 ns, 496.5875 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 200704 op, 100119000.00 ns, 498.8391 ns/op
+WorkloadResult   2: 200704 op, 100412600.00 ns, 500.3019 ns/op
+WorkloadResult   3: 200704 op, 100325700.00 ns, 499.8690 ns/op
+WorkloadResult   4: 200704 op, 99822200.00 ns, 497.3603 ns/op
+WorkloadResult   5: 200704 op, 99883500.00 ns, 497.6657 ns/op
+WorkloadResult   6: 200704 op, 99839700.00 ns, 497.4475 ns/op
+WorkloadResult   7: 200704 op, 99370900.00 ns, 495.1117 ns/op
+WorkloadResult   8: 200704 op, 100041600.00 ns, 498.4534 ns/op
+WorkloadResult   9: 200704 op, 99665600.00 ns, 496.5800 ns/op
+// GC:  0 0 0 336 200704
+// Threading:  0 0 200704
+
+// AfterAll
+// Benchmark Process 471296 has exited with code 0.
+// Launch: 2 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2804 2756 --benchmarkName "GlobAcceptance.Match(Workload: \"MultiStar\", Library: \"DotNetGlob\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 6 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 211100.00 ns, 824.6094 ns/op
+WorkloadJitting  1: 256 op, 422500.00 ns, 1.6504 us/op
+
+OverheadJitting  2: 4096 op, 385700.00 ns, 94.1650 ns/op
+WorkloadJitting  2: 4096 op, 2806700.00 ns, 685.2295 ns/op
+
+WorkloadPilot    1: 4096 op, 2817800.00 ns, 687.9395 ns/op
+WorkloadPilot    2: 147456 op, 74984500.00 ns, 508.5212 ns/op
+WorkloadPilot    3: 196608 op, 94198700.00 ns, 479.1194 ns/op
+WorkloadPilot    4: 208896 op, 98500500.00 ns, 471.5289 ns/op
+WorkloadPilot    5: 212992 op, 100143800.00 ns, 470.1763 ns/op
+
+OverheadWarmup   1: 212992 op, 1800.00 ns, 0.0085 ns/op
+OverheadWarmup   2: 212992 op, 1700.00 ns, 0.0080 ns/op
+OverheadWarmup   3: 212992 op, 1500.00 ns, 0.0070 ns/op
+OverheadWarmup   4: 212992 op, 1400.00 ns, 0.0066 ns/op
+OverheadWarmup   5: 212992 op, 1600.00 ns, 0.0075 ns/op
+OverheadWarmup   6: 212992 op, 1500.00 ns, 0.0070 ns/op
+OverheadWarmup   7: 212992 op, 1500.00 ns, 0.0070 ns/op
+OverheadWarmup   8: 212992 op, 1600.00 ns, 0.0075 ns/op
+
+OverheadActual   1: 212992 op, 1600.00 ns, 0.0075 ns/op
+OverheadActual   2: 212992 op, 1700.00 ns, 0.0080 ns/op
+OverheadActual   3: 212992 op, 1700.00 ns, 0.0080 ns/op
+OverheadActual   4: 212992 op, 1600.00 ns, 0.0075 ns/op
+OverheadActual   5: 212992 op, 1700.00 ns, 0.0080 ns/op
+OverheadActual   6: 212992 op, 1600.00 ns, 0.0075 ns/op
+OverheadActual   7: 212992 op, 1500.00 ns, 0.0070 ns/op
+OverheadActual   8: 212992 op, 1600.00 ns, 0.0075 ns/op
+OverheadActual   9: 212992 op, 1600.00 ns, 0.0075 ns/op
+OverheadActual  10: 212992 op, 1600.00 ns, 0.0075 ns/op
+OverheadActual  11: 212992 op, 1600.00 ns, 0.0075 ns/op
+OverheadActual  12: 212992 op, 1600.00 ns, 0.0075 ns/op
+OverheadActual  13: 212992 op, 1700.00 ns, 0.0080 ns/op
+OverheadActual  14: 212992 op, 1600.00 ns, 0.0075 ns/op
+OverheadActual  15: 212992 op, 1600.00 ns, 0.0075 ns/op
+
+WorkloadWarmup   1: 212992 op, 99402300.00 ns, 466.6950 ns/op
+WorkloadWarmup   2: 212992 op, 100006700.00 ns, 469.5327 ns/op
+WorkloadWarmup   3: 212992 op, 99341300.00 ns, 466.4086 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 212992 op, 100405400.00 ns, 471.4046 ns/op
+WorkloadActual   2: 212992 op, 99509000.00 ns, 467.1960 ns/op
+WorkloadActual   3: 212992 op, 98966400.00 ns, 464.6484 ns/op
+WorkloadActual   4: 212992 op, 100150000.00 ns, 470.2055 ns/op
+WorkloadActual   5: 212992 op, 99304900.00 ns, 466.2377 ns/op
+WorkloadActual   6: 212992 op, 98861900.00 ns, 464.1578 ns/op
+WorkloadActual   7: 212992 op, 98934400.00 ns, 464.4982 ns/op
+WorkloadActual   8: 212992 op, 98963100.00 ns, 464.6329 ns/op
+WorkloadActual   9: 212992 op, 100297100.00 ns, 470.8961 ns/op
+WorkloadActual  10: 212992 op, 100043700.00 ns, 469.7064 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 212992 op, 100403800.00 ns, 471.3970 ns/op
+WorkloadResult   2: 212992 op, 99507400.00 ns, 467.1884 ns/op
+WorkloadResult   3: 212992 op, 98964800.00 ns, 464.6409 ns/op
+WorkloadResult   4: 212992 op, 100148400.00 ns, 470.1979 ns/op
+WorkloadResult   5: 212992 op, 99303300.00 ns, 466.2302 ns/op
+WorkloadResult   6: 212992 op, 98860300.00 ns, 464.1503 ns/op
+WorkloadResult   7: 212992 op, 98932800.00 ns, 464.4907 ns/op
+WorkloadResult   8: 212992 op, 98961500.00 ns, 464.6254 ns/op
+WorkloadResult   9: 212992 op, 100295500.00 ns, 470.8886 ns/op
+WorkloadResult  10: 212992 op, 100042100.00 ns, 469.6989 ns/op
+// GC:  0 0 0 336 212992
+// Threading:  0 0 212992
+
+// AfterAll
+// Benchmark Process 143180 has exited with code 0.
+// Launch: 3 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 1764 2076 --benchmarkName "GlobAcceptance.Match(Workload: \"MultiStar\", Library: \"DotNetGlob\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 6 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 1096300.00 ns, 4.2824 us/op
+WorkloadJitting  1: 256 op, 545700.00 ns, 2.1316 us/op
+
+OverheadJitting  2: 4096 op, 403500.00 ns, 98.5107 ns/op
+WorkloadJitting  2: 4096 op, 2756600.00 ns, 672.9980 ns/op
+
+WorkloadPilot    1: 4096 op, 2703400.00 ns, 660.0098 ns/op
+WorkloadPilot    2: 151552 op, 80172200.00 ns, 529.0079 ns/op
+WorkloadPilot    3: 192512 op, 96271000.00 ns, 500.0779 ns/op
+WorkloadPilot    4: 200704 op, 97949700.00 ns, 488.0306 ns/op
+WorkloadPilot    5: 204800 op, 100102600.00 ns, 488.7822 ns/op
+
+OverheadWarmup   1: 204800 op, 1700.00 ns, 0.0083 ns/op
+OverheadWarmup   2: 204800 op, 1600.00 ns, 0.0078 ns/op
+OverheadWarmup   3: 204800 op, 1400.00 ns, 0.0068 ns/op
+OverheadWarmup   4: 204800 op, 1400.00 ns, 0.0068 ns/op
+OverheadWarmup   5: 204800 op, 1500.00 ns, 0.0073 ns/op
+OverheadWarmup   6: 204800 op, 1500.00 ns, 0.0073 ns/op
+OverheadWarmup   7: 204800 op, 1400.00 ns, 0.0068 ns/op
+
+OverheadActual   1: 204800 op, 1700.00 ns, 0.0083 ns/op
+OverheadActual   2: 204800 op, 1700.00 ns, 0.0083 ns/op
+OverheadActual   3: 204800 op, 2600.00 ns, 0.0127 ns/op
+OverheadActual   4: 204800 op, 2400.00 ns, 0.0117 ns/op
+OverheadActual   5: 204800 op, 1700.00 ns, 0.0083 ns/op
+OverheadActual   6: 204800 op, 1500.00 ns, 0.0073 ns/op
+OverheadActual   7: 204800 op, 1600.00 ns, 0.0078 ns/op
+OverheadActual   8: 204800 op, 1600.00 ns, 0.0078 ns/op
+OverheadActual   9: 204800 op, 1500.00 ns, 0.0073 ns/op
+OverheadActual  10: 204800 op, 1500.00 ns, 0.0073 ns/op
+OverheadActual  11: 204800 op, 1600.00 ns, 0.0078 ns/op
+OverheadActual  12: 204800 op, 1500.00 ns, 0.0073 ns/op
+OverheadActual  13: 204800 op, 1600.00 ns, 0.0078 ns/op
+OverheadActual  14: 204800 op, 1600.00 ns, 0.0078 ns/op
+OverheadActual  15: 204800 op, 1500.00 ns, 0.0073 ns/op
+OverheadActual  16: 204800 op, 1500.00 ns, 0.0073 ns/op
+OverheadActual  17: 204800 op, 1500.00 ns, 0.0073 ns/op
+OverheadActual  18: 204800 op, 1600.00 ns, 0.0078 ns/op
+OverheadActual  19: 204800 op, 1600.00 ns, 0.0078 ns/op
+
+WorkloadWarmup   1: 204800 op, 99827800.00 ns, 487.4404 ns/op
+WorkloadWarmup   2: 204800 op, 100992600.00 ns, 493.1279 ns/op
+WorkloadWarmup   3: 204800 op, 100376500.00 ns, 490.1196 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 204800 op, 99660000.00 ns, 486.6211 ns/op
+WorkloadActual   2: 204800 op, 99403200.00 ns, 485.3672 ns/op
+WorkloadActual   3: 204800 op, 99290200.00 ns, 484.8154 ns/op
+WorkloadActual   4: 204800 op, 99010800.00 ns, 483.4512 ns/op
+WorkloadActual   5: 204800 op, 99612700.00 ns, 486.3901 ns/op
+WorkloadActual   6: 204800 op, 99048700.00 ns, 483.6362 ns/op
+WorkloadActual   7: 204800 op, 99518600.00 ns, 485.9307 ns/op
+WorkloadActual   8: 204800 op, 98949000.00 ns, 483.1494 ns/op
+WorkloadActual   9: 204800 op, 98946000.00 ns, 483.1348 ns/op
+WorkloadActual  10: 204800 op, 99080900.00 ns, 483.7935 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 204800 op, 99658400.00 ns, 486.6133 ns/op
+WorkloadResult   2: 204800 op, 99401600.00 ns, 485.3594 ns/op
+WorkloadResult   3: 204800 op, 99288600.00 ns, 484.8076 ns/op
+WorkloadResult   4: 204800 op, 99009200.00 ns, 483.4434 ns/op
+WorkloadResult   5: 204800 op, 99611100.00 ns, 486.3823 ns/op
+WorkloadResult   6: 204800 op, 99047100.00 ns, 483.6284 ns/op
+WorkloadResult   7: 204800 op, 99517000.00 ns, 485.9229 ns/op
+WorkloadResult   8: 204800 op, 98947400.00 ns, 483.1416 ns/op
+WorkloadResult   9: 204800 op, 98944400.00 ns, 483.1270 ns/op
+WorkloadResult  10: 204800 op, 99079300.00 ns, 483.7856 ns/op
+// GC:  0 0 0 336 204800
+// Threading:  0 0 204800
+
+// AfterAll
+// Benchmark Process 136780 has exited with code 0.
+
+Mean = 482.805 ns, StdErr = 2.381 ns (0.49%), N = 29, StdDev = 12.821 ns
+Min = 464.150 ns, Q1 = 470.198 ns, Median = 483.786 ns, Q3 = 496.580 ns, Max = 500.302 ns
+IQR = 26.382 ns, LowerFence = 430.625 ns, UpperFence = 536.153 ns
+ConfidenceInterval = [474.058 ns; 491.552 ns] (CI 99.9%), Margin = 8.747 ns (1.81% of Mean)
+Skewness = -0.13, Kurtosis = 1.51, MValue = 2
+
+// ** Remained 5 (41.7%) benchmark(s) to run. Estimated finish 2026-10-02 13:25 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=MultiStar, Library=TeddDirectReused]
+// *** Execute ***
+// Launch: 1 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2704 2060 --benchmarkName "GlobAcceptance.Match(Workload: \"MultiStar\", Library: \"TeddDirectReused\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 7 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 211700.00 ns, 826.9531 ns/op
+WorkloadJitting  1: 256 op, 354300.00 ns, 1.3840 us/op
+
+OverheadJitting  2: 4096 op, 383900.00 ns, 93.7256 ns/op
+WorkloadJitting  2: 4096 op, 1577500.00 ns, 385.1318 ns/op
+
+WorkloadPilot    1: 4096 op, 1073200.00 ns, 262.0117 ns/op
+WorkloadPilot    2: 385024 op, 75889500.00 ns, 197.1033 ns/op
+WorkloadPilot    3: 507904 op, 96955200.00 ns, 190.8928 ns/op
+WorkloadPilot    4: 524288 op, 99818500.00 ns, 190.3887 ns/op
+WorkloadPilot    5: 528384 op, 100053000.00 ns, 189.3566 ns/op
+
+OverheadWarmup   1: 528384 op, 3700.00 ns, 0.0070 ns/op
+OverheadWarmup   2: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadWarmup   3: 528384 op, 3400.00 ns, 0.0064 ns/op
+OverheadWarmup   4: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadWarmup   5: 528384 op, 3400.00 ns, 0.0064 ns/op
+OverheadWarmup   6: 528384 op, 3400.00 ns, 0.0064 ns/op
+OverheadWarmup   7: 528384 op, 3500.00 ns, 0.0066 ns/op
+
+OverheadActual   1: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadActual   2: 528384 op, 3700.00 ns, 0.0070 ns/op
+OverheadActual   3: 528384 op, 3700.00 ns, 0.0070 ns/op
+OverheadActual   4: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadActual   5: 528384 op, 3600.00 ns, 0.0068 ns/op
+OverheadActual   6: 528384 op, 3400.00 ns, 0.0064 ns/op
+OverheadActual   7: 528384 op, 3400.00 ns, 0.0064 ns/op
+OverheadActual   8: 528384 op, 3400.00 ns, 0.0064 ns/op
+OverheadActual   9: 528384 op, 3400.00 ns, 0.0064 ns/op
+OverheadActual  10: 528384 op, 3400.00 ns, 0.0064 ns/op
+OverheadActual  11: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadActual  12: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadActual  13: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadActual  14: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadActual  15: 528384 op, 3500.00 ns, 0.0066 ns/op
+
+WorkloadWarmup   1: 528384 op, 99713800.00 ns, 188.7146 ns/op
+WorkloadWarmup   2: 528384 op, 99943700.00 ns, 189.1497 ns/op
+WorkloadWarmup   3: 528384 op, 99834300.00 ns, 188.9427 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 528384 op, 101431400.00 ns, 191.9653 ns/op
+WorkloadActual   2: 528384 op, 100536200.00 ns, 190.2711 ns/op
+WorkloadActual   3: 528384 op, 99795400.00 ns, 188.8691 ns/op
+WorkloadActual   4: 528384 op, 99799000.00 ns, 188.8759 ns/op
+WorkloadActual   5: 528384 op, 99640000.00 ns, 188.5750 ns/op
+WorkloadActual   6: 528384 op, 99976500.00 ns, 189.2118 ns/op
+WorkloadActual   7: 528384 op, 100793300.00 ns, 190.7577 ns/op
+WorkloadActual   8: 528384 op, 100708300.00 ns, 190.5968 ns/op
+WorkloadActual   9: 528384 op, 99613000.00 ns, 188.5239 ns/op
+WorkloadActual  10: 528384 op, 100573700.00 ns, 190.3421 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 528384 op, 101427900.00 ns, 191.9587 ns/op
+WorkloadResult   2: 528384 op, 100532700.00 ns, 190.2645 ns/op
+WorkloadResult   3: 528384 op, 99791900.00 ns, 188.8625 ns/op
+WorkloadResult   4: 528384 op, 99795500.00 ns, 188.8693 ns/op
+WorkloadResult   5: 528384 op, 99636500.00 ns, 188.5684 ns/op
+WorkloadResult   6: 528384 op, 99973000.00 ns, 189.2052 ns/op
+WorkloadResult   7: 528384 op, 100789800.00 ns, 190.7510 ns/op
+WorkloadResult   8: 528384 op, 100704800.00 ns, 190.5902 ns/op
+WorkloadResult   9: 528384 op, 99609500.00 ns, 188.5173 ns/op
+WorkloadResult  10: 528384 op, 100570200.00 ns, 190.3354 ns/op
+// GC:  0 0 0 0 528384
+// Threading:  0 0 528384
+
+// AfterAll
+// Benchmark Process 96440 has exited with code 0.
+// Launch: 2 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 1160 2976 --benchmarkName "GlobAcceptance.Match(Workload: \"MultiStar\", Library: \"TeddDirectReused\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 7 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 212200.00 ns, 828.9063 ns/op
+WorkloadJitting  1: 256 op, 376200.00 ns, 1.4695 us/op
+
+OverheadJitting  2: 4096 op, 387500.00 ns, 94.6045 ns/op
+WorkloadJitting  2: 4096 op, 1588200.00 ns, 387.7441 ns/op
+
+WorkloadPilot    1: 4096 op, 1068200.00 ns, 260.7910 ns/op
+WorkloadPilot    2: 385024 op, 76090900.00 ns, 197.6264 ns/op
+WorkloadPilot    3: 507904 op, 96540600.00 ns, 190.0765 ns/op
+WorkloadPilot    4: 528384 op, 100461800.00 ns, 190.1303 ns/op
+
+OverheadWarmup   1: 528384 op, 3700.00 ns, 0.0070 ns/op
+OverheadWarmup   2: 528384 op, 3600.00 ns, 0.0068 ns/op
+OverheadWarmup   3: 528384 op, 3600.00 ns, 0.0068 ns/op
+OverheadWarmup   4: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadWarmup   5: 528384 op, 3600.00 ns, 0.0068 ns/op
+OverheadWarmup   6: 528384 op, 3900.00 ns, 0.0074 ns/op
+OverheadWarmup   7: 528384 op, 3500.00 ns, 0.0066 ns/op
+
+OverheadActual   1: 528384 op, 3600.00 ns, 0.0068 ns/op
+OverheadActual   2: 528384 op, 3600.00 ns, 0.0068 ns/op
+OverheadActual   3: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadActual   4: 528384 op, 3600.00 ns, 0.0068 ns/op
+OverheadActual   5: 528384 op, 4900.00 ns, 0.0093 ns/op
+OverheadActual   6: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadActual   7: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadActual   8: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadActual   9: 528384 op, 3600.00 ns, 0.0068 ns/op
+OverheadActual  10: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadActual  11: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadActual  12: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadActual  13: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadActual  14: 528384 op, 3500.00 ns, 0.0066 ns/op
+OverheadActual  15: 528384 op, 3500.00 ns, 0.0066 ns/op
+
+WorkloadWarmup   1: 528384 op, 101143900.00 ns, 191.4212 ns/op
+WorkloadWarmup   2: 528384 op, 100660200.00 ns, 190.5058 ns/op
+WorkloadWarmup   3: 528384 op, 100218700.00 ns, 189.6702 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 528384 op, 100869100.00 ns, 190.9011 ns/op
+WorkloadActual   2: 528384 op, 101043500.00 ns, 191.2312 ns/op
+WorkloadActual   3: 528384 op, 100435300.00 ns, 190.0801 ns/op
+WorkloadActual   4: 528384 op, 102359300.00 ns, 193.7214 ns/op
+WorkloadActual   5: 528384 op, 100893500.00 ns, 190.9473 ns/op
+WorkloadActual   6: 528384 op, 99899200.00 ns, 189.0655 ns/op
+WorkloadActual   7: 528384 op, 100835700.00 ns, 190.8379 ns/op
+WorkloadActual   8: 528384 op, 100366600.00 ns, 189.9501 ns/op
+WorkloadActual   9: 528384 op, 100043400.00 ns, 189.3384 ns/op
+WorkloadActual  10: 528384 op, 99964500.00 ns, 189.1891 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 528384 op, 100865600.00 ns, 190.8945 ns/op
+WorkloadResult   2: 528384 op, 101040000.00 ns, 191.2246 ns/op
+WorkloadResult   3: 528384 op, 100431800.00 ns, 190.0735 ns/op
+WorkloadResult   4: 528384 op, 100890000.00 ns, 190.9407 ns/op
+WorkloadResult   5: 528384 op, 99895700.00 ns, 189.0589 ns/op
+WorkloadResult   6: 528384 op, 100832200.00 ns, 190.8313 ns/op
+WorkloadResult   7: 528384 op, 100363100.00 ns, 189.9435 ns/op
+WorkloadResult   8: 528384 op, 100039900.00 ns, 189.3318 ns/op
+WorkloadResult   9: 528384 op, 99961000.00 ns, 189.1825 ns/op
+// GC:  0 0 0 0 528384
+// Threading:  0 0 528384
+
+// AfterAll
+// Benchmark Process 228188 has exited with code 0.
+// Launch: 3 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2720 2728 --benchmarkName "GlobAcceptance.Match(Workload: \"MultiStar\", Library: \"TeddDirectReused\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 7 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 208300.00 ns, 813.6719 ns/op
+WorkloadJitting  1: 256 op, 361900.00 ns, 1.4137 us/op
+
+OverheadJitting  2: 4096 op, 385400.00 ns, 94.0918 ns/op
+WorkloadJitting  2: 4096 op, 1606000.00 ns, 392.0898 ns/op
+
+WorkloadPilot    1: 4096 op, 1039100.00 ns, 253.6865 ns/op
+WorkloadPilot    2: 397312 op, 76269000.00 ns, 191.9625 ns/op
+WorkloadPilot    3: 524288 op, 98212700.00 ns, 187.3259 ns/op
+WorkloadPilot    4: 536576 op, 99118300.00 ns, 184.7237 ns/op
+WorkloadPilot    5: 544768 op, 100450200.00 ns, 184.3908 ns/op
+
+OverheadWarmup   1: 544768 op, 3800.00 ns, 0.0070 ns/op
+OverheadWarmup   2: 544768 op, 3700.00 ns, 0.0068 ns/op
+OverheadWarmup   3: 544768 op, 3600.00 ns, 0.0066 ns/op
+OverheadWarmup   4: 544768 op, 3500.00 ns, 0.0064 ns/op
+OverheadWarmup   5: 544768 op, 3600.00 ns, 0.0066 ns/op
+OverheadWarmup   6: 544768 op, 3500.00 ns, 0.0064 ns/op
+OverheadWarmup   7: 544768 op, 3500.00 ns, 0.0064 ns/op
+OverheadWarmup   8: 544768 op, 3600.00 ns, 0.0066 ns/op
+
+OverheadActual   1: 544768 op, 3700.00 ns, 0.0068 ns/op
+OverheadActual   2: 544768 op, 3700.00 ns, 0.0068 ns/op
+OverheadActual   3: 544768 op, 3700.00 ns, 0.0068 ns/op
+OverheadActual   4: 544768 op, 3600.00 ns, 0.0066 ns/op
+OverheadActual   5: 544768 op, 3700.00 ns, 0.0068 ns/op
+OverheadActual   6: 544768 op, 3500.00 ns, 0.0064 ns/op
+OverheadActual   7: 544768 op, 3500.00 ns, 0.0064 ns/op
+OverheadActual   8: 544768 op, 3500.00 ns, 0.0064 ns/op
+OverheadActual   9: 544768 op, 3600.00 ns, 0.0066 ns/op
+OverheadActual  10: 544768 op, 3500.00 ns, 0.0064 ns/op
+OverheadActual  11: 544768 op, 3600.00 ns, 0.0066 ns/op
+OverheadActual  12: 544768 op, 3600.00 ns, 0.0066 ns/op
+OverheadActual  13: 544768 op, 3500.00 ns, 0.0064 ns/op
+OverheadActual  14: 544768 op, 3600.00 ns, 0.0066 ns/op
+OverheadActual  15: 544768 op, 3600.00 ns, 0.0066 ns/op
+
+WorkloadWarmup   1: 544768 op, 100647900.00 ns, 184.7537 ns/op
+WorkloadWarmup   2: 544768 op, 104466900.00 ns, 191.7640 ns/op
+WorkloadWarmup   3: 544768 op, 108418000.00 ns, 199.0168 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 544768 op, 104797600.00 ns, 192.3711 ns/op
+WorkloadActual   2: 544768 op, 100325500.00 ns, 184.1619 ns/op
+WorkloadActual   3: 544768 op, 101099700.00 ns, 185.5830 ns/op
+WorkloadActual   4: 544768 op, 100647800.00 ns, 184.7535 ns/op
+WorkloadActual   5: 544768 op, 100120100.00 ns, 183.7848 ns/op
+WorkloadActual   6: 544768 op, 102627700.00 ns, 188.3879 ns/op
+WorkloadActual   7: 544768 op, 101229300.00 ns, 185.8209 ns/op
+WorkloadActual   8: 544768 op, 100058700.00 ns, 183.6721 ns/op
+WorkloadActual   9: 544768 op, 100196900.00 ns, 183.9258 ns/op
+WorkloadActual  10: 544768 op, 100723200.00 ns, 184.8919 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 544768 op, 100321900.00 ns, 184.1553 ns/op
+WorkloadResult   2: 544768 op, 101096100.00 ns, 185.5764 ns/op
+WorkloadResult   3: 544768 op, 100644200.00 ns, 184.7469 ns/op
+WorkloadResult   4: 544768 op, 100116500.00 ns, 183.7782 ns/op
+WorkloadResult   5: 544768 op, 102624100.00 ns, 188.3813 ns/op
+WorkloadResult   6: 544768 op, 101225700.00 ns, 185.8143 ns/op
+WorkloadResult   7: 544768 op, 100055100.00 ns, 183.6655 ns/op
+WorkloadResult   8: 544768 op, 100193300.00 ns, 183.9192 ns/op
+WorkloadResult   9: 544768 op, 100719600.00 ns, 184.8853 ns/op
+// GC:  0 0 0 336 544768
+// Threading:  0 0 544768
+
+// AfterAll
+// Benchmark Process 640996 has exited with code 0.
+
+Mean = 188.369 ns, StdErr = 0.498 ns (0.26%), N = 28, StdDev = 2.633 ns
+Min = 183.666 ns, Q1 = 185.755 ns, Median = 189.121 ns, Q3 = 190.399 ns, Max = 191.959 ns
+IQR = 4.644 ns, LowerFence = 178.788 ns, UpperFence = 197.366 ns
+ConfidenceInterval = [186.533 ns; 190.205 ns] (CI 99.9%), Margin = 1.836 ns (0.97% of Mean)
+Skewness = -0.63, Kurtosis = 1.87, MValue = 2
+
+// ** Remained 4 (33.3%) benchmark(s) to run. Estimated finish 2026-10-02 13:25 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=MultiStar, Library=TeddDirectStatic]
+// *** Execute ***
+// Launch: 1 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2752 2068 --benchmarkName "GlobAcceptance.Match(Workload: \"MultiStar\", Library: \"TeddDirectStatic\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 8 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 210500.00 ns, 822.2656 ns/op
+WorkloadJitting  1: 256 op, 348300.00 ns, 1.3605 us/op
+
+OverheadJitting  2: 4096 op, 394600.00 ns, 96.3379 ns/op
+WorkloadJitting  2: 4096 op, 1495100.00 ns, 365.0146 ns/op
+
+WorkloadPilot    1: 4096 op, 1276700.00 ns, 311.6943 ns/op
+WorkloadPilot    2: 323584 op, 69478500.00 ns, 214.7155 ns/op
+WorkloadPilot    3: 466944 op, 94494700.00 ns, 202.3684 ns/op
+WorkloadPilot    4: 495616 op, 99764900.00 ns, 201.2948 ns/op
+WorkloadPilot    5: 499712 op, 100295100.00 ns, 200.7058 ns/op
+
+OverheadWarmup   1: 499712 op, 3600.00 ns, 0.0072 ns/op
+OverheadWarmup   2: 499712 op, 3300.00 ns, 0.0066 ns/op
+OverheadWarmup   3: 499712 op, 3300.00 ns, 0.0066 ns/op
+OverheadWarmup   4: 499712 op, 3300.00 ns, 0.0066 ns/op
+OverheadWarmup   5: 499712 op, 3300.00 ns, 0.0066 ns/op
+OverheadWarmup   6: 499712 op, 3300.00 ns, 0.0066 ns/op
+
+OverheadActual   1: 499712 op, 3500.00 ns, 0.0070 ns/op
+OverheadActual   2: 499712 op, 3400.00 ns, 0.0068 ns/op
+OverheadActual   3: 499712 op, 3400.00 ns, 0.0068 ns/op
+OverheadActual   4: 499712 op, 3400.00 ns, 0.0068 ns/op
+OverheadActual   5: 499712 op, 3400.00 ns, 0.0068 ns/op
+OverheadActual   6: 499712 op, 3300.00 ns, 0.0066 ns/op
+OverheadActual   7: 499712 op, 3300.00 ns, 0.0066 ns/op
+OverheadActual   8: 499712 op, 3300.00 ns, 0.0066 ns/op
+OverheadActual   9: 499712 op, 3300.00 ns, 0.0066 ns/op
+OverheadActual  10: 499712 op, 3300.00 ns, 0.0066 ns/op
+OverheadActual  11: 499712 op, 3300.00 ns, 0.0066 ns/op
+OverheadActual  12: 499712 op, 3400.00 ns, 0.0068 ns/op
+OverheadActual  13: 499712 op, 3300.00 ns, 0.0066 ns/op
+OverheadActual  14: 499712 op, 3300.00 ns, 0.0066 ns/op
+OverheadActual  15: 499712 op, 3300.00 ns, 0.0066 ns/op
+
+WorkloadWarmup   1: 499712 op, 99935500.00 ns, 199.9862 ns/op
+WorkloadWarmup   2: 499712 op, 99656600.00 ns, 199.4281 ns/op
+WorkloadWarmup   3: 499712 op, 99505100.00 ns, 199.1249 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 499712 op, 99058600.00 ns, 198.2314 ns/op
+WorkloadActual   2: 499712 op, 99895400.00 ns, 199.9059 ns/op
+WorkloadActual   3: 499712 op, 99827100.00 ns, 199.7693 ns/op
+WorkloadActual   4: 499712 op, 100809000.00 ns, 201.7342 ns/op
+WorkloadActual   5: 499712 op, 100328600.00 ns, 200.7728 ns/op
+WorkloadActual   6: 499712 op, 100248000.00 ns, 200.6116 ns/op
+WorkloadActual   7: 499712 op, 100512600.00 ns, 201.1411 ns/op
+WorkloadActual   8: 499712 op, 100710100.00 ns, 201.5363 ns/op
+WorkloadActual   9: 499712 op, 101449300.00 ns, 203.0155 ns/op
+WorkloadActual  10: 499712 op, 100421200.00 ns, 200.9582 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 499712 op, 99055300.00 ns, 198.2248 ns/op
+WorkloadResult   2: 499712 op, 99892100.00 ns, 199.8993 ns/op
+WorkloadResult   3: 499712 op, 99823800.00 ns, 199.7627 ns/op
+WorkloadResult   4: 499712 op, 100805700.00 ns, 201.7276 ns/op
+WorkloadResult   5: 499712 op, 100325300.00 ns, 200.7662 ns/op
+WorkloadResult   6: 499712 op, 100244700.00 ns, 200.6049 ns/op
+WorkloadResult   7: 499712 op, 100509300.00 ns, 201.1345 ns/op
+WorkloadResult   8: 499712 op, 100706800.00 ns, 201.5297 ns/op
+WorkloadResult   9: 499712 op, 101446000.00 ns, 203.0089 ns/op
+WorkloadResult  10: 499712 op, 100417900.00 ns, 200.9515 ns/op
+// GC:  0 0 0 0 499712
+// Threading:  0 0 499712
+
+// AfterAll
+// Benchmark Process 412696 has exited with code 0.
+// Launch: 2 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2644 2580 --benchmarkName "GlobAcceptance.Match(Workload: \"MultiStar\", Library: \"TeddDirectStatic\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 8 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 210000.00 ns, 820.3125 ns/op
+WorkloadJitting  1: 256 op, 338600.00 ns, 1.3227 us/op
+
+OverheadJitting  2: 4096 op, 397000.00 ns, 96.9238 ns/op
+WorkloadJitting  2: 4096 op, 1454000.00 ns, 354.9805 ns/op
+
+WorkloadPilot    1: 4096 op, 1253900.00 ns, 306.1279 ns/op
+WorkloadPilot    2: 327680 op, 71031100.00 ns, 216.7697 ns/op
+WorkloadPilot    3: 462848 op, 93382000.00 ns, 201.7552 ns/op
+WorkloadPilot    4: 495616 op, 98864600.00 ns, 199.4782 ns/op
+WorkloadPilot    5: 503808 op, 100249900.00 ns, 198.9843 ns/op
+
+OverheadWarmup   1: 503808 op, 3600.00 ns, 0.0071 ns/op
+OverheadWarmup   2: 503808 op, 3300.00 ns, 0.0066 ns/op
+OverheadWarmup   3: 503808 op, 3300.00 ns, 0.0066 ns/op
+OverheadWarmup   4: 503808 op, 3300.00 ns, 0.0066 ns/op
+OverheadWarmup   5: 503808 op, 3400.00 ns, 0.0067 ns/op
+OverheadWarmup   6: 503808 op, 3300.00 ns, 0.0066 ns/op
+
+OverheadActual   1: 503808 op, 3400.00 ns, 0.0067 ns/op
+OverheadActual   2: 503808 op, 3500.00 ns, 0.0069 ns/op
+OverheadActual   3: 503808 op, 3400.00 ns, 0.0067 ns/op
+OverheadActual   4: 503808 op, 3500.00 ns, 0.0069 ns/op
+OverheadActual   5: 503808 op, 3400.00 ns, 0.0067 ns/op
+OverheadActual   6: 503808 op, 3300.00 ns, 0.0066 ns/op
+OverheadActual   7: 503808 op, 3400.00 ns, 0.0067 ns/op
+OverheadActual   8: 503808 op, 3400.00 ns, 0.0067 ns/op
+OverheadActual   9: 503808 op, 3300.00 ns, 0.0066 ns/op
+OverheadActual  10: 503808 op, 3300.00 ns, 0.0066 ns/op
+OverheadActual  11: 503808 op, 3400.00 ns, 0.0067 ns/op
+OverheadActual  12: 503808 op, 3400.00 ns, 0.0067 ns/op
+OverheadActual  13: 503808 op, 3400.00 ns, 0.0067 ns/op
+OverheadActual  14: 503808 op, 3300.00 ns, 0.0066 ns/op
+OverheadActual  15: 503808 op, 3400.00 ns, 0.0067 ns/op
+
+WorkloadWarmup   1: 503808 op, 100153200.00 ns, 198.7924 ns/op
+WorkloadWarmup   2: 503808 op, 100566600.00 ns, 199.6129 ns/op
+WorkloadWarmup   3: 503808 op, 99688900.00 ns, 197.8708 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 503808 op, 101037600.00 ns, 200.5478 ns/op
+WorkloadActual   2: 503808 op, 99434800.00 ns, 197.3665 ns/op
+WorkloadActual   3: 503808 op, 100275800.00 ns, 199.0357 ns/op
+WorkloadActual   4: 503808 op, 101510000.00 ns, 201.4855 ns/op
+WorkloadActual   5: 503808 op, 100065500.00 ns, 198.6183 ns/op
+WorkloadActual   6: 503808 op, 100216900.00 ns, 198.9188 ns/op
+WorkloadActual   7: 503808 op, 99762900.00 ns, 198.0177 ns/op
+WorkloadActual   8: 503808 op, 100049700.00 ns, 198.5870 ns/op
+WorkloadActual   9: 503808 op, 100374700.00 ns, 199.2320 ns/op
+WorkloadActual  10: 503808 op, 99317700.00 ns, 197.1340 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 503808 op, 101034200.00 ns, 200.5411 ns/op
+WorkloadResult   2: 503808 op, 99431400.00 ns, 197.3597 ns/op
+WorkloadResult   3: 503808 op, 100272400.00 ns, 199.0290 ns/op
+WorkloadResult   4: 503808 op, 100062100.00 ns, 198.6116 ns/op
+WorkloadResult   5: 503808 op, 100213500.00 ns, 198.9121 ns/op
+WorkloadResult   6: 503808 op, 99759500.00 ns, 198.0109 ns/op
+WorkloadResult   7: 503808 op, 100046300.00 ns, 198.5802 ns/op
+WorkloadResult   8: 503808 op, 100371300.00 ns, 199.2253 ns/op
+WorkloadResult   9: 503808 op, 99314300.00 ns, 197.1273 ns/op
+// GC:  0 0 0 336 503808
+// Threading:  0 0 503808
+
+// AfterAll
+// Benchmark Process 455248 has exited with code 0.
+// Launch: 3 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2804 2584 --benchmarkName "GlobAcceptance.Match(Workload: \"MultiStar\", Library: \"TeddDirectStatic\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 8 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 213900.00 ns, 835.5469 ns/op
+WorkloadJitting  1: 256 op, 339500.00 ns, 1.3262 us/op
+
+OverheadJitting  2: 4096 op, 402800.00 ns, 98.3398 ns/op
+WorkloadJitting  2: 4096 op, 1499200.00 ns, 366.0156 ns/op
+
+WorkloadPilot    1: 4096 op, 1382100.00 ns, 337.4268 ns/op
+WorkloadPilot    2: 299008 op, 66116700.00 ns, 221.1202 ns/op
+WorkloadPilot    3: 454656 op, 92707300.00 ns, 203.9065 ns/op
+WorkloadPilot    4: 491520 op, 99617700.00 ns, 202.6727 ns/op
+WorkloadPilot    5: 495616 op, 101413400.00 ns, 204.6209 ns/op
+WorkloadPilot    6: 491520 op, 99894300.00 ns, 203.2355 ns/op
+WorkloadPilot    7: 495616 op, 100071400.00 ns, 201.9132 ns/op
+
+OverheadWarmup   1: 495616 op, 3600.00 ns, 0.0073 ns/op
+OverheadWarmup   2: 495616 op, 3400.00 ns, 0.0069 ns/op
+OverheadWarmup   3: 495616 op, 3300.00 ns, 0.0067 ns/op
+OverheadWarmup   4: 495616 op, 3200.00 ns, 0.0065 ns/op
+OverheadWarmup   5: 495616 op, 3400.00 ns, 0.0069 ns/op
+OverheadWarmup   6: 495616 op, 3200.00 ns, 0.0065 ns/op
+OverheadWarmup   7: 495616 op, 3300.00 ns, 0.0067 ns/op
+OverheadWarmup   8: 495616 op, 3300.00 ns, 0.0067 ns/op
+
+OverheadActual   1: 495616 op, 3400.00 ns, 0.0069 ns/op
+OverheadActual   2: 495616 op, 3400.00 ns, 0.0069 ns/op
+OverheadActual   3: 495616 op, 3400.00 ns, 0.0069 ns/op
+OverheadActual   4: 495616 op, 3300.00 ns, 0.0067 ns/op
+OverheadActual   5: 495616 op, 3400.00 ns, 0.0069 ns/op
+OverheadActual   6: 495616 op, 3300.00 ns, 0.0067 ns/op
+OverheadActual   7: 495616 op, 3300.00 ns, 0.0067 ns/op
+OverheadActual   8: 495616 op, 3300.00 ns, 0.0067 ns/op
+OverheadActual   9: 495616 op, 3300.00 ns, 0.0067 ns/op
+OverheadActual  10: 495616 op, 3300.00 ns, 0.0067 ns/op
+OverheadActual  11: 495616 op, 3300.00 ns, 0.0067 ns/op
+OverheadActual  12: 495616 op, 3300.00 ns, 0.0067 ns/op
+OverheadActual  13: 495616 op, 3300.00 ns, 0.0067 ns/op
+OverheadActual  14: 495616 op, 3300.00 ns, 0.0067 ns/op
+OverheadActual  15: 495616 op, 3300.00 ns, 0.0067 ns/op
+
+WorkloadWarmup   1: 495616 op, 99727600.00 ns, 201.2195 ns/op
+WorkloadWarmup   2: 495616 op, 99712800.00 ns, 201.1896 ns/op
+WorkloadWarmup   3: 495616 op, 100120300.00 ns, 202.0118 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 495616 op, 100168000.00 ns, 202.1081 ns/op
+WorkloadActual   2: 495616 op, 99606900.00 ns, 200.9760 ns/op
+WorkloadActual   3: 495616 op, 100436100.00 ns, 202.6490 ns/op
+WorkloadActual   4: 495616 op, 99915200.00 ns, 201.5980 ns/op
+WorkloadActual   5: 495616 op, 99852500.00 ns, 201.4715 ns/op
+WorkloadActual   6: 495616 op, 100478300.00 ns, 202.7342 ns/op
+WorkloadActual   7: 495616 op, 101014700.00 ns, 203.8165 ns/op
+WorkloadActual   8: 495616 op, 100595700.00 ns, 202.9711 ns/op
+WorkloadActual   9: 495616 op, 99418200.00 ns, 200.5952 ns/op
+WorkloadActual  10: 495616 op, 101179900.00 ns, 204.1498 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 495616 op, 100164700.00 ns, 202.1014 ns/op
+WorkloadResult   2: 495616 op, 99603600.00 ns, 200.9693 ns/op
+WorkloadResult   3: 495616 op, 100432800.00 ns, 202.6424 ns/op
+WorkloadResult   4: 495616 op, 99911900.00 ns, 201.5914 ns/op
+WorkloadResult   5: 495616 op, 99849200.00 ns, 201.4648 ns/op
+WorkloadResult   6: 495616 op, 100475000.00 ns, 202.7275 ns/op
+WorkloadResult   7: 495616 op, 101011400.00 ns, 203.8098 ns/op
+WorkloadResult   8: 495616 op, 100592400.00 ns, 202.9644 ns/op
+WorkloadResult   9: 495616 op, 99414900.00 ns, 200.5886 ns/op
+WorkloadResult  10: 495616 op, 101176600.00 ns, 204.1431 ns/op
+// GC:  0 0 0 336 495616
+// Threading:  0 0 495616
+
+// AfterAll
+// Benchmark Process 439204 has exited with code 0.
+
+Mean = 200.621 ns, StdErr = 0.353 ns (0.18%), N = 29, StdDev = 1.899 ns
+Min = 197.127 ns, Q1 = 199.029 ns, Median = 200.766 ns, Q3 = 201.728 ns, Max = 204.143 ns
+IQR = 2.699 ns, LowerFence = 194.981 ns, UpperFence = 205.775 ns
+ConfidenceInterval = [199.326 ns; 201.917 ns] (CI 99.9%), Margin = 1.296 ns (0.65% of Mean)
+Skewness = -0.06, Kurtosis = 2.01, MValue = 2
+
+// ** Remained 3 (25.0%) benchmark(s) to run. Estimated finish 2026-10-02 13:25 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Simple, Library=DotNetGlob]
+// *** Execute ***
+// Launch: 1 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2548 2560 --benchmarkName "GlobAcceptance.Match(Workload: \"Simple\", Library: \"DotNetGlob\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 9 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 211600.00 ns, 826.5625 ns/op
+WorkloadJitting  1: 256 op, 349400.00 ns, 1.3648 us/op
+
+OverheadJitting  2: 4096 op, 382900.00 ns, 93.4814 ns/op
+WorkloadJitting  2: 4096 op, 1149300.00 ns, 280.5908 ns/op
+
+WorkloadPilot    1: 4096 op, 887300.00 ns, 216.6260 ns/op
+WorkloadPilot    2: 462848 op, 79507800.00 ns, 171.7795 ns/op
+WorkloadPilot    3: 585728 op, 97183100.00 ns, 165.9185 ns/op
+WorkloadPilot    4: 606208 op, 100679200.00 ns, 166.0803 ns/op
+WorkloadPilot    5: 602112 op, 99480600.00 ns, 165.2194 ns/op
+WorkloadPilot    6: 606208 op, 100681000.00 ns, 166.0833 ns/op
+WorkloadPilot    7: 602112 op, 101432900.00 ns, 168.4618 ns/op
+
+OverheadWarmup   1: 602112 op, 4200.00 ns, 0.0070 ns/op
+OverheadWarmup   2: 602112 op, 4100.00 ns, 0.0068 ns/op
+OverheadWarmup   3: 602112 op, 4000.00 ns, 0.0066 ns/op
+OverheadWarmup   4: 602112 op, 4000.00 ns, 0.0066 ns/op
+OverheadWarmup   5: 602112 op, 4000.00 ns, 0.0066 ns/op
+OverheadWarmup   6: 602112 op, 3900.00 ns, 0.0065 ns/op
+OverheadWarmup   7: 602112 op, 3800.00 ns, 0.0063 ns/op
+OverheadWarmup   8: 602112 op, 4000.00 ns, 0.0066 ns/op
+
+OverheadActual   1: 602112 op, 4100.00 ns, 0.0068 ns/op
+OverheadActual   2: 602112 op, 4100.00 ns, 0.0068 ns/op
+OverheadActual   3: 602112 op, 4000.00 ns, 0.0066 ns/op
+OverheadActual   4: 602112 op, 4000.00 ns, 0.0066 ns/op
+OverheadActual   5: 602112 op, 4000.00 ns, 0.0066 ns/op
+OverheadActual   6: 602112 op, 3900.00 ns, 0.0065 ns/op
+OverheadActual   7: 602112 op, 3900.00 ns, 0.0065 ns/op
+OverheadActual   8: 602112 op, 4000.00 ns, 0.0066 ns/op
+OverheadActual   9: 602112 op, 4000.00 ns, 0.0066 ns/op
+OverheadActual  10: 602112 op, 4000.00 ns, 0.0066 ns/op
+OverheadActual  11: 602112 op, 4000.00 ns, 0.0066 ns/op
+OverheadActual  12: 602112 op, 3900.00 ns, 0.0065 ns/op
+OverheadActual  13: 602112 op, 3900.00 ns, 0.0065 ns/op
+OverheadActual  14: 602112 op, 3900.00 ns, 0.0065 ns/op
+OverheadActual  15: 602112 op, 4000.00 ns, 0.0066 ns/op
+
+WorkloadWarmup   1: 602112 op, 99248600.00 ns, 164.8341 ns/op
+WorkloadWarmup   2: 602112 op, 99820700.00 ns, 165.7843 ns/op
+WorkloadWarmup   3: 602112 op, 99489000.00 ns, 165.2334 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 602112 op, 100897600.00 ns, 167.5728 ns/op
+WorkloadActual   2: 602112 op, 100511100.00 ns, 166.9309 ns/op
+WorkloadActual   3: 602112 op, 100607400.00 ns, 167.0908 ns/op
+WorkloadActual   4: 602112 op, 100468400.00 ns, 166.8600 ns/op
+WorkloadActual   5: 602112 op, 100012100.00 ns, 166.1022 ns/op
+WorkloadActual   6: 602112 op, 100055500.00 ns, 166.1742 ns/op
+WorkloadActual   7: 602112 op, 99622200.00 ns, 165.4546 ns/op
+WorkloadActual   8: 602112 op, 99849000.00 ns, 165.8313 ns/op
+WorkloadActual   9: 602112 op, 99338500.00 ns, 164.9834 ns/op
+WorkloadActual  10: 602112 op, 99718600.00 ns, 165.6147 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 602112 op, 100893600.00 ns, 167.5662 ns/op
+WorkloadResult   2: 602112 op, 100507100.00 ns, 166.9243 ns/op
+WorkloadResult   3: 602112 op, 100603400.00 ns, 167.0842 ns/op
+WorkloadResult   4: 602112 op, 100464400.00 ns, 166.8533 ns/op
+WorkloadResult   5: 602112 op, 100008100.00 ns, 166.0955 ns/op
+WorkloadResult   6: 602112 op, 100051500.00 ns, 166.1676 ns/op
+WorkloadResult   7: 602112 op, 99618200.00 ns, 165.4480 ns/op
+WorkloadResult   8: 602112 op, 99845000.00 ns, 165.8246 ns/op
+WorkloadResult   9: 602112 op, 99334500.00 ns, 164.9768 ns/op
+WorkloadResult  10: 602112 op, 99714600.00 ns, 165.6081 ns/op
+// GC:  0 0 0 336 602112
+// Threading:  0 0 602112
+
+// AfterAll
+// Benchmark Process 748896 has exited with code 0.
+// Launch: 2 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2144 2544 --benchmarkName "GlobAcceptance.Match(Workload: \"Simple\", Library: \"DotNetGlob\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 9 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 216100.00 ns, 844.1406 ns/op
+WorkloadJitting  1: 256 op, 367700.00 ns, 1.4363 us/op
+
+OverheadJitting  2: 4096 op, 388300.00 ns, 94.7998 ns/op
+WorkloadJitting  2: 4096 op, 1273300.00 ns, 310.8643 ns/op
+
+WorkloadPilot    1: 4096 op, 837800.00 ns, 204.5410 ns/op
+WorkloadPilot    2: 491520 op, 88384100.00 ns, 179.8179 ns/op
+WorkloadPilot    3: 557056 op, 95218300.00 ns, 170.9313 ns/op
+WorkloadPilot    4: 585728 op, 100008200.00 ns, 170.7417 ns/op
+
+OverheadWarmup   1: 585728 op, 4100.00 ns, 0.0070 ns/op
+OverheadWarmup   2: 585728 op, 3900.00 ns, 0.0067 ns/op
+OverheadWarmup   3: 585728 op, 3900.00 ns, 0.0067 ns/op
+OverheadWarmup   4: 585728 op, 3800.00 ns, 0.0065 ns/op
+OverheadWarmup   5: 585728 op, 3900.00 ns, 0.0067 ns/op
+OverheadWarmup   6: 585728 op, 3800.00 ns, 0.0065 ns/op
+
+OverheadActual   1: 585728 op, 4000.00 ns, 0.0068 ns/op
+OverheadActual   2: 585728 op, 4000.00 ns, 0.0068 ns/op
+OverheadActual   3: 585728 op, 3900.00 ns, 0.0067 ns/op
+OverheadActual   4: 585728 op, 3900.00 ns, 0.0067 ns/op
+OverheadActual   5: 585728 op, 4000.00 ns, 0.0068 ns/op
+OverheadActual   6: 585728 op, 3800.00 ns, 0.0065 ns/op
+OverheadActual   7: 585728 op, 3800.00 ns, 0.0065 ns/op
+OverheadActual   8: 585728 op, 3800.00 ns, 0.0065 ns/op
+OverheadActual   9: 585728 op, 3800.00 ns, 0.0065 ns/op
+OverheadActual  10: 585728 op, 3800.00 ns, 0.0065 ns/op
+OverheadActual  11: 585728 op, 3900.00 ns, 0.0067 ns/op
+OverheadActual  12: 585728 op, 3800.00 ns, 0.0065 ns/op
+OverheadActual  13: 585728 op, 3900.00 ns, 0.0067 ns/op
+OverheadActual  14: 585728 op, 3900.00 ns, 0.0067 ns/op
+OverheadActual  15: 585728 op, 3800.00 ns, 0.0065 ns/op
+
+WorkloadWarmup   1: 585728 op, 99807800.00 ns, 170.3996 ns/op
+WorkloadWarmup   2: 585728 op, 100953500.00 ns, 172.3556 ns/op
+WorkloadWarmup   3: 585728 op, 99479000.00 ns, 169.8382 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 585728 op, 101481800.00 ns, 173.2576 ns/op
+WorkloadActual   2: 585728 op, 100571300.00 ns, 171.7031 ns/op
+WorkloadActual   3: 585728 op, 100116700.00 ns, 170.9269 ns/op
+WorkloadActual   4: 585728 op, 100499400.00 ns, 171.5803 ns/op
+WorkloadActual   5: 585728 op, 100701800.00 ns, 171.9259 ns/op
+WorkloadActual   6: 585728 op, 99294000.00 ns, 169.5224 ns/op
+WorkloadActual   7: 585728 op, 100092400.00 ns, 170.8855 ns/op
+WorkloadActual   8: 585728 op, 100457200.00 ns, 171.5083 ns/op
+WorkloadActual   9: 585728 op, 100767900.00 ns, 172.0387 ns/op
+WorkloadActual  10: 585728 op, 99876400.00 ns, 170.5167 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 585728 op, 101477900.00 ns, 173.2509 ns/op
+WorkloadResult   2: 585728 op, 100567400.00 ns, 171.6964 ns/op
+WorkloadResult   3: 585728 op, 100112800.00 ns, 170.9203 ns/op
+WorkloadResult   4: 585728 op, 100495500.00 ns, 171.5737 ns/op
+WorkloadResult   5: 585728 op, 100697900.00 ns, 171.9192 ns/op
+WorkloadResult   6: 585728 op, 99290100.00 ns, 169.5157 ns/op
+WorkloadResult   7: 585728 op, 100088500.00 ns, 170.8788 ns/op
+WorkloadResult   8: 585728 op, 100453300.00 ns, 171.5016 ns/op
+WorkloadResult   9: 585728 op, 100764000.00 ns, 172.0321 ns/op
+WorkloadResult  10: 585728 op, 99872500.00 ns, 170.5100 ns/op
+// GC:  0 0 0 336 585728
+// Threading:  0 0 585728
+
+// AfterAll
+// Benchmark Process 497284 has exited with code 0.
+// Launch: 3 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2512 2516 --benchmarkName "GlobAcceptance.Match(Workload: \"Simple\", Library: \"DotNetGlob\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 9 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 210500.00 ns, 822.2656 ns/op
+WorkloadJitting  1: 256 op, 341600.00 ns, 1.3344 us/op
+
+OverheadJitting  2: 4096 op, 384000.00 ns, 93.7500 ns/op
+WorkloadJitting  2: 4096 op, 1171300.00 ns, 285.9619 ns/op
+
+WorkloadPilot    1: 4096 op, 840100.00 ns, 205.1025 ns/op
+WorkloadPilot    2: 491520 op, 86713000.00 ns, 176.4181 ns/op
+WorkloadPilot    3: 569344 op, 98770600.00 ns, 173.4814 ns/op
+WorkloadPilot    4: 577536 op, 99695400.00 ns, 172.6220 ns/op
+WorkloadPilot    5: 581632 op, 99571200.00 ns, 171.1928 ns/op
+WorkloadPilot    6: 585728 op, 99443700.00 ns, 169.7780 ns/op
+WorkloadPilot    7: 589824 op, 100217800.00 ns, 169.9114 ns/op
+
+OverheadWarmup   1: 589824 op, 4100.00 ns, 0.0070 ns/op
+OverheadWarmup   2: 589824 op, 3900.00 ns, 0.0066 ns/op
+OverheadWarmup   3: 589824 op, 3900.00 ns, 0.0066 ns/op
+OverheadWarmup   4: 589824 op, 3900.00 ns, 0.0066 ns/op
+OverheadWarmup   5: 589824 op, 3900.00 ns, 0.0066 ns/op
+OverheadWarmup   6: 589824 op, 3900.00 ns, 0.0066 ns/op
+
+OverheadActual   1: 589824 op, 4000.00 ns, 0.0068 ns/op
+OverheadActual   2: 589824 op, 4000.00 ns, 0.0068 ns/op
+OverheadActual   3: 589824 op, 4000.00 ns, 0.0068 ns/op
+OverheadActual   4: 589824 op, 4000.00 ns, 0.0068 ns/op
+OverheadActual   5: 589824 op, 4000.00 ns, 0.0068 ns/op
+OverheadActual   6: 589824 op, 3900.00 ns, 0.0066 ns/op
+OverheadActual   7: 589824 op, 3900.00 ns, 0.0066 ns/op
+OverheadActual   8: 589824 op, 3800.00 ns, 0.0064 ns/op
+OverheadActual   9: 589824 op, 3800.00 ns, 0.0064 ns/op
+OverheadActual  10: 589824 op, 3900.00 ns, 0.0066 ns/op
+OverheadActual  11: 589824 op, 4000.00 ns, 0.0068 ns/op
+OverheadActual  12: 589824 op, 3900.00 ns, 0.0066 ns/op
+OverheadActual  13: 589824 op, 3800.00 ns, 0.0064 ns/op
+OverheadActual  14: 589824 op, 3900.00 ns, 0.0066 ns/op
+OverheadActual  15: 589824 op, 3900.00 ns, 0.0066 ns/op
+
+WorkloadWarmup   1: 589824 op, 100373500.00 ns, 170.1753 ns/op
+WorkloadWarmup   2: 589824 op, 100061200.00 ns, 169.6459 ns/op
+WorkloadWarmup   3: 589824 op, 100336700.00 ns, 170.1129 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 589824 op, 100277000.00 ns, 170.0117 ns/op
+WorkloadActual   2: 589824 op, 99800500.00 ns, 169.2039 ns/op
+WorkloadActual   3: 589824 op, 100894100.00 ns, 171.0580 ns/op
+WorkloadActual   4: 589824 op, 99714700.00 ns, 169.0584 ns/op
+WorkloadActual   5: 589824 op, 100358400.00 ns, 170.1497 ns/op
+WorkloadActual   6: 589824 op, 100393800.00 ns, 170.2098 ns/op
+WorkloadActual   7: 589824 op, 100055400.00 ns, 169.6360 ns/op
+WorkloadActual   8: 589824 op, 99754700.00 ns, 169.1262 ns/op
+WorkloadActual   9: 589824 op, 99974000.00 ns, 169.4980 ns/op
+WorkloadActual  10: 589824 op, 100156400.00 ns, 169.8073 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 589824 op, 100273100.00 ns, 170.0051 ns/op
+WorkloadResult   2: 589824 op, 99796600.00 ns, 169.1973 ns/op
+WorkloadResult   3: 589824 op, 100890200.00 ns, 171.0514 ns/op
+WorkloadResult   4: 589824 op, 99710800.00 ns, 169.0518 ns/op
+WorkloadResult   5: 589824 op, 100354500.00 ns, 170.1431 ns/op
+WorkloadResult   6: 589824 op, 100389900.00 ns, 170.2031 ns/op
+WorkloadResult   7: 589824 op, 100051500.00 ns, 169.6294 ns/op
+WorkloadResult   8: 589824 op, 99750800.00 ns, 169.1196 ns/op
+WorkloadResult   9: 589824 op, 99970100.00 ns, 169.4914 ns/op
+WorkloadResult  10: 589824 op, 100152500.00 ns, 169.8007 ns/op
+// GC:  0 0 0 336 589824
+// Threading:  0 0 589824
+
+// AfterAll
+// Benchmark Process 606140 has exited with code 0.
+
+Mean = 169.135 ns, StdErr = 0.423 ns (0.25%), N = 30, StdDev = 2.319 ns
+Min = 164.977 ns, Q1 = 166.964 ns, Median = 169.573 ns, Q3 = 170.910 ns, Max = 173.251 ns
+IQR = 3.946 ns, LowerFence = 161.046 ns, UpperFence = 176.828 ns
+ConfidenceInterval = [167.585 ns; 170.684 ns] (CI 99.9%), Margin = 1.549 ns (0.92% of Mean)
+Skewness = -0.29, Kurtosis = 1.8, MValue = 2
+
+// ** Remained 2 (16.7%) benchmark(s) to run. Estimated finish 2026-10-02 13:25 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Simple, Library=TeddDirectReused]
+// *** Execute ***
+// Launch: 1 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2484 2520 --benchmarkName "GlobAcceptance.Match(Workload: \"Simple\", Library: \"TeddDirectReused\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 10 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 211500.00 ns, 826.1719 ns/op
+WorkloadJitting  1: 256 op, 317500.00 ns, 1.2402 us/op
+
+OverheadJitting  2: 4096 op, 384300.00 ns, 93.8232 ns/op
+WorkloadJitting  2: 4096 op, 623200.00 ns, 152.1484 ns/op
+
+WorkloadPilot    1: 4096 op, 271800.00 ns, 66.3574 ns/op
+WorkloadPilot    2: 1507328 op, 94336700.00 ns, 62.5854 ns/op
+WorkloadPilot    3: 1601536 op, 97728700.00 ns, 61.0219 ns/op
+WorkloadPilot    4: 1642496 op, 99706200.00 ns, 60.7041 ns/op
+WorkloadPilot    5: 1650688 op, 99518300.00 ns, 60.2890 ns/op
+WorkloadPilot    6: 1658880 op, 100410500.00 ns, 60.5291 ns/op
+WorkloadPilot    7: 1654784 op, 100551400.00 ns, 60.7641 ns/op
+WorkloadPilot    8: 1646592 op, 98488600.00 ns, 59.8136 ns/op
+WorkloadPilot    9: 1675264 op, 101515100.00 ns, 60.5965 ns/op
+
+OverheadWarmup   1: 1675264 op, 10800.00 ns, 0.0064 ns/op
+OverheadWarmup   2: 1675264 op, 10700.00 ns, 0.0064 ns/op
+OverheadWarmup   3: 1675264 op, 10700.00 ns, 0.0064 ns/op
+OverheadWarmup   4: 1675264 op, 10700.00 ns, 0.0064 ns/op
+OverheadWarmup   5: 1675264 op, 10700.00 ns, 0.0064 ns/op
+OverheadWarmup   6: 1675264 op, 10600.00 ns, 0.0063 ns/op
+
+OverheadActual   1: 1675264 op, 10700.00 ns, 0.0064 ns/op
+OverheadActual   2: 1675264 op, 11200.00 ns, 0.0067 ns/op
+OverheadActual   3: 1675264 op, 10900.00 ns, 0.0065 ns/op
+OverheadActual   4: 1675264 op, 10700.00 ns, 0.0064 ns/op
+OverheadActual   5: 1675264 op, 10800.00 ns, 0.0064 ns/op
+OverheadActual   6: 1675264 op, 10600.00 ns, 0.0063 ns/op
+OverheadActual   7: 1675264 op, 10700.00 ns, 0.0064 ns/op
+OverheadActual   8: 1675264 op, 10700.00 ns, 0.0064 ns/op
+OverheadActual   9: 1675264 op, 10600.00 ns, 0.0063 ns/op
+OverheadActual  10: 1675264 op, 10600.00 ns, 0.0063 ns/op
+OverheadActual  11: 1675264 op, 10600.00 ns, 0.0063 ns/op
+OverheadActual  12: 1675264 op, 10600.00 ns, 0.0063 ns/op
+OverheadActual  13: 1675264 op, 10700.00 ns, 0.0064 ns/op
+OverheadActual  14: 1675264 op, 10700.00 ns, 0.0064 ns/op
+OverheadActual  15: 1675264 op, 10700.00 ns, 0.0064 ns/op
+
+WorkloadWarmup   1: 1675264 op, 101189000.00 ns, 60.4018 ns/op
+WorkloadWarmup   2: 1675264 op, 100413700.00 ns, 59.9390 ns/op
+WorkloadWarmup   3: 1675264 op, 100538400.00 ns, 60.0135 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 1675264 op, 102681300.00 ns, 61.2926 ns/op
+WorkloadActual   2: 1675264 op, 100931400.00 ns, 60.2481 ns/op
+WorkloadActual   3: 1675264 op, 101526200.00 ns, 60.6031 ns/op
+WorkloadActual   4: 1675264 op, 109262500.00 ns, 65.2211 ns/op
+WorkloadActual   5: 1675264 op, 104726500.00 ns, 62.5134 ns/op
+WorkloadActual   6: 1675264 op, 106381300.00 ns, 63.5012 ns/op
+WorkloadActual   7: 1675264 op, 103266300.00 ns, 61.6418 ns/op
+WorkloadActual   8: 1675264 op, 100975400.00 ns, 60.2743 ns/op
+WorkloadActual   9: 1675264 op, 101511800.00 ns, 60.5945 ns/op
+WorkloadActual  10: 1675264 op, 100262300.00 ns, 59.8487 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 1675264 op, 102670600.00 ns, 61.2862 ns/op
+WorkloadResult   2: 1675264 op, 100920700.00 ns, 60.2417 ns/op
+WorkloadResult   3: 1675264 op, 101515500.00 ns, 60.5967 ns/op
+WorkloadResult   4: 1675264 op, 104715800.00 ns, 62.5070 ns/op
+WorkloadResult   5: 1675264 op, 106370600.00 ns, 63.4948 ns/op
+WorkloadResult   6: 1675264 op, 103255600.00 ns, 61.6354 ns/op
+WorkloadResult   7: 1675264 op, 100964700.00 ns, 60.2679 ns/op
+WorkloadResult   8: 1675264 op, 101501100.00 ns, 60.5881 ns/op
+WorkloadResult   9: 1675264 op, 100251600.00 ns, 59.8423 ns/op
+// GC:  0 0 0 336 1675264
+// Threading:  0 0 1675264
+
+// AfterAll
+// Benchmark Process 428900 has exited with code 0.
+// Launch: 2 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2512 2460 --benchmarkName "GlobAcceptance.Match(Workload: \"Simple\", Library: \"TeddDirectReused\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 10 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 210600.00 ns, 822.6563 ns/op
+WorkloadJitting  1: 256 op, 313500.00 ns, 1.2246 us/op
+
+OverheadJitting  2: 4096 op, 383500.00 ns, 93.6279 ns/op
+WorkloadJitting  2: 4096 op, 600900.00 ns, 146.7041 ns/op
+
+WorkloadPilot    1: 4096 op, 211800.00 ns, 51.7090 ns/op
+WorkloadPilot    2: 1937408 op, 105852600.00 ns, 54.6362 ns/op
+WorkloadPilot    3: 1830912 op, 97154900.00 ns, 53.0637 ns/op
+WorkloadPilot    4: 1888256 op, 100411400.00 ns, 53.1768 ns/op
+WorkloadPilot    5: 1884160 op, 99402600.00 ns, 52.7570 ns/op
+WorkloadPilot    6: 1896448 op, 100072300.00 ns, 52.7683 ns/op
+
+OverheadWarmup   1: 1896448 op, 12400.00 ns, 0.0065 ns/op
+OverheadWarmup   2: 1896448 op, 12200.00 ns, 0.0064 ns/op
+OverheadWarmup   3: 1896448 op, 12000.00 ns, 0.0063 ns/op
+OverheadWarmup   4: 1896448 op, 12000.00 ns, 0.0063 ns/op
+OverheadWarmup   5: 1896448 op, 12100.00 ns, 0.0064 ns/op
+OverheadWarmup   6: 1896448 op, 12100.00 ns, 0.0064 ns/op
+OverheadWarmup   7: 1896448 op, 12000.00 ns, 0.0063 ns/op
+
+OverheadActual   1: 1896448 op, 12200.00 ns, 0.0064 ns/op
+OverheadActual   2: 1896448 op, 12100.00 ns, 0.0064 ns/op
+OverheadActual   3: 1896448 op, 12100.00 ns, 0.0064 ns/op
+OverheadActual   4: 1896448 op, 12100.00 ns, 0.0064 ns/op
+OverheadActual   5: 1896448 op, 12200.00 ns, 0.0064 ns/op
+OverheadActual   6: 1896448 op, 12200.00 ns, 0.0064 ns/op
+OverheadActual   7: 1896448 op, 12100.00 ns, 0.0064 ns/op
+OverheadActual   8: 1896448 op, 12100.00 ns, 0.0064 ns/op
+OverheadActual   9: 1896448 op, 12100.00 ns, 0.0064 ns/op
+OverheadActual  10: 1896448 op, 12100.00 ns, 0.0064 ns/op
+OverheadActual  11: 1896448 op, 12100.00 ns, 0.0064 ns/op
+OverheadActual  12: 1896448 op, 12100.00 ns, 0.0064 ns/op
+OverheadActual  13: 1896448 op, 12100.00 ns, 0.0064 ns/op
+OverheadActual  14: 1896448 op, 12200.00 ns, 0.0064 ns/op
+OverheadActual  15: 1896448 op, 12100.00 ns, 0.0064 ns/op
+
+WorkloadWarmup   1: 1896448 op, 99978300.00 ns, 52.7187 ns/op
+WorkloadWarmup   2: 1896448 op, 100460400.00 ns, 52.9729 ns/op
+WorkloadWarmup   3: 1896448 op, 99850000.00 ns, 52.6511 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 1896448 op, 100069800.00 ns, 52.7670 ns/op
+WorkloadActual   2: 1896448 op, 100075900.00 ns, 52.7702 ns/op
+WorkloadActual   3: 1896448 op, 100102300.00 ns, 52.7841 ns/op
+WorkloadActual   4: 1896448 op, 100119800.00 ns, 52.7933 ns/op
+WorkloadActual   5: 1896448 op, 100086200.00 ns, 52.7756 ns/op
+WorkloadActual   6: 1896448 op, 100140400.00 ns, 52.8042 ns/op
+WorkloadActual   7: 1896448 op, 100150000.00 ns, 52.8093 ns/op
+WorkloadActual   8: 1896448 op, 99623900.00 ns, 52.5318 ns/op
+WorkloadActual   9: 1896448 op, 100072500.00 ns, 52.7684 ns/op
+WorkloadActual  10: 1896448 op, 99970500.00 ns, 52.7146 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 1896448 op, 100057700.00 ns, 52.7606 ns/op
+WorkloadResult   2: 1896448 op, 100063800.00 ns, 52.7638 ns/op
+WorkloadResult   3: 1896448 op, 100090200.00 ns, 52.7777 ns/op
+WorkloadResult   4: 1896448 op, 100107700.00 ns, 52.7869 ns/op
+WorkloadResult   5: 1896448 op, 100074100.00 ns, 52.7692 ns/op
+WorkloadResult   6: 1896448 op, 100128300.00 ns, 52.7978 ns/op
+WorkloadResult   7: 1896448 op, 100137900.00 ns, 52.8029 ns/op
+WorkloadResult   8: 1896448 op, 99611800.00 ns, 52.5255 ns/op
+WorkloadResult   9: 1896448 op, 100060400.00 ns, 52.7620 ns/op
+WorkloadResult  10: 1896448 op, 99958400.00 ns, 52.7082 ns/op
+// GC:  0 0 0 336 1896448
+// Threading:  0 0 1896448
+
+// AfterAll
+// Benchmark Process 228528 has exited with code 0.
+// Launch: 3 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2704 2468 --benchmarkName "GlobAcceptance.Match(Workload: \"Simple\", Library: \"TeddDirectReused\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 10 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 208800.00 ns, 815.6250 ns/op
+WorkloadJitting  1: 256 op, 313200.00 ns, 1.2234 us/op
+
+OverheadJitting  2: 4096 op, 389600.00 ns, 95.1172 ns/op
+WorkloadJitting  2: 4096 op, 591500.00 ns, 144.4092 ns/op
+
+WorkloadPilot    1: 4096 op, 208100.00 ns, 50.8057 ns/op
+WorkloadPilot    2: 1970176 op, 109371300.00 ns, 55.5135 ns/op
+WorkloadPilot    3: 1802240 op, 97538600.00 ns, 54.1208 ns/op
+WorkloadPilot    4: 1851392 op, 100036100.00 ns, 54.0329 ns/op
+
+OverheadWarmup   1: 1851392 op, 12000.00 ns, 0.0065 ns/op
+OverheadWarmup   2: 1851392 op, 11800.00 ns, 0.0064 ns/op
+OverheadWarmup   3: 1851392 op, 11800.00 ns, 0.0064 ns/op
+OverheadWarmup   4: 1851392 op, 11700.00 ns, 0.0063 ns/op
+OverheadWarmup   5: 1851392 op, 11900.00 ns, 0.0064 ns/op
+OverheadWarmup   6: 1851392 op, 11800.00 ns, 0.0064 ns/op
+
+OverheadActual   1: 1851392 op, 11900.00 ns, 0.0064 ns/op
+OverheadActual   2: 1851392 op, 11800.00 ns, 0.0064 ns/op
+OverheadActual   3: 1851392 op, 11900.00 ns, 0.0064 ns/op
+OverheadActual   4: 1851392 op, 11800.00 ns, 0.0064 ns/op
+OverheadActual   5: 1851392 op, 11800.00 ns, 0.0064 ns/op
+OverheadActual   6: 1851392 op, 11700.00 ns, 0.0063 ns/op
+OverheadActual   7: 1851392 op, 11800.00 ns, 0.0064 ns/op
+OverheadActual   8: 1851392 op, 11800.00 ns, 0.0064 ns/op
+OverheadActual   9: 1851392 op, 11900.00 ns, 0.0064 ns/op
+OverheadActual  10: 1851392 op, 11700.00 ns, 0.0063 ns/op
+OverheadActual  11: 1851392 op, 11800.00 ns, 0.0064 ns/op
+OverheadActual  12: 1851392 op, 11700.00 ns, 0.0063 ns/op
+OverheadActual  13: 1851392 op, 11800.00 ns, 0.0064 ns/op
+OverheadActual  14: 1851392 op, 11700.00 ns, 0.0063 ns/op
+OverheadActual  15: 1851392 op, 11800.00 ns, 0.0064 ns/op
+
+WorkloadWarmup   1: 1851392 op, 99837900.00 ns, 53.9259 ns/op
+WorkloadWarmup   2: 1851392 op, 99788600.00 ns, 53.8992 ns/op
+WorkloadWarmup   3: 1851392 op, 99667200.00 ns, 53.8337 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 1851392 op, 100114700.00 ns, 54.0754 ns/op
+WorkloadActual   2: 1851392 op, 99612300.00 ns, 53.8040 ns/op
+WorkloadActual   3: 1851392 op, 100239400.00 ns, 54.1427 ns/op
+WorkloadActual   4: 1851392 op, 100035300.00 ns, 54.0325 ns/op
+WorkloadActual   5: 1851392 op, 100303800.00 ns, 54.1775 ns/op
+WorkloadActual   6: 1851392 op, 100144400.00 ns, 54.0914 ns/op
+WorkloadActual   7: 1851392 op, 99674400.00 ns, 53.8375 ns/op
+WorkloadActual   8: 1851392 op, 99301600.00 ns, 53.6362 ns/op
+WorkloadActual   9: 1851392 op, 99980600.00 ns, 54.0029 ns/op
+WorkloadActual  10: 1851392 op, 100136600.00 ns, 54.0872 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 1851392 op, 100102900.00 ns, 54.0690 ns/op
+WorkloadResult   2: 1851392 op, 99600500.00 ns, 53.7976 ns/op
+WorkloadResult   3: 1851392 op, 100227600.00 ns, 54.1363 ns/op
+WorkloadResult   4: 1851392 op, 100023500.00 ns, 54.0261 ns/op
+WorkloadResult   5: 1851392 op, 100292000.00 ns, 54.1711 ns/op
+WorkloadResult   6: 1851392 op, 100132600.00 ns, 54.0850 ns/op
+WorkloadResult   7: 1851392 op, 99662600.00 ns, 53.8312 ns/op
+WorkloadResult   8: 1851392 op, 99289800.00 ns, 53.6298 ns/op
+WorkloadResult   9: 1851392 op, 99968800.00 ns, 53.9966 ns/op
+WorkloadResult  10: 1851392 op, 100124800.00 ns, 54.0808 ns/op
+// GC:  0 0 0 336 1851392
+// Threading:  0 0 1851392
+
+// AfterAll
+// Benchmark Process 671400 has exited with code 0.
+
+Mean = 55.784 ns, StdErr = 0.699 ns (1.25%), N = 29, StdDev = 3.765 ns
+Min = 52.525 ns, Q1 = 52.787 ns, Median = 54.026 ns, Q3 = 60.242 ns, Max = 63.495 ns
+IQR = 7.455 ns, LowerFence = 41.605 ns, UpperFence = 71.424 ns
+ConfidenceInterval = [53.215 ns; 58.353 ns] (CI 99.9%), Margin = 2.569 ns (4.60% of Mean)
+Skewness = 0.81, Kurtosis = 1.85, MValue = 2.8
+
+// ** Remained 1 (8.3%) benchmark(s) to run. Estimated finish 2026-10-02 13:25 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Simple, Library=TeddDirectStatic]
+// *** Execute ***
+// Launch: 1 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2544 1196 --benchmarkName "GlobAcceptance.Match(Workload: \"Simple\", Library: \"TeddDirectStatic\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 11 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 214400.00 ns, 837.5000 ns/op
+WorkloadJitting  1: 256 op, 379600.00 ns, 1.4828 us/op
+
+OverheadJitting  2: 4096 op, 383300.00 ns, 93.5791 ns/op
+WorkloadJitting  2: 4096 op, 675600.00 ns, 164.9414 ns/op
+
+WorkloadPilot    1: 4096 op, 312000.00 ns, 76.1719 ns/op
+WorkloadPilot    2: 1314816 op, 104148700.00 ns, 79.2116 ns/op
+WorkloadPilot    3: 1265664 op, 97372700.00 ns, 76.9341 ns/op
+WorkloadPilot    4: 1302528 op, 99969700.00 ns, 76.7505 ns/op
+WorkloadPilot    5: 1306624 op, 100557200.00 ns, 76.9596 ns/op
+WorkloadPilot    6: 1302528 op, 100174800.00 ns, 76.9080 ns/op
+
+OverheadWarmup   1: 1302528 op, 8500.00 ns, 0.0065 ns/op
+OverheadWarmup   2: 1302528 op, 8500.00 ns, 0.0065 ns/op
+OverheadWarmup   3: 1302528 op, 8200.00 ns, 0.0063 ns/op
+OverheadWarmup   4: 1302528 op, 8200.00 ns, 0.0063 ns/op
+OverheadWarmup   5: 1302528 op, 8300.00 ns, 0.0064 ns/op
+
+OverheadActual   1: 1302528 op, 8400.00 ns, 0.0064 ns/op
+OverheadActual   2: 1302528 op, 8400.00 ns, 0.0064 ns/op
+OverheadActual   3: 1302528 op, 8300.00 ns, 0.0064 ns/op
+OverheadActual   4: 1302528 op, 8300.00 ns, 0.0064 ns/op
+OverheadActual   5: 1302528 op, 8300.00 ns, 0.0064 ns/op
+OverheadActual   6: 1302528 op, 8200.00 ns, 0.0063 ns/op
+OverheadActual   7: 1302528 op, 8200.00 ns, 0.0063 ns/op
+OverheadActual   8: 1302528 op, 8400.00 ns, 0.0064 ns/op
+OverheadActual   9: 1302528 op, 8300.00 ns, 0.0064 ns/op
+OverheadActual  10: 1302528 op, 8200.00 ns, 0.0063 ns/op
+OverheadActual  11: 1302528 op, 8200.00 ns, 0.0063 ns/op
+OverheadActual  12: 1302528 op, 8200.00 ns, 0.0063 ns/op
+OverheadActual  13: 1302528 op, 8200.00 ns, 0.0063 ns/op
+OverheadActual  14: 1302528 op, 8300.00 ns, 0.0064 ns/op
+OverheadActual  15: 1302528 op, 8200.00 ns, 0.0063 ns/op
+
+WorkloadWarmup   1: 1302528 op, 100609200.00 ns, 77.2415 ns/op
+WorkloadWarmup   2: 1302528 op, 100392500.00 ns, 77.0751 ns/op
+WorkloadWarmup   3: 1302528 op, 100405600.00 ns, 77.0852 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 1302528 op, 99896200.00 ns, 76.6941 ns/op
+WorkloadActual   2: 1302528 op, 99752100.00 ns, 76.5835 ns/op
+WorkloadActual   3: 1302528 op, 100021200.00 ns, 76.7901 ns/op
+WorkloadActual   4: 1302528 op, 99707400.00 ns, 76.5491 ns/op
+WorkloadActual   5: 1302528 op, 99691700.00 ns, 76.5371 ns/op
+WorkloadActual   6: 1302528 op, 101959600.00 ns, 78.2782 ns/op
+WorkloadActual   7: 1302528 op, 100130800.00 ns, 76.8742 ns/op
+WorkloadActual   8: 1302528 op, 99945800.00 ns, 76.7322 ns/op
+WorkloadActual   9: 1302528 op, 101197100.00 ns, 77.6928 ns/op
+WorkloadActual  10: 1302528 op, 99833900.00 ns, 76.6463 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 1302528 op, 99887900.00 ns, 76.6877 ns/op
+WorkloadResult   2: 1302528 op, 99743800.00 ns, 76.5771 ns/op
+WorkloadResult   3: 1302528 op, 100012900.00 ns, 76.7837 ns/op
+WorkloadResult   4: 1302528 op, 99699100.00 ns, 76.5428 ns/op
+WorkloadResult   5: 1302528 op, 99683400.00 ns, 76.5307 ns/op
+WorkloadResult   6: 1302528 op, 100122500.00 ns, 76.8678 ns/op
+WorkloadResult   7: 1302528 op, 99937500.00 ns, 76.7258 ns/op
+WorkloadResult   8: 1302528 op, 99825600.00 ns, 76.6399 ns/op
+// GC:  0 0 0 0 1302528
+// Threading:  0 0 1302528
+
+// AfterAll
+// Benchmark Process 339688 has exited with code 0.
+// Launch: 2 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 2432 2436 --benchmarkName "GlobAcceptance.Match(Workload: \"Simple\", Library: \"TeddDirectStatic\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 11 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 211400.00 ns, 825.7813 ns/op
+WorkloadJitting  1: 256 op, 318700.00 ns, 1.2449 us/op
+
+OverheadJitting  2: 4096 op, 384500.00 ns, 93.8721 ns/op
+WorkloadJitting  2: 4096 op, 692700.00 ns, 169.1162 ns/op
+
+WorkloadPilot    1: 4096 op, 324000.00 ns, 79.1016 ns/op
+WorkloadPilot    2: 1265664 op, 105435000.00 ns, 83.3041 ns/op
+WorkloadPilot    3: 1204224 op, 98988700.00 ns, 82.2012 ns/op
+WorkloadPilot    4: 1216512 op, 99861400.00 ns, 82.0883 ns/op
+WorkloadPilot    5: 1220608 op, 99959100.00 ns, 81.8929 ns/op
+WorkloadPilot    6: 1224704 op, 100375700.00 ns, 81.9592 ns/op
+WorkloadPilot    7: 1220608 op, 100048000.00 ns, 81.9657 ns/op
+
+OverheadWarmup   1: 1220608 op, 8000.00 ns, 0.0066 ns/op
+OverheadWarmup   2: 1220608 op, 7800.00 ns, 0.0064 ns/op
+OverheadWarmup   3: 1220608 op, 7700.00 ns, 0.0063 ns/op
+OverheadWarmup   4: 1220608 op, 7700.00 ns, 0.0063 ns/op
+OverheadWarmup   5: 1220608 op, 7800.00 ns, 0.0064 ns/op
+OverheadWarmup   6: 1220608 op, 7800.00 ns, 0.0064 ns/op
+OverheadWarmup   7: 1220608 op, 7800.00 ns, 0.0064 ns/op
+
+OverheadActual   1: 1220608 op, 7900.00 ns, 0.0065 ns/op
+OverheadActual   2: 1220608 op, 7900.00 ns, 0.0065 ns/op
+OverheadActual   3: 1220608 op, 7800.00 ns, 0.0064 ns/op
+OverheadActual   4: 1220608 op, 7900.00 ns, 0.0065 ns/op
+OverheadActual   5: 1220608 op, 7900.00 ns, 0.0065 ns/op
+OverheadActual   6: 1220608 op, 7800.00 ns, 0.0064 ns/op
+OverheadActual   7: 1220608 op, 7800.00 ns, 0.0064 ns/op
+OverheadActual   8: 1220608 op, 7700.00 ns, 0.0063 ns/op
+OverheadActual   9: 1220608 op, 7800.00 ns, 0.0064 ns/op
+OverheadActual  10: 1220608 op, 7900.00 ns, 0.0065 ns/op
+OverheadActual  11: 1220608 op, 7800.00 ns, 0.0064 ns/op
+OverheadActual  12: 1220608 op, 7800.00 ns, 0.0064 ns/op
+OverheadActual  13: 1220608 op, 7700.00 ns, 0.0063 ns/op
+OverheadActual  14: 1220608 op, 7900.00 ns, 0.0065 ns/op
+OverheadActual  15: 1220608 op, 7900.00 ns, 0.0065 ns/op
+
+WorkloadWarmup   1: 1220608 op, 99945100.00 ns, 81.8814 ns/op
+WorkloadWarmup   2: 1220608 op, 100319000.00 ns, 82.1877 ns/op
+WorkloadWarmup   3: 1220608 op, 99947900.00 ns, 81.8837 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 1220608 op, 100158300.00 ns, 82.0561 ns/op
+WorkloadActual   2: 1220608 op, 99929100.00 ns, 81.8683 ns/op
+WorkloadActual   3: 1220608 op, 99861500.00 ns, 81.8129 ns/op
+WorkloadActual   4: 1220608 op, 99724700.00 ns, 81.7008 ns/op
+WorkloadActual   5: 1220608 op, 100241700.00 ns, 82.1244 ns/op
+WorkloadActual   6: 1220608 op, 99863800.00 ns, 81.8148 ns/op
+WorkloadActual   7: 1220608 op, 100375000.00 ns, 82.2336 ns/op
+WorkloadActual   8: 1220608 op, 99839300.00 ns, 81.7947 ns/op
+WorkloadActual   9: 1220608 op, 100019400.00 ns, 81.9423 ns/op
+WorkloadActual  10: 1220608 op, 99986500.00 ns, 81.9153 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 1220608 op, 100150500.00 ns, 82.0497 ns/op
+WorkloadResult   2: 1220608 op, 99921300.00 ns, 81.8619 ns/op
+WorkloadResult   3: 1220608 op, 99853700.00 ns, 81.8065 ns/op
+WorkloadResult   4: 1220608 op, 99716900.00 ns, 81.6945 ns/op
+WorkloadResult   5: 1220608 op, 100233900.00 ns, 82.1180 ns/op
+WorkloadResult   6: 1220608 op, 99856000.00 ns, 81.8084 ns/op
+WorkloadResult   7: 1220608 op, 100367200.00 ns, 82.2272 ns/op
+WorkloadResult   8: 1220608 op, 99831500.00 ns, 81.7883 ns/op
+WorkloadResult   9: 1220608 op, 100011600.00 ns, 81.9359 ns/op
+WorkloadResult  10: 1220608 op, 99978700.00 ns, 81.9089 ns/op
+// GC:  0 0 0 336 1220608
+// Threading:  0 0 1220608
+
+// AfterAll
+// Benchmark Process 431580 has exited with code 0.
+// Launch: 3 / 3
+// Execute: dotnet BdnBench-Job-GPHEUC-1.dll --anonymousPipes 1324 2496 --benchmarkName "GlobAcceptance.Match(Workload: \"Simple\", Library: \"TeddDirectStatic\")" --job "Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3" --benchmarkId 11 in D:\Workspaces\AI\wildcard-glob\bdn\bin\Release\net10.0\BdnBench-Job-GPHEUC-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-TLPITO(Affinity=1000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3)
+
+OverheadJitting  1: 256 op, 209600.00 ns, 818.7500 ns/op
+WorkloadJitting  1: 256 op, 324800.00 ns, 1.2688 us/op
+
+OverheadJitting  2: 4096 op, 384600.00 ns, 93.8965 ns/op
+WorkloadJitting  2: 4096 op, 691400.00 ns, 168.7988 ns/op
+
+WorkloadPilot    1: 4096 op, 323200.00 ns, 78.9063 ns/op
+WorkloadPilot    2: 1269760 op, 103258100.00 ns, 81.3210 ns/op
+WorkloadPilot    3: 1232896 op, 98500300.00 ns, 79.8934 ns/op
+WorkloadPilot    4: 1253376 op, 99910800.00 ns, 79.7134 ns/op
+WorkloadPilot    5: 1257472 op, 100578000.00 ns, 79.9843 ns/op
+WorkloadPilot    6: 1253376 op, 100524200.00 ns, 80.2027 ns/op
+
+OverheadWarmup   1: 1253376 op, 8200.00 ns, 0.0065 ns/op
+OverheadWarmup   2: 1253376 op, 8100.00 ns, 0.0065 ns/op
+OverheadWarmup   3: 1253376 op, 7900.00 ns, 0.0063 ns/op
+OverheadWarmup   4: 1253376 op, 7900.00 ns, 0.0063 ns/op
+OverheadWarmup   5: 1253376 op, 7900.00 ns, 0.0063 ns/op
+OverheadWarmup   6: 1253376 op, 7900.00 ns, 0.0063 ns/op
+OverheadWarmup   7: 1253376 op, 7900.00 ns, 0.0063 ns/op
+
+OverheadActual   1: 1253376 op, 8100.00 ns, 0.0065 ns/op
+OverheadActual   2: 1253376 op, 8000.00 ns, 0.0064 ns/op
+OverheadActual   3: 1253376 op, 8000.00 ns, 0.0064 ns/op
+OverheadActual   4: 1253376 op, 8000.00 ns, 0.0064 ns/op
+OverheadActual   5: 1253376 op, 8100.00 ns, 0.0065 ns/op
+OverheadActual   6: 1253376 op, 7800.00 ns, 0.0062 ns/op
+OverheadActual   7: 1253376 op, 7900.00 ns, 0.0063 ns/op
+OverheadActual   8: 1253376 op, 7900.00 ns, 0.0063 ns/op
+OverheadActual   9: 1253376 op, 7900.00 ns, 0.0063 ns/op
+OverheadActual  10: 1253376 op, 7900.00 ns, 0.0063 ns/op
+OverheadActual  11: 1253376 op, 7900.00 ns, 0.0063 ns/op
+OverheadActual  12: 1253376 op, 8000.00 ns, 0.0064 ns/op
+OverheadActual  13: 1253376 op, 8000.00 ns, 0.0064 ns/op
+OverheadActual  14: 1253376 op, 7900.00 ns, 0.0063 ns/op
+OverheadActual  15: 1253376 op, 8000.00 ns, 0.0064 ns/op
+
+WorkloadWarmup   1: 1253376 op, 99621800.00 ns, 79.4828 ns/op
+WorkloadWarmup   2: 1253376 op, 99832400.00 ns, 79.6508 ns/op
+WorkloadWarmup   3: 1253376 op, 100899900.00 ns, 80.5025 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 1253376 op, 100100600.00 ns, 79.8648 ns/op
+WorkloadActual   2: 1253376 op, 100379900.00 ns, 80.0876 ns/op
+WorkloadActual   3: 1253376 op, 100199200.00 ns, 79.9434 ns/op
+WorkloadActual   4: 1253376 op, 100305000.00 ns, 80.0279 ns/op
+WorkloadActual   5: 1253376 op, 100503300.00 ns, 80.1861 ns/op
+WorkloadActual   6: 1253376 op, 100097100.00 ns, 79.8620 ns/op
+WorkloadActual   7: 1253376 op, 100530700.00 ns, 80.2079 ns/op
+WorkloadActual   8: 1253376 op, 99836800.00 ns, 79.6543 ns/op
+WorkloadActual   9: 1253376 op, 100307600.00 ns, 80.0299 ns/op
+WorkloadActual  10: 1253376 op, 100861300.00 ns, 80.4717 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 1253376 op, 100092600.00 ns, 79.8584 ns/op
+WorkloadResult   2: 1253376 op, 100371900.00 ns, 80.0812 ns/op
+WorkloadResult   3: 1253376 op, 100191200.00 ns, 79.9371 ns/op
+WorkloadResult   4: 1253376 op, 100297000.00 ns, 80.0215 ns/op
+WorkloadResult   5: 1253376 op, 100495300.00 ns, 80.1797 ns/op
+WorkloadResult   6: 1253376 op, 100089100.00 ns, 79.8556 ns/op
+WorkloadResult   7: 1253376 op, 100522700.00 ns, 80.2016 ns/op
+WorkloadResult   8: 1253376 op, 99828800.00 ns, 79.6479 ns/op
+WorkloadResult   9: 1253376 op, 100299600.00 ns, 80.0236 ns/op
+WorkloadResult  10: 1253376 op, 100853300.00 ns, 80.4653 ns/op
+// GC:  0 0 0 336 1253376
+// Threading:  0 0 1253376
+
+// AfterAll
+// Benchmark Process 168000 has exited with code 0.
+
+Mean = 79.744 ns, StdErr = 0.406 ns (0.51%), N = 28, StdDev = 2.148 ns
+Min = 76.531 ns, Q1 = 76.847 ns, Median = 80.052 ns, Q3 = 81.807 ns, Max = 82.227 ns
+IQR = 4.960 ns, LowerFence = 69.406 ns, UpperFence = 89.247 ns
+ConfidenceInterval = [78.246 ns; 81.242 ns] (CI 99.9%), Margin = 1.498 ns (1.88% of Mean)
+Skewness = -0.46, Kurtosis = 1.6, MValue = 2
+
+// ** Remained 0 (0.0%) benchmark(s) to run. Estimated finish 2026-10-02 13:25 (0h 0m from now) **
+Successfully reverted power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  -artifacts\results\GlobAcceptance-report.csv
+  -artifacts\results\GlobAcceptance-report-github.md
+  -artifacts\results\GlobAcceptance-report.html
+  -artifacts\results\GlobAcceptance-report-full.json
+  -artifacts\results\GlobAcceptance-asm.md
+  -artifacts\results\GlobAcceptance-disassembly-report.html
+
+// * Detailed results *
+GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Literal, Library=DotNetGlob]
+Runtime = .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 130.747 ns, StdErr = 0.591 ns (0.45%), N = 25, StdDev = 2.953 ns
+Min = 127.175 ns, Q1 = 129.476 ns, Median = 130.608 ns, Q3 = 131.248 ns, Max = 142.973 ns
+IQR = 1.771 ns, LowerFence = 126.819 ns, UpperFence = 133.905 ns
+ConfidenceInterval = [128.535 ns; 132.959 ns] (CI 99.9%), Margin = 2.212 ns (1.69% of Mean)
+Skewness = 2.63, Kurtosis = 11.99, MValue = 2
+-------------------- Histogram --------------------
+[127.000 ns ; 130.019 ns) | @@@@@@@
+[130.019 ns ; 135.321 ns) | @@@@@@@@@@@@@@@@@
+[135.321 ns ; 140.623 ns) | 
+[140.623 ns ; 144.299 ns) | @
+---------------------------------------------------
+
+GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Literal, Library=TeddDirectReused]
+Runtime = .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 43.393 ns, StdErr = 0.206 ns (0.47%), N = 28, StdDev = 1.088 ns
+Min = 41.928 ns, Q1 = 42.763 ns, Median = 43.001 ns, Q3 = 43.851 ns, Max = 46.741 ns
+IQR = 1.087 ns, LowerFence = 41.132 ns, UpperFence = 45.482 ns
+ConfidenceInterval = [42.635 ns; 44.152 ns] (CI 99.9%), Margin = 0.759 ns (1.75% of Mean)
+Skewness = 1.18, Kurtosis = 4.05, MValue = 2
+-------------------- Histogram --------------------
+[41.458 ns ; 42.343 ns) | @@
+[42.343 ns ; 43.283 ns) | @@@@@@@@@@@@@@@
+[43.283 ns ; 44.346 ns) | @@@@@@
+[44.346 ns ; 45.349 ns) | @@@@
+[45.349 ns ; 46.271 ns) | 
+[46.271 ns ; 47.211 ns) | @
+---------------------------------------------------
+
+GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Literal, Library=TeddDirectStatic]
+Runtime = .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 55.662 ns, StdErr = 0.395 ns (0.71%), N = 27, StdDev = 2.055 ns
+Min = 53.215 ns, Q1 = 53.729 ns, Median = 54.341 ns, Q3 = 57.833 ns, Max = 58.195 ns
+IQR = 4.105 ns, LowerFence = 47.572 ns, UpperFence = 63.991 ns
+ConfidenceInterval = [54.196 ns; 57.127 ns] (CI 99.9%), Margin = 1.466 ns (2.63% of Mean)
+Skewness = 0.13, Kurtosis = 1.03, MValue = 3.57
+-------------------- Histogram --------------------
+[52.879 ns ; 54.677 ns) | @@@@@@@@@@@@@@
+[54.677 ns ; 56.602 ns) | @
+[56.602 ns ; 58.637 ns) | @@@@@@@@@@@@
+---------------------------------------------------
+
+GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=LongText, Library=DotNetGlob]
+Runtime = .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 58.538 us, StdErr = 0.568 us (0.97%), N = 28, StdDev = 3.005 us
+Min = 53.795 us, Q1 = 54.290 us, Median = 59.797 us, Q3 = 59.975 us, Max = 62.795 us
+IQR = 5.685 us, LowerFence = 45.764 us, UpperFence = 68.502 us
+ConfidenceInterval = [56.443 us; 60.633 us] (CI 99.9%), Margin = 2.095 us (3.58% of Mean)
+Skewness = -0.64, Kurtosis = 1.78, MValue = 2.89
+-------------------- Histogram --------------------
+[52.763 us ; 55.361 us) | @@@@@@@@
+[55.361 us ; 57.958 us) | 
+[57.958 us ; 59.345 us) | 
+[59.345 us ; 61.942 us) | @@@@@@@@@@@@@@@@@@
+[61.942 us ; 64.094 us) | @@
+---------------------------------------------------
+
+GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=LongText, Library=TeddDirectReused]
+Runtime = .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 420.266 ns, StdErr = 1.327 ns (0.32%), N = 27, StdDev = 6.893 ns
+Min = 413.410 ns, Q1 = 415.132 ns, Median = 416.080 ns, Q3 = 428.051 ns, Max = 434.205 ns
+IQR = 12.919 ns, LowerFence = 395.753 ns, UpperFence = 447.430 ns
+ConfidenceInterval = [415.349 ns; 425.183 ns] (CI 99.9%), Margin = 4.917 ns (1.17% of Mean)
+Skewness = 0.67, Kurtosis = 1.66, MValue = 2
+-------------------- Histogram --------------------
+[411.721 ns ; 425.047 ns) | @@@@@@@@@@@@@@@@@@
+[425.047 ns ; 437.221 ns) | @@@@@@@@@
+---------------------------------------------------
+
+GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=LongText, Library=TeddDirectStatic]
+Runtime = .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 623.547 ns, StdErr = 3.307 ns (0.53%), N = 25, StdDev = 16.536 ns
+Min = 607.687 ns, Q1 = 610.696 ns, Median = 612.787 ns, Q3 = 643.634 ns, Max = 647.361 ns
+IQR = 32.939 ns, LowerFence = 561.288 ns, UpperFence = 693.042 ns
+ConfidenceInterval = [611.160 ns; 635.933 ns] (CI 99.9%), Margin = 12.387 ns (1.99% of Mean)
+Skewness = 0.53, Kurtosis = 1.26, MValue = 3.13
+-------------------- Histogram --------------------
+[604.178 ns ; 619.023 ns) | @@@@@@@@@@@@@@@@
+[619.023 ns ; 637.825 ns) | 
+[637.825 ns ; 654.784 ns) | @@@@@@@@@
+---------------------------------------------------
+
+GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=MultiStar, Library=DotNetGlob]
+Runtime = .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 482.805 ns, StdErr = 2.381 ns (0.49%), N = 29, StdDev = 12.821 ns
+Min = 464.150 ns, Q1 = 470.198 ns, Median = 483.786 ns, Q3 = 496.580 ns, Max = 500.302 ns
+IQR = 26.382 ns, LowerFence = 430.625 ns, UpperFence = 536.153 ns
+ConfidenceInterval = [474.058 ns; 491.552 ns] (CI 99.9%), Margin = 8.747 ns (1.81% of Mean)
+Skewness = -0.13, Kurtosis = 1.51, MValue = 2
+-------------------- Histogram --------------------
+[462.296 ns ; 473.251 ns) | @@@@@@@@@@
+[473.251 ns ; 490.347 ns) | @@@@@@@@@@
+[490.347 ns ; 503.184 ns) | @@@@@@@@@
+---------------------------------------------------
+
+GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=MultiStar, Library=TeddDirectReused]
+Runtime = .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 188.369 ns, StdErr = 0.498 ns (0.26%), N = 28, StdDev = 2.633 ns
+Min = 183.666 ns, Q1 = 185.755 ns, Median = 189.121 ns, Q3 = 190.399 ns, Max = 191.959 ns
+IQR = 4.644 ns, LowerFence = 178.788 ns, UpperFence = 197.366 ns
+ConfidenceInterval = [186.533 ns; 190.205 ns] (CI 99.9%), Margin = 1.836 ns (0.97% of Mean)
+Skewness = -0.63, Kurtosis = 1.87, MValue = 2
+-------------------- Histogram --------------------
+[182.893 ns ; 188.002 ns) | @@@@@@@@
+[188.002 ns ; 193.097 ns) | @@@@@@@@@@@@@@@@@@@@
+---------------------------------------------------
+
+GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=MultiStar, Library=TeddDirectStatic]
+Runtime = .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 200.621 ns, StdErr = 0.353 ns (0.18%), N = 29, StdDev = 1.899 ns
+Min = 197.127 ns, Q1 = 199.029 ns, Median = 200.766 ns, Q3 = 201.728 ns, Max = 204.143 ns
+IQR = 2.699 ns, LowerFence = 194.981 ns, UpperFence = 205.775 ns
+ConfidenceInterval = [199.326 ns; 201.917 ns] (CI 99.9%), Margin = 1.296 ns (0.65% of Mean)
+Skewness = -0.06, Kurtosis = 2.01, MValue = 2
+-------------------- Histogram --------------------
+[196.316 ns ; 204.954 ns) | @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+---------------------------------------------------
+
+GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Simple, Library=DotNetGlob]
+Runtime = .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 169.135 ns, StdErr = 0.423 ns (0.25%), N = 30, StdDev = 2.319 ns
+Min = 164.977 ns, Q1 = 166.964 ns, Median = 169.573 ns, Q3 = 170.910 ns, Max = 173.251 ns
+IQR = 3.946 ns, LowerFence = 161.046 ns, UpperFence = 176.828 ns
+ConfidenceInterval = [167.585 ns; 170.684 ns] (CI 99.9%), Margin = 1.549 ns (0.92% of Mean)
+Skewness = -0.29, Kurtosis = 1.8, MValue = 2
+-------------------- Histogram --------------------
+[164.603 ns ; 168.286 ns) | @@@@@@@@@@
+[168.286 ns ; 174.231 ns) | @@@@@@@@@@@@@@@@@@@@
+---------------------------------------------------
+
+GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Simple, Library=TeddDirectReused]
+Runtime = .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 55.784 ns, StdErr = 0.699 ns (1.25%), N = 29, StdDev = 3.765 ns
+Min = 52.525 ns, Q1 = 52.787 ns, Median = 54.026 ns, Q3 = 60.242 ns, Max = 63.495 ns
+IQR = 7.455 ns, LowerFence = 41.605 ns, UpperFence = 71.424 ns
+ConfidenceInterval = [53.215 ns; 58.353 ns] (CI 99.9%), Margin = 2.569 ns (4.60% of Mean)
+Skewness = 0.81, Kurtosis = 1.85, MValue = 2.8
+-------------------- Histogram --------------------
+[51.740 ns ; 54.957 ns) | @@@@@@@@@@@@@@@@@@@@
+[54.957 ns ; 58.174 ns) | 
+[58.174 ns ; 59.566 ns) | 
+[59.566 ns ; 62.783 ns) | @@@@@@@@
+[62.783 ns ; 65.103 ns) | @
+---------------------------------------------------
+
+GlobAcceptance.Match: Job-GPHEUC(Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3) [Workload=Simple, Library=TeddDirectStatic]
+Runtime = .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 79.744 ns, StdErr = 0.406 ns (0.51%), N = 28, StdDev = 2.148 ns
+Min = 76.531 ns, Q1 = 76.847 ns, Median = 80.052 ns, Q3 = 81.807 ns, Max = 82.227 ns
+IQR = 4.960 ns, LowerFence = 69.406 ns, UpperFence = 89.247 ns
+ConfidenceInterval = [78.246 ns; 81.242 ns] (CI 99.9%), Margin = 1.498 ns (1.88% of Mean)
+Skewness = -0.46, Kurtosis = 1.6, MValue = 2
+-------------------- Histogram --------------------
+[75.602 ns ; 77.628 ns) | @@@@@@@@
+[77.628 ns ; 80.418 ns) | @@@@@@@@@
+[80.418 ns ; 82.275 ns) | @@@@@@@@@@@
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet v0.15.8, Windows 11 (10.0.26200.9457/25H2/2025Update/HudsonValley2)
+AMD Ryzen 9 5950X 3.40GHz, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 11.0.100-rc.1.26425.128
+  [Host]     : .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+  Job-GPHEUC : .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+
+Affinity=01000000000000000000000000000000  IterationCount=10  IterationTime=100ms  
+LaunchCount=3  WarmupCount=3  
+
+| Method | Workload  | Library          | Mean         | Error        | StdDev       | Median       | Code Size | Allocated |
+|------- |---------- |----------------- |-------------:|-------------:|-------------:|-------------:|----------:|----------:|
+| Match  | Literal   | DotNetGlob       |    130.75 ns |     2.212 ns |     2.953 ns |    130.61 ns |     289 B |         - |
+| Match  | Literal   | TeddDirectReused |     43.39 ns |     0.759 ns |     1.088 ns |     43.00 ns |     289 B |         - |
+| Match  | Literal   | TeddDirectStatic |     55.66 ns |     1.466 ns |     2.055 ns |     54.34 ns |     289 B |         - |
+| Match  | LongText  | DotNetGlob       | 58,537.64 ns | 2,094.977 ns | 3,004.554 ns | 59,797.40 ns |     289 B |         - |
+| Match  | LongText  | TeddDirectReused |    420.27 ns |     4.917 ns |     6.893 ns |    416.08 ns |     289 B |         - |
+| Match  | LongText  | TeddDirectStatic |    623.55 ns |    12.387 ns |    16.536 ns |    612.79 ns |     289 B |         - |
+| Match  | MultiStar | DotNetGlob       |    482.81 ns |     8.747 ns |    12.821 ns |    483.79 ns |     289 B |         - |
+| Match  | MultiStar | TeddDirectReused |    188.37 ns |     1.836 ns |     2.633 ns |    189.12 ns |     289 B |         - |
+| Match  | MultiStar | TeddDirectStatic |    200.62 ns |     1.296 ns |     1.899 ns |    200.77 ns |     289 B |         - |
+| Match  | Simple    | DotNetGlob       |    169.13 ns |     1.549 ns |     2.319 ns |    169.57 ns |     289 B |         - |
+| Match  | Simple    | TeddDirectReused |     55.78 ns |     2.569 ns |     3.765 ns |     54.03 ns |     289 B |         - |
+| Match  | Simple    | TeddDirectStatic |     79.74 ns |     1.498 ns |     2.148 ns |     80.05 ns |     289 B |         - |
+
+// * Warnings *
+MinIterationTime
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> The minimum observed iteration time is 96.526ms which is very small. It's recommended to increase it to at least 100ms using more operations.
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> The minimum observed iteration time is 97.191ms which is very small. It's recommended to increase it to at least 100ms using more operations.
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> The minimum observed iteration time is 98.5ms which is very small. It's recommended to increase it to at least 100ms using more operations.
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> The minimum observed iteration time is 91.247ms which is very small. It's recommended to increase it to at least 100ms using more operations.
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> The minimum observed iteration time is 99.714ms which is very small. It's recommended to increase it to at least 100ms using more operations.
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> The minimum observed iteration time is 99.565ms which is very small. It's recommended to increase it to at least 100ms using more operations.
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> The minimum observed iteration time is 98.862ms which is very small. It's recommended to increase it to at least 100ms using more operations.
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> The minimum observed iteration time is 99.613ms which is very small. It's recommended to increase it to at least 100ms using more operations.
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> The minimum observed iteration time is 99.059ms which is very small. It's recommended to increase it to at least 100ms using more operations.
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> The minimum observed iteration time is 99.294ms which is very small. It's recommended to increase it to at least 100ms using more operations.
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> The minimum observed iteration time is 99.302ms which is very small. It's recommended to increase it to at least 100ms using more operations.
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> The minimum observed iteration time is 99.692ms which is very small. It's recommended to increase it to at least 100ms using more operations.
+MultimodalDistribution
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> It seems that the distribution is bimodal (mValue = 3.57)
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> It seems that the distribution can have several modes (mValue = 2.89)
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> It seems that the distribution can have several modes (mValue = 3.13)
+
+// * Hints *
+Outliers
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> 5 outliers were removed, 6 outliers were detected (127.18 ns, 134.97 ns..159.78 ns)
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> 2 outliers were removed (46.75 ns, 56.26 ns)
+  GlobAcceptance.Match: Affinity=01000000000000000000000000000000, IterationCount=10, IterationTime=100ms, LaunchCount=3, WarmupCount=3 -> 1 outlier  was  removed (72.09 ns)
+
+// * Legends *
+  Workload  : Value of the 'Workload' parameter
+  Library   : Value of the 'Library' parameter
+  Mean      : Arithmetic mean of all measurements
+  Error     : Half of 99.9% confidence interval
+  StdDev    : Standard deviation of all measurements
+  Median    : Value separating the higher half of all measurements (50th percentile)
+  Code Size : Native code size of the disassembled method(s)
+  Allocated : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  1 ns      : 1 Nanosecond (0.000000001 sec)
+
+// * Diagnostic Output - DisassemblyDiagnoser *
+Disassembled benchmarks got exported to ".\BenchmarkDotNet.Artifacts\results\*asm.md"
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:01:19 (79.77 sec), executed benchmarks: 12
+
+Global total time: 00:01:33 (93.38 sec), executed benchmarks: 12
+// * Artifacts cleanup *
+Artifacts cleanup is finished

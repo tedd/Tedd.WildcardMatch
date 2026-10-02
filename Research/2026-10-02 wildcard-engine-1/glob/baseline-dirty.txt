@@ -1,0 +1,12 @@
+ README.md                                          |    4 +-
+ site/app.js                                        |   69 +-
+ site/assets/construction-report.md                 |   22 +-
+ site/assets/matching-report.md                     |   64 +-
+ site/assets/package-comparison.json                | 1075 ++++++++++----------
+ site/index.html                                    |  138 +--
+ site/styles.css                                    |    6 +-
+ src/Tedd.WildcardMatch.Benchmark/Comparison.cs     |    3 +-
+ .../Export-SiteBenchmarks.ps1                      |   60 +-
+ src/Tedd.WildcardMatch.Benchmark/README.md         |    6 +-
+ src/Tedd.WildcardMatch/Tedd.WildcardMatch.csproj   |    2 +-
+ 11 files changed, 747 insertions(+), 702 deletions(-)

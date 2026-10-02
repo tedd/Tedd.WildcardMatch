@@ -1,0 +1,159 @@
+using System;
+using System.Buffers;
+using System.Threading;
+using System.Runtime.CompilerServices;
+
+[assembly: CLSCompliant(true)]
+namespace Tedd;
+
+/// <summary>Matches literal UTF-16 characters, '*' and '?' without a regular expression engine.</summary>
+public class WildcardMatch
+{
+    private readonly bool _fast;
+    private readonly WildcardOptions _options;
+    private readonly TimeSpan _timeout;
+    private readonly int _caseBehavior;
+    private readonly bool _literal;
+    private readonly int _leadingQuestions;
+    private readonly int _prefix = -1, _suffix = -1;
+    private readonly string _matchPattern;
+    private string? _wildcardRegex;
+
+    /// <summary>The original wildcard pattern.</summary>
+    public string Wildcard { get; private set; }
+
+    /// <summary>The equivalent anchored Regex pattern, generated lazily for inspection.</summary>
+    public string WildcardRegex
+    {
+        get
+        {
+            string? value = Volatile.Read(ref _wildcardRegex);
+            if (value != null) return value;
+            value = InternalUtils.StringToWildcard(Wildcard);
+            return Interlocked.CompareExchange(ref _wildcardRegex, value, null) ?? value;
+        }
+        private set => _wildcardRegex = value;
+    }
+
+    /// <summary>Matches using the calling thread's culture when ignoring case.</summary>
+    public static bool IsMatch(string input, string wildcard, bool ignoreCase = false) =>
+        IsMatch(input, wildcard, ignoreCase ? WildcardOptions.IgnoreCase : WildcardOptions.None);
+
+    /// <summary>Matches without constructing a matcher or translating the pattern.</summary>
+    public static bool IsMatch(string input, string wildcard, WildcardOptions options)
+    {
+        WildcardEngine.ValidatePattern(wildcard);
+        WildcardEngine.ValidateOptions(options);
+        string pattern = WildcardEngine.GetMatchingPattern(wildcard, options);
+        if (((int)options & 0x803) == 0)
+        {
+            if (input is null) throw new ArgumentNullException(nameof(input));
+            return DefaultWildcardEngine.IsMatch(input.AsSpan(), pattern.AsSpan(), (options & WildcardOptions.Singleline) != 0, WildcardEngine.IsLiteral(pattern));
+        }
+        return WildcardEngine.IsMatch(input, pattern, options, WildcardEngine.GetCaseBehavior(options),
+            WildcardEngine.IsLiteral(pattern), WildcardEngine.InfiniteTimeout, wildcard);
+    }
+
+    /// <summary>Matches borrowed UTF-16 input and pattern slices without copying them.</summary>
+    public static bool IsMatch(ReadOnlySpan<char> input, ReadOnlySpan<char> wildcard, bool ignoreCase = false) =>
+        IsMatch(input, wildcard, ignoreCase ? WildcardOptions.IgnoreCase : WildcardOptions.None);
+
+    /// <summary>Matches borrowed slices using the calling thread's case culture.</summary>
+    /// <remarks>Default and empty spans are empty text. Neither span is retained.</remarks>
+    public static bool IsMatch(ReadOnlySpan<char> input, ReadOnlySpan<char> wildcard, WildcardOptions options)
+    {
+        WildcardEngine.ValidateOptions(options);
+        if (WildcardEngine.RequiresNormalization(wildcard, options))
+            return MatchNormalized(input, wildcard, options);
+        if (((int)options & 0x803) == 0)
+            return DefaultWildcardEngine.IsMatch(input, wildcard, (options & WildcardOptions.Singleline) != 0, wildcard.IndexOfAny('*', '?') < 0);
+        return WildcardEngine.IsMatch(input, wildcard, options, WildcardEngine.GetCaseBehavior(options),
+            wildcard.IndexOfAny('*', '?') < 0, WildcardEngine.InfiniteTimeout, null);
+    }
+
+    private static bool MatchNormalized(ReadOnlySpan<char> input, ReadOnlySpan<char> wildcard, WildcardOptions options)
+    {
+        // .NET 11 x-mode ignores VT. Bound stack use to 512 bytes; larger
+        // patterns borrow pooled storage and expose only the initialized prefix.
+        char[]? rented = null;
+        Span<char> normalized = wildcard.Length <= 256 ? stackalloc char[wildcard.Length] :
+            (rented = ArrayPool<char>.Shared.Rent(wildcard.Length)).AsSpan(0, wildcard.Length);
+        try
+        {
+            int length = 0;
+            foreach (char token in wildcard)
+                if (token != '\v') normalized[length++] = token;
+            ReadOnlySpan<char> pattern = normalized.Slice(0, length);
+            return WildcardEngine.IsMatch(input, pattern, options, WildcardEngine.GetCaseBehavior(options),
+                pattern.IndexOfAny('*', '?') < 0, WildcardEngine.InfiniteTimeout, null);
+        }
+        finally
+        {
+            if (rented != null) ArrayPool<char>.Shared.Return(rented);
+        }
+    }
+
+    /// <summary>Creates a reusable, thread-safe matcher.</summary>
+    public WildcardMatch(string wildcard) : this(wildcard, WildcardOptions.None, WildcardEngine.InfiniteTimeout) { }
+
+    /// <summary>Creates a matcher that captures the construction-time case culture.</summary>
+    public WildcardMatch(string wildcard, WildcardOptions options) : this(wildcard, options, WildcardEngine.InfiniteTimeout) { }
+
+    /// <summary>Creates a reusable matcher with an owned copy of the pattern slice.</summary>
+    public WildcardMatch(ReadOnlySpan<char> wildcard) : this(wildcard.ToString()) { }
+
+    /// <summary>Copies the pattern slice and captures the construction-time case culture.</summary>
+    public WildcardMatch(ReadOnlySpan<char> wildcard, WildcardOptions options) : this(wildcard.ToString(), options) { }
+
+    /// <summary>Copies the pattern slice and configures a cooperative per-call timeout.</summary>
+    public WildcardMatch(ReadOnlySpan<char> wildcard, WildcardOptions options, TimeSpan timeout) : this(wildcard.ToString(), options, timeout) { }
+
+    /// <summary>Creates a matcher with a cooperative per-call timeout.</summary>
+    /// <remarks>Compiled and RightToLeft preserve Boolean results without changing execution strategy.</remarks>
+    public WildcardMatch(string wildcard, WildcardOptions options, TimeSpan timeout)
+    {
+        WildcardEngine.ValidatePattern(wildcard);
+        WildcardEngine.ValidateOptions(options);
+        WildcardEngine.ValidateTimeout(timeout);
+        Wildcard = wildcard;
+        _options = options;
+        _timeout = timeout;
+        _caseBehavior = WildcardEngine.GetCaseBehavior(options);
+        _matchPattern = WildcardEngine.GetMatchingPattern(wildcard, options);
+        _literal = WildcardEngine.IsLiteral(_matchPattern);
+        _fast = _caseBehavior == 0 && timeout == WildcardEngine.InfiniteTimeout && ((int)options & 0x802) == 0;
+        // H-020: the normalized pattern is immutable; prepare the question run
+        // once so reusable matches pay only the input bounds/newline check.
+        if (_matchPattern.Length >= 32 && _matchPattern[0] == '?' && _matchPattern[1] == '?')
+        {
+            int length = 2;
+            while (length < _matchPattern.Length && _matchPattern[length] == '?') length++;
+            _leadingQuestions = length;
+        }
+        // H-016: capture fixed-run offsets once without copying the pattern.
+        // Static calls compute them locally. See Research/2026-10-02 wildcard-engine-1.
+        if (!_literal && _caseBehavior == 0 && _matchPattern.Length >= 32 && ((int)options & 0x802) == 0)
+        {
+            _prefix = WildcardEngine.GetPrefix(_matchPattern);
+            _suffix = WildcardEngine.GetSuffix(_matchPattern);
+        }
+    }
+
+    /// <summary>Matches using call-local state; concurrent calls may reuse this instance.</summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public bool IsMatch(string input)
+    {
+        if (input is null) throw new ArgumentNullException(nameof(input));
+        if (_fast) return DefaultWildcardEngine.IsMatch(input.AsSpan(), _matchPattern.AsSpan(), (_options & WildcardOptions.Singleline) != 0, _literal, _prefix, _suffix);
+        return WildcardEngine.IsMatch(input, _matchPattern, _options, _caseBehavior, _literal, _timeout, Wildcard, _prefix, _suffix, _leadingQuestions);
+    }
+
+    /// <summary>Matches a borrowed input slice without copying or retaining it.</summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public bool IsMatch(ReadOnlySpan<char> input)
+    {
+        if (_fast) return DefaultWildcardEngine.IsMatch(input, _matchPattern.AsSpan(), (_options & WildcardOptions.Singleline) != 0, _literal, _prefix, _suffix);
+        return WildcardEngine.IsMatch(input, _matchPattern.AsSpan(), _options, _caseBehavior, _literal, _timeout,
+            Wildcard, _prefix, _suffix, _leadingQuestions);
+    }
+}

@@ -1,0 +1,2190 @@
+[
+  {
+    "fixture": "Literal",
+    "mode": "static",
+    "ns": {
+      "glob": 15.320110321044922,
+      "candidate": 18.28908920288086,
+      "control": 18.181419372558594
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 15.853309631347656,
+        "2": 14.560699462890625
+      },
+      "candidate": {
+        "1": 18.30606460571289,
+        "2": 17.865943908691406
+      },
+      "control": {
+        "1": 18.281078338623047,
+        "2": 18.01614761352539
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9941128927128144,
+    "globOverCandidate": 0.8376639290835615
+  },
+  {
+    "fixture": "Literal",
+    "mode": "reused",
+    "ns": {
+      "glob": 15.858650207519531,
+      "candidate": 12.406730651855469,
+      "control": 14.608573913574219
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 15.858650207519531,
+        "2": 15.758132934570312
+      },
+      "candidate": {
+        "1": 12.382698059082031,
+        "2": 13.062572479248047
+      },
+      "control": {
+        "1": 14.608573913574219,
+        "2": 14.599418640136719
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.1774716743277938,
+    "globOverCandidate": 1.2782295878364875
+  },
+  {
+    "fixture": "Literal",
+    "mode": "span-static",
+    "ns": {
+      "glob": 15.639114379882812,
+      "candidate": 15.355968475341797,
+      "control": 15.213871002197266
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 15.704727172851562,
+        "2": 14.34030532836914
+      },
+      "candidate": {
+        "1": 14.887142181396484,
+        "2": 15.466022491455078
+      },
+      "control": {
+        "1": 15.193367004394531,
+        "2": 15.37332534790039
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9907464336506872,
+    "globOverCandidate": 1.0184388177792683
+  },
+  {
+    "fixture": "Literal",
+    "mode": "span-reused",
+    "ns": {
+      "glob": 16.86692237854004,
+      "candidate": 13.310432434082031,
+      "control": 11.580085754394531
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 17.42424964904785,
+        "2": 16.75577163696289
+      },
+      "candidate": {
+        "1": 12.457799911499023,
+        "2": 14.589309692382812
+      },
+      "control": {
+        "1": 9.347867965698242,
+        "2": 14.086627960205078
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.8700007164863509,
+    "globOverCandidate": 1.2671956724224402
+  },
+  {
+    "fixture": "Literal",
+    "mode": "construction",
+    "ns": {
+      "glob": 309.38358306884766,
+      "candidate": 39.49604034423828,
+      "control": 35.63728332519531
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 302.2195816040039,
+        "2": 347.9534149169922
+      },
+      "candidate": {
+        "1": 36.93351745605469,
+        "2": 43.688392639160156
+      },
+      "control": {
+        "1": 36.05308532714844,
+        "2": 34.1339111328125
+      }
+    },
+    "bytes": {
+      "glob": 736.0,
+      "candidate": 80.0,
+      "control": 72.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9023001550177957,
+    "globOverCandidate": 7.833281016839472
+  },
+  {
+    "fixture": "Simple",
+    "mode": "static",
+    "ns": {
+      "glob": 22.035789489746094,
+      "candidate": 46.362876892089844,
+      "control": 42.0074462890625
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 23.065567016601562,
+        "2": 20.524024963378906
+      },
+      "candidate": {
+        "1": 45.54309844970703,
+        "2": 46.362876892089844
+      },
+      "control": {
+        "1": 42.300987243652344,
+        "2": 41.831016540527344
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9060578010901985,
+    "globOverCandidate": 0.4752895196955672
+  },
+  {
+    "fixture": "Simple",
+    "mode": "reused",
+    "ns": {
+      "glob": 21.571731567382812,
+      "candidate": 9.574222564697266,
+      "control": 40.53936004638672
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 21.783065795898438,
+        "2": 21.259117126464844
+      },
+      "candidate": {
+        "1": 9.163188934326172,
+        "2": 10.07680892944336
+      },
+      "control": {
+        "1": 38.969993591308594,
+        "2": 41.112327575683594
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 4.2342195172970225,
+    "globOverCandidate": 2.253105296185989
+  },
+  {
+    "fixture": "Simple",
+    "mode": "span-static",
+    "ns": {
+      "glob": 20.8709716796875,
+      "candidate": 48.06079864501953,
+      "control": 45.55511474609375
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 21.54216766357422,
+        "2": 20.16286849975586
+      },
+      "candidate": {
+        "1": 43.993186950683594,
+        "2": 53.50503921508789
+      },
+      "control": {
+        "1": 44.13166046142578,
+        "2": 50.79803466796875
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9478642892009985,
+    "globOverCandidate": 0.4342618572330014
+  },
+  {
+    "fixture": "Simple",
+    "mode": "span-reused",
+    "ns": {
+      "glob": 21.509361267089844,
+      "candidate": 10.396862030029297,
+      "control": 42.534542083740234
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 22.224044799804688,
+        "2": 21.250057220458984
+      },
+      "candidate": {
+        "1": 10.396862030029297,
+        "2": 10.622215270996094
+      },
+      "control": {
+        "1": 37.10489273071289,
+        "2": 45.513248443603516
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 4.09109421293536,
+    "globOverCandidate": 2.068832038452013
+  },
+  {
+    "fixture": "Simple",
+    "mode": "construction",
+    "ns": {
+      "glob": 423.0480194091797,
+      "candidate": 58.63609313964844,
+      "control": 81.08940124511719
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 392.5468444824219,
+        "2": 456.85272216796875
+      },
+      "candidate": {
+        "1": 52.48260498046875,
+        "2": 66.08619689941406
+      },
+      "control": {
+        "1": 64.42146301269531,
+        "2": 102.7801513671875
+      }
+    },
+    "bytes": {
+      "glob": 920.0,
+      "candidate": 176.0,
+      "control": 72.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.3829264008431408,
+    "globOverCandidate": 7.2148057068134355
+  },
+  {
+    "fixture": "MultiStar",
+    "mode": "static",
+    "ns": {
+      "glob": 62.226104736328125,
+      "candidate": 61.95259094238281,
+      "control": 60.80970764160156
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 50.402069091796875,
+        "2": 76.88751220703125
+      },
+      "candidate": {
+        "1": 63.54217529296875,
+        "2": 61.331939697265625
+      },
+      "control": {
+        "1": 62.4298095703125,
+        "2": 56.97822570800781
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9815522921092331,
+    "globOverCandidate": 1.0044148887041655
+  },
+  {
+    "fixture": "MultiStar",
+    "mode": "reused",
+    "ns": {
+      "glob": 64.33486938476562,
+      "candidate": 37.879180908203125,
+      "control": 62.09068298339844
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 53.40309143066406,
+        "2": 73.47412109375
+      },
+      "candidate": {
+        "1": 40.66734313964844,
+        "2": 36.6668701171875
+      },
+      "control": {
+        "1": 60.57853698730469,
+        "2": 64.12200927734375
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.6391770226993494,
+    "globOverCandidate": 1.6984229289613084
+  },
+  {
+    "fixture": "MultiStar",
+    "mode": "span-static",
+    "ns": {
+      "glob": 73.24485778808594,
+      "candidate": 49.48692321777344,
+      "control": 49.11308288574219
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 60.52970886230469,
+        "2": 77.50740051269531
+      },
+      "candidate": {
+        "1": 53.17802429199219,
+        "2": 48.66523742675781
+      },
+      "control": {
+        "1": 56.139373779296875,
+        "2": 45.54328918457031
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9924456743777317,
+    "globOverCandidate": 1.4800851017906835
+  },
+  {
+    "fixture": "MultiStar",
+    "mode": "span-reused",
+    "ns": {
+      "glob": 70.71495056152344,
+      "candidate": 45.17974853515625,
+      "control": 43.28422546386719
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 60.33935546875,
+        "2": 71.34132385253906
+      },
+      "candidate": {
+        "1": 49.713897705078125,
+        "2": 43.48297119140625
+      },
+      "control": {
+        "1": 47.94807434082031,
+        "2": 41.809844970703125
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9580448512276672,
+    "globOverCandidate": 1.5651913269613968
+  },
+  {
+    "fixture": "MultiStar",
+    "mode": "construction",
+    "ns": {
+      "glob": 637.4233245849609,
+      "candidate": 58.17718505859375,
+      "control": 84.59243774414062
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 564.9589538574219,
+        "2": 680.7315826416016
+      },
+      "candidate": {
+        "1": 53.98406982421875,
+        "2": 67.85812377929688
+      },
+      "control": {
+        "1": 80.487060546875,
+        "2": 88.739013671875
+      }
+    },
+    "bytes": {
+      "glob": 1736.0,
+      "candidate": 80.0,
+      "control": 72.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.4540483122196868,
+    "globOverCandidate": 10.9565858840192
+  },
+  {
+    "fixture": "LongText",
+    "mode": "static",
+    "ns": {
+      "glob": 5991.725158691406,
+      "candidate": 235.95428466796875,
+      "control": 238.16986083984375
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 4476.612854003906,
+        "2": 7390.4205322265625
+      },
+      "candidate": {
+        "1": 240.5670166015625,
+        "2": 227.3162841796875
+      },
+      "control": {
+        "1": 248.02093505859375,
+        "2": 229.17022705078125
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.0093898535260453,
+    "globOverCandidate": 25.39358489345879
+  },
+  {
+    "fixture": "LongText",
+    "mode": "reused",
+    "ns": {
+      "glob": 5843.514251708984,
+      "candidate": 174.04632568359375,
+      "control": 258.3183288574219
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 4330.6396484375,
+        "2": 7532.234191894531
+      },
+      "candidate": {
+        "1": 193.6614990234375,
+        "2": 159.00650024414062
+      },
+      "control": {
+        "1": 262.8021240234375,
+        "2": 258.3183288574219
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.4841929460035244,
+    "globOverCandidate": 33.57447638585694
+  },
+  {
+    "fixture": "LongText",
+    "mode": "span-static",
+    "ns": {
+      "glob": 6209.954833984375,
+      "candidate": 194.3634033203125,
+      "control": 180.91278076171875
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 4427.05078125,
+        "2": 7587.2283935546875
+      },
+      "candidate": {
+        "1": 176.239013671875,
+        "2": 206.85577392578125
+      },
+      "control": {
+        "1": 177.45208740234375,
+        "2": 189.105224609375
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9307965268727724,
+    "globOverCandidate": 31.950226883763285
+  },
+  {
+    "fixture": "LongText",
+    "mode": "span-reused",
+    "ns": {
+      "glob": 6114.243316650391,
+      "candidate": 175.83541870117188,
+      "control": 159.87014770507812
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 4423.161315917969,
+        "2": 7492.984771728516
+      },
+      "candidate": {
+        "1": 197.9644775390625,
+        "2": 171.80862426757812
+      },
+      "control": {
+        "1": 204.18548583984375,
+        "2": 156.77642822265625
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9092033270997218,
+    "globOverCandidate": 34.772535373213984
+  },
+  {
+    "fixture": "LongText",
+    "mode": "construction",
+    "ns": {
+      "glob": 4191.4306640625,
+      "candidate": 179.35943603515625,
+      "control": 241.2750244140625
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 3534.124755859375,
+        "2": 5266.9708251953125
+      },
+      "candidate": {
+        "1": 175.87432861328125,
+        "2": 182.82928466796875
+      },
+      "control": {
+        "1": 237.9364013671875,
+        "2": 247.74169921875
+      }
+    },
+    "bytes": {
+      "glob": 2272.0,
+      "candidate": 80.0,
+      "control": 72.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.345203964439151,
+    "globOverCandidate": 23.368888510783105
+  },
+  {
+    "fixture": "SimpleVaried",
+    "mode": "static",
+    "ns": {
+      "glob": 39.00623321533203,
+      "candidate": 46.827125549316406,
+      "control": 47.45922088623047
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 39.728736877441406,
+        "2": 38.17768096923828
+      },
+      "candidate": {
+        "1": 45.03307342529297,
+        "2": 55.10826110839844
+      },
+      "control": {
+        "1": 44.828033447265625,
+        "2": 58.55712890625
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.013498486817184,
+    "globOverCandidate": 0.8329837195377766
+  },
+  {
+    "fixture": "SimpleVaried",
+    "mode": "reused",
+    "ns": {
+      "glob": 39.05038833618164,
+      "candidate": 11.77520751953125,
+      "control": 43.71986389160156
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 38.13943862915039,
+        "2": 64.01786804199219
+      },
+      "candidate": {
+        "1": 12.435436248779297,
+        "2": 11.77520751953125
+      },
+      "control": {
+        "1": 42.920494079589844,
+        "2": 47.101593017578125
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 3.7128741739017754,
+    "globOverCandidate": 3.3163227290397823
+  },
+  {
+    "fixture": "SimpleVaried",
+    "mode": "span-static",
+    "ns": {
+      "glob": 38.60206604003906,
+      "candidate": 48.22845458984375,
+      "control": 48.456573486328125
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 36.525726318359375,
+        "2": 39.08882141113281
+      },
+      "candidate": {
+        "1": 46.117401123046875,
+        "2": 87.53890991210938
+      },
+      "control": {
+        "1": 47.88398742675781,
+        "2": 57.0220947265625
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.0047299648811971,
+    "globOverCandidate": 0.8004002277976398
+  },
+  {
+    "fixture": "SimpleVaried",
+    "mode": "span-reused",
+    "ns": {
+      "glob": 38.67969512939453,
+      "candidate": 13.59415054321289,
+      "control": 44.42567825317383
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 38.67969512939453,
+        "2": 44.313812255859375
+      },
+      "candidate": {
+        "1": 13.10110092163086,
+        "2": 17.927932739257812
+      },
+      "control": {
+        "1": 42.323970794677734,
+        "2": 46.88262939453125
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 3.2679995790802905,
+    "globOverCandidate": 2.845319022063208
+  },
+  {
+    "fixture": "SimpleLateMiss",
+    "mode": "static",
+    "ns": {
+      "glob": 37.364959716796875,
+      "candidate": 49.651145935058594,
+      "control": 44.31610107421875
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 36.605072021484375,
+        "2": 42.41600036621094
+      },
+      "candidate": {
+        "1": 42.025184631347656,
+        "2": 75.13160705566406
+      },
+      "control": {
+        "1": 43.996429443359375,
+        "2": 64.54811096191406
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.8925494112901676,
+    "globOverCandidate": 0.7525497954401398
+  },
+  {
+    "fixture": "SimpleLateMiss",
+    "mode": "reused",
+    "ns": {
+      "glob": 38.854408264160156,
+      "candidate": 11.282825469970703,
+      "control": 47.92804718017578
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 35.492897033691406,
+        "2": 41.53881072998047
+      },
+      "candidate": {
+        "1": 11.745357513427734,
+        "2": 11.226081848144531
+      },
+      "control": {
+        "1": 43.42021942138672,
+        "2": 50.475502014160156
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 4.24787632386378,
+    "globOverCandidate": 3.4436771505126407
+  },
+  {
+    "fixture": "SimpleLateMiss",
+    "mode": "span-static",
+    "ns": {
+      "glob": 35.80646514892578,
+      "candidate": 46.18949890136719,
+      "control": 47.99919128417969
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 35.15186309814453,
+        "2": 38.35029602050781
+      },
+      "candidate": {
+        "1": 44.75860595703125,
+        "2": 67.38853454589844
+      },
+      "control": {
+        "1": 45.67089080810547,
+        "2": 52.73704528808594
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.039179736214002,
+    "globOverCandidate": 0.7752079152317005
+  },
+  {
+    "fixture": "SimpleLateMiss",
+    "mode": "span-reused",
+    "ns": {
+      "glob": 44.21234130859375,
+      "candidate": 14.873695373535156,
+      "control": 55.82618713378906
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 37.198734283447266,
+        "2": 59.7508430480957
+      },
+      "candidate": {
+        "1": 13.590812683105469,
+        "2": 23.79302978515625
+      },
+      "control": {
+        "1": 45.4524040222168,
+        "2": 73.63119125366211
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 3.753350175042639,
+    "globOverCandidate": 2.9725189469229685
+  },
+  {
+    "fixture": "SimpleFirstMiss",
+    "mode": "static",
+    "ns": {
+      "glob": 10.744762420654297,
+      "candidate": 25.381088256835938,
+      "control": 27.359294891357422
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 10.158252716064453,
+        "2": 12.383079528808594
+      },
+      "candidate": {
+        "1": 20.438003540039062,
+        "2": 31.49881362915039
+      },
+      "control": {
+        "1": 21.070098876953125,
+        "2": 34.98973846435547
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.0779401818591718,
+    "globOverCandidate": 0.4233373412489667
+  },
+  {
+    "fixture": "SimpleFirstMiss",
+    "mode": "reused",
+    "ns": {
+      "glob": 11.416339874267578,
+      "candidate": 13.094282150268555,
+      "control": 19.68693733215332
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 10.217094421386719,
+        "2": 14.148139953613281
+      },
+      "candidate": {
+        "1": 12.104368209838867,
+        "2": 16.634750366210938
+      },
+      "control": {
+        "1": 15.610551834106445,
+        "2": 31.02273941040039
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.5034758764343226,
+    "globOverCandidate": 0.8718568718204561
+  },
+  {
+    "fixture": "SimpleFirstMiss",
+    "mode": "span-static",
+    "ns": {
+      "glob": 10.245323181152344,
+      "candidate": 30.117225646972656,
+      "control": 28.30190658569336
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 10.186290740966797,
+        "2": 12.383556365966797
+      },
+      "candidate": {
+        "1": 21.78182601928711,
+        "2": 39.068031311035156
+      },
+      "control": {
+        "1": 22.491836547851562,
+        "2": 33.1181526184082
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9397248909126604,
+    "globOverCandidate": 0.34018150613359005
+  },
+  {
+    "fixture": "SimpleFirstMiss",
+    "mode": "span-reused",
+    "ns": {
+      "glob": 11.418342590332031,
+      "candidate": 13.982772827148438,
+      "control": 23.73199462890625
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 10.210132598876953,
+        "2": 16.59078598022461
+      },
+      "candidate": {
+        "1": 13.319969177246094,
+        "2": 20.18117904663086
+      },
+      "control": {
+        "1": 16.632366180419922,
+        "2": 30.187225341796875
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.6972309371163552,
+    "globOverCandidate": 0.8166007365980085
+  },
+  {
+    "fixture": "SimpleLF",
+    "mode": "static",
+    "ns": {
+      "candidate": 55.87310791015625,
+      "control": 53.160858154296875
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 50.94947814941406,
+        "2": 94.07196044921875
+      },
+      "control": {
+        "1": 50.8636474609375,
+        "2": 79.82673645019531
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9514569735368817
+  },
+  {
+    "fixture": "SimpleLF",
+    "mode": "reused",
+    "ns": {
+      "candidate": 13.404273986816406,
+      "control": 61.0936164855957
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 11.560344696044922,
+        "2": 16.532135009765625
+      },
+      "control": {
+        "1": 51.26457214355469,
+        "2": 88.0258560180664
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 4.557771390355308
+  },
+  {
+    "fixture": "SimpleLF",
+    "mode": "span-static",
+    "ns": {
+      "candidate": 67.15545654296875,
+      "control": 71.42333984375
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 59.94148254394531,
+        "2": 163.17062377929688
+      },
+      "control": {
+        "1": 65.55213928222656,
+        "2": 106.2286376953125
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.0635522937447457
+  },
+  {
+    "fixture": "SimpleLF",
+    "mode": "span-reused",
+    "ns": {
+      "candidate": 14.391517639160156,
+      "control": 63.60759735107422
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 12.738513946533203,
+        "2": 20.003509521484375
+      },
+      "control": {
+        "1": 61.89384460449219,
+        "2": 91.59126281738281
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 4.419797754893775
+  },
+  {
+    "fixture": "LiteralVaried",
+    "mode": "static",
+    "ns": {
+      "glob": 33.23955535888672,
+      "candidate": 32.703399658203125,
+      "control": 27.594947814941406
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 28.507614135742188,
+        "2": 48.77166748046875
+      },
+      "candidate": {
+        "1": 28.27930450439453,
+        "2": 45.476722717285156
+      },
+      "control": {
+        "1": 27.115631103515625,
+        "2": 35.58692932128906
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.8437944710136475,
+    "globOverCandidate": 1.016394494342704
+  },
+  {
+    "fixture": "LiteralVaried",
+    "mode": "reused",
+    "ns": {
+      "glob": 29.98981475830078,
+      "candidate": 20.658111572265625,
+      "control": 24.01103973388672
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 28.32164764404297,
+        "2": 41.72687530517578
+      },
+      "candidate": {
+        "1": 19.8486328125,
+        "2": 21.421241760253906
+      },
+      "control": {
+        "1": 23.78215789794922,
+        "2": 25.881195068359375
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.1623056468589579,
+    "globOverCandidate": 1.4517210178380175
+  },
+  {
+    "fixture": "LiteralVaried",
+    "mode": "span-static",
+    "ns": {
+      "glob": 33.180904388427734,
+      "candidate": 20.203590393066406,
+      "control": 20.626068115234375
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 29.770946502685547,
+        "2": 36.19060516357422
+      },
+      "candidate": {
+        "1": 19.848060607910156,
+        "2": 26.842689514160156
+      },
+      "control": {
+        "1": 20.626068115234375,
+        "2": 20.338821411132812
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.0209110219494926,
+    "globOverCandidate": 1.6423271182440407
+  },
+  {
+    "fixture": "LiteralVaried",
+    "mode": "span-reused",
+    "ns": {
+      "glob": 29.59585189819336,
+      "candidate": 14.570808410644531,
+      "control": 13.144779205322266
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 28.218650817871094,
+        "2": 33.52699279785156
+      },
+      "candidate": {
+        "1": 14.338970184326172,
+        "2": 16.82138442993164
+      },
+      "control": {
+        "1": 10.387229919433594,
+        "2": 18.838119506835938
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9021310853088633,
+    "globOverCandidate": 2.0311743222546568
+  },
+  {
+    "fixture": "Dense",
+    "mode": "static",
+    "ns": {
+      "glob": 911.12060546875,
+      "candidate": 552.728271484375,
+      "control": 588.775634765625
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 887.75634765625,
+        "2": 1021.624755859375
+      },
+      "candidate": {
+        "1": 529.6630859375,
+        "2": 673.6328125
+      },
+      "control": {
+        "1": 588.775634765625,
+        "2": 579.62646484375
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.0652171512494617,
+    "globOverCandidate": 1.6484060115504808
+  },
+  {
+    "fixture": "Dense",
+    "mode": "reused",
+    "ns": {
+      "glob": 1016.4505004882812,
+      "candidate": 265.447998046875,
+      "control": 701.0086059570312
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 897.7813720703125,
+        "2": 1455.33447265625
+      },
+      "candidate": {
+        "1": 217.9656982421875,
+        "2": 389.0838623046875
+      },
+      "control": {
+        "1": 625.7354736328125,
+        "2": 1260.0311279296875
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 2.6408509806626657,
+    "globOverCandidate": 3.829188797682279
+  },
+  {
+    "fixture": "Dense",
+    "mode": "span-static",
+    "ns": {
+      "glob": 1033.917236328125,
+      "candidate": 701.3641357421875,
+      "control": 672.479248046875
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 946.8414306640625,
+        "2": 1267.169189453125
+      },
+      "candidate": {
+        "1": 652.57568359375,
+        "2": 740.83251953125
+      },
+      "control": {
+        "1": 633.7188720703125,
+        "2": 827.81982421875
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9588161324149455,
+    "globOverCandidate": 1.4741518472911763
+  },
+  {
+    "fixture": "Dense",
+    "mode": "span-reused",
+    "ns": {
+      "glob": 1093.5333251953125,
+      "candidate": 267.327880859375,
+      "control": 658.026123046875
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 970.0408935546875,
+        "2": 1726.55029296875
+      },
+      "candidate": {
+        "1": 234.759521484375,
+        "2": 301.9439697265625
+      },
+      "control": {
+        "1": 590.1092529296875,
+        "2": 713.8824462890625
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 2.461494554670198,
+    "globOverCandidate": 4.090607091486107
+  },
+  {
+    "fixture": "Question16",
+    "mode": "static",
+    "ns": {
+      "candidate": 59.819793701171875,
+      "control": 62.21427917480469
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 55.435943603515625,
+        "2": 65.55709838867188
+      },
+      "control": {
+        "1": 61.08055114746094,
+        "2": 74.91645812988281
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.040028313798513
+  },
+  {
+    "fixture": "Question16",
+    "mode": "reused",
+    "ns": {
+      "candidate": 13.148784637451172,
+      "control": 64.28079605102539
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 12.723636627197266,
+        "2": 14.188671112060547
+      },
+      "control": {
+        "1": 64.28079605102539,
+        "2": 64.05963897705078
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 4.888725294650952
+  },
+  {
+    "fixture": "Question16",
+    "mode": "span-static",
+    "ns": {
+      "candidate": 69.11354064941406,
+      "control": 68.76335144042969
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 59.17549133300781,
+        "2": 84.72557067871094
+      },
+      "control": {
+        "1": 59.88273620605469,
+        "2": 79.58145141601562
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.994933131688901
+  },
+  {
+    "fixture": "Question16",
+    "mode": "span-reused",
+    "ns": {
+      "candidate": 12.948799133300781,
+      "control": 60.407066345214844
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 11.287975311279297,
+        "2": 14.418792724609375
+      },
+      "control": {
+        "1": 54.26645278930664,
+        "2": 69.44637298583984
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 4.665070924597504
+  },
+  {
+    "fixture": "Question32",
+    "mode": "static",
+    "ns": {
+      "candidate": 95.41091918945312,
+      "control": 90.91529846191406
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 86.69929504394531,
+        "2": 102.4658203125
+      },
+      "control": {
+        "1": 85.46791076660156,
+        "2": 99.10659790039062
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9528814860423647
+  },
+  {
+    "fixture": "Question32",
+    "mode": "reused",
+    "ns": {
+      "candidate": 27.199172973632812,
+      "control": 29.653549194335938
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 26.256179809570312,
+        "2": 28.126907348632812
+      },
+      "control": {
+        "1": 26.566505432128906,
+        "2": 34.734153747558594
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.0902371635741435
+  },
+  {
+    "fixture": "Question32",
+    "mode": "span-static",
+    "ns": {
+      "candidate": 79.69131469726562,
+      "control": 73.35777282714844
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 65.19012451171875,
+        "2": 95.88623046875
+      },
+      "control": {
+        "1": 68.04237365722656,
+        "2": 95.14923095703125
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9205240634543767
+  },
+  {
+    "fixture": "Question32",
+    "mode": "span-reused",
+    "ns": {
+      "candidate": 28.013038635253906,
+      "control": 27.516937255859375
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 23.33545684814453,
+        "2": 29.857635498046875
+      },
+      "control": {
+        "1": 23.25267791748047,
+        "2": 33.100128173828125
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9822903403713513
+  },
+  {
+    "fixture": "RetryNearMiss",
+    "mode": "static",
+    "ns": {
+      "glob": 20412.265014648438,
+      "candidate": 175.75225830078125,
+      "control": 162.52899169921875
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 18076.00555419922,
+        "2": 23040.142822265625
+      },
+      "candidate": {
+        "1": 179.7760009765625,
+        "2": 160.4400634765625
+      },
+      "control": {
+        "1": 160.07080078125,
+        "2": 169.7998046875
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9247618964933453,
+    "globOverCandidate": 116.14226304685668
+  },
+  {
+    "fixture": "RetryNearMiss",
+    "mode": "reused",
+    "ns": {
+      "glob": 19342.0654296875,
+      "candidate": 124.25765991210938,
+      "control": 158.9630126953125
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 18540.740966796875,
+        "2": 19524.323272705078
+      },
+      "candidate": {
+        "1": 155.64117431640625,
+        "2": 115.25726318359375
+      },
+      "control": {
+        "1": 191.8853759765625,
+        "2": 151.61666870117188
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.279301515960876,
+    "globOverCandidate": 155.66095034598783
+  },
+  {
+    "fixture": "RetryNearMiss",
+    "mode": "span-static",
+    "ns": {
+      "glob": 19711.178588867188,
+      "candidate": 171.29669189453125,
+      "control": 150.42266845703125
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 18170.838928222656,
+        "2": 26434.870147705078
+      },
+      "candidate": {
+        "1": 171.29669189453125,
+        "2": 168.94454956054688
+      },
+      "control": {
+        "1": 150.42266845703125,
+        "2": 152.97470092773438
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.8781411175742243,
+    "globOverCandidate": 115.07039844647741
+  },
+  {
+    "fixture": "RetryNearMiss",
+    "mode": "span-reused",
+    "ns": {
+      "glob": 20897.547912597656,
+      "candidate": 146.17156982421875,
+      "control": 153.11737060546875
+    },
+    "launchMedians": {
+      "glob": {
+        "1": 19055.42755126953,
+        "2": 23889.66064453125
+      },
+      "candidate": {
+        "1": 146.17156982421875,
+        "2": 146.38671875
+      },
+      "control": {
+        "1": 149.79629516601562,
+        "2": 160.5316162109375
+      }
+    },
+    "bytes": {
+      "glob": 0.0,
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "glob": 16,
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.0475181376898586,
+    "globOverCandidate": 142.96588548462864
+  },
+  {
+    "fixture": "IgnoreCase",
+    "mode": "static",
+    "ns": {
+      "candidate": 78.35693359375,
+      "control": 77.70767211914062
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 80.60989379882812,
+        "2": 76.83639526367188
+      },
+      "control": {
+        "1": 80.2581787109375,
+        "2": 76.33285522460938
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.991714052033027
+  },
+  {
+    "fixture": "IgnoreCase",
+    "mode": "reused",
+    "ns": {
+      "candidate": 45.909881591796875,
+      "control": 59.088134765625
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 52.667236328125,
+        "2": 43.47991943359375
+      },
+      "control": {
+        "1": 66.23992919921875,
+        "2": 55.36766052246094
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.2870461154964685
+  },
+  {
+    "fixture": "IgnoreCase",
+    "mode": "span-static",
+    "ns": {
+      "candidate": 67.46673583984375,
+      "control": 68.26057434082031
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 63.84735107421875,
+        "2": 69.07157897949219
+      },
+      "control": {
+        "1": 66.85676574707031,
+        "2": 69.21730041503906
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.0117663688793397
+  },
+  {
+    "fixture": "IgnoreCase",
+    "mode": "span-reused",
+    "ns": {
+      "candidate": 60.561370849609375,
+      "control": 57.78160095214844
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 60.039520263671875,
+        "2": 62.094879150390625
+      },
+      "control": {
+        "1": 57.78160095214844,
+        "2": 57.949066162109375
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9540999508686177
+  },
+  {
+    "fixture": "Tiny",
+    "mode": "static",
+    "ns": {
+      "candidate": 27.88867950439453,
+      "control": 27.038002014160156
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 28.98235321044922,
+        "2": 27.412796020507812
+      },
+      "control": {
+        "1": 26.281166076660156,
+        "2": 27.038002014160156
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9694973908642633
+  },
+  {
+    "fixture": "Tiny",
+    "mode": "reused",
+    "ns": {
+      "candidate": 7.807826995849609,
+      "control": 23.511362075805664
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 9.213447570800781,
+        "2": 7.574748992919922
+      },
+      "control": {
+        "1": 25.027751922607422,
+        "2": 23.10624122619629
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 3.0112555117196567
+  },
+  {
+    "fixture": "Tiny",
+    "mode": "span-static",
+    "ns": {
+      "candidate": 26.520919799804688,
+      "control": 26.021766662597656
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 24.23248291015625,
+        "2": 28.535079956054688
+      },
+      "control": {
+        "1": 24.686241149902344,
+        "2": 29.03289794921875
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.9811788904391352
+  },
+  {
+    "fixture": "Tiny",
+    "mode": "span-reused",
+    "ns": {
+      "candidate": 8.732843399047852,
+      "control": 22.101449966430664
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 8.223676681518555,
+        "2": 9.467601776123047
+      },
+      "control": {
+        "1": 21.1331844329834,
+        "2": 24.874305725097656
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 2.530842356435752
+  },
+  {
+    "fixture": "Empty",
+    "mode": "static",
+    "ns": {
+      "candidate": 19.911575317382812,
+      "control": 21.532535552978516
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 18.88885498046875,
+        "2": 20.560836791992188
+      },
+      "control": {
+        "1": 20.51219940185547,
+        "2": 21.919727325439453
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.0814079353219535
+  },
+  {
+    "fixture": "Empty",
+    "mode": "reused",
+    "ns": {
+      "candidate": 15.454483032226562,
+      "control": 17.186355590820312
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 15.716266632080078,
+        "2": 15.015602111816406
+      },
+      "control": {
+        "1": 17.03777313232422,
+        "2": 17.215919494628906
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.1120627946585047
+  },
+  {
+    "fixture": "Empty",
+    "mode": "span-static",
+    "ns": {
+      "candidate": 17.67578125,
+      "control": 18.33667755126953
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 17.67578125,
+        "2": 17.65727996826172
+      },
+      "control": {
+        "1": 18.78223419189453,
+        "2": 16.905498504638672
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 1.0373899343922652
+  },
+  {
+    "fixture": "Empty",
+    "mode": "span-reused",
+    "ns": {
+      "candidate": 16.170597076416016,
+      "control": 13.350963592529297
+    },
+    "launchMedians": {
+      "candidate": {
+        "1": 16.728782653808594,
+        "2": 15.91196060180664
+      },
+      "control": {
+        "1": 12.529754638671875,
+        "2": 15.118122100830078
+      }
+    },
+    "bytes": {
+      "candidate": 0.0,
+      "control": 0.0
+    },
+    "samples": {
+      "candidate": 16,
+      "control": 16
+    },
+    "controlOverCandidate": 0.825632073413108
+  }
+]

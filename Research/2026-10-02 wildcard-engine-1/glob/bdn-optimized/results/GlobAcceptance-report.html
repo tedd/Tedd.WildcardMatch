@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>GlobAcceptance-20261002-132729</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.15.8, Windows 11 (10.0.26200.9457/25H2/2025Update/HudsonValley2)
+AMD Ryzen 9 5950X 3.40GHz, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 11.0.100-rc.1.26425.128
+  [Host]     : .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+  Job-ZMHJYT : .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+</code></pre>
+<pre><code>Affinity=01000000000000000000000000000000  EnvironmentVariables=DOTNET_TieredCompilation=0  IterationCount=10  
+IterationTime=100ms  LaunchCount=3  WarmupCount=3  
+</code></pre>
+
+<table>
+<thead><tr><th>Method</th><th>Workload</th><th>Library   </th><th>Mean  </th><th>Error</th><th>StdDev</th><th>Code Size</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>Match</td><td>Literal</td><td>DotNetGlob</td><td>15.311 ns</td><td>0.0494 ns</td><td>0.0692 ns</td><td>67 B</td><td>-</td>
+</tr><tr><td>Match</td><td>Literal</td><td>TeddDirectReused</td><td>5.920 ns</td><td>0.5838 ns</td><td>0.8184 ns</td><td>67 B</td><td>-</td>
+</tr><tr><td>Match</td><td>Literal</td><td>TeddDirectStatic</td><td>14.925 ns</td><td>0.0642 ns</td><td>0.0921 ns</td><td>67 B</td><td>-</td>
+</tr><tr><td>Match</td><td>LongText</td><td>DotNetGlob</td><td>7,346.052 ns</td><td>70.6703 ns</td><td>99.0699 ns</td><td>67 B</td><td>-</td>
+</tr><tr><td>Match</td><td>LongText</td><td>TeddDirectReused</td><td>179.378 ns</td><td>1.4110 ns</td><td>2.0682 ns</td><td>67 B</td><td>-</td>
+</tr><tr><td>Match</td><td>LongText</td><td>TeddDirectStatic</td><td>212.491 ns</td><td>1.7013 ns</td><td>2.3849 ns</td><td>67 B</td><td>-</td>
+</tr><tr><td>Match</td><td>MultiStar</td><td>DotNetGlob</td><td>59.668 ns</td><td>0.4871 ns</td><td>0.6667 ns</td><td>67 B</td><td>-</td>
+</tr><tr><td>Match</td><td>MultiStar</td><td>TeddDirectReused</td><td>21.735 ns</td><td>0.4083 ns</td><td>0.5856 ns</td><td>67 B</td><td>-</td>
+</tr><tr><td>Match</td><td>MultiStar</td><td>TeddDirectStatic</td><td>38.161 ns</td><td>1.5460 ns</td><td>2.1162 ns</td><td>67 B</td><td>-</td>
+</tr><tr><td>Match</td><td>Simple</td><td>DotNetGlob</td><td>22.626 ns</td><td>0.0253 ns</td><td>0.0354 ns</td><td>67 B</td><td>-</td>
+</tr><tr><td>Match</td><td>Simple</td><td>TeddDirectReused</td><td>5.511 ns</td><td>0.0239 ns</td><td>0.0343 ns</td><td>67 B</td><td>-</td>
+</tr><tr><td>Match</td><td>Simple</td><td>TeddDirectStatic</td><td>19.836 ns</td><td>0.0455 ns</td><td>0.0622 ns</td><td>67 B</td><td>-</td>
+</tr></tbody></table>
+</body>
+</html>

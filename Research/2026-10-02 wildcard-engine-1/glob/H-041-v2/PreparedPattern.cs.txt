@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Text;
+
+namespace Tedd;
+
+internal sealed class PreparedPattern
+{
+    private readonly ulong[] _literals = new ulong[128];
+    private readonly ulong _stars, _questions, _accept;
+    private readonly bool _singleline;
+    private PreparedPattern(string pattern, bool singleline)
+    {
+        _singleline = singleline;
+        var tokens = new StringBuilder(pattern.Length);
+        foreach (char token in pattern) if (token != '*' || tokens.Length == 0 || tokens[tokens.Length - 1] != '*') tokens.Append(token);
+        for (int i = 0; i < tokens.Length; i++)
+        {
+            char token = tokens[i]; ulong bit = 1UL << i;
+            if (token == '*') _stars |= bit;
+            else if (token == '?') _questions |= bit;
+            else { _literals[token] |= bit; }
+        }
+        _accept = 1UL << tokens.Length;
+    }
+
+    internal static PreparedPattern? Create(string pattern, bool singleline) =>
+        pattern.Length <= 63 && pattern.IndexOf('*') >= 0 && IsAscii(pattern) ? new PreparedPattern(pattern, singleline) : null;
+
+    private static bool IsAscii(string pattern) { foreach (char c in pattern) if (c >= 128) return false; return true; }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal bool IsMatch(ReadOnlySpan<char> input)
+    {
+        ulong active = 1 | ((1 & _stars) << 1);
+        for (int i = 0; i < input.Length; i++)
+        {
+            char value = input[i];
+            if (i == input.Length - 1 && value == '\n' && (active & _accept) != 0) return true;
+            ulong literals = value < 128 ? _literals[value] : 0;
+            bool canConsume = _singleline || value != '\n';
+            active = ((active & (literals | (canConsume ? _questions : 0))) << 1) | (canConsume ? active & _stars : 0);
+            active |= (active & _stars) << 1;
+            if (active == 0) return false;
+        }
+        return (active & _accept) != 0;
+    }
+}

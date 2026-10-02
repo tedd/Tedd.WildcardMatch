@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.1;net10.0;net11.0</TargetFrameworks>
+		<Description>Fastest wildcard library, highly optimized</Description>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageTags>wildcard;matching;pattern;star;questionmark</PackageTags>
+		<Version>2.1.0</Version>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<PackageProjectUrl>https://github.com/tedd/Tedd.WildcardMatch</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/tedd/Tedd.WildcardMatch.git</RepositoryUrl>
+
+		<PackageId>Tedd.WildcardMatch</PackageId>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<Deterministic>true</Deterministic>
+		<ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
+		<RepositoryType>git</RepositoryType>
+		<Authors>tedd</Authors>
+		<Company>Tedd Hansen</Company>
+		<Copyright>Tedd Hansen</Copyright>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<EnableNETAnalyzers>True</EnableNETAnalyzers>
+		<AnalysisLevel>latest-all</AnalysisLevel>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+
+
+
+</Project>

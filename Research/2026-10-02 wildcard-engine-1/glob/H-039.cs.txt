@@ -1,0 +1,120 @@
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
+namespace Tedd;
+
+internal sealed class PreparedPattern
+{
+    private readonly string _pattern;
+    private readonly Segment[] _segments;
+    private readonly bool _singleline, _startsStar, _endsStar, _containsLf;
+    private readonly int _minimum;
+    private readonly struct Segment
+    {
+        internal readonly int Offset, Length, Anchor, AnchorLength, Remaining;
+        internal Segment(int offset, int length, int anchor, int anchorLength, int remaining)
+        { Offset = offset; Length = length; Anchor = anchor; AnchorLength = anchorLength; Remaining = remaining; }
+    }
+
+    private PreparedPattern(string pattern, bool singleline)
+    {
+        _pattern = pattern; _singleline = singleline;
+        _startsStar = pattern[0] == '*'; _endsStar = pattern[pattern.Length - 1] == '*';
+        _containsLf = pattern.IndexOf('\n') >= 0;
+        var segments = new List<Segment>();
+        for (int offset = 0; offset < pattern.Length;)
+        {
+            if (pattern[offset] == '*') { offset++; continue; }
+            int end = offset;
+            while (end < pattern.Length && pattern[end] != '*') end++;
+            int anchor = -1, anchorLength = 0;
+            for (int i = offset; i < end;)
+            {
+                if (pattern[i] == '?') { i++; continue; }
+                int start = i++;
+                while (i < end && pattern[i] != '?') i++;
+                if (i - start > anchorLength) { anchor = start - offset; anchorLength = i - start; }
+            }
+            segments.Add(new Segment(offset, end - offset, anchor, anchorLength, 0));
+            _minimum += end - offset; offset = end;
+        }
+        _segments = segments.ToArray();
+        int remaining = 0;
+        for (int i = _segments.Length - 1; i >= 0; i--)
+        {
+            Segment s = _segments[i];
+            _segments[i] = new Segment(s.Offset, s.Length, s.Anchor, s.AnchorLength, remaining);
+            remaining += s.Length;
+        }
+    }
+
+    internal static PreparedPattern? Create(string pattern, bool singleline) =>
+        pattern.IndexOf('*') >= 0 ? new PreparedPattern(pattern, singleline) : null;
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal bool IsMatch(ReadOnlySpan<char> input)
+    {
+        if (!_singleline && !_containsLf)
+        {
+            if (input.Length > 0 && input[input.Length - 1] == '\n') input = input.Slice(0, input.Length - 1);
+            return Window(input);
+        }
+        return Window(input) || (input.Length > 0 && input[input.Length - 1] == '\n' && Window(input.Slice(0, input.Length - 1)));
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private bool Matches(ReadOnlySpan<char> input, in Segment segment, int position)
+    {
+        if (segment.AnchorLength == segment.Length)
+            return input.Slice(position, segment.Length).SequenceEqual(_pattern.AsSpan(segment.Offset, segment.Length));
+        for (int i = 0; i < segment.Length; i++)
+        {
+            char token = _pattern[segment.Offset + i], value = input[position + i];
+            if (token == '?' ? !_singleline && value == '\n' : token != value) return false;
+        }
+        return true;
+    }
+
+    private bool Window(ReadOnlySpan<char> input)
+    {
+        if (input.Length < _minimum) return false;
+        int first = 0, last = _segments.Length, position = 0, limit = input.Length;
+        if (!_startsStar)
+        {
+            ref readonly Segment prefix = ref _segments[first++];
+            if (!Matches(input, in prefix, position)) return false;
+            position += prefix.Length;
+        }
+        if (!_endsStar)
+        {
+            ref readonly Segment suffix = ref _segments[--last];
+            limit -= suffix.Length;
+            if (limit < position || !Matches(input, in suffix, limit)) return false;
+        }
+        for (int i = first; i < last; i++)
+        {
+            ref readonly Segment segment = ref _segments[i];
+            int max = input.Length - segment.Remaining - segment.Length;
+            int candidate = position;
+            while (true)
+            {
+                if (candidate > max) return false;
+                if (segment.Anchor >= 0)
+                {
+                    int searchStart = candidate + segment.Anchor;
+                    int searchLength = max - candidate + segment.AnchorLength;
+                    int found = input.Slice(searchStart, searchLength).IndexOf(_pattern.AsSpan(segment.Offset + segment.Anchor, segment.AnchorLength));
+                    if (found < 0) return false;
+                    candidate += found;
+                }
+                if (!_singleline && input.Slice(position, candidate - position).IndexOf('\n') >= 0) return false;
+                if (Matches(input, in segment, candidate)) break;
+                if (segment.Anchor < 0) return false;
+                candidate++;
+            }
+            position = candidate + segment.Length;
+        }
+        return _singleline || input.Slice(position, limit - position).IndexOf('\n') < 0;
+    }
+}

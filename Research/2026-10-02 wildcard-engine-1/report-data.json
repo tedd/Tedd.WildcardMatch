@@ -1,16 +1,16 @@
 {
   "title": "Direct wildcard engine: correctness and performance",
-  "generatedAt": "2026-10-02T02:25:33.395438+00:00",
+  "generatedAt": "2026-10-02T11:31:14.479632+00:00",
   "status": "complete",
-  "scope": "Requested engine rewrite and validation, rather than an exhaustive search for all optimization opportunities. Direct WildcardMatch and preserved WildcardMatchRegex; .NET Standard 2.1/.NET 10/.NET 11 source targets, timed on .NET 10 x64. Continuation: catalogue-driven optimization of committed direct engine 4bc779e; original charts remain historical. New control/candidate charts share a distinct .NET 10 direct-engine epoch. No application throughput claim. Borrowed UTF-16 API continuation: preserve existing strings and add static/reusable span matching, owned span-pattern constructors and mutable/read-only span extensions. Allocation removal is a local caller result; no application throughput claim.",
-  "question": "Can a direct iterative wildcard engine preserve the Regex contract and improve common complete calls while avoiding per-match buffers? Which additional measured mechanisms improve the committed direct engine? Can borrowed slices remove caller materialization while retaining owned-string performance and all semantic invariants?",
+  "scope": "Requested engine rewrite and validation, rather than an exhaustive search for all optimization opportunities. Direct WildcardMatch and preserved WildcardMatchRegex; .NET Standard 2.1/.NET 10/.NET 11 source targets, timed on .NET 10 x64. Continuation: catalogue-driven optimization of committed direct engine 4bc779e; original charts remain historical. New control/candidate charts share a distinct .NET 10 direct-engine epoch. No application throughput claim. Borrowed UTF-16 API continuation: preserve existing strings and add static/reusable span matching, owned span-pattern constructors and mutable/read-only span extensions. Allocation removal is a local caller result; no application throughput claim. Glob continuation: measured prepared and static ordinal callers against DotNet.Glob 3.1.3. Preserve the entire UTF-16/Regex contract and earlier epochs. .NET 10/11 compile-time intrinsics, portable .NET Standard fallback. No application or universal-fastest claim.",
+  "question": "Can a direct iterative wildcard engine preserve the Regex contract and improve common complete calls while avoiding per-match buffers? Which additional measured mechanisms improve the committed direct engine? Can borrowed slices remove caller materialization while retaining owned-string performance and all semantic invariants? Can specialized prepared masks exceed twice prepared Glob throughput on the unchanged question-mark fixture without result caching or a narrower Unicode contract?",
   "primaryMetric": "ns/call and managed B/call",
   "summary": {
-    "baseline": 308.2691192626953,
-    "final": 101.09519958496094,
+    "baseline": 23.292255401611328,
+    "final": 7.127416133880615,
     "unit": "ns/call",
-    "changePercent": -67.20553786679767,
-    "headline": "Borrowed slices: 1,024-character literal static caller 308.3 → 101.1 ns; 4144 → 0 allocated bytes. Existing string callers and earlier epochs remain explicit below."
+    "changePercent": -69.40006018744089,
+    "headline": "Glob continuation: prepared report-??.txt 23.29 → 7.13 ns (3.27× throughput). Static calls, cold cost and losing contrasts are explicit; this is not a universal 2× claim."
   },
   "scorecards": [
     {
@@ -132,6 +132,38 @@
       "secondaryMetric": "managed allocation",
       "secondaryChangePercent": -100,
       "progression": "32 → 0 B/call; final paired epoch"
+    },
+    {
+      "title": "Glob continuation: Literal / prepared",
+      "baseline": 19.90666389465332,
+      "value": 8.485472202301025,
+      "unit": "ns/call",
+      "wallChangePercent": -57.373710395642355,
+      "progression": "Final contemporaneous Glob → integrated; three processes, 54 unfiltered samples/engine"
+    },
+    {
+      "title": "Glob continuation: Simple / prepared",
+      "baseline": 23.292255401611328,
+      "value": 7.127416133880615,
+      "unit": "ns/call",
+      "wallChangePercent": -69.40006018744089,
+      "progression": "Final contemporaneous Glob → integrated; three processes, 54 unfiltered samples/engine"
+    },
+    {
+      "title": "Glob continuation: MultiStar / prepared",
+      "baseline": 64.21670913696289,
+      "value": 29.409027099609375,
+      "unit": "ns/call",
+      "wallChangePercent": -54.20346589719334,
+      "progression": "Final contemporaneous Glob → integrated; three processes, 54 unfiltered samples/engine"
+    },
+    {
+      "title": "Glob continuation: LongText / prepared",
+      "baseline": 7045.81298828125,
+      "value": 155.67646026611328,
+      "unit": "ns/call",
+      "wallChangePercent": -97.79051103790239,
+      "progression": "Final contemporaneous Glob → integrated; three processes, 54 unfiltered samples/engine"
     }
   ],
   "series": [
@@ -4437,6 +4469,1332 @@
           ]
         }
       ]
+    },
+    {
+      "title": "Glob corroboration: optimized BenchmarkDotNet epoch",
+      "description": "TieredCompilation=0; three launches, 3 warmups, 10 iterations at 100ms. Bars are BDN means with its default outlier policy; whiskers show all raw actual iteration extrema. Not combined with paired default-PGO epoch.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "DotNet.Glob",
+        "Direct prepared",
+        "Direct static"
+      ],
+      "rows": [
+        {
+          "label": "Literal",
+          "detail": "Separate processes, optimized JIT; standard BDN statistical mean",
+          "measurements": [
+            {
+              "median": 15.310561470709693,
+              "min": 15.245773315429688,
+              "max": 15.71917724609375,
+              "n": 30
+            },
+            {
+              "median": 5.9199965080394055,
+              "min": 5.618411971247984,
+              "max": 8.566365747407835,
+              "n": 30
+            },
+            {
+              "median": 14.92519944960071,
+              "min": 14.861005388095602,
+              "max": 16.029341448392117,
+              "n": 30
+            }
+          ]
+        },
+        {
+          "label": "Simple",
+          "detail": "Separate processes, optimized JIT; standard BDN statistical mean",
+          "measurements": [
+            {
+              "median": 22.625539013637802,
+              "min": 22.577192785565337,
+              "max": 23.030991152108435,
+              "n": 30
+            },
+            {
+              "median": 5.511308929658946,
+              "min": 5.46832158675478,
+              "max": 5.736679248595506,
+              "n": 30
+            },
+            {
+              "median": 19.835694761533322,
+              "min": 19.776975953733768,
+              "max": 20.212997808689025,
+              "n": 30
+            }
+          ]
+        },
+        {
+          "label": "MultiStar",
+          "detail": "Separate processes, optimized JIT; standard BDN statistical mean",
+          "measurements": [
+            {
+              "median": 59.66800677875643,
+              "min": 58.998385006809926,
+              "max": 66.18865153980025,
+              "n": 30
+            },
+            {
+              "median": 21.735075532317705,
+              "min": 21.239745243085803,
+              "max": 24.066310975609756,
+              "n": 30
+            },
+            {
+              "median": 38.160923168290395,
+              "min": 37.164578533026116,
+              "max": 49.447439636136714,
+              "n": 30
+            }
+          ]
+        },
+        {
+          "label": "LongText",
+          "detail": "Separate processes, optimized JIT; standard BDN statistical mean",
+          "measurements": [
+            {
+              "median": 7346.051929615162,
+              "min": 7236.63330078125,
+              "max": 9413.226318359375,
+              "n": 30
+            },
+            {
+              "median": 179.3782400249528,
+              "min": 175.8667896412037,
+              "max": 205.4894488790761,
+              "n": 30
+            },
+            {
+              "median": 212.49111265604785,
+              "min": 208.03664634967672,
+              "max": 245.66482017780172,
+              "n": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Glob final epoch: reused",
+      "description": "Warm-process median ns/match. Whiskers span process medians. Control is frozen fe4fff6 C#. No samples discarded.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "Released direct",
+        "Integrated",
+        "DotNet.Glob"
+      ],
+      "rows": [
+        {
+          "label": "Literal",
+          "detail": "reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 16.737914085388184,
+              "min": 15.134215354919434,
+              "max": 18.02845001220703,
+              "n": 54
+            },
+            {
+              "median": 8.485472202301025,
+              "min": 7.77815580368042,
+              "max": 9.064555168151855,
+              "n": 54
+            },
+            {
+              "median": 19.90666389465332,
+              "min": 18.26491355895996,
+              "max": 21.20828628540039,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "Simple",
+          "detail": "reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 46.98991775512695,
+              "min": 44.121551513671875,
+              "max": 48.894405364990234,
+              "n": 54
+            },
+            {
+              "median": 7.127416133880615,
+              "min": 6.587064266204834,
+              "max": 7.513546943664551,
+              "n": 54
+            },
+            {
+              "median": 23.292255401611328,
+              "min": 21.805715560913086,
+              "max": 24.434471130371094,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "MultiStar",
+          "detail": "reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 63.995933532714844,
+              "min": 63.995933532714844,
+              "max": 64.49956893920898,
+              "n": 54
+            },
+            {
+              "median": 29.409027099609375,
+              "min": 28.93519401550293,
+              "max": 31.012392044067383,
+              "n": 54
+            },
+            {
+              "median": 64.21670913696289,
+              "min": 61.174964904785156,
+              "max": 64.88943099975586,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "LongText",
+          "detail": "reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 272.83477783203125,
+              "min": 257.7705383300781,
+              "max": 279.5738220214844,
+              "n": 54
+            },
+            {
+              "median": 155.67646026611328,
+              "min": 142.1192169189453,
+              "max": 174.35340881347656,
+              "n": 54
+            },
+            {
+              "median": 7045.81298828125,
+              "min": 6805.517578125,
+              "max": 7232.99560546875,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "SimpleVaried",
+          "detail": "reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 49.67947006225586,
+              "min": 46.58517837524414,
+              "max": 54.15534973144531,
+              "n": 54
+            },
+            {
+              "median": 7.5559258460998535,
+              "min": 7.32499361038208,
+              "max": 8.314013481140137,
+              "n": 54
+            },
+            {
+              "median": 39.55421447753906,
+              "min": 37.91046142578125,
+              "max": 43.910884857177734,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "SimpleLateMiss",
+          "detail": "reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 45.2336311340332,
+              "min": 39.532470703125,
+              "max": 51.4892578125,
+              "n": 54
+            },
+            {
+              "median": 7.26933479309082,
+              "min": 6.016957759857178,
+              "max": 7.992219924926758,
+              "n": 54
+            },
+            {
+              "median": 36.900901794433594,
+              "min": 33.84966850280762,
+              "max": 39.41183090209961,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "SimpleFirstMiss",
+          "detail": "reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 14.722275733947754,
+              "min": 14.377856254577637,
+              "max": 19.203901290893555,
+              "n": 54
+            },
+            {
+              "median": 7.452523708343506,
+              "min": 6.012213230133057,
+              "max": 7.885539531707764,
+              "n": 54
+            },
+            {
+              "median": 11.025476455688477,
+              "min": 9.22706127166748,
+              "max": 12.164568901062012,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "LiteralVaried",
+          "detail": "reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 20.15848159790039,
+              "min": 18.189191818237305,
+              "max": 22.69415855407715,
+              "n": 54
+            },
+            {
+              "median": 9.723222255706787,
+              "min": 7.93306827545166,
+              "max": 10.997748374938965,
+              "n": 54
+            },
+            {
+              "median": 29.734134674072266,
+              "min": 25.658655166625977,
+              "max": 30.690288543701172,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "Dense",
+          "detail": "reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 663.470458984375,
+              "min": 572.5791931152344,
+              "max": 705.8700561523438,
+              "n": 54
+            },
+            {
+              "median": 34.867143630981445,
+              "min": 30.629634857177734,
+              "max": 38.35921287536621,
+              "n": 54
+            },
+            {
+              "median": 785.7223510742188,
+              "min": 717.4453735351562,
+              "max": 828.3203125,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "RetryNearMiss",
+          "detail": "reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 178.04946899414062,
+              "min": 167.69256591796875,
+              "max": 183.25347900390625,
+              "n": 54
+            },
+            {
+              "median": 112.60967254638672,
+              "min": 107.22675323486328,
+              "max": 116.12606048583984,
+              "n": 54
+            },
+            {
+              "median": 20210.986328125,
+              "min": 19525.146484375,
+              "max": 20689.6484375,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "MixedAnchorNearMiss",
+          "detail": "reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 3743.76220703125,
+              "min": 3526.77001953125,
+              "max": 4014.593505859375,
+              "n": 54
+            },
+            {
+              "median": 144.1293716430664,
+              "min": 142.58499145507812,
+              "max": 150.66051483154297,
+              "n": 54
+            },
+            {
+              "median": 4313.76953125,
+              "min": 4112.09716796875,
+              "max": 4677.7099609375,
+              "n": 54
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Glob final epoch: static",
+      "description": "Warm-process median ns/match. Whiskers span process medians. Control is frozen fe4fff6 C#. No samples discarded.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "Released direct",
+        "Integrated",
+        "DotNet.Glob"
+      ],
+      "rows": [
+        {
+          "label": "Literal",
+          "detail": "static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 23.27103614807129,
+              "min": 22.2104549407959,
+              "max": 24.873065948486328,
+              "n": 54
+            },
+            {
+              "median": 14.695978164672852,
+              "min": 14.224982261657715,
+              "max": 15.213179588317871,
+              "n": 54
+            },
+            {
+              "median": 19.094514846801758,
+              "min": 18.214702606201172,
+              "max": 19.748306274414062,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "Simple",
+          "detail": "static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 72.44386672973633,
+              "min": 68.13783645629883,
+              "max": 75.66595077514648,
+              "n": 54
+            },
+            {
+              "median": 16.14670753479004,
+              "min": 15.198326110839844,
+              "max": 16.788625717163086,
+              "n": 54
+            },
+            {
+              "median": 22.751331329345703,
+              "min": 21.521568298339844,
+              "max": 23.478984832763672,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "MultiStar",
+          "detail": "static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 71.25787734985352,
+              "min": 70.14265060424805,
+              "max": 72.96171188354492,
+              "n": 54
+            },
+            {
+              "median": 39.308786392211914,
+              "min": 37.95328140258789,
+              "max": 42.360544204711914,
+              "n": 54
+            },
+            {
+              "median": 65.04411697387695,
+              "min": 61.15617752075195,
+              "max": 75.1617431640625,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "LongText",
+          "detail": "static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 278.93218994140625,
+              "min": 267.5254821777344,
+              "max": 310.9611511230469,
+              "n": 54
+            },
+            {
+              "median": 180.1372528076172,
+              "min": 173.101806640625,
+              "max": 187.55340576171875,
+              "n": 54
+            },
+            {
+              "median": 7113.87939453125,
+              "min": 7009.033203125,
+              "max": 7202.25830078125,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "SimpleVaried",
+          "detail": "static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 79.25186157226562,
+              "min": 72.36871719360352,
+              "max": 82.78436660766602,
+              "n": 54
+            },
+            {
+              "median": 16.55271053314209,
+              "min": 15.8494234085083,
+              "max": 17.87278652191162,
+              "n": 54
+            },
+            {
+              "median": 39.55965042114258,
+              "min": 39.17255401611328,
+              "max": 41.01719856262207,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "SimpleLateMiss",
+          "detail": "static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 72.46894836425781,
+              "min": 63.49315643310547,
+              "max": 82.26184844970703,
+              "n": 54
+            },
+            {
+              "median": 15.827727317810059,
+              "min": 13.515257835388184,
+              "max": 16.990232467651367,
+              "n": 54
+            },
+            {
+              "median": 38.35115432739258,
+              "min": 33.89544486999512,
+              "max": 40.209197998046875,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "SimpleFirstMiss",
+          "detail": "static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 23.756742477416992,
+              "min": 19.855117797851562,
+              "max": 28.019142150878906,
+              "n": 54
+            },
+            {
+              "median": 16.56336784362793,
+              "min": 13.772964477539062,
+              "max": 18.576622009277344,
+              "n": 54
+            },
+            {
+              "median": 11.86211109161377,
+              "min": 9.337961673736572,
+              "max": 13.154339790344238,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "LiteralVaried",
+          "detail": "static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 25.17709732055664,
+              "min": 22.37863540649414,
+              "max": 27.086448669433594,
+              "n": 54
+            },
+            {
+              "median": 14.866447448730469,
+              "min": 12.741231918334961,
+              "max": 15.755224227905273,
+              "n": 54
+            },
+            {
+              "median": 29.097270965576172,
+              "min": 25.686216354370117,
+              "max": 30.864381790161133,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "Dense",
+          "detail": "static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 1112.5823974609375,
+              "min": 986.0916137695312,
+              "max": 1218.5821533203125,
+              "n": 54
+            },
+            {
+              "median": 219.09446716308594,
+              "min": 195.26290893554688,
+              "max": 235.1856231689453,
+              "n": 54
+            },
+            {
+              "median": 777.20947265625,
+              "min": 711.322021484375,
+              "max": 818.1259155273438,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "RetryNearMiss",
+          "detail": "static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 189.9993896484375,
+              "min": 185.63575744628906,
+              "max": 197.49679565429688,
+              "n": 54
+            },
+            {
+              "median": 140.0310516357422,
+              "min": 137.69378662109375,
+              "max": 146.826171875,
+              "n": 54
+            },
+            {
+              "median": 20163.037109375,
+              "min": 19788.0859375,
+              "max": 20830.2734375,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "MixedAnchorNearMiss",
+          "detail": "static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 4220.684814453125,
+              "min": 3816.680908203125,
+              "max": 4633.7890625,
+              "n": 54
+            },
+            {
+              "median": 1383.990478515625,
+              "min": 1353.009033203125,
+              "max": 1486.6912841796875,
+              "n": 54
+            },
+            {
+              "median": 4176.434326171875,
+              "min": 4059.356689453125,
+              "max": 4420.233154296875,
+              "n": 54
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Glob final epoch: span-reused",
+      "description": "Warm-process median ns/match. Whiskers span process medians. Control is frozen fe4fff6 C#. No samples discarded.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "Released direct",
+        "Integrated",
+        "DotNet.Glob"
+      ],
+      "rows": [
+        {
+          "label": "Literal",
+          "detail": "span-reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 15.589714050292969,
+              "min": 15.311598777770996,
+              "max": 16.241145133972168,
+              "n": 54
+            },
+            {
+              "median": 8.918333053588867,
+              "min": 8.51370096206665,
+              "max": 9.241938591003418,
+              "n": 54
+            },
+            {
+              "median": 19.96321678161621,
+              "min": 18.039870262145996,
+              "max": 20.82655429840088,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "Simple",
+          "detail": "span-reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 45.90187072753906,
+              "min": 44.70233917236328,
+              "max": 46.450138092041016,
+              "n": 54
+            },
+            {
+              "median": 7.444119453430176,
+              "min": 7.172083854675293,
+              "max": 7.878625392913818,
+              "n": 54
+            },
+            {
+              "median": 22.322463989257812,
+              "min": 21.691036224365234,
+              "max": 22.495508193969727,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "MultiStar",
+          "detail": "span-reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 44.943904876708984,
+              "min": 41.85962677001953,
+              "max": 46.5916633605957,
+              "n": 54
+            },
+            {
+              "median": 29.60505485534668,
+              "min": 28.591442108154297,
+              "max": 31.415843963623047,
+              "n": 54
+            },
+            {
+              "median": 63.97571563720703,
+              "min": 63.2354736328125,
+              "max": 64.9282455444336,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "LongText",
+          "detail": "span-reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 197.04246520996094,
+              "min": 188.09280395507812,
+              "max": 205.02166748046875,
+              "n": 54
+            },
+            {
+              "median": 154.4891357421875,
+              "min": 151.52034759521484,
+              "max": 160.7624053955078,
+              "n": 54
+            },
+            {
+              "median": 7198.486328125,
+              "min": 6941.552734375,
+              "max": 7299.62158203125,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "SimpleVaried",
+          "detail": "span-reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 48.17085266113281,
+              "min": 42.551326751708984,
+              "max": 50.63638687133789,
+              "n": 54
+            },
+            {
+              "median": 7.947039604187012,
+              "min": 6.8456292152404785,
+              "max": 8.5252046585083,
+              "n": 54
+            },
+            {
+              "median": 39.68982696533203,
+              "min": 34.34796333312988,
+              "max": 43.05295944213867,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "SimpleLateMiss",
+          "detail": "span-reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 46.44155502319336,
+              "min": 41.802215576171875,
+              "max": 49.54652786254883,
+              "n": 54
+            },
+            {
+              "median": 7.731616497039795,
+              "min": 6.590902805328369,
+              "max": 8.19859504699707,
+              "n": 54
+            },
+            {
+              "median": 38.257455825805664,
+              "min": 34.41662788391113,
+              "max": 40.13314247131348,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "SimpleFirstMiss",
+          "detail": "span-reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 18.88401508331299,
+              "min": 16.493701934814453,
+              "max": 20.93527317047119,
+              "n": 54
+            },
+            {
+              "median": 7.697510719299316,
+              "min": 6.333029270172119,
+              "max": 8.45801830291748,
+              "n": 54
+            },
+            {
+              "median": 10.873675346374512,
+              "min": 9.210121631622314,
+              "max": 11.324143409729004,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "LiteralVaried",
+          "detail": "span-reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 16.056442260742188,
+              "min": 13.372254371643066,
+              "max": 17.681169509887695,
+              "n": 54
+            },
+            {
+              "median": 10.678339004516602,
+              "min": 9.71766710281372,
+              "max": 11.595582962036133,
+              "n": 54
+            },
+            {
+              "median": 29.822158813476562,
+              "min": 25.692367553710938,
+              "max": 32.4556827545166,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "Dense",
+          "detail": "span-reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 636.0366821289062,
+              "min": 557.2700500488281,
+              "max": 714.6499633789062,
+              "n": 54
+            },
+            {
+              "median": 35.91432571411133,
+              "min": 30.674219131469727,
+              "max": 40.38219451904297,
+              "n": 54
+            },
+            {
+              "median": 809.1339111328125,
+              "min": 714.0045166015625,
+              "max": 923.5183715820312,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "RetryNearMiss",
+          "detail": "span-reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 155.5377960205078,
+              "min": 148.2025146484375,
+              "max": 164.19334411621094,
+              "n": 54
+            },
+            {
+              "median": 114.58854675292969,
+              "min": 108.8582992553711,
+              "max": 118.3807373046875,
+              "n": 54
+            },
+            {
+              "median": 20445.556640625,
+              "min": 19793.212890625,
+              "max": 21284.4970703125,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "MixedAnchorNearMiss",
+          "detail": "span-reused; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 1922.8271484375,
+              "min": 1822.0458984375,
+              "max": 2064.24560546875,
+              "n": 54
+            },
+            {
+              "median": 139.5425796508789,
+              "min": 137.04586029052734,
+              "max": 140.8802032470703,
+              "n": 54
+            },
+            {
+              "median": 4276.214599609375,
+              "min": 4018.316650390625,
+              "max": 4406.317138671875,
+              "n": 54
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Glob final epoch: span-static",
+      "description": "Warm-process median ns/match. Whiskers span process medians. Control is frozen fe4fff6 C#. No samples discarded.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "Released direct",
+        "Integrated",
+        "DotNet.Glob"
+      ],
+      "rows": [
+        {
+          "label": "Literal",
+          "detail": "span-static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 19.849538803100586,
+              "min": 18.834447860717773,
+              "max": 21.815943717956543,
+              "n": 54
+            },
+            {
+              "median": 15.998053550720215,
+              "min": 14.97185230255127,
+              "max": 16.55101776123047,
+              "n": 54
+            },
+            {
+              "median": 19.509553909301758,
+              "min": 18.137454986572266,
+              "max": 20.98531723022461,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "Simple",
+          "detail": "span-static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 50.4084587097168,
+              "min": 49.550819396972656,
+              "max": 52.44264602661133,
+              "n": 54
+            },
+            {
+              "median": 17.281460762023926,
+              "min": 16.55867099761963,
+              "max": 17.824292182922363,
+              "n": 54
+            },
+            {
+              "median": 23.016023635864258,
+              "min": 22.18918800354004,
+              "max": 24.00665283203125,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "MultiStar",
+          "detail": "span-static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 46.08793258666992,
+              "min": 45.200443267822266,
+              "max": 47.08890914916992,
+              "n": 54
+            },
+            {
+              "median": 37.15982437133789,
+              "min": 36.477088928222656,
+              "max": 38.941335678100586,
+              "n": 54
+            },
+            {
+              "median": 63.10863494873047,
+              "min": 63.10863494873047,
+              "max": 63.295936584472656,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "LongText",
+          "detail": "span-static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 193.7694549560547,
+              "min": 183.37974548339844,
+              "max": 197.58377075195312,
+              "n": 54
+            },
+            {
+              "median": 175.2971649169922,
+              "min": 172.34535217285156,
+              "max": 177.95753479003906,
+              "n": 54
+            },
+            {
+              "median": 7046.875,
+              "min": 6767.93212890625,
+              "max": 7178.18603515625,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "SimpleVaried",
+          "detail": "span-static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 53.76911163330078,
+              "min": 51.264381408691406,
+              "max": 55.611610412597656,
+              "n": 54
+            },
+            {
+              "median": 17.842745780944824,
+              "min": 17.140698432922363,
+              "max": 19.263720512390137,
+              "n": 54
+            },
+            {
+              "median": 39.70937728881836,
+              "min": 38.47770690917969,
+              "max": 42.34452247619629,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "SimpleLateMiss",
+          "detail": "span-static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 50.66347122192383,
+              "min": 44.84539031982422,
+              "max": 54.92887496948242,
+              "n": 54
+            },
+            {
+              "median": 16.909122467041016,
+              "min": 14.403915405273438,
+              "max": 18.00861358642578,
+              "n": 54
+            },
+            {
+              "median": 38.074398040771484,
+              "min": 33.75563621520996,
+              "max": 40.49968719482422,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "SimpleFirstMiss",
+          "detail": "span-static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 23.088836669921875,
+              "min": 20.742130279541016,
+              "max": 25.72808265686035,
+              "n": 54
+            },
+            {
+              "median": 17.464113235473633,
+              "min": 14.36910629272461,
+              "max": 18.569397926330566,
+              "n": 54
+            },
+            {
+              "median": 11.285638809204102,
+              "min": 9.174442291259766,
+              "max": 12.187385559082031,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "LiteralVaried",
+          "detail": "span-static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 19.39568519592285,
+              "min": 17.416810989379883,
+              "max": 23.084211349487305,
+              "n": 54
+            },
+            {
+              "median": 15.96837043762207,
+              "min": 14.28532600402832,
+              "max": 17.521953582763672,
+              "n": 54
+            },
+            {
+              "median": 28.856277465820312,
+              "min": 25.678682327270508,
+              "max": 30.09347915649414,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "Dense",
+          "detail": "span-static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 652.386474609375,
+              "min": 633.5098266601562,
+              "max": 927.7313232421875,
+              "n": 54
+            },
+            {
+              "median": 236.06300354003906,
+              "min": 223.50234985351562,
+              "max": 319.1719055175781,
+              "n": 54
+            },
+            {
+              "median": 855.09033203125,
+              "min": 835.272216796875,
+              "max": 981.5673828125,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "RetryNearMiss",
+          "detail": "span-static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 157.12127685546875,
+              "min": 156.3619613647461,
+              "max": 158.2439422607422,
+              "n": 54
+            },
+            {
+              "median": 138.16814422607422,
+              "min": 135.44883728027344,
+              "max": 138.92440795898438,
+              "n": 54
+            },
+            {
+              "median": 20478.466796875,
+              "min": 20133.0078125,
+              "max": 21414.84375,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "MixedAnchorNearMiss",
+          "detail": "span-static; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 1988.739013671875,
+              "min": 1870.2117919921875,
+              "max": 2243.7347412109375,
+              "n": 54
+            },
+            {
+              "median": 1460.7940673828125,
+              "min": 1328.8726806640625,
+              "max": 1556.671142578125,
+              "n": 54
+            },
+            {
+              "median": 4330.841064453125,
+              "min": 4215.75927734375,
+              "max": 4562.188720703125,
+              "n": 54
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Glob final epoch: construct + first match",
+      "description": "Warm-process median ns/lifecycle; all engines construct then match the same first input. Whiskers span process medians. Control is frozen fe4fff6 C#. No samples discarded.",
+      "unit": "ns/lifecycle",
+      "lowerIsBetter": true,
+      "rounds": [
+        "Released direct",
+        "Integrated",
+        "DotNet.Glob"
+      ],
+      "rows": [
+        {
+          "label": "Literal",
+          "detail": "construction; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 35.884904861450195,
+              "min": 33.4568977355957,
+              "max": 39.05534744262695,
+              "n": 54
+            },
+            {
+              "median": 29.405641555786133,
+              "min": 26.81121826171875,
+              "max": 32.747697830200195,
+              "n": 54
+            },
+            {
+              "median": 330.40771484375,
+              "min": 305.4290771484375,
+              "max": 381.48956298828125,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "Simple",
+          "detail": "construction; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 71.13504409790039,
+              "min": 69.96030807495117,
+              "max": 72.8816032409668,
+              "n": 54
+            },
+            {
+              "median": 57.263851165771484,
+              "min": 56.14299774169922,
+              "max": 61.878204345703125,
+              "n": 54
+            },
+            {
+              "median": 417.2119140625,
+              "min": 381.80389404296875,
+              "max": 430.39093017578125,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "MultiStar",
+          "detail": "construction; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 86.50894165039062,
+              "min": 81.12983703613281,
+              "max": 97.96829223632812,
+              "n": 54
+            },
+            {
+              "median": 221.1620330810547,
+              "min": 199.310302734375,
+              "max": 242.4957275390625,
+              "n": 54
+            },
+            {
+              "median": 768.463134765625,
+              "min": 735.345458984375,
+              "max": 870.37353515625,
+              "n": 54
+            }
+          ]
+        },
+        {
+          "label": "LongText",
+          "detail": "construction; exact same validated inputs",
+          "measurements": [
+            {
+              "median": 287.8013610839844,
+              "min": 278.19786071777344,
+              "max": 290.31982421875,
+              "n": 54
+            },
+            {
+              "median": 486.0160827636719,
+              "min": 469.9867248535156,
+              "max": 528.7727355957031,
+              "n": 54
+            },
+            {
+              "median": 5699.658203125,
+              "min": 5153.955078125,
+              "max": 5853.125,
+              "n": 54
+            }
+          ]
+        }
+      ]
     }
   ],
   "effectGroups": [
@@ -6795,6 +8153,192 @@
           "note": "launch medians -11.6%, -16.2%, -10.4%"
         }
       ]
+    },
+    {
+      "name": "Glob continuation: integrated versus frozen control",
+      "control": "Final epoch only; run-range effects use contemporaneous process medians. Constituents were isolated before combination.",
+      "items": [
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "Literal",
+          "effect": -0.49303884826911326,
+          "range": [
+            -0.5332113801362709,
+            -0.41244535465322363
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -41.2%, -53.3%, -49.7%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "Simple",
+          "effect": -0.8483203105180375,
+          "range": [
+            -0.8507064225934188,
+            -0.8463311520494641
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -84.8%, -85.1%, -84.6%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "MultiStar",
+          "effect": -0.5404547527293211,
+          "range": [
+            -0.5513893427291827,
+            -0.5159351103846903
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -51.6%, -55.1%, -54.3%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "LongText",
+          "effect": -0.4294112301110148,
+          "range": [
+            -0.44865996773859385,
+            -0.37636003416629593
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -44.9%, -43.6%, -37.6%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "SimpleVaried",
+          "effect": -0.8479064724999856,
+          "range": [
+            -0.8475124627507191,
+            -0.8418955906166259
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -84.2%, -84.8%, -84.6%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "SimpleLateMiss",
+          "effect": -0.8392935828752985,
+          "range": [
+            -0.8477970728153466,
+            -0.8338028813195779
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -83.4%, -84.8%, -84.5%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "SimpleFirstMiss",
+          "effect": -0.49379268239359864,
+          "range": [
+            -0.5893782512073695,
+            -0.4740206199059638
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -47.4%, -58.2%, -58.9%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "SimpleLF",
+          "effect": -0.8562949472267443,
+          "range": [
+            -0.8748632818191532,
+            -0.8462466883547798
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -84.6%, -87.5%, -86.5%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "LiteralVaried",
+          "effect": -0.5176609801444811,
+          "range": [
+            -0.5638581221900355,
+            -0.5055221163962051
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -50.6%, -56.4%, -51.5%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "Dense",
+          "effect": -0.9474473306854456,
+          "range": [
+            -0.9472171424965836,
+            -0.9456568350774645
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -94.6%, -94.7%, -94.7%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "Question16",
+          "effect": -0.8746060488541758,
+          "range": [
+            -0.8816711266066409,
+            -0.8747140188181812
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -88.2%, -88.1%, -87.5%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "Question32",
+          "effect": -0.6634822821060411,
+          "range": [
+            -0.6857968140113622,
+            -0.6086948567461952
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -60.9%, -67.9%, -68.6%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "QuestionLong",
+          "effect": -0.28241568590366317,
+          "range": [
+            -0.2983261385711202,
+            -0.2692842385156615
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -29.8%, -28.5%, -26.9%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "RetryNearMiss",
+          "effect": -0.3675371615396811,
+          "range": [
+            -0.39693779473162527,
+            -0.30750621024759095
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -39.7%, -38.0%, -30.8%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "MixedAnchorNearMiss",
+          "effect": -0.9615014619859206,
+          "range": [
+            -0.9629027549939111,
+            -0.959398151270318
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -95.9%, -96.3%, -96.0%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "IgnoreCase",
+          "effect": -0.09517693412379868,
+          "range": [
+            -0.1956944351757015,
+            0.1425280311780559
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -17.8%, -19.6%, +14.3%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "Tiny",
+          "effect": -0.44829943856774535,
+          "range": [
+            -0.5013417825780824,
+            -0.3961188397765515
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -39.6%, -50.1%, -47.9%"
+        },
+        {
+          "hypothesisId": "H-032–H-057 combination",
+          "label": "Empty",
+          "effect": -0.4709254642809729,
+          "range": [
+            -0.5236032272006915,
+            -0.3835397349305849
+          ],
+          "note": "Combined integration, not isolated H-057 effect; process effects -38.4%, -52.4%, -50.0%"
+        }
+      ]
     }
   ],
   "hypotheses": [
@@ -7578,6 +9122,592 @@
         "spans/final/summary.json"
       ],
       "parentId": "H-030"
+    },
+    {
+      "id": "H-032",
+      "claim": "Clock-free infinite ordinal kernel",
+      "mechanism": "Removes timeout/options dispatch while preserving UTF-16 and final LF; literal bypass and long intrinsic literal search materially improve complete callers.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Clock-free infinite ordinal kernel",
+      "changeScope": "refactor",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-032 Simple/reused: control baseline 39.55, candidate 26.38 ns; process speedup range 1.43–1.58×; 0 B/match.",
+      "state": "retained",
+      "decision": "retained",
+      "decisionRationale": "Removes timeout/options dispatch while preserving UTF-16 and final LF; literal bypass and long intrinsic literal search materially improve complete callers.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-032/summary.json"
+      ]
+    },
+    {
+      "id": "H-033",
+      "claim": "Prepared no-star width and question plan",
+      "mechanism": "Parent mechanism retained within fixed masks; scalar prototype is superseded by H-035, with portable scalar fallback.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Prepared no-star width and question plan",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-033 Simple/reused: control baseline (original driver) 38.13, candidate 11.32 ns; process speedup range 2.90–3.51×; 0 B/match.",
+      "state": "retained",
+      "decision": "retained",
+      "decisionRationale": "Parent mechanism retained within fixed masks; scalar prototype is superseded by H-035, with portable scalar fallback.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-033/summary.json"
+      ],
+      "parentId": "H-032"
+    },
+    {
+      "id": "H-034",
+      "claim": "Portable packed 64-bit masks",
+      "mechanism": "Correct but slower than modern SIMD, and first-literal misses regress versus scalar; retain portable scalar fallback.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Portable packed 64-bit masks",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-034 Simple/reused: control baseline (original driver) 40.54, candidate 9.57 ns; process speedup range 4.08–4.25×; 0 B/match.",
+      "state": "rejected",
+      "decision": "rejected",
+      "decisionRationale": "Correct but slower than modern SIMD, and first-literal misses regress versus scalar; retain portable scalar fallback.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-034/summary.json"
+      ],
+      "parentId": "H-033"
+    },
+    {
+      "id": "H-035",
+      "claim": "Two overlapping Vector128 masked comparisons",
+      "mechanism": "Large repeatable fixed-width gain beyond control variance; all lanes, LF and exact-end slices tested. Fused single error reduction.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Two overlapping Vector128 masked comparisons",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-035 Simple/reused: control baseline (original driver) 40.03, candidate 6.08 ns; process speedup range 5.67–6.92×; 0 B/match.",
+      "state": "retained",
+      "decision": "retained",
+      "decisionRationale": "Large repeatable fixed-width gain beyond control variance; all lanes, LF and exact-end slices tested. Fused single error reduction.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-035/summary.json"
+      ],
+      "parentId": "H-033"
+    },
+    {
+      "id": "H-036",
+      "claim": "Vector256 long fixed-pattern blocks",
+      "mechanism": "Dense 512-unit matching improves roughly sevenfold against prepared scalar; bounded immutable state and hardware fallback constrain maintenance.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Vector256 long fixed-pattern blocks",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-036-v2 Dense/reused: control H-035 273.76, candidate 40.05 ns; process speedup range 5.36–8.62×; 0 B/match.",
+      "state": "retained",
+      "decision": "retained",
+      "decisionRationale": "Dense 512-unit matching improves roughly sevenfold against prepared scalar; bounded immutable state and hardware fallback constrain maintenance.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-036-v2/summary.json"
+      ],
+      "parentId": "H-035"
+    },
+    {
+      "id": "H-037",
+      "claim": "Dynamic masks for allocation-free static calls",
+      "mechanism": "Complete static question-mark calls improve without cache/state allocation; still not universally twice prepared Glob.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Dynamic masks for allocation-free static calls",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-037-v2 Simple/static: control H-032 32.87, candidate 16.04 ns; process speedup range 1.92–2.23×; 0 B/match.",
+      "state": "retained",
+      "decision": "retained",
+      "decisionRationale": "Complete static question-mark calls improve without cache/state allocation; still not universally twice prepared Glob.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-037-v2/summary.json"
+      ],
+      "parentId": "H-032"
+    },
+    {
+      "id": "H-038",
+      "claim": "Short-star intrinsic literal search threshold",
+      "mechanism": "MultiStar and mixed near misses regress; existing threshold remains.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Short-star intrinsic literal search threshold",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-038-v2 Simple/reused: control H-032 30.27, candidate 31.16 ns; process speedup range 0.84–1.13×; 0 B/match.",
+      "state": "rejected",
+      "decision": "rejected",
+      "decisionRationale": "MultiStar and mixed near misses regress; existing threshold remains.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-038-v2/summary.json"
+      ],
+      "parentId": "H-032"
+    },
+    {
+      "id": "H-039",
+      "claim": "Prepared star-separated segments",
+      "mechanism": "Retained only for long inputs after bounded dispatch; short matching and setup lose in isolation. Prefix/suffix/literal anchors avoid long retries.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Prepared star-separated segments",
+      "changeScope": "refactor",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-039-v2 Simple/reused: control baseline 35.54, candidate 33.73 ns; process speedup range 1.03–1.27×; 0 B/match.",
+      "state": "retained",
+      "decision": "retained",
+      "decisionRationale": "Retained only for long inputs after bounded dispatch; short matching and setup lose in isolation. Prefix/suffix/literal anchors avoid long retries.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-039-v2/summary.json"
+      ],
+      "parentId": "H-032"
+    },
+    {
+      "id": "H-040",
+      "claim": "Dictionary literal-mask bitmap NFA",
+      "mechanism": "Lookup and linear long-input traversal regress. State closure correctness survives in descendants; dictionary representation rejected.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Dictionary literal-mask bitmap NFA",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-040-v2 MultiStar/reused: control baseline 56.40, candidate 40.05 ns; process speedup range 1.41–1.47×; 0 B/match.",
+      "state": "rejected",
+      "decision": "rejected",
+      "decisionRationale": "Lookup and linear long-input traversal regress. State closure correctness survives in descendants; dictionary representation rejected.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-040-v2/summary.json"
+      ]
+    },
+    {
+      "id": "H-041",
+      "claim": "ASCII bitmap lookup table",
+      "mechanism": "Short MultiStar exceeded twice Glob, but 1 KiB table, ASCII-only plan eligibility and severe long-text regression justify compact bounded descendant instead. Unicode patterns preserve fallback semantics.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "ASCII bitmap lookup table",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-041-v2 MultiStar/reused: control H-040 41.10, candidate 22.12 ns; process speedup range 1.67–1.96×; 0 B/match.",
+      "state": "rejected",
+      "decision": "rejected",
+      "decisionRationale": "Short MultiStar exceeded twice Glob, but 1 KiB table, ASCII-only plan eligibility and severe long-text regression justify compact bounded descendant instead. Unicode patterns preserve fallback semantics.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-041-v2/summary.json"
+      ],
+      "parentId": "H-040"
+    },
+    {
+      "id": "H-042",
+      "claim": "Separate prepared literal plan",
+      "mechanism": "Matching gain is available through H-032 without the extra allocation; standalone plan is redundant.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Separate prepared literal plan",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-042-v2 Simple/reused: control baseline 62.99, candidate 46.96 ns; process speedup range 1.02–1.85×; 0 B/match.",
+      "state": "rejected",
+      "decision": "rejected",
+      "decisionRationale": "Matching gain is available through H-032 without the extra allocation; standalone plan is redundant.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-042-v2/summary.json"
+      ]
+    },
+    {
+      "id": "H-043",
+      "claim": "Generic finite-timeout specialization",
+      "mechanism": "Measured calls have infinite timeout; H-032 already removes clock checks. Finite timeout behavior remains original and tested.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Generic finite-timeout specialization",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "Measured calls have infinite timeout; H-032 already removes clock checks. Finite timeout behavior remains original and tested.",
+      "state": "not-applicable",
+      "decision": "not-applicable",
+      "decisionRationale": "Measured calls have infinite timeout; H-032 already removes clock checks. Finite timeout behavior remains original and tested.",
+      "evidence": [
+        "glob/plan.md"
+      ]
+    },
+    {
+      "id": "H-044",
+      "claim": "Two-slot thread-local pattern cache",
+      "mechanism": "Churn cost 149.56 versus 80.86 ns and allocated 224 B/call. Warm repeated gains do not justify hidden retained state and cold regressions.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Two-slot thread-local pattern cache",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-044-v2 Simple/static: control H-035 73.58, candidate 21.33 ns; process speedup range 0.99–3.77×; 0 B/match.",
+      "state": "rejected",
+      "decision": "rejected",
+      "decisionRationale": "Churn cost 149.56 versus 80.86 ns and allocated 224 B/call. Warm repeated gains do not justify hidden retained state and cold regressions.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-044-v2/summary.json"
+      ]
+    },
+    {
+      "id": "H-045",
+      "claim": "Scalar second-anchor rejection",
+      "mechanism": "Descriptor’s second literal enables cheap rejection and H-048 vector filter; isolated mixed near-miss gain supports parent mechanism.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Scalar second-anchor rejection",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-045-v2 MixedAnchorNearMiss/reused: control H-039 3043.69, candidate 2516.48 ns; process speedup range 1.09–1.20×; 0 B/match.",
+      "state": "retained",
+      "decision": "retained",
+      "decisionRationale": "Descriptor’s second literal enables cheap rejection and H-048 vector filter; isolated mixed near-miss gain supports parent mechanism.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-045-v2/summary.json"
+      ],
+      "parentId": "H-039"
+    },
+    {
+      "id": "H-046",
+      "claim": "Unfused two-stage literal then LF SIMD checks",
+      "mechanism": "Direction reverses across processes; H-035 fused reduction is retained. Initial plan label described fusion, but executed transform separates reductions.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Unfused two-stage literal then LF SIMD checks",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-046-v2 Simple/reused: control H-035 7.41, candidate 7.29 ns; process speedup range 0.94–1.09×; 0 B/match.",
+      "state": "inconclusive",
+      "decision": "inconclusive",
+      "decisionRationale": "Direction reverses across processes; H-035 fused reduction is retained. Initial plan label described fusion, but executed transform separates reductions.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-046-v2/summary.json"
+      ],
+      "parentId": "H-035"
+    },
+    {
+      "id": "H-047",
+      "claim": "MemoryMarshal packed-mask variant",
+      "mechanism": "Duplicate of H-034, not an independent experiment.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "MemoryMarshal packed-mask variant",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "Duplicate of H-034, not an independent experiment.",
+      "state": "not-applicable",
+      "decision": "not-applicable",
+      "decisionRationale": "Duplicate of H-034, not an independent experiment.",
+      "evidence": [
+        "glob/plan.md"
+      ]
+    },
+    {
+      "id": "H-048",
+      "claim": "SIMD bitmap over eight candidate positions",
+      "mechanism": "Mixed near misses improved about 15× versus second-anchor control; exact two-anchor lanes and safe tail retain portable IndexOf fallback.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "SIMD bitmap over eight candidate positions",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-048-v2 MixedAnchorNearMiss/reused: control H-045 2260.21, candidate 148.33 ns; process speedup range 14.47–16.16×; 0 B/match.",
+      "state": "retained",
+      "decision": "retained",
+      "decisionRationale": "Mixed near misses improved about 15× versus second-anchor control; exact two-anchor lanes and safe tail retain portable IndexOf fallback.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-048-v2/summary.json"
+      ],
+      "parentId": "H-045"
+    },
+    {
+      "id": "H-049",
+      "claim": "Narrower Unicode opt-out contract",
+      "mechanism": "Default ordinal path already compares UTF-16 units without decoding/folding. No measured removable Unicode cost supports an API contract change.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Narrower Unicode opt-out contract",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "Default ordinal path already compares UTF-16 units without decoding/folding. No measured removable Unicode cost supports an API contract change.",
+      "state": "not-applicable",
+      "decision": "not-applicable",
+      "decisionRationale": "Default ordinal path already compares UTF-16 units without decoding/folding. No measured removable Unicode cost supports an API contract change.",
+      "evidence": [
+        "glob/plan.md"
+      ]
+    },
+    {
+      "id": "H-050",
+      "claim": "Krauss prefix loop and lazy latest-star retry",
+      "mechanism": "Already implemented in the frozen engine and H-032; linked NUL-terminated routines do not establish universal optimality.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Krauss prefix loop and lazy latest-star retry",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "Already implemented in the frozen engine and H-032; linked NUL-terminated routines do not establish universal optimality.",
+      "state": "not-applicable",
+      "decision": "not-applicable",
+      "decisionRationale": "Already implemented in the frozen engine and H-032; linked NUL-terminated routines do not establish universal optimality.",
+      "evidence": [
+        "glob/plan.md"
+      ]
+    },
+    {
+      "id": "H-051",
+      "claim": "Cached immutable fixed width",
+      "mechanism": "Small layout-dependent gain with other process shifts; extra field is omitted pending evidence stronger than host/code-layout variance.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Cached immutable fixed width",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-051-v2 Simple/reused: control H-035 10.18, candidate 8.50 ns; process speedup range 1.04–1.30×; 0 B/match.",
+      "state": "inconclusive",
+      "decision": "inconclusive",
+      "decisionRationale": "Small layout-dependent gain with other process shifts; extra field is omitted pending evidence stronger than host/code-layout variance.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-051-v2/summary.json"
+      ],
+      "parentId": "H-035"
+    },
+    {
+      "id": "H-052",
+      "claim": "Known None option shortcut",
+      "mechanism": "Simple static improves, but other caller directions and large host shifts confound universal adoption. Keep general validation order.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Known None option shortcut",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-052-v2 Simple/static: control H-037 18.74, candidate 15.73 ns; process speedup range 1.14–1.98×; 0 B/match.",
+      "state": "inconclusive",
+      "decision": "inconclusive",
+      "decisionRationale": "Simple static improves, but other caller directions and large host shifts confound universal adoption. Keep general validation order.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-052-v2/summary.json"
+      ],
+      "parentId": "H-037"
+    },
+    {
+      "id": "H-053",
+      "claim": "Force-inline dynamic fixed helper",
+      "mechanism": "Approximately 7% static gain accompanies reused regression and code-layout variation; omit attribute.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Force-inline dynamic fixed helper",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-053-v2 Simple/static: control H-037 15.50, candidate 14.49 ns; process speedup range 0.98–1.10×; 0 B/match.",
+      "state": "inconclusive",
+      "decision": "inconclusive",
+      "decisionRationale": "Approximately 7% static gain accompanies reused regression and code-layout variation; omit attribute.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-053-v2/summary.json"
+      ],
+      "parentId": "H-037"
+    },
+    {
+      "id": "H-054",
+      "claim": "One readonly vector Block array",
+      "mechanism": "Matching is neutral within noise; removes a parallel array/allocation and ownership relation. ref readonly prevents plan copies.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "One readonly vector Block array",
+      "changeScope": "simplification",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-054-v2 Dense/reused: control H-036 45.05, candidate 43.98 ns; process speedup range 1.03–1.17×; 0 B/match.",
+      "state": "retained",
+      "decision": "retained",
+      "decisionRationale": "Matching is neutral within noise; removes a parallel array/allocation and ownership relation. ref readonly prevents plan copies.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-054-v2/summary.json"
+      ],
+      "parentId": "H-036"
+    },
+    {
+      "id": "H-055",
+      "claim": "Compact exact UTF-16 literal-mask table",
+      "mechanism": "Standalone strict latency criterion failed: MultiStar 21.61 → 23.96 ns versus H-041 (+10.8%), despite constructor allocation 1272 → 288 B and contemporaneous Glob 56.77 ns (2.37×). The compact representation is carried into bounded H-057; standalone unbounded engine is rejected. Exact Code checks preserve UTF-16 collisions.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Compact exact UTF-16 literal-mask table",
+      "changeScope": "local",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-055-v2 MultiStar/reused: control H-041 21.61, candidate 23.96 ns; process speedup range 0.89–0.89×; 0 B/match.",
+      "state": "rejected",
+      "decision": "rejected",
+      "decisionRationale": "Standalone strict latency criterion failed: MultiStar 21.61 → 23.96 ns versus H-041 (+10.8%), despite constructor allocation 1272 → 288 B and contemporaneous Glob 56.77 ns (2.37×). The compact representation is carried into bounded H-057; standalone unbounded engine is rejected. Exact Code checks preserve UTF-16 collisions.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-055-v2/summary.json"
+      ],
+      "parentId": "H-041"
+    },
+    {
+      "id": "H-056",
+      "claim": "Exact two-pass segment allocation",
+      "mechanism": "Simplification removes List growth and ToArray with unchanged matching logic; lower constructor bytes justify neutral noisy matching.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Exact two-pass segment allocation",
+      "changeScope": "simplification",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-056-v2 MixedAnchorNearMiss/reused: control H-048 137.08, candidate 139.29 ns; process speedup range 0.93–1.08×; 0 B/match.",
+      "state": "retained",
+      "decision": "retained",
+      "decisionRationale": "Simplification removes List growth and ToArray with unchanged matching logic; lower constructor bytes justify neutral noisy matching.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-056-v2/summary.json"
+      ],
+      "parentId": "H-048"
+    },
+    {
+      "id": "H-057",
+      "claim": "Bound bitmap matching to short input",
+      "mechanism": "Avoids linear long-text regression while preserving short NFA; final combination adds fixed SIMD and bounded compiled anchors. Preparation cost is charged explicitly.",
+      "prediction": "Reduce repeated traversal, dispatch, lookup or preparation cost in the predeclared affected caller; plan.md records the falsifiable mechanism.",
+      "observation": "Frozen caller, native code, independent oracle and contemporaneous control/candidate packets; adaptive branches declared before execution in glob/plan.md.",
+      "location": "src/Tedd.WildcardMatch/*.cs; glob isolated source snapshots",
+      "caller": "Default ordinal string/span static, reused and construction calls",
+      "falsification": "Oracle mismatch, overread, escaped span, unexpected match allocation, or material regression beyond process variation and setup burden.",
+      "change": "Bound bitmap matching to short input",
+      "changeScope": "refactor",
+      "maintainability": "Bounded private immutable state; portable and ISA fallbacks. Code comments document fragile mechanisms and Research IDs.",
+      "codeComments": "Adjacent production comments reference retained mechanism IDs and range/state invariants.",
+      "result": "H-057-v2 MultiStar/reused: control H-055 24.40, candidate 24.81 ns; process speedup range 0.97–1.10×; 0 B/match.",
+      "state": "retained",
+      "decision": "retained",
+      "decisionRationale": "Avoids linear long-text regression while preserving short NFA; final combination adds fixed SIMD and bounded compiled anchors. Preparation cost is charged explicitly.",
+      "evidence": [
+        "glob/plan.md",
+        "glob/H-057-v2/summary.json"
+      ],
+      "parentId": "H-055"
     }
   ],
   "retainedChanges": [
@@ -7594,7 +9724,11 @@
     "Static two-span matching, reusable span input matching, span pattern constructors and mutable/read-only span extension APIs accept UTF-16 views of stack, string and array buffers.",
     "Successful ordinary span matches allocate no input/pattern strings. Reusable construction owns a pattern copy; finite timeout exceptions materialize only borrowed input diagnostics.",
     "H-031 preserves the released string method bodies; H-027/H-030 are retained only in the span-specialized traversal. Shared option validation, culture folding and newline definitions constrain semantic drift.",
-    "H-026 bounds VT normalization stack scratch and safely returns larger pooled storage; first-use allocation remains documented."
+    "H-026 bounds VT normalization stack scratch and safely returns larger pooled storage; first-use allocation remains documented.",
+    "Glob continuation H-032/H-037: allocation-free static and literal default kernel, while finite timeout/case/newline modes retain the released engines.",
+    "H-035/H-036/H-054: compile-time NET10_0_OR_GREATER intrinsics with runtime hardware checks; exact overlapping loads, immutable vector Blocks, maximum 32 KiB vector payload.",
+    "H-055/H-057: bounded 63-token bitmap plan, exact UTF-16 literal verification, collapsed stars, input length <=32 dispatch; larger text uses compiled anchors or scalar fallback.",
+    "H-039/H-045/H-048/H-056: long-text anchor search and SIMD candidate-position masks; at most 64 descriptors and 8192 pattern units. Preserve H-020 bulk leading question handling."
   ],
   "decisions": [
     "Bounded continuation ends after 19 new mechanistic candidates plus the original three hypotheses. Every relevant catalogue category has a disposition in optimization/plan.md and the areas below; no material pending candidate remains under the complete-call and proportional-change policy. Small compiler-only effects remain inconclusive and unretained. Pattern-copy/global-cache or architecture-specific redesigns lack proportional caller evidence; this does not claim all possible optimization potential is exhausted.",
@@ -7660,6 +9794,18 @@
     {
       "label": "Borrowed API host exclusion",
       "value": "Builds, tests, measurement and profiles serialized through the fixed performance-measurement.lock. High performance power plan recorded. Cooperative lock cannot exclude arbitrary external processes; hardware counter data is unavailable."
+    },
+    {
+      "label": "Glob continuation epoch",
+      "value": "fe4fff6037442e5fe6da9128e8d689e4f19a59ab plus captured dirty project metadata. Existing README/site/Comparison edits preserved; see glob/baseline-dirty.txt."
+    },
+    {
+      "label": "Final runtime/controls",
+      "value": "net10.0 x64; SDK 11.0.100-rc.1.26425.128; runtime 10.0.12; CPU30; High performance; default tiering/PGO; workstation GC. Environment and ISA flags captured in raw launch JSON."
+    },
+    {
+      "label": "Host exclusivity",
+      "value": "All builds, tests, diagnostics and timing under fixed OS lock; scratch D:/Workspaces/AI/wildcard-glob."
     }
   ],
   "hotspots": [
@@ -7682,6 +9828,12 @@
       "location": "WildcardMatch.IsMatch(ReadOnlySpan<char>)",
       "evidence": "spans/final/profile-summary.json: equal-duration nine-fixture borrowed-input sweep; sampled inclusive stack residence only. Allocation counters directly quantify eliminated caller ToString conversions.",
       "limit": "Caller copying/allocation and remaining wildcard work; this fixture sweep is different from the historical profile and is not an application trace."
+    },
+    {
+      "name": "Ordinal fixed-width and star traversal",
+      "location": "WildcardEngine; fixed and retry loops",
+      "evidence": "Paired complete caller baseline and sampled local profile; H-032 DefaultWindow dominates sampled candidate stack residence. Final profile includes changed kernels. No exact exclusive CPU or application trace.",
+      "limit": "Scalar token dispatch, repeated mismatch work and general timeout header. Intrinsics and prepared state reduce these locally."
     }
   ],
   "areas": [
@@ -7769,6 +9921,41 @@
       ],
       "evidence": "Complete caller allocations, before/after latency and optimized native bodies; large owned-string regressions triggered isolated refinements.",
       "disposition": "Borrowed APIs and lifetime invariants pass; allocation removal and string/slice counterexamples measured; all nine new hypotheses resolved. Retain string specialization to avoid the evidenced shared-core burden. No further material hypothesis within this API/ownership scope."
+    },
+    {
+      "name": "Glob continuation catalogue coverage",
+      "boundary": "Ordinal matcher and plan construction",
+      "evidence": "glob/plan.md; isolated source/native-code/raw packets; final complete calls",
+      "catalogue": "CPU C1–C4; Memory M3–M5/M7; Storage S1/S2/S4/S5; Runtime R1/R2",
+      "hypothesisIds": [
+        "H-032",
+        "H-033",
+        "H-034",
+        "H-035",
+        "H-036",
+        "H-037",
+        "H-038",
+        "H-039",
+        "H-040",
+        "H-041",
+        "H-042",
+        "H-043",
+        "H-044",
+        "H-045",
+        "H-046",
+        "H-047",
+        "H-048",
+        "H-049",
+        "H-050",
+        "H-051",
+        "H-052",
+        "H-053",
+        "H-054",
+        "H-055",
+        "H-056",
+        "H-057"
+      ],
+      "disposition": "All concrete branches classified; M1/M2 constrain setup and no-allocation matching. M6/C5/S3/R3/T1–T4 unsupported by measured workload; no contention, prefetch or scheduling trace."
     }
   ],
   "correctness": [
@@ -7789,7 +9976,10 @@
     "Release 2.1.0 assurance: Static and prepared spans now participate in all 65,534 literal UTF-16 pattern code points with five case variants across four cultures (1,310,680 comparisons per API/runtime), exhaustive .NET 11 line anchors, Unicode newline sequences and numeric option validation. Existing independent DP exhaustive tests cover 945,252 short input/pattern/Singleline combinations per runtime; seeded Unicode fuzz and 10,000 DP long-segment trials remain.",
     "Release 2.1.0 assurance: 12,000 additional seeded guarded-array cases across invariant, en-US, tr-TR and az-Latn-AZ verify exact slice extents, all span extensions, owned preparation, finite timeouts, RightToLeft result parity and unchanged caller buffers. Added overlapping input/pattern storage, concurrent captured-culture reuse, concurrent stack/pool normalization, 65,535/65,536/1,000,000-code-unit fixtures and reuse after timeouts.",
     "Release 2.1.0 assurance: Initial guarded-fuzz attempts exposed oracle constraints: the non-backtracking Regex 1,000-node limit and its incompatibility with .NET 11 AnyNewLine. Rejections remain in initial-oracle-limit.txt and initial-oracle-options.txt. Final short fuzz uses non-backtracking when compatible and a five-second interpreter oracle for AnyNewLine; separate long-input and normalization fixtures remain. All 24 benchmark competitor combinations pass 256 inputs each. Packed 2.1.0 consumers compile and execute the public span and preserved string APIs against all three package target selections.",
-    "Release 2.1.0 assurance: Production C# hashes match the final measured span epoch exactly; this release changes tests, version and documentation. No new performance measurements or performance claims. Website fragment, asset and copy-button references validate locally; actual deployment is verified separately."
+    "Release 2.1.0 assurance: Production C# hashes match the final measured span epoch exactly; this release changes tests, version and documentation. No new performance measurements or performance claims. Website fragment, asset and copy-button references validate locally; actual deployment is verified separately.",
+    "Glob continuation: full Release and Debug matrix on net8.0/net10.0/net11.0; counts and logs in glob/final. net8 exercises netstandard2.1 portable code. DOTNET_EnableHWIntrinsic=0 full net10 suite checks runtime fallback.",
+    "New deterministic width/lane/tail/LF/Unicode mask fuzz, state63/64, lookup collisions, long-plan caps and concurrent mutable-span reuse complement existing exhaustive DP oracle, seeded Unicode and Regex tests. Inputs are never cached or retained.",
+    "Failed first integration validation was a five-second backtracking Regex-oracle timeout on a pathological fixture; preserved in glob/integrated-screen. Oracle then uses NonBacktracking for bounded patterns, ordinary Regex for large literal/question patterns to respect its symbolic-state limit."
   ],
   "generatedCode": [
     {
@@ -7826,6 +10016,20 @@
       "before": "Initial/forced shared-core routing retained an extra entry or expanded the public caller into a large body, depending on annotation.",
       "after": "Final clean .NET 10 dump contains string and span signatures with independent diagnostic state; source comparison verifies the released string bodies. Span MatchWindow remains separate from its visible header.",
       "artifact": "spans/final/net10.0-native-code.asm.txt"
+    },
+    {
+      "hypothesisId": "H-035/H-048/H-054",
+      "summary": "Tier1 vector logical/compare operations and fused reduction; candidate-position extraction plus guarded trailing-zero scan. Long blocks use Vector256 and readonly paired plans.",
+      "before": "Scalar per-token dispatch and retry.",
+      "after": "In-range masked loads and candidate bitmap rejection, with portable fallback.",
+      "artifact": "glob/final/native-code.asm.txt"
+    },
+    {
+      "hypothesisId": "H-057",
+      "summary": "Compile-time NET10_0_OR_GREATER covers net10/net11; netstandard compiles scalar spans. Runtime hardware guards preserve portable execution. ARM64 code and throughput were not measured.",
+      "before": "General header and scalar traversal.",
+      "after": "Bounded dispatcher and prepared kernels.",
+      "artifact": "glob/final/native-code.asm.txt"
     }
   ],
   "validityThreats": [
@@ -7848,7 +10052,14 @@
     "Initial/H-027/H-029 disassembly files include earlier appended bodies; final and H-030 captures are clean. Evidence attribution uses source epochs and explicit matching signatures. No hardware branch-miss, ISA or exact exclusive CPU claims are made.",
     "VT normalization fallback can allocate on first pool rent or exhaustion and retains pool capacity. Warm per-thread allocation counters omit retained/native memory and cold initialization; first calls are recorded separately.",
     "Owned-string regression review triggers across all three launches: none. Complete sample ranges and paired effects remain visible, including smaller regressions.",
-    "Restored string API/engine methods have identical normalized IL and implementation flags, verified in final/compiled-calls.txt. Nevertheless, static question-run medians differ by +77.1% and question-run-LF by +59.6%, with per-launch paired effects reversing direction (approximately +86/-26/+88% and +77/-30/+85%). These comparisons are inconclusive; code layout/tiering are plausible confounders, not measured causes. No universal preservation of latency is claimed. Conversely, the large dense reused gain between identical string bodies is not credited as an algorithmic improvement."
+    "Restored string API/engine methods have identical normalized IL and implementation flags, verified in final/compiled-calls.txt. Nevertheless, static question-run medians differ by +77.1% and question-run-LF by +59.6%, with per-launch paired effects reversing direction (approximately +86/-26/+88% and +77/-30/+85%). These comparisons are inconclusive; code layout/tiering are plausible confounders, not measured causes. No universal preservation of latency is claimed. Conversely, the large dense reused gain between identical string bodies is not credited as an algorithmic improvement.",
+    "Glob continuation: host process shifts occasionally exceed 2× absolute timing despite affinity/lock. Same-IL alias screening showed about 7% variation. Small directional changes remain inconclusive; all process ranges are exposed. Separate BDN process evidence corroborates the primary caller.",
+    "Screening v1 used common counts; v2 uses per-engine equal-duration calibration after >100× ratios made slow samples disproportionate. Preserve both epochs; do not add effects across epochs.",
+    "A 2× success on report-??.txt is workload-specific. First-literal misses and static calls may remain below 2×; Glob LF/empty/case semantic mismatches are excluded rather than timed as equivalent. The Krauss articles support hypotheses, not a fastest-algorithm theorem.",
+    "Reuse trades extra constructor storage/time for matching throughput. Final footprint and construction rows charge both short and long prepared plans; no hidden result or thread-local cache. Assembly/runtime/ISA portability remains guarded, with unsupported hardware performance unknown.",
+    "First baseline failed on Glob empty-pattern construction; first profile used the wrong provider casing and yielded no useful samples. Both failed packets are retained; valid replacements are identified.",
+    "Construction timings are warm-process construction plus first match, not process startup. Separate footprint.json measures constructor allocation only; tiny fractional bookkeeping overhead is exposed without rounding to an exact retained-object size.",
+    "First default-tiered BDN epoch, glob/bdn-final, exposed instrumented Tier0 with delegate/count profiling helpers and inflated absolute timings. It is diagnostic only. glob/bdn-optimized explicitly disables tiered compilation and confirms optimized caller code; its different runtime policy and standard outlier handling remain a separate corroboration epoch."
   ],
   "reproduction": [
     "Run the inspected driver under the skill's run_with_performance_lock.py: python <skill>/scripts/run_with_performance_lock.py --cwd <repo> -- python <this-directory>/run.py all.",
@@ -7860,7 +10071,10 @@
     "From the repository: python C:/Users/tedd/.codex/skills/scientific-method-performance/scripts/run_with_performance_lock.py --cwd D:/SourceCode/Tedd.WildcardMatch -- python -B \"Research/2026-10-02 wildcard-engine-1/spans/run.py\" --phase all --epoch final",
     "Run spans/summarize.py final, spans/extend_report.py, then the standard skill renderer for report-data.json/report.html. The extension reads the immutable report at 0c39b9d; do not run the older optimization extension afterwards, because it reconstructs an earlier historical deliverable.",
     "Isolated span-parent experiments: add --control-epoch <parent> --screening --epoch <new-name>. Initial parent source snapshots are in spans/; H-027/H-029/H-030 snapshots in their own subdirectories. Current driver uses the documented priming epoch and clean disassembly files.",
-    "Release assurance: run spans/release-2.1.0/validate.py under the fixed performance lock, then append_report.py and the standard renderer. All scratch builds/caches remain in D:/Workspaces/AI/wildcard-span-release."
+    "Release assurance: run spans/release-2.1.0/validate.py under the fixed performance lock, then append_report.py and the standard renderer. All scratch builds/caches remain in D:/Workspaces/AI/wildcard-span-release.",
+    "python C:/Users/tedd/.codex/skills/scientific-method-performance/scripts/run_with_performance_lock.py --cwd D:/SourceCode/Tedd.WildcardMatch -- python -B \"Research/2026-10-02 wildcard-engine-1/glob/validate_final.py\" (completed epoch names are immutable; use fresh names to reproduce).",
+    "Isolated branches: glob/run.py <fresh-epoch> --variant H-035 --control-variant baseline; summarize.py <epoch>. variants.py always uses immutable baseline snapshots except explicitly named current integration.",
+    "Append glob/append_report.py once to the historical report; render with the skill render_report.py. Full commands, source hashes, fixture values, raw results, profiling and disassembly remain versioned."
   ],
   "artifacts": [
     {
@@ -8006,6 +10220,38 @@
     {
       "label": "Independent oracle limit rejected fixture",
       "path": "spans/release-2.1.0/initial-oracle-limit.txt"
+    },
+    {
+      "label": "Glob experiment plan",
+      "path": "glob/plan.md"
+    },
+    {
+      "label": "Final raw identity and hashes",
+      "path": "glob/final/identity.json"
+    },
+    {
+      "label": "Final complete-caller results",
+      "path": "glob/final/summary.json"
+    },
+    {
+      "label": "Constructor allocation footprint",
+      "path": "glob/final/footprint.json"
+    },
+    {
+      "label": "Final sampled profile",
+      "path": "glob/final/profile-summary.json"
+    },
+    {
+      "label": "Native Tier1 kernels",
+      "path": "glob/final/native-code.asm.txt"
+    },
+    {
+      "label": "Independent optimized BDN caller validation",
+      "path": "glob/bdn-optimized/results/GlobAcceptance-report-github.md"
+    },
+    {
+      "label": "Rejected instrumented BDN epoch",
+      "path": "glob/bdn-final/results/GlobAcceptance-asm.md"
     }
   ]
 }

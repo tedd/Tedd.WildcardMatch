@@ -1,0 +1,32 @@
+using System;
+using System.Runtime.CompilerServices;
+
+namespace Tedd;
+
+internal sealed class PreparedPattern
+{
+    private readonly string _pattern;
+    private readonly bool _singleline;
+
+    private PreparedPattern(string pattern, bool singleline)
+    {
+        _pattern = pattern;
+        _singleline = singleline;
+    }
+
+    internal static PreparedPattern? Create(string pattern, bool singleline) =>
+        pattern.IndexOf('*') < 0 && pattern.IndexOf('?') >= 0 ? new PreparedPattern(pattern, singleline) : null;
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal bool IsMatch(ReadOnlySpan<char> input)
+    {
+        int length = _pattern.Length;
+        if (input.Length != length && !(input.Length == length + 1 && input[length] == '\n')) return false;
+        for (int i = 0; i < length; i++)
+        {
+            char token = _pattern[i];
+            if (token == '?' ? !_singleline && input[i] == '\n' : token != input[i]) return false;
+        }
+        return true;
+    }
+}

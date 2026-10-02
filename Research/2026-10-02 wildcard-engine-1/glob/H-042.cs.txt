@@ -1,0 +1,20 @@
+using System;
+using System.Runtime.CompilerServices;
+
+namespace Tedd;
+
+internal sealed class PreparedPattern
+{
+    private readonly string _pattern;
+    private PreparedPattern(string pattern) => _pattern = pattern;
+    internal static PreparedPattern? Create(string pattern, bool singleline) =>
+        pattern.AsSpan().IndexOfAny('*', '?') < 0 ? new PreparedPattern(pattern) : null;
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal bool IsMatch(ReadOnlySpan<char> input)
+    {
+        int length = _pattern.Length;
+        return (input.Length == length || (input.Length > 0 && input.Length - 1 == length && input[input.Length - 1] == '\n'))
+            && input.Slice(0, length).SequenceEqual(_pattern.AsSpan());
+    }
+}
