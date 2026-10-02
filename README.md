@@ -21,7 +21,7 @@ Building requires the SDK in [global.json](global.json), currently [.NET 11 RC1]
 
 ## Usage
 
-`WildcardMatch` uses a direct iterative engine with constant match-state memory and no per-match buffers. `WildcardMatchRegex` provides the same matching API through .NET Regex:
+`WildcardMatch` uses a direct iterative engine with constant match-state memory. `WildcardMatchRegex` provides string matching through .NET Regex:
 
 ```csharp
 bool direct = WildcardMatch.IsMatch("report-01.txt", "report-??.txt");
@@ -54,6 +54,21 @@ bool second = matcher.IsMatch("report-summary.txt");
 Console.WriteLine(matcher.WildcardRegex); // ^report-.*\.txt$
 ```
 
+Match slices of strings, character arrays or stack buffers with `ReadOnlySpan<char>`:
+
+```csharp
+ReadOnlySpan<char> input = "[report-01.txt]".AsSpan(1, 13);
+ReadOnlySpan<char> pattern = "report-??.txt".AsSpan();
+
+bool first = WildcardMatch.IsMatch(input, pattern);
+bool second = input.IsWildcardMatch(pattern);
+bool third = matcher.IsMatch(input);
+```
+
+Static span calls borrow both slices; reusable matchers borrow the input for each call. Ordinary matching does not materialize strings. `Span<char>` converts to `ReadOnlySpan<char>` and supports the extension method directly; `ReadOnlyMemory<char>` callers use `.Span`. The caller must keep the underlying buffers stable during a match. Default spans represent empty text.
+
+Constructors accept span patterns and copy them once into owned strings. Subsequent changes to the source buffer do not change the matcher. A timeout creates strings for the exception's input and pattern diagnostics. On .NET 11, numeric `IgnorePatternWhitespace` options with vertical tabs require normalization scratch: bounded stack storage for small patterns and pooled storage for larger ones.
+
 ## Matching behavior
 
 The direct engine interprets the wildcard pattern itself. The Regex engine escapes literal characters, translates `*` to `.*` and `?` to `.`, and applies `^` / `$` anchors. Both engines use the same matching semantics. Use stars at both ends for substring matching. Backslashes are literal, and `?` consumes one UTF-16 code unit, including an isolated surrogate.
@@ -75,7 +90,7 @@ The default timeout is infinite. For untrusted patterns, use the instance constr
 
 ## Performance
 
-Direct static calls avoid pattern translation and Regex cache lookup. Reusable direct instances retain the pattern, classification, and case behavior. Matching uses constant auxiliary memory; star retries have polynomial worst-case work, so a timeout remains useful for large adversarial inputs.
+Direct static calls avoid pattern translation and Regex cache lookup. Reusable direct instances retain the pattern, classification, and case behavior. Ordinary matching uses constant auxiliary memory; star retries have polynomial worst-case work, so a timeout remains useful for large adversarial inputs.
 
 `WildcardMatchRegex` static calls translate the pattern and use the runtime Regex cache. Its instances retain a Regex; `Compiled` increases construction cost and may improve repeated matching. Choose the engine according to the workload and pattern lifetime.
 

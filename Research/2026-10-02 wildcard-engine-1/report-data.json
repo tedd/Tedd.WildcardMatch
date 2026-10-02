@@ -1,16 +1,16 @@
 {
   "title": "Direct wildcard engine: correctness and performance",
-  "generatedAt": "2026-10-02T02:37:56.340001+02:00",
+  "generatedAt": "2026-10-02T03:57:53.882227+02:00",
   "status": "complete",
-  "scope": "Requested engine rewrite and validation, rather than an exhaustive search for all optimization opportunities. Direct WildcardMatch and preserved WildcardMatchRegex; .NET Standard 2.1/.NET 10/.NET 11 source targets, timed on .NET 10 x64. Continuation: catalogue-driven optimization of committed direct engine 4bc779e; original charts remain historical. New control/candidate charts share a distinct .NET 10 direct-engine epoch. No application throughput claim.",
-  "question": "Can a direct iterative wildcard engine preserve the Regex contract and improve common complete calls while avoiding per-match buffers? Which additional measured mechanisms improve the committed direct engine?",
-  "primaryMetric": "ns/call",
+  "scope": "Requested engine rewrite and validation, rather than an exhaustive search for all optimization opportunities. Direct WildcardMatch and preserved WildcardMatchRegex; .NET Standard 2.1/.NET 10/.NET 11 source targets, timed on .NET 10 x64. Continuation: catalogue-driven optimization of committed direct engine 4bc779e; original charts remain historical. New control/candidate charts share a distinct .NET 10 direct-engine epoch. No application throughput claim. Borrowed UTF-16 API continuation: preserve existing strings and add static/reusable span matching, owned span-pattern constructors and mutable/read-only span extensions. Allocation removal is a local caller result; no application throughput claim.",
+  "question": "Can a direct iterative wildcard engine preserve the Regex contract and improve common complete calls while avoiding per-match buffers? Which additional measured mechanisms improve the committed direct engine? Can borrowed slices remove caller materialization while retaining owned-string performance and all semantic invariants?",
+  "primaryMetric": "ns/call and managed B/call",
   "summary": {
-    "baseline": 900.115966796875,
-    "final": 418.267822265625,
+    "baseline": 308.2691192626953,
+    "final": 101.09519958496094,
     "unit": "ns/call",
-    "changePercent": -53.531785048313274,
-    "headline": "Direct-engine continuation: complex reused calls 900.1 → 418.3 ns. Original Regex comparisons remain below in their historical epoch; compiled Regex remains workload dependent."
+    "changePercent": -67.20553786679767,
+    "headline": "Borrowed slices: 1,024-character literal static caller 308.3 → 101.1 ns; 4144 → 0 allocated bytes. Existing string callers and earlier epochs remain explicit below."
   },
   "scorecards": [
     {
@@ -92,6 +92,46 @@
       "unit": "ns/call",
       "wallChangePercent": -45.3415468117425,
       "progression": "4bc779e direct → integrated; new paired epoch"
+    },
+    {
+      "title": "Borrowed text: long-literal / sliced-static",
+      "baseline": 308.2691192626953,
+      "value": 101.09519958496094,
+      "unit": "ns/call",
+      "wallChangePercent": -67.20553786679767,
+      "secondaryMetric": "managed allocation",
+      "secondaryChangePercent": -100,
+      "progression": "4144 → 0 B/call; final paired epoch"
+    },
+    {
+      "title": "Borrowed text: long-literal / sliced-reused",
+      "baseline": 157.35950469970703,
+      "value": 57.30247497558594,
+      "unit": "ns/call",
+      "wallChangePercent": -63.58499279408788,
+      "secondaryMetric": "managed allocation",
+      "secondaryChangePercent": -100,
+      "progression": "2072 → 0 B/call; final paired epoch"
+    },
+    {
+      "title": "Borrowed text: simple / sliced-static",
+      "baseline": 153.5114288330078,
+      "value": 74.58572387695312,
+      "unit": "ns/call",
+      "wallChangePercent": -51.41356937137973,
+      "secondaryMetric": "managed allocation",
+      "secondaryChangePercent": -100,
+      "progression": "104 → 0 B/call; final paired epoch"
+    },
+    {
+      "title": "Borrowed text: normalize-1024 / normalization",
+      "baseline": 12489.3310546875,
+      "value": 445.5078125,
+      "unit": "ns/call",
+      "wallChangePercent": -96.43289291836979,
+      "secondaryMetric": "managed allocation",
+      "secondaryChangePercent": -100,
+      "progression": "32 → 0 B/call; final paired epoch"
     }
   ],
   "series": [
@@ -2477,6 +2517,1926 @@
           ]
         }
       ]
+    },
+    {
+      "title": "Borrowed-text final epoch: static",
+      "description": "Committed 0c39b9d control and retained API integration; three fresh processes, 54 samples/engine/case, all samples retained. Sliced controls materialize text (and static patterns) inside timing. Span-* controls use already-owned strings; construction controls and candidates both copy one pattern. Normalization runs on .NET 11, all others on .NET 10. Whiskers show the complete range.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "Committed string caller",
+        "Span-capable caller"
+      ],
+      "rows": [
+        {
+          "label": "empty",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 18.555450439453125,
+              "min": 16.79706573486328,
+              "max": 22.719764709472656,
+              "n": 54
+            },
+            {
+              "median": 20.491600036621094,
+              "min": 17.85569190979004,
+              "max": 28.592538833618164,
+              "n": 54,
+              "changePercent": 10.434398256650624
+            }
+          ]
+        },
+        {
+          "label": "literal",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 20.817279815673828,
+              "min": 19.38495635986328,
+              "max": 24.777793884277344,
+              "n": 54
+            },
+            {
+              "median": 21.816539764404297,
+              "min": 19.749164581298828,
+              "max": 33.402252197265625,
+              "n": 54,
+              "changePercent": 4.8001465973383395
+            }
+          ]
+        },
+        {
+          "label": "simple",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 127.43396759033203,
+              "min": 112.90855407714844,
+              "max": 228.0750274658203,
+              "n": 54
+            },
+            {
+              "median": 117.17414855957031,
+              "min": 104.7454833984375,
+              "max": 212.54844665527344,
+              "n": 54,
+              "changePercent": -8.051086554680964
+            }
+          ]
+        },
+        {
+          "label": "simple-ignorecase",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 173.0792999267578,
+              "min": 157.13577270507812,
+              "max": 232.75299072265625,
+              "n": 54
+            },
+            {
+              "median": 171.68235778808594,
+              "min": 154.02297973632812,
+              "max": 237.62664794921875,
+              "n": 54,
+              "changePercent": -0.8071110405825643
+            }
+          ]
+        },
+        {
+          "label": "miss",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 25.276517868041992,
+              "min": 22.601604461669922,
+              "max": 42.59233474731445,
+              "n": 54
+            },
+            {
+              "median": 25.53572654724121,
+              "min": 22.139453887939453,
+              "max": 32.51514434814453,
+              "n": 54,
+              "changePercent": 1.0254920418723668
+            }
+          ]
+        },
+        {
+          "label": "escaped",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 81.66952133178711,
+              "min": 73.61946105957031,
+              "max": 108.73432159423828,
+              "n": 54
+            },
+            {
+              "median": 81.81610107421875,
+              "min": 73.78253936767578,
+              "max": 121.9991683959961,
+              "n": 54,
+              "changePercent": 0.17947912518814224
+            }
+          ]
+        },
+        {
+          "label": "long-literal",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 104.49352264404297,
+              "min": 89.92729187011719,
+              "max": 122.79853820800781,
+              "n": 54
+            },
+            {
+              "median": 103.69911193847656,
+              "min": 90.29159545898438,
+              "max": 119.15206909179688,
+              "n": 54,
+              "changePercent": -0.7602487555832149
+            }
+          ]
+        },
+        {
+          "label": "long-sparse",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 131.46076202392578,
+              "min": 118.72100830078125,
+              "max": 199.12338256835938,
+              "n": 54
+            },
+            {
+              "median": 130.36041259765625,
+              "min": 122.24769592285156,
+              "max": 197.27401733398438,
+              "n": 54,
+              "changePercent": -0.8370173801892866
+            }
+          ]
+        },
+        {
+          "label": "dense",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 2539.453125,
+              "min": 2324.15771484375,
+              "max": 3023.44970703125,
+              "n": 54
+            },
+            {
+              "median": 2514.337158203125,
+              "min": 2302.45361328125,
+              "max": 3179.1259765625,
+              "n": 54,
+              "changePercent": -0.9890305337640348
+            }
+          ]
+        },
+        {
+          "label": "unicode",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 151.29261016845703,
+              "min": 131.63909912109375,
+              "max": 189.6026611328125,
+              "n": 54
+            },
+            {
+              "median": 147.3257064819336,
+              "min": 136.46583557128906,
+              "max": 203.28598022460938,
+              "n": 54,
+              "changePercent": -2.6220075667320986
+            }
+          ]
+        },
+        {
+          "label": "newline",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 37.787485122680664,
+              "min": 34.262657165527344,
+              "max": 45.744991302490234,
+              "n": 54
+            },
+            {
+              "median": 37.59865760803223,
+              "min": 34.89093780517578,
+              "max": 50.89282989501953,
+              "n": 54,
+              "changePercent": -0.4997091339510762
+            }
+          ]
+        },
+        {
+          "label": "multiline",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 39.96553421020508,
+              "min": 34.836578369140625,
+              "max": 54.35009002685547,
+              "n": 54
+            },
+            {
+              "median": 40.03705978393555,
+              "min": 34.22698974609375,
+              "max": 48.540592193603516,
+              "n": 54,
+              "changePercent": 0.1789681412846189
+            }
+          ]
+        },
+        {
+          "label": "complex",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 600.9048461914062,
+              "min": 561.4059448242188,
+              "max": 703.5140991210938,
+              "n": 54
+            },
+            {
+              "median": 594.8348999023438,
+              "min": 542.352294921875,
+              "max": 859.5138549804688,
+              "n": 54,
+              "changePercent": -1.010134354471326
+            }
+          ]
+        },
+        {
+          "label": "question-run",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 1032.7621459960938,
+              "min": 875.8514404296875,
+              "max": 2923.199462890625,
+              "n": 54
+            },
+            {
+              "median": 1829.3243408203125,
+              "min": 1362.26806640625,
+              "max": 2366.9097900390625,
+              "n": 54,
+              "changePercent": 77.12929815566957
+            }
+          ]
+        },
+        {
+          "label": "question-run-lf",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 1096.2432861328125,
+              "min": 860.858154296875,
+              "max": 2422.381591796875,
+              "n": 54
+            },
+            {
+              "median": 1749.3759155273438,
+              "min": 1346.392822265625,
+              "max": 2406.8359375,
+              "n": 54,
+              "changePercent": 59.579168023785066
+            }
+          ]
+        },
+        {
+          "label": "question-star",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 1367.742919921875,
+              "min": 1246.337890625,
+              "max": 1549.151611328125,
+              "n": 54
+            },
+            {
+              "median": 1269.27490234375,
+              "min": 1161.669921875,
+              "max": 1623.016357421875,
+              "n": 54,
+              "changePercent": -7.19930742421605
+            }
+          ]
+        },
+        {
+          "label": "retry-literal",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 348.86016845703125,
+              "min": 296.856689453125,
+              "max": 554.0008544921875,
+              "n": 54
+            },
+            {
+              "median": 340.7073974609375,
+              "min": 297.67913818359375,
+              "max": 479.0863037109375,
+              "n": 54,
+              "changePercent": -2.336973874705306
+            }
+          ]
+        },
+        {
+          "label": "retry-near-miss",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 199.7650146484375,
+              "min": 165.22064208984375,
+              "max": 360.308837890625,
+              "n": 54
+            },
+            {
+              "median": 201.21307373046875,
+              "min": 162.29782104492188,
+              "max": 259.98992919921875,
+              "n": 54,
+              "changePercent": 0.7248812233611845
+            }
+          ]
+        },
+        {
+          "label": "retry-lf",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 1314.48974609375,
+              "min": 1190.68603515625,
+              "max": 2010.162353515625,
+              "n": 54
+            },
+            {
+              "median": 1156.3751220703125,
+              "min": 1079.608154296875,
+              "max": 1459.637451171875,
+              "n": 54,
+              "changePercent": -12.028593185553893
+            }
+          ]
+        },
+        {
+          "label": "ascii-literal-ignorecase",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 1119.8959350585938,
+              "min": 1032.09228515625,
+              "max": 2443.267822265625,
+              "n": 54
+            },
+            {
+              "median": 1110.3591918945312,
+              "min": 1030.718994140625,
+              "max": 1577.423095703125,
+              "n": 54,
+              "changePercent": -0.8515740494730473
+            }
+          ]
+        },
+        {
+          "label": "short-literal-ignorecase",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 39.85567092895508,
+              "min": 33.99944305419922,
+              "max": 51.41162872314453,
+              "n": 54
+            },
+            {
+              "median": 45.64981460571289,
+              "min": 42.10224151611328,
+              "max": 53.61614227294922,
+              "n": 54,
+              "changePercent": 14.537814924973148
+            }
+          ]
+        },
+        {
+          "label": "many-stars",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 2499.2523193359375,
+              "min": 1965.728759765625,
+              "max": 3501.15966796875,
+              "n": 54
+            },
+            {
+              "median": 2384.2315673828125,
+              "min": 2271.74072265625,
+              "max": 2837.8662109375,
+              "n": 54,
+              "changePercent": -4.602206470440984
+            }
+          ]
+        },
+        {
+          "label": "short-question",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 33.594512939453125,
+              "min": 31.561946868896484,
+              "max": 44.364356994628906,
+              "n": 54
+            },
+            {
+              "median": 34.760284423828125,
+              "min": 31.389141082763672,
+              "max": 41.62111282348633,
+              "n": 54,
+              "changePercent": 3.4701246792178564
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Borrowed-text final epoch: reused",
+      "description": "Committed 0c39b9d control and retained API integration; three fresh processes, 54 samples/engine/case, all samples retained. Sliced controls materialize text (and static patterns) inside timing. Span-* controls use already-owned strings; construction controls and candidates both copy one pattern. Normalization runs on .NET 11, all others on .NET 10. Whiskers show the complete range.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "Committed string caller",
+        "Span-capable caller"
+      ],
+      "rows": [
+        {
+          "label": "empty",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 14.449024200439453,
+              "min": 13.101005554199219,
+              "max": 35.40515899658203,
+              "n": 54
+            },
+            {
+              "median": 16.83053970336914,
+              "min": 14.618873596191406,
+              "max": 36.324119567871094,
+              "n": 54,
+              "changePercent": 16.48218917688058
+            }
+          ]
+        },
+        {
+          "label": "literal",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 14.425492286682129,
+              "min": 13.493967056274414,
+              "max": 21.221065521240234,
+              "n": 54
+            },
+            {
+              "median": 16.535067558288574,
+              "min": 15.092611312866211,
+              "max": 18.65830421447754,
+              "n": 54,
+              "changePercent": 14.623939548697717
+            }
+          ]
+        },
+        {
+          "label": "simple",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 130.68866729736328,
+              "min": 109.03739929199219,
+              "max": 204.66766357421875,
+              "n": 54
+            },
+            {
+              "median": 120.3207015991211,
+              "min": 103.20014953613281,
+              "max": 180.68389892578125,
+              "n": 54,
+              "changePercent": -7.933331873873484
+            }
+          ]
+        },
+        {
+          "label": "simple-ignorecase",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 165.2843475341797,
+              "min": 147.37091064453125,
+              "max": 216.40167236328125,
+              "n": 54
+            },
+            {
+              "median": 150.07858276367188,
+              "min": 132.14797973632812,
+              "max": 205.59921264648438,
+              "n": 54,
+              "changePercent": -9.199760895303989
+            }
+          ]
+        },
+        {
+          "label": "miss",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 18.603873252868652,
+              "min": 16.907501220703125,
+              "max": 23.418807983398438,
+              "n": 54
+            },
+            {
+              "median": 19.41044330596924,
+              "min": 16.383647918701172,
+              "max": 29.216861724853516,
+              "n": 54,
+              "changePercent": 4.335495313999815
+            }
+          ]
+        },
+        {
+          "label": "escaped",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 73.20575714111328,
+              "min": 65.44647216796875,
+              "max": 144.8352813720703,
+              "n": 54
+            },
+            {
+              "median": 61.35587692260742,
+              "min": 42.78717041015625,
+              "max": 74.06044006347656,
+              "n": 54,
+              "changePercent": -16.18708784838292
+            }
+          ]
+        },
+        {
+          "label": "long-literal",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 57.952022552490234,
+              "min": 49.78523254394531,
+              "max": 87.99915313720703,
+              "n": 54
+            },
+            {
+              "median": 60.099220275878906,
+              "min": 51.25312805175781,
+              "max": 66.70551300048828,
+              "n": 54,
+              "changePercent": 3.705129914048877
+            }
+          ]
+        },
+        {
+          "label": "long-sparse",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 68.52560043334961,
+              "min": 62.441253662109375,
+              "max": 79.94384765625,
+              "n": 54
+            },
+            {
+              "median": 66.49246215820312,
+              "min": 56.832313537597656,
+              "max": 75.47760009765625,
+              "n": 54,
+              "changePercent": -2.9669762282841794
+            }
+          ]
+        },
+        {
+          "label": "dense",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 2179.339599609375,
+              "min": 1564.19677734375,
+              "max": 2639.337158203125,
+              "n": 54
+            },
+            {
+              "median": 1029.0802001953125,
+              "min": 846.59423828125,
+              "max": 1704.6630859375,
+              "n": 54,
+              "changePercent": -52.78018164861663
+            }
+          ]
+        },
+        {
+          "label": "unicode",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 121.62208557128906,
+              "min": 105.5999755859375,
+              "max": 160.7807159423828,
+              "n": 54
+            },
+            {
+              "median": 112.07466125488281,
+              "min": 102.3284912109375,
+              "max": 171.82998657226562,
+              "n": 54,
+              "changePercent": -7.850074492276327
+            }
+          ]
+        },
+        {
+          "label": "newline",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 31.35247230529785,
+              "min": 28.509235382080078,
+              "max": 40.43922424316406,
+              "n": 54
+            },
+            {
+              "median": 27.076292037963867,
+              "min": 22.136497497558594,
+              "max": 35.434818267822266,
+              "n": 54,
+              "changePercent": -13.639052849466704
+            }
+          ]
+        },
+        {
+          "label": "multiline",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 32.585811614990234,
+              "min": 28.48987579345703,
+              "max": 45.52507400512695,
+              "n": 54
+            },
+            {
+              "median": 33.12358856201172,
+              "min": 29.769325256347656,
+              "max": 41.85466766357422,
+              "n": 54,
+              "changePercent": 1.650340808986006
+            }
+          ]
+        },
+        {
+          "label": "complex",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 598.3177185058594,
+              "min": 525.5691528320312,
+              "max": 738.6337280273438,
+              "n": 54
+            },
+            {
+              "median": 561.7927551269531,
+              "min": 497.57843017578125,
+              "max": 759.185791015625,
+              "n": 54,
+              "changePercent": -6.104610017252654
+            }
+          ]
+        },
+        {
+          "label": "question-run",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 40.27843475341797,
+              "min": 33.637046813964844,
+              "max": 54.18891906738281,
+              "n": 54
+            },
+            {
+              "median": 43.134117126464844,
+              "min": 34.68475341796875,
+              "max": 61.915016174316406,
+              "n": 54,
+              "changePercent": 7.0898543861726
+            }
+          ]
+        },
+        {
+          "label": "question-run-lf",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 30.087614059448242,
+              "min": 27.150249481201172,
+              "max": 113.28420639038086,
+              "n": 54
+            },
+            {
+              "median": 32.19799995422363,
+              "min": 28.576278686523438,
+              "max": 95.00627517700195,
+              "n": 54,
+              "changePercent": 7.014135087633111
+            }
+          ]
+        },
+        {
+          "label": "question-star",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 1425.384521484375,
+              "min": 1232.58056640625,
+              "max": 2174.47509765625,
+              "n": 54
+            },
+            {
+              "median": 1186.7584228515625,
+              "min": 1069.537353515625,
+              "max": 1999.267578125,
+              "n": 54,
+              "changePercent": -16.74117369987368
+            }
+          ]
+        },
+        {
+          "label": "retry-literal",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 351.33056640625,
+              "min": 298.38409423828125,
+              "max": 444.7540283203125,
+              "n": 54
+            },
+            {
+              "median": 334.9479675292969,
+              "min": 286.37847900390625,
+              "max": 416.36505126953125,
+              "n": 54,
+              "changePercent": -4.6630155310795285
+            }
+          ]
+        },
+        {
+          "label": "retry-near-miss",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 194.41070556640625,
+              "min": 159.27352905273438,
+              "max": 665.2633666992188,
+              "n": 54
+            },
+            {
+              "median": 192.58804321289062,
+              "min": 159.34371948242188,
+              "max": 316.3642883300781,
+              "n": 54,
+              "changePercent": -0.937531885502596
+            }
+          ]
+        },
+        {
+          "label": "retry-lf",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 1355.462646484375,
+              "min": 1221.728515625,
+              "max": 1826.79443359375,
+              "n": 54
+            },
+            {
+              "median": 1217.8436279296875,
+              "min": 1071.929931640625,
+              "max": 1368.1304931640625,
+              "n": 54,
+              "changePercent": -10.15291855600935
+            }
+          ]
+        },
+        {
+          "label": "ascii-literal-ignorecase",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 1076.904296875,
+              "min": 985.699462890625,
+              "max": 2456.292724609375,
+              "n": 54
+            },
+            {
+              "median": 1063.031005859375,
+              "min": 963.763427734375,
+              "max": 2669.83642578125,
+              "n": 54,
+              "changePercent": -1.2882566311493981
+            }
+          ]
+        },
+        {
+          "label": "short-literal-ignorecase",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 24.438047409057617,
+              "min": 22.789478302001953,
+              "max": 38.81330490112305,
+              "n": 54
+            },
+            {
+              "median": 26.24335289001465,
+              "min": 23.99759292602539,
+              "max": 34.525489807128906,
+              "n": 54,
+              "changePercent": 7.387273830592211
+            }
+          ]
+        },
+        {
+          "label": "many-stars",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 2090.12451171875,
+              "min": 1934.7900390625,
+              "max": 3297.00927734375,
+              "n": 54
+            },
+            {
+              "median": 2150.836181640625,
+              "min": 1928.45458984375,
+              "max": 3577.55126953125,
+              "n": 54,
+              "changePercent": 2.904691542608173
+            }
+          ]
+        },
+        {
+          "label": "short-question",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 24.820661544799805,
+              "min": 21.056079864501953,
+              "max": 31.470870971679688,
+              "n": 54
+            },
+            {
+              "median": 21.769046783447266,
+              "min": 17.90637969970703,
+              "max": 30.08432388305664,
+              "n": 54,
+              "changePercent": -12.294655224416795
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Borrowed-text final epoch: span-static",
+      "description": "Committed 0c39b9d control and retained API integration; three fresh processes, 54 samples/engine/case, all samples retained. Sliced controls materialize text (and static patterns) inside timing. Span-* controls use already-owned strings; construction controls and candidates both copy one pattern. Normalization runs on .NET 11, all others on .NET 10. Whiskers show the complete range.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "Committed string caller",
+        "Span-capable caller"
+      ],
+      "rows": [
+        {
+          "label": "empty",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 19.92802619934082,
+              "min": 18.35150718688965,
+              "max": 24.265384674072266,
+              "n": 54
+            },
+            {
+              "median": 19.112014770507812,
+              "min": 16.54515266418457,
+              "max": 30.043888092041016,
+              "n": 54,
+              "changePercent": -4.094793035047295
+            }
+          ]
+        },
+        {
+          "label": "literal",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 20.768308639526367,
+              "min": 19.176387786865234,
+              "max": 25.620746612548828,
+              "n": 54
+            },
+            {
+              "median": 19.25349235534668,
+              "min": 17.0928955078125,
+              "max": 26.92432403564453,
+              "n": 54,
+              "changePercent": -7.293883726750283
+            }
+          ]
+        },
+        {
+          "label": "simple",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 134.1503143310547,
+              "min": 115.38963317871094,
+              "max": 217.65365600585938,
+              "n": 54
+            },
+            {
+              "median": 79.38652038574219,
+              "min": 65.27023315429688,
+              "max": 132.9986572265625,
+              "n": 54,
+              "changePercent": -40.822710120653916
+            }
+          ]
+        },
+        {
+          "label": "long-literal",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 106.50920867919922,
+              "min": 90.73333740234375,
+              "max": 158.7615966796875,
+              "n": 54
+            },
+            {
+              "median": 101.82380676269531,
+              "min": 91.35971069335938,
+              "max": 182.17010498046875,
+              "n": 54,
+              "changePercent": -4.399058048225779
+            }
+          ]
+        },
+        {
+          "label": "long-sparse",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 132.3526382446289,
+              "min": 118.36471557617188,
+              "max": 157.23800659179688,
+              "n": 54
+            },
+            {
+              "median": 137.5751495361328,
+              "min": 125.84228515625,
+              "max": 176.49879455566406,
+              "n": 54,
+              "changePercent": 3.9459064517105347
+            }
+          ]
+        },
+        {
+          "label": "dense",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 2547.021484375,
+              "min": 2305.50537109375,
+              "max": 3267.88330078125,
+              "n": 54
+            },
+            {
+              "median": 1167.083740234375,
+              "min": 1112.21923828125,
+              "max": 1501.08642578125,
+              "n": 54,
+              "changePercent": -54.17848858386212
+            }
+          ]
+        },
+        {
+          "label": "unicode",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 153.36666107177734,
+              "min": 130.5133819580078,
+              "max": 204.50706481933594,
+              "n": 54
+            },
+            {
+              "median": 140.15960693359375,
+              "min": 125.78697204589844,
+              "max": 186.1248016357422,
+              "n": 54,
+              "changePercent": -8.61142444250158
+            }
+          ]
+        },
+        {
+          "label": "newline",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 37.143802642822266,
+              "min": 34.63850021362305,
+              "max": 49.15485382080078,
+              "n": 54
+            },
+            {
+              "median": 31.369781494140625,
+              "min": 27.490234375,
+              "max": 37.99915313720703,
+              "n": 54,
+              "changePercent": -15.545045843057814
+            }
+          ]
+        },
+        {
+          "label": "complex",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 609.9563598632812,
+              "min": 551.67236328125,
+              "max": 913.1134033203125,
+              "n": 54
+            },
+            {
+              "median": 457.48138427734375,
+              "min": 418.4112548828125,
+              "max": 738.6810302734375,
+              "n": 54,
+              "changePercent": -24.99768600168609
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Borrowed-text final epoch: span-reused",
+      "description": "Committed 0c39b9d control and retained API integration; three fresh processes, 54 samples/engine/case, all samples retained. Sliced controls materialize text (and static patterns) inside timing. Span-* controls use already-owned strings; construction controls and candidates both copy one pattern. Normalization runs on .NET 11, all others on .NET 10. Whiskers show the complete range.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "Committed string caller",
+        "Span-capable caller"
+      ],
+      "rows": [
+        {
+          "label": "empty",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 14.427018165588379,
+              "min": 13.294553756713867,
+              "max": 19.78616714477539,
+              "n": 54
+            },
+            {
+              "median": 14.974546432495117,
+              "min": 12.216997146606445,
+              "max": 26.192140579223633,
+              "n": 54,
+              "changePercent": 3.7951589207305014
+            }
+          ]
+        },
+        {
+          "label": "literal",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 14.762067794799805,
+              "min": 13.508892059326172,
+              "max": 17.531728744506836,
+              "n": 54
+            },
+            {
+              "median": 14.279818534851074,
+              "min": 12.342691421508789,
+              "max": 18.69654655456543,
+              "n": 54,
+              "changePercent": -3.266813746232833
+            }
+          ]
+        },
+        {
+          "label": "simple",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 126.61609649658203,
+              "min": 108.52317810058594,
+              "max": 145.32089233398438,
+              "n": 54
+            },
+            {
+              "median": 75.74577331542969,
+              "min": 62.29209899902344,
+              "max": 114.64080810546875,
+              "n": 54,
+              "changePercent": -40.17682158012633
+            }
+          ]
+        },
+        {
+          "label": "long-literal",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 59.33389663696289,
+              "min": 49.77893829345703,
+              "max": 65.11058807373047,
+              "n": 54
+            },
+            {
+              "median": 54.73766326904297,
+              "min": 49.85179901123047,
+              "max": 75.96549987792969,
+              "n": 54,
+              "changePercent": -7.746387189168081
+            }
+          ]
+        },
+        {
+          "label": "long-sparse",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 67.31300354003906,
+              "min": 62.79144287109375,
+              "max": 78.57952117919922,
+              "n": 54
+            },
+            {
+              "median": 68.72291564941406,
+              "min": 61.27662658691406,
+              "max": 84.2885971069336,
+              "n": 54,
+              "changePercent": 2.0945612812186543
+            }
+          ]
+        },
+        {
+          "label": "dense",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 2173.0255126953125,
+              "min": 1559.307861328125,
+              "max": 2657.354736328125,
+              "n": 54
+            },
+            {
+              "median": 1178.2501220703125,
+              "min": 1112.127685546875,
+              "max": 1906.8115234375,
+              "n": 54,
+              "changePercent": -45.77835763148175
+            }
+          ]
+        },
+        {
+          "label": "unicode",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 120.37734985351562,
+              "min": 104.86640930175781,
+              "max": 160.92071533203125,
+              "n": 54
+            },
+            {
+              "median": 114.52007293701172,
+              "min": 105.42106628417969,
+              "max": 172.5982666015625,
+              "n": 54,
+              "changePercent": -4.865763304833914
+            }
+          ]
+        },
+        {
+          "label": "newline",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 32.62653350830078,
+              "min": 28.879451751708984,
+              "max": 42.25883483886719,
+              "n": 54
+            },
+            {
+              "median": 28.197050094604492,
+              "min": 24.560546875,
+              "max": 39.61668014526367,
+              "n": 54,
+              "changePercent": -13.576322512378914
+            }
+          ]
+        },
+        {
+          "label": "complex",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 584.7831726074219,
+              "min": 532.7072143554688,
+              "max": 785.650634765625,
+              "n": 54
+            },
+            {
+              "median": 447.9698181152344,
+              "min": 406.90460205078125,
+              "max": 572.5921630859375,
+              "n": 54,
+              "changePercent": -23.39556965741102
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Borrowed-text final epoch: sliced-static",
+      "description": "Committed 0c39b9d control and retained API integration; three fresh processes, 54 samples/engine/case, all samples retained. Sliced controls materialize text (and static patterns) inside timing. Span-* controls use already-owned strings; construction controls and candidates both copy one pattern. Normalization runs on .NET 11, all others on .NET 10. Whiskers show the complete range.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "Committed string caller",
+        "Span-capable caller"
+      ],
+      "rows": [
+        {
+          "label": "empty",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 27.62289047241211,
+              "min": 24.0142822265625,
+              "max": 33.094215393066406,
+              "n": 54
+            },
+            {
+              "median": 18.2525634765625,
+              "min": 16.16992950439453,
+              "max": 29.341697692871094,
+              "n": 54,
+              "changePercent": -33.9223261418209
+            }
+          ]
+        },
+        {
+          "label": "literal",
+          "detail": "allocation 112 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 47.31893539428711,
+              "min": 42.04273223876953,
+              "max": 53.377342224121094,
+              "n": 54
+            },
+            {
+              "median": 19.61040496826172,
+              "min": 17.04082489013672,
+              "max": 24.91016387939453,
+              "n": 54,
+              "changePercent": -58.556960749735474
+            }
+          ]
+        },
+        {
+          "label": "simple",
+          "detail": "allocation 104 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 153.5114288330078,
+              "min": 135.87799072265625,
+              "max": 244.03610229492188,
+              "n": 54
+            },
+            {
+              "median": 74.58572387695312,
+              "min": 64.56222534179688,
+              "max": 130.50003051757812,
+              "n": 54,
+              "changePercent": -51.41356937137973
+            }
+          ]
+        },
+        {
+          "label": "long-literal",
+          "detail": "allocation 4144 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 308.2691192626953,
+              "min": 273.3222961425781,
+              "max": 473.0796813964844,
+              "n": 54
+            },
+            {
+              "median": 101.09519958496094,
+              "min": 88.61083984375,
+              "max": 205.09262084960938,
+              "n": 54,
+              "changePercent": -67.20553786679767
+            }
+          ]
+        },
+        {
+          "label": "long-sparse",
+          "detail": "allocation 4152 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 351.1680603027344,
+              "min": 317.5872802734375,
+              "max": 435.40496826171875,
+              "n": 54
+            },
+            {
+              "median": 139.63088989257812,
+              "min": 125.13427734375,
+              "max": 212.11395263671875,
+              "n": 54,
+              "changePercent": -60.23815782898782
+            }
+          ]
+        },
+        {
+          "label": "dense",
+          "detail": "allocation 2096 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 2734.75341796875,
+              "min": 2451.6845703125,
+              "max": 3345.5078125,
+              "n": 54
+            },
+            {
+              "median": 1178.57666015625,
+              "min": 1105.7861328125,
+              "max": 1508.26416015625,
+              "n": 54,
+              "changePercent": -56.90373207279349
+            }
+          ]
+        },
+        {
+          "label": "unicode",
+          "detail": "allocation 80 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 170.68138122558594,
+              "min": 149.652099609375,
+              "max": 231.27822875976562,
+              "n": 54
+            },
+            {
+              "median": 132.85484313964844,
+              "min": 125.12741088867188,
+              "max": 186.37466430664062,
+              "n": 54,
+              "changePercent": -22.16207638719713
+            }
+          ]
+        },
+        {
+          "label": "newline",
+          "detail": "allocation 64 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 58.43486785888672,
+              "min": 53.405189514160156,
+              "max": 81.4178466796875,
+              "n": 54
+            },
+            {
+              "median": 31.527233123779297,
+              "min": 27.47020721435547,
+              "max": 42.17357635498047,
+              "n": 54,
+              "changePercent": -46.04722440732847
+            }
+          ]
+        },
+        {
+          "label": "complex",
+          "detail": "allocation 776 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 672.9766845703125,
+              "min": 622.955322265625,
+              "max": 825.225830078125,
+              "n": 54
+            },
+            {
+              "median": 458.2061767578125,
+              "min": 415.73486328125,
+              "max": 645.9625244140625,
+              "n": 54,
+              "changePercent": -31.913513905705127
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Borrowed-text final epoch: sliced-reused",
+      "description": "Committed 0c39b9d control and retained API integration; three fresh processes, 54 samples/engine/case, all samples retained. Sliced controls materialize text (and static patterns) inside timing. Span-* controls use already-owned strings; construction controls and candidates both copy one pattern. Normalization runs on .NET 11, all others on .NET 10. Whiskers show the complete range.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "Committed string caller",
+        "Span-capable caller"
+      ],
+      "rows": [
+        {
+          "label": "empty",
+          "detail": "allocation 0 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 18.9115047454834,
+              "min": 17.249679565429688,
+              "max": 24.079322814941406,
+              "n": 54
+            },
+            {
+              "median": 14.866209030151367,
+              "min": 12.488079071044922,
+              "max": 19.19879913330078,
+              "n": 54,
+              "changePercent": -21.390660181592168
+            }
+          ]
+        },
+        {
+          "label": "literal",
+          "detail": "allocation 56 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 29.12611961364746,
+              "min": 27.69765853881836,
+              "max": 35.49776077270508,
+              "n": 54
+            },
+            {
+              "median": 14.196109771728516,
+              "min": 12.302684783935547,
+              "max": 19.487476348876953,
+              "n": 54,
+              "changePercent": -51.259865852241006
+            }
+          ]
+        },
+        {
+          "label": "simple",
+          "detail": "allocation 56 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 118.4844970703125,
+              "min": 101.03874206542969,
+              "max": 180.6140899658203,
+              "n": 54
+            },
+            {
+              "median": 70.70369720458984,
+              "min": 62.3046875,
+              "max": 121.65069580078125,
+              "n": 54,
+              "changePercent": -40.32662588538313
+            }
+          ]
+        },
+        {
+          "label": "long-literal",
+          "detail": "allocation 2072 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 157.35950469970703,
+              "min": 139.20364379882812,
+              "max": 204.39453125,
+              "n": 54
+            },
+            {
+              "median": 57.30247497558594,
+              "min": 48.473358154296875,
+              "max": 92.78182983398438,
+              "n": 54,
+              "changePercent": -63.58499279408788
+            }
+          ]
+        },
+        {
+          "label": "long-sparse",
+          "detail": "allocation 2072 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 180.00221252441406,
+              "min": 147.61581420898438,
+              "max": 216.59317016601562,
+              "n": 54
+            },
+            {
+              "median": 70.89424133300781,
+              "min": 59.722900390625,
+              "max": 104.31594848632812,
+              "n": 54,
+              "changePercent": -60.61479448571095
+            }
+          ]
+        },
+        {
+          "label": "dense",
+          "detail": "allocation 1048 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 1173.62060546875,
+              "min": 1024.9755859375,
+              "max": 1849.52392578125,
+              "n": 54
+            },
+            {
+              "median": 1205.621337890625,
+              "min": 1112.969970703125,
+              "max": 1578.8818359375,
+              "n": 54,
+              "changePercent": 2.7266675681016928
+            }
+          ]
+        },
+        {
+          "label": "unicode",
+          "detail": "allocation 48 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 121.38099670410156,
+              "min": 113.59977722167969,
+              "max": 154.71763610839844,
+              "n": 54
+            },
+            {
+              "median": 118.5403823852539,
+              "min": 105.85975646972656,
+              "max": 141.3867950439453,
+              "n": 54,
+              "changePercent": -2.340246328486173
+            }
+          ]
+        },
+        {
+          "label": "newline",
+          "detail": "allocation 32 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 40.79537391662598,
+              "min": 34.580421447753906,
+              "max": 52.15625762939453,
+              "n": 54
+            },
+            {
+              "median": 27.749967575073242,
+              "min": 24.493408203125,
+              "max": 36.128997802734375,
+              "n": 54,
+              "changePercent": -31.977660918646798
+            }
+          ]
+        },
+        {
+          "label": "complex",
+          "detail": "allocation 656 → 0 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 597.7615356445312,
+              "min": 528.77197265625,
+              "max": 700.8224487304688,
+              "n": 54
+            },
+            {
+              "median": 450.15411376953125,
+              "min": 403.753662109375,
+              "max": 619.5159912109375,
+              "n": 54,
+              "changePercent": -24.693362331492875
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Borrowed-text final epoch: construction-span",
+      "description": "Committed 0c39b9d control and retained API integration; three fresh processes, 54 samples/engine/case, all samples retained. Sliced controls materialize text (and static patterns) inside timing. Span-* controls use already-owned strings; construction controls and candidates both copy one pattern. Normalization runs on .NET 11, all others on .NET 10. Whiskers show the complete range.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "Committed string caller",
+        "Span-capable caller"
+      ],
+      "rows": [
+        {
+          "label": "empty",
+          "detail": "allocation 72 → 72 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 32.54890441894531,
+              "min": 28.737258911132812,
+              "max": 118.23005676269531,
+              "n": 54
+            },
+            {
+              "median": 30.504798889160156,
+              "min": 27.097702026367188,
+              "max": 89.14260864257812,
+              "n": 54,
+              "changePercent": -6.2801054790506905
+            }
+          ]
+        },
+        {
+          "label": "literal",
+          "detail": "allocation 128 → 128 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 44.976139068603516,
+              "min": 40.09380340576172,
+              "max": 62.1002197265625,
+              "n": 54
+            },
+            {
+              "median": 37.860679626464844,
+              "min": 34.29718017578125,
+              "max": 49.97730255126953,
+              "n": 54,
+              "changePercent": -15.82052081279195
+            }
+          ]
+        },
+        {
+          "label": "simple",
+          "detail": "allocation 120 → 120 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 103.0691146850586,
+              "min": 91.26167297363281,
+              "max": 131.16722106933594,
+              "n": 54
+            },
+            {
+              "median": 102.41432189941406,
+              "min": 89.2242431640625,
+              "max": 163.4624481201172,
+              "n": 54,
+              "changePercent": -0.6352948578682738
+            }
+          ]
+        },
+        {
+          "label": "long-literal",
+          "detail": "allocation 2144 → 2144 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 226.95350646972656,
+              "min": 202.52304077148438,
+              "max": 276.8272399902344,
+              "n": 54
+            },
+            {
+              "median": 230.64537048339844,
+              "min": 203.17230224609375,
+              "max": 293.60809326171875,
+              "n": 54,
+              "changePercent": 1.6267049895368535
+            }
+          ]
+        },
+        {
+          "label": "long-sparse",
+          "detail": "allocation 2152 → 2152 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 256.9496154785156,
+              "min": 220.17135620117188,
+              "max": 321.29974365234375,
+              "n": 54
+            },
+            {
+              "median": 257.38983154296875,
+              "min": 231.83822631835938,
+              "max": 318.7034606933594,
+              "n": 54,
+              "changePercent": 0.17132388528129372
+            }
+          ]
+        },
+        {
+          "label": "dense",
+          "detail": "allocation 1120 → 1120 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 1544.61669921875,
+              "min": 1064.617919921875,
+              "max": 1787.396240234375,
+              "n": 54
+            },
+            {
+              "median": 1331.585693359375,
+              "min": 1233.782958984375,
+              "max": 1722.052001953125,
+              "n": 54,
+              "changePercent": -13.791836250839683
+            }
+          ]
+        },
+        {
+          "label": "unicode",
+          "detail": "allocation 104 → 104 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 145.43533325195312,
+              "min": 134.41810607910156,
+              "max": 262.15667724609375,
+              "n": 54
+            },
+            {
+              "median": 164.8141860961914,
+              "min": 148.97003173828125,
+              "max": 262.4549865722656,
+              "n": 54,
+              "changePercent": 13.324721311475418
+            }
+          ]
+        },
+        {
+          "label": "newline",
+          "detail": "allocation 104 → 104 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 55.553245544433594,
+              "min": 47.585296630859375,
+              "max": 66.63475036621094,
+              "n": 54
+            },
+            {
+              "median": 52.53190994262695,
+              "min": 47.071075439453125,
+              "max": 69.51255798339844,
+              "n": 54,
+              "changePercent": -5.438630222585394
+            }
+          ]
+        },
+        {
+          "label": "complex",
+          "detail": "allocation 192 → 192 B/call; runtime net10.0",
+          "measurements": [
+            {
+              "median": 513.1996154785156,
+              "min": 467.85430908203125,
+              "max": 616.6061401367188,
+              "n": 54
+            },
+            {
+              "median": 502.5718688964844,
+              "min": 448.785400390625,
+              "max": 653.8223266601562,
+              "n": 54,
+              "changePercent": -2.0708796853095346
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Borrowed-text final epoch: normalization",
+      "description": "Committed 0c39b9d control and retained API integration; three fresh processes, 54 samples/engine/case, all samples retained. Sliced controls materialize text (and static patterns) inside timing. Span-* controls use already-owned strings; construction controls and candidates both copy one pattern. Normalization runs on .NET 11, all others on .NET 10. Whiskers show the complete range.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "Committed string caller",
+        "Span-capable caller"
+      ],
+      "rows": [
+        {
+          "label": "normalize-63",
+          "detail": "allocation 32 → 0 B/call; runtime net11.0",
+          "measurements": [
+            {
+              "median": 828.8543701171875,
+              "min": 732.9833984375,
+              "max": 1926.0498046875,
+              "n": 54
+            },
+            {
+              "median": 81.55517578125,
+              "min": 56.8206787109375,
+              "max": 137.7105712890625,
+              "n": 54,
+              "changePercent": -90.16049396352712
+            }
+          ]
+        },
+        {
+          "label": "normalize-253",
+          "detail": "allocation 32 → 0 B/call; runtime net11.0",
+          "measurements": [
+            {
+              "median": 3123.03466796875,
+              "min": 3020.6787109375,
+              "max": 4193.9453125,
+              "n": 54
+            },
+            {
+              "median": 166.754150390625,
+              "min": 132.43408203125,
+              "max": 366.748046875,
+              "n": 54,
+              "changePercent": -94.66050914833157
+            }
+          ]
+        },
+        {
+          "label": "normalize-254",
+          "detail": "allocation 32 → 0 B/call; runtime net11.0",
+          "measurements": [
+            {
+              "median": 3123.406982421875,
+              "min": 3035.595703125,
+              "max": 3727.64892578125,
+              "n": 54
+            },
+            {
+              "median": 162.823486328125,
+              "min": 130.6396484375,
+              "max": 415.10009765625,
+              "n": 54,
+              "changePercent": -94.78699102472159
+            }
+          ]
+        },
+        {
+          "label": "normalize-255",
+          "detail": "allocation 32 → 0 B/call; runtime net11.0",
+          "measurements": [
+            {
+              "median": 3134.307861328125,
+              "min": 3036.48681640625,
+              "max": 3442.39501953125,
+              "n": 54
+            },
+            {
+              "median": 175.47607421875,
+              "min": 128.91845703125,
+              "max": 363.3056640625,
+              "n": 54,
+              "changePercent": -94.40144102039822
+            }
+          ]
+        },
+        {
+          "label": "normalize-1024",
+          "detail": "allocation 32 → 0 B/call; runtime net11.0",
+          "measurements": [
+            {
+              "median": 12489.3310546875,
+              "min": 12201.123046875,
+              "max": 13333.69140625,
+              "n": 54
+            },
+            {
+              "median": 445.5078125,
+              "min": 357.373046875,
+              "max": 1163.28125,
+              "n": 54,
+              "changePercent": -96.43289291836979
+            }
+          ]
+        }
+      ]
     }
   ],
   "effectGroups": [
@@ -3655,6 +5615,1186 @@
           "note": "rejected; 4bc779e + H-017"
         }
       ]
+    },
+    {
+      "name": "Borrowed API owned-string effects: Initial shared span",
+      "control": "Each epoch has its own contemporaneous control named in spans/plan.md and identity.json. Final uses 0c39b9d; isolated refinements use their parent. Fractions and ranges are paired block effects; gains across epochs are not additive.",
+      "items": [
+        {
+          "hypothesisId": "H-025",
+          "label": "empty",
+          "effect": 1.1286969313844808,
+          "range": [
+            0.3044020009095043,
+            1.2731707029012465
+          ],
+          "note": "launch medians +113.4%, +112.1%, +111.0%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "literal",
+          "effect": 0.9645253206534494,
+          "range": [
+            0.6245747298871127,
+            1.233281325657718
+          ],
+          "note": "launch medians +102.6%, +91.3%, +91.0%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "simple",
+          "effect": 0.28562578522493,
+          "range": [
+            0.060284003800392894,
+            0.49695032043213394
+          ],
+          "note": "launch medians +31.6%, +27.7%, +25.6%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "simple-ignorecase",
+          "effect": 0.2146111521788543,
+          "range": [
+            0.01482657505248719,
+            0.3457117417022382
+          ],
+          "note": "launch medians +14.7%, +23.9%, +19.7%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "miss",
+          "effect": 0.5306963711584631,
+          "range": [
+            0.33255246958769114,
+            0.7185629053177691
+          ],
+          "note": "launch medians +56.5%, +52.9%, +46.2%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "escaped",
+          "effect": 0.2123572170301142,
+          "range": [
+            -0.0415373304355554,
+            0.382499030286511
+          ],
+          "note": "launch medians +15.3%, +20.2%, +16.5%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "long-literal",
+          "effect": -0.08732053840967889,
+          "range": [
+            -0.2429260959287859,
+            0.18286719804655416
+          ],
+          "note": "launch medians -9.8%, -15.0%, +8.7%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "long-sparse",
+          "effect": 0.04855494266027449,
+          "range": [
+            -0.20491071629320845,
+            0.42708631130285624
+          ],
+          "note": "launch medians -5.5%, +12.3%, +12.8%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "dense",
+          "effect": 0.16448068780618397,
+          "range": [
+            0.012449416001536706,
+            0.38263466360826537
+          ],
+          "note": "launch medians +15.6%, +22.9%, +9.4%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "unicode",
+          "effect": 0.15228369263872232,
+          "range": [
+            -0.029051647373107725,
+            0.36638232122210196
+          ],
+          "note": "launch medians +8.7%, +3.0%, +23.3%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "newline",
+          "effect": 0.43081053483270515,
+          "range": [
+            0.19177194261364927,
+            0.5954884997684518
+          ],
+          "note": "launch medians +35.3%, +41.3%, +45.3%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "multiline",
+          "effect": 0.2980645483529931,
+          "range": [
+            0.13692484686229633,
+            0.4670876423689221
+          ],
+          "note": "launch medians +22.3%, +28.8%, +26.3%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "complex",
+          "effect": 0.030604047920721245,
+          "range": [
+            -0.12016027775293103,
+            0.22275325396121848
+          ],
+          "note": "launch medians +3.6%, +2.3%, +1.9%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "question-run",
+          "effect": 0.15376743071189214,
+          "range": [
+            -0.10500556901184899,
+            0.3722468548806235
+          ],
+          "note": "launch medians +20.3%, +19.5%, +16.1%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "question-run-lf",
+          "effect": 0.1631368473573962,
+          "range": [
+            0.07442880734136725,
+            0.584390503361919
+          ],
+          "note": "launch medians +16.2%, +18.3%, +15.4%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "question-star",
+          "effect": 0.4014776111952343,
+          "range": [
+            0.23178276097118133,
+            0.6578758894954386
+          ],
+          "note": "launch medians +33.8%, +53.0%, +29.8%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "retry-literal",
+          "effect": 0.08517255900074927,
+          "range": [
+            -0.03586118185260301,
+            0.39764297212392075
+          ],
+          "note": "launch medians +7.5%, +4.9%, +11.0%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "retry-near-miss",
+          "effect": 0.0321635683393362,
+          "range": [
+            -0.11863417766083773,
+            0.21934079386527158
+          ],
+          "note": "launch medians +6.1%, -1.5%, +6.1%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "retry-lf",
+          "effect": 0.12669872062344734,
+          "range": [
+            -0.03741862082042857,
+            0.22792108289270652
+          ],
+          "note": "launch medians +14.9%, +13.1%, +11.7%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "ascii-literal-ignorecase",
+          "effect": -0.005669517408120939,
+          "range": [
+            -0.09863957820925562,
+            0.15637936900292337
+          ],
+          "note": "launch medians -1.9%, -2.9%, +2.5%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "short-literal-ignorecase",
+          "effect": 0.3040010724524098,
+          "range": [
+            0.1507922414345475,
+            0.7086813032016582
+          ],
+          "note": "launch medians +31.7%, +34.7%, +38.0%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "many-stars",
+          "effect": 0.05353687497251425,
+          "range": [
+            -0.12585299067061495,
+            0.4544064423646934
+          ],
+          "note": "launch medians +1.2%, -1.5%, +36.0%"
+        },
+        {
+          "hypothesisId": "H-025",
+          "label": "short-question",
+          "effect": 0.40724907501237256,
+          "range": [
+            0.10000480281033021,
+            0.678272235015871
+          ],
+          "note": "launch medians +42.6%, +39.7%, +39.9%"
+        }
+      ]
+    },
+    {
+      "name": "Borrowed API owned-string effects: H-027",
+      "control": "Each epoch has its own contemporaneous control named in spans/plan.md and identity.json. Final uses 0c39b9d; isolated refinements use their parent. Fractions and ranges are paired block effects; gains across epochs are not additive.",
+      "items": [
+        {
+          "hypothesisId": "H-027",
+          "label": "empty",
+          "effect": -0.001789720042434939,
+          "range": [
+            -0.02623439656129556,
+            0.1297911092485735
+          ],
+          "note": "launch medians -0.9%, -0.3%, +0.1%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "literal",
+          "effect": -0.2047214395065563,
+          "range": [
+            -0.32538297831547053,
+            0.3910375649233
+          ],
+          "note": "launch medians -18.9%, -10.3%, -19.9%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "simple",
+          "effect": -0.034463397379030036,
+          "range": [
+            -0.5852082591669634,
+            0.16224642323297034
+          ],
+          "note": "launch medians -3.9%, -2.1%, -2.4%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "simple-ignorecase",
+          "effect": -0.0042689211398646565,
+          "range": [
+            -0.22799911069176246,
+            0.3986609688615419
+          ],
+          "note": "launch medians +7.2%, -4.0%, -9.0%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "miss",
+          "effect": -0.05698344614972184,
+          "range": [
+            -0.1421485325862306,
+            0.07273078205330674
+          ],
+          "note": "launch medians -4.9%, -7.9%, -6.9%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "escaped",
+          "effect": -0.011037811745776338,
+          "range": [
+            -0.04071933723984644,
+            0.06650102077959064
+          ],
+          "note": "launch medians -1.0%, +2.2%, +0.3%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "long-literal",
+          "effect": 0.03717876677738974,
+          "range": [
+            -0.14434501297522484,
+            0.32171219881663915
+          ],
+          "note": "launch medians +8.2%, +12.4%, -11.4%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "long-sparse",
+          "effect": -0.06391158354008042,
+          "range": [
+            -0.16443112191257658,
+            0.3225396510213705
+          ],
+          "note": "launch medians -5.5%, -4.5%, +16.9%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "dense",
+          "effect": 0.01243930139595606,
+          "range": [
+            -0.2476131602445223,
+            0.3228014744602423
+          ],
+          "note": "launch medians -3.7%, +5.7%, -4.5%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "unicode",
+          "effect": -0.02793341504289748,
+          "range": [
+            -0.16960690264431544,
+            0.1071471901387946
+          ],
+          "note": "launch medians -1.3%, -1.2%, -7.7%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "newline",
+          "effect": -0.04757715894239468,
+          "range": [
+            -0.17841127163894163,
+            0.06590062111801243
+          ],
+          "note": "launch medians -5.3%, -7.0%, -10.4%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "multiline",
+          "effect": -0.010481852315394224,
+          "range": [
+            -0.15123020497048656,
+            0.4549698565738787
+          ],
+          "note": "launch medians +24.8%, -4.8%, -2.9%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "complex",
+          "effect": 0.03725480108479151,
+          "range": [
+            -0.12417240586305811,
+            0.5291489422445541
+          ],
+          "note": "launch medians +23.6%, +7.7%, -0.3%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "question-run",
+          "effect": -0.028905029871836185,
+          "range": [
+            -0.19949728881807294,
+            0.09437366677065494
+          ],
+          "note": "launch medians -3.5%, -8.3%, -0.3%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "question-run-lf",
+          "effect": 0.00784662038229289,
+          "range": [
+            -0.21240556660039764,
+            0.28473462289993545
+          ],
+          "note": "launch medians +2.0%, -5.7%, -1.3%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "question-star",
+          "effect": -0.014929562207329883,
+          "range": [
+            -0.12487977971691688,
+            0.6447052709082246
+          ],
+          "note": "launch medians -1.9%, +1.8%, +3.0%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "retry-literal",
+          "effect": -0.002759311220034699,
+          "range": [
+            -0.25305496032895114,
+            0.22587585364499474
+          ],
+          "note": "launch medians +1.1%, +12.3%, +1.4%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "retry-near-miss",
+          "effect": 0.024533355566903836,
+          "range": [
+            -0.2589106059290939,
+            0.27893002143324286
+          ],
+          "note": "launch medians +6.2%, +13.9%, -4.3%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "retry-lf",
+          "effect": -0.02305444409477142,
+          "range": [
+            -0.18442713309326086,
+            0.09058372312283168
+          ],
+          "note": "launch medians -3.1%, -1.0%, -2.1%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "ascii-literal-ignorecase",
+          "effect": -0.03974698552726763,
+          "range": [
+            -0.38983731322440995,
+            0.09969808987860083
+          ],
+          "note": "launch medians +5.3%, -1.3%, -10.4%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "short-literal-ignorecase",
+          "effect": -0.09815711523794324,
+          "range": [
+            -0.4548919587746162,
+            0.15728078421634528
+          ],
+          "note": "launch medians -3.9%, -20.2%, -8.2%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "many-stars",
+          "effect": -0.13815688705736484,
+          "range": [
+            -0.41779185961491594,
+            0.14478659776729885
+          ],
+          "note": "launch medians -29.9%, -13.2%, -0.6%"
+        },
+        {
+          "hypothesisId": "H-027",
+          "label": "short-question",
+          "effect": 0.01043648625737048,
+          "range": [
+            -0.275293810000352,
+            0.4074423042518933
+          ],
+          "note": "launch medians +7.0%, +3.3%, -1.8%"
+        }
+      ]
+    },
+    {
+      "name": "Borrowed API owned-string effects: H-029",
+      "control": "Each epoch has its own contemporaneous control named in spans/plan.md and identity.json. Final uses 0c39b9d; isolated refinements use their parent. Fractions and ranges are paired block effects; gains across epochs are not additive.",
+      "items": [
+        {
+          "hypothesisId": "H-029",
+          "label": "empty",
+          "effect": -0.13042288751661069,
+          "range": [
+            -0.1726679645123419,
+            -0.11491480709641666
+          ],
+          "note": "launch medians -13.2%, -12.5%, -15.6%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "literal",
+          "effect": -0.05332343194085764,
+          "range": [
+            -0.17831913301139102,
+            0.14072484988819656
+          ],
+          "note": "launch medians -2.3%, -7.1%, -12.5%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "simple",
+          "effect": 0.4578827344153646,
+          "range": [
+            0.25812924470055565,
+            0.7089946621579754
+          ],
+          "note": "launch medians +39.8%, +47.4%, +47.5%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "simple-ignorecase",
+          "effect": 0.5122867980950272,
+          "range": [
+            0.27105401640612903,
+            0.7159700899468988
+          ],
+          "note": "launch medians +48.6%, +50.6%, +54.1%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "miss",
+          "effect": 0.2500046736834234,
+          "range": [
+            0.04271443853490231,
+            0.6626690881763525
+          ],
+          "note": "launch medians +46.9%, +21.0%, +17.7%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "escaped",
+          "effect": 0.2025529056096742,
+          "range": [
+            0.035171940322977324,
+            0.5538252322452188
+          ],
+          "note": "launch medians +28.9%, +15.1%, +15.3%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "long-literal",
+          "effect": 0.02258139192289077,
+          "range": [
+            -0.22379400778828573,
+            0.18518699516193227
+          ],
+          "note": "launch medians +5.9%, -7.2%, +2.8%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "long-sparse",
+          "effect": -0.0331889710827169,
+          "range": [
+            -0.10038004955501133,
+            0.10119333737382184
+          ],
+          "note": "launch medians -3.5%, +2.0%, -5.3%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "dense",
+          "effect": 1.330009767002157,
+          "range": [
+            0.7858506119598145,
+            1.6038180755930547
+          ],
+          "note": "launch medians +144.2%, +117.8%, +124.4%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "unicode",
+          "effect": 0.10619136713397272,
+          "range": [
+            -0.05874886139923019,
+            0.3587003322429936
+          ],
+          "note": "launch medians +13.7%, +3.0%, +9.9%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "newline",
+          "effect": 0.024403757265465842,
+          "range": [
+            -0.1384257789892276,
+            0.24097074205249025
+          ],
+          "note": "launch medians +13.0%, +13.0%, -7.4%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "multiline",
+          "effect": -0.0008763862591290028,
+          "range": [
+            -0.20091841083761453,
+            0.05388475116013525
+          ],
+          "note": "launch medians +0.4%, -4.4%, +1.2%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "complex",
+          "effect": 0.3344517164103087,
+          "range": [
+            0.2078296349989477,
+            0.6049514765730981
+          ],
+          "note": "launch medians +36.4%, +39.4%, +32.1%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "question-run",
+          "effect": 0.11701578925746216,
+          "range": [
+            -0.10949179817275745,
+            0.4794685865764474
+          ],
+          "note": "launch medians +12.7%, +8.8%, +4.0%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "question-run-lf",
+          "effect": 0.11655551422628996,
+          "range": [
+            -0.1990017653855403,
+            0.8501447740510821
+          ],
+          "note": "launch medians +4.0%, +15.5%, +5.8%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "question-star",
+          "effect": 1.51915951718346,
+          "range": [
+            1.1234016293454392,
+            2.3974013321854186
+          ],
+          "note": "launch medians +148.5%, +120.3%, +146.2%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "retry-literal",
+          "effect": 0.024314908594619933,
+          "range": [
+            -0.0647630385392477,
+            0.36026431884523463
+          ],
+          "note": "launch medians +0.7%, +8.3%, +1.5%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "retry-near-miss",
+          "effect": -0.09570844433890159,
+          "range": [
+            -0.11927875727285098,
+            0.07227400294727748
+          ],
+          "note": "launch medians +3.5%, +0.2%, -10.6%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "retry-lf",
+          "effect": 0.8502933424028569,
+          "range": [
+            0.48073071945086565,
+            1.102574696238427
+          ],
+          "note": "launch medians +81.6%, +93.6%, +74.9%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "ascii-literal-ignorecase",
+          "effect": 0.026128964503255636,
+          "range": [
+            -0.1338609877772472,
+            0.3306006048548533
+          ],
+          "note": "launch medians +10.8%, -2.3%, +2.1%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "short-literal-ignorecase",
+          "effect": -0.07618850297596624,
+          "range": [
+            -0.5901190826527432,
+            0.5441209254275072
+          ],
+          "note": "launch medians -21.6%, -9.0%, -4.1%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "many-stars",
+          "effect": 0.7311434519060589,
+          "range": [
+            0.11345373728200926,
+            1.5635711919033703
+          ],
+          "note": "launch medians +74.3%, +125.6%, +58.1%"
+        },
+        {
+          "hypothesisId": "H-029",
+          "label": "short-question",
+          "effect": 0.13927854323893918,
+          "range": [
+            0.003141263361276403,
+            0.39716802918281585
+          ],
+          "note": "launch medians +24.1%, +31.6%, +5.3%"
+        }
+      ]
+    },
+    {
+      "name": "Borrowed API owned-string effects: H-030",
+      "control": "Each epoch has its own contemporaneous control named in spans/plan.md and identity.json. Final uses 0c39b9d; isolated refinements use their parent. Fractions and ranges are paired block effects; gains across epochs are not additive.",
+      "items": [
+        {
+          "hypothesisId": "H-030",
+          "label": "empty",
+          "effect": -0.005642622138889886,
+          "range": [
+            -0.07260913244968725,
+            0.05683543641028321
+          ],
+          "note": "launch medians -1.1%, +0.2%, -1.3%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "literal",
+          "effect": -0.25969780028338485,
+          "range": [
+            -0.3979690763895135,
+            -0.057409335005086264
+          ],
+          "note": "launch medians -23.7%, -23.1%, -32.2%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "simple",
+          "effect": -0.47581308322110855,
+          "range": [
+            -0.5045853148299055,
+            -0.40763419118699984
+          ],
+          "note": "launch medians -49.9%, -46.6%, -41.8%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "simple-ignorecase",
+          "effect": -0.36055744141739443,
+          "range": [
+            -0.46559465131033145,
+            -0.14801266510797262
+          ],
+          "note": "launch medians -36.9%, -36.6%, -37.8%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "miss",
+          "effect": -0.21391296351640265,
+          "range": [
+            -0.31762446090097496,
+            -0.0711824715350865
+          ],
+          "note": "launch medians -20.4%, -24.6%, -17.3%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "escaped",
+          "effect": -0.4828747464697103,
+          "range": [
+            -0.5347830340981361,
+            -0.32916399401325636
+          ],
+          "note": "launch medians -45.3%, -49.8%, -44.7%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "long-literal",
+          "effect": -0.09612398914554954,
+          "range": [
+            -0.12010976639459614,
+            0.02564102564102555
+          ],
+          "note": "launch medians -10.8%, -2.8%, -8.5%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "long-sparse",
+          "effect": -0.13350096360714725,
+          "range": [
+            -0.1778859057067027,
+            0.054809174874064004
+          ],
+          "note": "launch medians -13.5%, -5.7%, -9.4%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "dense",
+          "effect": -0.5490458364208521,
+          "range": [
+            -0.6460463300755153,
+            -0.48450669192281576
+          ],
+          "note": "launch medians -59.2%, -53.8%, -53.5%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "unicode",
+          "effect": -0.1372544410687947,
+          "range": [
+            -0.26043179497180036,
+            0.0036280553623257994
+          ],
+          "note": "launch medians -20.2%, -14.9%, -8.8%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "newline",
+          "effect": -0.3570255004326227,
+          "range": [
+            -0.4308682247548987,
+            -0.15542704976023902
+          ],
+          "note": "launch medians -30.1%, -34.8%, -35.2%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "multiline",
+          "effect": -0.12225061187165487,
+          "range": [
+            -0.22773444225191697,
+            -0.03790674929843274
+          ],
+          "note": "launch medians -9.0%, -19.5%, -10.3%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "complex",
+          "effect": -0.30960314314931425,
+          "range": [
+            -0.37735290347957906,
+            -0.1997501375175976
+          ],
+          "note": "launch medians -33.1%, -31.7%, -26.6%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "question-run",
+          "effect": -0.1925041334490153,
+          "range": [
+            -0.2788300590256365,
+            0.08565117069418848
+          ],
+          "note": "launch medians -18.5%, -14.2%, -15.0%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "question-run-lf",
+          "effect": -0.20323441751976154,
+          "range": [
+            -0.30762645809210143,
+            0.1473076392353334
+          ],
+          "note": "launch medians -9.6%, -19.4%, -21.3%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "question-star",
+          "effect": -0.5747969609641079,
+          "range": [
+            -0.5992519078859285,
+            -0.500364509982603
+          ],
+          "note": "launch medians -56.1%, -56.4%, -56.1%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "retry-literal",
+          "effect": -0.18445060791599077,
+          "range": [
+            -0.3612530259286943,
+            -0.04828656697310829
+          ],
+          "note": "launch medians -21.2%, -22.4%, -18.0%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "retry-near-miss",
+          "effect": -0.11854293389322879,
+          "range": [
+            -0.2503588582785844,
+            0.024306269270297998
+          ],
+          "note": "launch medians -3.4%, -3.9%, -5.0%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "retry-lf",
+          "effect": -0.4480342258611787,
+          "range": [
+            -0.5507796706911996,
+            -0.26506064047617073
+          ],
+          "note": "launch medians -31.7%, -46.1%, -43.7%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "ascii-literal-ignorecase",
+          "effect": -0.009108880418570497,
+          "range": [
+            -0.06809349447389701,
+            0.12596146802432062
+          ],
+          "note": "launch medians -2.4%, +1.1%, -2.3%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "short-literal-ignorecase",
+          "effect": -0.18970552841615007,
+          "range": [
+            -0.3041537722463663,
+            -0.06200853740732414
+          ],
+          "note": "launch medians -18.5%, -26.4%, -15.9%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "many-stars",
+          "effect": -0.4871495327102804,
+          "range": [
+            -0.510432527707797,
+            -0.2768490531120844
+          ],
+          "note": "launch medians -42.9%, -49.7%, -49.6%"
+        },
+        {
+          "hypothesisId": "H-030",
+          "label": "short-question",
+          "effect": -0.30315209749238337,
+          "range": [
+            -0.3794376887292907,
+            -0.1447047498686006
+          ],
+          "note": "launch medians -33.5%, -24.7%, -33.7%"
+        }
+      ]
+    },
+    {
+      "name": "Borrowed API owned-string effects: Final",
+      "control": "Each epoch has its own contemporaneous control named in spans/plan.md and identity.json. Final uses 0c39b9d; isolated refinements use their parent. Fractions and ranges are paired block effects; gains across epochs are not additive.",
+      "items": [
+        {
+          "hypothesisId": "H-031",
+          "label": "empty",
+          "effect": 0.16482189176880582,
+          "range": [
+            -0.11645417538832359,
+            0.3517263776835773
+          ],
+          "note": "launch medians +5.6%, +14.4%, +13.3%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "literal",
+          "effect": 0.14623939548697718,
+          "range": [
+            -0.03306341865420381,
+            0.2125136524058524
+          ],
+          "note": "launch medians +13.5%, +13.2%, +16.0%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "simple",
+          "effect": -0.07933331873873484,
+          "range": [
+            -0.24525864462883362,
+            0.29576387654258274
+          ],
+          "note": "launch medians -10.5%, -9.4%, -7.1%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "simple-ignorecase",
+          "effect": -0.09199760895303989,
+          "range": [
+            -0.20694632329081172,
+            0.20780388312526998
+          ],
+          "note": "launch medians -16.0%, -4.7%, -2.9%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "miss",
+          "effect": 0.043354953139998154,
+          "range": [
+            -0.17039785678271113,
+            0.2933550834147456
+          ],
+          "note": "launch medians +6.0%, -8.7%, +10.3%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "escaped",
+          "effect": -0.1618708784838292,
+          "range": [
+            -0.5018046429178884,
+            -0.0552408573888612
+          ],
+          "note": "launch medians -12.8%, -37.4%, -10.9%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "long-literal",
+          "effect": 0.03705129914048877,
+          "range": [
+            -0.18721921001505315,
+            0.10784704567585755
+          ],
+          "note": "launch medians +4.1%, +1.4%, +2.2%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "long-sparse",
+          "effect": -0.029669762282841794,
+          "range": [
+            -0.20243312640501576,
+            0.14873561571955385
+          ],
+          "note": "launch medians +1.9%, -15.0%, +1.9%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "dense",
+          "effect": -0.5278018164861663,
+          "range": [
+            -0.5878724655455523,
+            -0.35987532526950905
+          ],
+          "note": "launch medians -54.3%, -46.2%, -52.9%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "unicode",
+          "effect": -0.07850074492276327,
+          "range": [
+            -0.20544086980938714,
+            0.23106502966972342
+          ],
+          "note": "launch medians -9.8%, -0.9%, -10.7%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "newline",
+          "effect": -0.13639052849466704,
+          "range": [
+            -0.4295566598841759,
+            0.04776082792320446
+          ],
+          "note": "launch medians -10.5%, -38.2%, +0.5%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "multiline",
+          "effect": 0.01650340808986006,
+          "range": [
+            -0.23518131410653864,
+            0.2165715506454664
+          ],
+          "note": "launch medians -4.8%, +15.0%, -4.1%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "complex",
+          "effect": -0.061046100172526534,
+          "range": [
+            -0.1870869780271196,
+            0.13121128672498972
+          ],
+          "note": "launch medians -6.0%, -6.7%, -5.3%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "question-run",
+          "effect": 0.070898543861726,
+          "range": [
+            -0.16347422309502746,
+            0.17420150920312238
+          ],
+          "note": "launch medians +8.6%, +6.2%, -1.6%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "question-run-lf",
+          "effect": 0.07014135087633111,
+          "range": [
+            -0.20955995929016513,
+            0.490307792853502
+          ],
+          "note": "launch medians +7.0%, +4.4%, +5.8%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "question-star",
+          "effect": -0.1674117369987368,
+          "range": [
+            -0.41943024639438287,
+            0.3938917769891881
+          ],
+          "note": "launch medians -19.0%, -12.9%, -3.8%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "retry-literal",
+          "effect": -0.046630155310795285,
+          "range": [
+            -0.15942663063464013,
+            0.11889445459367076
+          ],
+          "note": "launch medians -3.8%, -3.1%, -8.2%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "retry-near-miss",
+          "effect": -0.00937531885502596,
+          "range": [
+            -0.42671785132247286,
+            0.29689244018125716
+          ],
+          "note": "launch medians -2.3%, -1.7%, -3.8%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "retry-lf",
+          "effect": -0.10152918556009351,
+          "range": [
+            -0.23602872734127534,
+            0.09585166248071374
+          ],
+          "note": "launch medians -16.2%, -14.3%, -3.9%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "ascii-literal-ignorecase",
+          "effect": -0.012882566311493981,
+          "range": [
+            -0.34864931591400056,
+            0.1104070657703302
+          ],
+          "note": "launch medians -2.9%, +0.5%, -1.3%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "short-literal-ignorecase",
+          "effect": 0.07387273830592211,
+          "range": [
+            -0.11145855434427532,
+            0.3526282750189975
+          ],
+          "note": "launch medians -1.0%, +10.7%, +2.6%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "many-stars",
+          "effect": 0.029046915426081732,
+          "range": [
+            -0.0906389615984522,
+            0.2517487452445464
+          ],
+          "note": "launch medians +2.0%, -0.7%, +2.6%"
+        },
+        {
+          "hypothesisId": "H-031",
+          "label": "short-question",
+          "effect": -0.12294655224416795,
+          "range": [
+            -0.248697246038719,
+            0.05219165295379957
+          ],
+          "note": "launch medians -11.6%, -16.2%, -10.4%"
+        }
+      ]
     }
   ],
   "hypotheses": [
@@ -4228,6 +7368,216 @@
       ],
       "risks": [],
       "parentId": "H-017"
+    },
+    {
+      "id": "H-023",
+      "claim": "Borrowed inputs eliminate materialization before reusable matching",
+      "mechanism": "Expose ReadOnlySpan<char> instance matching and hold borrowed diagnostic input only until the synchronous call completes.",
+      "prediction": "Remove caller copying or measured integration overhead while preserving exact matching semantics and the declared ownership/regression constraints.",
+      "observation": "Borrowed API source inspection, complete caller allocation counters, paired timing and optimized native code. Parent-specific evidence and setup corrections are recorded in spans/plan.md.",
+      "location": "WildcardMatch.cs; WildcardEngine.cs; WildcardEngine.Spans.cs",
+      "caller": "Static, reused, sliced, construction and normalization callers",
+      "falsification": "Oracle mismatch, escaped borrowed memory, unexpected match allocation, or coherent material owned-string regression under the declared 15%/5ns review trigger.",
+      "change": "Expose ReadOnlySpan<char> instance matching and hold borrowed diagnostic input only until the synchronous call completes.",
+      "changeScope": "moderate",
+      "maintainability": "Public span ownership is explicit; shared validation/Unicode rules and independent string/span oracle tests constrain drift. Per-candidate burden is stated in the rationale.",
+      "codeComments": "Representation specialization, timeout borrowing and scratch bounds are documented adjacent to their implementation; detailed causal record remains in spans/plan.md.",
+      "result": "final long-literal/sliced-reused: 157.4 → 57.3 ns (-63.6%); 2072 → 0 B/call. Paired launch effects [-65.7, -62.1, -61.0]%.",
+      "effectPercent": -63.58499279408788,
+      "state": "retained",
+      "decision": "Retained",
+      "decisionRationale": "The requested API removes a proportional input copy/allocation. Empty and short cases remain controls; span matching is not universally faster than already-owned strings.",
+      "evidence": [
+        "spans/plan.md",
+        "spans/final/summary.json"
+      ]
+    },
+    {
+      "id": "H-024",
+      "claim": "Borrowed static patterns eliminate a second caller copy",
+      "mechanism": "Add two-span static overloads and mutable/read-only span extensions; reusable span-pattern constructors copy once into immutable ownership.",
+      "prediction": "Remove caller copying or measured integration overhead while preserving exact matching semantics and the declared ownership/regression constraints.",
+      "observation": "Borrowed API source inspection, complete caller allocation counters, paired timing and optimized native code. Parent-specific evidence and setup corrections are recorded in spans/plan.md.",
+      "location": "WildcardMatch.cs; WildcardEngine.cs; WildcardEngine.Spans.cs",
+      "caller": "Static, reused, sliced, construction and normalization callers",
+      "falsification": "Oracle mismatch, escaped borrowed memory, unexpected match allocation, or coherent material owned-string regression under the declared 15%/5ns review trigger.",
+      "change": "Add two-span static overloads and mutable/read-only span extensions; reusable span-pattern constructors copy once into immutable ownership.",
+      "changeScope": "moderate",
+      "maintainability": "Public span ownership is explicit; shared validation/Unicode rules and independent string/span oracle tests constrain drift. Per-candidate burden is stated in the rationale.",
+      "codeComments": "Representation specialization, timeout borrowing and scratch bounds are documented adjacent to their implementation; detailed causal record remains in spans/plan.md.",
+      "result": "final long-literal/sliced-static: 308.3 → 101.1 ns (-67.2%); 4144 → 0 B/call. Paired launch effects [-68.4, -65.0, -66.5]%.",
+      "effectPercent": -67.20553786679767,
+      "state": "retained",
+      "decision": "Retained",
+      "decisionRationale": "Both caller conversions disappear from static slice calls. Constructor copies remain required for lifetime and mutation safety, and are measured separately.",
+      "evidence": [
+        "spans/plan.md",
+        "spans/final/summary.json"
+      ]
+    },
+    {
+      "id": "H-025",
+      "claim": "One shared span kernel can preserve the string hot path",
+      "mechanism": "Route existing string APIs through the span core while retaining null validation.",
+      "prediction": "Remove caller copying or measured integration overhead while preserving exact matching semantics and the declared ownership/regression constraints.",
+      "observation": "Borrowed API source inspection, complete caller allocation counters, paired timing and optimized native code. Parent-specific evidence and setup corrections are recorded in spans/plan.md.",
+      "location": "WildcardMatch.cs; WildcardEngine.cs; WildcardEngine.Spans.cs",
+      "caller": "Static, reused, sliced, construction and normalization callers",
+      "falsification": "Oracle mismatch, escaped borrowed memory, unexpected match allocation, or coherent material owned-string regression under the declared 15%/5ns review trigger.",
+      "change": "Route existing string APIs through the span core while retaining null validation.",
+      "changeScope": "refactor",
+      "maintainability": "Public span ownership is explicit; shared validation/Unicode rules and independent string/span oracle tests constrain drift. Per-candidate burden is stated in the rationale.",
+      "codeComments": "Representation specialization, timeout borrowing and scratch bounds are documented adjacent to their implementation; detailed causal record remains in spans/plan.md.",
+      "result": "initial question-star/reused: 458.5 → 642.6 ns (+40.1%); 0 → 0 B/call. Paired launch effects [33.8, 53.0, 29.8]%.",
+      "effectPercent": 40.14776111952343,
+      "state": "rejected",
+      "decision": "Superseded",
+      "decisionRationale": "The initial shared core adds coherent short-string overhead and about 40% question/star regression. Preserve its evidence and refine with H-027/H-029/H-030/H-031; do not retain mandatory string routing.",
+      "evidence": [
+        "spans/plan.md",
+        "spans/summary.json"
+      ]
+    },
+    {
+      "id": "H-026",
+      "claim": "VT normalization can use bounded scratch instead of a new string",
+      "mechanism": "Use at most 512 stack bytes, then ArrayPool<char>, and expose only the initialized normalized prefix; return the array in finally.",
+      "prediction": "Remove caller copying or measured integration overhead while preserving exact matching semantics and the declared ownership/regression constraints.",
+      "observation": "Borrowed API source inspection, complete caller allocation counters, paired timing and optimized native code. Parent-specific evidence and setup corrections are recorded in spans/plan.md.",
+      "location": "WildcardMatch.cs; WildcardEngine.cs; WildcardEngine.Spans.cs",
+      "caller": "Static, reused, sliced, construction and normalization callers",
+      "falsification": "Oracle mismatch, escaped borrowed memory, unexpected match allocation, or coherent material owned-string regression under the declared 15%/5ns review trigger.",
+      "change": "Use at most 512 stack bytes, then ArrayPool<char>, and expose only the initialized normalized prefix; return the array in finally.",
+      "changeScope": "local",
+      "maintainability": "Public span ownership is explicit; shared validation/Unicode rules and independent string/span oracle tests constrain drift. Per-candidate burden is stated in the rationale.",
+      "codeComments": "Representation specialization, timeout borrowing and scratch bounds are documented adjacent to their implementation; detailed causal record remains in spans/plan.md.",
+      "result": "final normalize-1024/normalization: 12489.3 → 445.5 ns (-96.4%); 32 → 0 B/call. Paired launch effects [-96.7, -94.4, -96.9]%.",
+      "effectPercent": -96.43289291836979,
+      "state": "retained",
+      "decision": "Retained",
+      "decisionRationale": "Warm complete .NET 11 normalization calls remove the normalized string allocation. First-use pool costs and retention are recorded separately; all-VT and boundary tests validate initialized ranges.",
+      "evidence": [
+        "spans/plan.md",
+        "spans/final/summary.json"
+      ]
+    },
+    {
+      "id": "H-027",
+      "claim": "Infinite span matches do not need copied timeout diagnostics",
+      "mechanism": "Keep the already-owned original pattern as a string and capture the input span only for a finite timeout.",
+      "prediction": "Remove caller copying or measured integration overhead while preserving exact matching semantics and the declared ownership/regression constraints.",
+      "observation": "Borrowed API source inspection, complete caller allocation counters, paired timing and optimized native code. Parent-specific evidence and setup corrections are recorded in spans/plan.md.",
+      "location": "WildcardMatch.cs; WildcardEngine.cs; WildcardEngine.Spans.cs",
+      "caller": "Static, reused, sliced, construction and normalization callers",
+      "falsification": "Oracle mismatch, escaped borrowed memory, unexpected match allocation, or coherent material owned-string regression under the declared 15%/5ns review trigger.",
+      "change": "Keep the already-owned original pattern as a string and capture the input span only for a finite timeout.",
+      "changeScope": "local",
+      "maintainability": "Public span ownership is explicit; shared validation/Unicode rules and independent string/span oracle tests constrain drift. Per-candidate burden is stated in the rationale.",
+      "codeComments": "Representation specialization, timeout borrowing and scratch bounds are documented adjacent to their implementation; detailed causal record remains in spans/plan.md.",
+      "result": "H-027 literal/sliced-reused: 16.1 → 11.4 ns (-29.2%); 0 → 0 B/call. Paired launch effects [-30.0, -28.5, -37.6]%.",
+      "effectPercent": -29.243635586072536,
+      "state": "retained",
+      "decision": "Retained in span kernel",
+      "decisionRationale": "Borrowed literal overhead declines across launches and the ownership model simplifies. Earliest owned-string static screening results are tier-confounded and not claimed as a universal gain.",
+      "evidence": [
+        "spans/plan.md",
+        "spans/H-027/summary.json"
+      ],
+      "parentId": "H-025"
+    },
+    {
+      "id": "H-028",
+      "claim": "Inline a surviving string-to-span adapter",
+      "mechanism": "Selective adapter inlining",
+      "prediction": "Remove a forwarding frame only if one survives optimized compilation.",
+      "location": "WildcardEngine.IsMatch(string,...) and public string callers",
+      "observation": "Initial optimized callers already bypass the adapter and call the span core directly.",
+      "falsification": "No surviving adapter call in optimized native code.",
+      "change": "No production delta",
+      "changeScope": "local",
+      "maintainability": "No additional compiler annotation",
+      "codeComments": "Not applicable",
+      "result": "The relevant optimized adapter is already inlined; the surviving call is the larger span core. H-029 tests that separate mechanism.",
+      "state": "not-applicable",
+      "decision": "Ruled out",
+      "decisionRationale": "The predicted forwarding frame is absent; do not add an unsupported annotation.",
+      "parentId": "H-025",
+      "evidence": [
+        "spans/net10.0-native-code.asm.txt",
+        "spans/plan.md"
+      ]
+    },
+    {
+      "id": "H-029",
+      "claim": "Force the shared entry to inline into public callers",
+      "mechanism": "Apply AggressiveInlining to the common span entry to expose header specialization.",
+      "prediction": "Remove caller copying or measured integration overhead while preserving exact matching semantics and the declared ownership/regression constraints.",
+      "observation": "Borrowed API source inspection, complete caller allocation counters, paired timing and optimized native code. Parent-specific evidence and setup corrections are recorded in spans/plan.md.",
+      "location": "WildcardMatch.cs; WildcardEngine.cs; WildcardEngine.Spans.cs",
+      "caller": "Static, reused, sliced, construction and normalization callers",
+      "falsification": "Oracle mismatch, escaped borrowed memory, unexpected match allocation, or coherent material owned-string regression under the declared 15%/5ns review trigger.",
+      "change": "Apply AggressiveInlining to the common span entry to expose header specialization.",
+      "changeScope": "local",
+      "maintainability": "Public span ownership is explicit; shared validation/Unicode rules and independent string/span oracle tests constrain drift. Per-candidate burden is stated in the rationale.",
+      "codeComments": "Representation specialization, timeout borrowing and scratch bounds are documented adjacent to their implementation; detailed causal record remains in spans/plan.md.",
+      "result": "H-029 dense/reused: 1168.6 → 2722.8 ns (+133.0%); 0 → 0 B/call. Paired launch effects [144.2, 117.8, 124.4]%.",
+      "effectPercent": 133.0009767002157,
+      "state": "rejected",
+      "decision": "Refined by H-030",
+      "decisionRationale": "Monolithic forced inlining expands the owned-string instance body to about 4KiB and regresses reused dense/question-star workloads by over 100%. The child keeps the large kernel separate and later excludes existing strings entirely.",
+      "evidence": [
+        "spans/plan.md",
+        "spans/H-029/summary.json"
+      ],
+      "parentId": "H-025"
+    },
+    {
+      "id": "H-030",
+      "claim": "Separate the large loop from the visible matching header",
+      "mechanism": "Combine visible span entry with NoInlining on the large MatchWindow span kernel.",
+      "prediction": "Remove caller copying or measured integration overhead while preserving exact matching semantics and the declared ownership/regression constraints.",
+      "observation": "Borrowed API source inspection, complete caller allocation counters, paired timing and optimized native code. Parent-specific evidence and setup corrections are recorded in spans/plan.md.",
+      "location": "WildcardMatch.cs; WildcardEngine.cs; WildcardEngine.Spans.cs",
+      "caller": "Static, reused, sliced, construction and normalization callers",
+      "falsification": "Oracle mismatch, escaped borrowed memory, unexpected match allocation, or coherent material owned-string regression under the declared 15%/5ns review trigger.",
+      "change": "Combine visible span entry with NoInlining on the large MatchWindow span kernel.",
+      "changeScope": "local",
+      "maintainability": "Public span ownership is explicit; shared validation/Unicode rules and independent string/span oracle tests constrain drift. Per-candidate burden is stated in the rationale.",
+      "codeComments": "Representation specialization, timeout borrowing and scratch bounds are documented adjacent to their implementation; detailed causal record remains in spans/plan.md.",
+      "result": "H-030 dense/reused: 2536.9 → 1144.0 ns (-54.9%); 0 → 0 B/call. Paired launch effects [-59.2, -53.8, -53.5]%.",
+      "effectPercent": -54.904583642085214,
+      "state": "retained",
+      "decision": "Retained in span kernel",
+      "decisionRationale": "Isolated comparison removes the forced-inlining regressions across launches. This combination is retained only for borrowed representations; H-031 restores the original string kernel rather than attributing the child as a universal string gain.",
+      "evidence": [
+        "spans/plan.md",
+        "spans/H-030/summary.json"
+      ],
+      "parentId": "H-029"
+    },
+    {
+      "id": "H-031",
+      "claim": "Representation-specific loops protect existing string calls",
+      "mechanism": "Restore the exact released string method bodies and place tested span traversal overloads in a partial file; share semantic helpers and metadata.",
+      "prediction": "Remove caller copying or measured integration overhead while preserving exact matching semantics and the declared ownership/regression constraints.",
+      "observation": "Borrowed API source inspection, complete caller allocation counters, paired timing and optimized native code. Parent-specific evidence and setup corrections are recorded in spans/plan.md.",
+      "location": "WildcardMatch.cs; WildcardEngine.cs; WildcardEngine.Spans.cs",
+      "caller": "Static, reused, sliced, construction and normalization callers",
+      "falsification": "Oracle mismatch, escaped borrowed memory, unexpected match allocation, or coherent material owned-string regression under the declared 15%/5ns review trigger.",
+      "change": "Restore the exact released string method bodies and place tested span traversal overloads in a partial file; share semantic helpers and metadata.",
+      "changeScope": "refactor",
+      "maintainability": "Public span ownership is explicit; shared validation/Unicode rules and independent string/span oracle tests constrain drift. Per-candidate burden is stated in the rationale.",
+      "codeComments": "Representation specialization, timeout borrowing and scratch bounds are documented adjacent to their implementation; detailed causal record remains in spans/plan.md.",
+      "result": "final question-star/reused: 1425.4 → 1186.8 ns (-16.7%); 0 → 0 B/call. Paired launch effects [-19.0, -12.9, -3.8]%.",
+      "effectPercent": -16.74117369987368,
+      "state": "retained",
+      "decision": "Retained",
+      "decisionRationale": "String compatibility and latency are protected by retaining its measured implementation. Separate span traversal increases maintenance; exhaustive/differential coverage checks both against independent oracles. This burden is justified by the requested borrowed-memory API and observed shared-core regressions.",
+      "evidence": [
+        "spans/plan.md",
+        "spans/final/summary.json"
+      ],
+      "parentId": "H-030"
     }
   ],
   "retainedChanges": [
@@ -4240,7 +7590,11 @@
     "Continuation retains safe ASCII literal folding with Unicode/Turkic fallback and periodic finite-timeout checks (H-017).",
     "Bounded full-segment searches reduce sparse/near-miss star retry work without substring allocation (H-018).",
     "Long leading question marks use one bounded input LF scan; reused instances prepare their count (H-014/H-020).",
-    "Reusable instances prepare fixed literal prefix/suffix offsets (H-016). Combined measured constructor allocation is 72 versus 64 bytes; default matching remains allocation free."
+    "Reusable instances prepare fixed literal prefix/suffix offsets (H-016). Combined measured constructor allocation is 72 versus 64 bytes; default matching remains allocation free.",
+    "Static two-span matching, reusable span input matching, span pattern constructors and mutable/read-only span extension APIs accept UTF-16 views of stack, string and array buffers.",
+    "Successful ordinary span matches allocate no input/pattern strings. Reusable construction owns a pattern copy; finite timeout exceptions materialize only borrowed input diagnostics.",
+    "H-031 preserves the released string method bodies; H-027/H-030 are retained only in the span-specialized traversal. Shared option validation, culture folding and newline definitions constrain semantic drift.",
+    "H-026 bounds VT normalization stack scratch and safely returns larger pooled storage; first-use allocation remains documented."
   ],
   "decisions": [
     "Bounded continuation ends after 19 new mechanistic candidates plus the original three hypotheses. Every relevant catalogue category has a disposition in optimization/plan.md and the areas below; no material pending candidate remains under the complete-call and proportional-change policy. Small compiler-only effects remain inconclusive and unretained. Pattern-copy/global-cache or architecture-specific redesigns lack proportional caller evidence; this does not claim all possible optimization potential is exhausted.",
@@ -4290,6 +7644,22 @@
     {
       "label": "Profile",
       "value": "dotnet-trace SampleProfiler, equal 0.5s work per fixture. Speedscope stack-residence weights support inclusive attribution; synthetic CPU_TIME leaves prevent accurate exclusive method attribution. This is a local workload, not an application traffic profile."
+    },
+    {
+      "label": "Borrowed API baseline",
+      "value": "0c39b9d, published 2.0.0 string engine. Distinct control AssemblyName/PackageId; identical production code otherwise. Every source epoch and failed/inconclusive path remains in spans/."
+    },
+    {
+      "label": "Borrowed API source identity",
+      "value": "{\"InternalUtils.cs\": \"4f21b3c86cccdeef6155ffcac31a7dc0cecac58eb592a5df7eedb27733edcafa\", \"WildcardEngine.cs\": \"54cc039904c806fcefc7654d934881eff71155147ff8b683cd437a222d71e8da\", \"WildcardEngine.Spans.cs\": \"4349e6800587ee6fff0cbce87082355a3239d33986baa5457ad5d9bfc4db699b\", \"WildcardMatch.cs\": \"653497b991b0063fff580db3b4b7f15ee2239921c2f6836d04238460adae6b72\", \"WildcardMatchExtensions.cs\": \"395ac02229ae89309f6258d2db07472615fbd3cf7b2653d183e904d47adc904d\", \"WildcardMatchRegex.cs\": \"1f7771890d03b21f51b10c8c8ad31da127bb3770a38a108d7de3bc13f9b6da60\", \"WildcardOptions.cs\": \"ddd70ad88b5548e2564016f8c63e6e8054d1d6c6c1b27d3c2179ca947552f4db\"}"
+    },
+    {
+      "label": "Borrowed API timing",
+      "value": "SDK pinned by global.json; Release .NET 10 (caller/string/span) and .NET 11 (VT normalization), x64, CPU 30, default tiering/PGO, workstation GC. Joint public-path primer and 500 ms JIT settling interval; 100 ms joint warmup per case, common control calibration ≥20 ms, nine ABBA/BAAB blocks and three launches. All 54 samples/engine/case retained; no overhead subtraction. Isolated screening uses ≥5 ms and four blocks; its earliest static cases are not compared across epochs."
+    },
+    {
+      "label": "Borrowed API host exclusion",
+      "value": "Builds, tests, measurement and profiles serialized through the fixed performance-measurement.lock. High performance power plan recorded. Cooperative lock cannot exclude arbitrary external processes; hardware counter data is unavailable."
     }
   ],
   "hotspots": [
@@ -4306,6 +7676,12 @@
       "inclusivePercent": 53.79287225902678,
       "evidence": "optimization/reprofile/profile-summary.json, same equal-duration fixture sweep; inclusive sampled residence only.",
       "limit": "Remaining scalar/general-case matching plus runtime search. Relative profile shares change with fixture execution frequency; they are not before/after absolute operation-time estimates."
+    },
+    {
+      "name": "Borrowed-input caller",
+      "location": "WildcardMatch.IsMatch(ReadOnlySpan<char>)",
+      "evidence": "spans/final/profile-summary.json: equal-duration nine-fixture borrowed-input sweep; sampled inclusive stack residence only. Allocation counters directly quantify eliminated caller ToString conversions.",
+      "limit": "Caller copying/allocation and remaining wildcard work; this fixture sweep is different from the historical profile and is not an application trace."
     }
   ],
   "areas": [
@@ -4375,6 +7751,24 @@
       "catalogue": "T1-T4",
       "hypothesisIds": [],
       "disposition": "No shared per-match mutation, lock or I/O to optimize. Diagnostic lazy publication is outside the hot path. Internal per-call threading/batching adds scheduling to tiny sequential work; new batch API is outside this contract."
+    },
+    {
+      "name": "Borrowed text ownership and compiler visibility",
+      "boundary": "String/span API boundary, diagnostic state, normalization scratch and shared/specialized kernels",
+      "catalogue": "M1/M2/M3/M7 and R2; previous CPU/storage/concurrency dispositions remain applicable.",
+      "hypothesisIds": [
+        "H-023",
+        "H-024",
+        "H-025",
+        "H-026",
+        "H-027",
+        "H-028",
+        "H-029",
+        "H-030",
+        "H-031"
+      ],
+      "evidence": "Complete caller allocations, before/after latency and optimized native bodies; large owned-string regressions triggered isolated refinements.",
+      "disposition": "Borrowed APIs and lifetime invariants pass; allocation removal and string/slice counterexamples measured; all nine new hypotheses resolved. Retain string specialization to avoid the evidenced shared-core burden. No further material hypothesis within this API/ownership scope."
     }
   ],
   "correctness": [
@@ -4387,7 +7781,10 @@
     "Continuation final Release/Debug: 213 tests each on .NET 8 and .NET 10; 216 on .NET 11. Additional .NET 9 Release: 213. New boundaries cover segment sizes/offsets, UTF-16 tails, LF consumption, ASCII/Unicode/Turkic fallback and repeated finite/infinite-timeout instances.",
     "Every isolated candidate passed the exhaustive/seeded/case oracle suite before timing (209 or 213 tests as boundary coverage was added). The first combined test completed the formerly expensive timeout fixture within budget; its scalar IgnoreCase refinement passes, and the failure remains archived.",
     "Final comparative package corpus has no mismatches; local 2.0.0 package verifies Standard 2.1/.NET 10/.NET 11 assemblies, README, license and adjacent symbol package. Package binaries remain outside the repository.",
-    "All 54 integrated static/reused samples per fixture allocate zero managed bytes. Original thirteen-case geometric mean time changes are -1.9% static, -2.3% reused and -0.9% construction; targeted retry/question/literal improvements are much larger. Some tiny short and repeated-star calls regress; complete charts and paired variability remain visible."
+    "All 54 integrated static/reused samples per fixture allocate zero managed bytes. Original thirteen-case geometric mean time changes are -1.9% static, -2.3% reused and -0.9% construction; targeted retry/question/literal improvements are much larger. Some tiny short and repeated-star calls regress; complete charts and paired variability remain visible.",
+    "Borrowed API: Release 221 tests pass on .NET 8 and .NET 10; 224 on .NET 11. Eight span-focused Debug tests pass on each runtime. Independent exhaustive DP and seeded Unicode/long-segment differential fuzz suites exercise both string and span static/instance entry points.",
+    "Span tests cover default/empty spans, guarded nonzero slices, exact tails and length boundaries, stack buffers, mutable arrays, ReadOnlyMemory.Span, source mutation after copied construction, culture capture, flags/invalid timeout/null-string overloads, finite successful allocation-free matches and exact timeout diagnostics limited to borrowed slices.",
+    "All retained default matching samples allocate zero managed bytes. Reusable span constructors copy the pattern once; benchmark setup includes that copy in construction-plus-match. Normalization first-use/pool costs are recorded separately in final/net11.0-cold.json, so warm zero allocation is not a cold-pool guarantee."
   ],
   "generatedCode": [
     {
@@ -4417,6 +7814,13 @@
       "before": "Committed control calls runtime bulk search/ordinal comparison.",
       "after": "Ablated candidate uses scalar fixed-region comparison; repeated paired long-sparse disadvantage confirms retaining bulk routing.",
       "artifact": "optimization/H-012/native-code.asm.txt"
+    },
+    {
+      "hypothesisId": "H-031",
+      "summary": "Separate representation-specific kernels; released string source bodies restored exactly.",
+      "before": "Initial/forced shared-core routing retained an extra entry or expanded the public caller into a large body, depending on annotation.",
+      "after": "Final clean .NET 10 dump contains string and span signatures with independent diagnostic state; source comparison verifies the released string bodies. Span MatchWindow remains separate from its visible header.",
+      "artifact": "spans/final/net10.0-native-code.asm.txt"
     }
   ],
   "validityThreats": [
@@ -4432,7 +7836,14 @@
     "Control and candidate have distinct assembly identities; JIT address/layout and tiering can differ even for identical source. No hardware branch-miss or cache-miss inference is made from timing alone.",
     "The original thirteen cases have equal importance; ten additional adversarial distributions are explicit contrasts, not an application frequency model. A targeted improvement does not establish improvement on every pattern.",
     "Desktop/uncoordinated background processes are not controlled by the advisory lock. The full raw distributions are retained; no outlier exclusions, overhead subtraction or hidden baseline-epoch comparison.",
-    "Historical Regex charts describe the initial delivered engine. New direct-engine charts quantify only the continuation; constituent gains and cross-epoch ratios must not be combined."
+    "Historical Regex charts describe the initial delivered engine. New direct-engine charts quantify only the continuation; constituent gains and cross-epoch ratios must not be combined.",
+    "Borrowed API results are local complete-call measurements on one Windows x64 host. Already-owned strings, spans over strings, stack buffers and .NET runtimes can have different execution costs; removing allocation does not establish a universal latency improvement.",
+    "Retaining representation-specific traversal increases maintenance. Validation, culture and newline definitions are shared; every algorithmic change must keep both independent-oracle entry points covered.",
+    "Short H-027 screening static results show tier maturation sensitivity; later epochs add a documented joint primer. No raw latency is compared across those epochs. Runtime-default tiering/PGO remains enabled; background JIT and unrelated processes can still contribute variation.",
+    "Initial/H-027/H-029 disassembly files include earlier appended bodies; final and H-030 captures are clean. Evidence attribution uses source epochs and explicit matching signatures. No hardware branch-miss, ISA or exact exclusive CPU claims are made.",
+    "VT normalization fallback can allocate on first pool rent or exhaustion and retains pool capacity. Warm per-thread allocation counters omit retained/native memory and cold initialization; first calls are recorded separately.",
+    "Owned-string regression review triggers across all three launches: none. Complete sample ranges and paired effects remain visible, including smaller regressions.",
+    "Restored string API/engine methods have identical normalized IL and implementation flags, verified in final/compiled-calls.txt. Nevertheless, static question-run medians differ by +77.1% and question-run-LF by +59.6%, with per-launch paired effects reversing direction (approximately +86/-26/+88% and +77/-30/+85%). These comparisons are inconclusive; code layout/tiering are plausible confounders, not measured causes. No universal preservation of latency is claimed. Conversely, the large dense reused gain between identical string bodies is not credited as an algorithmic improvement."
   ],
   "reproduction": [
     "Run the inspected driver under the skill's run_with_performance_lock.py: python <skill>/scripts/run_with_performance_lock.py --cwd <repo> -- python <this-directory>/run.py all.",
@@ -4440,7 +7851,10 @@
     "Run python build_report.py, then the skill's render_report.py report-data.json report.html. The standard renderer owns HTML formatting.",
     "Continuation: python -B <skill>/scripts/run_with_performance_lock.py --cwd <repo> -- python -B <run>/optimization/run.py profile control H-004 H-005 H-006 H-007 H-008 H-009 H-010 H-011 H-012 H-013 H-014 H-015 H-016.",
     "Candidates always derive from Git revision 4bc779e. Run integrated --acceptance for the current production integration, then final and reprofile. Additional compatibility/corpus/pack validation uses release_check.py under the same host lock.",
-    "Run optimization/summarize.py, optimization/extend_report.py, then the skill renderer for report-data.json/report.html. The extension reads the immutable original report at 4bc779e and preserves its charts; generated HTML is never edited by hand."
+    "Run optimization/summarize.py, optimization/extend_report.py, then the skill renderer for report-data.json/report.html. The extension reads the immutable original report at 4bc779e and preserves its charts; generated HTML is never edited by hand.",
+    "From the repository: python C:/Users/tedd/.codex/skills/scientific-method-performance/scripts/run_with_performance_lock.py --cwd D:/SourceCode/Tedd.WildcardMatch -- python -B \"Research/2026-10-02 wildcard-engine-1/spans/run.py\" --phase all --epoch final",
+    "Run spans/summarize.py final, spans/extend_report.py, then the standard skill renderer for report-data.json/report.html. The extension reads the immutable report at 0c39b9d; do not run the older optimization extension afterwards, because it reconstructs an earlier historical deliverable.",
+    "Isolated span-parent experiments: add --control-epoch <parent> --screening --epoch <new-name>. Initial parent source snapshots are in spans/; H-027/H-029/H-030 snapshots in their own subdirectories. Current driver uses the documented priming epoch and clean disassembly files."
   ],
   "artifacts": [
     {
@@ -4518,6 +7932,58 @@
     {
       "label": "Report extension",
       "path": "optimization/extend_report.py"
+    },
+    {
+      "label": "Borrowed API plan and epoch corrections",
+      "path": "spans/plan.md"
+    },
+    {
+      "label": "Local validation and measurement driver",
+      "path": "spans/run.py"
+    },
+    {
+      "label": "Initial borrowed API acceptance",
+      "path": "spans/summary.json"
+    },
+    {
+      "label": "Final borrowed API acceptance",
+      "path": "spans/final/summary.json"
+    },
+    {
+      "label": "Span ownership and decisions",
+      "path": "spans/decisions.json"
+    },
+    {
+      "label": "Caller benchmark",
+      "path": "spans/Program.cs"
+    },
+    {
+      "label": "Initial benchmark source",
+      "path": "spans/initial-program.cs.txt"
+    },
+    {
+      "label": "Final source hashes and runtime",
+      "path": "spans/final/identity.json"
+    },
+    {
+      "label": "Normalized string IL and compiled caller targets",
+      "path": "spans/final/compiled-calls.txt"
+    },
+    {
+      "label": "Final Release tests",
+      "path": "spans/final/Release.txt"
+    },
+    {
+      "label": "Final native code",
+      "path": "spans/final/net10.0-native-code.asm.txt"
+    },
+    {
+      "label": "First-use normalization allocation",
+      "path": "spans/final/net11.0-cold.json"
+    },
+    {
+      "label": "Span caller profile",
+      "path": "spans/final/profile-summary.json"
     }
   ]
 }

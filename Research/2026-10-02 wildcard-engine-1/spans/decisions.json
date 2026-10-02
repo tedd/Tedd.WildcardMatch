@@ -1,0 +1,246 @@
+{
+  "hypotheses": [
+    {
+      "id": "H-023",
+      "claim": "Borrowed inputs eliminate materialization before reusable matching",
+      "mechanism": "Expose ReadOnlySpan<char> instance matching and hold borrowed diagnostic input only until the synchronous call completes.",
+      "prediction": "Remove caller copying or measured integration overhead while preserving exact matching semantics and the declared ownership/regression constraints.",
+      "observation": "Borrowed API source inspection, complete caller allocation counters, paired timing and optimized native code. Parent-specific evidence and setup corrections are recorded in spans/plan.md.",
+      "location": "WildcardMatch.cs; WildcardEngine.cs; WildcardEngine.Spans.cs",
+      "caller": "Static, reused, sliced, construction and normalization callers",
+      "falsification": "Oracle mismatch, escaped borrowed memory, unexpected match allocation, or coherent material owned-string regression under the declared 15%/5ns review trigger.",
+      "change": "Expose ReadOnlySpan<char> instance matching and hold borrowed diagnostic input only until the synchronous call completes.",
+      "changeScope": "moderate",
+      "maintainability": "Public span ownership is explicit; shared validation/Unicode rules and independent string/span oracle tests constrain drift. Per-candidate burden is stated in the rationale.",
+      "codeComments": "Representation specialization, timeout borrowing and scratch bounds are documented adjacent to their implementation; detailed causal record remains in spans/plan.md.",
+      "result": "final long-literal/sliced-reused: 157.4 → 57.3 ns (-63.6%); 2072 → 0 B/call. Paired launch effects [-65.7, -62.1, -61.0]%.",
+      "effectPercent": -63.58499279408788,
+      "state": "retained",
+      "decision": "Retained",
+      "decisionRationale": "The requested API removes a proportional input copy/allocation. Empty and short cases remain controls; span matching is not universally faster than already-owned strings.",
+      "evidence": [
+        "spans/plan.md",
+        "spans/final/summary.json"
+      ]
+    },
+    {
+      "id": "H-024",
+      "claim": "Borrowed static patterns eliminate a second caller copy",
+      "mechanism": "Add two-span static overloads and mutable/read-only span extensions; reusable span-pattern constructors copy once into immutable ownership.",
+      "prediction": "Remove caller copying or measured integration overhead while preserving exact matching semantics and the declared ownership/regression constraints.",
+      "observation": "Borrowed API source inspection, complete caller allocation counters, paired timing and optimized native code. Parent-specific evidence and setup corrections are recorded in spans/plan.md.",
+      "location": "WildcardMatch.cs; WildcardEngine.cs; WildcardEngine.Spans.cs",
+      "caller": "Static, reused, sliced, construction and normalization callers",
+      "falsification": "Oracle mismatch, escaped borrowed memory, unexpected match allocation, or coherent material owned-string regression under the declared 15%/5ns review trigger.",
+      "change": "Add two-span static overloads and mutable/read-only span extensions; reusable span-pattern constructors copy once into immutable ownership.",
+      "changeScope": "moderate",
+      "maintainability": "Public span ownership is explicit; shared validation/Unicode rules and independent string/span oracle tests constrain drift. Per-candidate burden is stated in the rationale.",
+      "codeComments": "Representation specialization, timeout borrowing and scratch bounds are documented adjacent to their implementation; detailed causal record remains in spans/plan.md.",
+      "result": "final long-literal/sliced-static: 308.3 → 101.1 ns (-67.2%); 4144 → 0 B/call. Paired launch effects [-68.4, -65.0, -66.5]%.",
+      "effectPercent": -67.20553786679767,
+      "state": "retained",
+      "decision": "Retained",
+      "decisionRationale": "Both caller conversions disappear from static slice calls. Constructor copies remain required for lifetime and mutation safety, and are measured separately.",
+      "evidence": [
+        "spans/plan.md",
+        "spans/final/summary.json"
+      ]
+    },
+    {
+      "id": "H-025",
+      "claim": "One shared span kernel can preserve the string hot path",
+      "mechanism": "Route existing string APIs through the span core while retaining null validation.",
+      "prediction": "Remove caller copying or measured integration overhead while preserving exact matching semantics and the declared ownership/regression constraints.",
+      "observation": "Borrowed API source inspection, complete caller allocation counters, paired timing and optimized native code. Parent-specific evidence and setup corrections are recorded in spans/plan.md.",
+      "location": "WildcardMatch.cs; WildcardEngine.cs; WildcardEngine.Spans.cs",
+      "caller": "Static, reused, sliced, construction and normalization callers",
+      "falsification": "Oracle mismatch, escaped borrowed memory, unexpected match allocation, or coherent material owned-string regression under the declared 15%/5ns review trigger.",
+      "change": "Route existing string APIs through the span core while retaining null validation.",
+      "changeScope": "refactor",
+      "maintainability": "Public span ownership is explicit; shared validation/Unicode rules and independent string/span oracle tests constrain drift. Per-candidate burden is stated in the rationale.",
+      "codeComments": "Representation specialization, timeout borrowing and scratch bounds are documented adjacent to their implementation; detailed causal record remains in spans/plan.md.",
+      "result": "initial question-star/reused: 458.5 → 642.6 ns (+40.1%); 0 → 0 B/call. Paired launch effects [33.8, 53.0, 29.8]%.",
+      "effectPercent": 40.14776111952343,
+      "state": "rejected",
+      "decision": "Superseded",
+      "decisionRationale": "The initial shared core adds coherent short-string overhead and about 40% question/star regression. Preserve its evidence and refine with H-027/H-029/H-030/H-031; do not retain mandatory string routing.",
+      "evidence": [
+        "spans/plan.md",
+        "spans/summary.json"
+      ]
+    },
+    {
+      "id": "H-026",
+      "claim": "VT normalization can use bounded scratch instead of a new string",
+      "mechanism": "Use at most 512 stack bytes, then ArrayPool<char>, and expose only the initialized normalized prefix; return the array in finally.",
+      "prediction": "Remove caller copying or measured integration overhead while preserving exact matching semantics and the declared ownership/regression constraints.",
+      "observation": "Borrowed API source inspection, complete caller allocation counters, paired timing and optimized native code. Parent-specific evidence and setup corrections are recorded in spans/plan.md.",
+      "location": "WildcardMatch.cs; WildcardEngine.cs; WildcardEngine.Spans.cs",
+      "caller": "Static, reused, sliced, construction and normalization callers",
+      "falsification": "Oracle mismatch, escaped borrowed memory, unexpected match allocation, or coherent material owned-string regression under the declared 15%/5ns review trigger.",
+      "change": "Use at most 512 stack bytes, then ArrayPool<char>, and expose only the initialized normalized prefix; return the array in finally.",
+      "changeScope": "local",
+      "maintainability": "Public span ownership is explicit; shared validation/Unicode rules and independent string/span oracle tests constrain drift. Per-candidate burden is stated in the rationale.",
+      "codeComments": "Representation specialization, timeout borrowing and scratch bounds are documented adjacent to their implementation; detailed causal record remains in spans/plan.md.",
+      "result": "final normalize-1024/normalization: 12489.3 → 445.5 ns (-96.4%); 32 → 0 B/call. Paired launch effects [-96.7, -94.4, -96.9]%.",
+      "effectPercent": -96.43289291836979,
+      "state": "retained",
+      "decision": "Retained",
+      "decisionRationale": "Warm complete .NET 11 normalization calls remove the normalized string allocation. First-use pool costs and retention are recorded separately; all-VT and boundary tests validate initialized ranges.",
+      "evidence": [
+        "spans/plan.md",
+        "spans/final/summary.json"
+      ]
+    },
+    {
+      "id": "H-027",
+      "claim": "Infinite span matches do not need copied timeout diagnostics",
+      "mechanism": "Keep the already-owned original pattern as a string and capture the input span only for a finite timeout.",
+      "prediction": "Remove caller copying or measured integration overhead while preserving exact matching semantics and the declared ownership/regression constraints.",
+      "observation": "Borrowed API source inspection, complete caller allocation counters, paired timing and optimized native code. Parent-specific evidence and setup corrections are recorded in spans/plan.md.",
+      "location": "WildcardMatch.cs; WildcardEngine.cs; WildcardEngine.Spans.cs",
+      "caller": "Static, reused, sliced, construction and normalization callers",
+      "falsification": "Oracle mismatch, escaped borrowed memory, unexpected match allocation, or coherent material owned-string regression under the declared 15%/5ns review trigger.",
+      "change": "Keep the already-owned original pattern as a string and capture the input span only for a finite timeout.",
+      "changeScope": "local",
+      "maintainability": "Public span ownership is explicit; shared validation/Unicode rules and independent string/span oracle tests constrain drift. Per-candidate burden is stated in the rationale.",
+      "codeComments": "Representation specialization, timeout borrowing and scratch bounds are documented adjacent to their implementation; detailed causal record remains in spans/plan.md.",
+      "result": "H-027 literal/sliced-reused: 16.1 → 11.4 ns (-29.2%); 0 → 0 B/call. Paired launch effects [-30.0, -28.5, -37.6]%.",
+      "effectPercent": -29.243635586072536,
+      "state": "retained",
+      "decision": "Retained in span kernel",
+      "decisionRationale": "Borrowed literal overhead declines across launches and the ownership model simplifies. Earliest owned-string static screening results are tier-confounded and not claimed as a universal gain.",
+      "evidence": [
+        "spans/plan.md",
+        "spans/H-027/summary.json"
+      ],
+      "parentId": "H-025"
+    },
+    {
+      "id": "H-028",
+      "claim": "Inline a surviving string-to-span adapter",
+      "mechanism": "Selective adapter inlining",
+      "prediction": "Remove a forwarding frame only if one survives optimized compilation.",
+      "location": "WildcardEngine.IsMatch(string,...) and public string callers",
+      "observation": "Initial optimized callers already bypass the adapter and call the span core directly.",
+      "falsification": "No surviving adapter call in optimized native code.",
+      "change": "No production delta",
+      "changeScope": "local",
+      "maintainability": "No additional compiler annotation",
+      "codeComments": "Not applicable",
+      "result": "The relevant optimized adapter is already inlined; the surviving call is the larger span core. H-029 tests that separate mechanism.",
+      "state": "not-applicable",
+      "decision": "Ruled out",
+      "decisionRationale": "The predicted forwarding frame is absent; do not add an unsupported annotation.",
+      "parentId": "H-025",
+      "evidence": [
+        "spans/net10.0-native-code.asm.txt",
+        "spans/plan.md"
+      ]
+    },
+    {
+      "id": "H-029",
+      "claim": "Force the shared entry to inline into public callers",
+      "mechanism": "Apply AggressiveInlining to the common span entry to expose header specialization.",
+      "prediction": "Remove caller copying or measured integration overhead while preserving exact matching semantics and the declared ownership/regression constraints.",
+      "observation": "Borrowed API source inspection, complete caller allocation counters, paired timing and optimized native code. Parent-specific evidence and setup corrections are recorded in spans/plan.md.",
+      "location": "WildcardMatch.cs; WildcardEngine.cs; WildcardEngine.Spans.cs",
+      "caller": "Static, reused, sliced, construction and normalization callers",
+      "falsification": "Oracle mismatch, escaped borrowed memory, unexpected match allocation, or coherent material owned-string regression under the declared 15%/5ns review trigger.",
+      "change": "Apply AggressiveInlining to the common span entry to expose header specialization.",
+      "changeScope": "local",
+      "maintainability": "Public span ownership is explicit; shared validation/Unicode rules and independent string/span oracle tests constrain drift. Per-candidate burden is stated in the rationale.",
+      "codeComments": "Representation specialization, timeout borrowing and scratch bounds are documented adjacent to their implementation; detailed causal record remains in spans/plan.md.",
+      "result": "H-029 dense/reused: 1168.6 → 2722.8 ns (+133.0%); 0 → 0 B/call. Paired launch effects [144.2, 117.8, 124.4]%.",
+      "effectPercent": 133.0009767002157,
+      "state": "rejected",
+      "decision": "Refined by H-030",
+      "decisionRationale": "Monolithic forced inlining expands the owned-string instance body to about 4KiB and regresses reused dense/question-star workloads by over 100%. The child keeps the large kernel separate and later excludes existing strings entirely.",
+      "evidence": [
+        "spans/plan.md",
+        "spans/H-029/summary.json"
+      ],
+      "parentId": "H-025"
+    },
+    {
+      "id": "H-030",
+      "claim": "Separate the large loop from the visible matching header",
+      "mechanism": "Combine visible span entry with NoInlining on the large MatchWindow span kernel.",
+      "prediction": "Remove caller copying or measured integration overhead while preserving exact matching semantics and the declared ownership/regression constraints.",
+      "observation": "Borrowed API source inspection, complete caller allocation counters, paired timing and optimized native code. Parent-specific evidence and setup corrections are recorded in spans/plan.md.",
+      "location": "WildcardMatch.cs; WildcardEngine.cs; WildcardEngine.Spans.cs",
+      "caller": "Static, reused, sliced, construction and normalization callers",
+      "falsification": "Oracle mismatch, escaped borrowed memory, unexpected match allocation, or coherent material owned-string regression under the declared 15%/5ns review trigger.",
+      "change": "Combine visible span entry with NoInlining on the large MatchWindow span kernel.",
+      "changeScope": "local",
+      "maintainability": "Public span ownership is explicit; shared validation/Unicode rules and independent string/span oracle tests constrain drift. Per-candidate burden is stated in the rationale.",
+      "codeComments": "Representation specialization, timeout borrowing and scratch bounds are documented adjacent to their implementation; detailed causal record remains in spans/plan.md.",
+      "result": "H-030 dense/reused: 2536.9 → 1144.0 ns (-54.9%); 0 → 0 B/call. Paired launch effects [-59.2, -53.8, -53.5]%.",
+      "effectPercent": -54.904583642085214,
+      "state": "retained",
+      "decision": "Retained in span kernel",
+      "decisionRationale": "Isolated comparison removes the forced-inlining regressions across launches. This combination is retained only for borrowed representations; H-031 restores the original string kernel rather than attributing the child as a universal string gain.",
+      "evidence": [
+        "spans/plan.md",
+        "spans/H-030/summary.json"
+      ],
+      "parentId": "H-029"
+    },
+    {
+      "id": "H-031",
+      "claim": "Representation-specific loops protect existing string calls",
+      "mechanism": "Restore the exact released string method bodies and place tested span traversal overloads in a partial file; share semantic helpers and metadata.",
+      "prediction": "Remove caller copying or measured integration overhead while preserving exact matching semantics and the declared ownership/regression constraints.",
+      "observation": "Borrowed API source inspection, complete caller allocation counters, paired timing and optimized native code. Parent-specific evidence and setup corrections are recorded in spans/plan.md.",
+      "location": "WildcardMatch.cs; WildcardEngine.cs; WildcardEngine.Spans.cs",
+      "caller": "Static, reused, sliced, construction and normalization callers",
+      "falsification": "Oracle mismatch, escaped borrowed memory, unexpected match allocation, or coherent material owned-string regression under the declared 15%/5ns review trigger.",
+      "change": "Restore the exact released string method bodies and place tested span traversal overloads in a partial file; share semantic helpers and metadata.",
+      "changeScope": "refactor",
+      "maintainability": "Public span ownership is explicit; shared validation/Unicode rules and independent string/span oracle tests constrain drift. Per-candidate burden is stated in the rationale.",
+      "codeComments": "Representation specialization, timeout borrowing and scratch bounds are documented adjacent to their implementation; detailed causal record remains in spans/plan.md.",
+      "result": "final question-star/reused: 1425.4 → 1186.8 ns (-16.7%); 0 → 0 B/call. Paired launch effects [-19.0, -12.9, -3.8]%.",
+      "effectPercent": -16.74117369987368,
+      "state": "retained",
+      "decision": "Retained",
+      "decisionRationale": "String compatibility and latency are protected by retaining its measured implementation. Separate span traversal increases maintenance; exhaustive/differential coverage checks both against independent oracles. This burden is justified by the requested borrowed-memory API and observed shared-core regressions.",
+      "evidence": [
+        "spans/plan.md",
+        "spans/final/summary.json"
+      ],
+      "parentId": "H-030"
+    }
+  ],
+  "retainedChanges": [
+    "Static two-span matching, reusable span input matching, span pattern constructors and mutable/read-only span extension APIs accept UTF-16 views of stack, string and array buffers.",
+    "Successful ordinary span matches allocate no input/pattern strings. Reusable construction owns a pattern copy; finite timeout exceptions materialize only borrowed input diagnostics.",
+    "H-031 preserves the released string method bodies; H-027/H-030 are retained only in the span-specialized traversal. Shared option validation, culture folding and newline definitions constrain semantic drift.",
+    "H-026 bounds VT normalization stack scratch and safely returns larger pooled storage; first-use allocation remains documented."
+  ],
+  "limitations": [
+    "Borrowed API results are local complete-call measurements on one Windows x64 host. Already-owned strings, spans over strings, stack buffers and .NET runtimes can have different execution costs; removing allocation does not establish a universal latency improvement.",
+    "Retaining representation-specific traversal increases maintenance. Validation, culture and newline definitions are shared; every algorithmic change must keep both independent-oracle entry points covered.",
+    "Short H-027 screening static results show tier maturation sensitivity; later epochs add a documented joint primer. No raw latency is compared across those epochs. Runtime-default tiering/PGO remains enabled; background JIT and unrelated processes can still contribute variation.",
+    "Initial/H-027/H-029 disassembly files include earlier appended bodies; final and H-030 captures are clean. Evidence attribution uses source epochs and explicit matching signatures. No hardware branch-miss, ISA or exact exclusive CPU claims are made.",
+    "VT normalization fallback can allocate on first pool rent or exhaustion and retains pool capacity. Warm per-thread allocation counters omit retained/native memory and cold initialization; first calls are recorded separately.",
+    "Owned-string regression review triggers across all three launches: none. Complete sample ranges and paired effects remain visible, including smaller regressions.",
+    "Restored string API/engine methods have identical normalized IL and implementation flags, verified in final/compiled-calls.txt. Nevertheless, static question-run medians differ by +77.1% and question-run-LF by +59.6%, with per-launch paired effects reversing direction (approximately +86/-26/+88% and +77/-30/+85%). These comparisons are inconclusive; code layout/tiering are plausible confounders, not measured causes. No universal preservation of latency is claimed. Conversely, the large dense reused gain between identical string bodies is not credited as an algorithmic improvement."
+  ],
+  "epochIds": {
+    "Initial shared span": "H-025",
+    "H-027": "H-027",
+    "H-029": "H-029",
+    "H-030": "H-030",
+    "Final": "H-031"
+  },
+  "generatedCode": [
+    {
+      "hypothesisId": "H-031",
+      "summary": "Separate representation-specific kernels; released string source bodies restored exactly.",
+      "before": "Initial/forced shared-core routing retained an extra entry or expanded the public caller into a large body, depending on annotation.",
+      "after": "Final clean .NET 10 dump contains string and span signatures with independent diagnostic state; source comparison verifies the released string bodies. Span MatchWindow remains separate from its visible header.",
+      "artifact": "spans/final/net10.0-native-code.asm.txt"
+    }
+  ],
+  "stop": "Borrowed APIs and lifetime invariants pass; allocation removal and string/slice counterexamples measured; all nine new hypotheses resolved. Retain string specialization to avoid the evidenced shared-core burden. No further material hypothesis within this API/ownership scope."
+}

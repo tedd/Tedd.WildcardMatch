@@ -1,0 +1,107 @@
+[
+  {
+    "fixture": "normalize-63",
+    "bytes": 48,
+    "result": true,
+    "note": "First candidate normalization call in this fresh process; may include enum and pool initialization.",
+    "launch": 1
+  },
+  {
+    "fixture": "normalize-255",
+    "bytes": 48,
+    "result": true,
+    "note": "First candidate normalization call in this fresh process; may include enum and pool initialization.",
+    "launch": 1
+  },
+  {
+    "fixture": "normalize-256",
+    "bytes": 48,
+    "result": true,
+    "note": "First candidate normalization call in this fresh process; may include enum and pool initialization.",
+    "launch": 1
+  },
+  {
+    "fixture": "normalize-257",
+    "bytes": 48,
+    "result": true,
+    "note": "First candidate normalization call in this fresh process; may include enum and pool initialization.",
+    "launch": 1
+  },
+  {
+    "fixture": "normalize-1024",
+    "bytes": 48,
+    "result": true,
+    "note": "First candidate normalization call in this fresh process; may include enum and pool initialization.",
+    "launch": 1
+  },
+  {
+    "fixture": "normalize-63",
+    "bytes": 48,
+    "result": true,
+    "note": "First candidate normalization call in this fresh process; may include enum and pool initialization.",
+    "launch": 2
+  },
+  {
+    "fixture": "normalize-255",
+    "bytes": 48,
+    "result": true,
+    "note": "First candidate normalization call in this fresh process; may include enum and pool initialization.",
+    "launch": 2
+  },
+  {
+    "fixture": "normalize-256",
+    "bytes": 48,
+    "result": true,
+    "note": "First candidate normalization call in this fresh process; may include enum and pool initialization.",
+    "launch": 2
+  },
+  {
+    "fixture": "normalize-257",
+    "bytes": 48,
+    "result": true,
+    "note": "First candidate normalization call in this fresh process; may include enum and pool initialization.",
+    "launch": 2
+  },
+  {
+    "fixture": "normalize-1024",
+    "bytes": 48,
+    "result": true,
+    "note": "First candidate normalization call in this fresh process; may include enum and pool initialization.",
+    "launch": 2
+  },
+  {
+    "fixture": "normalize-63",
+    "bytes": 48,
+    "result": true,
+    "note": "First candidate normalization call in this fresh process; may include enum and pool initialization.",
+    "launch": 3
+  },
+  {
+    "fixture": "normalize-255",
+    "bytes": 48,
+    "result": true,
+    "note": "First candidate normalization call in this fresh process; may include enum and pool initialization.",
+    "launch": 3
+  },
+  {
+    "fixture": "normalize-256",
+    "bytes": 48,
+    "result": true,
+    "note": "First candidate normalization call in this fresh process; may include enum and pool initialization.",
+    "launch": 3
+  },
+  {
+    "fixture": "normalize-257",
+    "bytes": 48,
+    "result": true,
+    "note": "First candidate normalization call in this fresh process; may include enum and pool initialization.",
+    "launch": 3
+  },
+  {
+    "fixture": "normalize-1024",
+    "bytes": 48,
+    "result": true,
+    "note": "First candidate normalization call in this fresh process; may include enum and pool initialization.",
+    "launch": 3
+  }
+]

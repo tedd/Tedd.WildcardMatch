@@ -1,0 +1,7 @@
+Priming checksum: False
+Measured normalize-63
+Measured normalize-253
+Measured normalize-254
+Measured normalize-255
+Measured normalize-1024
+Launch 2: 180 samples, no filtering or overhead subtraction.

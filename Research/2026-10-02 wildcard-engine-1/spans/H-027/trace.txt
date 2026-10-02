@@ -1,0 +1,13 @@
+
+Provider Name                           Keywords            Level               Enabled By
+Microsoft-DOTNETCore-SampleProfiler     0x0000000000000000  Informational(4)    --providers
+
+Launching: dotnet D:\Workspaces\AI\wildcard-spans\rig\bin\Release\net10.0\SpanBench.dll 0 --profile 
+Process        : C:\Program Files\dotnet\dotnet.exe
+Output File    : D:\Workspaces\AI\wildcard-spans\span-profile.nettrace
+
+
+Trace completed.
+Processing trace data file 'D:\Workspaces\AI\wildcard-spans\span-profile.nettrace' to create a new Speedscope file 'D:\Workspaces\AI\wildcard-spans\span-profile.speedscope.json'.
+Conversion complete
+Process exited with code '0'.

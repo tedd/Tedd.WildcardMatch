@@ -1,0 +1,16 @@
+{
+  "baseline": "H-029",
+  "startedUtc": "2026-10-02T01:29:12.582359+00:00",
+  "endedUtc": "2026-10-02T01:31:23.550446+00:00",
+  "hashes": {
+    "InternalUtils.cs": "4f21b3c86cccdeef6155ffcac31a7dc0cecac58eb592a5df7eedb27733edcafa",
+    "WildcardEngine.cs": "8138fd21e50725b2dc59358584d0f00ba46bd5451d20145a45a1751fb8368edb",
+    "WildcardMatch.cs": "653497b991b0063fff580db3b4b7f15ee2239921c2f6836d04238460adae6b72",
+    "WildcardMatchExtensions.cs": "395ac02229ae89309f6258d2db07472615fbd3cf7b2653d183e904d47adc904d",
+    "WildcardMatchRegex.cs": "1f7771890d03b21f51b10c8c8ad31da127bb3770a38a108d7de3bc13f9b6da60",
+    "WildcardOptions.cs": "ddd70ad88b5548e2564016f8c63e6e8054d1d6c6c1b27d3c2179ca947552f4db"
+  },
+  "lock": "C:\\Users\\tedd\\.codex\\locks\\performance-measurement.lock",
+  "phase": "all",
+  "screening": true
+}

@@ -1,0 +1,4 @@
+{
+  "note": "Inclusive sampled stack residence for equal-duration slice calls; not exact exclusive CPU or throughput.",
+  "inclusive": []
+}

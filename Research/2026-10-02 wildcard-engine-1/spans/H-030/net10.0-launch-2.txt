@@ -1,0 +1,25 @@
+Priming checksum: False
+Measured empty
+Measured literal
+Measured simple
+Measured simple-ignorecase
+Measured miss
+Measured escaped
+Measured long-literal
+Measured long-sparse
+Measured dense
+Measured unicode
+Measured newline
+Measured multiline
+Measured complex
+Measured question-run
+Measured question-run-lf
+Measured question-star
+Measured retry-literal
+Measured retry-near-miss
+Measured retry-lf
+Measured ascii-literal-ignorecase
+Measured short-literal-ignorecase
+Measured many-stars
+Measured short-question
+Launch 2: 1456 samples, no filtering or overhead subtraction.

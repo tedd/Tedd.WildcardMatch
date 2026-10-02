@@ -62,6 +62,8 @@ public class EngineFuzzTest
                 Assert.Equal(expected, direct.IsMatch(input));
                 Assert.Equal(expected, regex.IsMatch(input));
                 Assert.Equal(expected, WildcardMatch.IsMatch(input, pattern, option));
+                Assert.Equal(expected, direct.IsMatch(input.AsSpan()));
+                Assert.Equal(expected, WildcardMatch.IsMatch(input.AsSpan(), pattern.AsSpan(), option));
             }
         }
     }
@@ -110,12 +112,15 @@ public class EngineFuzzTest
                 Assert.Equal(expected, WildcardMatchRegex.IsMatch(input, pattern, options));
                 Assert.Equal(expected, new WildcardMatch(pattern, options).IsMatch(input));
                 Assert.Equal(expected, new WildcardMatchRegex(pattern, options).IsMatch(input));
+                Assert.Equal(expected, WildcardMatch.IsMatch(input.AsSpan(), pattern.AsSpan(), options));
+                Assert.Equal(expected, new WildcardMatch(pattern.AsSpan(), options).IsMatch(input.AsSpan()));
                 bool insensitive = (flags & 1) != 0;
                 bool basic = Regex.IsMatch(input, Reference(pattern), insensitive ? RegexOptions.IgnoreCase : RegexOptions.None);
                 Assert.Equal(basic, WildcardMatch.IsMatch(input, pattern, insensitive));
                 Assert.Equal(basic, WildcardMatchRegex.IsMatch(input, pattern, insensitive));
                 Assert.Equal(basic, input.IsWildcardMatch(pattern, insensitive));
                 Assert.Equal(basic, input.IsWildcardMatchRegex(pattern, insensitive));
+                Assert.Equal(basic, input.AsSpan().IsWildcardMatch(pattern.AsSpan(), insensitive));
                 if (flags == 0 || flags == 16) Assert.Equal(expected, Oracle(input, pattern, flags == 16));
             }
         }
@@ -136,6 +141,7 @@ public class EngineFuzzTest
             var options = singleline ? WildcardOptions.Singleline : WildcardOptions.None;
             bool expected = Oracle(input, pattern, singleline);
             Assert.Equal(expected, WildcardMatch.IsMatch(input, pattern, options));
+            Assert.Equal(expected, WildcardMatch.IsMatch(input.AsSpan(), pattern.AsSpan(), options));
             // Keep the Regex oracle bounded on arbitrary long star runs. Interpreter
             // backtracking can time out independently of matching correctness.
             Assert.Equal(expected, new WildcardMatchRegex(pattern, options | (WildcardOptions)RegexOptions.NonBacktracking, TimeSpan.FromSeconds(2)).IsMatch(input));

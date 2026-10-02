@@ -1,0 +1,5 @@
+Measured normalize-63
+Measured normalize-255
+Measured normalize-256
+Measured normalize-257
+Measured normalize-1024

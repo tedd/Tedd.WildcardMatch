@@ -1,0 +1,6 @@
+Measured normalize-63
+Measured normalize-255
+Measured normalize-256
+Measured normalize-257
+Measured normalize-1024
+Launch 3: 180 samples, no filtering or overhead subtraction.
