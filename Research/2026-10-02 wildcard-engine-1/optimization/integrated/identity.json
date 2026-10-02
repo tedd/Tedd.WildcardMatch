@@ -1,0 +1,9 @@
+{
+  "baseline": "4bc779e",
+  "candidate": "integrated",
+  "engineSha256": "2bc27b7b338d307b7e8fdc6605f73114bcb7d71c9bcc2a7ac25985163b3f7260",
+  "wrapperSha256": "653ae1feb8aeee164b089259a3870efd4ef13a968b0b218ebc1d28289c67e156",
+  "startedUtc": "2026-10-02T00:09:08.149199+00:00",
+  "endedUtc": "2026-10-02T00:13:14.794079+00:00",
+  "lock": "C:\\Users\\tedd\\.codex\\locks\\performance-measurement.lock"
+}

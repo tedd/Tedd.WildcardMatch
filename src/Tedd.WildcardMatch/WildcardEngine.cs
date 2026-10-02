@@ -45,6 +45,9 @@ internal static class WildcardEngine
 #pragma warning restore CA2208
     }
 
+    internal static int GetPrefix(string pattern) => pattern.IndexOfAny(Tokens);
+    internal static int GetSuffix(string pattern) => pattern.Length - pattern.LastIndexOfAny(Tokens) - 1;
+
     internal static bool IsLiteral(string wildcard) => wildcard.IndexOfAny(Tokens) < 0;
 
     internal static string GetMatchingPattern(string wildcard, WildcardOptions options)
@@ -87,7 +90,7 @@ internal static class WildcardEngine
         pattern == input || (behavior != 0 && Fold(pattern, behavior) == Fold(input, behavior));
 
     internal static bool IsMatch(string input, string pattern, WildcardOptions options,
-        int behavior, bool literal, TimeSpan timeout, string originalPattern)
+        int behavior, bool literal, TimeSpan timeout, string originalPattern, int prefix = -1, int suffix = -1, int leadingQuestions = -1)
     {
         if (input is null) throw new ArgumentNullException(nameof(input));
         var clock = new MatchClock(input, originalPattern, timeout);
@@ -105,33 +108,69 @@ internal static class WildcardEngine
                       (input.Length > 0 && input.Length - 1 == length && input[input.Length - 1] == '\n')) &&
                      string.CompareOrdinal(input, 0, pattern, 0, length) == 0;
         }
+        else if (literal && behavior != 0 && TryAsciiLiteral(input, pattern, behavior, ref clock, out bool asciiResult))
+            result = asciiResult;
         else
         {
-            result = MatchWindow(input, input.Length, pattern, singleline, behavior, ref clock);
+            result = MatchWindow(input, input.Length, pattern, singleline, behavior, ref clock, prefix, suffix, leadingQuestions);
             // '$' also accepts the position before one final LF. Try the true end
             // first because patterns with literal LF may require the full input.
             if (!result && input.Length > 0 && input[input.Length - 1] == '\n')
-                result = MatchWindow(input, input.Length - 1, pattern, singleline, behavior, ref clock);
+                result = MatchWindow(input, input.Length - 1, pattern, singleline, behavior, ref clock, prefix, suffix, leadingQuestions);
         }
         clock.CheckNow();
         return result;
     }
 
+    // H-017: ASCII letters have identical groups in invariant/non-Turkic modes.
+    // Any non-ASCII unit falls back to the full Regex-compatible case mapping;
+    // Turkic groups bypass this path. Keep cooperative timeout checks in the loop.
+    private static bool TryAsciiLiteral(string input, string pattern, int behavior, ref MatchClock clock, out bool result)
+    {
+        result = false;
+        if (behavior == 3) return false;
+        int length = pattern.Length;
+        if (input.Length != length && !(input.Length > 0 && input.Length - 1 == length && input[input.Length - 1] == '\n')) return true;
+        for (int i = 0; i < length; i++)
+        {
+            clock.Check();
+            char a = pattern[i], b = input[i];
+            if ((a | b) >= 128) return false;
+            if (a != b && (uint)((a | 32) - 'a') > 25) return true;
+            if (a != b && (a | 32) != (b | 32)) return true;
+        }
+        result = true;
+        return true;
+    }
+
+    // H-018: search the complete literal run to avoid first-character false
+    // positives. Spans are bounded by the current window; no substring is made.
+    // The caller verifies that the star did not consume an intervening LF.
+    private static int FindLiteral(string input, int start, int end, string pattern, int token, int patternEnd, ref MatchClock clock)
+    {
+        int next = token + 1;
+        while (next < patternEnd && pattern[next] != '*' && pattern[next] != '?') { next++; clock.Check(); }
+        int length = next - token;
+        if (length == 1) return input.IndexOf(pattern[token], start, end - start);
+        int offset = input.AsSpan(start, end - start).IndexOf(pattern.AsSpan(token, length), StringComparison.Ordinal);
+        return offset < 0 ? -1 : start + offset;
+    }
+
     private static bool MatchWindow(string input, int end, string pattern, bool singleline,
-        int behavior, ref MatchClock clock)
+        int behavior, ref MatchClock clock, int preparedPrefix, int preparedSuffix, int preparedQuestions)
     {
         int text = 0, token = 0, patternEnd = pattern.Length;
         if (behavior == 0 && patternEnd >= 32)
         {
             // Long literal runs use runtime bulk comparison. Keep short patterns on
             // the scalar path to avoid extra searches. See Research/2026-10-02 wildcard-engine-1.
-            int prefix = pattern.IndexOfAny(Tokens);
+            int prefix = preparedPrefix >= 0 ? preparedPrefix : pattern.IndexOfAny(Tokens);
             if (prefix > 0)
             {
                 if (prefix > end || string.CompareOrdinal(input, 0, pattern, 0, prefix) != 0) return false;
                 text = token = prefix;
             }
-            int suffix = patternEnd - pattern.LastIndexOfAny(Tokens) - 1;
+            int suffix = preparedSuffix >= 0 ? preparedSuffix : patternEnd - pattern.LastIndexOfAny(Tokens) - 1;
             if (suffix > 0)
             {
                 if (suffix > end - text || string.CompareOrdinal(input, end - suffix, pattern, patternEnd - suffix, suffix) != 0) return false;
@@ -139,6 +178,19 @@ internal static class WildcardEngine
                 end -= suffix;
             }
             clock.CheckNow();
+        }
+        if (patternEnd >= 32 && token == 0 && pattern[0] == '?' && pattern[1] == '?')
+        {
+            // H-014/H-020: consume a long leading question run as one bounded
+            // input range. '?' still excludes LF unless Singleline is selected.
+            int length = preparedQuestions;
+            if (length < 0)
+            {
+                length = 2;
+                while (length < patternEnd && pattern[length] == '?') { length++; clock.Check(); }
+            }
+            if (length > end || (!singleline && input.IndexOf('\n', 0, length) >= 0)) return false;
+            token = text = length;
         }
         // Anchor fixed prefix/suffix before retrying the interior. A suffix mismatch
         // rejects '*aaaa...b' without rescanning it at every input offset.
@@ -167,6 +219,12 @@ internal static class WildcardEngine
                 do { token++; clock.Check(); } while (token < patternEnd && pattern[token] == '*');
                 if (token == patternEnd)
                     return singleline || input.IndexOf('\n', text, end - text) < 0;
+                if (behavior == 0 && pattern.Length >= 16 && pattern[token] != '?')
+                {
+                    int found = FindLiteral(input, text, end, pattern, token, patternEnd, ref clock);
+                    if (found < 0 || (!singleline && input.IndexOf('\n', text, found - text) >= 0)) return false;
+                    text = found;
+                }
                 retryToken = token;
                 retryText = text;
             }
@@ -178,8 +236,15 @@ internal static class WildcardEngine
             else if (retryToken >= 0 && retryText < end && (singleline || input[retryText] != '\n'))
             {
                 // Earliest feasible placement of a segment leaves maximal room for
-                // later segments. Retrying only the latest star needs no stack/recursion.
-                text = ++retryText;
+                // later segments. Only the latest star needs retry state.
+                if (behavior == 0 && pattern.Length >= 16 && pattern[retryToken] != '?')
+                {
+                    int found = FindLiteral(input, retryText + 1, end, pattern, retryToken, patternEnd, ref clock);
+                    if (found < 0 || (!singleline && input.IndexOf('\n', retryText, found - retryText) >= 0)) return false;
+                    retryText = found;
+                    text = found;
+                }
+                else text = ++retryText;
                 token = retryToken;
             }
             else return false;

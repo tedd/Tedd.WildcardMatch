@@ -142,7 +142,9 @@ public class EngineContractTest
         string pattern = regex ? "*a*a*a*a*a*a*a*a*a*a*b*a*" : "*" + new string('a', 10000) + "b*";
         string input = new string('a', 200000) + (regex ? "b" : "");
         var limit = TimeSpan.FromMilliseconds(1);
-        var error = Assert.Throws<RegexMatchTimeoutException>(() => { if (regex) new WildcardMatchRegex(pattern, WildcardOptions.None, limit).IsMatch(input); else new WildcardMatch(pattern, WildcardOptions.None, limit).IsMatch(input); });
+        // Case-sensitive segment search can finish this failure within the budget.
+        // IgnoreCase keeps the direct fixture on the scalar retry path.
+        var error = Assert.Throws<RegexMatchTimeoutException>(() => { if (regex) new WildcardMatchRegex(pattern, WildcardOptions.None, limit).IsMatch(input); else new WildcardMatch(pattern, WildcardOptions.IgnoreCase, limit).IsMatch(input); });
         Assert.Equal(input, error.Input);
         Assert.Equal(Reference(pattern), error.Pattern);
         Assert.Equal(limit, error.MatchTimeout);

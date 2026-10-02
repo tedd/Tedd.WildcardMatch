@@ -1,0 +1,341 @@
+{
+  "highlight": "complex",
+  "candidates": {
+    "H-004": {
+      "target": "question-run",
+      "state": "rejected",
+      "claim": "General question runs remove per-unit matching branches",
+      "mechanism": "Group fixed question runs and use one input LF search",
+      "change": "Add run scanning to both scalar fixed-region loops",
+      "finding": "Grouping regressed ab?? dense patterns and a?b short calls despite improving pure question runs.",
+      "rationale": "Extra routing in every scalar fixed region is not justified.",
+      "burden": "Local duplicated run guards",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Rejected"
+    },
+    "H-005": {
+      "target": "retry-literal",
+      "state": "rejected",
+      "claim": "A character search skips failed star placements",
+      "mechanism": "IndexOf the next literal character after a star and during retry",
+      "change": "Replace scalar first-character retry with character searches",
+      "finding": "Sparse/complex cases improved, but simple matching and repeated near misses regressed.",
+      "rationale": "Superseded by full-segment H-018; do not retain the first-character form.",
+      "burden": "Extra search routing and LF checks",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Rejected"
+    },
+    "H-006": {
+      "target": "retry-near-miss",
+      "state": "rejected",
+      "claim": "Interior literal blocks reduce individual character comparisons",
+      "mechanism": "Compare complete interior literal runs with CompareOrdinal",
+      "change": "Scan and bulk-compare a run on each accepted interior literal",
+      "finding": "Short calls, complex cases and repeated near misses regressed.",
+      "rationale": "Scanning runs repeatedly on retry adds more work than it removes.",
+      "burden": "Extra interior state and retry transitions",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Rejected"
+    },
+    "H-007": {
+      "target": "simple-ignorecase",
+      "state": "inconclusive",
+      "claim": "Unsigned ASCII range arithmetic simplifies Fold",
+      "mechanism": "Use one unsigned range check for uppercase ASCII",
+      "change": "Replace two source comparisons with an unsigned subtraction/range check",
+      "finding": "Per-launch effects disagree; original-case aggregate changes are small.",
+      "rationale": "No reliable complete-call gain over control variability; retain original readable expression.",
+      "burden": "One local arithmetic expression",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Not adopted; inconclusive"
+    },
+    "H-008": {
+      "target": "dense",
+      "state": "rejected",
+      "claim": "Out-of-line Accept reduces matcher code footprint",
+      "mechanism": "NoInlining prevents Accept expansion",
+      "change": "Change Accept inlining policy only",
+      "finding": "Dense, simple, complex and retry-heavy calls were consistently slower.",
+      "rationale": "Call overhead outweighs the proposed footprint benefit.",
+      "burden": "Compiler attribute only",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Rejected"
+    },
+    "H-009": {
+      "target": "question-run",
+      "state": "inconclusive",
+      "claim": "Inlining CheckNow exposes disabled timeout work",
+      "mechanism": "AggressiveInlining on CheckNow",
+      "change": "Change timeout-helper inlining policy only",
+      "finding": "No consistent broad benefit; several effects overlap control variability.",
+      "rationale": "Avoid forcing code growth without a reliable complete-call improvement.",
+      "burden": "Compiler attribute and possible larger native code",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Not adopted; inconclusive"
+    },
+    "H-010": {
+      "target": "complex",
+      "state": "inconclusive",
+      "claim": "Inlining the public wrapper removes dispatch/copies",
+      "mechanism": "AggressiveInlining on instance IsMatch",
+      "change": "Change instance-wrapper inlining policy only",
+      "finding": "Small effects are inconsistent across launches/workloads.",
+      "rationale": "Ordinary JIT behavior remains appropriate; no demonstrated need to force inlining.",
+      "burden": "Compiler attribute only",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Not adopted; inconclusive"
+    },
+    "H-011": {
+      "target": "many-stars",
+      "state": "inconclusive",
+      "claim": "Span token searches simplify metadata lookup",
+      "mechanism": "Two-value span IndexOfAny/LastIndexOfAny",
+      "change": "Replace char-array token searches with span overloads",
+      "finding": "Many-star cases improved but broad static/reuse effects are small, and causal benefit is not isolated from JIT layout.",
+      "rationale": "Do not add this change; retained preparation also moves repeated metadata scans out of reused calls.",
+      "burden": "Safe API substitutions; no new dependency",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Not adopted; inconclusive"
+    },
+    "H-012": {
+      "target": "long-sparse",
+      "state": "rejected",
+      "claim": "Existing bulk fixed-run routing is unnecessary",
+      "mechanism": "Ablate the long fixed prefix/suffix block",
+      "change": "Remove the entire long-pattern ordinal bulk block",
+      "finding": "Long sparse matching became about twenty times slower.",
+      "rationale": "Retain the existing bulk path; this same-epoch ablation resolves the old H-002 uncertainty.",
+      "burden": "Simplification experiment",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Rejected"
+    },
+    "H-013": {
+      "target": "ascii-literal-ignorecase",
+      "state": "rejected",
+      "claim": "ASCII literal folding avoids repeated general Fold calls",
+      "mechanism": "ASCII-only literal comparison with exact Unicode/Turkic fallback",
+      "change": "Add a literal-only ASCII loop and fallback",
+      "finding": "Large gains, but the prototype checked finite timeout only at completion.",
+      "rationale": "Superseded by timeout-preserving H-017; prototype is not integrated.",
+      "burden": "Moderate specialization with a new fallback",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Rejected",
+      "scope": "moderate"
+    },
+    "H-014": {
+      "target": "question-run",
+      "state": "retained",
+      "claim": "Long leading question runs can be processed as a range",
+      "mechanism": "Move run processing outside the ordinary per-token loops",
+      "change": "Specialize only long leading ?? runs; validate length and LF once",
+      "finding": "Pure question runs improve consistently without H-004 dense/short regressions.",
+      "rationale": "Local routing avoids the losing general form and supports prepared H-020.",
+      "burden": "One bounded-range specialization",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Adopted",
+      "parent": "H-004",
+      "comments": "Adjacent H-014/H-016/H-017/H-018/H-020 comments document bounds, newline, case, timeout and immutable-preparation invariants; research run reference is next to constructor and bulk-path code."
+    },
+    "H-015": {
+      "target": "dense",
+      "state": "rejected",
+      "claim": "Pinned indexing removes scalar range checks",
+      "mechanism": "Fixed read-only pointers to both strings for MatchWindow",
+      "change": "Replace indexed characters with pinned pointer reads in this method",
+      "finding": "No broad benefit; question-star and near-miss cases regress materially.",
+      "rationale": "Unsafe ownership/pinning burden is unjustified; production remains safe indexed/span code.",
+      "burden": "Unsafe prototype requiring complete range and lifetime proof",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Rejected"
+    },
+    "H-016": {
+      "target": "long-sparse",
+      "state": "retained",
+      "claim": "Immutable endpoints remove repeated search work",
+      "mechanism": "Prepare fixed prefix/suffix offsets in constructors",
+      "change": "Add two int fields and pass prepared offsets to MatchWindow",
+      "finding": "Reused long-sparse gains repeat across launches; construction plus one match is approximately neutral.",
+      "rationale": "Eight observed extra bytes per matcher are proportional to the repeated-call gain; no pattern copy.",
+      "burden": "Two immutable offsets, routing and additional internal arguments",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Adopted",
+      "comments": "Adjacent H-014/H-016/H-017/H-018/H-020 comments document bounds, newline, case, timeout and immutable-preparation invariants; research run reference is next to constructor and bulk-path code."
+    },
+    "H-017": {
+      "target": "ascii-literal-ignorecase",
+      "state": "retained",
+      "claim": "ASCII literal specialization can preserve cooperative timeouts",
+      "mechanism": "Pass MatchClock by ref and check periodically inside ASCII loop",
+      "change": "Refine H-013 to retain existing amortized checks",
+      "finding": "Strong long/short case-insensitive literal gains survive timeout checks.",
+      "rationale": "No allocation, dependency or Unicode-case compromise; full oracle coverage supports fallback invariants.",
+      "burden": "Moderate safe specialization with a documented fallback",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Adopted",
+      "parent": "H-013",
+      "scope": "moderate",
+      "comments": "Adjacent H-014/H-016/H-017/H-018/H-020 comments document bounds, newline, case, timeout and immutable-preparation invariants; research run reference is next to constructor and bulk-path code."
+    },
+    "H-018": {
+      "target": "retry-near-miss",
+      "state": "retained",
+      "claim": "Searching full literal segments avoids first-character false positives",
+      "mechanism": "Bounded span IndexOf with Ordinal for complete runs",
+      "change": "Restrict search routing to case-sensitive patterns of at least 16 units",
+      "finding": "Sparse/near-miss/complex gains repeat; some shorter negative distributions remain slower.",
+      "rationale": "Adopt the substantial retry-work reduction in the measured integration; expose all losing distributions and avoid universal speed claims.",
+      "burden": "One helper and search/LF guards; no substring or buffer",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Adopted",
+      "parent": "H-005",
+      "comments": "Adjacent H-014/H-016/H-017/H-018/H-020 comments document bounds, newline, case, timeout and immutable-preparation invariants; research run reference is next to constructor and bulk-path code."
+    },
+    "H-019": {
+      "target": "retry-lf",
+      "state": "rejected",
+      "claim": "Hoisting search mode reduces repeated negative checks",
+      "mechanism": "Compute one immutable search bool before the loop",
+      "change": "Refine H-018 with an outside-loop mode predicate",
+      "finding": "Short/LF regressions persisted or grew.",
+      "rationale": "No evidence that this routing form improves H-018; discard.",
+      "burden": "One mode local with possible register-pressure change",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Rejected",
+      "parent": "H-018"
+    },
+    "H-020": {
+      "target": "question-run",
+      "state": "retained",
+      "claim": "Preparing leading question length eliminates repeated pattern scans",
+      "mechanism": "Constructor captures a run length from the immutable pattern",
+      "change": "Add one int field and optional prepared run argument",
+      "finding": "Versus H-014 control, reused question runs improve about 95%; construction improves too.",
+      "rationale": "The value fits existing object padding in isolation; combined metadata is eight bytes over baseline.",
+      "burden": "One immutable count and constructor scan",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Adopted",
+      "parent": "H-014",
+      "comments": "Adjacent H-014/H-016/H-017/H-018/H-020 comments document bounds, newline, case, timeout and immutable-preparation invariants; research run reference is next to constructor and bulk-path code."
+    },
+    "H-021": {
+      "target": "complex",
+      "state": "rejected",
+      "claim": "Initial-only search avoids retry-path routing overhead",
+      "mechanism": "Search on first star encounter; leave subsequent retry scalar",
+      "change": "Remove H-018 retry-side search branch",
+      "finding": "Sparse/complex gains survive but empty/dense regressions make this inferior overall.",
+      "rationale": "Do not substitute this form for H-018.",
+      "burden": "One fewer retry specialization",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Rejected",
+      "parent": "H-018"
+    },
+    "H-022": {
+      "target": "unicode",
+      "state": "rejected",
+      "claim": "Prepared case patterns avoid repeated pattern-side Unicode folding",
+      "mechanism": "Constructor creates a folded Unicode pattern; preserve raw diagnostics/culture",
+      "change": "Add prepared-case state plus character-array/string construction for non-ASCII ignore-case patterns",
+      "finding": "Reused Unicode improves about 31%, but Unicode construction allocates 136 versus 64 bytes and long ASCII construction regresses about 47%.",
+      "rationale": "Reject extra proportional pattern storage and constructor scanning under the current complete-call priorities; no application reuse evidence justifies that ownership burden.",
+      "burden": "Pattern copy, transient buffer and expanded case-state contract",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "decision": "Rejected",
+      "parent": "H-017",
+      "scope": "moderate"
+    }
+  },
+  "areas": [
+    {
+      "name": "Bounds, bulk ranges and memory ownership",
+      "boundary": "WildcardEngine.MatchWindow and constructors",
+      "evidence": "Sampled MatchWindow and paired complete-call records; independent allocation counters",
+      "catalogue": "M1-M7, C3",
+      "hypothesisIds": [
+        "H-004",
+        "H-006",
+        "H-011",
+        "H-012",
+        "H-014",
+        "H-015",
+        "H-016",
+        "H-018",
+        "H-020"
+      ],
+      "disposition": "Safe bounded run/search paths retained; unsafe indexing rejected. No match buffers/copies to pool, stack-allocate or fuse; strings are flat and sequential, no demonstrated indirect/prefetch bottleneck."
+    },
+    {
+      "name": "Branching, compiler calls and arithmetic",
+      "boundary": "Accept/Fold/MatchWindow/CheckNow/IsMatch",
+      "evidence": "Tier1 native code, identical-code controls and isolated candidate launches",
+      "catalogue": "C1-C5, R1-R3",
+      "hypothesisIds": [
+        "H-007",
+        "H-008",
+        "H-009",
+        "H-010",
+        "H-013",
+        "H-017",
+        "H-019",
+        "H-021"
+      ],
+      "disposition": "ASCII literal loop retained; inlining/arithmetic/routing variants rejected or inconclusive. Retry recurrence cannot be reassociated; no stencil/bit-count/division kernel. Per-call modes cannot become process globals; optional runtime capability is already frozen."
+    },
+    {
+      "name": "Immutable preparation and representation",
+      "boundary": "WildcardMatch constructor and repeated instance calls",
+      "evidence": "Construction/reuse measurements, bytes per call, normalized immutable pattern",
+      "catalogue": "S1-S5, M5, R2",
+      "hypothesisIds": [
+        "H-016",
+        "H-020",
+        "H-022"
+      ],
+      "disposition": "Fixed-size offsets/count retained; folded pattern representation rejected for copied storage and constructor cost. No hash/dictionary/frozen map; flags already packed, MatchClock already passed by ref. No large value-type copy remains."
+    },
+    {
+      "name": "Concurrency and scheduling",
+      "boundary": "Shared immutable matcher and call-local state",
+      "evidence": "Source ownership inspection, parallel-reuse tests, zero matching locks or asynchronous work",
+      "catalogue": "T1-T4",
+      "hypothesisIds": [],
+      "disposition": "No shared per-match mutation, lock or I/O to optimize. Diagnostic lazy publication is outside the hot path. Internal per-call threading/batching adds scheduling to tiny sequential work; new batch API is outside this contract."
+    }
+  ],
+  "retained": [
+    "Continuation retains safe ASCII literal folding with Unicode/Turkic fallback and periodic finite-timeout checks (H-017).",
+    "Bounded full-segment searches reduce sparse/near-miss star retry work without substring allocation (H-018).",
+    "Long leading question marks use one bounded input LF scan; reused instances prepare their count (H-014/H-020).",
+    "Reusable instances prepare fixed literal prefix/suffix offsets (H-016). Combined measured constructor allocation is 72 versus 64 bytes; default matching remains allocation free."
+  ],
+  "stopping": "Bounded continuation ends after 19 new mechanistic candidates plus the original three hypotheses. Every relevant catalogue category has a disposition in optimization/plan.md and the areas below; no material pending candidate remains under the complete-call and proportional-change policy. Small compiler-only effects remain inconclusive and unretained. Pattern-copy/global-cache or architecture-specific redesigns lack proportional caller evidence; this does not claim all possible optimization potential is exhausted.",
+  "correctness": [
+    "Continuation final Release/Debug: 213 tests each on .NET 8 and .NET 10; 216 on .NET 11. Additional .NET 9 Release: 213. New boundaries cover segment sizes/offsets, UTF-16 tails, LF consumption, ASCII/Unicode/Turkic fallback and repeated finite/infinite-timeout instances.",
+    "Every isolated candidate passed the exhaustive/seeded/case oracle suite before timing (209 or 213 tests as boundary coverage was added). The first combined test completed the formerly expensive timeout fixture within budget; its scalar IgnoreCase refinement passes, and the failure remains archived.",
+    "Final comparative package corpus has no mismatches; local 2.0.0 package verifies Standard 2.1/.NET 10/.NET 11 assemblies, README, license and adjacent symbol package. Package binaries remain outside the repository.",
+    "All 54 integrated static/reused samples per fixture allocate zero managed bytes. Original thirteen-case geometric mean time changes are -1.9% static, -2.3% reused and -0.9% construction; targeted retry/question/literal improvements are much larger. Some tiny short and repeated-star calls regress; complete charts and paired variability remain visible."
+  ],
+  "native": [
+    {
+      "hypothesisId": "H-018",
+      "summary": "Optimized candidate native output includes FindLiteral and bounded runtime span/string search calls; original control has scalar retry transitions.",
+      "before": "Committed direct MatchWindow retries character by character.",
+      "after": "Candidate chooses a full literal-run search and checks skipped LF before resuming; scalar/general-case fallbacks remain.",
+      "artifact": "optimization/integrated/native-code.asm.txt"
+    },
+    {
+      "hypothesisId": "H-017",
+      "summary": "ASCII literal loop is visible in optimized native code; Unicode/Turkic fallback remains separate.",
+      "before": "Literal ignored-case calls use general per-unit Accept/Fold.",
+      "after": "ASCII-only literals compare letters without general Unicode Fold calls, retaining timeout checks.",
+      "artifact": "optimization/integrated/native-code.asm.txt"
+    },
+    {
+      "hypothesisId": "H-012",
+      "summary": "Same-epoch bulk-path removal decisively regresses long-sparse matching.",
+      "before": "Committed control calls runtime bulk search/ordinal comparison.",
+      "after": "Ablated candidate uses scalar fixed-region comparison; repeated paired long-sparse disadvantage confirms retaining bulk routing.",
+      "artifact": "optimization/H-012/native-code.asm.txt"
+    }
+  ]
+}

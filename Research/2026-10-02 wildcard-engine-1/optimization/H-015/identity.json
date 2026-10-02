@@ -1,0 +1,9 @@
+{
+  "baseline": "4bc779e",
+  "candidate": "H-015",
+  "engineSha256": "76cab84ed6f1b068856f0e50b912dd8a9e4402ea068a4a0956a195a971bcf106",
+  "wrapperSha256": "cb7f65bbcbbe18f054070831cce2241433a8f7737f7deb57e41bc61c02fcd96e",
+  "startedUtc": "2026-10-01T23:42:01.290076+00:00",
+  "endedUtc": "2026-10-01T23:43:13.357840+00:00",
+  "lock": "C:\\Users\\tedd\\.codex\\locks\\performance-measurement.lock"
+}

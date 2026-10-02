@@ -17,7 +17,9 @@ concurrency:
 
 jobs:
   publish:
-    if: github.ref == 'refs/heads/deploy'
+    # Creating the release branch publishes NuGet without publishing the site.
+    # Subsequent site changes and explicit Pages dispatches retain site deployment.
+    if: github.ref == 'refs/heads/deploy' && (github.event_name == 'workflow_dispatch' || github.event.created == false)
     runs-on: ubuntu-latest
     permissions:
       contents: read

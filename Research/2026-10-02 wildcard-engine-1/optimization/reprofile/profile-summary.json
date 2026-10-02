@@ -1,0 +1,247 @@
+{
+  "note": "SampleProfiler stack residence weights; evented Speedscope includes time between samples and is not exact retired CPU instruction accounting.",
+  "inclusive": [
+    [
+      "Process64 dotnet (446440) Args:  D:\\Workspaces\\AI\\wildcard-engine-optimization\\rig\\bin\\Release\\net10.0\\OptimizationBench.dll 0 --profile ",
+      11561.318303125
+    ],
+    [
+      "(Non-Activities)",
+      11561.318303125
+    ],
+    [
+      "Threads",
+      11561.318303125
+    ],
+    [
+      "Thread (19104)",
+      11561.318303125
+    ],
+    [
+      "OptimizationBench!Program.<Main>$(class System.String[])",
+      11517.033203125
+    ],
+    [
+      "CPU_TIME",
+      11385.471995877837
+    ],
+    [
+      "Tedd.WildcardMatch!Tedd.WildcardEngine.MatchWindow(class System.String,int32,class System.String,bool,int32,value class MatchClock&,int32,int32,int32)",
+      6124.572406829831
+    ],
+    [
+      "System.Private.CoreLib.il!System.PackedSpanHelpers.IndexOf(int16&,int16,int32)",
+      954.0832674560552
+    ],
+    [
+      "System.Private.CoreLib.il!System.Threading.Thread.<PollGC>g__PollGCWorker|70_0()",
+      910.3128405639659
+    ],
+    [
+      "Tedd.WildcardMatch!Tedd.WildcardEngine.FindLiteral(class System.String,int32,int32,class System.String,int32,int32,value class MatchClock&)",
+      825.0943993591318
+    ],
+    [
+      "System.Private.CoreLib.il!System.SpanHelpers.SequenceCompareTo(wchar&,int32,wchar&,int32)",
+      716.0741659423825
+    ],
+    [
+      "System.Private.CoreLib.il!System.String.IndexOf(wchar,int32,int32)",
+      715.5823827392569
+    ],
+    [
+      "Tedd.WildcardMatch!Tedd.WildcardEngine.TryAsciiLiteral(class System.String,class System.String,int32,value class MatchClock&,bool&)",
+      545.7033967651369
+    ],
+    [
+      "System.Private.CoreLib.il!System.MemoryExtensions.IndexOf(value class System.ReadOnlySpan`1<wchar>,value class System.ReadOnlySpan`1<wchar>,value class System.StringComparison)",
+      479.18499078369314
+    ],
+    [
+      "System.Private.CoreLib.il!System.SpanHelpers.IndexOf(wchar&,int32,wchar&,int32)",
+      479.18499078369314
+    ],
+    [
+      "UNMANAGED_CODE_TIME",
+      175.84589074420916
+    ],
+    [
+      "System.Private.CoreLib.il!System.Globalization.TextInfo.IcuChangeCase(wchar*,int32,wchar*,int32,bool)",
+      169.95650482177734
+    ],
+    [
+      "System.Private.CoreLib.il!System.Globalization.TextInfo.ChangeCase(wchar,bool)",
+      135.19299442138708
+    ],
+    [
+      "Tedd.WildcardMatch!Tedd.WildcardEngine.MatchFromLine(class System.String,int32,class System.String,bool,int32,value class MatchClock&)",
+      102.88159879760678
+    ],
+    [
+      "System.Private.CoreLib.il!System.Globalization.TextInfo.ChangeCaseCore(wchar*,int32,wchar*,int32,bool)",
+      102.19379953613225
+    ],
+    [
+      "System.Private.CoreLib.il!System.String.CompareOrdinal(class System.String,int32,class System.String,int32,int32)",
+      66.10269927978516
+    ],
+    [
+      "System.Private.CoreLib.il!System.Threading.Thread.PollGC()",
+      65.12750244140625
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.EventSource.InitializeDefaultEventSources()",
+      42.775299606323244
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.NativeRuntimeEventSource..cctor()",
+      42.775299606323244
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.NativeRuntimeEventSource..ctor()",
+      42.775299606323244
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.EventSource.Initialize(value class System.Guid,class System.String,class System.String[])",
+      42.775299606323244
+    ],
+    [
+      "Tedd.WildcardMatch!Tedd.WildcardEngine+MatchClock.Check()",
+      34.6619987487793
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.EventSource.DoCommand(class System.Diagnostics.Tracing.EventCommandEventArgs)",
+      33.886299168396
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.EventSource.EnsureDescriptorsInitialized()",
+      31.86029958343506
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.EventSource.CreateManifestAndDescriptors(class System.Type,class System.String,class System.Diagnostics.Tracing.EventSource,value class System.Diagnostics.Tracing.EventManifestOptions)",
+      22.4575000541687
+    ]
+  ],
+  "exclusive": [
+    [
+      "CPU_TIME",
+      11385.471995877837
+    ],
+    [
+      "UNMANAGED_CODE_TIME",
+      175.84589074420916
+    ],
+    [
+      "OptimizationBench!Program.<Main>$(class System.String[])",
+      0.0002547092429665554
+    ],
+    [
+      "Tedd.WildcardMatch!Tedd.WildcardEngine.MatchWindow(class System.String,int32,class System.String,bool,int32,value class MatchClock&,int32,int32,int32)",
+      0.00013842773523720098
+    ],
+    [
+      "Tedd.WildcardMatch!Tedd.WildcardEngine.FindLiteral(class System.String,int32,int32,class System.String,int32,int32,value class MatchClock&)",
+      1.3726807083003223e-05
+    ],
+    [
+      "System.Private.CoreLib.il!System.Globalization.TextInfo.IcuChangeCase(wchar*,int32,wchar*,int32,bool)",
+      6.390380804077722e-06
+    ],
+    [
+      "System.Private.CoreLib.il!System.Globalization.TextInfo.ChangeCase(wchar,bool)",
+      1.745605914038606e-06
+    ],
+    [
+      "Thread (19104)",
+      4.364013648228138e-07
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.EtwEventProvider.HandleEnableNotification(class System.Diagnostics.Tracing.EventProvider,unsigned int8*,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*)",
+      2.8839111365641656e-07
+    ],
+    [
+      "System.Private.CoreLib.il!System.Reflection.CustomAttribute.AddCustomAttributes(value class ListBuilder`1<class System.Object>&,class System.Reflection.RuntimeModule,int32,class System.RuntimeType,bool,value class ListBuilder`1<class System.Object>)",
+      2.3040771424120976e-07
+    ],
+    [
+      "System.Private.CoreLib.il!System.Guid.ToString(class System.String,class System.IFormatProvider)",
+      1.678466787780053e-07
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.ManifestBuilder.CreateManifestString()",
+      1.1920928955078125e-07
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.EtwEventProvider.TryReadRegistryFilterData(int32,value class System.Diagnostics.Tracing.ControllerCommand&,unsigned int8[]&)",
+      1.0643005055044341e-07
+    ],
+    [
+      "System.Private.CoreLib.il!System.Buffers.IndexOfAnyAsciiSearcher.IndexOfAny(int16&,int32,value class AsciiState&)",
+      5.207061803957913e-08
+    ],
+    [
+      "System.Private.CoreLib.il!System.Reflection.Metadata.TypeNameParser.Parse(value class System.ReadOnlySpan`1<wchar>,bool,value class System.Nullable`1<value class System.Reflection.Metadata.TypeNameParseOptions>)",
+      4.0435793380311225e-08
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.EventSource.CreateManifestAndDescriptors(class System.Type,class System.String,class System.Diagnostics.Tracing.EventSource,value class System.Diagnostics.Tracing.EventManifestOptions)",
+      2.4414063659605745e-08
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.EventSource.Initialize(value class System.Guid,class System.String,class System.String[])",
+      2.2125242082893237e-08
+    ],
+    [
+      "System.Private.CoreLib.il!System.Reflection.RuntimeMethodInfo.InvokePropertySetter(class System.Object,value class System.Reflection.BindingFlags,class System.Reflection.Binder,class System.Object,class System.Globalization.CultureInfo)",
+      8.01086486035274e-09
+    ],
+    [
+      "System.Private.CoreLib.il!System.Buffers.SearchValues.Create(value class System.ReadOnlySpan`1<wchar>)",
+      7.438664795245131e-09
+    ],
+    [
+      "Process64 dotnet (446440) Args:  D:\\Workspaces\\AI\\wildcard-engine-optimization\\rig\\bin\\Release\\net10.0\\OptimizationBench.dll 0 --profile ",
+      0.0
+    ],
+    [
+      "(Non-Activities)",
+      0.0
+    ],
+    [
+      "Threads",
+      0.0
+    ],
+    [
+      "System.Private.CoreLib.il!System.AppContext.Setup(wchar**,wchar**,int32)",
+      0.0
+    ],
+    [
+      "System.Private.CoreLib.il!System.Collections.Generic.Dictionary`2[System.__Canon,System.__Canon]..ctor(int32,class System.Collections.Generic.IEqualityComparer`1<!0>)",
+      0.0
+    ],
+    [
+      "System.Private.CoreLib.il!System.Collections.Generic.NonRandomizedStringEqualityComparer.GetStringComparer(class System.Object)",
+      0.0
+    ],
+    [
+      "System.Private.CoreLib.il!System.Collections.Generic.NonRandomizedStringEqualityComparer..cctor()",
+      0.0
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.EventSource.InitializeDefaultEventSources()",
+      0.0
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.NativeRuntimeEventSource..cctor()",
+      0.0
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.NativeRuntimeEventSource..ctor()",
+      0.0
+    ],
+    [
+      "System.Private.CoreLib.il!System.Diagnostics.Tracing.EventSourceInitHelper.TryGetPreregisteredEtwProvider(value class System.Guid)",
+      0.0
+    ]
+  ]
+}

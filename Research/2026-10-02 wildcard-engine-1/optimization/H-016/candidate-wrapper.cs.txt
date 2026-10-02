@@ -1,0 +1,77 @@
+using System;
+using System.Threading;
+
+[assembly: CLSCompliant(true)]
+namespace Tedd;
+
+/// <summary>Matches literal UTF-16 characters, '*' and '?' without a regular expression engine.</summary>
+public class WildcardMatch
+{
+    private readonly WildcardOptions _options;
+    private readonly TimeSpan _timeout;
+    private readonly int _caseBehavior;
+    private readonly bool _literal;
+    private readonly int _prefix = -1, _suffix = -1;
+    private readonly string _matchPattern;
+    private string? _wildcardRegex;
+
+    /// <summary>The original wildcard pattern.</summary>
+    public string Wildcard { get; private set; }
+
+    /// <summary>The equivalent anchored Regex pattern, generated lazily for inspection.</summary>
+    public string WildcardRegex
+    {
+        get
+        {
+            string? value = Volatile.Read(ref _wildcardRegex);
+            if (value != null) return value;
+            value = InternalUtils.StringToWildcard(Wildcard);
+            return Interlocked.CompareExchange(ref _wildcardRegex, value, null) ?? value;
+        }
+        private set => _wildcardRegex = value;
+    }
+
+    /// <summary>Matches using the calling thread's culture when ignoring case.</summary>
+    public static bool IsMatch(string input, string wildcard, bool ignoreCase = false) =>
+        IsMatch(input, wildcard, ignoreCase ? WildcardOptions.IgnoreCase : WildcardOptions.None);
+
+    /// <summary>Matches without constructing a matcher or translating the pattern.</summary>
+    public static bool IsMatch(string input, string wildcard, WildcardOptions options)
+    {
+        WildcardEngine.ValidatePattern(wildcard);
+        WildcardEngine.ValidateOptions(options);
+        string pattern = WildcardEngine.GetMatchingPattern(wildcard, options);
+        return WildcardEngine.IsMatch(input, pattern, options, WildcardEngine.GetCaseBehavior(options),
+            WildcardEngine.IsLiteral(pattern), WildcardEngine.InfiniteTimeout, wildcard);
+    }
+
+    /// <summary>Creates a reusable, thread-safe matcher.</summary>
+    public WildcardMatch(string wildcard) : this(wildcard, WildcardOptions.None, WildcardEngine.InfiniteTimeout) { }
+
+    /// <summary>Creates a matcher that captures the construction-time case culture.</summary>
+    public WildcardMatch(string wildcard, WildcardOptions options) : this(wildcard, options, WildcardEngine.InfiniteTimeout) { }
+
+    /// <summary>Creates a matcher with a cooperative per-call timeout.</summary>
+    /// <remarks>Compiled and RightToLeft preserve Boolean results without changing execution strategy.</remarks>
+    public WildcardMatch(string wildcard, WildcardOptions options, TimeSpan timeout)
+    {
+        WildcardEngine.ValidatePattern(wildcard);
+        WildcardEngine.ValidateOptions(options);
+        WildcardEngine.ValidateTimeout(timeout);
+        Wildcard = wildcard;
+        _options = options;
+        _timeout = timeout;
+        _caseBehavior = WildcardEngine.GetCaseBehavior(options);
+        _matchPattern = WildcardEngine.GetMatchingPattern(wildcard, options);
+        _literal = WildcardEngine.IsLiteral(_matchPattern);
+        if (!_literal && _caseBehavior == 0 && _matchPattern.Length >= 32 && ((int)options & 0x802) == 0)
+        {
+            _prefix = WildcardEngine.GetPrefix(_matchPattern);
+            _suffix = WildcardEngine.GetSuffix(_matchPattern);
+        }
+    }
+
+    /// <summary>Matches using call-local state; concurrent calls may reuse this instance.</summary>
+    public bool IsMatch(string input) =>
+        WildcardEngine.IsMatch(input, _matchPattern, _options, _caseBehavior, _literal, _timeout, Wildcard, _prefix, _suffix);
+}

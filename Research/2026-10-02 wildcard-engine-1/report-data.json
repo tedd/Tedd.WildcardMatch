@@ -1,20 +1,20 @@
 {
   "title": "Direct wildcard engine: correctness and performance",
-  "generatedAt": "2026-10-02T01:14:01.347871+02:00",
+  "generatedAt": "2026-10-02T02:37:56.340001+02:00",
   "status": "complete",
-  "scope": "Requested engine rewrite and validation, rather than an exhaustive search for all optimization opportunities. Direct WildcardMatch and preserved WildcardMatchRegex; .NET Standard 2.1/.NET 10/.NET 11 source targets, timed on .NET 10 x64.",
-  "question": "Can a direct iterative wildcard engine preserve the Regex contract and improve common complete calls while avoiding per-match buffers?",
+  "scope": "Requested engine rewrite and validation, rather than an exhaustive search for all optimization opportunities. Direct WildcardMatch and preserved WildcardMatchRegex; .NET Standard 2.1/.NET 10/.NET 11 source targets, timed on .NET 10 x64. Continuation: catalogue-driven optimization of committed direct engine 4bc779e; original charts remain historical. New control/candidate charts share a distinct .NET 10 direct-engine epoch. No application throughput claim.",
+  "question": "Can a direct iterative wildcard engine preserve the Regex contract and improve common complete calls while avoiding per-match buffers? Which additional measured mechanisms improve the committed direct engine?",
   "primaryMetric": "ns/call",
   "summary": {
-    "baseline": 401.20391845703125,
-    "final": 58.109283447265625,
+    "baseline": 900.115966796875,
+    "final": 418.267822265625,
     "unit": "ns/call",
-    "changePercent": -85.51627220622744,
-    "headline": "Simple static calls: 401.2 → 58.1 ns (-85.5%). Default direct matching allocates no buffers. Compiled Regex remains faster for some reused workloads."
+    "changePercent": -53.531785048313274,
+    "headline": "Direct-engine continuation: complex reused calls 900.1 → 418.3 ns. Original Regex comparisons remain below in their historical epoch; compiled Regex remains workload dependent."
   },
   "scorecards": [
     {
-      "title": "simple static",
+      "title": "Rewrite epoch: simple static",
       "value": 58.109283447265625,
       "baseline": 401.20391845703125,
       "unit": "ns/call",
@@ -22,7 +22,7 @@
       "progression": "Regex → direct; 54 unfiltered samples per engine"
     },
     {
-      "title": "long-sparse static",
+      "title": "Rewrite epoch: long-sparse static",
       "value": 118.0908203125,
       "baseline": 17347.900390625,
       "unit": "ns/call",
@@ -30,7 +30,7 @@
       "progression": "Regex → direct; 54 unfiltered samples per engine"
     },
     {
-      "title": "complex static",
+      "title": "Rewrite epoch: complex static",
       "value": 839.55078125,
       "baseline": 52768.9453125,
       "unit": "ns/call",
@@ -38,17 +38,65 @@
       "progression": "Regex → direct; 54 unfiltered samples per engine"
     },
     {
-      "title": "unicode static",
+      "title": "Rewrite epoch: unicode static",
       "value": 136.46812438964844,
       "baseline": 187.8185272216797,
       "unit": "ns/call",
       "wallChangePercent": -27.340435255049712,
       "progression": "Regex → direct; 54 unfiltered samples per engine"
+    },
+    {
+      "title": "New engine: dense",
+      "baseline": 1219.0338134765625,
+      "value": 1233.7799072265625,
+      "unit": "ns/call",
+      "wallChangePercent": 1.2096542021214018,
+      "progression": "4bc779e direct → integrated; new paired epoch"
+    },
+    {
+      "title": "New engine: complex",
+      "baseline": 900.115966796875,
+      "value": 418.267822265625,
+      "unit": "ns/call",
+      "wallChangePercent": -53.531785048313274,
+      "progression": "4bc779e direct → integrated; new paired epoch"
+    },
+    {
+      "title": "New engine: question-run",
+      "baseline": 2483.306884765625,
+      "value": 39.385986328125,
+      "unit": "ns/call",
+      "wallChangePercent": -98.4139702358276,
+      "progression": "4bc779e direct → integrated; new paired epoch"
+    },
+    {
+      "title": "New engine: retry-literal",
+      "baseline": 5442.822265625,
+      "value": 218.90869140625,
+      "unit": "ns/call",
+      "wallChangePercent": -95.97802976612331,
+      "progression": "4bc779e direct → integrated; new paired epoch"
+    },
+    {
+      "title": "New engine: ascii-literal-ignorecase",
+      "baseline": 4752.392578125,
+      "value": 1032.26318359375,
+      "unit": "ns/call",
+      "wallChangePercent": -78.2790843427961,
+      "progression": "4bc779e direct → integrated; new paired epoch"
+    },
+    {
+      "title": "New engine: long-sparse",
+      "baseline": 120.04318237304688,
+      "value": 65.6137466430664,
+      "unit": "ns/call",
+      "wallChangePercent": -45.3415468117425,
+      "progression": "4bc779e direct → integrated; new paired epoch"
     }
   ],
   "series": [
     {
-      "title": "Complete static calls",
+      "title": "Original rewrite epoch: Complete static calls",
       "description": "Medians across three fresh processes; whiskers span all 54 samples per engine. Same build and runtime within each chart, no filtering or overhead subtraction.",
       "unit": "ns/call",
       "lowerIsBetter": true,
@@ -307,7 +355,7 @@
       ]
     },
     {
-      "title": "Reused ordinary instances",
+      "title": "Original rewrite epoch: Reused ordinary instances",
       "description": "Medians across three fresh processes; whiskers span all 54 samples per engine. Same build and runtime within each chart, no filtering or overhead subtraction.",
       "unit": "ns/call",
       "lowerIsBetter": true,
@@ -566,7 +614,7 @@
       ]
     },
     {
-      "title": "Construction plus one match",
+      "title": "Original rewrite epoch: Construction plus one match",
       "description": "Medians across three fresh processes; whiskers span all 54 samples per engine. Same build and runtime within each chart, no filtering or overhead subtraction.",
       "unit": "ns/call",
       "lowerIsBetter": true,
@@ -825,7 +873,7 @@
       ]
     },
     {
-      "title": "Reused compiled Regex control",
+      "title": "Original rewrite epoch: Reused compiled Regex control",
       "description": "Medians across three fresh processes; whiskers span all 54 samples per engine. Same build and runtime within each chart, no filtering or overhead subtraction.",
       "unit": "ns/call",
       "lowerIsBetter": true,
@@ -1082,9 +1130,2533 @@
           ]
         }
       ]
+    },
+    {
+      "title": "Direct-engine continuation: static",
+      "description": "Committed direct 4bc779e versus retained integration, same build/runtime. Three fresh processes; 54 samples per engine/case, all samples retained. Whiskers span complete sample ranges.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "Committed direct",
+        "Optimized direct"
+      ],
+      "rows": [
+        {
+          "label": "empty",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 12.308263778686523,
+              "min": 12.207603454589844,
+              "max": 67.37546920776367,
+              "n": 54
+            },
+            {
+              "median": 13.147926330566406,
+              "min": 12.79916763305664,
+              "max": 61.39335632324219,
+              "n": 54,
+              "changePercent": 6.82194147751265
+            }
+          ]
+        },
+        {
+          "label": "literal",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 15.127801895141602,
+              "min": 13.432502746582031,
+              "max": 19.887828826904297,
+              "n": 54
+            },
+            {
+              "median": 15.731644630432129,
+              "min": 14.27774429321289,
+              "max": 19.194507598876953,
+              "n": 54,
+              "changePercent": 3.991609220401382
+            }
+          ]
+        },
+        {
+          "label": "simple",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 60.344696044921875,
+              "min": 52.31475830078125,
+              "max": 553.0899047851562,
+              "n": 54
+            },
+            {
+              "median": 65.29541015625,
+              "min": 56.1431884765625,
+              "max": 556.4407348632812,
+              "n": 54,
+              "changePercent": 8.204058410771854
+            }
+          ]
+        },
+        {
+          "label": "simple-ignorecase",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 118.05896759033203,
+              "min": 105.17959594726562,
+              "max": 207.00912475585938,
+              "n": 54
+            },
+            {
+              "median": 118.32275390625,
+              "min": 105.0628662109375,
+              "max": 195.70541381835938,
+              "n": 54,
+              "changePercent": 0.2234360686884207
+            }
+          ]
+        },
+        {
+          "label": "miss",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 21.922636032104492,
+              "min": 20.467567443847656,
+              "max": 37.1826171875,
+              "n": 54
+            },
+            {
+              "median": 24.125957489013672,
+              "min": 21.944808959960938,
+              "max": 39.742183685302734,
+              "n": 54,
+              "changePercent": 10.050440347057421
+            }
+          ]
+        },
+        {
+          "label": "escaped",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 53.83615493774414,
+              "min": 43.95465850830078,
+              "max": 86.47117614746094,
+              "n": 54
+            },
+            {
+              "median": 55.173587799072266,
+              "min": 44.551849365234375,
+              "max": 92.09747314453125,
+              "n": 54,
+              "changePercent": 2.4842651984985364
+            }
+          ]
+        },
+        {
+          "label": "long-literal",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 75.68721771240234,
+              "min": 66.1529541015625,
+              "max": 182.7117919921875,
+              "n": 54
+            },
+            {
+              "median": 75.49924850463867,
+              "min": 65.380859375,
+              "max": 108.7921142578125,
+              "n": 54,
+              "changePercent": -0.2483500034020536
+            }
+          ]
+        },
+        {
+          "label": "long-sparse",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 130.16128540039062,
+              "min": 116.12777709960938,
+              "max": 251.81808471679688,
+              "n": 54
+            },
+            {
+              "median": 136.3311767578125,
+              "min": 116.25747680664062,
+              "max": 268.7744140625,
+              "n": 54,
+              "changePercent": 4.740189326221378
+            }
+          ]
+        },
+        {
+          "label": "dense",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 1229.2266845703125,
+              "min": 1106.640625,
+              "max": 3858.55712890625,
+              "n": 54
+            },
+            {
+              "median": 1264.263916015625,
+              "min": 1106.9580078125,
+              "max": 3064.990234375,
+              "n": 54,
+              "changePercent": 2.8503474489377956
+            }
+          ]
+        },
+        {
+          "label": "unicode",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 146.00677490234375,
+              "min": 125.506591796875,
+              "max": 226.32980346679688,
+              "n": 54
+            },
+            {
+              "median": 145.0969696044922,
+              "min": 128.68804931640625,
+              "max": 318.9308166503906,
+              "n": 54,
+              "changePercent": -0.6231253984344765
+            }
+          ]
+        },
+        {
+          "label": "newline",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 28.026151657104492,
+              "min": 24.775218963623047,
+              "max": 65.19966125488281,
+              "n": 54
+            },
+            {
+              "median": 29.49223518371582,
+              "min": 25.323486328125,
+              "max": 61.05690002441406,
+              "n": 54,
+              "changePercent": 5.231126786683471
+            }
+          ]
+        },
+        {
+          "label": "multiline",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 35.28861999511719,
+              "min": 29.6417236328125,
+              "max": 634.0179443359375,
+              "n": 54
+            },
+            {
+              "median": 37.47978210449219,
+              "min": 31.218338012695312,
+              "max": 643.792724609375,
+              "n": 54,
+              "changePercent": 6.2092598397959
+            }
+          ]
+        },
+        {
+          "label": "complex",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 903.3416748046875,
+              "min": 839.508056640625,
+              "max": 1549.8016357421875,
+              "n": 54
+            },
+            {
+              "median": 435.0738525390625,
+              "min": 407.5469970703125,
+              "max": 1727.947998046875,
+              "n": 54,
+              "changePercent": -51.837287631711405
+            }
+          ]
+        },
+        {
+          "label": "question-run",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 2540.7989501953125,
+              "min": 2240.68603515625,
+              "max": 4183.3740234375,
+              "n": 54
+            },
+            {
+              "median": 1088.330078125,
+              "min": 985.60791015625,
+              "max": 1973.291015625,
+              "n": 54,
+              "changePercent": -57.165832501570435
+            }
+          ]
+        },
+        {
+          "label": "question-run-lf",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 1209.9822998046875,
+              "min": 1137.51220703125,
+              "max": 1774.27978515625,
+              "n": 54
+            },
+            {
+              "median": 1062.0269775390625,
+              "min": 986.590576171875,
+              "max": 1614.227294921875,
+              "n": 54,
+              "changePercent": -12.22789145671863
+            }
+          ]
+        },
+        {
+          "label": "question-star",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 473.5038757324219,
+              "min": 427.9632568359375,
+              "max": 583.770751953125,
+              "n": 54
+            },
+            {
+              "median": 473.089599609375,
+              "min": 432.7362060546875,
+              "max": 621.4950561523438,
+              "n": 54,
+              "changePercent": -0.0874916012896576
+            }
+          ]
+        },
+        {
+          "label": "retry-literal",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 5392.9931640625,
+              "min": 5007.2509765625,
+              "max": 6919.775390625,
+              "n": 54
+            },
+            {
+              "median": 295.60546875,
+              "min": 197.216796875,
+              "max": 1272.1923828125,
+              "n": 54,
+              "changePercent": -94.51871234104583
+            }
+          ]
+        },
+        {
+          "label": "retry-near-miss",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 23095.1171875,
+              "min": 21318.359375,
+              "max": 30998.046875,
+              "n": 54
+            },
+            {
+              "median": 145.21484375,
+              "min": 127.83203125,
+              "max": 299.0234375,
+              "n": 54,
+              "changePercent": -99.37123140544792
+            }
+          ]
+        },
+        {
+          "label": "retry-lf",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 554.4013977050781,
+              "min": 518.5165405273438,
+              "max": 748.3810424804688,
+              "n": 54
+            },
+            {
+              "median": 618.1869506835938,
+              "min": 578.5263061523438,
+              "max": 944.88525390625,
+              "n": 54,
+              "changePercent": 11.505301617664255
+            }
+          ]
+        },
+        {
+          "label": "ascii-literal-ignorecase",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 4977.8564453125,
+              "min": 4503.28369140625,
+              "max": 6492.44384765625,
+              "n": 54
+            },
+            {
+              "median": 1073.724365234375,
+              "min": 981.494140625,
+              "max": 4380.33447265625,
+              "n": 54,
+              "changePercent": -78.42998533544555
+            }
+          ]
+        },
+        {
+          "label": "short-literal-ignorecase",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 79.50267791748047,
+              "min": 72.68905639648438,
+              "max": 102.4627685546875,
+              "n": 54
+            },
+            {
+              "median": 42.429161071777344,
+              "min": 38.67073059082031,
+              "max": 56.484031677246094,
+              "n": 54,
+              "changePercent": -46.631783754735224
+            }
+          ]
+        },
+        {
+          "label": "many-stars",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 1117.87109375,
+              "min": 986.322021484375,
+              "max": 1705.859375,
+              "n": 54
+            },
+            {
+              "median": 1380.55419921875,
+              "min": 1057.6202392578125,
+              "max": 2193.32275390625,
+              "n": 54,
+              "changePercent": 23.498514894732246
+            }
+          ]
+        },
+        {
+          "label": "short-question",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 26.185894012451172,
+              "min": 23.655223846435547,
+              "max": 32.863521575927734,
+              "n": 54
+            },
+            {
+              "median": 27.347755432128906,
+              "min": 24.144458770751953,
+              "max": 34.60855484008789,
+              "n": 54,
+              "changePercent": 4.436974422661599
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Direct-engine continuation: reused",
+      "description": "Committed direct 4bc779e versus retained integration, same build/runtime. Three fresh processes; 54 samples per engine/case, all samples retained. Whiskers span complete sample ranges.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "Committed direct",
+        "Optimized direct"
+      ],
+      "rows": [
+        {
+          "label": "empty",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 7.598662376403809,
+              "min": 7.441997528076172,
+              "max": 16.87936782836914,
+              "n": 54
+            },
+            {
+              "median": 10.157275199890137,
+              "min": 8.028554916381836,
+              "max": 20.192337036132812,
+              "n": 54,
+              "changePercent": 33.67188455999322
+            }
+          ]
+        },
+        {
+          "label": "literal",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 9.438776969909668,
+              "min": 8.025288581848145,
+              "max": 12.460780143737793,
+              "n": 54
+            },
+            {
+              "median": 11.367332935333252,
+              "min": 8.841991424560547,
+              "max": 18.38209629058838,
+              "n": 54,
+              "changePercent": 20.432265446802276
+            }
+          ]
+        },
+        {
+          "label": "simple",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 50.937461853027344,
+              "min": 46.781349182128906,
+              "max": 68.17493438720703,
+              "n": 54
+            },
+            {
+              "median": 56.42728805541992,
+              "min": 52.33879089355469,
+              "max": 69.05555725097656,
+              "n": 54,
+              "changePercent": 10.77758098397732
+            }
+          ]
+        },
+        {
+          "label": "simple-ignorecase",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 99.96051788330078,
+              "min": 87.23869323730469,
+              "max": 168.5882568359375,
+              "n": 54
+            },
+            {
+              "median": 97.86949157714844,
+              "min": 86.96365356445312,
+              "max": 165.68603515625,
+              "n": 54,
+              "changePercent": -2.091852213684531
+            }
+          ]
+        },
+        {
+          "label": "miss",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 15.87216854095459,
+              "min": 13.450288772583008,
+              "max": 23.591899871826172,
+              "n": 54
+            },
+            {
+              "median": 18.16232204437256,
+              "min": 15.826606750488281,
+              "max": 30.539417266845703,
+              "n": 54,
+              "changePercent": 14.428737305231731
+            }
+          ]
+        },
+        {
+          "label": "escaped",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 43.42184066772461,
+              "min": 36.084747314453125,
+              "max": 58.60767364501953,
+              "n": 54
+            },
+            {
+              "median": 44.632625579833984,
+              "min": 39.53876495361328,
+              "max": 62.13550567626953,
+              "n": 54,
+              "changePercent": 2.7884237367425735
+            }
+          ]
+        },
+        {
+          "label": "long-literal",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 49.28617477416992,
+              "min": 44.519805908203125,
+              "max": 58.814239501953125,
+              "n": 54
+            },
+            {
+              "median": 51.68304443359375,
+              "min": 44.374847412109375,
+              "max": 62.433815002441406,
+              "n": 54,
+              "changePercent": 4.863168363960746
+            }
+          ]
+        },
+        {
+          "label": "long-sparse",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 120.04318237304688,
+              "min": 110.28060913085938,
+              "max": 140.39535522460938,
+              "n": 54
+            },
+            {
+              "median": 65.6137466430664,
+              "min": 57.35359191894531,
+              "max": 76.63536071777344,
+              "n": 54,
+              "changePercent": -45.3415468117425
+            }
+          ]
+        },
+        {
+          "label": "dense",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 1219.0338134765625,
+              "min": 1092.333984375,
+              "max": 2049.4873046875,
+              "n": 54
+            },
+            {
+              "median": 1233.7799072265625,
+              "min": 1090.032958984375,
+              "max": 2415.27099609375,
+              "n": 54,
+              "changePercent": 1.2096542021214018
+            }
+          ]
+        },
+        {
+          "label": "unicode",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 116.5252685546875,
+              "min": 103.89785766601562,
+              "max": 167.88597106933594,
+              "n": 54
+            },
+            {
+              "median": 121.13571166992188,
+              "min": 107.83348083496094,
+              "max": 172.36709594726562,
+              "n": 54,
+              "changePercent": 3.9566037241704377
+            }
+          ]
+        },
+        {
+          "label": "newline",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 21.141481399536133,
+              "min": 18.527507781982422,
+              "max": 29.38394546508789,
+              "n": 54
+            },
+            {
+              "median": 24.76215362548828,
+              "min": 20.302963256835938,
+              "max": 30.59215545654297,
+              "n": 54,
+              "changePercent": 17.12591543387112
+            }
+          ]
+        },
+        {
+          "label": "multiline",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 27.727890014648438,
+              "min": 25.17528533935547,
+              "max": 34.30337905883789,
+              "n": 54
+            },
+            {
+              "median": 30.559110641479492,
+              "min": 26.53675079345703,
+              "max": 37.86211013793945,
+              "n": 54,
+              "changePercent": 10.210732318021098
+            }
+          ]
+        },
+        {
+          "label": "complex",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 900.115966796875,
+              "min": 833.2733154296875,
+              "max": 1068.701171875,
+              "n": 54
+            },
+            {
+              "median": 418.267822265625,
+              "min": 385.0250244140625,
+              "max": 582.1014404296875,
+              "n": 54,
+              "changePercent": -53.531785048313274
+            }
+          ]
+        },
+        {
+          "label": "question-run",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 2483.306884765625,
+              "min": 2260.36376953125,
+              "max": 3370.20263671875,
+              "n": 54
+            },
+            {
+              "median": 39.385986328125,
+              "min": 34.423828125,
+              "max": 60.595703125,
+              "n": 54,
+              "changePercent": -98.4139702358276
+            }
+          ]
+        },
+        {
+          "label": "question-run-lf",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 1302.6565551757812,
+              "min": 1145.34912109375,
+              "max": 1880.841064453125,
+              "n": 54
+            },
+            {
+              "median": 31.0943603515625,
+              "min": 28.2012939453125,
+              "max": 51.52587890625,
+              "n": 54,
+              "changePercent": -97.6130039627086
+            }
+          ]
+        },
+        {
+          "label": "question-star",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 461.8194580078125,
+              "min": 412.5396728515625,
+              "max": 567.0257568359375,
+              "n": 54
+            },
+            {
+              "median": 452.5871276855469,
+              "min": 404.03594970703125,
+              "max": 583.660888671875,
+              "n": 54,
+              "changePercent": -1.9991211202082915
+            }
+          ]
+        },
+        {
+          "label": "retry-literal",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 5442.822265625,
+              "min": 5059.66796875,
+              "max": 6716.796875,
+              "n": 54
+            },
+            {
+              "median": 218.90869140625,
+              "min": 191.69921875,
+              "max": 571.5087890625,
+              "n": 54,
+              "changePercent": -95.97802976612331
+            }
+          ]
+        },
+        {
+          "label": "retry-near-miss",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 22504.150390625,
+              "min": 21312.5,
+              "max": 28037.890625,
+              "n": 54
+            },
+            {
+              "median": 135.44921875,
+              "min": 121.58203125,
+              "max": 297.55859375,
+              "n": 54,
+              "changePercent": -99.39811449710882
+            }
+          ]
+        },
+        {
+          "label": "retry-lf",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 547.0291137695312,
+              "min": 511.48529052734375,
+              "max": 884.7274780273438,
+              "n": 54
+            },
+            {
+              "median": 620.4277038574219,
+              "min": 578.3309936523438,
+              "max": 864.2288208007812,
+              "n": 54,
+              "changePercent": 13.417675264504147
+            }
+          ]
+        },
+        {
+          "label": "ascii-literal-ignorecase",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 4752.392578125,
+              "min": 4443.93310546875,
+              "max": 8699.9267578125,
+              "n": 54
+            },
+            {
+              "median": 1032.26318359375,
+              "min": 941.7236328125,
+              "max": 1744.23828125,
+              "n": 54,
+              "changePercent": -78.2790843427961
+            }
+          ]
+        },
+        {
+          "label": "short-literal-ignorecase",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 58.649444580078125,
+              "min": 52.88810729980469,
+              "max": 89.15157318115234,
+              "n": 54
+            },
+            {
+              "median": 23.528766632080078,
+              "min": 20.58887481689453,
+              "max": 36.493682861328125,
+              "n": 54,
+              "changePercent": -59.88237092347117
+            }
+          ]
+        },
+        {
+          "label": "many-stars",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 1100.0137329101562,
+              "min": 1000.7537841796875,
+              "max": 1411.2060546875,
+              "n": 54
+            },
+            {
+              "median": 1396.1685180664062,
+              "min": 1032.470703125,
+              "max": 1930.1300048828125,
+              "n": 54,
+              "changePercent": 26.922826169883685
+            }
+          ]
+        },
+        {
+          "label": "short-question",
+          "detail": "managed allocation 0 → 0 B/call",
+          "measurements": [
+            {
+              "median": 19.345450401306152,
+              "min": 17.017364501953125,
+              "max": 23.172760009765625,
+              "n": 54
+            },
+            {
+              "median": 22.1435546875,
+              "min": 18.518543243408203,
+              "max": 25.701236724853516,
+              "n": 54,
+              "changePercent": 14.463888036460126
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Direct-engine continuation: construction",
+      "description": "Committed direct 4bc779e versus retained integration, same build/runtime. Three fresh processes; 54 samples per engine/case, all samples retained. Whiskers span complete sample ranges.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "Committed direct",
+        "Optimized direct"
+      ],
+      "rows": [
+        {
+          "label": "empty",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 21.613025665283203,
+              "min": 19.51007843017578,
+              "max": 45.58429718017578,
+              "n": 54
+            },
+            {
+              "median": 23.233509063720703,
+              "min": 20.87268829345703,
+              "max": 64.94464874267578,
+              "n": 54,
+              "changePercent": 7.497716532306109
+            }
+          ]
+        },
+        {
+          "label": "literal",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 26.070022583007812,
+              "min": 22.807884216308594,
+              "max": 33.18595886230469,
+              "n": 54
+            },
+            {
+              "median": 27.100372314453125,
+              "min": 23.920631408691406,
+              "max": 37.20903396606445,
+              "n": 54,
+              "changePercent": 3.9522395048360526
+            }
+          ]
+        },
+        {
+          "label": "simple",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 70.5510139465332,
+              "min": 62.665557861328125,
+              "max": 87.33768463134766,
+              "n": 54
+            },
+            {
+              "median": 74.05586242675781,
+              "min": 67.44461059570312,
+              "max": 87.40615844726562,
+              "n": 54,
+              "changePercent": 4.967821558001617
+            }
+          ]
+        },
+        {
+          "label": "simple-ignorecase",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 141.99485778808594,
+              "min": 117.33360290527344,
+              "max": 247.06954956054688,
+              "n": 54
+            },
+            {
+              "median": 139.6871566772461,
+              "min": 117.07954406738281,
+              "max": 239.92691040039062,
+              "n": 54,
+              "changePercent": -1.6252004803468778
+            }
+          ]
+        },
+        {
+          "label": "miss",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 33.44850540161133,
+              "min": 29.352474212646484,
+              "max": 39.367008209228516,
+              "n": 54
+            },
+            {
+              "median": 34.494590759277344,
+              "min": 31.22873306274414,
+              "max": 41.25528335571289,
+              "n": 54,
+              "changePercent": 3.1274502256702474
+            }
+          ]
+        },
+        {
+          "label": "escaped",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 61.46354675292969,
+              "min": 54.11853790283203,
+              "max": 84.76905822753906,
+              "n": 54
+            },
+            {
+              "median": 68.70832443237305,
+              "min": 55.533599853515625,
+              "max": 91.08257293701172,
+              "n": 54,
+              "changePercent": 11.787112950975342
+            }
+          ]
+        },
+        {
+          "label": "long-literal",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 89.73846435546875,
+              "min": 77.00576782226562,
+              "max": 118.82858276367188,
+              "n": 54
+            },
+            {
+              "median": 89.64881896972656,
+              "min": 78.01933288574219,
+              "max": 107.54280090332031,
+              "n": 54,
+              "changePercent": -0.09989627790719657
+            }
+          ]
+        },
+        {
+          "label": "long-sparse",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 136.3565444946289,
+              "min": 127.27432250976562,
+              "max": 193.829345703125,
+              "n": 54
+            },
+            {
+              "median": 139.99366760253906,
+              "min": 127.25715637207031,
+              "max": 169.4896697998047,
+              "n": 54,
+              "changePercent": 2.6673623340854213
+            }
+          ]
+        },
+        {
+          "label": "dense",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 1235.6155395507812,
+              "min": 1118.61572265625,
+              "max": 2295.263671875,
+              "n": 54
+            },
+            {
+              "median": 1320.281982421875,
+              "min": 1108.782958984375,
+              "max": 2029.01611328125,
+              "n": 54,
+              "changePercent": 6.852167212292826
+            }
+          ]
+        },
+        {
+          "label": "unicode",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 163.2312774658203,
+              "min": 134.74502563476562,
+              "max": 225.40130615234375,
+              "n": 54
+            },
+            {
+              "median": 171.17843627929688,
+              "min": 146.32339477539062,
+              "max": 272.7897644042969,
+              "n": 54,
+              "changePercent": 4.868649524072155
+            }
+          ]
+        },
+        {
+          "label": "newline",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 37.7293586730957,
+              "min": 33.57868194580078,
+              "max": 50.721168518066406,
+              "n": 54
+            },
+            {
+              "median": 40.944766998291016,
+              "min": 35.99843978881836,
+              "max": 57.37504959106445,
+              "n": 54,
+              "changePercent": 8.522297855776117
+            }
+          ]
+        },
+        {
+          "label": "multiline",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 44.44780349731445,
+              "min": 39.18113708496094,
+              "max": 165.40679931640625,
+              "n": 54
+            },
+            {
+              "median": 47.32198715209961,
+              "min": 40.50331115722656,
+              "max": 227.8533935546875,
+              "n": 54,
+              "changePercent": 6.466424499376711
+            }
+          ]
+        },
+        {
+          "label": "complex",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 921.6339111328125,
+              "min": 844.537353515625,
+              "max": 1045.60546875,
+              "n": 54
+            },
+            {
+              "median": 466.253662109375,
+              "min": 417.2607421875,
+              "max": 659.5916748046875,
+              "n": 54,
+              "changePercent": -49.410101291055334
+            }
+          ]
+        },
+        {
+          "label": "question-run",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 2501.898193359375,
+              "min": 2248.681640625,
+              "max": 3313.37890625,
+              "n": 54
+            },
+            {
+              "median": 794.23828125,
+              "min": 711.7919921875,
+              "max": 1330.50537109375,
+              "n": 54,
+              "changePercent": -68.25457233399446
+            }
+          ]
+        },
+        {
+          "label": "question-run-lf",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 1264.2929077148438,
+              "min": 1136.114501953125,
+              "max": 1713.68408203125,
+              "n": 54
+            },
+            {
+              "median": 808.9004516601562,
+              "min": 735.205078125,
+              "max": 1158.160400390625,
+              "n": 54,
+              "changePercent": -36.01953734580305
+            }
+          ]
+        },
+        {
+          "label": "question-star",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 480.0315856933594,
+              "min": 433.7127685546875,
+              "max": 642.0852661132812,
+              "n": 54
+            },
+            {
+              "median": 477.7488708496094,
+              "min": 440.1763916015625,
+              "max": 632.8598022460938,
+              "n": 54,
+              "changePercent": -0.4755343006133339
+            }
+          ]
+        },
+        {
+          "label": "retry-literal",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 5421.1669921875,
+              "min": 5076.6357421875,
+              "max": 6181.298828125,
+              "n": 54
+            },
+            {
+              "median": 235.8154296875,
+              "min": 208.203125,
+              "max": 408.7890625,
+              "n": 54,
+              "changePercent": -95.65009840081782
+            }
+          ]
+        },
+        {
+          "label": "retry-near-miss",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 22494.677734375,
+              "min": 21233.59375,
+              "max": 31640.52734375,
+              "n": 54
+            },
+            {
+              "median": 153.41796875,
+              "min": 137.3046875,
+              "max": 298.4375,
+              "n": 54,
+              "changePercent": -99.3179810328398
+            }
+          ]
+        },
+        {
+          "label": "retry-lf",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 563.8275146484375,
+              "min": 527.783203125,
+              "max": 673.1475830078125,
+              "n": 54
+            },
+            {
+              "median": 621.5660095214844,
+              "min": 592.401123046875,
+              "max": 710.0311279296875,
+              "n": 54,
+              "changePercent": 10.240453573651598
+            }
+          ]
+        },
+        {
+          "label": "ascii-literal-ignorecase",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 4927.496337890625,
+              "min": 4561.6455078125,
+              "max": 6195.99609375,
+              "n": 54
+            },
+            {
+              "median": 1089.68505859375,
+              "min": 1012.04833984375,
+              "max": 2165.8203125,
+              "n": 54,
+              "changePercent": -77.88562418170714
+            }
+          ]
+        },
+        {
+          "label": "short-literal-ignorecase",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 103.31897735595703,
+              "min": 82.43026733398438,
+              "max": 157.10372924804688,
+              "n": 54
+            },
+            {
+              "median": 63.464927673339844,
+              "min": 50.0823974609375,
+              "max": 98.12469482421875,
+              "n": 54,
+              "changePercent": -38.57379418817809
+            }
+          ]
+        },
+        {
+          "label": "many-stars",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 1107.1975708007812,
+              "min": 1013.531494140625,
+              "max": 2027.0111083984375,
+              "n": 54
+            },
+            {
+              "median": 1410.3042602539062,
+              "min": 1060.2783203125,
+              "max": 1698.114013671875,
+              "n": 54,
+              "changePercent": 27.376025512222093
+            }
+          ]
+        },
+        {
+          "label": "short-question",
+          "detail": "managed allocation 64 → 72 B/call",
+          "measurements": [
+            {
+              "median": 36.26265525817871,
+              "min": 32.34720230102539,
+              "max": 58.26902389526367,
+              "n": 54
+            },
+            {
+              "median": 38.83399963378906,
+              "min": 34.093475341796875,
+              "max": 67.15459823608398,
+              "n": 54,
+              "changePercent": 7.090888290731012
+            }
+          ]
+        }
+      ]
     }
   ],
-  "effectGroups": [],
+  "effectGroups": [
+    {
+      "name": "Isolated variants: dense reused",
+      "control": "Each candidate's contemporaneous control is named per item: usually 4bc779e, H-020 uses H-014 and H-022 uses H-017. 24 screening samples per engine/case; ranges span paired block effects. Separate candidate runs are not a shared raw-time epoch; gains are not additive.",
+      "items": [
+        {
+          "hypothesisId": "H-004",
+          "label": "H-004",
+          "effect": 0.21137558283708516,
+          "range": [
+            -0.03110707582646166,
+            0.4609188041390002
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-005",
+          "label": "H-005",
+          "effect": 0.06471130092534438,
+          "range": [
+            -0.12485288763578783,
+            0.2125898222465017
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-006",
+          "label": "H-006",
+          "effect": 0.029171886713659667,
+          "range": [
+            -0.11440085206498585,
+            0.3478975927594226
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-007",
+          "label": "H-007",
+          "effect": -0.08312996458991295,
+          "range": [
+            -0.29458760251944227,
+            0.14480737679748024
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-008",
+          "label": "H-008",
+          "effect": 0.6024745224873376,
+          "range": [
+            0.3117673463045767,
+            0.7394329303819469
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-009",
+          "label": "H-009",
+          "effect": 0.05572332685503567,
+          "range": [
+            -0.19360162890064636,
+            0.5715190455274421
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-010",
+          "label": "H-010",
+          "effect": -0.08285695262191695,
+          "range": [
+            -0.2754795452029666,
+            0.02153718774611768
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-011",
+          "label": "H-011",
+          "effect": -0.0906121728384164,
+          "range": [
+            -0.2856119279506868,
+            0.03877688279661151
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-012",
+          "label": "H-012",
+          "effect": -0.08466320167348297,
+          "range": [
+            -0.27309142119865415,
+            0.22855263279809493
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-013",
+          "label": "H-013",
+          "effect": -0.0181192723169189,
+          "range": [
+            -0.3271254582003075,
+            0.14969408565601627
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-014",
+          "label": "H-014",
+          "effect": -0.0961079213454601,
+          "range": [
+            -0.3324612171188617,
+            0.16855607421645158
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-015",
+          "label": "H-015",
+          "effect": -0.04977984226060873,
+          "range": [
+            -0.24833394852521729,
+            0.18194902548725644
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-016",
+          "label": "H-016",
+          "effect": -0.010669125395152745,
+          "range": [
+            -0.18935072468863434,
+            0.2606587146540451
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-017",
+          "label": "H-017",
+          "effect": -0.06643274313811487,
+          "range": [
+            -0.20179616274323042,
+            0.09128587416301513
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-018",
+          "label": "H-018",
+          "effect": -0.018914387007138433,
+          "range": [
+            -0.30701072342631286,
+            0.3075030255936193
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-019",
+          "label": "H-019",
+          "effect": -0.05963697630632825,
+          "range": [
+            -0.301281281139796,
+            0.28401663440781766
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-020",
+          "label": "H-020",
+          "effect": -0.003636143569674233,
+          "range": [
+            -0.3152296635158194,
+            0.25247729263174135
+          ],
+          "note": "retained; 4bc779e + H-014"
+        },
+        {
+          "hypothesisId": "H-021",
+          "label": "H-021",
+          "effect": 0.10313384563911644,
+          "range": [
+            -0.06875371251969253,
+            0.282976551460568
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-022",
+          "label": "H-022",
+          "effect": -0.0052774140671071335,
+          "range": [
+            -0.15090106656859137,
+            0.3455844875346261
+          ],
+          "note": "rejected; 4bc779e + H-017"
+        }
+      ]
+    },
+    {
+      "name": "Isolated variants: complex reused",
+      "control": "Each candidate's contemporaneous control is named per item: usually 4bc779e, H-020 uses H-014 and H-022 uses H-017. 24 screening samples per engine/case; ranges span paired block effects. Separate candidate runs are not a shared raw-time epoch; gains are not additive.",
+      "items": [
+        {
+          "hypothesisId": "H-004",
+          "label": "H-004",
+          "effect": 0.06505211357164575,
+          "range": [
+            -0.07857634515342082,
+            0.16995457091293797
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-005",
+          "label": "H-005",
+          "effect": -0.6224562503562674,
+          "range": [
+            -0.6830863276113303,
+            -0.5599568867866239
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-006",
+          "label": "H-006",
+          "effect": 0.1065244168692445,
+          "range": [
+            -0.09677869869525747,
+            0.3913618872457532
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-007",
+          "label": "H-007",
+          "effect": -0.07648578157048447,
+          "range": [
+            -0.12614071679147065,
+            0.24842641717534739
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-008",
+          "label": "H-008",
+          "effect": 0.7134200103564581,
+          "range": [
+            0.35956226249634615,
+            0.9577030218394252
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-009",
+          "label": "H-009",
+          "effect": 0.016083355979232605,
+          "range": [
+            -0.1691506554138984,
+            0.13412387750402943
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-010",
+          "label": "H-010",
+          "effect": 0.0014256719269045703,
+          "range": [
+            -0.15236292624305248,
+            0.22331449580284501
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-011",
+          "label": "H-011",
+          "effect": 0.002575076425103351,
+          "range": [
+            -0.11188836469461162,
+            0.09783703878032825
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-012",
+          "label": "H-012",
+          "effect": -0.021052199325179877,
+          "range": [
+            -0.1434616390014377,
+            0.329777464682425
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-013",
+          "label": "H-013",
+          "effect": -0.02625619938040924,
+          "range": [
+            -0.18354910159072335,
+            0.2513755844452048
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-014",
+          "label": "H-014",
+          "effect": -0.0021027840861300717,
+          "range": [
+            -0.13802107677254905,
+            0.09566828041832733
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-015",
+          "label": "H-015",
+          "effect": 0.031006356771076993,
+          "range": [
+            -0.11433272456901179,
+            0.14203844119202969
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-016",
+          "label": "H-016",
+          "effect": -0.005021997177720561,
+          "range": [
+            -0.09729930406111176,
+            0.2044339635390624
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-017",
+          "label": "H-017",
+          "effect": 0.040426014370544605,
+          "range": [
+            -0.15378061249330544,
+            0.1654546452436163
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-018",
+          "label": "H-018",
+          "effect": -0.5120846893887916,
+          "range": [
+            -0.5481763221062912,
+            -0.35392524545952553
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-019",
+          "label": "H-019",
+          "effect": -0.526672456445076,
+          "range": [
+            -0.5686782916956095,
+            -0.3760329669523901
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-020",
+          "label": "H-020",
+          "effect": 0.013610402235994634,
+          "range": [
+            -0.14964441115849547,
+            0.1275122838431333
+          ],
+          "note": "retained; 4bc779e + H-014"
+        },
+        {
+          "hypothesisId": "H-021",
+          "label": "H-021",
+          "effect": -0.5109951468243656,
+          "range": [
+            -0.5708855016125669,
+            -0.3642724125268846
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-022",
+          "label": "H-022",
+          "effect": 0.002267443529175406,
+          "range": [
+            -0.10997546766662813,
+            0.05626583001336938
+          ],
+          "note": "rejected; 4bc779e + H-017"
+        }
+      ]
+    },
+    {
+      "name": "Isolated variants: question-run reused",
+      "control": "Each candidate's contemporaneous control is named per item: usually 4bc779e, H-020 uses H-014 and H-022 uses H-017. 24 screening samples per engine/case; ranges span paired block effects. Separate candidate runs are not a shared raw-time epoch; gains are not additive.",
+      "items": [
+        {
+          "hypothesisId": "H-004",
+          "label": "H-004",
+          "effect": -0.5716843771196021,
+          "range": [
+            -0.6579107471168311,
+            -0.5142539895677323
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-005",
+          "label": "H-005",
+          "effect": 0.022502691395411833,
+          "range": [
+            -0.16514745716285728,
+            0.2283761759071283
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-006",
+          "label": "H-006",
+          "effect": 0.11415476027598072,
+          "range": [
+            -0.03892185017274308,
+            0.5334011430785623
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-007",
+          "label": "H-007",
+          "effect": -0.00925886904410711,
+          "range": [
+            -0.34721815008726,
+            0.25161094136897444
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-008",
+          "label": "H-008",
+          "effect": 0.47966550865957136,
+          "range": [
+            0.38950953582204506,
+            0.887607942454141
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-009",
+          "label": "H-009",
+          "effect": 0.05985391841268051,
+          "range": [
+            -0.18020895390657754,
+            0.36051555932595525
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-010",
+          "label": "H-010",
+          "effect": -0.05386953345538825,
+          "range": [
+            -0.19754995978469345,
+            0.45276659737272773
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-011",
+          "label": "H-011",
+          "effect": 0.028804528804528884,
+          "range": [
+            -0.03620590124480649,
+            0.21738276776072518
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-012",
+          "label": "H-012",
+          "effect": 0.04103952242652209,
+          "range": [
+            -0.32217247981113883,
+            0.3594903650843122
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-013",
+          "label": "H-013",
+          "effect": 0.10221301676443595,
+          "range": [
+            -0.2707925649882871,
+            0.6983959076699611
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-014",
+          "label": "H-014",
+          "effect": -0.6143964942187963,
+          "range": [
+            -0.7614081772088173,
+            -0.4770049963388896
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-015",
+          "label": "H-015",
+          "effect": 0.02920494577605859,
+          "range": [
+            -0.16482537354477955,
+            0.2423966597077245
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-016",
+          "label": "H-016",
+          "effect": 0.005538283969692914,
+          "range": [
+            -0.18596075687023927,
+            0.25795247283973466
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-017",
+          "label": "H-017",
+          "effect": 0.0005824800910125827,
+          "range": [
+            -0.1288641681805609,
+            0.2636872599440141
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-018",
+          "label": "H-018",
+          "effect": 0.018413869286177276,
+          "range": [
+            -0.12983612026187397,
+            0.2596640753155981
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-019",
+          "label": "H-019",
+          "effect": 0.040867102511844555,
+          "range": [
+            -0.15580832800731348,
+            0.4853386962999935
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-020",
+          "label": "H-020",
+          "effect": -0.9520639147802928,
+          "range": [
+            -0.961345473035853,
+            -0.9417149372616723
+          ],
+          "note": "retained; 4bc779e + H-014"
+        },
+        {
+          "hypothesisId": "H-021",
+          "label": "H-021",
+          "effect": 0.06241701091767493,
+          "range": [
+            -0.15808035233829776,
+            0.4385946600421686
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-022",
+          "label": "H-022",
+          "effect": -0.07166339777715514,
+          "range": [
+            -0.3324053571047142,
+            0.2717626068175416
+          ],
+          "note": "rejected; 4bc779e + H-017"
+        }
+      ]
+    },
+    {
+      "name": "Isolated variants: retry-literal reused",
+      "control": "Each candidate's contemporaneous control is named per item: usually 4bc779e, H-020 uses H-014 and H-022 uses H-017. 24 screening samples per engine/case; ranges span paired block effects. Separate candidate runs are not a shared raw-time epoch; gains are not additive.",
+      "items": [
+        {
+          "hypothesisId": "H-004",
+          "label": "H-004",
+          "effect": 0.0650536510907389,
+          "range": [
+            -0.1545502840096441,
+            0.28797744991347485
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-005",
+          "label": "H-005",
+          "effect": -0.9744328478889208,
+          "range": [
+            -0.9774823679565062,
+            -0.9688983833502803
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-006",
+          "label": "H-006",
+          "effect": 0.006643183495753435,
+          "range": [
+            -0.13463662649036745,
+            0.07528745144236848
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-007",
+          "label": "H-007",
+          "effect": -0.0016000449135414874,
+          "range": [
+            -0.14987244897959184,
+            0.1136150661875086
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-008",
+          "label": "H-008",
+          "effect": 0.7737409456453546,
+          "range": [
+            0.5180892842830809,
+            1.016009375121063
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-009",
+          "label": "H-009",
+          "effect": 0.02022055328453276,
+          "range": [
+            -0.058334825918628826,
+            0.12864398266143295
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-010",
+          "label": "H-010",
+          "effect": 0.011968764218130534,
+          "range": [
+            -0.04605707797532688,
+            0.10442387818974286
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-011",
+          "label": "H-011",
+          "effect": 0.044021629580291544,
+          "range": [
+            -0.22115487316421897,
+            0.30787876595244335
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-012",
+          "label": "H-012",
+          "effect": 0.07493724040348715,
+          "range": [
+            -0.06988979488389568,
+            0.11880566820578631
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-013",
+          "label": "H-013",
+          "effect": -0.017720753643290954,
+          "range": [
+            -0.09863438052451468,
+            0.08927655207798878
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-014",
+          "label": "H-014",
+          "effect": -0.0014299960486950924,
+          "range": [
+            -0.14055420925086926,
+            0.17745685293071856
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-015",
+          "label": "H-015",
+          "effect": -0.009052619542223361,
+          "range": [
+            -0.23215847736253126,
+            0.019655685275733692
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-016",
+          "label": "H-016",
+          "effect": 0.0076924521922079325,
+          "range": [
+            -0.03055521864474775,
+            0.14335593318696627
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-017",
+          "label": "H-017",
+          "effect": -0.0016006819473385336,
+          "range": [
+            -0.13806139540708506,
+            0.13933525385909107
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-018",
+          "label": "H-018",
+          "effect": -0.9607941854930248,
+          "range": [
+            -0.9624896342025246,
+            -0.9495401787369748
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-019",
+          "label": "H-019",
+          "effect": -0.9537603990247715,
+          "range": [
+            -0.9591515645941378,
+            -0.9429185418867487
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-020",
+          "label": "H-020",
+          "effect": 0.04399650408167055,
+          "range": [
+            -0.20966664140700886,
+            0.1974166098165235
+          ],
+          "note": "retained; 4bc779e + H-014"
+        },
+        {
+          "hypothesisId": "H-021",
+          "label": "H-021",
+          "effect": -0.9646449410892669,
+          "range": [
+            -0.965198736666468,
+            -0.9502901000865142
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-022",
+          "label": "H-022",
+          "effect": 0.021652957605889256,
+          "range": [
+            -0.10326234149944602,
+            0.05353335734659903
+          ],
+          "note": "rejected; 4bc779e + H-017"
+        }
+      ]
+    },
+    {
+      "name": "Isolated variants: ascii-literal-ignorecase reused",
+      "control": "Each candidate's contemporaneous control is named per item: usually 4bc779e, H-020 uses H-014 and H-022 uses H-017. 24 screening samples per engine/case; ranges span paired block effects. Separate candidate runs are not a shared raw-time epoch; gains are not additive.",
+      "items": [
+        {
+          "hypothesisId": "H-004",
+          "label": "H-004",
+          "effect": 0.06975421747646426,
+          "range": [
+            -0.24304112395726618,
+            0.28933917169673085
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-005",
+          "label": "H-005",
+          "effect": 0.006373288653972464,
+          "range": [
+            -0.2144238642459836,
+            0.2664122834613707
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-006",
+          "label": "H-006",
+          "effect": -0.0694851985291387,
+          "range": [
+            -0.4491685122033145,
+            0.1349476352478154
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-007",
+          "label": "H-007",
+          "effect": -0.01902956387200294,
+          "range": [
+            -0.28430463302631725,
+            0.1859341286399543
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-008",
+          "label": "H-008",
+          "effect": 0.34864921299380547,
+          "range": [
+            0.07300596919600078,
+            0.6501387911486434
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-009",
+          "label": "H-009",
+          "effect": -0.028082390484479247,
+          "range": [
+            -0.3116574523834543,
+            0.29238007423694357
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-010",
+          "label": "H-010",
+          "effect": 0.0011303804622662117,
+          "range": [
+            -0.16174384795404584,
+            0.345404903620379
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-011",
+          "label": "H-011",
+          "effect": -0.0044011948100438625,
+          "range": [
+            -0.08508728770318541,
+            0.05732008412838718
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-012",
+          "label": "H-012",
+          "effect": 0.054656169530161725,
+          "range": [
+            -0.3144846345649428,
+            0.4571846871272096
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-013",
+          "label": "H-013",
+          "effect": -0.8074111278531169,
+          "range": [
+            -0.859229147847034,
+            -0.7573871356423205
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-014",
+          "label": "H-014",
+          "effect": -0.12091709982307053,
+          "range": [
+            -0.1886923285782911,
+            0.23845129936840603
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-015",
+          "label": "H-015",
+          "effect": -0.05808885579548272,
+          "range": [
+            -0.3871405190554127,
+            0.08661133526225682
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-016",
+          "label": "H-016",
+          "effect": 0.03470530388760684,
+          "range": [
+            -0.17785997937290376,
+            0.4768613392546617
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-017",
+          "label": "H-017",
+          "effect": -0.7990522058894498,
+          "range": [
+            -0.8398099797824442,
+            -0.7698852375904504
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-018",
+          "label": "H-018",
+          "effect": -0.059689629435769165,
+          "range": [
+            -0.33096503425462076,
+            0.047232374683711775
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-019",
+          "label": "H-019",
+          "effect": 0.10892071666130242,
+          "range": [
+            -0.2562563959438088,
+            0.3512407587827382
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-020",
+          "label": "H-020",
+          "effect": 0.12615862165933,
+          "range": [
+            -0.2730560139792253,
+            0.7405874816605705
+          ],
+          "note": "retained; 4bc779e + H-014"
+        },
+        {
+          "hypothesisId": "H-021",
+          "label": "H-021",
+          "effect": -0.022035899007010418,
+          "range": [
+            -0.22183518410286385,
+            0.4474621769123728
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-022",
+          "label": "H-022",
+          "effect": 0.0582335947172925,
+          "range": [
+            -0.17235311789193594,
+            0.28765916908062716
+          ],
+          "note": "rejected; 4bc779e + H-017"
+        }
+      ]
+    },
+    {
+      "name": "Isolated variants: long-sparse reused",
+      "control": "Each candidate's contemporaneous control is named per item: usually 4bc779e, H-020 uses H-014 and H-022 uses H-017. 24 screening samples per engine/case; ranges span paired block effects. Separate candidate runs are not a shared raw-time epoch; gains are not additive.",
+      "items": [
+        {
+          "hypothesisId": "H-004",
+          "label": "H-004",
+          "effect": -0.031332532280986425,
+          "range": [
+            -0.11321269602551819,
+            0.07645366374309703
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-005",
+          "label": "H-005",
+          "effect": -0.026122443977376508,
+          "range": [
+            -0.08599580260846962,
+            0.16755841780648684
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-006",
+          "label": "H-006",
+          "effect": 0.002582593970460456,
+          "range": [
+            -0.17839607201309327,
+            0.31517840344243697
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-007",
+          "label": "H-007",
+          "effect": 0.016714428108646873,
+          "range": [
+            -0.0781336684668773,
+            0.10035234323843965
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-008",
+          "label": "H-008",
+          "effect": -0.07017676870768141,
+          "range": [
+            -0.17782102350472828,
+            0.06435276170581194
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-009",
+          "label": "H-009",
+          "effect": 0.01376802265705468,
+          "range": [
+            -0.09434967091362711,
+            0.22690654864986204
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-010",
+          "label": "H-010",
+          "effect": -0.002696060571935832,
+          "range": [
+            -0.11755946151223917,
+            0.07024401102534394
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-011",
+          "label": "H-011",
+          "effect": -0.07376367094626723,
+          "range": [
+            -0.13367635515124143,
+            -0.00276729400440745
+          ],
+          "note": "inconclusive; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-012",
+          "label": "H-012",
+          "effect": 19.799723695066806,
+          "range": [
+            14.936759145854412,
+            26.213177159590042
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-013",
+          "label": "H-013",
+          "effect": -0.10305400372439477,
+          "range": [
+            -0.21319516930681826,
+            0.003389517716535506
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-014",
+          "label": "H-014",
+          "effect": 0.005901924811094972,
+          "range": [
+            -0.13938008405472924,
+            0.18405964729000313
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-015",
+          "label": "H-015",
+          "effect": 0.007572512158859013,
+          "range": [
+            -0.14626380836622965,
+            0.10883662915519142
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-016",
+          "label": "H-016",
+          "effect": -0.43037772087067855,
+          "range": [
+            -0.49743790518521935,
+            -0.3424378914299907
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-017",
+          "label": "H-017",
+          "effect": 0.042060057260802974,
+          "range": [
+            -0.08540778596830034,
+            0.09911706066647685
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-018",
+          "label": "H-018",
+          "effect": 0.03465080608104176,
+          "range": [
+            -0.08435099815167135,
+            0.13811824746186008
+          ],
+          "note": "retained; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-019",
+          "label": "H-019",
+          "effect": 0.05658485575444416,
+          "range": [
+            -0.09755326547385723,
+            0.13116097720899456
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-020",
+          "label": "H-020",
+          "effect": 0.011576915248592279,
+          "range": [
+            -0.05767698437021151,
+            0.10754143515220595
+          ],
+          "note": "retained; 4bc779e + H-014"
+        },
+        {
+          "hypothesisId": "H-021",
+          "label": "H-021",
+          "effect": 0.06155422736588889,
+          "range": [
+            -0.12234463067971768,
+            0.14460119024862683
+          ],
+          "note": "rejected; 4bc779e"
+        },
+        {
+          "hypothesisId": "H-022",
+          "label": "H-022",
+          "effect": 0.03154035490148077,
+          "range": [
+            -0.07885614691927834,
+            0.2507669212192416
+          ],
+          "note": "rejected; 4bc779e + H-017"
+        }
+      ]
+    }
+  ],
   "hypotheses": [
     {
       "id": "H-001",
@@ -1121,14 +3693,15 @@
       "changeScope": "local",
       "maintainability": "Safe indexed string operations and one routing guard; no new storage.",
       "codeComments": "Adjacent bulk-path comment links this run and explains keeping short patterns scalar.",
-      "result": "Final long-sparse comparisons and Tier1 library calls support the integrated path. Initial/final build epochs differ, so an isolated numeric effect is not established.",
-      "state": "inconclusive",
-      "decision": "Integrated; isolated effect inconclusive",
-      "decisionRationale": "Keep as part of the validated H-001 implementation, not as a separately quantified improvement. Initial source/results remain archived.",
+      "result": "Final long-sparse comparisons and Tier1 library calls support the integrated path. Initial/final build epochs differ, so an isolated numeric effect is not established. Continuation H-012 removes only this routing in the same compiler/target epoch and makes long-sparse calls about twenty times slower.",
+      "state": "retained",
+      "decision": "Confirmed by later ablation",
+      "decisionRationale": "Keep as part of the validated H-001 implementation, not as a separately quantified improvement. Initial source/results remain archived. The later controlled ablation resolves the former constituent-effect uncertainty; initial cross-epoch data remains historical.",
       "evidence": [
         "raw/initial-engine/",
         "disassembly/engine.asm.txt",
-        "raw/summary.json"
+        "raw/summary.json",
+        "optimization/H-012/"
       ],
       "risks": [
         "Length 32 is a routing choice, not a universal optimum; constituent effects are not isolated."
@@ -1154,6 +3727,507 @@
         "raw/compiled-3.json"
       ],
       "risks": []
+    },
+    {
+      "id": "H-004",
+      "claim": "General question runs remove per-unit matching branches",
+      "mechanism": "Group fixed question runs and use one input LF search",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Add run scanning to both scalar fixed-region loops",
+      "changeScope": "local",
+      "maintainability": "Local duplicated run guards",
+      "codeComments": "Discarded candidates do not alter production comments; candidate source is retained as evidence.",
+      "result": "Control 4bc779e; question-run reused: 2699.6 → 1156.3 ns (-57.2%). Paired per-launch median effects [-55.4, -64.3, -53.8]%. Grouping regressed ab?? dense patterns and a?b short calls despite improving pure question runs.",
+      "effectPercent": -57.16843771196021,
+      "state": "rejected",
+      "decision": "Rejected",
+      "decisionRationale": "Extra routing in every scalar fixed region is not justified.",
+      "evidence": [
+        "optimization/H-004/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": []
+    },
+    {
+      "id": "H-005",
+      "claim": "A character search skips failed star placements",
+      "mechanism": "IndexOf the next literal character after a star and during retry",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Replace scalar first-character retry with character searches",
+      "changeScope": "local",
+      "maintainability": "Extra search routing and LF checks",
+      "codeComments": "Discarded candidates do not alter production comments; candidate source is retained as evidence.",
+      "result": "Control 4bc779e; retry-literal reused: 5253.9 → 134.3 ns (-97.4%). Paired per-launch median effects [-97.3, -97.4, -97.6]%. Sparse/complex cases improved, but simple matching and repeated near misses regressed.",
+      "effectPercent": -97.44328478889209,
+      "state": "rejected",
+      "decision": "Rejected",
+      "decisionRationale": "Superseded by full-segment H-018; do not retain the first-character form.",
+      "evidence": [
+        "optimization/H-005/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": []
+    },
+    {
+      "id": "H-006",
+      "claim": "Interior literal blocks reduce individual character comparisons",
+      "mechanism": "Compare complete interior literal runs with CompareOrdinal",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Scan and bulk-compare a run on each accepted interior literal",
+      "changeScope": "local",
+      "maintainability": "Extra interior state and retry transitions",
+      "codeComments": "Discarded candidates do not alter production comments; candidate source is retained as evidence.",
+      "result": "Control 4bc779e; retry-near-miss reused: 23481.8 → 45692.6 ns (+94.6%). Paired per-launch median effects [97.0, 104.4, 82.7]%. Short calls, complex cases and repeated near misses regressed.",
+      "effectPercent": 94.5869064353265,
+      "state": "rejected",
+      "decision": "Rejected",
+      "decisionRationale": "Scanning runs repeatedly on retry adds more work than it removes.",
+      "evidence": [
+        "optimization/H-006/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": []
+    },
+    {
+      "id": "H-007",
+      "claim": "Unsigned ASCII range arithmetic simplifies Fold",
+      "mechanism": "Use one unsigned range check for uppercase ASCII",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Replace two source comparisons with an unsigned subtraction/range check",
+      "changeScope": "local",
+      "maintainability": "One local arithmetic expression",
+      "codeComments": "Discarded candidates do not alter production comments; candidate source is retained as evidence.",
+      "result": "Control 4bc779e; simple-ignorecase reused: 84.1 → 85.7 ns (+1.9%). Paired per-launch median effects [5.4, -0.5, -1.4]%. Per-launch effects disagree; original-case aggregate changes are small.",
+      "effectPercent": 1.910308043975184,
+      "state": "inconclusive",
+      "decision": "Not adopted; inconclusive",
+      "decisionRationale": "No reliable complete-call gain over control variability; retain original readable expression.",
+      "evidence": [
+        "optimization/H-007/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": []
+    },
+    {
+      "id": "H-008",
+      "claim": "Out-of-line Accept reduces matcher code footprint",
+      "mechanism": "NoInlining prevents Accept expansion",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Change Accept inlining policy only",
+      "changeScope": "local",
+      "maintainability": "Compiler attribute only",
+      "codeComments": "Discarded candidates do not alter production comments; candidate source is retained as evidence.",
+      "result": "Control 4bc779e; dense reused: 1200.2 → 1923.3 ns (+60.2%). Paired per-launch median effects [67.8, 66.3, 50.1]%. Dense, simple, complex and retry-heavy calls were consistently slower.",
+      "effectPercent": 60.24745224873376,
+      "state": "rejected",
+      "decision": "Rejected",
+      "decisionRationale": "Call overhead outweighs the proposed footprint benefit.",
+      "evidence": [
+        "optimization/H-008/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": []
+    },
+    {
+      "id": "H-009",
+      "claim": "Inlining CheckNow exposes disabled timeout work",
+      "mechanism": "AggressiveInlining on CheckNow",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Change timeout-helper inlining policy only",
+      "changeScope": "local",
+      "maintainability": "Compiler attribute and possible larger native code",
+      "codeComments": "Discarded candidates do not alter production comments; candidate source is retained as evidence.",
+      "result": "Control 4bc779e; question-run reused: 2593.8 → 2749.0 ns (+6.0%). Paired per-launch median effects [9.8, 2.6, 3.8]%. No consistent broad benefit; several effects overlap control variability.",
+      "effectPercent": 5.985391841268051,
+      "state": "inconclusive",
+      "decision": "Not adopted; inconclusive",
+      "decisionRationale": "Avoid forcing code growth without a reliable complete-call improvement.",
+      "evidence": [
+        "optimization/H-009/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": []
+    },
+    {
+      "id": "H-010",
+      "claim": "Inlining the public wrapper removes dispatch/copies",
+      "mechanism": "AggressiveInlining on instance IsMatch",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Change instance-wrapper inlining policy only",
+      "changeScope": "local",
+      "maintainability": "Compiler attribute only",
+      "codeComments": "Discarded candidates do not alter production comments; candidate source is retained as evidence.",
+      "result": "Control 4bc779e; complex reused: 869.1 → 870.3 ns (+0.1%). Paired per-launch median effects [-1.8, 0.7, 3.9]%. Small effects are inconsistent across launches/workloads.",
+      "effectPercent": 0.14256719269045703,
+      "state": "inconclusive",
+      "decision": "Not adopted; inconclusive",
+      "decisionRationale": "Ordinary JIT behavior remains appropriate; no demonstrated need to force inlining.",
+      "evidence": [
+        "optimization/H-010/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": []
+    },
+    {
+      "id": "H-011",
+      "claim": "Span token searches simplify metadata lookup",
+      "mechanism": "Two-value span IndexOfAny/LastIndexOfAny",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Replace char-array token searches with span overloads",
+      "changeScope": "local",
+      "maintainability": "Safe API substitutions; no new dependency",
+      "codeComments": "Discarded candidates do not alter production comments; candidate source is retained as evidence.",
+      "result": "Control 4bc779e; many-stars reused: 1404.4 → 1063.5 ns (-24.3%). Paired per-launch median effects [-19.4, -26.9, -24.9]%. Many-star cases improved but broad static/reuse effects are small, and causal benefit is not isolated from JIT layout.",
+      "effectPercent": -24.272502868268266,
+      "state": "inconclusive",
+      "decision": "Not adopted; inconclusive",
+      "decisionRationale": "Do not add this change; retained preparation also moves repeated metadata scans out of reused calls.",
+      "evidence": [
+        "optimization/H-011/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": []
+    },
+    {
+      "id": "H-012",
+      "claim": "Existing bulk fixed-run routing is unnecessary",
+      "mechanism": "Ablate the long fixed prefix/suffix block",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Remove the entire long-pattern ordinal bulk block",
+      "changeScope": "local",
+      "maintainability": "Simplification experiment",
+      "codeComments": "Discarded candidates do not alter production comments; candidate source is retained as evidence.",
+      "result": "Control 4bc779e; long-sparse reused: 119.3 → 2481.1 ns (+1980.0%). Paired per-launch median effects [2163.0, 1844.3, 1972.9]%. Long sparse matching became about twenty times slower.",
+      "effectPercent": 1979.9723695066807,
+      "state": "rejected",
+      "decision": "Rejected",
+      "decisionRationale": "Retain the existing bulk path; this same-epoch ablation resolves the old H-002 uncertainty.",
+      "evidence": [
+        "optimization/H-012/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": []
+    },
+    {
+      "id": "H-013",
+      "claim": "ASCII literal folding avoids repeated general Fold calls",
+      "mechanism": "ASCII-only literal comparison with exact Unicode/Turkic fallback",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Add a literal-only ASCII loop and fallback",
+      "changeScope": "moderate",
+      "maintainability": "Moderate specialization with a new fallback",
+      "codeComments": "Discarded candidates do not alter production comments; candidate source is retained as evidence.",
+      "result": "Control 4bc779e; ascii-literal-ignorecase reused: 5249.7 → 1011.0 ns (-80.7%). Paired per-launch median effects [-78.8, -82.6, -81.1]%. Large gains, but the prototype checked finite timeout only at completion.",
+      "effectPercent": -80.74111278531169,
+      "state": "rejected",
+      "decision": "Rejected",
+      "decisionRationale": "Superseded by timeout-preserving H-017; prototype is not integrated.",
+      "evidence": [
+        "optimization/H-013/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": []
+    },
+    {
+      "id": "H-014",
+      "claim": "Long leading question runs can be processed as a range",
+      "mechanism": "Move run processing outside the ordinary per-token loops",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Specialize only long leading ?? runs; validate length and LF once",
+      "changeScope": "local",
+      "maintainability": "One bounded-range specialization",
+      "codeComments": "Adjacent H-014/H-016/H-017/H-018/H-020 comments document bounds, newline, case, timeout and immutable-preparation invariants; research run reference is next to constructor and bulk-path code.",
+      "result": "Control 4bc779e; question-run reused: 2635.2 → 1016.1 ns (-61.4%). Paired per-launch median effects [-55.0, -62.3, -62.6]%. Pure question runs improve consistently without H-004 dense/short regressions.",
+      "effectPercent": -61.43964942187963,
+      "state": "retained",
+      "decision": "Adopted",
+      "decisionRationale": "Local routing avoids the losing general form and supports prepared H-020.",
+      "evidence": [
+        "optimization/H-014/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": [],
+      "parentId": "H-004"
+    },
+    {
+      "id": "H-015",
+      "claim": "Pinned indexing removes scalar range checks",
+      "mechanism": "Fixed read-only pointers to both strings for MatchWindow",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Replace indexed characters with pinned pointer reads in this method",
+      "changeScope": "local",
+      "maintainability": "Unsafe prototype requiring complete range and lifetime proof",
+      "codeComments": "Discarded candidates do not alter production comments; candidate source is retained as evidence.",
+      "result": "Control 4bc779e; dense reused: 1261.4 → 1198.6 ns (-5.0%). Paired per-launch median effects [-5.7, -3.4, -10.4]%. No broad benefit; question-star and near-miss cases regress materially.",
+      "effectPercent": -4.977984226060872,
+      "state": "rejected",
+      "decision": "Rejected",
+      "decisionRationale": "Unsafe ownership/pinning burden is unjustified; production remains safe indexed/span code.",
+      "evidence": [
+        "optimization/H-015/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": []
+    },
+    {
+      "id": "H-016",
+      "claim": "Immutable endpoints remove repeated search work",
+      "mechanism": "Prepare fixed prefix/suffix offsets in constructors",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Add two int fields and pass prepared offsets to MatchWindow",
+      "changeScope": "local",
+      "maintainability": "Two immutable offsets, routing and additional internal arguments",
+      "codeComments": "Adjacent H-014/H-016/H-017/H-018/H-020 comments document bounds, newline, case, timeout and immutable-preparation invariants; research run reference is next to constructor and bulk-path code.",
+      "result": "Control 4bc779e; long-sparse reused: 114.4 → 65.2 ns (-43.0%). Paired per-launch median effects [-43.3, -45.8, -45.4]%. Reused long-sparse gains repeat across launches; construction plus one match is approximately neutral.",
+      "effectPercent": -43.03777208706786,
+      "state": "retained",
+      "decision": "Adopted",
+      "decisionRationale": "Eight observed extra bytes per matcher are proportional to the repeated-call gain; no pattern copy.",
+      "evidence": [
+        "optimization/H-016/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": []
+    },
+    {
+      "id": "H-017",
+      "claim": "ASCII literal specialization can preserve cooperative timeouts",
+      "mechanism": "Pass MatchClock by ref and check periodically inside ASCII loop",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Refine H-013 to retain existing amortized checks",
+      "changeScope": "moderate",
+      "maintainability": "Moderate safe specialization with a documented fallback",
+      "codeComments": "Adjacent H-014/H-016/H-017/H-018/H-020 comments document bounds, newline, case, timeout and immutable-preparation invariants; research run reference is next to constructor and bulk-path code.",
+      "result": "Control 4bc779e; ascii-literal-ignorecase reused: 5059.0 → 1016.6 ns (-79.9%). Paired per-launch median effects [-79.5, -80.3, -79.9]%. Strong long/short case-insensitive literal gains survive timeout checks.",
+      "effectPercent": -79.90522058894499,
+      "state": "retained",
+      "decision": "Adopted",
+      "decisionRationale": "No allocation, dependency or Unicode-case compromise; full oracle coverage supports fallback invariants.",
+      "evidence": [
+        "optimization/H-017/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": [],
+      "parentId": "H-013"
+    },
+    {
+      "id": "H-018",
+      "claim": "Searching full literal segments avoids first-character false positives",
+      "mechanism": "Bounded span IndexOf with Ordinal for complete runs",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Restrict search routing to case-sensitive patterns of at least 16 units",
+      "changeScope": "local",
+      "maintainability": "One helper and search/LF guards; no substring or buffer",
+      "codeComments": "Adjacent H-014/H-016/H-017/H-018/H-020 comments document bounds, newline, case, timeout and immutable-preparation invariants; research run reference is next to constructor and bulk-path code.",
+      "result": "Control 4bc779e; retry-near-miss reused: 22186.9 → 123.8 ns (-99.4%). Paired per-launch median effects [-99.5, -99.4, -99.2]%. Sparse/near-miss/complex gains repeat; some shorter negative distributions remain slower.",
+      "effectPercent": -99.44188666954233,
+      "state": "retained",
+      "decision": "Adopted",
+      "decisionRationale": "Adopt the substantial retry-work reduction in the measured integration; expose all losing distributions and avoid universal speed claims.",
+      "evidence": [
+        "optimization/H-018/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": [],
+      "parentId": "H-005"
+    },
+    {
+      "id": "H-019",
+      "claim": "Hoisting search mode reduces repeated negative checks",
+      "mechanism": "Compute one immutable search bool before the loop",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Refine H-018 with an outside-loop mode predicate",
+      "changeScope": "local",
+      "maintainability": "One mode local with possible register-pressure change",
+      "codeComments": "Discarded candidates do not alter production comments; candidate source is retained as evidence.",
+      "result": "Control 4bc779e; retry-lf reused: 569.7 → 688.4 ns (+20.8%). Paired per-launch median effects [10.9, 19.3, 22.7]%. Short/LF regressions persisted or grew.",
+      "effectPercent": 20.82652596619974,
+      "state": "rejected",
+      "decision": "Rejected",
+      "decisionRationale": "No evidence that this routing form improves H-018; discard.",
+      "evidence": [
+        "optimization/H-019/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": [],
+      "parentId": "H-018"
+    },
+    {
+      "id": "H-020",
+      "claim": "Preparing leading question length eliminates repeated pattern scans",
+      "mechanism": "Constructor captures a run length from the immutable pattern",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Add one int field and optional prepared run argument",
+      "changeScope": "local",
+      "maintainability": "One immutable count and constructor scan",
+      "codeComments": "Adjacent H-014/H-016/H-017/H-018/H-020 comments document bounds, newline, case, timeout and immutable-preparation invariants; research run reference is next to constructor and bulk-path code.",
+      "result": "Control 4bc779e + H-014; question-run reused: 1109.3 → 53.2 ns (-95.2%). Paired per-launch median effects [-94.8, -95.2, -95.7]%. Versus H-014 control, reused question runs improve about 95%; construction improves too.",
+      "effectPercent": -95.20639147802929,
+      "state": "retained",
+      "decision": "Adopted",
+      "decisionRationale": "The value fits existing object padding in isolation; combined metadata is eight bytes over baseline.",
+      "evidence": [
+        "optimization/H-020/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": [],
+      "parentId": "H-014"
+    },
+    {
+      "id": "H-021",
+      "claim": "Initial-only search avoids retry-path routing overhead",
+      "mechanism": "Search on first star encounter; leave subsequent retry scalar",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Remove H-018 retry-side search branch",
+      "changeScope": "local",
+      "maintainability": "One fewer retry specialization",
+      "codeComments": "Discarded candidates do not alter production comments; candidate source is retained as evidence.",
+      "result": "Control 4bc779e; complex reused: 869.0 → 425.0 ns (-51.1%). Paired per-launch median effects [-50.2, -52.8, -47.9]%. Sparse/complex gains survive but empty/dense regressions make this inferior overall.",
+      "effectPercent": -51.09951468243656,
+      "state": "rejected",
+      "decision": "Rejected",
+      "decisionRationale": "Do not substitute this form for H-018.",
+      "evidence": [
+        "optimization/H-021/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": [],
+      "parentId": "H-018"
+    },
+    {
+      "id": "H-022",
+      "claim": "Prepared case patterns avoid repeated pattern-side Unicode folding",
+      "mechanism": "Constructor creates a folded Unicode pattern; preserve raw diagnostics/culture",
+      "prediction": "Repeatably lower complete-call latency on the named workload beyond control variation while preserving semantic and declared regression constraints.",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs and WildcardMatch.cs",
+      "caller": "Public static/instance IsMatch and construction-plus-match",
+      "observation": "Committed engine sampling, scalar Tier1 loops and contemporaneous candidate/control effects; parent-specific evidence is recorded in optimization/plan.md.",
+      "falsification": "Independent-oracle mismatch, no repeated benefit beyond the identical-code control variation, or material credible regression under original equal-weight workload priorities.",
+      "change": "Add prepared-case state plus character-array/string construction for non-ASCII ignore-case patterns",
+      "changeScope": "moderate",
+      "maintainability": "Pattern copy, transient buffer and expanded case-state contract",
+      "codeComments": "Discarded candidates do not alter production comments; candidate source is retained as evidence.",
+      "result": "Control 4bc779e + H-017; unicode reused: 113.7 → 78.7 ns (-30.8%). Paired per-launch median effects [-27.4, -32.9, -39.4]%. Reused Unicode improves about 31%, but Unicode construction allocates 136 versus 64 bytes and long ASCII construction regresses about 47%.",
+      "effectPercent": -30.79648868486752,
+      "state": "rejected",
+      "decision": "Rejected",
+      "decisionRationale": "Reject extra proportional pattern storage and constructor scanning under the current complete-call priorities; no application reuse evidence justifies that ownership burden.",
+      "evidence": [
+        "optimization/H-022/",
+        "optimization/summary.json",
+        "optimization/variants.py",
+        "optimization/plan.md"
+      ],
+      "risks": [],
+      "parentId": "H-017"
     }
   ],
   "retainedChanges": [
@@ -1162,11 +4236,15 @@
     "Capture constructor-time case culture, preserve Unicode lowercase groups, LF/dollar anchors, numeric option validation, and .NET 11 AnyNewLine/CRLF semantics. Normalize .NET 11 whitespace-mode VT once for instances.",
     "Cooperative finite timeout with amortized checkpoints and original RegexMatchTimeoutException payload; thread-safe shared instances and lazy diagnostic publication.",
     "Unit tests, independent DP/Regex oracles, generated matches/near misses, exhaustive small inputs, culture/Unicode/numeric flag/boundary/timeout/concurrency/large-input/allocation tests.",
-    "Documentation describes both engines; comparative compiled modes explicitly use WildcardMatchRegex. Published external-library snapshot remains labeled with its original Regex source revision."
+    "Documentation describes both engines; comparative compiled modes explicitly use WildcardMatchRegex. Published external-library snapshot remains labeled with its original Regex source revision.",
+    "Continuation retains safe ASCII literal folding with Unicode/Turkic fallback and periodic finite-timeout checks (H-017).",
+    "Bounded full-segment searches reduce sparse/near-miss star retry work without substring allocation (H-018).",
+    "Long leading question marks use one bounded input LF scan; reused instances prepare their count (H-014/H-020).",
+    "Reusable instances prepare fixed literal prefix/suffix offsets (H-016). Combined measured constructor allocation is 72 versus 64 bytes; default matching remains allocation free."
   ],
   "decisions": [
-    "No decision required. This completes the requested rewrite; it does not claim exhausted optimization potential.",
-    "Use the explicit Regex engine when compiled per-pattern specialization is beneficial. Benchmark construction and reuse for the actual workload."
+    "Bounded continuation ends after 19 new mechanistic candidates plus the original three hypotheses. Every relevant catalogue category has a disposition in optimization/plan.md and the areas below; no material pending candidate remains under the complete-call and proportional-change policy. Small compiler-only effects remain inconclusive and unretained. Pattern-copy/global-cache or architecture-specific redesigns lack proportional caller evidence; this does not claim all possible optimization potential is exhausted.",
+    "No product decision required. Package version 2.0.0 releases the direct engine with the preserved Regex alternative; publication uses the repository's deploy-only CI workflow."
   ],
   "environment": [
     {
@@ -1174,7 +4252,7 @@
       "value": "Initial source 0f0784d; concurrent documentation/packaging commits a1cd860/fd4c9e5 preserved. Final comparison uses contemporaneous direct/Regex types in the current net10.0 build. Initial data used netstandard2.0/SDK 10 and is not cross-compared numerically."
     },
     {
-      "label": "Engine SHA-256",
+      "label": "Original engine SHA-256",
       "value": "030378e31cc1078d8d501cf5fb7daae2ccccaf0e2a425c44cf4e596e87496896"
     },
     {
@@ -1196,9 +4274,40 @@
     {
       "label": "Lock/storage",
       "value": "All builds/tests/timed/native-code work serialized by the skill's fixed OS lock. Disposable files only under D:\\Workspaces\\AI\\wildcard-engine; durable logs/data here."
+    },
+    {
+      "label": "Continuation baseline",
+      "value": "4bc779e committed direct engine. Control uses a distinct AssemblyName/PackageId and external alias; otherwise identical committed production source. Candidate transformations and source hashes are preserved. Old charts/hashes refer to the original report epoch."
+    },
+    {
+      "label": "Continuation final source SHA-256",
+      "value": "2bc27b7b338d307b7e8fdc6605f73114bcb7d71c9bcc2a7ac25985163b3f7260"
+    },
+    {
+      "label": "Continuation protocol",
+      "value": "Same SDK 11 preview/.NET 10.0.12 x64 and CPU 30; en-GB; runtime-default tiering/PGO and Workstation GC. 23 fixtures, static/reused/construction. Screening four ABBA/BAAB blocks with >=5ms control calibration; acceptance nine blocks with >=20ms. Three fresh processes, 100ms joint timed warmup; 24/54 samples per engine/case."
+    },
+    {
+      "label": "Profile",
+      "value": "dotnet-trace SampleProfiler, equal 0.5s work per fixture. Speedscope stack-residence weights support inclusive attribution; synthetic CPU_TIME leaves prevent accurate exclusive method attribution. This is a local workload, not an application traffic profile."
     }
   ],
-  "hotspots": [],
+  "hotspots": [
+    {
+      "name": "MatchWindow",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs",
+      "inclusivePercent": 67.6,
+      "evidence": "optimization/profile/profile-summary.json: 7760.8 / 11485.4 sampled CPU residence weights in equal-duration fixture sweep; inclusive only.",
+      "limit": "Scalar wildcard/retry branches, character folding, and repeated fixed-run searches; hardware miss/IPC counters unavailable."
+    },
+    {
+      "name": "Integrated MatchWindow",
+      "location": "src/Tedd.WildcardMatch/WildcardEngine.cs",
+      "inclusivePercent": 53.79287225902678,
+      "evidence": "optimization/reprofile/profile-summary.json, same equal-duration fixture sweep; inclusive sampled residence only.",
+      "limit": "Remaining scalar/general-case matching plus runtime search. Relative profile shares change with fixture execution frequency; they are not before/after absolute operation-time estimates."
+    }
+  ],
   "areas": [
     {
       "name": "Execution and preparation",
@@ -1211,6 +4320,61 @@
         "H-003"
       ],
       "disposition": "Requested engine delivered; caller-specific control retained"
+    },
+    {
+      "name": "Bounds, bulk ranges and memory ownership",
+      "boundary": "WildcardEngine.MatchWindow and constructors",
+      "evidence": "Sampled MatchWindow and paired complete-call records; independent allocation counters",
+      "catalogue": "M1-M7, C3",
+      "hypothesisIds": [
+        "H-004",
+        "H-006",
+        "H-011",
+        "H-012",
+        "H-014",
+        "H-015",
+        "H-016",
+        "H-018",
+        "H-020"
+      ],
+      "disposition": "Safe bounded run/search paths retained; unsafe indexing rejected. No match buffers/copies to pool, stack-allocate or fuse; strings are flat and sequential, no demonstrated indirect/prefetch bottleneck."
+    },
+    {
+      "name": "Branching, compiler calls and arithmetic",
+      "boundary": "Accept/Fold/MatchWindow/CheckNow/IsMatch",
+      "evidence": "Tier1 native code, identical-code controls and isolated candidate launches",
+      "catalogue": "C1-C5, R1-R3",
+      "hypothesisIds": [
+        "H-007",
+        "H-008",
+        "H-009",
+        "H-010",
+        "H-013",
+        "H-017",
+        "H-019",
+        "H-021"
+      ],
+      "disposition": "ASCII literal loop retained; inlining/arithmetic/routing variants rejected or inconclusive. Retry recurrence cannot be reassociated; no stencil/bit-count/division kernel. Per-call modes cannot become process globals; optional runtime capability is already frozen."
+    },
+    {
+      "name": "Immutable preparation and representation",
+      "boundary": "WildcardMatch constructor and repeated instance calls",
+      "evidence": "Construction/reuse measurements, bytes per call, normalized immutable pattern",
+      "catalogue": "S1-S5, M5, R2",
+      "hypothesisIds": [
+        "H-016",
+        "H-020",
+        "H-022"
+      ],
+      "disposition": "Fixed-size offsets/count retained; folded pattern representation rejected for copied storage and constructor cost. No hash/dictionary/frozen map; flags already packed, MatchClock already passed by ref. No large value-type copy remains."
+    },
+    {
+      "name": "Concurrency and scheduling",
+      "boundary": "Shared immutable matcher and call-local state",
+      "evidence": "Source ownership inspection, parallel-reuse tests, zero matching locks or asynchronous work",
+      "catalogue": "T1-T4",
+      "hypothesisIds": [],
+      "disposition": "No shared per-match mutation, lock or I/O to optimize. Diagnostic lazy publication is outside the hot path. Internal per-call threading/batching adds scheduling to tiny sequential work; new batch API is outside this contract."
     }
   ],
   "correctness": [
@@ -1219,7 +4383,11 @@
     "60,000 seeded Unicode fuzz trials across four cultures, including generated matches/near misses and all entry points; 10,000 long segment trials; every BMP casing candidate and isolated surrogate/combining/supplementary inputs.",
     "All declared options and numeric Regex values through 4096, null/error precedence, timeout validation/payload, construction culture capture, parallel reuse, bulk thresholds and long adversarial inputs are checked.",
     "Default static/reused matching measured at zero managed bytes/call; dedicated allocation test also passes. Optional VT normalization, construction, diagnostic property access and exception paths may allocate.",
-    "Package comparative corpus validation passes; current runtime Regex probes remain independent of the direct engine."
+    "Package comparative corpus validation passes; current runtime Regex probes remain independent of the direct engine.",
+    "Continuation final Release/Debug: 213 tests each on .NET 8 and .NET 10; 216 on .NET 11. Additional .NET 9 Release: 213. New boundaries cover segment sizes/offsets, UTF-16 tails, LF consumption, ASCII/Unicode/Turkic fallback and repeated finite/infinite-timeout instances.",
+    "Every isolated candidate passed the exhaustive/seeded/case oracle suite before timing (209 or 213 tests as boundary coverage was added). The first combined test completed the formerly expensive timeout fixture within budget; its scalar IgnoreCase refinement passes, and the failure remains archived.",
+    "Final comparative package corpus has no mismatches; local 2.0.0 package verifies Standard 2.1/.NET 10/.NET 11 assemblies, README, license and adjacent symbol package. Package binaries remain outside the repository.",
+    "All 54 integrated static/reused samples per fixture allocate zero managed bytes. Original thirteen-case geometric mean time changes are -1.9% static, -2.3% reused and -0.9% construction; targeted retry/question/literal improvements are much larger. Some tiny short and repeated-star calls regress; complete charts and paired variability remain visible."
   ],
   "generatedCode": [
     {
@@ -1228,6 +4396,27 @@
       "before": "Initial direct engine had scalar fixed-run checks (source archived); build epochs differ.",
       "after": "Tier1 output includes LastIndexOfAnyValueType and String.CompareOrdinal. No explicit ISA or range-check-elimination claim.",
       "artifact": "disassembly/engine.asm.txt"
+    },
+    {
+      "hypothesisId": "H-018",
+      "summary": "Optimized candidate native output includes FindLiteral and bounded runtime span/string search calls; original control has scalar retry transitions.",
+      "before": "Committed direct MatchWindow retries character by character.",
+      "after": "Candidate chooses a full literal-run search and checks skipped LF before resuming; scalar/general-case fallbacks remain.",
+      "artifact": "optimization/integrated/native-code.asm.txt"
+    },
+    {
+      "hypothesisId": "H-017",
+      "summary": "ASCII literal loop is visible in optimized native code; Unicode/Turkic fallback remains separate.",
+      "before": "Literal ignored-case calls use general per-unit Accept/Fold.",
+      "after": "ASCII-only literals compare letters without general Unicode Fold calls, retaining timeout checks.",
+      "artifact": "optimization/integrated/native-code.asm.txt"
+    },
+    {
+      "hypothesisId": "H-012",
+      "summary": "Same-epoch bulk-path removal decisively regresses long-sparse matching.",
+      "before": "Committed control calls runtime bulk search/ordinal comparison.",
+      "after": "Ablated candidate uses scalar fixed-region comparison; repeated paired long-sparse disadvantage confirms retaining bulk routing.",
+      "artifact": "optimization/H-012/native-code.asm.txt"
     }
   ],
   "validityThreats": [
@@ -1238,12 +4427,20 @@
     "Initial/final compiler and target epochs differ because concurrent authorized work changed package targets. Final ratios are within epoch; the bulk path's isolated numeric effect is inconclusive.",
     "Constant auxiliary memory does not imply linear time: ordinary retries are O(n*m), and Multiline line-start searches can add an input-length factor. Timeout is cooperative and may overshoot within bulk library calls.",
     "Unicode and Regex parser/option rules are runtime-version contracts. .NET 11 AnyNewLine and whitespace-mode vertical tabs were discovered by differential testing; future changes need the same oracle checks.",
-    "Failed/withdrawn fixture and build results remain archived. Existing analyzer/style and transitive test-package warnings do not indicate test failures; successful logs remain available."
+    "Failed/withdrawn fixture and build results remain archived. Existing analyzer/style and transitive test-package warnings do not indicate test failures; successful logs remain available.",
+    "Identical-code controls show appreciable per-fixture/per-launch variation. Small compiler/branch effects remain inconclusive. Screening is not an acceptance result; retained integration uses longer blocks and all launch/block distributions.",
+    "Control and candidate have distinct assembly identities; JIT address/layout and tiering can differ even for identical source. No hardware branch-miss or cache-miss inference is made from timing alone.",
+    "The original thirteen cases have equal importance; ten additional adversarial distributions are explicit contrasts, not an application frequency model. A targeted improvement does not establish improvement on every pattern.",
+    "Desktop/uncoordinated background processes are not controlled by the advisory lock. The full raw distributions are retained; no outlier exclusions, overhead subtraction or hidden baseline-epoch comparison.",
+    "Historical Regex charts describe the initial delivered engine. New direct-engine charts quantify only the continuation; constituent gains and cross-epoch ratios must not be combined."
   ],
   "reproduction": [
     "Run the inspected driver under the skill's run_with_performance_lock.py: python <skill>/scripts/run_with_performance_lock.py --cwd <repo> -- python <this-directory>/run.py all.",
     "Run phase compiled separately for the compiled-Regex comparison; phases tests/runtime-matrix/comparison/benchmark/diagnostics allow bounded reproduction. All uses the installed pinned SDK 11 preview and actual current targets.",
-    "Run python build_report.py, then the skill's render_report.py report-data.json report.html. The standard renderer owns HTML formatting."
+    "Run python build_report.py, then the skill's render_report.py report-data.json report.html. The standard renderer owns HTML formatting.",
+    "Continuation: python -B <skill>/scripts/run_with_performance_lock.py --cwd <repo> -- python -B <run>/optimization/run.py profile control H-004 H-005 H-006 H-007 H-008 H-009 H-010 H-011 H-012 H-013 H-014 H-015 H-016.",
+    "Candidates always derive from Git revision 4bc779e. Run integrated --acceptance for the current production integration, then final and reprofile. Additional compatibility/corpus/pack validation uses release_check.py under the same host lock.",
+    "Run optimization/summarize.py, optimization/extend_report.py, then the skill renderer for report-data.json/report.html. The extension reads the immutable original report at 4bc779e and preserves its charts; generated HTML is never edited by hand."
   ],
   "artifacts": [
     {
@@ -1277,6 +4474,50 @@
     {
       "label": "Report generator",
       "path": "build_report.py"
+    },
+    {
+      "label": "Continuation plan and catalogue coverage",
+      "path": "optimization/plan.md"
+    },
+    {
+      "label": "Candidate transformations",
+      "path": "optimization/variants.py"
+    },
+    {
+      "label": "Continuation driver and rig",
+      "path": "optimization/run.py"
+    },
+    {
+      "label": "All continuation metrics and paired effects",
+      "path": "optimization/summary.json"
+    },
+    {
+      "label": "Candidate dispositions",
+      "path": "optimization/decisions.json"
+    },
+    {
+      "label": "Initial sampled profile",
+      "path": "optimization/profile/profile-summary.json"
+    },
+    {
+      "label": "Integrated acceptance",
+      "path": "optimization/integrated/"
+    },
+    {
+      "label": "Final sampled profile",
+      "path": "optimization/reprofile/profile-summary.json"
+    },
+    {
+      "label": "Final configured tests",
+      "path": "optimization/final/"
+    },
+    {
+      "label": "Release validation",
+      "path": "optimization/release/"
+    },
+    {
+      "label": "Report extension",
+      "path": "optimization/extend_report.py"
     }
   ]
 }

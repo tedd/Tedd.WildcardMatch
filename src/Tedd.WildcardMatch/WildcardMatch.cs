@@ -11,6 +11,8 @@ public class WildcardMatch
     private readonly TimeSpan _timeout;
     private readonly int _caseBehavior;
     private readonly bool _literal;
+    private readonly int _leadingQuestions;
+    private readonly int _prefix = -1, _suffix = -1;
     private readonly string _matchPattern;
     private string? _wildcardRegex;
 
@@ -63,9 +65,24 @@ public class WildcardMatch
         _caseBehavior = WildcardEngine.GetCaseBehavior(options);
         _matchPattern = WildcardEngine.GetMatchingPattern(wildcard, options);
         _literal = WildcardEngine.IsLiteral(_matchPattern);
+        // H-020: the normalized pattern is immutable; prepare the question run
+        // once so reusable matches pay only the input bounds/newline check.
+        if (_matchPattern.Length >= 32 && _matchPattern[0] == '?' && _matchPattern[1] == '?')
+        {
+            int length = 2;
+            while (length < _matchPattern.Length && _matchPattern[length] == '?') length++;
+            _leadingQuestions = length;
+        }
+        // H-016: capture fixed-run offsets once without copying the pattern.
+        // Static calls compute them locally. See Research/2026-10-02 wildcard-engine-1.
+        if (!_literal && _caseBehavior == 0 && _matchPattern.Length >= 32 && ((int)options & 0x802) == 0)
+        {
+            _prefix = WildcardEngine.GetPrefix(_matchPattern);
+            _suffix = WildcardEngine.GetSuffix(_matchPattern);
+        }
     }
 
     /// <summary>Matches using call-local state; concurrent calls may reuse this instance.</summary>
     public bool IsMatch(string input) =>
-        WildcardEngine.IsMatch(input, _matchPattern, _options, _caseBehavior, _literal, _timeout, Wildcard);
+        WildcardEngine.IsMatch(input, _matchPattern, _options, _caseBehavior, _literal, _timeout, Wildcard, _prefix, _suffix, _leadingQuestions);
 }
