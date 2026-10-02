@@ -1,4 +1,6 @@
 using BenchmarkDotNet.Running;
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Jobs;
 using Tedd.WildcardMatchBenchmark;
 
 var validation = Comparison.Validate();
@@ -11,4 +13,6 @@ if (args.Length > 0 && args[0] == "--validate-packages")
     return;
 }
 
-BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
+// Keep comparative measurements in optimized code; short tiered runs can expose Tier0.
+var config = DefaultConfig.Instance.AddJob(Job.Default.WithEnvironmentVariable("DOTNET_TieredCompilation", "0"));
+BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args, config);

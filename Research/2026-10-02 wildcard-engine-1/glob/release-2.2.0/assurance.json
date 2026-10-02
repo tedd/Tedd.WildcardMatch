@@ -1,0 +1,19 @@
+{
+  "packageVersion": "2.2.0",
+  "assemblies": [
+    "lib/netstandard2.1/Tedd.WildcardMatch.dll",
+    "lib/net10.0/Tedd.WildcardMatch.dll",
+    "lib/net11.0/Tedd.WildcardMatch.dll"
+  ],
+  "runtimeDependencies": 0,
+  "mainPageTables": 0,
+  "matchingCases": 32,
+  "constructionCases": 8,
+  "preparedGlobSpeedups": {
+    "Literal": 2.465493082023884,
+    "Simple": 4.239639532129054,
+    "MultiStar": 2.8989481664466514,
+    "LongText": 32.07635032671121
+  },
+  "siteUsesSingleMeasuredEpoch": true
+}

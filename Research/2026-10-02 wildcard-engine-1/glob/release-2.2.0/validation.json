@@ -1,0 +1,290 @@
+[
+  {
+    "Workload": "Literal",
+    "Library": "TeddDirectStatic",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Literal",
+    "Library": "TeddDirectReused",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Literal",
+    "Library": "TeddRegexStatic",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Literal",
+    "Library": "TeddRegexReused",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Literal",
+    "Library": "TeddRegexCompiled",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Literal",
+    "Library": "FastWildcard",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Literal",
+    "Library": "WildcardMatch",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Literal",
+    "Library": "DotNetGlob",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Simple",
+    "Library": "TeddDirectStatic",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Simple",
+    "Library": "TeddDirectReused",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Simple",
+    "Library": "TeddRegexStatic",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Simple",
+    "Library": "TeddRegexReused",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Simple",
+    "Library": "TeddRegexCompiled",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Simple",
+    "Library": "FastWildcard",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Simple",
+    "Library": "WildcardMatch",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "Simple",
+    "Library": "DotNetGlob",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "MultiStar",
+    "Library": "TeddDirectStatic",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "MultiStar",
+    "Library": "TeddDirectReused",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "MultiStar",
+    "Library": "TeddRegexStatic",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "MultiStar",
+    "Library": "TeddRegexReused",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "MultiStar",
+    "Library": "TeddRegexCompiled",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "MultiStar",
+    "Library": "FastWildcard",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "MultiStar",
+    "Library": "WildcardMatch",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "MultiStar",
+    "Library": "DotNetGlob",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "LongText",
+    "Library": "TeddDirectStatic",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "LongText",
+    "Library": "TeddDirectReused",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "LongText",
+    "Library": "TeddRegexStatic",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "LongText",
+    "Library": "TeddRegexReused",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "LongText",
+    "Library": "TeddRegexCompiled",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "LongText",
+    "Library": "FastWildcard",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "LongText",
+    "Library": "WildcardMatch",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  },
+  {
+    "Workload": "LongText",
+    "Library": "DotNetGlob",
+    "Checked": 256,
+    "Failures": 0,
+    "FirstInput": null,
+    "Expected": null,
+    "Actual": null
+  }
+]

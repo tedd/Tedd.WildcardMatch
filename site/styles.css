@@ -57,7 +57,7 @@ h1 em { color: var(--aqua); font-style: normal; }
 .button.secondary { color: var(--aqua-dark); background: #fff; }
 .button.secondary:hover { background: #e9f4f1; }
 .hero-checks { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; margin: 2.2rem 0 0; padding: 0; list-style: none; color: #60757a; font-size: .75rem; }
-.hero-checks li::before { content: "•"; margin-right: .45rem; color: var(--aqua); }
+.hero-checks li::before { content: "\2022"; margin-right: .45rem; color: var(--aqua); }
 
 .index-figure { min-width: 0; margin: 0; padding-top: 34px; overflow: hidden; color: #e8f2f1; background: #0b151f; border: 1px solid #3a5960; box-shadow: 0 34px 80px rgba(12,43,43,.2); }
 .window-bar { height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 12px; color: #9caeb7; background: #0e1923; font-size: .67rem; }
@@ -143,6 +143,10 @@ h1 em { color: var(--aqua); font-style: normal; }
 
 .benchmark-section { background: #f2f7f5; }
 .chart-grid { max-width: 1450px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.2rem; margin: auto; }
+.benchmark-chart { min-width: 0; display: flex; flex-direction: column; }
+.benchmark-chart .benchmark-controls { width: 100%; margin: 0 0 1rem; }
+.benchmark-chart .benchmark-controls span { flex-basis: 100%; }
+.benchmark-chart .package-chart { width: 100%; flex: 1; margin: 0; }
 .bar-chart { min-width: 0; margin: 0; padding: clamp(1.3rem,2.6vw,2.4rem); background: #fff; border: 1px solid var(--line); }
 .bar-chart figcaption { display: grid; margin-bottom: 2rem; }
 .bar-chart figcaption span { color: var(--aqua); font: 700 .67rem var(--display); letter-spacing: .12em; text-transform: uppercase; }
@@ -244,7 +248,7 @@ footer div { display: flex; flex-wrap: wrap; gap: .7rem 1.5rem; }
 .install-command code { overflow-wrap: anywhere; color: #a0e2d7; font-size: .85rem; }
 .install-command button { flex-shrink: 0; padding: .25rem .65rem; color: #9ee5db; background: #172f36; border: 1px solid #31575c; cursor: pointer; font-size: .75rem; }
 .package-chart { max-width: 1450px; margin: auto; }
-.package-chart .bar-row { grid-template-columns: minmax(125px,200px) minmax(0,1fr) 65px; }
+.package-chart .bar-row { grid-template-columns: minmax(100px,145px) minmax(0,1fr) 60px; }
 .results-panel .comparison-ours { background: #e8f6f1; }
 #benchmark-method { font-weight: 600; }
 @media (max-width: 560px) {
@@ -253,3 +257,6 @@ footer div { display: flex; flex-wrap: wrap; gap: .7rem 1.5rem; }
   nav .nav-cta { display: none; }
   .package-chart .bar-row { grid-template-columns: 115px minmax(0,1fr) 45px; gap: .4rem; }
 }
+
+.chart-summary { margin: 0; padding: 1rem 1.3rem; color: var(--muted); background: #fff; border: 1px solid var(--line); border-top: 0; font-size: .8rem; }
+.chart-summary strong { color: var(--aqua-dark); font-variant-numeric: tabular-nums; }

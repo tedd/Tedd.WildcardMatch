@@ -17,7 +17,7 @@ FastWildcard is deprecated on NuGet and is included for continuity with the repo
 
 ## Workloads and correctness
 
-Four fixtures cover exact literals, question marks, multiple stars, and mixed short/long text. Each fixture has 256 inputs, repeating a deterministic set of positive and negative examples. Long inputs contain over 1,000 characters. Matching is case-sensitive and restricted to common ASCII wildcard syntax without slashes, line breaks, or glob-specific metacharacters.
+Three short-string fixtures cover exact literals, question marks, and multiple stars, using inputs of 4–16 UTF-16 code units. The long-string fixture uses only inputs exceeding 1,000 UTF-16 code units with the pattern `*alpha*beta??*omega*`. Each fixture has 256 inputs, repeating a deterministic set of positive and negative examples. Matching is case-sensitive and restricted to common ASCII wildcard syntax without slashes, line breaks, or glob-specific metacharacters.
 
 A dynamic-programming matcher independently determines the expected result for every input. Tedd correctness failures stop execution. Competitor failures are reported with a concrete input and excluded from timed cases for the affected workload. Validation applies to the benchmark corpus, not the entire syntax or behavior of each library.
 
@@ -34,20 +34,20 @@ dotnet build src/Tedd.WildcardMatch.sln -c Release
 dotnet run --project src/Tedd.WildcardMatch.Benchmark -c Release --no-build -- --validate-packages
 ```
 
-A run with ten measured iterations reproduces the website's configuration:
+A three-process run reproduces the website's configuration. The runner disables tiered compilation so measured calls use optimized JIT code:
 
 ```powershell
 $results = 'D:\Workspaces\AI\wildcard-benchmarks'
 New-Item -ItemType Directory -Force -Path $results
 dotnet run --project src/Tedd.WildcardMatch.Benchmark -c Release --no-build -- --validate-packages "$results/validation.json"
-dotnet run --project src/Tedd.WildcardMatch.Benchmark -c Release --no-build -- --filter '*' --job short --iterationCount 10 --artifacts "$results/artifacts"
+dotnet run --project src/Tedd.WildcardMatch.Benchmark -c Release --no-build -- --filter '*' --launchCount 3 --warmupCount 3 --iterationCount 10 --iterationTime 100 --affinity 1073741824 --artifacts "$results/artifacts"
 ```
 
-For more precise measurements, omit `--job short` and inspect the resulting reports. Close unrelated workloads and compare intervals before interpreting small differences.
+The affinity value selects CPU 30 on the measured 32-thread machine; select an available processor on another host. Close unrelated workloads and compare intervals before interpreting small differences. Builds and timed runs share the scientific-method-performance host lock during investigation.
 
 ## Website snapshot
 
-The checked-in snapshot compares both direct and Regex engines at its recorded source revision, using one launch, three warmups, and ten measured iterations. Direct static/reused and Regex static/reused/compiled calls use identical string inputs and default case-sensitive options. Error is BenchmarkDotNet's 99.9% confidence-interval half-width. Compare intervals before interpreting close rankings; results describe the selected corpus and API lifetimes.
+The checked-in snapshot compares both direct and Regex engines at its recorded source revision, using three launches, three warmups, and ten measured iterations with tiered compilation disabled. Direct static/reused and Regex static/reused/compiled calls use identical string inputs and default case-sensitive options. Error is BenchmarkDotNet's 99.9% confidence-interval half-width. Compare intervals before interpreting close rankings; results describe the selected corpus and API lifetimes.
 
 To export a complete run with this configuration to the site:
 
@@ -58,6 +58,6 @@ To export a complete run with this configuration to the site:
     -SourceRevision (git rev-parse HEAD)
 ```
 
-The exporter writes JSON, correctness results, raw Markdown reports, and static HTML tables with a throughput chart. It requires all 32 matching cases and eight construction cases to have valid measurements and matching correctness records. A partial run fails instead of producing a misleading snapshot.
+The exporter writes JSON, correctness results, detailed Markdown reports, and separate short- and long-string throughput charts. Detailed tables remain in the linked reports. Each chart includes every tested library and API. It requires all 32 matching cases and eight construction cases to have valid measurements and matching correctness records. A partial run fails instead of producing a misleading snapshot.
 
-Use a clean checkout and record the tested source revision. The website selector updates the chart; the complete tables remain available without JavaScript.
+Record the tested library source revision. The short-string selector switches among its three patterns; the long-string comparison remains visible alongside it. Both default charts and links to detailed reports remain available without JavaScript.

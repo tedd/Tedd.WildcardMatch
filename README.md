@@ -2,7 +2,7 @@
 
 Wildcard string matching for .NET Standard 2.1, .NET 10, and .NET 11. Patterns use `*` for zero or more characters and `?` for one UTF-16 code unit. Other characters are literal.
 
-[NuGet](https://www.nuget.org/packages/Tedd.WildcardMatch) · [Website](https://tedd.github.io/Tedd.WildcardMatch/) · [Comparative benchmarks](src/Tedd.WildcardMatch.Benchmark/README.md)
+[NuGet](https://www.nuget.org/packages/Tedd.WildcardMatch) · [Website](https://tedd.no/Tedd.WildcardMatch/) · [Comparative benchmarks](src/Tedd.WildcardMatch.Benchmark/README.md)
 
 [![NuGet](https://img.shields.io/nuget/v/Tedd.WildcardMatch)](https://www.nuget.org/packages/Tedd.WildcardMatch)
 [![Build and test](https://github.com/tedd/Tedd.WildcardMatch/actions/workflows/nuget-publish.yml/badge.svg?branch=main)](https://github.com/tedd/Tedd.WildcardMatch/actions/workflows/nuget-publish.yml)
@@ -94,9 +94,9 @@ Direct static calls avoid pattern translation and Regex cache lookup. Reusable d
 
 `WildcardMatchRegex` static calls translate the pattern and use the runtime Regex cache. Its instances retain a Regex; `Compiled` increases construction cost and may improve repeated matching. Choose the engine according to the workload and pattern lifetime.
 
-The [published comparison](https://tedd.no/Tedd.WildcardMatch/#benchmarks) measures direct static/reused and Regex static/reused/compiled calls against FastWildcard 3.1.0, WildcardMatch 1.0.7, and DotNet.Glob 3.1.3 on .NET 10. It covers literal, question-mark, multi-star, and long-text fixtures, with both matches and misses. An independent dynamic-programming oracle validates every measured input. Reusable-pattern construction is measured separately.
+The [published comparison](https://tedd.no/Tedd.WildcardMatch/#benchmarks) measures direct static/reused and Regex static/reused/compiled calls against FastWildcard 3.1.0, WildcardMatch 1.0.7, and DotNet.Glob 3.1.3 on .NET 10. It covers three short-string fixtures (4–16 UTF-16 code units) and a long-string fixture (every input exceeds 1,000), with both matches and misses. An independent dynamic-programming oracle validates every measured input. Reusable-pattern construction is measured separately.
 
-The website includes the full tables, source revision, runtime and machine details, and confidence intervals. Results describe the selected corpus and API lifetimes; they do not establish a universal library ranking. [Measurement data](site/assets/package-comparison.json) and [benchmark commands](src/Tedd.WildcardMatch.Benchmark/README.md) are included in the repository.
+The website displays short- and long-string comparisons side by side, with every tested library and API in both groups. Full timing tables, construction costs, and confidence intervals are available in linked reports; the graphs identify the measured source, runtime, and machine. Results describe the selected corpus and API lifetimes; they do not establish a universal library ranking. [Measurement data](site/assets/package-comparison.json) and [benchmark commands](src/Tedd.WildcardMatch.Benchmark/README.md) are included in the repository.
 
 ## Build and release
 

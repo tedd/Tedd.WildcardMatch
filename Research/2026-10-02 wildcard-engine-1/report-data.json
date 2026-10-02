@@ -1,6 +1,6 @@
 {
   "title": "Direct wildcard engine: correctness and performance",
-  "generatedAt": "2026-10-02T11:31:14.479632+00:00",
+  "generatedAt": "2026-10-02T11:56:30.257391+00:00",
   "status": "complete",
   "scope": "Requested engine rewrite and validation, rather than an exhaustive search for all optimization opportunities. Direct WildcardMatch and preserved WildcardMatchRegex; .NET Standard 2.1/.NET 10/.NET 11 source targets, timed on .NET 10 x64. Continuation: catalogue-driven optimization of committed direct engine 4bc779e; original charts remain historical. New control/candidate charts share a distinct .NET 10 direct-engine epoch. No application throughput claim. Borrowed UTF-16 API continuation: preserve existing strings and add static/reusable span matching, owned span-pattern constructors and mutable/read-only span extensions. Allocation removal is a local caller result; no application throughput claim. Glob continuation: measured prepared and static ordinal callers against DotNet.Glob 3.1.3. Preserve the entire UTF-16/Regex contract and earlier epochs. .NET 10/11 compile-time intrinsics, portable .NET Standard fallback. No application or universal-fastest claim.",
   "question": "Can a direct iterative wildcard engine preserve the Regex contract and improve common complete calls while avoiding per-match buffers? Which additional measured mechanisms improve the committed direct engine? Can borrowed slices remove caller materialization while retaining owned-string performance and all semantic invariants? Can specialized prepared masks exceed twice prepared Glob throughput on the unchanged question-mark fixture without result caching or a narrower Unicode contract?",
@@ -5795,6 +5795,115 @@
           ]
         }
       ]
+    },
+    {
+      "title": "Release 2.2.0: complete package comparison epoch",
+      "description": "All 32 matching and eight constructor cases share one three-process optimized-JIT run. These bars select Glob and direct APIs from that epoch; full competitors remain in the release raw reports and site data. Bars are BDN means; whiskers span statistical samples. This is a distinct epoch from earlier paired investigations.",
+      "unit": "ns/call",
+      "lowerIsBetter": true,
+      "rounds": [
+        "DotNet.Glob",
+        "Direct prepared",
+        "Direct static"
+      ],
+      "rows": [
+        {
+          "label": "Literal",
+          "detail": "report-2026.txt",
+          "measurements": [
+            {
+              "median": 17.437246145644135,
+              "min": 15.865623209315652,
+              "max": 23.1720982335549,
+              "n": 30
+            },
+            {
+              "median": 7.072518788546012,
+              "min": 5.2512357320140985,
+              "max": 9.973847457776628,
+              "n": 26
+            },
+            {
+              "median": 14.5837603568415,
+              "min": 14.537541204186532,
+              "max": 14.669830814778841,
+              "n": 26
+            }
+          ]
+        },
+        {
+          "label": "Question marks",
+          "detail": "report-??.txt",
+          "measurements": [
+            {
+              "median": 22.54572375022573,
+              "min": 22.414510390337774,
+              "max": 22.730838551240808,
+              "n": 28
+            },
+            {
+              "median": 5.317839778445448,
+              "min": 5.307474701246734,
+              "max": 5.355563811724195,
+              "n": 29
+            },
+            {
+              "median": 19.003969541291504,
+              "min": 18.861339480377907,
+              "max": 20.78958246911873,
+              "n": 25
+            }
+          ]
+        },
+        {
+          "label": "Multiple stars",
+          "detail": "*a?c*e*",
+          "measurements": [
+            {
+              "median": 61.52375898528085,
+              "min": 59.184987137957314,
+              "max": 77.07691377806432,
+              "n": 29
+            },
+            {
+              "median": 21.22278683605882,
+              "min": 21.11716800265842,
+              "max": 21.32042778862847,
+              "n": 24
+            },
+            {
+              "median": 36.15223914668917,
+              "min": 35.9743011384587,
+              "max": 36.976738483197934,
+              "n": 27
+            }
+          ]
+        },
+        {
+          "label": "Long text",
+          "detail": "*alpha*beta??*omega*",
+          "measurements": [
+            {
+              "median": 7183.610316685268,
+              "min": 7166.162109375,
+              "max": 7251.898193359375,
+              "n": 28
+            },
+            {
+              "median": 223.95348110109646,
+              "min": 176.86861478365384,
+              "max": 319.79947176846593,
+              "n": 29
+            },
+            {
+              "median": 298.9152346023992,
+              "min": 209.8546391039823,
+              "max": 419.99291591956967,
+              "n": 29
+            }
+          ]
+        }
+      ]
     }
   ],
   "effectGroups": [
@@ -9979,7 +10088,8 @@
     "Release 2.1.0 assurance: Production C# hashes match the final measured span epoch exactly; this release changes tests, version and documentation. No new performance measurements or performance claims. Website fragment, asset and copy-button references validate locally; actual deployment is verified separately.",
     "Glob continuation: full Release and Debug matrix on net8.0/net10.0/net11.0; counts and logs in glob/final. net8 exercises netstandard2.1 portable code. DOTNET_EnableHWIntrinsic=0 full net10 suite checks runtime fallback.",
     "New deterministic width/lane/tail/LF/Unicode mask fuzz, state63/64, lookup collisions, long-plan caps and concurrent mutable-span reuse complement existing exhaustive DP oracle, seeded Unicode and Regex tests. Inputs are never cached or retained.",
-    "Failed first integration validation was a five-second backtracking Regex-oracle timeout on a pathological fixture; preserved in glob/integrated-screen. Oracle then uses NonBacktracking for bounded patterns, ordinary Regex for large literal/question patterns to respect its symbolic-state limit."
+    "Failed first integration validation was a five-second backtracking Regex-oracle timeout on a pathological fixture; preserved in glob/integrated-screen. Oracle then uses NonBacktracking for bounded patterns, ordinary Regex for large literal/question patterns to respect its symbolic-state limit.",
+    "Release 2.2.0: .NET 8/10/11 Release suite (240/240/243 tests), all 32 comparison adapters with zero oracle failures, pack verification for all three assemblies with no runtime package dependencies. Main page contains graphs and report links, with no detailed tables. Browser checks cover all selector values and their displayed ratios; package/site publication is authorized by the current user request."
   ],
   "generatedCode": [
     {
@@ -10252,6 +10362,18 @@
     {
       "label": "Rejected instrumented BDN epoch",
       "path": "glob/bdn-final/results/GlobAcceptance-asm.md"
+    },
+    {
+      "label": "Release 2.2.0 comparative raw report",
+      "path": "glob/release-2.2.0/results/Tedd.WildcardMatchBenchmark.MatchingBenchmarks-report-full.json"
+    },
+    {
+      "label": "Release assurance",
+      "path": "glob/release-2.2.0/assurance.json"
+    },
+    {
+      "label": "Release benchmark identity",
+      "path": "glob/release-2.2.0/identity.json"
     }
   ]
 }

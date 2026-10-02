@@ -1,0 +1,20 @@
+{
+  "startedUtc": "2026-10-02T11:39:09.203044+00:00",
+  "endedUtc": "2026-10-02T11:44:33.828066+00:00",
+  "engineRevision": "5043403f7c154b63a417a09161be98862ee82510",
+  "version": "2.2.0",
+  "runtimePolicy": "DOTNET_TieredCompilation=0; CPU30; 3 launches,3 warmups,10 iterations,100ms; no database or external writes",
+  "productionSourceHashes": {
+    "CompiledSegments.cs": "3f70a22bb67c78158328da9339be03b974c3d3d522f2a7473cce1bb5c0176d58",
+    "DefaultWildcardEngine.cs": "109fc368f7b19010f7a2f203439bba00642f4df0bb8ab4c59a8a80e1aba0dd85",
+    "FixedPattern.cs": "911a6cbbcf3e9484f0faf46be6993ca6baba25443522d276b74223c34ed3fbc7",
+    "InternalUtils.cs": "4f21b3c86cccdeef6155ffcac31a7dc0cecac58eb592a5df7eedb27733edcafa",
+    "ShortPattern.cs": "52786d12bc274460fa2eae66d42083ce2e076d8d2b9923a39b7dbed89f21d3ff",
+    "WildcardEngine.cs": "54cc039904c806fcefc7654d934881eff71155147ff8b683cd437a222d71e8da",
+    "WildcardEngine.Spans.cs": "4349e6800587ee6fff0cbce87082355a3239d33986baa5457ad5d9bfc4db699b",
+    "WildcardMatch.cs": "69c00965323b437b931d978b562d2defb6830f6bdc177a414ae43330a8f4eb7f",
+    "WildcardMatchExtensions.cs": "395ac02229ae89309f6258d2db07472615fbd3cf7b2653d183e904d47adc904d",
+    "WildcardMatchRegex.cs": "1f7771890d03b21f51b10c8c8ad31da127bb3770a38a108d7de3bc13f9b6da60",
+    "WildcardOptions.cs": "ddd70ad88b5548e2564016f8c63e6e8054d1d6c6c1b27d3c2179ca947552f4db"
+  }
+}
