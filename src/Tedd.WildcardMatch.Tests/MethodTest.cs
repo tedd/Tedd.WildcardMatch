@@ -13,7 +13,7 @@ namespace Tedd.WildcardMatchTests
         public void IsMatch_case()
         {
             Assert.False(WildcardMatch.IsMatch(TestData._lorem, "*mauris*"));
-            Assert.True(WildcardMatch.IsMatch(TestData._lorem, "*mauris*",true));
+            Assert.True(WildcardMatch.IsMatch(TestData._lorem, "*mauris*", true));
         }
         [Fact]
         public void IsMatch_options()
