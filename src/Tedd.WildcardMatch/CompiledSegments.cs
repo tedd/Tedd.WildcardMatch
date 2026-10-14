@@ -163,7 +163,7 @@ internal sealed class CompiledSegments
                     }
                     else
 #endif
-                        found = input.Slice(searchStart, searchLength).IndexOf(_pattern.AsSpan(segment.Offset + segment.Anchor, segment.AnchorLength));
+                    found = input.Slice(searchStart, searchLength).IndexOf(_pattern.AsSpan(segment.Offset + segment.Anchor, segment.AnchorLength));
                     if (found < 0) return false;
                     candidate += found;
                 }

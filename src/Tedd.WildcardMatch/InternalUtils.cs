@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text.RegularExpressions;
 
 namespace Tedd;
@@ -16,6 +16,11 @@ internal static class InternalUtils
         return characters;
     }
 
+    /// <summary>
+    /// Transpiles a wildcard pattern string into its corresponding regex pattern string.
+    /// Time Complexity: O(N) where N is the length of the input wildcard string.
+    /// Space Complexity: O(N) for the returned string allocation.
+    /// </summary>
     public static string StringToWildcard(string wildcard)
     {
         if (wildcard is null)
@@ -25,16 +30,15 @@ internal static class InternalUtils
         if (wildcard.Length == 0)
             return "^$";
 
-        // Keep Regex.Escape's bulk literal scan; scalar rewriting regresses long literals.
-        // The wildcard path fuses escaping, replacement and anchors without intermediate strings.
-        // Evidence: Research/2026-10-01 wildcard-hotpath-1, H-003/H-007/H-011/H-013.
         int firstWildcard = wildcard.IndexOfAny(WildcardCharacters);
-        if (firstWildcard < 0)
-            return "^" + Regex.Escape(wildcard) + "$";
 
-        // Bulk library scans outperform scalar rewriting for long, sparse patterns.
-        // Stop once wildcard density exceeds 1/32; a fixed count misclassifies long
-        // sparse patterns with five or more wildcards (H-015/H-016).
+        // Fast paths logic taken from the original method
+        if (firstWildcard < 0)
+        {
+            // Regex.Escape optimization.
+            return "^" + Regex.Escape(wildcard) + "$";
+        }
+
         if (wildcard.Length >= 128)
         {
             int count = 0;
@@ -63,9 +67,16 @@ internal static class InternalUtils
             }
         }
 
-        // Each UTF-16 code unit emits at most two characters; only the initialized prefix
-        // is copied into the result. The escape set deliberately excludes ']' and '}'.
-        var buffer = new char[checked(wildcard.Length * 2 + 2)];
+        int exactLength = 2; // Anchors ^ and $
+        foreach (char character in wildcard)
+        {
+            if (character == '*') exactLength += 2; // .*
+            else if (character < EscapedCharacters.Length && EscapedCharacters[character]) exactLength += 2; // \c
+            else exactLength++;
+        }
+
+#if NETSTANDARD2_0
+        var buffer = new char[exactLength];
         int position = 0;
         buffer[position++] = '^';
         foreach (char character in wildcard)
@@ -76,11 +87,15 @@ internal static class InternalUtils
                 buffer[position++] = '*';
             }
             else if (character == '?')
+            {
                 buffer[position++] = '.';
+            }
             else
             {
                 if (character < EscapedCharacters.Length && EscapedCharacters[character])
+                {
                     buffer[position++] = '\\';
+                }
                 buffer[position++] = character switch
                 {
                     '\t' => 't',
@@ -92,6 +107,41 @@ internal static class InternalUtils
             }
         }
         buffer[position++] = '$';
-        return new string(buffer, 0, position);
+        return new string(buffer);
+#else
+        return string.Create(exactLength, wildcard, static (span, w) =>
+        {
+            int position = 0;
+            span[position++] = '^';
+            foreach (char character in w)
+            {
+                if (character == '*')
+                {
+                    span[position++] = '.';
+                    span[position++] = '*';
+                }
+                else if (character == '?')
+                {
+                    span[position++] = '.';
+                }
+                else
+                {
+                    if (character < EscapedCharacters.Length && EscapedCharacters[character])
+                    {
+                        span[position++] = '\\';
+                    }
+                    span[position++] = character switch
+                    {
+                        '\t' => 't',
+                        '\n' => 'n',
+                        '\r' => 'r',
+                        '\f' => 'f',
+                        _ => character
+                    };
+                }
+            }
+            span[position++] = '$';
+        });
+#endif
     }
 }

@@ -1,0 +1,3 @@
+## 2026-10-14 - InternalUtils.StringToWildcard Allocation Optimization
+**Observation:** The `StringToWildcard` method in `InternalUtils` allocated intermediate `char[]` buffers proportional to the size of the wildcard string (roughly 2x + 2). Furthermore, string allocation overhead was present.
+**Strategic Action:** Substituted intermediate `char[]` allocations with `string.Create(int, TState, SpanAction)` to write directly into the final string memory, achieving a significant reduction in allocated bytes (e.g., from 464 B to 176 B for medium strings) and generally maintaining or lowering latency, without regressions in semantics.
