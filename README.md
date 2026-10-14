@@ -44,7 +44,7 @@ Reuse an instance when a pattern is applied to multiple inputs:
 using System;
 using Tedd;
 
-var matcher = new WildcardMatch(
+WildcardMatch matcher = new(
     "report-*.txt",
     WildcardOptions.CultureInvariant,
     TimeSpan.FromMilliseconds(100));
