@@ -3,32 +3,35 @@ using System.Runtime.CompilerServices;
 
 namespace Tedd;
 
-internal sealed class ShortPattern
+internal sealed partial class ShortPattern
 {
     private readonly Entry[] _literals;
     private readonly ulong _stars, _questions, _accept;
-    private readonly bool _singleline;
+    private readonly bool _singleline, _containsLf;
     private readonly struct Entry
     {
         internal readonly char Code;
         internal readonly ulong Mask;
         internal Entry(char code, ulong mask) { Code = code; Mask = mask; }
     }
-    private ShortPattern(Entry[] literals, ulong stars, ulong questions, ulong accept, bool singleline)
-    { _literals = literals; _stars = stars; _questions = questions; _accept = accept; _singleline = singleline; }
+    private ShortPattern(Entry[] literals, ulong stars, ulong questions, ulong accept, bool singleline, bool containsLf)
+    { _literals = literals; _stars = stars; _questions = questions; _accept = accept; _singleline = singleline; _containsLf = containsLf; }
 
     internal static ShortPattern? Create(string pattern, bool singleline)
     {
         if (pattern.Length > 63 || pattern.IndexOf('*') < 0) return null;
+        var packed = CreatePacked(pattern, singleline);
+        if (packed != null) return packed;
         // H-055: bounded initialized scratch and collision-free low-bit buckets.
         // Exact Code verification handles arbitrary UTF-16, including NUL collisions.
         Span<char> codes = stackalloc char[63];
         Span<ulong> masks = stackalloc ulong[63];
         int count = 0, tokenIndex = 0;
         ulong stars = 0, questions = 0;
-        bool previousStar = false;
+        bool previousStar = false, containsLf = false;
         foreach (char token in pattern)
         {
+            if (token == '\n') containsLf = true;
             if (token == '*' && previousStar) continue;
             previousStar = token == '*';
             ulong bit = 1UL << tokenIndex++;
@@ -55,12 +58,20 @@ internal sealed class ShortPattern
         if (size > 64) return null;
         var entries = new Entry[size];
         for (int i = 0; i < count; i++) entries[codes[i] & (size - 1)] = new Entry(codes[i], masks[i]);
-        return new ShortPattern(entries, stars, questions, 1UL << tokenIndex, singleline);
+        return new ShortPattern(entries, stars, questions, 1UL << tokenIndex, singleline, containsLf);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal bool IsMatch(ReadOnlySpan<char> input)
     {
+        if (_packedLength != 0) return MatchPacked(input);
+        if (!_singleline && !_containsLf)
+        {
+            // Without a literal LF, interior LF can only be consumed by a
+            // wildcard. Reject it after acceptance, outside the recurrence.
+            if (input.Length > 0 && input[input.Length - 1] == '\n') input = input.Slice(0, input.Length - 1);
+            return MatchWithoutLineChecks(input) && input.IndexOf('\n') < 0;
+        }
         ulong active = 1 | ((1 & _stars) << 1);
         for (int i = 0; i < input.Length; i++)
         {
@@ -72,6 +83,22 @@ internal sealed class ShortPattern
             active = ((active & (literals | (canConsume ? _questions : 0))) << 1) | (canConsume ? active & _stars : 0);
             // Consecutive stars were collapsed: one epsilon step closes every state.
             // At most 63 tokens leave bit 63 for acceptance; no shift by 64 occurs.
+            active |= (active & _stars) << 1;
+            if (active == 0) return false;
+        }
+        return (active & _accept) != 0;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private bool MatchWithoutLineChecks(ReadOnlySpan<char> input)
+    {
+        ulong active = 1 | ((1 & _stars) << 1);
+        for (int i = 0; i < input.Length; i++)
+        {
+            char value = input[i];
+            ref readonly Entry entry = ref _literals[value & (_literals.Length - 1)];
+            ulong literals = entry.Code == value ? entry.Mask : 0;
+            active = ((active & (literals | _questions)) << 1) | (active & _stars);
             active |= (active & _stars) << 1;
             if (active == 0) return false;
         }

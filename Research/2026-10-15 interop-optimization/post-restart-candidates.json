@@ -1,0 +1,137 @@
+[
+  {
+    "candidate": "ordinal",
+    "parent": "provisional packed source",
+    "ratios": {
+      "LongText": 1.0518691059860876,
+      "Diverse": 0.9862625072961964,
+      "MultiStar": 0.9939734826249295,
+      "Dense4096": 1.0201818263749853,
+      "Dense16384": 1.002960704400338
+    },
+    "disposition": "Not selected: no useful long-text benefit.",
+    "execution_ids": [
+      "exec-2b6c836967554b1d8a7acf370a0d5ec7",
+      "exec-5924194daa6d4b83806fc676e9a9ef31",
+      "exec-205dcc4be9c44eab9abdd2c9859d717a",
+      "exec-90287f46764543ce8ae686d4ad52f70b",
+      "exec-73100cae5f1942be80847984133f4e6e"
+    ]
+  },
+  {
+    "candidate": "swar",
+    "parent": "provisional packed source",
+    "ratios": {
+      "MultiStar": 1.1588278626124418,
+      "Diverse": 1.0437788666571042,
+      "LongText": 1.014095352768131
+    },
+    "disposition": "Not selected: no useful short-star benefit.",
+    "execution_ids": [
+      "exec-6112c85b10314d36a63ce7b0820fa2f2",
+      "exec-9c80588218064c09b9ad1efd3f324fbc",
+      "exec-702b00923bb346b49822026e349b8eba"
+    ]
+  },
+  {
+    "candidate": "anchor",
+    "parent": "provisional packed source",
+    "ratios": {
+      "Dense4096": 0.5239389963465514,
+      "Dense16384": 0.5727967826151867,
+      "LongText": 0.8913089704959077,
+      "Diverse": 0.9186989838103423,
+      "MultiStar": 1.0568794441606189,
+      "Newline": 0.5300320740923846
+    },
+    "disposition": "Selected for new source confirmation: omit rechecks of the proven anchor, retain surrounding validation.",
+    "execution_ids": [
+      "exec-30b8d312680d4afea21a9ae509e27300",
+      "exec-e31608c44e184ec09d3c61845741f523",
+      "exec-e1038e4892c14588ab726d6368866d78",
+      "exec-0a931496812a4a41ba29dfdc0de39055",
+      "exec-940b52cd20c145a4a06dca41c78d6f67",
+      "exec-e27531650e3d43069d4ba812b10fedff"
+    ]
+  },
+  {
+    "candidate": "packedfirst",
+    "parent": "provisional packed source",
+    "ratios": {
+      "Literal": 1.2211896503689097,
+      "Simple": 1.1670236340825222,
+      "MultiStar": 0.9609797262168553,
+      "Diverse": 1.0712194853641575,
+      "LongText": 1.1482981508245294
+    },
+    "disposition": "Not selected: weak short-star benefit with worse common-path costs.",
+    "execution_ids": [
+      "exec-bd74a35c4cf7483bbe0349d0ace10ad7",
+      "exec-590e7e6c600544ebb02df5807e5aa7fe",
+      "exec-37ffa568b8e0488a9627e68b34eec038",
+      "exec-e9bbe721552c43a6a24fdf17ff2dc352",
+      "exec-b5bcbffce2b1443482c7fd618180fe6d"
+    ]
+  },
+  {
+    "candidate": "minimum",
+    "parent": "anchor-improved source",
+    "ratios": {
+      "Literal": 1.076402267727008,
+      "Simple": 1.0282908685054444,
+      "MultiStar": 1.0020490106742135,
+      "Diverse": 1.0391943283425265,
+      "LongText": 1.074631086701841
+    },
+    "disposition": "Not selected: no useful caller benefit.",
+    "execution_ids": [
+      "exec-86558f7a59b0449297bbe95d1025246e",
+      "exec-086634af84564306a9b7f4811e0c1d22",
+      "exec-69424e2ff32140139ca42664e744f88d",
+      "exec-7c4e46b2856a4871b37aa1e8528b139b",
+      "exec-2dd58828ec4b4e49acd2a02e92860185"
+    ]
+  },
+  {
+    "candidate": "sequence",
+    "parent": "provisional packed source",
+    "ratios": {
+      "GeneralShort": 0.9896539396772478,
+      "Literal": 1.0478567926607452,
+      "Simple": 1.0102255150480144,
+      "MultiStar": 1.0594115560096824,
+      "Diverse": 1.2703853115116694,
+      "LongText": 1.0340044732975915
+    },
+    "disposition": "Not selected: no useful broad-pattern benefit.",
+    "execution_ids": [
+      "exec-c69d2f659c4b422cb56d1f73fb85ef28",
+      "exec-32d7612ddc59445fa286219154d0d8d2",
+      "exec-47be4b3becc74122a1ca4cced618f907",
+      "exec-b2d36a639adf4e57aa6a056fe4a62665",
+      "exec-3b5b372c27444932b88325817e763f32",
+      "exec-1b9855e42edb48f8a0106fbf0f010958"
+    ]
+  },
+  {
+    "candidate": "nolf",
+    "parent": "provisional packed source",
+    "ratios": {
+      "GeneralShort": 0.9043563304424255,
+      "Literal": 1.0445095457713678,
+      "Simple": 1.0116569846217973,
+      "MultiStar": 1.0013574315738274,
+      "Diverse": 1.010861919563177,
+      "LongText": 0.9967430796590727
+    },
+    "disposition": "Selected for new confirmation: defer LF validation in the proven default regime.",
+    "execution_ids": [
+      "exec-0f239d41e34f4b0fa8557bb3c8d69d2d",
+      "exec-b84fe617c5804de8a520e32cbe79d31b",
+      "exec-28a0da1597054103a7f5a30865768f5a",
+      "exec-11c4d93bba6743cf81d2214c93b0368d",
+      "exec-204065134e6a40f6b0ac7389e12a8c44",
+      "exec-148fc50747a743db845a183358a3e65a"
+    ]
+  }
+]

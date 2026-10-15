@@ -1,0 +1,4 @@
+Test run for D:\Workspaces\AI\wildcard-interop-optimization\epoch4\final\src\Tedd.WildcardMatch.Tests\bin\Release\net10.0\Tedd.WildcardMatch.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:     8, Skipped:     0, Total:     8, Duration: 172 ms - Tedd.WildcardMatch.Tests.dll (net10.0)

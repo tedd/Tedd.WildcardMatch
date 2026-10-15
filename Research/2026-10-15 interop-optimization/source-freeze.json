@@ -1,0 +1,27 @@
+{
+  "starting_revision": "7574a36",
+  "files": {
+    "src/Tedd.WildcardMatch/CompiledSegments.cs": "b761a5d554ba8a72184b71a5f5ec1b6bf81682db5fe649a9403cf979e6f4c827",
+    "src/Tedd.WildcardMatch/DefaultWildcardEngine.cs": "109fc368f7b19010f7a2f203439bba00642f4df0bb8ab4c59a8a80e1aba0dd85",
+    "src/Tedd.WildcardMatch/FixedPattern.cs": "911a6cbbcf3e9484f0faf46be6993ca6baba25443522d276b74223c34ed3fbc7",
+    "src/Tedd.WildcardMatch/InternalUtils.cs": "4f21b3c86cccdeef6155ffcac31a7dc0cecac58eb592a5df7eedb27733edcafa",
+    "src/Tedd.WildcardMatch/ShortPattern.cs": "82936f2c9161445bcfa18baa981b83df53ecdccc8efd50e8a0da26c456af42fc",
+    "src/Tedd.WildcardMatch/ShortPattern.Packed.cs": "633778d0d06458e62647f7f24ce5d445bf105c71bff3ce206e981f643454a236",
+    "src/Tedd.WildcardMatch/WildcardEngine.cs": "54cc039904c806fcefc7654d934881eff71155147ff8b683cd437a222d71e8da",
+    "src/Tedd.WildcardMatch/WildcardEngine.Spans.cs": "4349e6800587ee6fff0cbce87082355a3239d33986baa5457ad5d9bfc4db699b",
+    "src/Tedd.WildcardMatch/WildcardMatch.cs": "97fda4101304c9f41fb3cc5c0bd36972a725ae8021d45afd7d8abc28fdef6600",
+    "src/Tedd.WildcardMatch/WildcardMatchExtensions.cs": "395ac02229ae89309f6258d2db07472615fbd3cf7b2653d183e904d47adc904d",
+    "src/Tedd.WildcardMatch/WildcardMatchRegex.cs": "1f7771890d03b21f51b10c8c8ad31da127bb3770a38a108d7de3bc13f9b6da60",
+    "src/Tedd.WildcardMatch/WildcardOptions.cs": "ddd70ad88b5548e2564016f8c63e6e8054d1d6c6c1b27d3c2179ca947552f4db",
+    "src/Tedd.WildcardMatch.Benchmark/Comparison.cs": "619382f7e2187d8f3988ec20228c9870f834a12ef8c82fe3f75ccfe62dedd5f3",
+    "src/Tedd.WildcardMatch.Benchmark/ConstructionBenchmarks.cs": "7272e0a57788c2f6c26b30f820752be44ecea5b905579bc1fe3c1c042a74e165",
+    "src/Tedd.WildcardMatch.Benchmark/InteropBenchmarks.cs": "63bdc4c3af26b65b52dc9a3a6e9057163d94ed8bfb52246ccda903c8d1bddeda",
+    "src/Tedd.WildcardMatch.Benchmark/MatchingBenchmarks.cs": "2d4f81a04cc218d8a32777883d2cf4b746770c2363ed23b0bfbcb23202a58ee5",
+    "src/Tedd.WildcardMatch.Benchmark/NativeMatchingBenchmarks.cs": "f7bf7452ee56bc7f301dde080aae00f224cb31f5c3a84b4ac16b3da209c6aaf9",
+    "src/Tedd.WildcardMatch.Benchmark/Program.cs": "76dc0cf49758a56f5dc90ae1f25fd92f7c89a9124b1b98eed65ce3ca31490884",
+    "src/Tedd.WildcardMatch.Benchmark/Native/Build-Native.ps1": "7141fe43cdc6cf1f8bfa69e3debe41ffc4de1ee9026fb6ea939be6db3bbb889e",
+    "src/Tedd.WildcardMatch.Benchmark/Native/CMakeLists.txt": "bd65930c1ca98006e4ae4bef96c82860ad934a9c62449677e38969fbc92b2ccf",
+    "src/Tedd.WildcardMatch.Benchmark/Native/native.cpp": "d8065dd1420e5c9b05e696ed9dbf7fa3fa625900ac61fc8c42c913f152b1a1ed"
+  },
+  "native_dll_sha256": "e86d13548d587d2d3bc9d795be92d09fa61015739709bd2fa71cfd5a853ffb8c"
+}

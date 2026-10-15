@@ -1,0 +1,331 @@
+[
+  {
+    "scenario": "interop-reused-Portfolio",
+    "execution_id": "op-3c95ea4073a2450a85e32eed22c9b489-confirmation",
+    "comparison": {
+      "id": "confirm-decision-ed609f228fac0a239ccb6a2d737e28876da899a3311b868e2f4e5e1489a35a86",
+      "plan_id": "confirm-plan-e6383a0ed0494e9fb28f1c02152ebdbe",
+      "execution_id": "op-3c95ea4073a2450a85e32eed22c9b489-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-ed609f228fac0a239ccb6a2d737e28876da899a3311b868e2f4e5e1489a35a86",
+      "promotion_eligible": true,
+      "reason_codes": [],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-b5907f8be522494588a33aa07db92330984a2f5552e8ce9e23fef8b62b6086de"
+    }
+  },
+  {
+    "scenario": "interop-reused-Literal",
+    "execution_id": "op-f1b4370c1be04a708b5c7057952b225b-confirmation",
+    "comparison": {
+      "id": "confirm-decision-d8c1e8fe8f8a97ee49c9d5d7cbc5bf0ac29d1afaa691e3bd62e3dd7f139342e4",
+      "plan_id": "confirm-plan-0b38324dd6924828862ca275ec42e651",
+      "execution_id": "op-f1b4370c1be04a708b5c7057952b225b-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-d8c1e8fe8f8a97ee49c9d5d7cbc5bf0ac29d1afaa691e3bd62e3dd7f139342e4",
+      "promotion_eligible": true,
+      "reason_codes": [],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-ffca1e89c40582c6c23b4db5fce5c733db9a10ce50063b4204bf586bba960df2"
+    }
+  },
+  {
+    "scenario": "interop-reused-Simple",
+    "execution_id": "op-7a2709e672264f5191594d547b89a524-confirmation",
+    "comparison": {
+      "id": "confirm-decision-943503c78c2d86c1c6fe4f55e0e0c1f416da408d236e8fb67368c68b0bb91261",
+      "plan_id": "confirm-plan-89aa11f1457c4d4c8fc8f91c99d7abd1",
+      "execution_id": "op-7a2709e672264f5191594d547b89a524-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-943503c78c2d86c1c6fe4f55e0e0c1f416da408d236e8fb67368c68b0bb91261",
+      "promotion_eligible": false,
+      "reason_codes": [
+        "primary_benefit_not_established",
+        "effect_not_resolved_at_declared_margin"
+      ],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-6bff8defaecea9ec9242fa41c8ba5fffa2e54dfad160ee366fd9c3e2326a8c8a"
+    }
+  },
+  {
+    "scenario": "interop-reused-MultiStar",
+    "execution_id": "op-422aead934c84622a82f2ecccbc21566-confirmation",
+    "comparison": {
+      "id": "confirm-decision-301ffd766820ddeea5a0d6a72ddd441025816829435de7018b109a25f994f076",
+      "plan_id": "confirm-plan-0eec66bfcc2445a0a5640e824ffd017e",
+      "execution_id": "op-422aead934c84622a82f2ecccbc21566-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-301ffd766820ddeea5a0d6a72ddd441025816829435de7018b109a25f994f076",
+      "promotion_eligible": true,
+      "reason_codes": [],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-1b2e5e55b5c968fd81934dcbac21840ec75dc9a0386003bb8e2d88b2e66f05a3"
+    }
+  },
+  {
+    "scenario": "interop-reused-LongText",
+    "execution_id": "op-89666b0b3a3645929bff014973f2b9d3-confirmation",
+    "comparison": {
+      "id": "confirm-decision-c27261143101d66b4e7ce04ef323c0e727204ad7312d54746302e40755725f5b",
+      "plan_id": "confirm-plan-c5fbbf033ad24e52afd097dd336d8e22",
+      "execution_id": "op-89666b0b3a3645929bff014973f2b9d3-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-c27261143101d66b4e7ce04ef323c0e727204ad7312d54746302e40755725f5b",
+      "promotion_eligible": false,
+      "reason_codes": [
+        "primary_benefit_not_established"
+      ],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-e098638715615b9a0336e5d6f3e11ec629119c94a960d201f4002b1158057dfe"
+    }
+  },
+  {
+    "scenario": "interop-reused-Diverse",
+    "execution_id": "op-8d77e5436c174325affacef8a5bf0122-confirmation",
+    "comparison": {
+      "id": "confirm-decision-5b2e214ea098a8bca47a8e8bcb3f9423de702f205dc870495a7ae777c93c2b12",
+      "plan_id": "confirm-plan-8799dd6fd2534927b7668e841f5a32bb",
+      "execution_id": "op-8d77e5436c174325affacef8a5bf0122-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-5b2e214ea098a8bca47a8e8bcb3f9423de702f205dc870495a7ae777c93c2b12",
+      "promotion_eligible": true,
+      "reason_codes": [],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-157831a0b5da0ce3ca6b0641fb07e202a8efbfc21e80aa7e5e3fc24649ec68b9"
+    }
+  },
+  {
+    "scenario": "interop-reused-Dense4096",
+    "execution_id": "op-f76b06bca4044b3fb306f11d7ee38a9f-confirmation",
+    "comparison": {
+      "id": "confirm-decision-f31a19cfdbce2b9ebe08792a86425fa045f75e76f0a4695cc701f427a73807dc",
+      "plan_id": "confirm-plan-ae398726cc08419a9ceaee7bed8a7ba7",
+      "execution_id": "op-f76b06bca4044b3fb306f11d7ee38a9f-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-f31a19cfdbce2b9ebe08792a86425fa045f75e76f0a4695cc701f427a73807dc",
+      "promotion_eligible": true,
+      "reason_codes": [],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-ed1357e2fa31d09d3af098373e60ba028d768b251181174e40a296fc58b70cf0"
+    }
+  },
+  {
+    "scenario": "interop-reused-Dense16384",
+    "execution_id": "op-b18a297e469845efaa82754de6c5d40f-confirmation",
+    "comparison": {
+      "id": "confirm-decision-7de8e7cfebbd36431bfdd01222df446ecbe6de76176825a0b7c100819d2610e8",
+      "plan_id": "confirm-plan-515f7f322327470f81337237359c0acb",
+      "execution_id": "op-b18a297e469845efaa82754de6c5d40f-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-7de8e7cfebbd36431bfdd01222df446ecbe6de76176825a0b7c100819d2610e8",
+      "promotion_eligible": true,
+      "reason_codes": [],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-01540c695003feac27cf6e3e04e168635db381c8181fefeda7056c5541596c9d"
+    }
+  },
+  {
+    "scenario": "interop-reused-Newline",
+    "execution_id": "op-0896bb094b8c42f1a9a6c439f3b1bbcf-confirmation",
+    "comparison": {
+      "id": "confirm-decision-f5f93dde9f965038a61bf257d56c622e31ecaf1a840ddf82e28982338fc2cb07",
+      "plan_id": "confirm-plan-6b2dd98ac0b64de6b712740abc9f727e",
+      "execution_id": "op-0896bb094b8c42f1a9a6c439f3b1bbcf-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-f5f93dde9f965038a61bf257d56c622e31ecaf1a840ddf82e28982338fc2cb07",
+      "promotion_eligible": true,
+      "reason_codes": [],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-64978553db6b2961e0024ab292dc5fadebb61d6a900e6d53a6a60295163b3e94"
+    }
+  },
+  {
+    "scenario": "interop-reused-GeneralShort",
+    "execution_id": "op-1e940c0162b84302b4cdb5259f2f26b0-confirmation",
+    "comparison": {
+      "id": "confirm-decision-0f9b049fe0bc44dd5bc0b0cb53ba7849b13298bedee9fa43c6fbafeb43f07365",
+      "plan_id": "confirm-plan-1a98f8f4bae945329ed0a5a667750f68",
+      "execution_id": "op-1e940c0162b84302b4cdb5259f2f26b0-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-0f9b049fe0bc44dd5bc0b0cb53ba7849b13298bedee9fa43c6fbafeb43f07365",
+      "promotion_eligible": false,
+      "reason_codes": [
+        "primary_benefit_not_established"
+      ],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-81f3d1018524af105fd66c00060dc4de672a609c86eacda7ab9d7348187e5412"
+    }
+  },
+  {
+    "scenario": "interop-reused-FixedMedium",
+    "execution_id": "op-b4791ed62bd041c98a31fb77c617a9ff-confirmation",
+    "comparison": {
+      "id": "confirm-decision-4123d3b1170985c8faf03ba968aeeb24de16180f22a5291d9bd9be3b801e8263",
+      "plan_id": "confirm-plan-b5ae48ac46c1488a8f769f03e2649bc6",
+      "execution_id": "op-b4791ed62bd041c98a31fb77c617a9ff-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-4123d3b1170985c8faf03ba968aeeb24de16180f22a5291d9bd9be3b801e8263",
+      "promotion_eligible": false,
+      "reason_codes": [
+        "primary_benefit_not_established",
+        "effect_not_resolved_at_declared_margin"
+      ],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-c1366b9ed2892e13b54ae00ff1586591ea6864c7c42e3df70f116f5dace1e60e"
+    }
+  },
+  {
+    "scenario": "interop-reused-FixedLong",
+    "execution_id": "op-4c4f703d6735462aad43ba7140457b95-confirmation",
+    "comparison": {
+      "id": "confirm-decision-e15859f62aab5f26833fd691153b275962d722f7a63c9da900bce5572e08fb6b",
+      "plan_id": "confirm-plan-6ae785feaa5f4c30b6d4687724c5df7e",
+      "execution_id": "op-4c4f703d6735462aad43ba7140457b95-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-e15859f62aab5f26833fd691153b275962d722f7a63c9da900bce5572e08fb6b",
+      "promotion_eligible": false,
+      "reason_codes": [
+        "primary_benefit_not_established"
+      ],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-07f28c355d3341ec8e807e76811ba4740e467e26c806fa5519beb6d99b1360f1"
+    }
+  },
+  {
+    "scenario": "interop-reused-LiteralLong",
+    "execution_id": "op-9841efebc4e04a5fbc0530806306664d-confirmation",
+    "comparison": {
+      "id": "confirm-decision-78a4ae30ae76c4f59af49cd068feb689f1554ec34085a78550cd331df387690d",
+      "plan_id": "confirm-plan-3eef20e353994913888394750fd33251",
+      "execution_id": "op-9841efebc4e04a5fbc0530806306664d-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-78a4ae30ae76c4f59af49cd068feb689f1554ec34085a78550cd331df387690d",
+      "promotion_eligible": false,
+      "reason_codes": [
+        "primary_benefit_not_established"
+      ],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-be6ceb04c92fa72f279c5f7605df584d2119e54ad5b5173be0e797aa6bb3c62d"
+    }
+  },
+  {
+    "scenario": "interop-static-Literal",
+    "execution_id": "op-d993638ac51e4631baaebdb7045e5ef8-confirmation",
+    "comparison": {
+      "id": "confirm-decision-ecc342ed7dfe3b0387c129dca1f7732ddb75e6221a0399600feb304c13daf718",
+      "plan_id": "confirm-plan-6b4d1594c6b447d1af8d0b2b136181ac",
+      "execution_id": "op-d993638ac51e4631baaebdb7045e5ef8-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-ecc342ed7dfe3b0387c129dca1f7732ddb75e6221a0399600feb304c13daf718",
+      "promotion_eligible": false,
+      "reason_codes": [
+        "primary_benefit_not_established"
+      ],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-8694027fc34b70e25b0b76c3562282d6f7ffb6980c13f184374cf3e23583d4d4"
+    }
+  },
+  {
+    "scenario": "interop-static-Simple",
+    "execution_id": "op-4ff00a33b39243a7b08a4145a3f415c6-confirmation",
+    "comparison": {
+      "id": "confirm-decision-93dbcfe499795893a05f64a7a1199bf3392c0f90926faee5a80ac0b164eb98a2",
+      "plan_id": "confirm-plan-31be3a2943e845dea298dc407e9db4ac",
+      "execution_id": "op-4ff00a33b39243a7b08a4145a3f415c6-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-93dbcfe499795893a05f64a7a1199bf3392c0f90926faee5a80ac0b164eb98a2",
+      "promotion_eligible": false,
+      "reason_codes": [
+        "primary_benefit_not_established"
+      ],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-7fb75350b86ca6bab7fd4c8f7ab6f9b2be0f69063e1183b7cc38a2f680b1d7d6"
+    }
+  },
+  {
+    "scenario": "interop-static-MultiStar",
+    "execution_id": "op-fa925ce02841435e86074b2fcd69524c-confirmation",
+    "comparison": {
+      "id": "confirm-decision-ecd2d30cb17e0206604bd98299b180f6c5412f882d293f5a04ac6c0af1bf8871",
+      "plan_id": "confirm-plan-604e09c445c044c2aa2a9ce11186d759",
+      "execution_id": "op-fa925ce02841435e86074b2fcd69524c-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-ecd2d30cb17e0206604bd98299b180f6c5412f882d293f5a04ac6c0af1bf8871",
+      "promotion_eligible": false,
+      "reason_codes": [
+        "primary_benefit_not_established"
+      ],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-d21691d71d8055c8c27b64fb67474aaaa5e1fdfedfdd69df88c27374cdb76728"
+    }
+  },
+  {
+    "scenario": "interop-static-LongText",
+    "execution_id": "op-a3ee0e07916846ddb7b0c02ea5cfed6f-confirmation",
+    "comparison": {
+      "id": "confirm-decision-d9e4b16fc8745228c49218c5d16aba23d7a731b267c944fc33b52670b3111c28",
+      "plan_id": "confirm-plan-7546ed58b45b401d95540b8bf80028d8",
+      "execution_id": "op-a3ee0e07916846ddb7b0c02ea5cfed6f-confirmation",
+      "selected_candidate_id": "candidate-e1c90475c686404caf7b6bdd431fad45",
+      "baseline_build_id": "build-9896278ee1c6469ab0fe181ebfd7fcfc",
+      "candidate_build_id": "build-b61426f71b5046a7a593c6762e498cd9",
+      "source_patch_artifact_id": "art-1fa03e9ff78e04f7101f20c317c2554b56554ee839ec880955fd2eb4e864436f",
+      "comparison_id": "cmp-d9e4b16fc8745228c49218c5d16aba23d7a731b267c944fc33b52670b3111c28",
+      "promotion_eligible": false,
+      "reason_codes": [
+        "primary_benefit_not_established",
+        "effect_not_resolved_at_declared_margin"
+      ],
+      "meaning": "Eligible evidence for source review; no source edit, commit, deployment, or publication is performed.",
+      "objective_vector_id": "objectives-4d61b70bbf71901ef6773a731844594a6c4b6884fc4206adee1d7fec48b21d48"
+    }
+  }
+]

@@ -1,0 +1,12 @@
+Test run for D:\Workspaces\AI\wildcard-interop-optimization\epoch4\final\src\Tedd.WildcardMatch.Tests\bin\Release\net8.0\Tedd.WildcardMatch.Tests.dll (.NETCoreApp,Version=v8.0)
+A total of 1 test files matched the specified pattern.
+Test run for D:\Workspaces\AI\wildcard-interop-optimization\epoch4\final\src\Tedd.WildcardMatch.Tests\bin\Release\net11.0\Tedd.WildcardMatch.Tests.dll (.NETCoreApp,Version=v11.0)
+Test run for D:\Workspaces\AI\wildcard-interop-optimization\epoch4\final\src\Tedd.WildcardMatch.Tests\bin\Release\net10.0\Tedd.WildcardMatch.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.A total of 1 test files matched the specified pattern.
+
+
+Passed!  - Failed:     0, Passed:   250, Skipped:     0, Total:   250, Duration: 28 s - Tedd.WildcardMatch.Tests.dll (net10.0)
+
+Passed!  - Failed:     0, Passed:   250, Skipped:     0, Total:   250, Duration: 31 s - Tedd.WildcardMatch.Tests.dll (net8.0)
+
+Passed!  - Failed:     0, Passed:   253, Skipped:     0, Total:   253, Duration: 39 s - Tedd.WildcardMatch.Tests.dll (net11.0)

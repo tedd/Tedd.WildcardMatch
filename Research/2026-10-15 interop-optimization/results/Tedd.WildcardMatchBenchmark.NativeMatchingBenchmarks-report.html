@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Tedd.WildcardMatchBenchmark.NativeMatchingBenchmarks-20261015-234935</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.15.8, Windows 11 (10.0.26200.9711/25H2/2025Update/HudsonValley2)
+AMD Ryzen 9 5950X 3.40GHz, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 11.0.100-rc.2.26504.105
+  [Host]     : .NET 10.0.13 (10.0.13, 10.0.1326.50504), X64 RyuJIT x86-64-v3
+  Job-ZMHJYT : .NET 10.0.13 (10.0.13, 10.0.1326.50504), X64 RyuJIT x86-64-v3
+</code></pre>
+<pre><code>Affinity=01000000000000000000000000000000  EnvironmentVariables=DOTNET_TieredCompilation=0  IterationCount=10  
+IterationTime=100ms  LaunchCount=3  WarmupCount=3  
+</code></pre>
+
+<table>
+<thead><tr><th>Method</th><th>ShareInputs</th><th>Case          </th><th>Mean   </th><th>Error</th><th>StdDev</th><th>Median </th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>Match</td><td>False</td><td>Literal/GitWildmatch</td><td>26.262 ns</td><td>0.3216 ns</td><td>0.4714 ns</td><td>25.993 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>False</td><td>Literal/Krauss</td><td>9.420 ns</td><td>0.1792 ns</td><td>0.2683 ns</td><td>9.332 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>False</td><td>Literal/Pcre2Jit</td><td>16.053 ns</td><td>0.0766 ns</td><td>0.1122 ns</td><td>15.996 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>False</td><td>Liter(...)cards [21]</td><td>78.486 ns</td><td>0.5552 ns</td><td>0.8309 ns</td><td>78.770 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>False</td><td>LongT(...)match [21]</td><td>841.936 ns</td><td>0.8062 ns</td><td>1.1562 ns</td><td>841.741 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>False</td><td>LongText/Krauss</td><td>235.801 ns</td><td>0.4174 ns</td><td>0.6119 ns</td><td>235.884 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>False</td><td>LongText/Pcre2Jit</td><td>1,472.601 ns</td><td>11.7172 ns</td><td>17.1749 ns</td><td>1,474.479 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>False</td><td>LongT(...)cards [22]</td><td>22,056.586 ns</td><td>16.8760 ns</td><td>24.7367 ns</td><td>22,054.395 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>False</td><td>Multi(...)match [22]</td><td>28.904 ns</td><td>0.2640 ns</td><td>0.3951 ns</td><td>29.109 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>False</td><td>MultiStar/Krauss</td><td>9.602 ns</td><td>0.0458 ns</td><td>0.0642 ns</td><td>9.605 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>False</td><td>MultiStar/Pcre2Jit</td><td>22.515 ns</td><td>0.0883 ns</td><td>0.1294 ns</td><td>22.449 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>False</td><td>Multi(...)cards [23]</td><td>152.846 ns</td><td>0.3507 ns</td><td>0.5029 ns</td><td>152.854 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>False</td><td>Simple/GitWildmatch</td><td>28.950 ns</td><td>0.0938 ns</td><td>0.1404 ns</td><td>28.936 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>False</td><td>Simple/Krauss</td><td>9.557 ns</td><td>0.0070 ns</td><td>0.0104 ns</td><td>9.554 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>False</td><td>Simple/Pcre2Jit</td><td>16.183 ns</td><td>0.0061 ns</td><td>0.0086 ns</td><td>16.181 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>False</td><td>Simple/ZemaWildcards</td><td>81.219 ns</td><td>0.5583 ns</td><td>0.8357 ns</td><td>81.010 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>True</td><td>Literal/GitWildmatch</td><td>26.025 ns</td><td>0.0206 ns</td><td>0.0268 ns</td><td>26.028 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>True</td><td>Literal/Krauss</td><td>9.325 ns</td><td>0.0034 ns</td><td>0.0049 ns</td><td>9.324 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>True</td><td>Literal/Pcre2Jit</td><td>15.810 ns</td><td>0.0062 ns</td><td>0.0088 ns</td><td>15.810 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>True</td><td>Liter(...)cards [21]</td><td>79.615 ns</td><td>1.4946 ns</td><td>2.1908 ns</td><td>78.361 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>True</td><td>LongT(...)match [21]</td><td>841.494 ns</td><td>0.9075 ns</td><td>1.2723 ns</td><td>841.571 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>True</td><td>LongText/Krauss</td><td>234.287 ns</td><td>0.5977 ns</td><td>0.8380 ns</td><td>234.273 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>True</td><td>LongText/Pcre2Jit</td><td>1,466.610 ns</td><td>7.7260 ns</td><td>11.5640 ns</td><td>1,466.000 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>True</td><td>LongT(...)cards [22]</td><td>22,050.382 ns</td><td>11.7323 ns</td><td>16.4470 ns</td><td>22,048.468 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>True</td><td>Multi(...)match [22]</td><td>28.240 ns</td><td>0.0187 ns</td><td>0.0263 ns</td><td>28.239 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>True</td><td>MultiStar/Krauss</td><td>9.582 ns</td><td>0.0423 ns</td><td>0.0607 ns</td><td>9.560 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>True</td><td>MultiStar/Pcre2Jit</td><td>22.487 ns</td><td>0.0879 ns</td><td>0.1261 ns</td><td>22.455 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>True</td><td>Multi(...)cards [23]</td><td>152.514 ns</td><td>0.4538 ns</td><td>0.6652 ns</td><td>152.205 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>True</td><td>Simple/GitWildmatch</td><td>28.987 ns</td><td>0.0627 ns</td><td>0.0939 ns</td><td>28.973 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>True</td><td>Simple/Krauss</td><td>9.560 ns</td><td>0.0052 ns</td><td>0.0074 ns</td><td>9.560 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>True</td><td>Simple/Pcre2Jit</td><td>16.191 ns</td><td>0.0087 ns</td><td>0.0122 ns</td><td>16.190 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>True</td><td>Simple/ZemaWildcards</td><td>83.047 ns</td><td>2.1528 ns</td><td>3.2222 ns</td><td>81.194 ns</td><td>-</td>
+</tr></tbody></table>
+</body>
+</html>

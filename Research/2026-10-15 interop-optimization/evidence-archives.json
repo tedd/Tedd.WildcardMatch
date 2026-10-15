@@ -1,0 +1,12 @@
+[
+  {
+    "file": "confounded-epoch1.zip",
+    "sha256": "40ca612a7168c6dd2407c8db90565adea6636f1faac4bdfa6d7e82c71e3eacb9",
+    "bytes": 10190714
+  },
+  {
+    "file": "post-restart.zip",
+    "sha256": "69bd32b2a0297de356836a30beeda9781ffafab527f41e06a3fe7e147c6dabf1",
+    "bytes": 17447701
+  }
+]

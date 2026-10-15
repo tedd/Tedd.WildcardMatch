@@ -13,6 +13,7 @@ struct Context {
     int library;
     std::string pattern;
     std::vector<std::string> inputs;
+    std::vector<const std::string*> shared_inputs;
     pcre2_code* code = nullptr;
     pcre2_match_data* data = nullptr;
     ~Context() { pcre2_match_data_free(data); pcre2_code_free(code); }
@@ -42,6 +43,15 @@ extern "C" __declspec(dllexport) Context* create_context(int library, const char
     c->library = library;
     c->pattern = pattern;
     for (int i = 0; i < count; ++i) c->inputs.emplace_back(inputs[i]);
+    // Match the managed fixture's repeated seed references. Resolve storage
+    // identity during setup; matching results are never retained.
+    for (const auto& value : c->inputs) {
+        const std::string* selected = &value;
+        for (const auto* previous : c->shared_inputs) {
+            if (*previous == value) { selected = previous; break; }
+        }
+        c->shared_inputs.push_back(selected);
+    }
     if (library == 3) {
         std::string regex = "\\A";
         for (char ch : c->pattern) {
@@ -73,4 +83,21 @@ extern "C" __declspec(dllexport) int match_batch(Context* c, int count) {
 extern "C" __declspec(dllexport) int match_one(Context* c, int index) {
     return matchers[c->library](c, c->inputs.at(index));
 }
+extern "C" __declspec(dllexport) int match_batch_shared(Context* c, int count) {
+    if (count < 0 || static_cast<size_t>(count) > c->shared_inputs.size()) return -1;
+    Matcher match = matchers[c->library];
+    int matched = 0;
+    for (int i = 0; i < count; ++i) matched += match(c, *c->shared_inputs[i]);
+    return matched;
+}
+extern "C" __declspec(dllexport) int match_one_shared(Context* c, int index) noexcept {
+    return matchers[c->library](c, *c->shared_inputs[index]);
+}
+// Only the managed harness's qualified, bounded short fixtures use this export.
+// Valid context/index and already-prepared strings are required; no allocation,
+// synchronization, callbacks or checked-container exceptions occur on this path.
+extern "C" __declspec(dllexport) int match_one_short(Context* c, int index) noexcept {
+    return matchers[c->library](c, c->inputs[index]);
+}
+extern "C" __declspec(dllexport) int interop_control(int value) noexcept { return value; }
 extern "C" __declspec(dllexport) void destroy_context(Context* c) { delete c; }

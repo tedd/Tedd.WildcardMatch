@@ -7,6 +7,8 @@ namespace Tedd.WildcardMatchBenchmark;
 [JsonExporterAttribute.Full]
 public class NativeMatchingBenchmarks
 {
+    [Params(false, true)]
+    public bool ShareInputs { get; set; }
     public IEnumerable<ComparisonCase> Cases => string.IsNullOrEmpty(Environment.GetEnvironmentVariable("WILDCARD_NATIVE_LIBRARY"))
         ? [] : Comparison.Fixtures.SelectMany(f => NativeMatcher.Libraries.Select(l => new ComparisonCase(f.Name, l)));
     [ParamsSource(nameof(Cases))]
@@ -17,7 +19,7 @@ public class NativeMatchingBenchmarks
     public void Setup()
     {
         var fixture = Comparison.Fixtures.Single(f => f.Name == Case.Workload);
-        _matcher = new NativeMatcher(Case.Library, fixture.Pattern, fixture.Inputs);
+        _matcher = new NativeMatcher(Case.Library, fixture.Pattern, fixture.Inputs, ShareInputs);
         _matcher.Validate(fixture);
     }
 
@@ -36,17 +38,27 @@ public sealed unsafe class NativeMatcher : IDisposable
     private readonly nint _context;
     private readonly delegate* unmanaged[Cdecl]<nint, int, int> _match;
     private readonly delegate* unmanaged[Cdecl]<nint, int, int> _single;
+    private readonly delegate* unmanaged[Cdecl, SuppressGCTransition]<nint, int, int> _shortSuppressed;
     private readonly delegate* unmanaged[Cdecl]<nint, void> _destroy;
+    private readonly int _inputCount;
+    private readonly bool _canSuppress;
 
-    public NativeMatcher(string library, string pattern, string[] inputs)
+    public NativeMatcher(string library, string pattern, string[] inputs, bool shareInputs = false)
     {
         int index = Array.IndexOf(Libraries, library);
         if (index < 0) throw new ArgumentOutOfRangeException(nameof(library));
         _library = NativeLibrary.Load(Environment.GetEnvironmentVariable("WILDCARD_NATIVE_LIBRARY")
             ?? throw new InvalidOperationException("Set WILDCARD_NATIVE_LIBRARY to the absolute benchmark DLL path."));
-        _match = (delegate* unmanaged[Cdecl]<nint, int, int>)NativeLibrary.GetExport(_library, "match_batch");
-        _single = (delegate* unmanaged[Cdecl]<nint, int, int>)NativeLibrary.GetExport(_library, "match_one");
+        _match = (delegate* unmanaged[Cdecl]<nint, int, int>)NativeLibrary.GetExport(_library,
+            shareInputs ? "match_batch_shared" : "match_batch");
+        // Normal and suppressed sites invoke identical native instructions.
+        nint one = NativeLibrary.GetExport(_library, shareInputs ? "match_one_shared" : "match_one_short");
+        _single = (delegate* unmanaged[Cdecl]<nint, int, int>)one;
+        _shortSuppressed = (delegate* unmanaged[Cdecl, SuppressGCTransition]<nint, int, int>)one;
         _destroy = (delegate* unmanaged[Cdecl]<nint, void>)NativeLibrary.GetExport(_library, "destroy_context");
+        _inputCount = inputs.Length;
+        _canSuppress = library != "Pcre2Jit" && inputs.All(s => s.Length <= 16)
+            && pattern is "report-2026.txt" or "report-??.txt" or "*a?c*e*";
         var create = (delegate* unmanaged[Cdecl]<int, byte*, byte**, int, nint>)NativeLibrary.GetExport(_library, "create_context");
         nint p = 0;
         var strings = new nint[inputs.Length];
@@ -69,6 +81,21 @@ public sealed unsafe class NativeMatcher : IDisposable
 
     public int Match() => _match(_context, Comparison.BatchSize);
 
+    public int MatchEach()
+    {
+        int matches = 0;
+        for (int i = 0; i < _inputCount; i++) matches += _single(_context, i);
+        return matches;
+    }
+
+    public int MatchEachSuppressed()
+    {
+        if (!_canSuppress) throw new InvalidOperationException("GC suppression is qualified only for short Krauss, Git and Zema fixtures.");
+        int matches = 0;
+        for (int i = 0; i < _inputCount; i++) matches += _shortSuppressed(_context, i);
+        return matches;
+    }
+
     public void Validate(Fixture fixture)
     {
         for (int i = 0; i < fixture.Inputs.Length; i++)
@@ -77,6 +104,8 @@ public sealed unsafe class NativeMatcher : IDisposable
         int expected = fixture.Inputs.Count(s => Comparison.ExpectedMatch(s, fixture.Pattern));
         if (_match(_context, fixture.Inputs.Length) != expected)
             throw new InvalidOperationException("Native batch correctness failure.");
+        if (MatchEach() != expected || (_canSuppress && MatchEachSuppressed() != expected))
+            throw new InvalidOperationException("Native per-call correctness failure.");
     }
 
     public void Dispose()
@@ -88,13 +117,14 @@ public sealed unsafe class NativeMatcher : IDisposable
     public static object ValidateAll()
     {
         var results = new List<object>();
+        foreach (bool shareInputs in new[] { false, true })
         foreach (string library in Libraries)
         {
             foreach (var fixture in Comparison.Fixtures)
             {
-                using var matcher = new NativeMatcher(library, fixture.Pattern, fixture.Inputs);
+                using var matcher = new NativeMatcher(library, fixture.Pattern, fixture.Inputs, shareInputs);
                 matcher.Validate(fixture);
-                results.Add(new { Library = library, Workload = fixture.Name, Checked = fixture.Inputs.Length, Failures = 0 });
+                results.Add(new { Library = library, Workload = fixture.Name, ShareInputs = shareInputs, Checked = fixture.Inputs.Length, Failures = 0 });
             }
             var random = new Random(73129);
             for (int i = 0; i < 1000; i++)
@@ -102,10 +132,10 @@ public sealed unsafe class NativeMatcher : IDisposable
                 string pattern = new(Enumerable.Range(0, random.Next(12)).Select(_ => "abc*?"[random.Next(5)]).ToArray());
                 string[] inputs = Enumerable.Range(0, 16).Select(_ => new string(Enumerable.Range(0, random.Next(20)).Select(_ => "abc"[random.Next(3)]).ToArray())).ToArray();
                 var fixture = new Fixture("SeededAscii", pattern, inputs);
-                using var matcher = new NativeMatcher(library, pattern, inputs);
+                using var matcher = new NativeMatcher(library, pattern, inputs, shareInputs);
                 matcher.Validate(fixture);
             }
-            results.Add(new { Library = library, Workload = "SeededAscii", Checked = 16000, Failures = 0 });
+            results.Add(new { Library = library, Workload = "SeededAscii", ShareInputs = shareInputs, Checked = 16000, Failures = 0 });
         }
         return results;
     }

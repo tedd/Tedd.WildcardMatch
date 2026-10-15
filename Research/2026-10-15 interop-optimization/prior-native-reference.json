@@ -1,0 +1,58 @@
+[
+  {
+    "workload": "Literal",
+    "final_tedd_ns": 5.232756639512534,
+    "earlier_control": {
+      "epoch": "epoch3",
+      "workload": "Literal",
+      "library": "Krauss",
+      "method": "Match",
+      "full_name": "Tedd.WildcardMatchBenchmark.NativeMatchingBenchmarks.Match(ShareInputs: False, Case: Literal/Krauss)",
+      "mean_ns": 9.325839224014642
+    },
+    "cost_reduction_percent": 43.88969706835771,
+    "meets_20_percent_mean_target": true
+  },
+  {
+    "workload": "Simple",
+    "final_tedd_ns": 4.562387870280893,
+    "earlier_control": {
+      "epoch": "epoch3",
+      "workload": "Simple",
+      "library": "Krauss",
+      "method": "Match",
+      "full_name": "Tedd.WildcardMatchBenchmark.NativeMatchingBenchmarks.Match(ShareInputs: False, Case: Simple/Krauss)",
+      "mean_ns": 9.552336410170607
+    },
+    "cost_reduction_percent": 52.237990012336596,
+    "meets_20_percent_mean_target": true
+  },
+  {
+    "workload": "MultiStar",
+    "final_tedd_ns": 6.622103872465446,
+    "earlier_control": {
+      "epoch": "epoch2",
+      "workload": "MultiStar",
+      "library": "Krauss",
+      "method": "Match",
+      "full_name": "Tedd.WildcardMatchBenchmark.NativeMatchingBenchmarks.Match(Case: MultiStar/Krauss)",
+      "mean_ns": 8.108325087166277
+    },
+    "cost_reduction_percent": 18.32957113489686,
+    "meets_20_percent_mean_target": false
+  },
+  {
+    "workload": "LongText",
+    "final_tedd_ns": 183.40587772810355,
+    "earlier_control": {
+      "epoch": "epoch2",
+      "workload": "LongText",
+      "library": "Krauss",
+      "method": "Match",
+      "full_name": "Tedd.WildcardMatchBenchmark.NativeMatchingBenchmarks.Match(Case: LongText/Krauss)",
+      "mean_ns": 233.0623171951971
+    },
+    "cost_reduction_percent": 21.306078161706722,
+    "meets_20_percent_mean_target": true
+  }
+]

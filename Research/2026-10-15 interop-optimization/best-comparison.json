@@ -1,0 +1,46 @@
+[
+  {
+    "workload": "Literal",
+    "tedd_ns": 5.232756639512534,
+    "tedd_error_ns": 0.0017084327150147047,
+    "competitor": "Krauss",
+    "mode": "batch_shared",
+    "competitor_ns": 9.324899462413512,
+    "competitor_error_ns": 0.0034426897201130565,
+    "cost_reduction_percent": 43.88404228265891,
+    "meets_20_percent_mean_target": true
+  },
+  {
+    "workload": "Simple",
+    "tedd_ns": 4.562387870280893,
+    "tedd_error_ns": 0.0013513644234922747,
+    "competitor": "Krauss",
+    "mode": "batch_cloned",
+    "competitor_ns": 9.557404367783683,
+    "competitor_error_ns": 0.006978687544378347,
+    "cost_reduction_percent": 52.26331653749114,
+    "meets_20_percent_mean_target": true
+  },
+  {
+    "workload": "MultiStar",
+    "tedd_ns": 6.622103872465446,
+    "tedd_error_ns": 0.06238505940074545,
+    "competitor": "Krauss",
+    "mode": "batch_shared",
+    "competitor_ns": 9.581726504875826,
+    "competitor_error_ns": 0.04232134317907046,
+    "cost_reduction_percent": 30.88819776795263,
+    "meets_20_percent_mean_target": true
+  },
+  {
+    "workload": "LongText",
+    "tedd_ns": 183.40587772810355,
+    "tedd_error_ns": 1.8981509463303927,
+    "competitor": "Krauss",
+    "mode": "batch_shared",
+    "competitor_ns": 234.2873954643568,
+    "competitor_error_ns": 0.5977460113453134,
+    "cost_reduction_percent": 21.71756514489661,
+    "meets_20_percent_mean_target": true
+  }
+]

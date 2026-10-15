@@ -7,8 +7,10 @@ using System.Runtime.CompilerServices;
 namespace Tedd;
 
 /// <summary>Matches literal UTF-16 characters, '*' and '?' without a regular expression engine.</summary>
-public class WildcardMatch
+public unsafe class WildcardMatch
 {
+    private readonly delegate* managed<WildcardMatch, string, bool> _stringMatch;
+    private readonly ShortPattern? _packed;
     private readonly FixedPattern? _fixed;
     private readonly ShortPattern? _short;
     private readonly CompiledSegments? _segments;
@@ -151,6 +153,14 @@ public class WildcardMatch
             _prefix = WildcardEngine.GetPrefix(_matchPattern);
             _suffix = WildcardEngine.GetSuffix(_matchPattern);
         }
+        _packed = _short != null && _short.IsPacked ? _short : null;
+        // Bind the fallback once; common direct paths remain visible to callers
+        // that inline IsMatch, without inlining the full option engine.
+        _stringMatch = !_fast ? &MatchSlowString
+            : _literal ? &MatchLiteralString
+            : _fixed != null ? &MatchFixedString
+            : _short != null ? (_short.IsPacked ? &MatchPackedString : &MatchShortString)
+            : _segments != null ? &MatchSegmentsString : &MatchGeneralString;
     }
 
     /// <summary>Matches using call-local state; concurrent calls may reuse this instance.</summary>
@@ -158,9 +168,30 @@ public class WildcardMatch
     public bool IsMatch(string input)
     {
         if (input is null) throw new ArgumentNullException(nameof(input));
-        if (_fast) return MatchFast(input.AsSpan());
-        return WildcardEngine.IsMatch(input, _matchPattern, _options, _caseBehavior, _literal, _timeout, Wildcard, _prefix, _suffix, _leadingQuestions);
+        if (_fast)
+        {
+            if (_literal) return DefaultWildcardEngine.IsMatch(input.AsSpan(), _matchPattern.AsSpan(), false, true);
+            if (_fixed != null) return _fixed.IsMatch(input.AsSpan());
+            if (input.Length <= 32 && _packed != null) return _packed.MatchPacked(input.AsSpan());
+        }
+        return _stringMatch(this, input);
     }
+
+    private static bool MatchLiteralString(WildcardMatch matcher, string input) =>
+        DefaultWildcardEngine.IsMatch(input.AsSpan(), matcher._matchPattern.AsSpan(), false, true);
+    private static bool MatchFixedString(WildcardMatch matcher, string input) => matcher._fixed!.IsMatch(input.AsSpan());
+    // Packed shapes always have a segment plan for inputs beyond the short cap.
+    private static bool MatchPackedString(WildcardMatch matcher, string input) => input.Length <= 32
+        ? matcher._short!.MatchPacked(input.AsSpan()) : MatchSegmentsString(matcher, input);
+    private static bool MatchShortString(WildcardMatch matcher, string input) => input.Length <= 32
+        ? matcher._short!.IsMatch(input.AsSpan()) : matcher.MatchFast(input.AsSpan());
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static bool MatchSegmentsString(WildcardMatch matcher, string input) => matcher._segments!.IsMatch(input.AsSpan());
+    private static bool MatchGeneralString(WildcardMatch matcher, string input) => DefaultWildcardEngine.IsMatch(input.AsSpan(),
+        matcher._matchPattern.AsSpan(), (matcher._options & WildcardOptions.Singleline) != 0, false, matcher._prefix, matcher._suffix);
+    private static bool MatchSlowString(WildcardMatch matcher, string input) => WildcardEngine.IsMatch(input, matcher._matchPattern,
+        matcher._options, matcher._caseBehavior, matcher._literal, matcher._timeout, matcher.Wildcard,
+        matcher._prefix, matcher._suffix, matcher._leadingQuestions);
 
     /// <summary>Matches a borrowed input slice without copying or retaining it.</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

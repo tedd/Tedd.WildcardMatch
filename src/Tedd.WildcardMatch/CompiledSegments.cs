@@ -108,6 +108,24 @@ internal sealed class CompiledSegments
         return true;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private bool MatchesOutsideAnchor(ReadOnlySpan<char> input, in Segment segment, int position)
+    {
+        // IndexOf proved the complete literal anchor. Verify the surrounding
+        // positions, including question marks that must reject interior LF.
+        for (int i = 0; i < segment.Anchor; i++)
+        {
+            char token = _pattern[segment.Offset + i], value = input[position + i];
+            if (token == '?' ? !_singleline && value == '\n' : token != value) return false;
+        }
+        for (int i = segment.Anchor + segment.AnchorLength; i < segment.Length; i++)
+        {
+            char token = _pattern[segment.Offset + i], value = input[position + i];
+            if (token == '?' ? !_singleline && value == '\n' : token != value) return false;
+        }
+        return true;
+    }
+
     private bool Window(ReadOnlySpan<char> input)
     {
         if (input.Length < _minimum) return false;
@@ -172,7 +190,10 @@ internal sealed class CompiledSegments
                 }
                 if (!_singleline && input.Slice(checkedUntil, candidate - checkedUntil).IndexOf('\n') >= 0) return false;
                 checkedUntil = candidate;
-                if ((segment.Second < 0 || input[candidate + segment.Second] == _pattern[segment.Offset + segment.Second]) && Matches(input, in segment, candidate)) break;
+                // A complete literal anchor has already been compared by IndexOf.
+                if (segment.AnchorLength == segment.Length ||
+                    ((segment.Second < 0 || input[candidate + segment.Second] == _pattern[segment.Offset + segment.Second]) &&
+                     (segment.Anchor < 0 ? Matches(input, in segment, candidate) : MatchesOutsideAnchor(input, in segment, candidate)))) break;
                 if (segment.Anchor < 0) return false;
                 candidate++;
             }

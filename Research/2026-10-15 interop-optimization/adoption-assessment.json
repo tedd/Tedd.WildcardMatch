@@ -1,0 +1,10 @@
+{
+  "portfolio_benefit": true,
+  "targeted_multistar_benefit": true,
+  "all_17_noninferiority_guards": true,
+  "all_sessions_correct_quiescent": true,
+  "zero_measured_managed_allocation": true,
+  "all_four_mean_margins_at_least_20_percent": true,
+  "source_adoption_eligible": true,
+  "all_four_conservative_prior_native_margins_at_least_20_percent": false
+}

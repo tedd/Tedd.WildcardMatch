@@ -1,0 +1,282 @@
+[
+  {
+    "Library": "Krauss",
+    "Workload": "Literal",
+    "ShareInputs": false,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Krauss",
+    "Workload": "Simple",
+    "ShareInputs": false,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Krauss",
+    "Workload": "MultiStar",
+    "ShareInputs": false,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Krauss",
+    "Workload": "LongText",
+    "ShareInputs": false,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Krauss",
+    "Workload": "SeededAscii",
+    "ShareInputs": false,
+    "Checked": 16000,
+    "Failures": 0
+  },
+  {
+    "Library": "GitWildmatch",
+    "Workload": "Literal",
+    "ShareInputs": false,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "GitWildmatch",
+    "Workload": "Simple",
+    "ShareInputs": false,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "GitWildmatch",
+    "Workload": "MultiStar",
+    "ShareInputs": false,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "GitWildmatch",
+    "Workload": "LongText",
+    "ShareInputs": false,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "GitWildmatch",
+    "Workload": "SeededAscii",
+    "ShareInputs": false,
+    "Checked": 16000,
+    "Failures": 0
+  },
+  {
+    "Library": "ZemaWildcards",
+    "Workload": "Literal",
+    "ShareInputs": false,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "ZemaWildcards",
+    "Workload": "Simple",
+    "ShareInputs": false,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "ZemaWildcards",
+    "Workload": "MultiStar",
+    "ShareInputs": false,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "ZemaWildcards",
+    "Workload": "LongText",
+    "ShareInputs": false,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "ZemaWildcards",
+    "Workload": "SeededAscii",
+    "ShareInputs": false,
+    "Checked": 16000,
+    "Failures": 0
+  },
+  {
+    "Library": "Pcre2Jit",
+    "Workload": "Literal",
+    "ShareInputs": false,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Pcre2Jit",
+    "Workload": "Simple",
+    "ShareInputs": false,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Pcre2Jit",
+    "Workload": "MultiStar",
+    "ShareInputs": false,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Pcre2Jit",
+    "Workload": "LongText",
+    "ShareInputs": false,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Pcre2Jit",
+    "Workload": "SeededAscii",
+    "ShareInputs": false,
+    "Checked": 16000,
+    "Failures": 0
+  },
+  {
+    "Library": "Krauss",
+    "Workload": "Literal",
+    "ShareInputs": true,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Krauss",
+    "Workload": "Simple",
+    "ShareInputs": true,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Krauss",
+    "Workload": "MultiStar",
+    "ShareInputs": true,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Krauss",
+    "Workload": "LongText",
+    "ShareInputs": true,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Krauss",
+    "Workload": "SeededAscii",
+    "ShareInputs": true,
+    "Checked": 16000,
+    "Failures": 0
+  },
+  {
+    "Library": "GitWildmatch",
+    "Workload": "Literal",
+    "ShareInputs": true,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "GitWildmatch",
+    "Workload": "Simple",
+    "ShareInputs": true,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "GitWildmatch",
+    "Workload": "MultiStar",
+    "ShareInputs": true,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "GitWildmatch",
+    "Workload": "LongText",
+    "ShareInputs": true,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "GitWildmatch",
+    "Workload": "SeededAscii",
+    "ShareInputs": true,
+    "Checked": 16000,
+    "Failures": 0
+  },
+  {
+    "Library": "ZemaWildcards",
+    "Workload": "Literal",
+    "ShareInputs": true,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "ZemaWildcards",
+    "Workload": "Simple",
+    "ShareInputs": true,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "ZemaWildcards",
+    "Workload": "MultiStar",
+    "ShareInputs": true,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "ZemaWildcards",
+    "Workload": "LongText",
+    "ShareInputs": true,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "ZemaWildcards",
+    "Workload": "SeededAscii",
+    "ShareInputs": true,
+    "Checked": 16000,
+    "Failures": 0
+  },
+  {
+    "Library": "Pcre2Jit",
+    "Workload": "Literal",
+    "ShareInputs": true,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Pcre2Jit",
+    "Workload": "Simple",
+    "ShareInputs": true,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Pcre2Jit",
+    "Workload": "MultiStar",
+    "ShareInputs": true,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Pcre2Jit",
+    "Workload": "LongText",
+    "ShareInputs": true,
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Pcre2Jit",
+    "Workload": "SeededAscii",
+    "ShareInputs": true,
+    "Checked": 16000,
+    "Failures": 0
+  }
+]

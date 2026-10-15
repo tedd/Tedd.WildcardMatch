@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "status": "ok",
+  "data": {
+    "id": "decision-5cddc3fc91d644cf9cf268e544239032",
+    "comparison_id": "cmp-2f5ad69f56db2b8fe5f3609cda8718756c77df3a1ea4e57c1bc18b1c25697e3a",
+    "action": "adopt",
+    "rationale": "Source review uses epoch 5 representative-delegate normal-build confirmation of production source frozen in epoch 4. Useful portfolio and multi-star benefit, all seventeen predefined five-percent noninferiority guards, correct joined sessions and zero measured allocation: True. External mean target across all native storage/interop modes: True. Conservative earlier-native twenty-percent target: False. All individual comparison IDs: cmp-2f5ad69f56db2b8fe5f3609cda8718756c77df3a1ea4e57c1bc18b1c25697e3a, cmp-2fea427a056795ee8b47acfa0cc09ef982442e2540a2c31c6d292baaeb745ab0, cmp-58ec3a53d484b6c8a77167d5a958460415e158f383a5bb0c924101472a55d968, cmp-8b64352981896b2754ed759c4d43be144c2d1afbd5f0fe062ef23bf64807bd42, cmp-49495b4d4667cb68f621727b758218eac8a3530dd4d75e674b65072cf461eba6, cmp-7df41b035415712551b3ef4752fe7685056d1dc49ec011c21856bd71a3244992, cmp-51f1f9885090f0916d2ba51794a657cd8421a16e1f1a71ee5b24e275fd0e8623, cmp-eb253a9217e1bc6cf48ad138b4e0cbafcf5cf604ce8bb966c9100a5b5c7d2a6d, cmp-f8913b71e8ef51dce877f712b16dd1f177d092a7dbcdf71689bfd54b315877b6, cmp-39100a0aa2c0399cf78af47474e106146b7cfc54526e1f099d2e73b11481e3af, cmp-4bbaa5e5b5cc44c000088413a27af9a43b013d34cf3def305a34b2172f85027a, cmp-043302ae5e868923b4e138b55d920e18ffde885ff9b7f05f9237eabb3a34e79b, cmp-2f79faa877f6caed4b36f1d21b4a57791c7a0a6a687fb61c0ba69c0dbee33a81, cmp-6c86c550ee5d393a5c09a91c0cd715653057855d436e5761ac98c494fb20ecbb, cmp-09f2faa61a9f115f6b7eebe71454dfc59483184ee764ce0a89e5bf0473102aa8, cmp-4125a3516f2d23b8271e5977c97e4fa85bca30f4513fd6588f7305f5e64ab2bc, cmp-43066ac1532f65f43fa085129779678a32a3879c5e166345d70f0fbfdc4ad2cf. Earlier epochs are retained separately and are not pooled."
+  },
+  "code": null,
+  "message": null,
+  "recovery": null
+}

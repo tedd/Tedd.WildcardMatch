@@ -1,0 +1,370 @@
+[
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "greedy",
+    "ratios": {
+      "MultiStar": 1.250188391114164,
+      "Diverse": 1.0315630493003978,
+      "LongText": 0.9695423385354491
+    },
+    "disposition": "Rejected: slower short-star route.",
+    "execution_ids": [
+      "exec-ab212347e1354eadb88b889836b74771",
+      "exec-560b4a6b9bb14834ab779a95e90bf61d",
+      "exec-f1af843c8b3f4770854a05946030deb4"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "early",
+    "ratios": {
+      "MultiStar": 0.9787206136862641,
+      "Diverse": 0.8922435552147928,
+      "LongText": 1.0058042180656803
+    },
+    "disposition": "Rejected: early bitmap acceptance provided little benefit.",
+    "execution_ids": [
+      "exec-61b0d506bb21464a82b16eb912090eb9",
+      "exec-707f62556ed54adaa3bd07c9244dadc4",
+      "exec-ff759bcd5b854ade9fca272ef3e194f2"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "segments",
+    "ratios": {
+      "MultiStar": 1.513450326587162,
+      "Diverse": 0.8391814629349476,
+      "LongText": 0.9780089728125387
+    },
+    "disposition": "Rejected: compiled-segment setup/dispatch increased short-input cost.",
+    "execution_ids": [
+      "exec-669a5d9305bf4b0da2b2e1730ddd63b6",
+      "exec-035c404cf9dc4dbb862d8ecfb1a256ec",
+      "exec-c9d301215fa74fc282a69d30e1ac77e9"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "lfscan",
+    "ratios": {
+      "MultiStar": 0.9790155543411757,
+      "Diverse": 0.6711308004156197,
+      "LongText": 1.1983468698063136
+    },
+    "disposition": "Rejected: unconditional newline prepass regressed long text.",
+    "execution_ids": [
+      "exec-731c0982f88945d4a1466ae064d3143d",
+      "exec-a9fcc97591724f83964bfe7ea37ff899",
+      "exec-c704b7a10b144409a5936fe3fb4d6cc8"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "packed",
+    "ratios": {
+      "MultiStar": 0.49052598995369107,
+      "Diverse": 0.6046748878383095,
+      "LongText": 0.9571421205899487
+    },
+    "disposition": "Intermediate: prepared first-segment mask and scalar search.",
+    "execution_ids": [
+      "exec-119156b2a2c244dfbecf7b5d031a10e1",
+      "exec-740af29062b5454ca13ac7a52b20e50f",
+      "exec-fc6138bcf67c46b08253983549ea4fb3"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "packedlate",
+    "ratios": {
+      "MultiStar": 0.43534600094638926,
+      "Diverse": 0.7171185210942241,
+      "LongText": 0.9497426248541291
+    },
+    "disposition": "Intermediate: defer newline validation until candidate success.",
+    "execution_ids": [
+      "exec-567b6aa57d134bfab8c7110929e8d456",
+      "exec-32b67f0e485d4b27a1ee675528f75a76",
+      "exec-662ed8441337406b995f7fe97f58edbb"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "packedwords",
+    "ratios": {
+      "MultiStar": 0.437411668348567,
+      "Diverse": 0.7588178733440033,
+      "LongText": 1.0570547377972936
+    },
+    "disposition": "Intermediate: word comparisons replace per-character segment tests.",
+    "execution_ids": [
+      "exec-3560fc40261c423b855c3336e48cb454",
+      "exec-83bd79b692524d13bb0471f8434ca095",
+      "exec-1608026105584352b457836ba5b8d6ab"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "packedtail",
+    "ratios": {
+      "MultiStar": 0.4220829080799887,
+      "Diverse": 0.6878612627581893,
+      "LongText": 1.0020786673372393
+    },
+    "disposition": "Intermediate: bound first-segment search by the rightmost tail.",
+    "execution_ids": [
+      "exec-aac573ad9b4b41399e396aa9f74c8370",
+      "exec-7f94ad570698440f8a004bfaad4e5abc",
+      "exec-c964310e768745d58e7aa45e23129927"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "knownanchor",
+    "ratios": {
+      "MultiStar": 1.010775508046989,
+      "Diverse": 1.0034960029084685,
+      "LongText": 0.9742206098371606
+    },
+    "disposition": "Combined: avoid re-comparing an already completed literal anchor.",
+    "execution_ids": [
+      "exec-e2b989e33f344ce9b995a416ef7e068c",
+      "exec-7fc7c8fdec6b4f8a8ba8227eb58fc348",
+      "exec-5f864c1cc5634b39bdeff5e8d6558175"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "packedsimd",
+    "ratios": {
+      "MultiStar": 0.3861347740121402,
+      "Diverse": 0.7109350442163248,
+      "LongText": 1.0269248927845638
+    },
+    "disposition": "Intermediate: bounded vector tail lookup.",
+    "execution_ids": [
+      "exec-171b3de4f02445d9a17f434daea060f6",
+      "exec-59ff3807866a479f91c91a2e08ee74e7",
+      "exec-d15d8effb2f74fa3b3fa724f2b318c47"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "combined",
+    "ratios": {
+      "Literal": 1.0209576468376738,
+      "Simple": 1.077674719805457,
+      "MultiStar": 0.39939996249010323,
+      "LongText": 0.9342875395114627,
+      "Diverse": 0.7065182585812447,
+      "Dense4096": 0.9188562428190973,
+      "Dense16384": 0.8421228932777314,
+      "Newline": 0.8919994269098692
+    },
+    "disposition": "Intermediate: vector short matcher plus literal-anchor proof.",
+    "execution_ids": [
+      "exec-bdd7df13a0984c57affb14c3a7fcd7aa",
+      "exec-2da8a71d430f43eabe0504af6879bed7",
+      "exec-db4fe2ed6408433eb798b2f6a22883d3",
+      "exec-ce245f0953b64314b1510654ddaec942",
+      "exec-2a7c4acd96cb4027a7919ddf997abed3",
+      "exec-bd8d17ea2ff64911896c46aa274ad894",
+      "exec-8da8a36d376a49aaa07cca198363beb0",
+      "exec-d032b118aaa34503a1b3533b19836e46"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "dispatch",
+    "ratios": {
+      "Literal": 1.1342366998013071,
+      "Simple": 1.066398941139915,
+      "MultiStar": 0.4060929546535352,
+      "LongText": 0.9874356601913674,
+      "Diverse": 0.6177693936824227
+    },
+    "disposition": "Rejected: large constructor-selected switch regressed literals.",
+    "execution_ids": [
+      "exec-c0724e39216146df8952546da2b3e950",
+      "exec-d161bf079d5c4199a83794ba870469df",
+      "exec-e07a9899d4154c5aa1f3e72c504bacd5",
+      "exec-8155d04e57cb4779b233a1e733f099c4",
+      "exec-e4b4f978add34ade990a4ba5a59e906a"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "packedvectorword",
+    "ratios": {
+      "MultiStar": 0.3284485885962583,
+      "Diverse": 0.5936793642771158,
+      "LongText": 1.035700128603331
+    },
+    "disposition": "Intermediate: vector tail lookup plus word comparisons.",
+    "execution_ids": [
+      "exec-73f80750001a44248c9e8c5338bf8113",
+      "exec-2123a9954b274afcbc7fa207dc42d273",
+      "exec-14a9e6d2b1654071818ecb9a0e679755"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "nopin",
+    "ratios": {
+      "MultiStar": 0.3410605674645848,
+      "Diverse": 0.6371619146899417,
+      "LongText": 0.9382119376529006
+    },
+    "disposition": "Combined: managed byrefs eliminate fixed-pointer pinning.",
+    "execution_ids": [
+      "exec-020ac40306574b9182f2126090d21361",
+      "exec-c55098f1f11a4fa8b84cb780be5e79d8",
+      "exec-f8b342e7dedc49cf9d1a0f743777429f"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "hotsplit",
+    "ratios": {
+      "MultiStar": 0.3252565393770481,
+      "Diverse": 0.6634912628910463,
+      "LongText": 1.0455897749877985
+    },
+    "disposition": "Intermediate: keep option engine off the direct path.",
+    "execution_ids": [
+      "exec-b359b00e78de42db938e8eded77df0c9",
+      "exec-c945387419e741199b85b79734bf777c",
+      "exec-9915710d92404b578d4660d9a6a6fefc"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "lazytail",
+    "ratios": {
+      "MultiStar": 0.3450981979800859,
+      "Diverse": 0.6542168998686484,
+      "LongText": 0.9960476030162857
+    },
+    "disposition": "Rejected: scalar-tail alternative had weaker caller results.",
+    "execution_ids": [
+      "exec-195cf94126024104b4f0d1186bc88454",
+      "exec-2faeffb257274f6a9091feda3d95b069",
+      "exec-a6cfa72fb5ef4704a8ea3d27d5e74ff2"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "taildispatch",
+    "ratios": {
+      "Literal": 1.215516958535979,
+      "Simple": 1.101072649954272,
+      "MultiStar": 0.35591771093479285,
+      "LongText": 0.9531309684316689,
+      "Diverse": 0.5701381374747313
+    },
+    "disposition": "Rejected as sole dispatch policy: literal/question-mark guardrails regressed.",
+    "execution_ids": [
+      "exec-f996c5d0d9d7430a8c925b2e27bb0770",
+      "exec-43926a0916ba4095b913926a25b77294",
+      "exec-79f5efa6e75740b8b61d24a4c2b94674",
+      "exec-76dbed460fce4b178cb38271a6333428",
+      "exec-0865f0d4febf4a9b9f8190cf3c42f1bc"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "hybrid",
+    "ratios": {
+      "Literal": 1.0004949056375607,
+      "Simple": 0.8606660706412895,
+      "MultiStar": 0.3191786759196079,
+      "LongText": 0.9616927007889446,
+      "Diverse": 0.63408330645959
+    },
+    "disposition": "Intermediate: preserve direct literal/fixed paths and split scalar fallback.",
+    "execution_ids": [
+      "exec-98ed6627ad964a32ab0dd44c9f852972",
+      "exec-91a4d0d9ca704557ab352e049347937b",
+      "exec-3ceb8f4124924053b55b55bca59d39da",
+      "exec-c93ee1518a864192bb9031faf5a07e48",
+      "exec-14a3ff9a007442329965e9656c5a5f68"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "hybriddirect",
+    "ratios": {
+      "Literal": 0.9532345182650399,
+      "Simple": 0.873480942070492,
+      "MultiStar": 0.29473094506433983,
+      "LongText": 1.0369645339443645,
+      "Diverse": 0.6398031098501937
+    },
+    "disposition": "Selected for frozen confirmation: direct prepared short path plus bound fallback.",
+    "execution_ids": [
+      "exec-ff66ddd785f440429110ff3c634280c9",
+      "exec-a156e8ef0eec40e8a6f98ec589da6d0a",
+      "exec-1cd473ffb6554b79accc859fcb857a1f",
+      "exec-93d48a5de0df4390869e0c07a12678c9",
+      "exec-c37e80fa38e14944b45031005621dc39"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "directsplit",
+    "ratios": {
+      "Literal": 0.8310330293053594,
+      "Simple": 0.6986186483786425,
+      "MultiStar": 0.33169580911117263,
+      "LongText": 1.0357883954778864,
+      "Diverse": 0.6754910756123365
+    },
+    "disposition": "Rejected: additional FixedPattern code restructuring was unnecessary for selected treatment.",
+    "execution_ids": [
+      "exec-bf3dc57f1af9422d8a17b01252d2d30e",
+      "exec-9c793d0ea1294e0aaef14f089415f685",
+      "exec-ae2dc4a5909e4e6c9fa04caa2715e890",
+      "exec-8cae56f767434958a895f0a99fab1947",
+      "exec-5f4a55e8430b4d5582b45321de4ca99d"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "earlylong",
+    "ratios": {
+      "Literal": 1.0949664210654542,
+      "Simple": 0.9256776913828451,
+      "MultiStar": 0.2572656107891101,
+      "LongText": 0.9649405281628485,
+      "Diverse": 0.6132378939496314
+    },
+    "disposition": "Rejected: routing long inputs before short direct guards weakened caller results.",
+    "execution_ids": [
+      "exec-6ea2597635514859a73a2795e2dfbcf1",
+      "exec-0117eb370131452cbae0380a3ced9a17",
+      "exec-8b1c49214441495cbdff2c46033a0063",
+      "exec-91ddb7e2556f4a4596d456f40d4808e2",
+      "exec-09742c6a83c14b36ae7867ea854667e7"
+    ]
+  },
+  {
+    "timing_validity": "epoch1_confounded_external_parallel_benchmarks",
+    "candidate": "literalhot",
+    "ratios": {
+      "Literal": 0.9549276010181923,
+      "Simple": 1.482163775198905,
+      "MultiStar": 0.30769876478854286,
+      "LongText": 1.0246420947622135,
+      "Diverse": 0.7095759123283772
+    },
+    "disposition": "Rejected: direct literal-only route regressed simple matching.",
+    "execution_ids": [
+      "exec-93a1953ef55b4691827dcd2bd12d3b99",
+      "exec-3cd8c3dab71e4da1b4dece78b1ff519f",
+      "exec-4ae03bdca535430f8dc158ad31b8433f",
+      "exec-4c4296fe64454dc6941c60d8d0fc4251",
+      "exec-899dc9a79b234f0dab84a58b73fbbd11"
+    ]
+  }
+]
