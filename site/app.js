@@ -20,7 +20,7 @@ document.querySelectorAll("[data-copy-target]").forEach((button) => {
 
 const comparisonCharts = document.querySelectorAll("[data-comparison-chart]");
 if (comparisonCharts.length) {
-  const dataRequest = fetch("assets/package-comparison.json?v=2.2.0").then((response) => {
+  const dataRequest = fetch("assets/package-comparison.json?v=2.3.0").then((response) => {
     if (!response.ok) throw new Error("Comparison data unavailable");
     return response.json();
   });
@@ -31,7 +31,13 @@ if (comparisonCharts.length) {
       try {
         const data = await dataRequest;
         const workload = data.workloads.find((item) => item.name === fixtureSelect.value && item.inputGroup === chart.dataset.comparisonChart);
-        const rows = data.matching.filter((item) => item.workload === workload.name).sort((a, b) => a.meanNs - b.meanNs);
+        const bestByLibrary = new Map();
+        data.matching.filter((item) => item.workload === workload.name).forEach((row) => {
+          if (!bestByLibrary.has(row.library) || row.meanNs < bestByLibrary.get(row.library).meanNs) {
+            bestByLibrary.set(row.library, row);
+          }
+        });
+        const rows = [...bestByLibrary.values()].sort((a, b) => a.meanNs - b.meanNs);
         const peak = 1000 / rows[0].meanNs;
         const direct = rows.find((row) => row.library === "TeddDirectReused");
         const competitor = rows.find((row) => !row.library.startsWith("Tedd"));
@@ -44,7 +50,7 @@ if (comparisonCharts.length) {
           const element = document.createElement("div");
           element.className = `bar-row${own ? " comparison-ours" : ""}`;
           const name = document.createElement("span");
-          name.textContent = data.libraries[row.library].label;
+          name.textContent = data.libraries[row.library].label + (row.mode === "managed" ? "" : ` · ${row.mode}`);
           const track = document.createElement("div");
           track.className = "bar-track";
           const bar = document.createElement("i");

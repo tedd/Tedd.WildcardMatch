@@ -5,7 +5,7 @@
 		<Description>High-performance UTF-16 wildcard matching with string and span APIs.</Description>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageTags>wildcard;matching;pattern;star;questionmark</PackageTags>
-		<Version>2.2.0</Version>
+		<Version>2.3.0</Version>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<PackageProjectUrl>https://github.com/tedd/Tedd.WildcardMatch</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/tedd/Tedd.WildcardMatch.git</RepositoryUrl>

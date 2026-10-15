@@ -10,8 +10,8 @@
   <meta property="og:type" content="website">
   <title>Tedd.WildcardMatch — wildcard matching for .NET</title>
   <link rel="icon" href="assets/wildcard-icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=2.2.0-2">
-  <script src="app.js?v=2.2.0-2" defer></script>
+  <link rel="stylesheet" href="styles.css?v=2.3.0">
+  <script src="app.js?v=2.3.0" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -26,7 +26,7 @@
         <p class="eyebrow"><span></span> Pattern matching for .NET</p>
         <h1>Highly optimized.<br><em>Fast wildcard matching.</em></h1>
         <p class="lede">Match strings and character spans with <code>*</code> and <code>?</code>. Choose direct <code>WildcardMatch</code> execution or the <code>WildcardMatchRegex</code> string engine, with reusable matchers, case options, and explicit timeouts.</p>
-        <p class="hero-evidence"><strong>4.24× the throughput of the next-fastest tested library</strong> for the reusable direct matcher in our question-mark benchmark. <a href="#benchmarks">Compare the measured workloads</a>.</p>
+        <p class="hero-evidence"><strong>2.09× the throughput of the next-fastest tested library</strong> for the reusable direct matcher in our question-mark benchmark. <a href="#benchmarks">Compare the measured workloads</a>.</p>
         <div class="hero-badges">
           <a href="https://www.nuget.org/packages/Tedd.WildcardMatch"><img src="https://img.shields.io/nuget/v/Tedd.WildcardMatch?logo=nuget&amp;label=NuGet" alt="NuGet package version" height="20"></a>
           <a href="https://github.com/tedd/Tedd.WildcardMatch/actions/workflows/nuget-publish.yml"><img src="https://github.com/tedd/Tedd.WildcardMatch/actions/workflows/nuget-publish.yml/badge.svg?branch=main" alt="Build and test status" height="20"></a>
@@ -120,8 +120,8 @@ bool third = matcher.IsMatch(input);</code></pre></div>
     </section>
     <section class="section-shell benchmark-section" id="benchmarks">
       <div class="section-intro"><div><p class="eyebrow">Measured on .NET 10</p><h2>Short strings.<br>Long strings.</h2></div><p>Compare matching throughput across short inputs and strings over 1,000 characters. Select a short-string pattern to see literal, question-mark, and multi-star workloads. Higher bars mean faster matching.</p></div>
-      <p class="model-note">Both engines receive identical string inputs: direct static and reused calls, plus Regex static, reused, and compiled calls. Reused instances are prepared before timing; static calls include their per-call setup.</p>
-      <p class="model-note">Each graph includes every tested library and API. Full results, confidence intervals, and construction costs are available in the linked reports.</p>
+      <p class="model-note">Compare direct static and reused calls, Regex static, reused and compiled calls, three managed packages, and native Krauss, Git wildmatch, Zema wildcards and PCRE2 JIT. Reused instances are prepared before timing; static calls include their per-call setup.</p>
+      <p class="model-note">Each graph shows every managed API and the fastest measured call/storage mode for each native library. The tables include all 110 cases: 100 matching comparisons, eight construction cases and two transition controls. Native buffer modes and suppressed calls remain individually visible.</p>
       <!-- BENCHMARK_CONTENT_START -->
 <div class="chart-grid">
 <div class="benchmark-chart" data-comparison-chart="short"><div class="benchmark-controls"><label for="comparison-fixture-short">Short strings</label><select id="comparison-fixture-short" data-fixture-select>
@@ -129,33 +129,159 @@ bool third = matcher.IsMatch(input);</code></pre></div>
 <option value="Simple" selected>Question marks</option>
 <option value="MultiStar">Multiple stars</option>
 </select><span>4–16 UTF-16 code units</span></div><figure class="bar-chart package-chart"><figcaption><span>Short strings · matching throughput</span><strong data-chart-workload>Question marks</strong><small>Pattern: <code data-chart-pattern>report-??.txt</code> · millions of matches/s</small></figcaption><div data-chart-rows aria-live="polite">
-<div class="bar-row comparison-ours"><span>Tedd direct &#183; reused</span><div class="bar-track"><i class="bar ours" style="width:100.00%"></i></div><b>188.05</b></div>
-<div class="bar-row comparison-ours"><span>Tedd direct &#183; static</span><div class="bar-track"><i class="bar ours" style="width:27.98%"></i></div><b>52.62</b></div>
-<div class="bar-row"><span>DotNet.Glob</span><div class="bar-track"><i class="bar other" style="width:23.59%"></i></div><b>44.35</b></div>
-<div class="bar-row"><span>WildcardMatch</span><div class="bar-track"><i class="bar other" style="width:14.79%"></i></div><b>27.81</b></div>
-<div class="bar-row comparison-ours"><span>Tedd Regex &#183; compiled</span><div class="bar-track"><i class="bar ours" style="width:14.23%"></i></div><b>26.75</b></div>
-<div class="bar-row comparison-ours"><span>Tedd Regex &#183; reused</span><div class="bar-track"><i class="bar ours" style="width:6.41%"></i></div><b>12.05</b></div>
-<div class="bar-row"><span>FastWildcard</span><div class="bar-track"><i class="bar other" style="width:6.32%"></i></div><b>11.88</b></div>
-<div class="bar-row comparison-ours"><span>Tedd Regex &#183; static</span><div class="bar-track"><i class="bar ours" style="width:2.89%"></i></div><b>5.44</b></div>
-</div></figure><p class="chart-summary">Reusable direct matcher: <strong data-direct-speedup>4.24×</strong> the throughput of the next-fastest tested library on this workload.</p></div>
+<div class="bar-row comparison-ours"><span>Tedd direct &#183; reused</span><div class="bar-track"><i class="bar ours" style="width:100.00%"></i></div><b>219.18</b></div>
+<div class="bar-row"><span>Krauss &#183; batch_cloned</span><div class="bar-track"><i class="bar other" style="width:47.74%"></i></div><b>104.63</b></div>
+<div class="bar-row"><span>PCRE2 JIT &#183; batch_cloned</span><div class="bar-track"><i class="bar other" style="width:28.19%"></i></div><b>61.79</b></div>
+<div class="bar-row comparison-ours"><span>Tedd direct &#183; static</span><div class="bar-track"><i class="bar ours" style="width:23.82%"></i></div><b>52.21</b></div>
+<div class="bar-row"><span>DotNet.Glob</span><div class="bar-track"><i class="bar other" style="width:20.55%"></i></div><b>45.05</b></div>
+<div class="bar-row"><span>Git wildmatch &#183; batch_cloned</span><div class="bar-track"><i class="bar other" style="width:15.76%"></i></div><b>34.54</b></div>
+<div class="bar-row"><span>WildcardMatch</span><div class="bar-track"><i class="bar other" style="width:13.03%"></i></div><b>28.55</b></div>
+<div class="bar-row comparison-ours"><span>Tedd Regex &#183; compiled</span><div class="bar-track"><i class="bar ours" style="width:12.19%"></i></div><b>26.71</b></div>
+<div class="bar-row"><span>Zema wildcards &#183; batch_cloned</span><div class="bar-track"><i class="bar other" style="width:5.62%"></i></div><b>12.31</b></div>
+<div class="bar-row comparison-ours"><span>Tedd Regex &#183; reused</span><div class="bar-track"><i class="bar ours" style="width:5.54%"></i></div><b>12.14</b></div>
+<div class="bar-row"><span>FastWildcard</span><div class="bar-track"><i class="bar other" style="width:5.48%"></i></div><b>12.00</b></div>
+<div class="bar-row comparison-ours"><span>Tedd Regex &#183; static</span><div class="bar-track"><i class="bar ours" style="width:2.73%"></i></div><b>5.98</b></div>
+</div></figure><p class="chart-summary">Reusable direct matcher: <strong data-direct-speedup>2.09×</strong> the throughput of the next-fastest tested library on this workload.</p></div>
 <div class="benchmark-chart" data-comparison-chart="long"><div class="benchmark-controls"><label for="comparison-fixture-long">Long strings</label><select id="comparison-fixture-long" data-fixture-select>
 <option value="LongText" selected>Long text</option>
 </select><span>Every input exceeds 1,000 UTF-16 code units</span></div><figure class="bar-chart package-chart"><figcaption><span>Long strings · matching throughput</span><strong data-chart-workload>Long text</strong><small>Pattern: <code data-chart-pattern>*alpha*beta??*omega*</code> · millions of matches/s</small></figcaption><div data-chart-rows aria-live="polite">
-<div class="bar-row comparison-ours"><span>Tedd direct &#183; reused</span><div class="bar-track"><i class="bar ours" style="width:100.00%"></i></div><b>4.47</b></div>
-<div class="bar-row"><span>FastWildcard</span><div class="bar-track"><i class="bar other" style="width:85.37%"></i></div><b>3.81</b></div>
-<div class="bar-row comparison-ours"><span>Tedd direct &#183; static</span><div class="bar-track"><i class="bar ours" style="width:74.92%"></i></div><b>3.35</b></div>
-<div class="bar-row comparison-ours"><span>Tedd Regex &#183; compiled</span><div class="bar-track"><i class="bar ours" style="width:48.68%"></i></div><b>2.17</b></div>
-<div class="bar-row"><span>DotNet.Glob</span><div class="bar-track"><i class="bar other" style="width:3.12%"></i></div><b>0.14</b></div>
-<div class="bar-row"><span>WildcardMatch</span><div class="bar-track"><i class="bar other" style="width:1.56%"></i></div><b>0.07</b></div>
-<div class="bar-row comparison-ours"><span>Tedd Regex &#183; reused</span><div class="bar-track"><i class="bar ours" style="width:0.91%"></i></div><b>0.04</b></div>
-<div class="bar-row comparison-ours"><span>Tedd Regex &#183; static</span><div class="bar-track"><i class="bar ours" style="width:0.89%"></i></div><b>0.04</b></div>
-</div></figure><p class="chart-summary">Reusable direct matcher: <strong data-direct-speedup>1.17×</strong> the throughput of the next-fastest tested library on this workload.</p></div>
+<div class="bar-row comparison-ours"><span>Tedd direct &#183; reused</span><div class="bar-track"><i class="bar ours" style="width:100.00%"></i></div><b>5.45</b></div>
+<div class="bar-row comparison-ours"><span>Tedd direct &#183; static</span><div class="bar-track"><i class="bar ours" style="width:82.50%"></i></div><b>4.50</b></div>
+<div class="bar-row"><span>Krauss &#183; batch_shared</span><div class="bar-track"><i class="bar other" style="width:78.28%"></i></div><b>4.27</b></div>
+<div class="bar-row"><span>FastWildcard</span><div class="bar-track"><i class="bar other" style="width:65.12%"></i></div><b>3.55</b></div>
+<div class="bar-row comparison-ours"><span>Tedd Regex &#183; compiled</span><div class="bar-track"><i class="bar ours" style="width:46.32%"></i></div><b>2.53</b></div>
+<div class="bar-row"><span>Git wildmatch &#183; batch_shared</span><div class="bar-track"><i class="bar other" style="width:21.80%"></i></div><b>1.19</b></div>
+<div class="bar-row"><span>PCRE2 JIT &#183; batch_shared</span><div class="bar-track"><i class="bar other" style="width:12.51%"></i></div><b>0.68</b></div>
+<div class="bar-row"><span>DotNet.Glob</span><div class="bar-track"><i class="bar other" style="width:2.51%"></i></div><b>0.14</b></div>
+<div class="bar-row"><span>WildcardMatch</span><div class="bar-track"><i class="bar other" style="width:1.36%"></i></div><b>0.07</b></div>
+<div class="bar-row"><span>Zema wildcards &#183; batch_shared</span><div class="bar-track"><i class="bar other" style="width:0.83%"></i></div><b>0.05</b></div>
+<div class="bar-row comparison-ours"><span>Tedd Regex &#183; reused</span><div class="bar-track"><i class="bar ours" style="width:0.75%"></i></div><b>0.04</b></div>
+<div class="bar-row comparison-ours"><span>Tedd Regex &#183; static</span><div class="bar-track"><i class="bar ours" style="width:0.75%"></i></div><b>0.04</b></div>
+</div></figure><p class="chart-summary">Reusable direct matcher: <strong data-direct-speedup>1.28×</strong> the throughput of the next-fastest tested library on this workload.</p></div>
 </div>
+<div class="comparison-exclusion"><strong>Scope and API lifetime</strong><p>Reusable Tedd matching has the lowest mean on all four fixtures in this run. Static Tedd calls remain slower than Krauss on short fixtures. Across earlier native builds, the conservative MultiStar advantage is 18.33%; a uniform 20% reduction is not established. Earlier-build samples are separate and are not pooled into this run.</p></div>
+<div class="results-panel"><div class="results-heading"><h3>All matching comparisons</h3><p>100 cases · lower time is better</p></div><div class="table-scroll"><table><caption>Every managed and native matching call and storage mode</caption><thead><tr><th scope="col">Workload</th><th scope="col">Implementation</th><th scope="col">Call / storage</th><th scope="col">Mean ns</th><th scope="col">Error ± ns</th><th scope="col">Managed B/match</th></tr></thead><tbody>
+<tr class="comparison-ours"><th scope="row">Literal</th><td>Tedd direct &#183; reused</td><td>managed</td><td>5.233</td><td>0.002</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Krauss</td><td>batch_shared</td><td>9.325</td><td>0.003</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Krauss</td><td>batch_cloned</td><td>9.420</td><td>0.179</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Krauss</td><td>suppressed_cloned</td><td>10.516</td><td>0.007</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Krauss</td><td>suppressed_shared</td><td>10.809</td><td>0.003</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Krauss</td><td>normal_cloned</td><td>11.116</td><td>0.010</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Krauss</td><td>normal_shared</td><td>11.413</td><td>0.005</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Literal</th><td>Tedd direct &#183; static</td><td>managed</td><td>14.100</td><td>0.019</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>PCRE2 JIT</td><td>batch_shared</td><td>15.810</td><td>0.006</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>DotNet.Glob</td><td>managed</td><td>15.868</td><td>0.026</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>PCRE2 JIT</td><td>batch_cloned</td><td>16.053</td><td>0.077</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Git wildmatch</td><td>batch_shared</td><td>26.025</td><td>0.021</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Git wildmatch</td><td>batch_cloned</td><td>26.262</td><td>0.322</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Git wildmatch</td><td>suppressed_cloned</td><td>27.235</td><td>0.021</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Git wildmatch</td><td>suppressed_shared</td><td>27.478</td><td>0.009</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Git wildmatch</td><td>normal_cloned</td><td>27.814</td><td>0.013</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Git wildmatch</td><td>normal_shared</td><td>28.173</td><td>0.011</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>WildcardMatch</td><td>managed</td><td>29.964</td><td>0.062</td><td>48</td></tr>
+<tr class="comparison-ours"><th scope="row">Literal</th><td>Tedd Regex &#183; compiled</td><td>managed</td><td>36.500</td><td>0.223</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>FastWildcard</td><td>managed</td><td>74.317</td><td>0.687</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Zema wildcards</td><td>batch_cloned</td><td>78.486</td><td>0.555</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Zema wildcards</td><td>suppressed_cloned</td><td>78.923</td><td>0.899</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Zema wildcards</td><td>batch_shared</td><td>79.615</td><td>1.495</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Zema wildcards</td><td>normal_cloned</td><td>79.641</td><td>0.459</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Zema wildcards</td><td>normal_shared</td><td>79.766</td><td>0.591</td><td>0</td></tr>
+<tr><th scope="row">Literal</th><td>Zema wildcards</td><td>suppressed_shared</td><td>80.353</td><td>1.980</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Literal</th><td>Tedd Regex &#183; reused</td><td>managed</td><td>87.401</td><td>0.203</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Literal</th><td>Tedd Regex &#183; static</td><td>managed</td><td>219.419</td><td>4.298</td><td>120</td></tr>
+<tr class="comparison-ours"><th scope="row">Question marks</th><td>Tedd direct &#183; reused</td><td>managed</td><td>4.562</td><td>0.001</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Krauss</td><td>batch_cloned</td><td>9.557</td><td>0.007</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Krauss</td><td>batch_shared</td><td>9.560</td><td>0.005</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Krauss</td><td>suppressed_cloned</td><td>11.029</td><td>0.004</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Krauss</td><td>suppressed_shared</td><td>11.329</td><td>0.006</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Krauss</td><td>normal_cloned</td><td>11.337</td><td>0.005</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Krauss</td><td>normal_shared</td><td>11.634</td><td>0.003</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>PCRE2 JIT</td><td>batch_cloned</td><td>16.183</td><td>0.006</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>PCRE2 JIT</td><td>batch_shared</td><td>16.191</td><td>0.009</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Question marks</th><td>Tedd direct &#183; static</td><td>managed</td><td>19.155</td><td>0.007</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>DotNet.Glob</td><td>managed</td><td>22.198</td><td>0.058</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Git wildmatch</td><td>batch_cloned</td><td>28.950</td><td>0.094</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Git wildmatch</td><td>batch_shared</td><td>28.987</td><td>0.063</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Git wildmatch</td><td>suppressed_cloned</td><td>30.269</td><td>0.059</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Git wildmatch</td><td>suppressed_shared</td><td>30.645</td><td>0.056</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Git wildmatch</td><td>normal_cloned</td><td>31.785</td><td>0.074</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Git wildmatch</td><td>normal_shared</td><td>32.079</td><td>0.088</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>WildcardMatch</td><td>managed</td><td>35.021</td><td>0.111</td><td>48</td></tr>
+<tr class="comparison-ours"><th scope="row">Question marks</th><td>Tedd Regex &#183; compiled</td><td>managed</td><td>37.433</td><td>0.144</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Zema wildcards</td><td>batch_cloned</td><td>81.219</td><td>0.558</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Zema wildcards</td><td>suppressed_cloned</td><td>81.357</td><td>0.625</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Zema wildcards</td><td>normal_cloned</td><td>81.729</td><td>0.403</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Zema wildcards</td><td>suppressed_shared</td><td>81.924</td><td>0.590</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Question marks</th><td>Tedd Regex &#183; reused</td><td>managed</td><td>82.387</td><td>0.280</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Zema wildcards</td><td>normal_shared</td><td>82.448</td><td>0.613</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>Zema wildcards</td><td>batch_shared</td><td>83.047</td><td>2.153</td><td>0</td></tr>
+<tr><th scope="row">Question marks</th><td>FastWildcard</td><td>managed</td><td>83.305</td><td>0.166</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Question marks</th><td>Tedd Regex &#183; static</td><td>managed</td><td>167.174</td><td>0.859</td><td>136</td></tr>
+<tr class="comparison-ours"><th scope="row">Multiple stars</th><td>Tedd direct &#183; reused</td><td>managed</td><td>6.622</td><td>0.062</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Krauss</td><td>batch_shared</td><td>9.582</td><td>0.042</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Krauss</td><td>batch_cloned</td><td>9.602</td><td>0.046</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Krauss</td><td>suppressed_cloned</td><td>10.976</td><td>0.019</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Krauss</td><td>suppressed_shared</td><td>11.296</td><td>0.029</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Krauss</td><td>normal_cloned</td><td>11.301</td><td>0.026</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Krauss</td><td>normal_shared</td><td>11.603</td><td>0.041</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>PCRE2 JIT</td><td>batch_shared</td><td>22.487</td><td>0.088</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>PCRE2 JIT</td><td>batch_cloned</td><td>22.515</td><td>0.088</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Git wildmatch</td><td>batch_shared</td><td>28.240</td><td>0.019</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Git wildmatch</td><td>batch_cloned</td><td>28.904</td><td>0.264</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Git wildmatch</td><td>suppressed_cloned</td><td>29.704</td><td>0.021</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Git wildmatch</td><td>normal_cloned</td><td>30.014</td><td>0.020</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Git wildmatch</td><td>suppressed_shared</td><td>31.601</td><td>0.058</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Git wildmatch</td><td>normal_shared</td><td>31.918</td><td>0.057</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Multiple stars</th><td>Tedd direct &#183; static</td><td>managed</td><td>35.119</td><td>0.010</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Multiple stars</th><td>Tedd Regex &#183; compiled</td><td>managed</td><td>52.236</td><td>0.281</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>DotNet.Glob</td><td>managed</td><td>59.702</td><td>0.552</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>FastWildcard</td><td>managed</td><td>68.088</td><td>0.045</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>WildcardMatch</td><td>managed</td><td>136.359</td><td>1.767</td><td>479</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Zema wildcards</td><td>batch_shared</td><td>152.514</td><td>0.454</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Zema wildcards</td><td>batch_cloned</td><td>152.846</td><td>0.351</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Zema wildcards</td><td>suppressed_cloned</td><td>153.148</td><td>0.300</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Zema wildcards</td><td>suppressed_shared</td><td>154.528</td><td>1.191</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Zema wildcards</td><td>normal_shared</td><td>154.918</td><td>0.452</td><td>0</td></tr>
+<tr><th scope="row">Multiple stars</th><td>Zema wildcards</td><td>normal_cloned</td><td>157.228</td><td>3.112</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Multiple stars</th><td>Tedd Regex &#183; reused</td><td>managed</td><td>216.131</td><td>1.564</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Multiple stars</th><td>Tedd Regex &#183; static</td><td>managed</td><td>289.405</td><td>1.471</td><td>104</td></tr>
+<tr class="comparison-ours"><th scope="row">Long text</th><td>Tedd direct &#183; reused</td><td>managed</td><td>183.406</td><td>1.898</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Long text</th><td>Tedd direct &#183; static</td><td>managed</td><td>222.323</td><td>0.503</td><td>0</td></tr>
+<tr><th scope="row">Long text</th><td>Krauss</td><td>batch_shared</td><td>234.287</td><td>0.598</td><td>0</td></tr>
+<tr><th scope="row">Long text</th><td>Krauss</td><td>batch_cloned</td><td>235.801</td><td>0.417</td><td>0</td></tr>
+<tr><th scope="row">Long text</th><td>FastWildcard</td><td>managed</td><td>281.658</td><td>0.615</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Long text</th><td>Tedd Regex &#183; compiled</td><td>managed</td><td>395.955</td><td>0.872</td><td>0</td></tr>
+<tr><th scope="row">Long text</th><td>Git wildmatch</td><td>batch_shared</td><td>841.494</td><td>0.908</td><td>0</td></tr>
+<tr><th scope="row">Long text</th><td>Git wildmatch</td><td>batch_cloned</td><td>841.936</td><td>0.806</td><td>0</td></tr>
+<tr><th scope="row">Long text</th><td>PCRE2 JIT</td><td>batch_shared</td><td>1466.610</td><td>7.726</td><td>0</td></tr>
+<tr><th scope="row">Long text</th><td>PCRE2 JIT</td><td>batch_cloned</td><td>1472.601</td><td>11.717</td><td>0</td></tr>
+<tr><th scope="row">Long text</th><td>DotNet.Glob</td><td>managed</td><td>7312.846</td><td>78.750</td><td>0</td></tr>
+<tr><th scope="row">Long text</th><td>WildcardMatch</td><td>managed</td><td>13473.288</td><td>192.232</td><td>44472</td></tr>
+<tr><th scope="row">Long text</th><td>Zema wildcards</td><td>batch_shared</td><td>22050.382</td><td>11.732</td><td>0</td></tr>
+<tr><th scope="row">Long text</th><td>Zema wildcards</td><td>batch_cloned</td><td>22056.586</td><td>16.876</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Long text</th><td>Tedd Regex &#183; reused</td><td>managed</td><td>24308.254</td><td>12.887</td><td>0</td></tr>
+<tr class="comparison-ours"><th scope="row">Long text</th><td>Tedd Regex &#183; static</td><td>managed</td><td>24410.997</td><td>16.692</td><td>192</td></tr>
+</tbody></table></div></div>
+<div class="results-panel"><div class="results-heading"><h3>Pattern construction</h3><p>8 cases · excluded from reused matching</p></div><div class="table-scroll"><table><caption>Pattern construction time and managed allocation</caption><thead><tr><th scope="col">Pattern</th><th scope="col">Implementation</th><th scope="col">Mean ns</th><th scope="col">Error ± ns</th><th scope="col">Managed B/construction</th></tr></thead><tbody>
+<tr><th scope="row"><code>*a?c*e*</code></th><td>Tedd direct &#183; reused</td><td>110.763</td><td>1.167</td><td>296</td></tr>
+<tr><th scope="row"><code>*a?c*e*</code></th><td>Tedd Regex &#183; reused</td><td>2100.764</td><td>21.004</td><td>2000</td></tr>
+<tr><th scope="row"><code>*a?c*e*</code></th><td>Tedd Regex &#183; compiled</td><td>15969.078</td><td>96.616</td><td>12696</td></tr>
+<tr><th scope="row"><code>*a?c*e*</code></th><td>DotNet.Glob</td><td>802.038</td><td>6.371</td><td>1792</td></tr>
+<tr><th scope="row"><code>report-??.txt</code></th><td>Tedd direct &#183; reused</td><td>55.101</td><td>0.232</td><td>224</td></tr>
+<tr><th scope="row"><code>report-??.txt</code></th><td>Tedd Regex &#183; reused</td><td>1905.110</td><td>16.509</td><td>2024</td></tr>
+<tr><th scope="row"><code>report-??.txt</code></th><td>Tedd Regex &#183; compiled</td><td>9969.461</td><td>35.249</td><td>8448</td></tr>
+<tr><th scope="row"><code>report-??.txt</code></th><td>DotNet.Glob</td><td>666.696</td><td>9.938</td><td>976</td></tr>
+</tbody></table></div></div>
+<div class="results-panel"><div class="results-heading"><h3>Managed / native transition control</h3><p>2 cases · trivial native function</p></div><div class="table-scroll"><table><caption>Normal and suppressed transition control time</caption><thead><tr><th scope="col">Call</th><th scope="col">Mean ns</th><th scope="col">Error ± ns</th></tr></thead><tbody>
+<tr><th scope="row">Normal</th><td>3.271</td><td>0.001</td></tr>
+<tr><th scope="row">Suppressed</th><td>1.505</td><td>0.000</td></tr>
+</tbody></table></div></div>
+<p class="benchmark-method">Native batch calls cross once per 256 matches; normal and suppressed calls cross once per input into the identical export. Suppression is qualified only for the three short Krauss, Git and Zema fixtures. PCRE2 and long calls use ordinary transitions. The trivial control is not subtracted from matcher timings. Cloned storage owns each input buffer; shared storage reuses buffers for equal input values. Every match executes; results are not cached.</p>
 <!-- BENCHMARK_CONTENT_END -->
       <!-- BENCHMARK_METHOD_START -->
-<p class="benchmark-method" id="benchmark-method">Measured 2026-10-02 &#183; AMD Ryzen 9 5950X &#183; .NET 10 &#183; three processes with optimized JIT. Reusable patterns are prepared before timing. Results depend on workload and API lifetime; full timings, intervals, allocations and configuration are linked below. Library source: <a href="https://github.com/tedd/Tedd.WildcardMatch/commit/5043403f7c154b63a417a09161be98862ee82510">5043403</a>.</p>
+<p class="benchmark-method" id="benchmark-method">Measured 2026-10-15 &#183; AMD Ryzen 9 5950X &#183; .NET 10.0.13 (10.0.13, 10.0.1326.50504) &#183; BenchmarkDotNet 0.15.8. Three launches, three warmups, ten 100 ms measured iterations, CPU 30 affinity, tiering disabled. Error is the 99.9% confidence-interval half-width over retained iteration measurements. Managed UTF-16 and native NUL-free ASCII buffers, encoding and reusable patterns are prepared before timing. Native allocation is not measured by managed B/match. Results depend on corpus and API lifetime and do not establish a universal ranking. The measured source snapshot has package metadata 2.2.0; release 2.3.0 contains the same matcher source. Library source: <a href="https://github.com/tedd/Tedd.WildcardMatch/commit/f3340d5a58d5d253c2ba331b0782b7ef7d096d8c">f3340d5</a>.</p>
 <!-- BENCHMARK_METHOD_END -->
-      <div class="evidence-links"><a href="assets/package-comparison.json">Complete measurements (JSON)</a><a href="assets/matching-report.md">Matching report</a><a href="assets/construction-report.md">Construction report</a><a href="assets/validation.json">Correctness results</a><a href="https://github.com/tedd/Tedd.WildcardMatch/tree/main/src/Tedd.WildcardMatch.Benchmark">Benchmark source ↗</a></div>
+      <div class="evidence-links"><a href="assets/package-comparison.json">All measurements, samples and source pins (JSON)</a><a href="assets/matching-report.md">Managed matching</a><a href="assets/nativematching-report.md">Native batching</a><a href="assets/interop-report.md">Per-input interop</a><a href="assets/interopcontrol-report.md">Transition controls</a><a href="assets/construction-report.md">Construction</a><a href="assets/validation.json">Managed correctness</a><a href="assets/native-validation.json">Native correctness</a><a href="https://github.com/tedd/Tedd.WildcardMatch/tree/f3340d5a58d5d253c2ba331b0782b7ef7d096d8c/Research/2026-10-15%20interop-optimization">Raw reports, confirmation and earlier-build references ↗</a><a href="https://github.com/tedd/Tedd.WildcardMatch/tree/main/src/Tedd.WildcardMatch.Benchmark">Benchmark source ↗</a></div>
     </section>
   </main>
   <footer><p>Tedd.WildcardMatch · Tedd Hansen · LGPL-2.1</p><div><a href="https://www.nuget.org/packages/Tedd.WildcardMatch">NuGet ↗</a><a href="https://github.com/tedd/Tedd.WildcardMatch">GitHub ↗</a><a href="https://github.com/tedd/Tedd.WildcardMatch/blob/main/LICENSE">License ↗</a><a href="https://tedd.github.io/Tedd.RTree/">Tedd.RTree ↗</a></div></footer>

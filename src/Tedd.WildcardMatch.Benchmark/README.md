@@ -55,10 +55,18 @@ To export a complete run with this configuration to the site:
 ./src/Tedd.WildcardMatch.Benchmark/Export-SiteBenchmarks.ps1 `
     -ArtifactsDirectory "$results/artifacts" `
     -ValidationPath "$results/validation.json" `
-    -SourceRevision (git rev-parse HEAD)
+    -SourceRevision (git rev-parse HEAD) `
+    -MeasuredAt 'YYYY-MM-DD' `
+    -MeasuredPackageVersion '2.3.0' `
+    -PackageVersion '2.3.0' `
+    -NativeValidationPath "$results/native-validation.json" `
+    -NativeSourcesPath "$results/native-sources.json" `
+    -PriorNativeReferencePath "$results/prior-native-reference.json"
 ```
 
-The exporter writes JSON, correctness results, detailed Markdown reports, and separate short- and long-string throughput charts. Detailed tables remain in the linked reports. Each chart includes every tested library and API. It requires all 32 matching cases and eight construction cases to have valid measurements and matching correctness records. A partial run fails instead of producing a misleading snapshot.
+The exporter writes JSON, managed/native correctness results, full JSON/CSV/Markdown reports, and separate short- and long-string throughput charts. Tables display all 110 cases. Charts show every managed API and the lowest measured native call/storage mode per library; the complete table preserves slower modes. Export requires the complete matrix: 32 managed matching, 32 native batches, 36 per-input interop, two transition controls and eight construction cases, with matching correctness records. A partial run fails instead of producing a misleading snapshot.
+
+Use the actual measurement date, source revision and package metadata from the measured build, rather than the export date or a subsequent release version. `NativeSourcesPath` identifies pinned upstream revisions. `PriorNativeReferencePath` contains separately identified earlier native-build references; these remain distinct from current-run samples and intervals. When the release changes only package metadata, record the measured and released versions separately.
 
 Record the tested library source revision. The short-string selector switches among its three patterns; the long-string comparison remains visible alongside it. Both default charts and links to detailed reports remain available without JavaScript.
 
@@ -91,4 +99,4 @@ Native cases use the same 256 inputs and independent dynamic-programming oracle 
 
 `InteropControlBenchmarks` calls the same trivial native export through ordinary and suppressed call sites. Its measured difference describes that control and cannot be subtracted as a universal transition cost. With native comparisons enabled, the complete suite contains 110 cases: 32 managed matching, 32 native batches, 36 per-input interop, two transition controls and eight construction cases. Every storage and call mode is eligible when identifying the fastest measured competitor.
 
-Git's `wildmatch.c` and `wildmatch.h` remain unchanged. A standalone compatibility header supplies standard C character functions and Git's four-character glob-special predicate. The native adapter uses MSVC `/O2 /Ob2`; PCRE2 uses a Release static build with JIT enabled and its default CPU detection. MemoryDiagnoser reports managed allocations only, and does not account for native setup allocations. Native results remain separate from the managed website snapshot and its exporter.
+Git's `wildmatch.c` and `wildmatch.h` remain unchanged. A standalone compatibility header supplies standard C character functions and Git's four-character glob-special predicate. The native adapter uses MSVC `/O2 /Ob2`; PCRE2 uses a Release static build with JIT enabled and its default CPU detection. MemoryDiagnoser reports managed allocations only, and does not account for native setup allocations.
