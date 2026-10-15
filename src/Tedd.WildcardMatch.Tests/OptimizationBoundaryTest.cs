@@ -6,6 +6,32 @@ namespace Tedd.WildcardMatchTests;
 
 public class OptimizationBoundaryTest
 {
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void RejectedSegmentAnchorsPreserveNewlineBoundaries(bool singleline)
+    {
+        var options = singleline ? WildcardOptions.Singleline : WildcardOptions.None;
+        string segment = new string('a', 70) + "?b";
+        foreach (string pattern in new[] { "*" + segment + "*", "head*" + segment + "*tail", "*" + segment + "*\n*end" })
+        {
+            var matcher = new WildcardMatch(pattern, options);
+            var oracle = new WildcardMatchRegex(pattern, options);
+            foreach (int offset in new[] { 0, 1, 7, 8, 31, 32, 63, 64, 255 })
+            foreach (int newline in new[] { -1, 0, 1, 7, 31, 70, 127, 255 })
+            {
+                string body = new string('a', offset) + segment.Replace('?', 'z');
+                if (newline >= 0 && newline <= body.Length) body = body.Insert(newline, "\n");
+                foreach (string input in new[] { body, body + "\n", "head" + body + "tail", body + "\nend" })
+                {
+                    bool expected = oracle.IsMatch(input);
+                    Assert.Equal(expected, matcher.IsMatch(input));
+                    Assert.Equal(expected, matcher.IsMatch(input.AsSpan()));
+                }
+            }
+        }
+    }
+
     [Fact]
     public void LiteralSegmentSearchPreservesOffsetsTailsAndNewlineConsumption()
     {

@@ -1,0 +1,31 @@
+{
+  "workspace": {
+    "id": "workspace-a6fa6f861937418bad853f137e583f69",
+    "root": "D:\\Workspaces\\AI\\wildcard-dotnetlab-validation\\catalog",
+    "schema_version": 5,
+    "policy_revision_id": "policy-10ee442b0300c37f26b8b08596dc910e6b4995b77dbbf88bf880752b7727824e",
+    "policy_hash": "10ee442b0300c37f26b8b08596dc910e6b4995b77dbbf88bf880752b7727824e",
+    "created_at": "2026-10-15T17:46:49.8792899+00:00"
+  },
+  "policy": {
+    "id": "policy-10ee442b0300c37f26b8b08596dc910e6b4995b77dbbf88bf880752b7727824e",
+    "revision": "1",
+    "schema_version": "workspace-policy/v1",
+    "hash": "10ee442b0300c37f26b8b08596dc910e6b4995b77dbbf88bf880752b7727824e",
+    "limits": {
+      "maximum_capture_bytes": "2147483648",
+      "maximum_duration_seconds": 600,
+      "disk_reserve_bytes": "268435456",
+      "drain_timeout_seconds": 30,
+      "maximum_rows": 1000,
+      "inline_bytes": 65536,
+      "maximum_parser_memory_bytes": "536870912",
+      "maximum_parser_duration_seconds": 300,
+      "maximum_parser_events": 1000000,
+      "maximum_parser_output_bytes": "16777216",
+      "maximum_concurrent_operations": 8,
+      "maximum_queued_activities": 64
+    },
+    "created_at": "2026-10-15T17:46:49.8998681+00:00"
+  }
+}

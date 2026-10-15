@@ -1,0 +1,20 @@
+{
+  "id": "controller-snapshot-8df91d5ad921438b9eb6cddcf04ac21d",
+  "operation_id": null,
+  "phase": "explicit_query",
+  "process_id": 42300,
+  "process_start_utc_ticks": "639276835225766393",
+  "timestamp_ticks": "349589147450",
+  "frequency": "10000000",
+  "cpu_ticks": "69843750",
+  "cpu_frequency": "10000000",
+  "working_set_bytes": "156950528",
+  "private_memory_bytes": "158228480",
+  "managed_heap_bytes": "123738144",
+  "approximate_total_allocated_bytes": "339250992",
+  "thread_count": 24,
+  "other_active_operations": 0,
+  "placement": "controller_idle_query",
+  "scope": "controller_process",
+  "meaning": "Process-wide point/cumulative counters; other controller jobs, runtime work, and logging are included. No target metric or assumed overhead subtraction."
+}

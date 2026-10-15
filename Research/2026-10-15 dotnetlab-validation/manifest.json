@@ -1,0 +1,506 @@
+{
+  "candidate.patch": {
+    "length": 1117,
+    "sha256": "a0a13e0a8baea6cc3d8a9426b8bb7d0dc1fd104b8346cc56251d72efc0d3b936"
+  },
+  "evidence/attachment-plan.json": {
+    "length": 886,
+    "sha256": "ec4cf3b98fd381c3df981b862aa1d73164b4c387b8c94b8c59eaa40e5a95b059"
+  },
+  "evidence/attachment.json": {
+    "length": 1363,
+    "sha256": "c531175d41e96794a143b7cbb3d2f7d4cfa5f0ac43b7b73b99a482e3d3ad9bbb"
+  },
+  "evidence/availability.json": {
+    "length": 741,
+    "sha256": "2a5b4ca7fe933f5b8b4df93cc7e0ade520618b04b982676a7dbde5b81c3871e1"
+  },
+  "evidence/baseline-dense-16384.json": {
+    "length": 2328,
+    "sha256": "0974d21adda0988fff0f9ba110977f5cfb1a8b107f66d476b2e5558c95dd9bcf"
+  },
+  "evidence/baseline-dense-4096.json": {
+    "length": 2325,
+    "sha256": "9c718b0ec0e5373374e31a41fc3952e62a9ad57362798a1ee3f055256172aa08"
+  },
+  "evidence/baseline-newline.json": {
+    "length": 2321,
+    "sha256": "ee5938cb074787f2024a9890c1e580a03daa9bc357f219239bfec31abb209942"
+  },
+  "evidence/baseline-ordinary.json": {
+    "length": 2325,
+    "sha256": "eba7c930548f59120b099fbf6f475548455df23197cbeb0e05796e38615b369e"
+  },
+  "evidence/capabilities-False.json": {
+    "length": 1430,
+    "sha256": "f334f1486489889ed16570e02ef250680db877523e816f87d12b1318060c6cce"
+  },
+  "evidence/capabilities-True.json": {
+    "length": 1430,
+    "sha256": "ac3bfae1a9e24a74cb6209493739324592fac5fe09232a810cc9517a25777bc7"
+  },
+  "evidence/capture.json": {
+    "length": 1657,
+    "sha256": "d894ca4267b0cfbe405f455205e6705b188399049829838e3ed2908c28204983"
+  },
+  "evidence/catalog-backup.json": {
+    "length": 315,
+    "sha256": "e707a4c0bb68d77855d1a9bb48c5d01c4f1ceaaa0c4f9f80a879fdbbb606c7c8"
+  },
+  "evidence/catalog-checkpoint.json": {
+    "length": 97,
+    "sha256": "61bf60bb6df2d88950439561120b41cbe286e4663ef8d54e2b2cab6330075ef8"
+  },
+  "evidence/comparison-dense-16384.json": {
+    "length": 2605,
+    "sha256": "d0034ae6187d8e637bdb6db8d2c97028ae6148fb771689c4250add09b189a9d6"
+  },
+  "evidence/comparison-dense-4096.json": {
+    "length": 2606,
+    "sha256": "cb6f42e1c6b8c1e2290c79f3ba42a1ee8206ed2e7f46934b530619f5eafff34a"
+  },
+  "evidence/comparison-newline.json": {
+    "length": 2605,
+    "sha256": "01d5c4dd5f3aa964731fb4797d98e6a765c8c80ae7326427cee8442c5feab1ed"
+  },
+  "evidence/comparison-ordinary.json": {
+    "length": 2605,
+    "sha256": "cdd971a933783a2daa134157d73bd9ce63253dc859d8155d1dbe0b472946f24c"
+  },
+  "evidence/compatibility.json": {
+    "length": 10535,
+    "sha256": "a034026cf8a02c84750ee622ba7bc1d895e8c590a163b6362e083ce210310ea0"
+  },
+  "evidence/confirmation-dense-16384.json": {
+    "length": 65111,
+    "sha256": "5388ab4592df7837f8a6dce54d756c4df41eed05bdfb9486390abe7c009569d7"
+  },
+  "evidence/confirmation-dense-4096.json": {
+    "length": 65047,
+    "sha256": "7ead97a7a0baf5f7574998493ebac3aeda8f71cae239a6f5b76bbbaf3e30de1b"
+  },
+  "evidence/confirmation-newline.json": {
+    "length": 64969,
+    "sha256": "83ae7f07b5edf69b621f5fca9cd901326f3ef0c6cf055a9656d1fa756de1aef9"
+  },
+  "evidence/confirmation-ordinary.json": {
+    "length": 65217,
+    "sha256": "310ef3d04b00c235ff71650c7e080100d4a504f641a99c1916a45aaaeb0be5a0"
+  },
+  "evidence/confirmation-plans.json": {
+    "length": 14043,
+    "sha256": "02edef31af3dc5b3f1328438fbbe96220dfc4f5822789802fc2ad3e6f6af7a1d"
+  },
+  "evidence/confirmation.json": {
+    "length": 271575,
+    "sha256": "9b1989c7aa2c44be62a045bf739d5bfba3311d56e709839dabe4f62c568c91a6"
+  },
+  "evidence/controller-resources.json": {
+    "length": 794,
+    "sha256": "12420518518e7842444f473d44cb43643f9612176e01ce2299ca3218720e1469"
+  },
+  "evidence/counters.json": {
+    "length": 32131,
+    "sha256": "00bd33b8d39399dfee1daf102a97b3cecdf870e739549fb856018fa76dc250a5"
+  },
+  "evidence/diagnostic-comparison-dense-16384.json": {
+    "length": 2587,
+    "sha256": "5e8531a74a4a1419bd527024889fd12b832e8019b7072aba5b6f0993f6b82547"
+  },
+  "evidence/diagnostic-dense-16384.json": {
+    "length": 858,
+    "sha256": "43db9b0aae98a60880bf91b8db44591e37a8fff51c3540d98de71861112eed43"
+  },
+  "evidence/diagnostic-runs-dense-16384.json": {
+    "length": 6473,
+    "sha256": "e04727a94f661c7a61442953191c7a90a93321eaf2ef4eaacd945818c9e9a7f1"
+  },
+  "evidence/diagnostic.json": {
+    "length": 3052,
+    "sha256": "cbd091c1f102225a1c49cc63bfe11c359d7bc144fe2375ce3eca8418adaf9be5"
+  },
+  "evidence/evidence.zip": {
+    "length": 15210203,
+    "sha256": "d7320f083b024b3b759907b4f6716b02d6f6b98fda7c1d1382282b5e495e442c"
+  },
+  "evidence/execution-dense-16384.json": {
+    "length": 1572,
+    "sha256": "dc60386abeda9618c7d15a9245f34cb58a229c961df702588cb4ff8ec8dfafaa"
+  },
+  "evidence/execution-dense-4096.json": {
+    "length": 1572,
+    "sha256": "ed4435bdbef8cb86ced5c69cacf876011a4c2357e0ae9bcc41020ae7c086c700"
+  },
+  "evidence/execution-newline.json": {
+    "length": 1572,
+    "sha256": "718eb225f7969f6a37f0a0cc8ac211c0e74050bdeb2efc34d480356db8db2435"
+  },
+  "evidence/execution-ordinary.json": {
+    "length": 1572,
+    "sha256": "552c418cd4e9615401f4eb3f906226264d28619817b52d0ce082b478ac73cda1"
+  },
+  "evidence/exploration.json": {
+    "length": 12264,
+    "sha256": "0d4efbfc2ac8a337b18d8292838bbce465b625cc7584c80aacdb513996b86293"
+  },
+  "evidence/export-plan.json": {
+    "length": 80632,
+    "sha256": "b07908286f0131f6710fe87705c4d347905c85155b6fed1a9538feccce4a164b"
+  },
+  "evidence/export-result.json": {
+    "length": 575,
+    "sha256": "29e5a407b23bcdba9d5765d07151c512f2111f16924a5274ea8ff1f2dd81aee3"
+  },
+  "evidence/export-verification.json": {
+    "length": 183198,
+    "sha256": "5e2b5d6f62ce3c1ad8818f6b75c4a1cf37be07f3d35e7faadf4725071486cfae"
+  },
+  "evidence/extension-preparation.json": {
+    "length": 523,
+    "sha256": "dab0c03d94275e0be9593239937b9f57e6a3ba6be098d76b19d15aff4cf5d90a"
+  },
+  "evidence/gc_timeline.json": {
+    "length": 301,
+    "sha256": "2653c6456d5b7e87e8f6ca7e45cb7ca940b5a57c919ec9f5d56c732bafef6de2"
+  },
+  "evidence/hotspots-inclusive.json": {
+    "length": 10131,
+    "sha256": "982d2275c72f968be477d3e4279f0fbac945252f1dc2a392f6562df747d5ecb2"
+  },
+  "evidence/hotspots-self.json": {
+    "length": 10375,
+    "sha256": "fa1add8d0046fbf2d6a3aeffe4977788dd9ed0e3720a45773bf9e1ca79febf42"
+  },
+  "evidence/individual-latencies.json": {
+    "length": 1331,
+    "sha256": "587731a6db5070b0421419bff58ae8fe90e403f0a612f9d55c1a7ef352796fdc"
+  },
+  "evidence/individual-result.json": {
+    "length": 2547,
+    "sha256": "27b41a4a0c0b82a66f6ee4e52be2b1beff2e1b26d423302eeb32b973f8c29bd9"
+  },
+  "evidence/manual-decisions.json": {
+    "length": 1579,
+    "sha256": "593ec1d9d56b248c88c80ad75dfe619b6845d130fa602d7352113818982c4862"
+  },
+  "evidence/method-il.json": {
+    "length": 930,
+    "sha256": "2c4175d9f581ad0e9dcd618920bc0a6df172a1e08283c8519dad95191b0f19ab"
+  },
+  "evidence/methods.json": {
+    "length": 536,
+    "sha256": "58c0150b323eec516caf3b3ca54807e9c8003546d44817f213591577933b66f8"
+  },
+  "evidence/native-inspection.json": {
+    "length": 918,
+    "sha256": "d974c46da59a8c9fc2b15121b4c012060d7b5e12c782730c52974839519ce3b0"
+  },
+  "evidence/native-listings.json": {
+    "length": 27188,
+    "sha256": "10b29e312b27917a50fccafc55adbf87ac271efca5fd6b4c6470e0077514e702"
+  },
+  "evidence/profiler.json": {
+    "length": 658,
+    "sha256": "8194c926bb8697cf58f153d46a6cd3730e0ee21caf4a63fc50ea12dbeee6f24c"
+  },
+  "evidence/profiles.json": {
+    "length": 4744,
+    "sha256": "5ebbb776cd79c66f826dbbd9c2f46507567fab224ab1617d75d0484383c50a16"
+  },
+  "evidence/protocol-audit.jsonl.gz": {
+    "length": 335086,
+    "sha256": "07b0e90daf7a084e24a04aa62f12fa14ddb81f44b681d898514e634c80b01f8b"
+  },
+  "evidence/reimport-verification.json": {
+    "length": 979,
+    "sha256": "5f2c2dfc85c1cdd2fc299eefef00bbd8d3e0814fa65f5f28a1e40c5cf45d46de"
+  },
+  "evidence/run-windows.json": {
+    "length": 4568,
+    "sha256": "f04ae6b39867d813fee3bb214379dbe2fa103f7d6f9c3f612eb054a504a86e73"
+  },
+  "evidence/runs-dense-16384.json": {
+    "length": 64604,
+    "sha256": "82d00ccc8ba4a4f73fde971abde38310d57a880191875697b0b52845a5738c95"
+  },
+  "evidence/runs-dense-4096.json": {
+    "length": 64536,
+    "sha256": "03c9965aef843f396ff199df9babf290b8ba884938771b49dc88f36a76271067"
+  },
+  "evidence/runs-newline.json": {
+    "length": 64389,
+    "sha256": "1625832b0d78e4efe878f37382ef427ff596d938aca61a4cdb4eb04c279a7b11"
+  },
+  "evidence/runs-ordinary.json": {
+    "length": 64532,
+    "sha256": "e5f83f68a6ca52d8fe5647f31b8dfbb8a80a551616d6026a4350378cddd1dd11"
+  },
+  "evidence/runtime-analysis.json": {
+    "length": 528,
+    "sha256": "6a6a62d4aea0a69cacf622d234ab78f1994dfc21605b34b438aed661be8d31e8"
+  },
+  "evidence/scenarios.json": {
+    "length": 3468,
+    "sha256": "66d75bdefc2547e3f9fc533a9c40f6de3c2b35b0e8d66bf17f4a12d47d57b7c3"
+  },
+  "evidence/schemas-extension.json": {
+    "length": 112263,
+    "sha256": "4eeb780adbd5a589eaa792f3f2f07c5454e30e630be0718f559dd1d29890180c"
+  },
+  "evidence/schemas.json": {
+    "length": 101935,
+    "sha256": "b0cacf799b79a33286a907e7a21a0407b6678a427ad48fe67d27df25e35222ca"
+  },
+  "evidence/setup.json": {
+    "length": 1629,
+    "sha256": "364e9b04de3d7bbf589dd41508e3ebf7d5968b34498e3b6cfb17f82d4faea543"
+  },
+  "evidence/stack-analysis.json": {
+    "length": 633,
+    "sha256": "1a37b00da9583ddd63c741c1888a1d9079bee0c2785aca1709fe9e4e79ce2711"
+  },
+  "evidence/suspensions.json": {
+    "length": 21085,
+    "sha256": "9bf5b542a4a2e9d7656196c76a2d329a19f05ca3d915065bd3b5224a15d42701"
+  },
+  "evidence/tests.txt": {
+    "length": 32778,
+    "sha256": "d551b172f4c613f50c44fcf55c31abbff20f2c308d1832e1067d8c788c089d4f"
+  },
+  "evidence/wildcard_net10.0_20261015195903.trx": {
+    "length": 363410,
+    "sha256": "b54f5ec59d4677f99e43c65266305c11dc6cf0dc1f43ab31912cd61fa7e74a81"
+  },
+  "evidence/wildcard_net11.0_20261015195918.trx": {
+    "length": 367558,
+    "sha256": "373aac8b1aa8843f5d82857d4719c539cd2873bb8e98b4d81bed4d24b9eb7bdc"
+  },
+  "evidence/wildcard_net8.0_20261015195907.trx": {
+    "length": 362925,
+    "sha256": "36c6aeaa143c1600493d0e767e2e8b19552fb30bc1c54d5b0c7eafeea04323d0"
+  },
+  "evidence/workspace.json": {
+    "length": 1260,
+    "sha256": "c668d31096acc8e89855b1972c982e2cd9d609a543991695626bcb27c4b687b8"
+  },
+  "report.html": {
+    "length": 8428,
+    "sha256": "83f384201b1dd24cb3d9ff51a35c49d4ef18c76b3a69be684abd51c52714bae4"
+  },
+  "sources/baseline/CompiledSegments.cs": {
+    "length": 8648,
+    "sha256": "ee9628d90580f30d21c0f5f6081c4918ceeb5d6eb15108f8eca3ae1e869ca76e"
+  },
+  "sources/baseline/DefaultWildcardEngine.cs": {
+    "length": 7224,
+    "sha256": "da079bc6098005659d95f01a9ed19b6be5fd640933abf87cfa6608a5670e88ee"
+  },
+  "sources/baseline/FixedPattern.cs": {
+    "length": 5728,
+    "sha256": "455c38600dbdbc34883adb1dad1ca9ca19ced57f774a2f3e1622e0c3170f0b77"
+  },
+  "sources/baseline/global.json": {
+    "length": 54,
+    "sha256": "0470b63ba89add6b4aa18cb3c15d5c62f1ebfc27e42fcea0d75d644f849440cc"
+  },
+  "sources/baseline/InternalUtils.cs": {
+    "length": 3690,
+    "sha256": "88b1e62038132f55029150bdaee71a9750d96579d3d12dcad49305b36dfe3e58"
+  },
+  "sources/baseline/ShortPattern.cs": {
+    "length": 3494,
+    "sha256": "a3707ada09b2698003837c0f77ecb47873064277c62b4c5da17e29a157c7d437"
+  },
+  "sources/baseline/WildcardEngine.cs": {
+    "length": 18312,
+    "sha256": "306c93ac3ede26a403a9a9d557285a7bb2b9d804721860f188eac33955275dd3"
+  },
+  "sources/baseline/WildcardEngine.Spans.cs": {
+    "length": 15710,
+    "sha256": "9549cc67c5928def0bae09a5585042cc3b915e4b43f6cc3aa99a6548ae7d2c13"
+  },
+  "sources/baseline/WildcardMatch.cs": {
+    "length": 9831,
+    "sha256": "64d73bba4fcff8f2fafd88526b52ffc47ec04f80082ad58d0851241026c4b7bb"
+  },
+  "sources/baseline/WildcardMatchExtensions.cs": {
+    "length": 2087,
+    "sha256": "6beeaebc4f2533b0cdce7a3df989f71fa559554bc65b0befcf69127461595486"
+  },
+  "sources/baseline/WildcardMatchRegex.cs": {
+    "length": 3616,
+    "sha256": "1f7771890d03b21f51b10c8c8ad31da127bb3770a38a108d7de3bc13f9b6da60"
+  },
+  "sources/baseline/WildcardOptions.cs": {
+    "length": 1161,
+    "sha256": "edfd118f67af3ebf4099d081e2a74ec50d79b8f6209a2dd4b4852b4367d82ebf"
+  },
+  "sources/baseline/WildcardRig.csproj": {
+    "length": 1166,
+    "sha256": "3cbf94c57de323deb637242f620d6e636b34d743a090978d043b6543f95c6a85"
+  },
+  "sources/baseline/Workload.cs": {
+    "length": 3656,
+    "sha256": "9fa4ea17e0a106e595c4ab531ec6f615eb37cb06b68fb2af5d6735b4f5b7cf7d"
+  },
+  "sources/candidate/CompiledSegments.cs": {
+    "length": 8741,
+    "sha256": "5243ca2cc271f2ee6dc3993e1c8fe07b6ffae71457f3441627e5da06cb767ac3"
+  },
+  "sources/candidate/DefaultWildcardEngine.cs": {
+    "length": 7224,
+    "sha256": "da079bc6098005659d95f01a9ed19b6be5fd640933abf87cfa6608a5670e88ee"
+  },
+  "sources/candidate/FixedPattern.cs": {
+    "length": 5728,
+    "sha256": "455c38600dbdbc34883adb1dad1ca9ca19ced57f774a2f3e1622e0c3170f0b77"
+  },
+  "sources/candidate/global.json": {
+    "length": 54,
+    "sha256": "0470b63ba89add6b4aa18cb3c15d5c62f1ebfc27e42fcea0d75d644f849440cc"
+  },
+  "sources/candidate/InternalUtils.cs": {
+    "length": 3690,
+    "sha256": "88b1e62038132f55029150bdaee71a9750d96579d3d12dcad49305b36dfe3e58"
+  },
+  "sources/candidate/ShortPattern.cs": {
+    "length": 3494,
+    "sha256": "a3707ada09b2698003837c0f77ecb47873064277c62b4c5da17e29a157c7d437"
+  },
+  "sources/candidate/WildcardEngine.cs": {
+    "length": 18312,
+    "sha256": "306c93ac3ede26a403a9a9d557285a7bb2b9d804721860f188eac33955275dd3"
+  },
+  "sources/candidate/WildcardEngine.Spans.cs": {
+    "length": 15710,
+    "sha256": "9549cc67c5928def0bae09a5585042cc3b915e4b43f6cc3aa99a6548ae7d2c13"
+  },
+  "sources/candidate/WildcardMatch.cs": {
+    "length": 9831,
+    "sha256": "64d73bba4fcff8f2fafd88526b52ffc47ec04f80082ad58d0851241026c4b7bb"
+  },
+  "sources/candidate/WildcardMatchExtensions.cs": {
+    "length": 2087,
+    "sha256": "6beeaebc4f2533b0cdce7a3df989f71fa559554bc65b0befcf69127461595486"
+  },
+  "sources/candidate/WildcardMatchRegex.cs": {
+    "length": 3616,
+    "sha256": "1f7771890d03b21f51b10c8c8ad31da127bb3770a38a108d7de3bc13f9b6da60"
+  },
+  "sources/candidate/WildcardOptions.cs": {
+    "length": 1161,
+    "sha256": "edfd118f67af3ebf4099d081e2a74ec50d79b8f6209a2dd4b4852b4367d82ebf"
+  },
+  "sources/candidate/WildcardRig.csproj": {
+    "length": 1166,
+    "sha256": "3cbf94c57de323deb637242f620d6e636b34d743a090978d043b6543f95c6a85"
+  },
+  "sources/candidate/Workload.cs": {
+    "length": 3656,
+    "sha256": "9fa4ea17e0a106e595c4ab531ec6f615eb37cb06b68fb2af5d6735b4f5b7cf7d"
+  },
+  "sources/exploratory/CompiledSegments.cs": {
+    "length": 8741,
+    "sha256": "5243ca2cc271f2ee6dc3993e1c8fe07b6ffae71457f3441627e5da06cb767ac3"
+  },
+  "sources/exploratory/Control-CompiledSegments.cs": {
+    "length": 8651,
+    "sha256": "dd468552c02139fe575bec59bd38673d33a509a3ca2ff4b50566def315bc2a52"
+  },
+  "sources/exploratory/Control-DefaultWildcardEngine.cs": {
+    "length": 7227,
+    "sha256": "b8626f1a8b07f7490b2deaa45d3f73edd0a4d305bcf48f9148ca269aef237599"
+  },
+  "sources/exploratory/Control-FixedPattern.cs": {
+    "length": 5731,
+    "sha256": "b4b0fc62b3ecc47424abee34bd1981dde3e1390dda55af9de09e3dbf1afb2067"
+  },
+  "sources/exploratory/Control-InternalUtils.cs": {
+    "length": 3693,
+    "sha256": "6231e524cd170ffbb5712a042b38ca97c7224c5a92114a78ed7418e4edc0ecd2"
+  },
+  "sources/exploratory/Control-ShortPattern.cs": {
+    "length": 3497,
+    "sha256": "fd6d2c5bea64e67daff7f9a06a7c2f7117569dea98152c169cca27ec2c4647e1"
+  },
+  "sources/exploratory/Control-WildcardEngine.cs": {
+    "length": 18315,
+    "sha256": "dea40e3636efebcb53f66c0a2460d2b4d79234d0302e393a9b0a57fb13f823e3"
+  },
+  "sources/exploratory/Control-WildcardEngine.Spans.cs": {
+    "length": 15713,
+    "sha256": "9c8d201b26e65b7eb2358189ee7e197b91310ae842c8a3149268b606a4de1a35"
+  },
+  "sources/exploratory/Control-WildcardMatch.cs": {
+    "length": 9804,
+    "sha256": "2b24409a3ff3b1e6210f5beadfc136ea02706def9ef948313438dd4e8f4c0fdd"
+  },
+  "sources/exploratory/Control-WildcardMatchExtensions.cs": {
+    "length": 2090,
+    "sha256": "c2877c4dd079640616d8d9781b9c588690ab0e55b31e60018828c241e88bf422"
+  },
+  "sources/exploratory/Control-WildcardMatchRegex.cs": {
+    "length": 3619,
+    "sha256": "3ebd486971bece93730e62e080a03380f6629af3bfd3e947607b27305bf5712a"
+  },
+  "sources/exploratory/Control-WildcardOptions.cs": {
+    "length": 1164,
+    "sha256": "25f113e3dd4efcfba448fc6231addcecad102601e7cf276d7da153a163edc116"
+  },
+  "sources/exploratory/DefaultWildcardEngine.cs": {
+    "length": 7224,
+    "sha256": "da079bc6098005659d95f01a9ed19b6be5fd640933abf87cfa6608a5670e88ee"
+  },
+  "sources/exploratory/FixedPattern.cs": {
+    "length": 5728,
+    "sha256": "455c38600dbdbc34883adb1dad1ca9ca19ced57f774a2f3e1622e0c3170f0b77"
+  },
+  "sources/exploratory/global.json": {
+    "length": 54,
+    "sha256": "0470b63ba89add6b4aa18cb3c15d5c62f1ebfc27e42fcea0d75d644f849440cc"
+  },
+  "sources/exploratory/InternalUtils.cs": {
+    "length": 3690,
+    "sha256": "88b1e62038132f55029150bdaee71a9750d96579d3d12dcad49305b36dfe3e58"
+  },
+  "sources/exploratory/ShortPattern.cs": {
+    "length": 3494,
+    "sha256": "a3707ada09b2698003837c0f77ecb47873064277c62b4c5da17e29a157c7d437"
+  },
+  "sources/exploratory/WildcardEngine.cs": {
+    "length": 18312,
+    "sha256": "306c93ac3ede26a403a9a9d557285a7bb2b9d804721860f188eac33955275dd3"
+  },
+  "sources/exploratory/WildcardEngine.Spans.cs": {
+    "length": 15710,
+    "sha256": "9549cc67c5928def0bae09a5585042cc3b915e4b43f6cc3aa99a6548ae7d2c13"
+  },
+  "sources/exploratory/WildcardMatch.cs": {
+    "length": 9831,
+    "sha256": "64d73bba4fcff8f2fafd88526b52ffc47ec04f80082ad58d0851241026c4b7bb"
+  },
+  "sources/exploratory/WildcardMatchExtensions.cs": {
+    "length": 2087,
+    "sha256": "6beeaebc4f2533b0cdce7a3df989f71fa559554bc65b0befcf69127461595486"
+  },
+  "sources/exploratory/WildcardMatchRegex.cs": {
+    "length": 3616,
+    "sha256": "1f7771890d03b21f51b10c8c8ad31da127bb3770a38a108d7de3bc13f9b6da60"
+  },
+  "sources/exploratory/WildcardOptions.cs": {
+    "length": 1161,
+    "sha256": "edfd118f67af3ebf4099d081e2a74ec50d79b8f6209a2dd4b4852b4367d82ebf"
+  },
+  "sources/exploratory/WildcardRig.csproj": {
+    "length": 1177,
+    "sha256": "fd4c8bb3809d742c3d4b4aed45291f23a17cd8244d22996740f9b847443ca4ab"
+  },
+  "sources/exploratory/Workload.cs": {
+    "length": 3656,
+    "sha256": "9fa4ea17e0a106e595c4ab531ec6f615eb37cb06b68fb2af5d6735b4f5b7cf7d"
+  },
+  "summary.json": {
+    "length": 5942,
+    "sha256": "09e7b1b91a4938178327356a645b5ab67da8cb62f060ad9e5ebcc256c1f95d7e"
+  }
+}

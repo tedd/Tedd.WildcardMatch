@@ -1,0 +1,3197 @@
+{
+  "tools": [
+    {
+      "name": "lab.compare",
+      "description": "Compute frozen comparisons, bounded objective vectors, complete four-arm factorial effects/interactions, or normal-build promotion decisions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "type": "object",
+            "properties": {
+              "execution_id": {
+                "type": "string"
+              },
+              "normal_build_confirmation": {
+                "type": "boolean",
+                "default": false
+              },
+              "include_objectives": {
+                "type": "boolean",
+                "default": false
+              },
+              "include_factorial": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            "required": [
+              "execution_id"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "request"
+        ]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "data": true,
+          "code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "message": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "recovery": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "schema_version",
+          "status",
+          "data",
+          "code",
+          "message",
+          "recovery"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true
+      }
+    },
+    {
+      "name": "lab.discover",
+      "description": "Discover bounded local targets, capabilities, profiles, and registered scenarios.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "type": "object",
+            "required": [
+              "action"
+            ],
+            "anyOf": [
+              {
+                "properties": {
+                  "action": {
+                    "const": "targets"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "default": 100
+                  },
+                  "cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "profiles"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "scenarios"
+                  },
+                  "target_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "target_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "capabilities"
+                  },
+                  "target_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "target_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "profiler"
+                  },
+                  "target_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "target_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "workspace"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "compatibility"
+                  },
+                  "target_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "request"
+        ]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "data": true,
+          "code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "message": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "recovery": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "schema_version",
+          "status",
+          "data",
+          "code",
+          "message",
+          "recovery"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "destructiveHint": false,
+        "readOnlyHint": true
+      }
+    },
+    {
+      "name": "lab.run",
+      "description": "Start granted capture, scenario, individual-operation timing, confirmation, export, or deletion jobs; compare retained quantiles, analyze sampled stacks, recover artifacts, or maintain the catalog; poll, cancel, or stop by operation ID.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "type": "object",
+            "required": [
+              "action"
+            ],
+            "anyOf": [
+              {
+                "properties": {
+                  "action": {
+                    "const": "start_capture"
+                  },
+                  "target_id": {
+                    "type": "string"
+                  },
+                  "expected_target_epoch": {
+                    "type": "string"
+                  },
+                  "profile": {
+                    "type": "string"
+                  },
+                  "duration_seconds": {
+                    "type": "integer"
+                  },
+                  "grant_id": {
+                    "type": "string"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "target_id",
+                  "expected_target_epoch",
+                  "profile",
+                  "duration_seconds",
+                  "grant_id",
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "start"
+                  },
+                  "target_id": {
+                    "type": "string"
+                  },
+                  "expected_target_epoch": {
+                    "type": "string"
+                  },
+                  "plan_id": {
+                    "type": "string"
+                  },
+                  "grant_id": {
+                    "type": "string"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  },
+                  "observation_grant_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "target_id",
+                  "expected_target_epoch",
+                  "plan_id",
+                  "grant_id",
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "status"
+                  },
+                  "operation_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "operation_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "cancel"
+                  },
+                  "operation_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "operation_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "stop_capture"
+                  },
+                  "operation_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "operation_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "start_confirmation"
+                  },
+                  "plan_id": {
+                    "type": "string"
+                  },
+                  "grant_id": {
+                    "type": "string"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "plan_id",
+                  "grant_id",
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "start_export"
+                  },
+                  "plan_id": {
+                    "type": "string"
+                  },
+                  "grant_id": {
+                    "type": "string"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "plan_id",
+                  "grant_id",
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "import_bundle"
+                  },
+                  "plan_id": {
+                    "type": "string"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "plan_id",
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "analyze_imported_capture"
+                  },
+                  "member_id": {
+                    "type": "string"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "member_id",
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "start_deletion"
+                  },
+                  "plan_id": {
+                    "type": "string"
+                  },
+                  "grant_id": {
+                    "type": "string"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "plan_id",
+                  "grant_id",
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "recover_artifacts"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  },
+                  "maximum_entries": {
+                    "type": "integer",
+                    "default": 10000
+                  },
+                  "maximum_verified_bytes": {
+                    "type": "string",
+                    "default": "17179869184"
+                  },
+                  "maximum_duration_seconds": {
+                    "type": "integer",
+                    "default": 300
+                  }
+                },
+                "required": [
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "backup_catalog"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "checkpoint_catalog"
+                  },
+                  "truncate": {
+                    "type": "boolean",
+                    "default": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "release_references"
+                  },
+                  "plan_id": {
+                    "type": "string"
+                  },
+                  "grant_id": {
+                    "type": "string"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "plan_id",
+                  "grant_id",
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "analyze_stacks"
+                  },
+                  "capture_id": {
+                    "type": "string"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  },
+                  "policy": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "maximum_events": {
+                        "type": "integer",
+                        "default": 250000
+                      },
+                      "maximum_samples": {
+                        "type": "integer",
+                        "default": 100000
+                      },
+                      "maximum_depth": {
+                        "type": "integer",
+                        "default": 256
+                      },
+                      "maximum_methods": {
+                        "type": "integer",
+                        "default": 10000
+                      },
+                      "maximum_raw_bytes": {
+                        "default": "134217728"
+                      },
+                      "maximum_temporary_bytes": {
+                        "default": "536870912"
+                      },
+                      "maximum_duration_seconds": {
+                        "type": "integer",
+                        "default": 300
+                      },
+                      "start_milliseconds": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "default": null
+                      },
+                      "end_milliseconds": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "default": null
+                      }
+                    },
+                    "additionalProperties": false,
+                    "default": null
+                  }
+                },
+                "required": [
+                  "capture_id",
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "analyze_capture"
+                  },
+                  "capture_id": {
+                    "type": "string"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "capture_id",
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "compare_quantiles"
+                  },
+                  "dataset_id": {
+                    "type": "string"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "dataset_id",
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "individual_latencies"
+                  },
+                  "target_id": {
+                    "type": "string"
+                  },
+                  "expected_target_epoch": {
+                    "type": "string"
+                  },
+                  "plan_id": {
+                    "type": "string"
+                  },
+                  "grant_id": {
+                    "type": "string"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "target_id",
+                  "expected_target_epoch",
+                  "plan_id",
+                  "grant_id",
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "compare_native_series"
+                  },
+                  "dataset_id": {
+                    "type": "string"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "dataset_id",
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "register_native_series_results"
+                  },
+                  "plan_id": {
+                    "type": "string"
+                  },
+                  "result_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "plan_id",
+                  "result_ids",
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "attach_profiler"
+                  },
+                  "plan_id": {
+                    "type": "string"
+                  },
+                  "grant_id": {
+                    "type": "string"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "plan_id",
+                  "grant_id",
+                  "idempotency_key"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "reconcile_profiler_attachment"
+                  },
+                  "operation_id": {
+                    "type": "string"
+                  },
+                  "grant_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "operation_id",
+                  "grant_id"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "request"
+        ]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "data": true,
+          "code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "message": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "recovery": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "schema_version",
+          "status",
+          "data",
+          "code",
+          "message",
+          "recovery"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "lab.query",
+      "description": "Query retained metrics, individual-latency slices, sampled hotspots/method evidence, run windows, GC/suspensions, counter series and time windows, history, verified exports, availability, and bounded artifact slices.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "type": "object",
+            "required": [
+              "view"
+            ],
+            "anyOf": [
+              {
+                "properties": {
+                  "view": {
+                    "const": "record"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "revision": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "history"
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "default": 100
+                  },
+                  "cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "kind"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "metric"
+                  },
+                  "analysis_id": {
+                    "type": "string"
+                  },
+                  "metric": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "analysis_id",
+                  "metric"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "gc_timeline"
+                  },
+                  "analysis_id": {
+                    "type": "string"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "default": 100
+                  },
+                  "cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "analysis_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "counters"
+                  },
+                  "analysis_id": {
+                    "type": "string"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "default": 100
+                  },
+                  "cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "analysis_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "counter_window"
+                  },
+                  "analysis_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "start_milliseconds": {
+                    "type": "number"
+                  },
+                  "end_milliseconds": {
+                    "type": "number"
+                  },
+                  "kind": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  },
+                  "source": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  },
+                  "series": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "analysis_id",
+                  "name",
+                  "start_milliseconds",
+                  "end_milliseconds"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "available_evidence"
+                  },
+                  "capture_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "capture_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "artifact_slice"
+                  },
+                  "artifact_id": {
+                    "type": "string"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "default": "0"
+                  },
+                  "count": {
+                    "type": "integer",
+                    "default": 16384
+                  }
+                },
+                "required": [
+                  "artifact_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "run_window"
+                  },
+                  "analysis_id": {
+                    "type": "string"
+                  },
+                  "run_id": {
+                    "type": "string"
+                  },
+                  "residual_tolerance_milliseconds": {
+                    "type": "number",
+                    "default": 1
+                  }
+                },
+                "required": [
+                  "analysis_id",
+                  "run_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "suspensions"
+                  },
+                  "analysis_id": {
+                    "type": "string"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "default": 100
+                  },
+                  "cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "analysis_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "verify_export"
+                  },
+                  "result_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "result_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "verify_bundle_import"
+                  },
+                  "result_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "result_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "imported_members"
+                  },
+                  "import_id": {
+                    "type": "string"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "default": 100
+                  },
+                  "cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "import_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "controller_resources"
+                  },
+                  "operation_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "operation_policy"
+                  },
+                  "operation_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "operation_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "artifact_retention"
+                  },
+                  "artifact_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "artifact_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "artifact_recovery"
+                  },
+                  "result_id": {
+                    "type": "string"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "default": 100
+                  },
+                  "cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "result_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "verify_catalog_backup"
+                  },
+                  "backup_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "backup_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "artifact_references"
+                  },
+                  "artifact_id": {
+                    "type": "string"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "default": 100
+                  },
+                  "cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "artifact_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "hotspots"
+                  },
+                  "result_id": {
+                    "type": "string"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "default": 100
+                  },
+                  "cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  },
+                  "ranking": {
+                    "type": "string",
+                    "default": "inclusive"
+                  }
+                },
+                "required": [
+                  "result_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "sampled_method"
+                  },
+                  "result_id": {
+                    "type": "string"
+                  },
+                  "selector": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "result_id",
+                  "selector"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "individual_latency_slice"
+                  },
+                  "run_id": {
+                    "type": "string"
+                  },
+                  "offset": {
+                    "type": "integer",
+                    "default": 0
+                  },
+                  "count": {
+                    "type": "integer",
+                    "default": 100
+                  }
+                },
+                "required": [
+                  "run_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "verify_native_trial"
+                  },
+                  "result_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "result_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "view": {
+                    "const": "native_series_comparison"
+                  },
+                  "result_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "result_id"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "request"
+        ]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "data": true,
+          "code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "message": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "recovery": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "schema_version",
+          "status",
+          "data",
+          "code",
+          "message",
+          "recovery"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "destructiveHint": false,
+        "readOnlyHint": true
+      }
+    },
+    {
+      "name": "lab.inspect",
+      "description": "Read retained records and artifact manifests. Unqualified native inspection is explicitly unsupported.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "type": "object",
+            "required": [
+              "action"
+            ],
+            "anyOf": [
+              {
+                "properties": {
+                  "action": {
+                    "const": "record"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "revision": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "artifact"
+                  },
+                  "artifact_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "artifact_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "native"
+                  },
+                  "target_id": {
+                    "type": "string"
+                  },
+                  "method_id": {
+                    "type": "string"
+                  },
+                  "expected_target_epoch": {
+                    "type": "string"
+                  },
+                  "grant_id": {
+                    "type": "string"
+                  },
+                  "module_load_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "target_id",
+                  "method_id",
+                  "expected_target_epoch",
+                  "grant_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "methods"
+                  },
+                  "artifact_id": {
+                    "type": "string"
+                  },
+                  "filter": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "default": 100
+                  },
+                  "cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "artifact_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "il"
+                  },
+                  "artifact_id": {
+                    "type": "string"
+                  },
+                  "method_token": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "artifact_id",
+                  "method_token"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "offline_native"
+                  },
+                  "artifact_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "artifact_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "native_diff"
+                  },
+                  "original_artifact_id": {
+                    "type": "string"
+                  },
+                  "candidate_artifact_id": {
+                    "type": "string"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "default": 100
+                  }
+                },
+                "required": [
+                  "original_artifact_id",
+                  "candidate_artifact_id"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "request"
+        ]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "data": true,
+          "code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "message": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "recovery": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "schema_version",
+          "status",
+          "data",
+          "code",
+          "message",
+          "recovery"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "destructiveHint": false,
+        "readOnlyHint": true
+      }
+    },
+    {
+      "name": "lab.experiment",
+      "description": "Maintain hypotheses, baselines/aliases, frozen plans including individual-observation quantile designs, verified observation datasets, registered builds, candidate metadata, work items, and decisions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "type": "object",
+            "required": [
+              "action"
+            ],
+            "anyOf": [
+              {
+                "properties": {
+                  "action": {
+                    "const": "create_hypothesis"
+                  },
+                  "mechanism": {
+                    "type": "string"
+                  },
+                  "prediction": {
+                    "type": "string"
+                  },
+                  "evidence_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "mechanism",
+                  "prediction",
+                  "evidence_ids"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "revise_hypothesis"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "expected_revision": {
+                    "type": "string"
+                  },
+                  "mechanism": {
+                    "type": "string"
+                  },
+                  "prediction": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "evidence_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "id",
+                  "expected_revision",
+                  "mechanism",
+                  "prediction",
+                  "state",
+                  "evidence_ids"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "create_candidate"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "build_identity": {
+                    "type": "string"
+                  },
+                  "components": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "name",
+                  "build_identity",
+                  "components"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "create_plan"
+                  },
+                  "scenario_id": {
+                    "type": "string"
+                  },
+                  "scenario_version": {
+                    "type": "string"
+                  },
+                  "input_hash": {
+                    "type": "string"
+                  },
+                  "variants": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "blocks": {
+                    "type": "integer",
+                    "default": 10
+                  },
+                  "operations_per_run": {
+                    "type": "integer",
+                    "default": 1000
+                  },
+                  "warmup_batches": {
+                    "type": "integer",
+                    "default": 1
+                  },
+                  "seed": {
+                    "type": "string",
+                    "default": "42"
+                  },
+                  "profile": {
+                    "type": "string",
+                    "default": "quiet-validation"
+                  },
+                  "independent_blocks": {
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "independence_justification": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "confirmatory": {
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "maximum_duration_seconds": {
+                    "type": "integer",
+                    "default": 60
+                  },
+                  "analysis": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "alpha_family": {
+                        "type": "number",
+                        "default": 0.05
+                      },
+                      "family_size": {
+                        "type": "integer",
+                        "default": 1
+                      },
+                      "equivalence_lower_ratio": {
+                        "type": "number",
+                        "default": 0.99
+                      },
+                      "equivalence_upper_ratio": {
+                        "type": "number",
+                        "default": 1.01
+                      },
+                      "useful_improvement_ratio": {
+                        "type": "number",
+                        "default": 0.99
+                      },
+                      "meaningful_regression_ratio": {
+                        "type": "number",
+                        "default": 1.01
+                      },
+                      "minimum_blocks": {
+                        "type": "integer",
+                        "default": 10
+                      }
+                    },
+                    "additionalProperties": false,
+                    "default": null
+                  },
+                  "primary_metric": {
+                    "type": "string",
+                    "default": "scenario.ns_per_operation"
+                  },
+                  "guardrail_metrics": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": "string"
+                    },
+                    "default": null
+                  },
+                  "guardrail_policies": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "metric": {
+                          "type": "string"
+                        },
+                        "unit": {
+                          "type": "string"
+                        },
+                        "observation_kind": {
+                          "type": "string"
+                        },
+                        "direction": {
+                          "type": "string",
+                          "enum": [
+                            "lower_is_better",
+                            "higher_is_better"
+                          ]
+                        },
+                        "scale": {
+                          "type": "string",
+                          "enum": [
+                            "positive_ratio",
+                            "absolute_difference"
+                          ]
+                        },
+                        "equivalence_lower": {
+                          "type": "number"
+                        },
+                        "equivalence_upper": {
+                          "type": "number"
+                        },
+                        "useful_improvement": {
+                          "type": "number"
+                        },
+                        "meaningful_regression": {
+                          "type": "number"
+                        },
+                        "minimum_blocks": {
+                          "type": "integer",
+                          "default": 10
+                        },
+                        "descriptive_only": {
+                          "type": "boolean",
+                          "default": false
+                        }
+                      },
+                      "required": [
+                        "metric",
+                        "unit",
+                        "observation_kind",
+                        "direction",
+                        "scale",
+                        "equivalence_lower",
+                        "equivalence_upper",
+                        "useful_improvement",
+                        "meaningful_regression"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "default": null
+                  },
+                  "baseline_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  },
+                  "baseline_alias_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  },
+                  "factorial": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "variant00": {
+                        "type": "string"
+                      },
+                      "variant10": {
+                        "type": "string"
+                      },
+                      "variant01": {
+                        "type": "string"
+                      },
+                      "variant11": {
+                        "type": "string"
+                      },
+                      "component_a_id": {
+                        "type": "string"
+                      },
+                      "component_b_id": {
+                        "type": "string"
+                      },
+                      "combination_id": {
+                        "type": "string"
+                      },
+                      "interaction_scales": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "string",
+                          "enum": [
+                            "absolute",
+                            "log"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "variant00",
+                      "variant10",
+                      "variant01",
+                      "variant11",
+                      "component_a_id",
+                      "component_b_id",
+                      "combination_id",
+                      "interaction_scales"
+                    ],
+                    "additionalProperties": false,
+                    "default": null
+                  },
+                  "primary_policy": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "metric": {
+                        "type": "string"
+                      },
+                      "unit": {
+                        "type": "string"
+                      },
+                      "observation_kind": {
+                        "type": "string"
+                      },
+                      "direction": {
+                        "type": "string",
+                        "enum": [
+                          "lower_is_better",
+                          "higher_is_better"
+                        ]
+                      },
+                      "scale": {
+                        "type": "string",
+                        "enum": [
+                          "positive_ratio",
+                          "absolute_difference"
+                        ]
+                      },
+                      "equivalence_lower": {
+                        "type": "number"
+                      },
+                      "equivalence_upper": {
+                        "type": "number"
+                      },
+                      "useful_improvement": {
+                        "type": "number"
+                      },
+                      "meaningful_regression": {
+                        "type": "number"
+                      },
+                      "minimum_blocks": {
+                        "type": "integer",
+                        "default": 10
+                      },
+                      "descriptive_only": {
+                        "type": "boolean",
+                        "default": false
+                      }
+                    },
+                    "required": [
+                      "metric",
+                      "unit",
+                      "observation_kind",
+                      "direction",
+                      "scale",
+                      "equivalence_lower",
+                      "equivalence_upper",
+                      "useful_improvement",
+                      "meaningful_regression"
+                    ],
+                    "additionalProperties": false,
+                    "default": null
+                  },
+                  "diagnostic_windows": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "residual_tolerance_milliseconds": {
+                        "type": "number",
+                        "default": 1
+                      },
+                      "parser_version": {
+                        "type": "string",
+                        "default": "traceevent-runtime/3"
+                      },
+                      "window_algorithm": {
+                        "type": "string",
+                        "default": "target-clock-window/v1"
+                      }
+                    },
+                    "additionalProperties": false,
+                    "default": null
+                  },
+                  "compilation_control_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "scenario_id",
+                  "scenario_version",
+                  "input_hash",
+                  "variants"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "create_work_item"
+                  },
+                  "question": {
+                    "type": "string"
+                  },
+                  "priority": {
+                    "type": "integer"
+                  },
+                  "dependencies": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "evidence_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "question",
+                  "priority",
+                  "dependencies",
+                  "evidence_ids"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "revise_work_item"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "expected_revision": {
+                    "type": "string"
+                  },
+                  "question": {
+                    "type": "string"
+                  },
+                  "priority": {
+                    "type": "integer"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "dependencies": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "evidence_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "id",
+                  "expected_revision",
+                  "question",
+                  "priority",
+                  "state",
+                  "dependencies",
+                  "evidence_ids"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "record_decision"
+                  },
+                  "comparison_id": {
+                    "type": "string"
+                  },
+                  "decision": {
+                    "type": "string"
+                  },
+                  "rationale": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "comparison_id",
+                  "decision",
+                  "rationale"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "register_cil_candidate"
+                  },
+                  "body_artifact_id": {
+                    "type": "string"
+                  },
+                  "inspection_id": {
+                    "type": "string"
+                  },
+                  "base_il_hash": {
+                    "type": "string"
+                  },
+                  "components": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "body_artifact_id",
+                  "inspection_id",
+                  "base_il_hash",
+                  "components"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "register_normal_build"
+                  },
+                  "entry_assembly": {
+                    "type": "string"
+                  },
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "artifact_id": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "artifact_id"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "entry_assembly",
+                  "files"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "create_confirmation_plan"
+                  },
+                  "selected_candidate_id": {
+                    "type": "string"
+                  },
+                  "source_patch_artifact_id": {
+                    "type": "string"
+                  },
+                  "source_equivalence_rationale": {
+                    "type": "string"
+                  },
+                  "baseline_build_id": {
+                    "type": "string"
+                  },
+                  "candidate_build_id": {
+                    "type": "string"
+                  },
+                  "baseline_variant": {
+                    "type": "string"
+                  },
+                  "candidate_variant": {
+                    "type": "string"
+                  },
+                  "experiment": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "scenario_id": {
+                        "type": "string"
+                      },
+                      "scenario_version": {
+                        "type": "string"
+                      },
+                      "input_hash": {
+                        "type": "string"
+                      },
+                      "variants": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "blocks": {
+                        "type": "integer"
+                      },
+                      "operations_per_run": {
+                        "type": "integer"
+                      },
+                      "warmup_batches": {
+                        "type": "integer"
+                      },
+                      "seed": true,
+                      "profile": {
+                        "type": "string"
+                      },
+                      "independent_blocks": {
+                        "type": "boolean"
+                      },
+                      "independence_justification": {
+                        "type": "string"
+                      },
+                      "confirmatory": {
+                        "type": "boolean"
+                      },
+                      "maximum_duration_seconds": {
+                        "type": "integer"
+                      },
+                      "analysis": {
+                        "type": "object",
+                        "properties": {
+                          "alpha_family": {
+                            "type": "number",
+                            "default": 0.05
+                          },
+                          "family_size": {
+                            "type": "integer",
+                            "default": 1
+                          },
+                          "equivalence_lower_ratio": {
+                            "type": "number",
+                            "default": 0.99
+                          },
+                          "equivalence_upper_ratio": {
+                            "type": "number",
+                            "default": 1.01
+                          },
+                          "useful_improvement_ratio": {
+                            "type": "number",
+                            "default": 0.99
+                          },
+                          "meaningful_regression_ratio": {
+                            "type": "number",
+                            "default": 1.01
+                          },
+                          "minimum_blocks": {
+                            "type": "integer",
+                            "default": 10
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "primary_metric": {
+                        "type": "string",
+                        "default": "scenario.ns_per_operation"
+                      },
+                      "fresh_normal_build": {
+                        "type": "boolean",
+                        "default": false
+                      },
+                      "guardrail_metrics": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "items": {
+                          "type": "string"
+                        },
+                        "default": null
+                      },
+                      "guardrail_policies": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "items": {
+                          "$ref": "#/properties/request/anyOf/3/properties/guardrail_policies/items"
+                        },
+                        "default": null
+                      },
+                      "baseline": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "revision": true,
+                          "hash": {
+                            "type": "string"
+                          },
+                          "alias_id": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "default": null
+                          },
+                          "alias_revision": {
+                            "default": null
+                          },
+                          "alias_hash": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "default": null
+                          },
+                          "sampling_policy": {
+                            "type": "string",
+                            "default": "fresh_matched_control_runs"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "revision",
+                          "hash"
+                        ],
+                        "additionalProperties": false,
+                        "default": null
+                      },
+                      "factorial": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "variant00": {
+                            "type": "string"
+                          },
+                          "variant10": {
+                            "type": "string"
+                          },
+                          "variant01": {
+                            "type": "string"
+                          },
+                          "variant11": {
+                            "type": "string"
+                          },
+                          "component_a_id": {
+                            "type": "string"
+                          },
+                          "component_b_id": {
+                            "type": "string"
+                          },
+                          "combination_id": {
+                            "type": "string"
+                          },
+                          "interaction_scales": {
+                            "$ref": "#/properties/request/anyOf/3/properties/factorial/properties/interaction_scales"
+                          }
+                        },
+                        "required": [
+                          "variant00",
+                          "variant10",
+                          "variant01",
+                          "variant11",
+                          "component_a_id",
+                          "component_b_id",
+                          "combination_id",
+                          "interaction_scales"
+                        ],
+                        "additionalProperties": false,
+                        "default": null
+                      },
+                      "primary_policy": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "metric": {
+                            "type": "string"
+                          },
+                          "unit": {
+                            "type": "string"
+                          },
+                          "observation_kind": {
+                            "type": "string"
+                          },
+                          "direction": {
+                            "type": "string",
+                            "enum": [
+                              "lower_is_better",
+                              "higher_is_better"
+                            ]
+                          },
+                          "scale": {
+                            "type": "string",
+                            "enum": [
+                              "positive_ratio",
+                              "absolute_difference"
+                            ]
+                          },
+                          "equivalence_lower": {
+                            "type": "number"
+                          },
+                          "equivalence_upper": {
+                            "type": "number"
+                          },
+                          "useful_improvement": {
+                            "type": "number"
+                          },
+                          "meaningful_regression": {
+                            "type": "number"
+                          },
+                          "minimum_blocks": {
+                            "type": "integer",
+                            "default": 10
+                          },
+                          "descriptive_only": {
+                            "type": "boolean",
+                            "default": false
+                          }
+                        },
+                        "required": [
+                          "metric",
+                          "unit",
+                          "observation_kind",
+                          "direction",
+                          "scale",
+                          "equivalence_lower",
+                          "equivalence_upper",
+                          "useful_improvement",
+                          "meaningful_regression"
+                        ],
+                        "additionalProperties": false,
+                        "default": null
+                      },
+                      "diagnostic_windows": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "residual_tolerance_milliseconds": {
+                            "type": "number",
+                            "default": 1
+                          },
+                          "parser_version": {
+                            "type": "string",
+                            "default": "traceevent-runtime/3"
+                          },
+                          "window_algorithm": {
+                            "type": "string",
+                            "default": "target-clock-window/v1"
+                          }
+                        },
+                        "additionalProperties": false,
+                        "default": null
+                      },
+                      "compilation_control": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "result_id": {
+                            "type": "string"
+                          },
+                          "revision": true,
+                          "record_hash": {
+                            "type": "string"
+                          },
+                          "artifact_id": {
+                            "type": "string"
+                          },
+                          "artifact_hash": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "result_id",
+                          "revision",
+                          "record_hash",
+                          "artifact_id",
+                          "artifact_hash"
+                        ],
+                        "additionalProperties": false,
+                        "default": null
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "scenario_id",
+                      "scenario_version",
+                      "input_hash",
+                      "variants",
+                      "blocks",
+                      "operations_per_run",
+                      "warmup_batches",
+                      "seed",
+                      "profile",
+                      "independent_blocks",
+                      "independence_justification",
+                      "confirmatory",
+                      "maximum_duration_seconds",
+                      "analysis"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "exploratory_evidence_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "baseline_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  },
+                  "baseline_alias_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "selected_candidate_id",
+                  "source_patch_artifact_id",
+                  "source_equivalence_rationale",
+                  "baseline_build_id",
+                  "candidate_build_id",
+                  "baseline_variant",
+                  "candidate_variant",
+                  "experiment",
+                  "exploratory_evidence_ids"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "create_baseline"
+                  },
+                  "run_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "role": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "run_ids",
+                  "role"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "set_baseline_alias"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "baseline_id": {
+                    "type": "string"
+                  },
+                  "expected_revision": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "name",
+                  "baseline_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "prepare_export"
+                  },
+                  "record_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "artifact_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "privacy_filtered": {
+                    "type": "boolean",
+                    "default": true
+                  },
+                  "maximum_bundle_bytes": {
+                    "type": "string",
+                    "default": "1073741824"
+                  },
+                  "maximum_duration_seconds": {
+                    "type": "integer",
+                    "default": 300
+                  }
+                },
+                "required": [
+                  "record_ids",
+                  "artifact_ids"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "prepare_bundle_import"
+                  },
+                  "artifact_id": {
+                    "type": "string"
+                  },
+                  "maximum_decompressed_bytes": {
+                    "type": "string",
+                    "default": "1073741824"
+                  },
+                  "maximum_duration_seconds": {
+                    "type": "integer",
+                    "default": 300
+                  }
+                },
+                "required": [
+                  "artifact_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "prepare_deletion"
+                  },
+                  "artifact_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "reason": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "artifact_ids",
+                  "reason"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "prepare_retention"
+                  },
+                  "maximum_raw_trace_bytes": {
+                    "type": "string"
+                  },
+                  "maximum_age_days": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "maximum_raw_trace_bytes",
+                  "maximum_age_days"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "pin_evidence"
+                  },
+                  "artifact_id": {
+                    "type": "string"
+                  },
+                  "owner_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "artifact_id",
+                  "owner_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "prepare_reference_release"
+                  },
+                  "selection": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "artifact_id": {
+                          "type": "string"
+                        },
+                        "owner_id": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "artifact_id",
+                        "owner_id"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "reason": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "selection",
+                  "reason"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "create_quantile_plan"
+                  },
+                  "design": {
+                    "type": "object",
+                    "properties": {
+                      "observation_type": {
+                        "type": "string"
+                      },
+                      "workload_identity": {
+                        "type": "string"
+                      },
+                      "observer_identity": {
+                        "type": "string"
+                      },
+                      "clusters": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "blocks": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "blocks"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "observations_per_arm_per_block": {
+                        "type": "integer"
+                      },
+                      "quantile": {
+                        "type": "number",
+                        "default": 0.99
+                      },
+                      "seed": {
+                        "default": "42"
+                      },
+                      "resamples": {
+                        "type": "integer",
+                        "default": 10000
+                      },
+                      "alpha_family": {
+                        "type": "number",
+                        "default": 0.05
+                      },
+                      "family_size": {
+                        "type": "integer",
+                        "default": 1
+                      },
+                      "independent_clusters": {
+                        "type": "boolean",
+                        "default": false
+                      },
+                      "independence_justification": {
+                        "type": "string",
+                        "default": ""
+                      },
+                      "useful_improvement_ns": {
+                        "type": "number",
+                        "default": 0
+                      },
+                      "meaningful_regression_ns": {
+                        "type": "number",
+                        "default": 0
+                      },
+                      "maximum_duration_seconds": {
+                        "type": "integer",
+                        "default": 300
+                      },
+                      "harness_plans": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "baseline_plan_id": {
+                            "type": "string"
+                          },
+                          "candidate_plan_id": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "baseline_plan_id",
+                          "candidate_plan_id"
+                        ],
+                        "additionalProperties": false,
+                        "default": null
+                      }
+                    },
+                    "required": [
+                      "observation_type",
+                      "workload_identity",
+                      "observer_identity",
+                      "clusters",
+                      "observations_per_arm_per_block"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "design"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "register_quantile_observations"
+                  },
+                  "plan_id": {
+                    "type": "string"
+                  },
+                  "artifact_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "plan_id",
+                  "artifact_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "create_individual_latency_plan"
+                  },
+                  "scenario_id": {
+                    "type": "string"
+                  },
+                  "scenario_version": {
+                    "type": "string"
+                  },
+                  "input_hash": {
+                    "type": "string"
+                  },
+                  "variant": {
+                    "type": "string"
+                  },
+                  "operations": {
+                    "type": "integer",
+                    "default": 100
+                  },
+                  "warmup_batches": {
+                    "type": "integer",
+                    "default": 1
+                  },
+                  "maximum_duration_seconds": {
+                    "type": "integer",
+                    "default": 60
+                  },
+                  "compilation_control_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "scenario_id",
+                  "scenario_version",
+                  "input_hash",
+                  "variant"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "register_quantile_harness_runs"
+                  },
+                  "plan_id": {
+                    "type": "string"
+                  },
+                  "blocks": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "baseline_run_id": {
+                          "type": "string"
+                        },
+                        "candidate_run_id": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "baseline_run_id",
+                        "candidate_run_id"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "plan_id",
+                  "blocks"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "create_compilation_control"
+                  },
+                  "candidate_id": {
+                    "type": "string"
+                  },
+                  "scenario_id": {
+                    "type": "string"
+                  },
+                  "harness_variant": {
+                    "type": "string",
+                    "default": "baseline"
+                  },
+                  "blocks": {
+                    "type": "integer",
+                    "default": 10
+                  },
+                  "operations_per_run": {
+                    "type": "integer",
+                    "default": 1000
+                  },
+                  "warmup_batches": {
+                    "type": "integer",
+                    "default": 1
+                  },
+                  "maximum_duration_seconds": {
+                    "type": "integer",
+                    "default": 60
+                  }
+                },
+                "required": [
+                  "candidate_id",
+                  "scenario_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "create_native_trial"
+                  },
+                  "candidate_id": {
+                    "type": "string"
+                  },
+                  "compilation_control_id": {
+                    "type": "string"
+                  },
+                  "blocks": {
+                    "type": "integer",
+                    "default": 10
+                  },
+                  "seed": {
+                    "type": "string",
+                    "default": "42"
+                  },
+                  "maximum_duration_seconds": {
+                    "type": "integer",
+                    "default": 120
+                  }
+                },
+                "required": [
+                  "candidate_id",
+                  "compilation_control_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "create_native_series"
+                  },
+                  "trial_plan_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "analysis": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "alpha_family": {
+                        "type": "number",
+                        "default": 0.05
+                      },
+                      "family_size": {
+                        "type": "integer",
+                        "default": 1
+                      },
+                      "equivalence_lower_ratio": {
+                        "type": "number",
+                        "default": 0.99
+                      },
+                      "equivalence_upper_ratio": {
+                        "type": "number",
+                        "default": 1.01
+                      },
+                      "useful_improvement_ratio": {
+                        "type": "number",
+                        "default": 0.99
+                      },
+                      "meaningful_regression_ratio": {
+                        "type": "number",
+                        "default": 1.01
+                      },
+                      "minimum_blocks": {
+                        "type": "integer",
+                        "default": 10
+                      }
+                    },
+                    "additionalProperties": false,
+                    "default": null
+                  },
+                  "independent_sessions": {
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "independence_justification": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "carryover_justification": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "maximum_duration_seconds": {
+                    "type": "integer",
+                    "default": 300
+                  }
+                },
+                "required": [
+                  "trial_plan_ids"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "action": {
+                    "const": "prepare_profiler_attachment"
+                  },
+                  "target_id": {
+                    "type": "string"
+                  },
+                  "expected_target_epoch": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "target_id",
+                  "expected_target_epoch"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "request"
+        ]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "data": true,
+          "code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "message": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "recovery": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "schema_version",
+          "status",
+          "data",
+          "code",
+          "message",
+          "recovery"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "destructiveHint": false
+      }
+    }
+  ]
+}

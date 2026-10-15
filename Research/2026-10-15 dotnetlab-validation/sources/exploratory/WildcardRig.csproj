@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup>
+<OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework><RuntimeFrameworkVersion>10.0.12</RuntimeFrameworkVersion>
+<RollForward>Disable</RollForward><AssemblyName>WildcardRig</AssemblyName><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable>
+<AllowUnsafeBlocks>true</AllowUnsafeBlocks><EnableNETAnalyzers>false</EnableNETAnalyzers><UseAppHost>false</UseAppHost>
+<DefineConstants>EXPLORATORY</DefineConstants>
+<OutputPath>bin/</OutputPath><AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+</PropertyGroup><ItemGroup><Reference Include="DotNetLab.Harness"><HintPath>D:\Workspaces\AI\dotnetlab-implementation\bin\DotNetLab.Host\Release\net10.0\DotNetLab.Harness.dll</HintPath></Reference><Reference Include="DotNetLab.Contracts"><HintPath>D:\Workspaces\AI\dotnetlab-implementation\bin\DotNetLab.Host\Release\net10.0\DotNetLab.Contracts.dll</HintPath></Reference><Reference Include="DotNetLab.Transport.Local"><HintPath>D:\Workspaces\AI\dotnetlab-implementation\bin\DotNetLab.Host\Release\net10.0\DotNetLab.Transport.Local.dll</HintPath></Reference></ItemGroup></Project>

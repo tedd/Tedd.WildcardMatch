@@ -1,0 +1,106 @@
+[
+  {
+    "id": "window-e0fe9dc7b4331aed42f4ee51dcaaa62f6e9af6f3a1b3d47bd40d1f9363857153",
+    "analysis_id": "analysis-13c11920219449d29290a3cc783fb425",
+    "capture_id": "cap-a7d02300aee4474f90a7c08ebb0f57a6",
+    "run_id": "run-4ca3d1fd81a6405a8a7cd797a00b0f5f",
+    "execution_id": "exec-71326904bd514137a8e7bdf41fd16745",
+    "block_id": "exec-71326904bd514137a8e7bdf41fd16745-block-0",
+    "availability": "partial",
+    "boundary_source": "target_measurement_markers",
+    "start_ticks": "348719870180",
+    "end_ticks": "348785628572",
+    "frequency": "10000000",
+    "start_milliseconds": 13135.685148461427,
+    "end_milliseconds": 19711.49762237642,
+    "clock_mapping": {
+      "anchor_ticks": "348719866070",
+      "anchor_milliseconds": 13135.274150131849,
+      "milliseconds_per_tick": 9.999959357149415e-05,
+      "maximum_residual_milliseconds": 0.14282217442450929
+    },
+    "gc_suspension_overlap": {
+      "metric": "gc.suspension_overlap_ns",
+      "status": "partial",
+      "value": 0,
+      "unit": "ns",
+      "scope": "process_overlap_with_run",
+      "reason": "Union of retained GC suspension-start to restart-end intervals intersecting [target_start,target_end); affine fit residual is reported, not a guarantee against unobserved scheduling delay.",
+      "quality": {
+        "coverage": "partial",
+        "loss_status": "none_reported",
+        "parser_version": "traceevent-runtime/3",
+        "warnings": [
+          "provider_coverage_requires_stimulus",
+          "stack_symbolization_not_qualified"
+        ],
+        "symbol_coverage": null
+      },
+      "provenance": {
+        "capture_id": "cap-a7d02300aee4474f90a7c08ebb0f57a6",
+        "artifact_id": "art-1d298e0dc8378dcd86658339a7b72fa2fa9f18f51187935dc5c91abbac50638f",
+        "parser_version": "traceevent-runtime/3",
+        "profile_hash": "67ba4a8937a4a227d073123cb06165056544e648eb0b092938024f33ad1c7831"
+      }
+    },
+    "overlapping_gc_cycles": 0,
+    "warnings": [
+      "capture_or_parser_partial"
+    ],
+    "algorithm": "target-clock-window/v1",
+    "residual_tolerance_milliseconds": 1,
+    "meaning": "Half-open target-side execution interval; GC overlap is process-level correlation, not method attribution."
+  },
+  {
+    "id": "window-c2801643bbadb0af4b86a27d86dfdfb57d8b515db36d19ea94e6709f1dba21cf",
+    "analysis_id": "analysis-13c11920219449d29290a3cc783fb425",
+    "capture_id": "cap-a7d02300aee4474f90a7c08ebb0f57a6",
+    "run_id": "run-e19af2507e4b424c8eed30667998fc75",
+    "execution_id": "exec-71326904bd514137a8e7bdf41fd16745",
+    "block_id": "exec-71326904bd514137a8e7bdf41fd16745-block-0",
+    "availability": "partial",
+    "boundary_source": "target_measurement_markers",
+    "start_ticks": "349058131993",
+    "end_ticks": "349192991723",
+    "frequency": "10000000",
+    "start_milliseconds": 46961.72896921818,
+    "end_milliseconds": 60447.64715837962,
+    "clock_mapping": {
+      "anchor_ticks": "348719866070",
+      "anchor_milliseconds": 13135.274150131849,
+      "milliseconds_per_tick": 9.999959357149415e-05,
+      "maximum_residual_milliseconds": 0.14282217442450929
+    },
+    "gc_suspension_overlap": {
+      "metric": "gc.suspension_overlap_ns",
+      "status": "partial",
+      "value": 0,
+      "unit": "ns",
+      "scope": "process_overlap_with_run",
+      "reason": "Union of retained GC suspension-start to restart-end intervals intersecting [target_start,target_end); affine fit residual is reported, not a guarantee against unobserved scheduling delay.",
+      "quality": {
+        "coverage": "partial",
+        "loss_status": "none_reported",
+        "parser_version": "traceevent-runtime/3",
+        "warnings": [
+          "provider_coverage_requires_stimulus",
+          "stack_symbolization_not_qualified"
+        ],
+        "symbol_coverage": null
+      },
+      "provenance": {
+        "capture_id": "cap-a7d02300aee4474f90a7c08ebb0f57a6",
+        "artifact_id": "art-1d298e0dc8378dcd86658339a7b72fa2fa9f18f51187935dc5c91abbac50638f",
+        "parser_version": "traceevent-runtime/3",
+        "profile_hash": "67ba4a8937a4a227d073123cb06165056544e648eb0b092938024f33ad1c7831"
+      }
+    },
+    "overlapping_gc_cycles": 0,
+    "warnings": [
+      "capture_or_parser_partial"
+    ],
+    "algorithm": "target-clock-window/v1",
+    "residual_tolerance_milliseconds": 1,
+    "meaning": "Half-open target-side execution interval; GC overlap is process-level correlation, not method attribution."
+  }
+]

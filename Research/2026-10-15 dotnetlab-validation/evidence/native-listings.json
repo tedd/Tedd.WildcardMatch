@@ -1,0 +1,872 @@
+[
+  {
+    "artifact_id": "art-0f99dfe2d44098f73d24ab1754875b55c3680c96e8e1fba2aa83d74f6ed45d38",
+    "decoder": "iced-x64/1.21.0",
+    "qualification": "imported_snapshot_unverified",
+    "instruction_count": 477,
+    "region_count": 1,
+    "warnings": [
+      "imported_identity_not_live_verified",
+      "snapshot_is_not_proof_of_earlier_run_code"
+    ],
+    "preview": [
+      {
+        "region": 0,
+        "offset": 0,
+        "address": "0x7ffcbcf9cc60",
+        "bytes": "55",
+        "text": "push rbp",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 1,
+        "address": "0x7ffcbcf9cc61",
+        "bytes": "4881ec00020000",
+        "text": "sub rsp,200h",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 8,
+        "address": "0x7ffcbcf9cc68",
+        "bytes": "488dac2400020000",
+        "text": "lea rbp,[rsp+200h]",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 16,
+        "address": "0x7ffcbcf9cc70",
+        "bytes": "33c0",
+        "text": "xor eax,eax",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 18,
+        "address": "0x7ffcbcf9cc72",
+        "bytes": "48898528feffff",
+        "text": "mov [rbp-1D8h],rax",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 25,
+        "address": "0x7ffcbcf9cc79",
+        "bytes": "c5d857e4",
+        "text": "vxorps xmm4,xmm4,xmm4",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 29,
+        "address": "0x7ffcbcf9cc7d",
+        "bytes": "c5f97fa530feffff",
+        "text": "vmovdqa [rbp-1D0h],xmm4",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 37,
+        "address": "0x7ffcbcf9cc85",
+        "bytes": "48b880feffffffffffff",
+        "text": "mov rax,0FFFFFFFFFFFFFE80h",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 47,
+        "address": "0x7ffcbcf9cc8f",
+        "bytes": "c5f97f6405c0",
+        "text": "vmovdqa [rbp+rax-40h],xmm4",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 53,
+        "address": "0x7ffcbcf9cc95",
+        "bytes": "c5f97f6405d0",
+        "text": "vmovdqa [rbp+rax-30h],xmm4",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 59,
+        "address": "0x7ffcbcf9cc9b",
+        "bytes": "c5f97f6405e0",
+        "text": "vmovdqa [rbp+rax-20h],xmm4",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 65,
+        "address": "0x7ffcbcf9cca1",
+        "bytes": "4883c030",
+        "text": "add rax,30h",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 69,
+        "address": "0x7ffcbcf9cca5",
+        "bytes": "75e8",
+        "text": "jne short 00007FFCBCF9CC8Fh",
+        "flow_control": "ConditionalBranch",
+        "branch_target": "0x7ffcbcf9cc8f"
+      },
+      {
+        "region": 0,
+        "offset": 71,
+        "address": "0x7ffcbcf9cca7",
+        "bytes": "488945c0",
+        "text": "mov [rbp-40h],rax",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 75,
+        "address": "0x7ffcbcf9ccab",
+        "bytes": "48894d10",
+        "text": "mov [rbp+10h],rcx",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 79,
+        "address": "0x7ffcbcf9ccaf",
+        "bytes": "48895518",
+        "text": "mov [rbp+18h],rdx",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 83,
+        "address": "0x7ffcbcf9ccb3",
+        "bytes": "c785d0feffffe8030000",
+        "text": "mov dword ptr [rbp-130h],3E8h",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 93,
+        "address": "0x7ffcbcf9ccbd",
+        "bytes": "488b4518",
+        "text": "mov rax,[rbp+18h]",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 97,
+        "address": "0x7ffcbcf9ccc1",
+        "bytes": "8b4008",
+        "text": "mov eax,[rax+8]",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 100,
+        "address": "0x7ffcbcf9ccc4",
+        "bytes": "488b4d10",
+        "text": "mov rcx,[rbp+10h]",
+        "flow_control": "Next",
+        "branch_target": null
+      }
+    ],
+    "annotations": [
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 104,
+        "end_offset": 109,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "call-site/v1",
+        "confidence": "high",
+        "region": 0,
+        "start_offset": 119,
+        "end_offset": 124,
+        "description": "A call instruction is present.",
+        "alternative_explanations": [
+          "Inlining intent and cause are not established.",
+          "Target may be a runtime helper."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 210,
+        "end_offset": 219,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "call-site/v1",
+        "confidence": "high",
+        "region": 0,
+        "start_offset": 269,
+        "end_offset": 275,
+        "description": "A call instruction is present.",
+        "alternative_explanations": [
+          "Inlining intent and cause are not established.",
+          "Target may be a runtime helper."
+        ]
+      },
+      {
+        "rule": "call-site/v1",
+        "confidence": "high",
+        "region": 0,
+        "start_offset": 289,
+        "end_offset": 294,
+        "description": "A call instruction is present.",
+        "alternative_explanations": [
+          "Inlining intent and cause are not established.",
+          "Target may be a runtime helper."
+        ]
+      },
+      {
+        "rule": "call-site/v1",
+        "confidence": "high",
+        "region": 0,
+        "start_offset": 309,
+        "end_offset": 314,
+        "description": "A call instruction is present.",
+        "alternative_explanations": [
+          "Inlining intent and cause are not established.",
+          "Target may be a runtime helper."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 376,
+        "end_offset": 385,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 416,
+        "end_offset": 421,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "call-site/v1",
+        "confidence": "high",
+        "region": 0,
+        "start_offset": 456,
+        "end_offset": 462,
+        "description": "A call instruction is present.",
+        "alternative_explanations": [
+          "Inlining intent and cause are not established.",
+          "Target may be a runtime helper."
+        ]
+      },
+      {
+        "rule": "call-site/v1",
+        "confidence": "high",
+        "region": 0,
+        "start_offset": 476,
+        "end_offset": 481,
+        "description": "A call instruction is present.",
+        "alternative_explanations": [
+          "Inlining intent and cause are not established.",
+          "Target may be a runtime helper."
+        ]
+      },
+      {
+        "rule": "call-site/v1",
+        "confidence": "high",
+        "region": 0,
+        "start_offset": 491,
+        "end_offset": 496,
+        "description": "A call instruction is present.",
+        "alternative_explanations": [
+          "Inlining intent and cause are not established.",
+          "Target may be a runtime helper."
+        ]
+      },
+      {
+        "rule": "call-site/v1",
+        "confidence": "high",
+        "region": 0,
+        "start_offset": 511,
+        "end_offset": 516,
+        "description": "A call instruction is present.",
+        "alternative_explanations": [
+          "Inlining intent and cause are not established.",
+          "Target may be a runtime helper."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 538,
+        "end_offset": 547,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 612,
+        "end_offset": 621,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "call-site/v1",
+        "confidence": "high",
+        "region": 0,
+        "start_offset": 633,
+        "end_offset": 638,
+        "description": "A call instruction is present.",
+        "alternative_explanations": [
+          "Inlining intent and cause are not established.",
+          "Target may be a runtime helper."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 641,
+        "end_offset": 646,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "call-site/v1",
+        "confidence": "high",
+        "region": 0,
+        "start_offset": 656,
+        "end_offset": 661,
+        "description": "A call instruction is present.",
+        "alternative_explanations": [
+          "Inlining intent and cause are not established.",
+          "Target may be a runtime helper."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 670,
+        "end_offset": 680,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 713,
+        "end_offset": 719,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 725,
+        "end_offset": 730,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      }
+    ]
+  },
+  {
+    "artifact_id": "art-3ad0541f2343ea40078c3e01c85514e617ea524584c1b02fba379a45b8964962",
+    "decoder": "iced-x64/1.21.0",
+    "qualification": "imported_snapshot_unverified",
+    "instruction_count": 375,
+    "region_count": 1,
+    "warnings": [
+      "imported_identity_not_live_verified",
+      "snapshot_is_not_proof_of_earlier_run_code"
+    ],
+    "preview": [
+      {
+        "region": 0,
+        "offset": 0,
+        "address": "0x7ffcbcf9d940",
+        "bytes": "4881ec98000000",
+        "text": "sub rsp,98h",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 7,
+        "address": "0x7ffcbcf9d947",
+        "bytes": "4c89bc2498020000",
+        "text": "mov [rsp+298h],r15",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 15,
+        "address": "0x7ffcbcf9d94f",
+        "bytes": "4c89b42490020000",
+        "text": "mov [rsp+290h],r14",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 23,
+        "address": "0x7ffcbcf9d957",
+        "bytes": "4c89ac2488020000",
+        "text": "mov [rsp+288h],r13",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 31,
+        "address": "0x7ffcbcf9d95f",
+        "bytes": "4c89a42480020000",
+        "text": "mov [rsp+280h],r12",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 39,
+        "address": "0x7ffcbcf9d967",
+        "bytes": "4889bc2478020000",
+        "text": "mov [rsp+278h],rdi",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 47,
+        "address": "0x7ffcbcf9d96f",
+        "bytes": "4889b42470020000",
+        "text": "mov [rsp+270h],rsi",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 55,
+        "address": "0x7ffcbcf9d977",
+        "bytes": "48899c2468020000",
+        "text": "mov [rsp+268h],rbx",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 63,
+        "address": "0x7ffcbcf9d97f",
+        "bytes": "488b9c24b0020000",
+        "text": "mov rbx,[rsp+2B0h]",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 71,
+        "address": "0x7ffcbcf9d987",
+        "bytes": "488b8c24b8020000",
+        "text": "mov rcx,[rsp+2B8h]",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 79,
+        "address": "0x7ffcbcf9d98f",
+        "bytes": "448ba42458020000",
+        "text": "mov r12d,[rsp+258h]",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 87,
+        "address": "0x7ffcbcf9d997",
+        "bytes": "488bb42438020000",
+        "text": "mov rsi,[rsp+238h]",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 95,
+        "address": "0x7ffcbcf9d99f",
+        "bytes": "448bb42434020000",
+        "text": "mov r14d,[rsp+234h]",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 103,
+        "address": "0x7ffcbcf9d9a7",
+        "bytes": "8bac2430020000",
+        "text": "mov ebp,[rsp+230h]",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 110,
+        "address": "0x7ffcbcf9d9ae",
+        "bytes": "8bbc242c020000",
+        "text": "mov edi,[rsp+22Ch]",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 117,
+        "address": "0x7ffcbcf9d9b5",
+        "bytes": "488b01",
+        "text": "mov rax,[rcx]",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 120,
+        "address": "0x7ffcbcf9d9b8",
+        "bytes": "4889442428",
+        "text": "mov [rsp+28h],rax",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 125,
+        "address": "0x7ffcbcf9d9bd",
+        "bytes": "448b5108",
+        "text": "mov r10d,[rcx+8]",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 129,
+        "address": "0x7ffcbcf9d9c1",
+        "bytes": "448954244c",
+        "text": "mov [rsp+4Ch],r10d",
+        "flow_control": "Next",
+        "branch_target": null
+      },
+      {
+        "region": 0,
+        "offset": 134,
+        "address": "0x7ffcbcf9d9c6",
+        "bytes": "e9cf010000",
+        "text": "jmp 00007FFCBCF9DB9Ah",
+        "flow_control": "UnconditionalBranch",
+        "branch_target": "0x7ffcbcf9db9a"
+      }
+    ],
+    "annotations": [
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 145,
+        "end_offset": 155,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 202,
+        "end_offset": 212,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 234,
+        "end_offset": 244,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 286,
+        "end_offset": 296,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 371,
+        "end_offset": 380,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 424,
+        "end_offset": 435,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "call-site/v1",
+        "confidence": "high",
+        "region": 0,
+        "start_offset": 454,
+        "end_offset": 460,
+        "description": "A call instruction is present.",
+        "alternative_explanations": [
+          "Inlining intent and cause are not established.",
+          "Target may be a runtime helper."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 522,
+        "end_offset": 531,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 546,
+        "end_offset": 556,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 556,
+        "end_offset": 564,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 569,
+        "end_offset": 579,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 579,
+        "end_offset": 589,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 589,
+        "end_offset": 599,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 602,
+        "end_offset": 611,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 638,
+        "end_offset": 648,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 660,
+        "end_offset": 669,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 701,
+        "end_offset": 710,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "call-site/v1",
+        "confidence": "high",
+        "region": 0,
+        "start_offset": 724,
+        "end_offset": 730,
+        "description": "A call instruction is present.",
+        "alternative_explanations": [
+          "Inlining intent and cause are not established.",
+          "Target may be a runtime helper."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 755,
+        "end_offset": 761,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      },
+      {
+        "rule": "comparison-branch/v1",
+        "confidence": "low",
+        "region": 0,
+        "start_offset": 778,
+        "end_offset": 787,
+        "description": "Comparison followed by a conditional branch; bounds-check interpretation is a hypothesis.",
+        "alternative_explanations": [
+          "Ordinary application control flow.",
+          "Type, null, or argument validation."
+        ]
+      }
+    ]
+  }
+]

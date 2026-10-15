@@ -1,0 +1,12 @@
+{
+  "status": "rejected",
+  "error": {
+    "schema_version": "1.0",
+    "status": "error",
+    "data": null,
+    "code": "capability_unsupported",
+    "message": "Native body signatures require static Int32 returns and bounded Int32 arguments.",
+    "recovery": "Read the target capability states and reasons. Use retained/offline evidence where available; live inspection or mutation requires an explicitly qualified target and method. Do not invoke a method to obtain code."
+  },
+  "executed_mutation": false
+}

@@ -1,0 +1,16 @@
+{
+  "id": "bundle-import-7721d5a39b1d49d5b0227ba0d9d0c2b6",
+  "operation_id": "op-6b090a40bb0f4ca6ac7491c4a0954018",
+  "plan_id": "bundle-import-plan-a5ea47373576461abe15271beb3dc862",
+  "plan_hash": "9a64ffeced3736b624987aa2e52e38e62f8e5b57eff191ab054aa0c2c4171b58",
+  "bundle_artifact_id": "art-d7320f083b024b3b759907b4f6716b02d6f6b98fda7c1d1382282b5e495e442c",
+  "bundle_hash": "d7320f083b024b3b759907b4f6716b02d6f6b98fda7c1d1382282b5e495e442c",
+  "manifest_artifact_id": "art-333013da07e9e909dd52923cd6d792eebb5b4bf341483b6d49e0b024879220fd",
+  "manifest_hash": "333013da07e9e909dd52923cd6d792eebb5b4bf341483b6d49e0b024879220fd",
+  "records": 226,
+  "artifacts": 111,
+  "omitted_payloads": 0,
+  "privacy_filtered": false,
+  "qualification": "imported_hash_verified_origin_unverified",
+  "meaning": "Selected archive payloads retained for offline review; hashes establish byte integrity, not origin, live target identity, grants, or experiment certification."
+}

@@ -1,0 +1,176 @@
+{
+  "results": [
+    {
+      "shape": "dense-4096",
+      "cost_ns": {
+        "baseline": 654963.0405461896,
+        "candidate": 475514.91170609876
+      },
+      "ratio": 0.7260179311943402,
+      "interval": {
+        "lower": 0.6794714803153157,
+        "upper": 0.7757529958006518,
+        "coverage": 0.9875
+      },
+      "classification": "improved"
+    },
+    {
+      "shape": "dense-16384",
+      "cost_ns": {
+        "baseline": 8259676.31005283,
+        "candidate": 2771530.854528062
+      },
+      "ratio": 0.335549572463855,
+      "interval": {
+        "lower": 0.28711756701924634,
+        "upper": 0.3921512596724129,
+        "coverage": 0.9875
+      },
+      "classification": "improved"
+    },
+    {
+      "shape": "ordinary",
+      "cost_ns": {
+        "baseline": 84.86469007433668,
+        "candidate": 84.74430802127858
+      },
+      "ratio": 0.9985814824404282,
+      "interval": {
+        "lower": 0.9887079043116597,
+        "upper": 1.0085536615256974,
+        "coverage": 0.9875
+      },
+      "classification": "equivalent_within_margin"
+    },
+    {
+      "shape": "newline",
+      "cost_ns": {
+        "baseline": 155255.84220993007,
+        "candidate": 127016.43052576676
+      },
+      "ratio": 0.8181104731248746,
+      "interval": {
+        "lower": 0.7470905308916128,
+        "upper": 0.8958817152157271,
+        "coverage": 0.9875
+      },
+      "classification": "improved"
+    }
+  ],
+  "tests": [
+    {
+      "file": "wildcard_net10.0_20261015195903.trx",
+      "total": "242",
+      "executed": "242",
+      "passed": "242",
+      "failed": "0",
+      "error": "0",
+      "timeout": "0",
+      "aborted": "0",
+      "inconclusive": "0",
+      "passedButRunAborted": "0",
+      "notRunnable": "0",
+      "notExecuted": "0",
+      "disconnected": "0",
+      "warning": "0",
+      "completed": "0",
+      "inProgress": "0",
+      "pending": "0"
+    },
+    {
+      "file": "wildcard_net11.0_20261015195918.trx",
+      "total": "245",
+      "executed": "245",
+      "passed": "245",
+      "failed": "0",
+      "error": "0",
+      "timeout": "0",
+      "aborted": "0",
+      "inconclusive": "0",
+      "passedButRunAborted": "0",
+      "notRunnable": "0",
+      "notExecuted": "0",
+      "disconnected": "0",
+      "warning": "0",
+      "completed": "0",
+      "inProgress": "0",
+      "pending": "0"
+    },
+    {
+      "file": "wildcard_net8.0_20261015195907.trx",
+      "total": "242",
+      "executed": "242",
+      "passed": "242",
+      "failed": "0",
+      "error": "0",
+      "timeout": "0",
+      "aborted": "0",
+      "inconclusive": "0",
+      "passedButRunAborted": "0",
+      "notRunnable": "0",
+      "notExecuted": "0",
+      "disconnected": "0",
+      "warning": "0",
+      "completed": "0",
+      "inProgress": "0",
+      "pending": "0"
+    }
+  ],
+  "source": {
+    "revision": "4f1a8b7442168698a3ee936978d504f2b3a8fe32",
+    "source": "D:\\SourceCode\\Tedd.WildcardMatch",
+    "source_hashes": {
+      "CompiledSegments.cs": "3f70a22bb67c78158328da9339be03b974c3d3d522f2a7473cce1bb5c0176d58",
+      "DefaultWildcardEngine.cs": "109fc368f7b19010f7a2f203439bba00642f4df0bb8ab4c59a8a80e1aba0dd85",
+      "FixedPattern.cs": "911a6cbbcf3e9484f0faf46be6993ca6baba25443522d276b74223c34ed3fbc7",
+      "InternalUtils.cs": "4f21b3c86cccdeef6155ffcac31a7dc0cecac58eb592a5df7eedb27733edcafa",
+      "ShortPattern.cs": "52786d12bc274460fa2eae66d42083ce2e076d8d2b9923a39b7dbed89f21d3ff",
+      "WildcardEngine.cs": "54cc039904c806fcefc7654d934881eff71155147ff8b683cd437a222d71e8da",
+      "WildcardEngine.Spans.cs": "4349e6800587ee6fff0cbce87082355a3239d33986baa5457ad5d9bfc4db699b",
+      "WildcardMatch.cs": "69c00965323b437b931d978b562d2defb6830f6bdc177a414ae43330a8f4eb7f",
+      "WildcardMatchExtensions.cs": "395ac02229ae89309f6258d2db07472615fbd3cf7b2653d183e904d47adc904d",
+      "WildcardMatchRegex.cs": "1f7771890d03b21f51b10c8c8ad31da127bb3770a38a108d7de3bc13f9b6da60",
+      "WildcardOptions.cs": "ddd70ad88b5548e2564016f8c63e6e8054d1d6c6c1b27d3c2179ca947552f4db"
+    },
+    "protocol": {
+      "blocks": 10,
+      "seed": "20261015",
+      "independent_blocks": false,
+      "shapes": {
+        "dense-4096": 512,
+        "dense-16384": 512,
+        "ordinary": 300000,
+        "newline": 1000
+      },
+      "confirmation": "10 fresh paired process sessions; same four-input corpus; useful improvement 1%; ordinary/newline regression guardrail 5%; no failed-session replacement",
+      "exclusions": "none"
+    }
+  },
+  "export": {
+    "id": "export-b394d4b0f9fa425fa4c7105e37443868",
+    "operation_id": "op-982338444a744a28bdb63e3216433ee8",
+    "plan_id": "export-plan-d383bbeb60e040b3b4062cc0bfad9a9e",
+    "plan_hash": "cda7e785644ec9a06a51cfcb6cc4228c022cefc6230d2901401e972d6176100b",
+    "artifact_id": "art-d7320f083b024b3b759907b4f6716b02d6f6b98fda7c1d1382282b5e495e442c",
+    "manifest_hash": "beacac7d15cce6b13fcacb42fc2c1ccb25471c508e6c0db9521d9e87610bd11c",
+    "included_records": 226,
+    "included_artifacts": 111,
+    "omitted_payloads": 0,
+    "privacy_filtered": false,
+    "state": "verified"
+  },
+  "platform": {
+    "cpu": "AMD Ryzen 9 5950X 16-Core Processor",
+    "os": "Windows 10.0.26200 x64",
+    "runtime": "CoreCLR 10.0.12",
+    "sdk": "10.0.402",
+    "dotnetlab_revision": "ab314bd"
+  },
+  "retained_mechanism": "Incremental newline frontier; registry A01",
+  "limitations": [
+    "One pattern and four synthetic input distributions; no whole-application claim",
+    "Uncontrolled host load, affinity, frequency, and thermal state; fresh PIDs alone do not establish independence",
+    "Stack sample/conversion caps, unknown loss status, and partial runtime provider coverage",
+    "No ReJIT/probe mutation or p99 claim; selected method exceeds the mutation signature subset"
+  ]
+}

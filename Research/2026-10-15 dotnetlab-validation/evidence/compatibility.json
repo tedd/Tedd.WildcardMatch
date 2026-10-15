@@ -1,0 +1,227 @@
+{
+  "schema_version": "1.0",
+  "qualification_revision": "compatibility-scope/v1",
+  "build_pins": {
+    "core_clr_version": "10.0.12",
+    "sdk_version": "10.0.401",
+    "packages": {
+      "Iced": "1.21.0",
+      "Microsoft.Data.Sqlite": "10.0.12",
+      "Microsoft.Diagnostics.NETCore.Client": "0.2.661903",
+      "Microsoft.Diagnostics.Tracing.TraceEvent": "3.2.5",
+      "Microsoft.Extensions.Hosting": "10.0.0",
+      "Microsoft.NET.Test.Sdk": "18.9.0",
+      "ModelContextProtocol": "2.1.0",
+      "xunit": "2.9.3",
+      "xunit.runner.visualstudio": "3.1.5"
+    }
+  },
+  "controller": {
+    "operating_system": "windows",
+    "architecture": "x64",
+    "runtime_version": "10.0.12",
+    "framework": ".NET 10.0.12",
+    "runtime_engine": "coreclr",
+    "state": "supported",
+    "reason": "Controller matches the pinned fixture qualification; target capabilities and action grants require independent validation.",
+    "build_pins_match_qualification": true
+  },
+  "platforms": [
+    {
+      "operating_system": "windows",
+      "architecture": "x64",
+      "runtime_version": "10.0.12",
+      "qualification": "documented_fixture_workflows; complete_platform_and_release_certification_not_established",
+      "features": [
+        {
+          "name": "eventpipe",
+          "state": "supported",
+          "scope": "pinned runtime and provider profiles",
+          "reason": "Accessible diagnostic endpoint, independent observation grant, and profile/coverage validation required."
+        },
+        {
+          "name": "registered_scenarios",
+          "state": "supported",
+          "scope": "cooperative registered harness",
+          "reason": "Scenario input/version, correctness, reset, thread affinity, and quiescence remain action prerequisites."
+        },
+        {
+          "name": "native_startup",
+          "state": "supported",
+          "scope": "ICorProfilerInfo12; nongeneric noncollectible module/method subset",
+          "reason": "Approved startup integration and separately granted inspection/mutation required."
+        },
+        {
+          "name": "native_attach",
+          "state": "supported",
+          "scope": "completed Windows attach with low event mask 0x40024",
+          "reason": "Frozen approved binary/runtime identity and one-activation grant required; attach does not recover prior caller history."
+        },
+        {
+          "name": "startup_rejit",
+          "state": "supported",
+          "scope": "disposable static Int32 bodies and frozen caller closure",
+          "reason": "At most four Int32 arguments, 4 KiB bodies, bounded existing Int32 locals, and complete scoped setup oracle."
+        },
+        {
+          "name": "attach_rejit",
+          "state": "supported",
+          "scope": "verified no-inline static Int32 methods",
+          "reason": "Pre-attach caller history is not collected; inlineable methods and attach probes are excluded."
+        },
+        {
+          "name": "selected_probes",
+          "state": "supported",
+          "scope": "startup synchronous subset with approved managed helper",
+          "reason": "Count/elapsed aggregation, supported recursion/returns and qualified exceptional paths; no universal async timing."
+        },
+        {
+          "name": "attach_probes",
+          "state": "unsupported",
+          "scope": "none",
+          "reason": "Attach helper/probe installation requires independent qualification."
+        },
+        {
+          "name": "normal_build_confirmation",
+          "state": "supported",
+          "scope": "flat pinned managed application bundles; fresh owned processes",
+          "reason": "Independent frozen plan, build grant, input/correctness gates, and complete comparison budget; source equivalence remains a review assertion."
+        },
+        {
+          "name": "mutation_private_commit_budget",
+          "state": "supported",
+          "scope": "sampled 128 MiB growth above first authorized preflight",
+          "reason": "Includes other target allocations; sampled boundaries do not impose an operating-system allocation cap."
+        }
+      ]
+    },
+    {
+      "operating_system": "linux",
+      "architecture": "x64",
+      "runtime_version": "10.0.12",
+      "qualification": "documented_fixture_workflows; complete_platform_and_release_certification_not_established",
+      "features": [
+        {
+          "name": "eventpipe",
+          "state": "supported",
+          "scope": "pinned runtime and provider profiles",
+          "reason": "Accessible diagnostic endpoint, independent observation grant, and profile/coverage validation required."
+        },
+        {
+          "name": "registered_scenarios",
+          "state": "supported",
+          "scope": "cooperative registered harness",
+          "reason": "Scenario input/version, correctness, reset, thread affinity, and quiescence remain action prerequisites."
+        },
+        {
+          "name": "native_startup",
+          "state": "supported",
+          "scope": "ICorProfilerInfo12; nongeneric noncollectible module/method subset",
+          "reason": "Approved startup integration and separately granted inspection/mutation required."
+        },
+        {
+          "name": "native_attach",
+          "state": "unsupported",
+          "scope": "none",
+          "reason": "Linux attach activation is not qualified."
+        },
+        {
+          "name": "startup_rejit",
+          "state": "supported",
+          "scope": "disposable static Int32 bodies and frozen caller closure",
+          "reason": "At most four Int32 arguments, 4 KiB bodies, bounded existing Int32 locals, and complete scoped setup oracle."
+        },
+        {
+          "name": "attach_rejit",
+          "state": "unsupported",
+          "scope": "none",
+          "reason": "Requires an independently qualified attach adapter."
+        },
+        {
+          "name": "selected_probes",
+          "state": "supported",
+          "scope": "startup synchronous subset with approved managed helper",
+          "reason": "Count/elapsed aggregation, supported recursion/returns and qualified exceptional paths; no universal async timing."
+        },
+        {
+          "name": "attach_probes",
+          "state": "unsupported",
+          "scope": "none",
+          "reason": "Attach helper/probe installation requires independent qualification."
+        },
+        {
+          "name": "normal_build_confirmation",
+          "state": "supported",
+          "scope": "flat pinned managed application bundles; fresh owned processes",
+          "reason": "Independent frozen plan, build grant, input/correctness gates, and complete comparison budget; source equivalence remains a review assertion."
+        },
+        {
+          "name": "mutation_private_commit_budget",
+          "state": "unsupported",
+          "scope": "not_collected",
+          "reason": "Linux private-commit accounting requires independent qualification."
+        }
+      ]
+    }
+  ],
+  "method_restrictions": [
+    "Dynamic/reflection-emitted, collectible, generic, or ambiguous module/method selections require separate qualification.",
+    "Missing compiled native bodies are not permission to invoke arbitrary methods; snapshots do not prove earlier-run code.",
+    "Replacement preserves method/signature/type layout and existing metadata; arbitrary foreign tokens, fields, types, methods, and unmanaged calls are excluded.",
+    "Caller closure is frozen and bounded to 31 callers; unknown/incomplete coverage blocks mutation.",
+    "Mutation sessions permit at most 32 candidates, 8 MiB cumulative observed native regions, and 8192 region identities; restoration does not reset budgets.",
+    "Original-version restoration does not undo heap, files, network, or external effects; prior candidates require explicit reapplication.",
+    "Supported probe timing is synchronous elapsed observation with stated observer footprint; unsupported async wrappers cannot establish completion duration.",
+    "A loaded profiler, restored body, or quiet profile does not establish pristine runtime state or normal-build promotion eligibility.",
+    "ARM64, x86, non-CoreCLR runtimes, arbitrary runtime patches, and general profiler stacking/unloading require separate qualification."
+  ],
+  "dependencies": [
+    {
+      "assembly_name": "Microsoft.Diagnostics.NETCore.Client",
+      "assembly_version": "0.2.13.11903",
+      "informational_version": "0.2.661903+d7b455b46332b31fd9ba3a3f3e020387984c511a",
+      "module_version_id": "95a22e0e-0770-4d01-9a6f-9bb957fcbfb8",
+      "binary_hash": "e2cc9e1f6c97b3c4ee45ebabaa92408eb9b2fc81cb08ceeb342fe48bf79db15f",
+      "identity_availability": "available",
+      "reason": null
+    },
+    {
+      "assembly_name": "Microsoft.Diagnostics.Tracing.TraceEvent",
+      "assembly_version": "3.2.5.0",
+      "informational_version": "3.2.5+53829f11630f37c1563fd9242ca1e9c7fc6b5b74",
+      "module_version_id": "655a2bb1-6bcf-4f01-9cbb-959e767d8349",
+      "binary_hash": "92401392ce1887c3483a3c0085e6cc3656ee39da1be539943096ebabbad6ea21",
+      "identity_availability": "available",
+      "reason": null
+    },
+    {
+      "assembly_name": "Microsoft.Data.Sqlite",
+      "assembly_version": "10.0.12.0",
+      "informational_version": "10.0.12",
+      "module_version_id": "c031b608-828e-489e-938d-6a4064eb899a",
+      "binary_hash": "b98d957462be432895b00dccca012d3c127e118d3d4262418014b92c7bbd66cf",
+      "identity_availability": "available",
+      "reason": null
+    },
+    {
+      "assembly_name": "Iced",
+      "assembly_version": "1.21.0.0",
+      "informational_version": "1.21.0+601c40570d6c986c8e1a6a2e483dd2fdf5ade552",
+      "module_version_id": "7f6647fe-8c5b-40cf-a7c8-990a92207da1",
+      "binary_hash": "f058c01321b4cdfc9b9151879e88e59571c8d0ba176fbcf95bc936a8f3d073ed",
+      "identity_availability": "available",
+      "reason": null
+    }
+  ],
+  "native_binary": {
+    "identity_scope": "configured Windows loader binary; hash identifies available bytes, not target memory",
+    "availability": "available",
+    "binary_hash": "b29372eebc0bc34264f14a68b991094d98a523a1e45697264a89fed273d83a42",
+    "length": "577024",
+    "reason": null,
+    "signature_status": "not_collected"
+  },
+  "target": null,
+  "permissions_granted": false,
+  "full_platform_certification": false
+}

@@ -1,0 +1,53 @@
+{
+  "baseline": {
+    "id": "baseline-e35d5d94be1b4e2da03410cb2b214b1c",
+    "run_ids": [
+      "run-19775f5be6284742ae2ba40a2fa07cb7",
+      "run-3358dee4907741318b1ddadb4ecd7486",
+      "run-4962300b99074bf0ac28f5d1f02c6f4f",
+      "run-7cbcd6fda85a4c24b16b20249d33dbf5",
+      "run-90b6f6d032af47a580ae215c48b04b35",
+      "run-93c2fd7df9db477097c568b4f94ea67b",
+      "run-a958e494b23d4149800f8f48ba9cf324",
+      "run-ce856d7e8de64eafa908097afbde936a",
+      "run-dde12e5a5ac44148b77133a22197a6e9",
+      "run-f243dc4567414499bacbf3a988c6954c"
+    ],
+    "role": "historical_anchor",
+    "manifest_artifact_id": "art-d883f79847d025b145aee813409f2f46f2bd788d2b4ee14a44ea04185ad6c718",
+    "fingerprint": {
+      "scenario_id": "wildcard-newline",
+      "scenario_version": "1",
+      "input_hash": "2a1b95fb57879cef09e6ab81f9936591310b48a8377247d8dc571fd07b8e650a",
+      "variant": "baseline",
+      "reset_level": "logical_state",
+      "operations_per_run": 1000,
+      "warmup_batches": 2,
+      "profile_hash": "c66f7cbdc225a2028c31e321073ba473a02766d6b6d2e0114279876ef135a2d5",
+      "observer_state": "{\"external\":\"other_observers_unknown\",\"probe\":null}",
+      "runtime_version": "10.0.12",
+      "architecture": "X64",
+      "code_identity_hash": "d8b29f2520c990f89ee82bcfc84a2ee781bd3e420d71ed91298dacd00bdcf870",
+      "runtime_settings_hash": "046cc1910f622e3bb11347a47c38ccb7a6f35330039098066e94b9917062e70f",
+      "epoch": "0",
+      "compilation_regime": "normal_compile/cooperative_process",
+      "native_process_scope": null
+    },
+    "unknown_fields": [
+      "cpu_model",
+      "affinity",
+      "power_policy",
+      "runtime_tier",
+      "pgo_history",
+      "background_load"
+    ]
+  },
+  "alias": {
+    "id": "baseline-alias-681576fa92318c40c8333e9d6bdb5a84",
+    "kind": "baseline_alias",
+    "revision": "1",
+    "hash": "76a89e9a58cc6ae01e8eea26d216302ba57bba77b159b30584affcacb9bf63bf",
+    "json": "{\"id\":\"baseline-alias-681576fa92318c40c8333e9d6bdb5a84\",\"name\":\"wildcard-newline\",\"baseline_id\":\"baseline-e35d5d94be1b4e2da03410cb2b214b1c\",\"baseline_revision\":\"1\",\"baseline_hash\":\"d0a06b11f81cabace7de8a17e5c622545f3a814e15ce8c7f77b47782a71ee138\"}",
+    "created_at": "2026-10-15T17:52:04.5832476+00:00"
+  }
+}

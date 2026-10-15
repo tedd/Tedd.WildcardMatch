@@ -1,0 +1,19 @@
+{
+  "rows": [
+    {
+      "module_hash": "8c1ed72fcb8c4972e56fdd8a03ca43ffd5ec2b5dbe765ec460443cadeb0a44b5",
+      "module_mvid": "09486179-8e5a-419b-910a-31fbab765d7d",
+      "token": "0x06000037",
+      "declaring_type": "Tedd.CompiledSegments",
+      "name": "Window",
+      "signature_hex": "200102151180dd0103",
+      "generic": false,
+      "constructor": false,
+      "static": false,
+      "has_body": true,
+      "id": "method-32fd215ec39aa959b2cbb45b"
+    }
+  ],
+  "truncated": false,
+  "next_cursor": null
+}

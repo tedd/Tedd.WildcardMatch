@@ -1,0 +1,15 @@
+{
+  "rows": [
+    {
+      "runtime_instance": 9,
+      "number": 1,
+      "generation": 2,
+      "reason": "AllocLarge",
+      "type": "NonConcurrentGC",
+      "start_milliseconds": 19838.6595,
+      "end_milliseconds": 19842.4479
+    }
+  ],
+  "truncated": false,
+  "next_cursor": null
+}

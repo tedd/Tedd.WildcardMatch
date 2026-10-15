@@ -1,0 +1,286 @@
+{
+  "rows": [
+    {
+      "frame": {
+        "id": "sampled-method-c58b1cb275ba0e69d9372d8d210ec35387707d73f13ca2a45a07a62723a9d328",
+        "name": "System.Threading.Thread.StartCallback()",
+        "module": "System.Private.CoreLib",
+        "resolution": "managed_rundown",
+        "address": "140723364186299",
+        "method_token": 100679271
+      },
+      "self_count": "0",
+      "inclusive_count": "90904",
+      "self_share": 0,
+      "inclusive_share": 0.90904
+    },
+    {
+      "frame": {
+        "id": "sampled-method-3a0695c687aea647d9419349cdd308bc4c8b861347af1d0afa08eac6228ed815",
+        "name": "System.Threading.PortableThreadPool+WorkerThread.WorkerThreadStart()",
+        "module": "System.Private.CoreLib",
+        "resolution": "managed_rundown",
+        "address": "140723364326832",
+        "method_token": 100680672
+      },
+      "self_count": "0",
+      "inclusive_count": "36364",
+      "self_share": 0,
+      "inclusive_share": 0.36364
+    },
+    {
+      "frame": {
+        "id": "sampled-method-9936b1936d9801bded66db0c0688af6d7ac7db7e2eee68d50cdd7dcc63b403ff",
+        "name": "System.Threading.LowLevelLifoSemaphore.WaitForSignal(int32)",
+        "module": "System.Private.CoreLib",
+        "resolution": "managed_rundown",
+        "address": "140723364330892",
+        "method_token": 100680700
+      },
+      "self_count": "0",
+      "inclusive_count": "27297",
+      "self_share": 0,
+      "inclusive_share": 0.27297
+    },
+    {
+      "frame": {
+        "id": "sampled-method-d4ab590f2cd971e9303781f6bcea2ca2cb257f602bf4e38f59ae4ba1d244c96a",
+        "name": "Interop+Kernel32.GetQueuedCompletionStatus(int,unsigned int32&,unsigned int&,int&,int32)",
+        "module": "System.Private.CoreLib",
+        "resolution": "managed_rundown",
+        "address": "140723362960865",
+        "method_token": 100663392
+      },
+      "self_count": "27297",
+      "inclusive_count": "27297",
+      "self_share": 0.27297,
+      "inclusive_share": 0.27297
+    },
+    {
+      "frame": {
+        "id": "sampled-method-550ae8026fa37b2cc920c0c1c6f382260eb1ec527924c00574c840c9079e847d",
+        "name": "System.Threading.PortableThreadPool+IOCompletionPoller.Poll()",
+        "module": "System.Private.CoreLib",
+        "resolution": "managed_rundown",
+        "address": "140723364323279",
+        "method_token": 100680638
+      },
+      "self_count": "27273",
+      "inclusive_count": "27273",
+      "self_share": 0.27273,
+      "inclusive_share": 0.27273
+    },
+    {
+      "frame": {
+        "id": "sampled-method-9a3757770042ed5a3643127d9648d461bc659702c904852ebf3bbe0cb796ea1f",
+        "name": "System.Threading.WaitHandle.WaitOneNoCheck(int32,bool,class System.Object,value class WaitHandleWaitSourceMap)",
+        "module": "System.Private.CoreLib",
+        "resolution": "managed_rundown",
+        "address": "140723364200035",
+        "method_token": 100679453
+      },
+      "self_count": "27254",
+      "inclusive_count": "27254",
+      "self_share": 0.27254,
+      "inclusive_share": 0.27254
+    },
+    {
+      "frame": {
+        "id": "sampled-method-607334653b86eedc5c0d56b0149aba4db97a0b4cad6c60a45235bc7af1914a50",
+        "name": "System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start(!!0&)",
+        "module": "System.Private.CoreLib",
+        "resolution": "managed_rundown",
+        "address": "140723478743296",
+        "method_token": 100696489
+      },
+      "self_count": "1",
+      "inclusive_count": "9094",
+      "self_share": 1e-05,
+      "inclusive_share": 0.09094
+    },
+    {
+      "frame": {
+        "id": "sampled-method-002c132458f6c40cfcb93e8a7e15f52ce947c6c7f6fa4d70ef15ca8915ae3afb",
+        "name": "System.IO.StreamReader.ReadLine()",
+        "module": "System.Private.CoreLib",
+        "resolution": "managed_rundown",
+        "address": "140723365224436",
+        "method_token": 100701448
+      },
+      "self_count": "0",
+      "inclusive_count": "9091",
+      "self_share": 0,
+      "inclusive_share": 0.09091
+    },
+    {
+      "frame": {
+        "id": "sampled-method-189f36c9889410c44d46a049f40d7e02b97f51cc843711407b92b77fff941027",
+        "name": "System.IO.StreamReader.ReadBuffer()",
+        "module": "System.Private.CoreLib",
+        "resolution": "managed_rundown",
+        "address": "140723365222851",
+        "method_token": 100701446
+      },
+      "self_count": "0",
+      "inclusive_count": "9091",
+      "self_share": 0,
+      "inclusive_share": 0.09091
+    },
+    {
+      "frame": {
+        "id": "sampled-method-42f757ad0413e69bc9fee97e0e2e5037c21befbb4f1e890bc3f76cb9d1a13743",
+        "name": "Interop+Kernel32.ReadFile(int,unsigned int8*,int32,int32&,int)",
+        "module": "System.Console",
+        "resolution": "managed_rundown",
+        "address": "140726148233252",
+        "method_token": 100663316
+      },
+      "self_count": "9091",
+      "inclusive_count": "9091",
+      "self_share": 0.09091,
+      "inclusive_share": 0.09091
+    },
+    {
+      "frame": {
+        "id": "sampled-method-6cc12564f65ed8bb18f638ef3b25173dbd4c5568f6e71d75d39df33e0ee5659c",
+        "name": "System.IO.ConsoleStream.Read(unsigned int8[],int32,int32)",
+        "module": "System.Console",
+        "resolution": "managed_rundown",
+        "address": "140726148267204",
+        "method_token": 100663691
+      },
+      "self_count": "0",
+      "inclusive_count": "9091",
+      "self_share": 0,
+      "inclusive_share": 0.09091
+    },
+    {
+      "frame": {
+        "id": "sampled-method-886ce5fe2c99c85ecedea45455c5bf2518a6265ff24a3c10d4707c07dca615a3",
+        "name": "System.Threading.TimerQueue.TimerThread()",
+        "module": "System.Private.CoreLib",
+        "resolution": "managed_rundown",
+        "address": "140723364286784",
+        "method_token": 100680321
+      },
+      "self_count": "0",
+      "inclusive_count": "9091",
+      "self_share": 0,
+      "inclusive_share": 0.09091
+    },
+    {
+      "frame": {
+        "id": "sampled-method-9d94f4f41898f35d2efe4e7f2a87d18fa4c020c22c80506fd64e40e019ce18ba",
+        "name": "Program.<Main>(class System.String[])",
+        "module": "WildcardRig",
+        "resolution": "managed_rundown",
+        "address": "140723478742942",
+        "method_token": 100663338
+      },
+      "self_count": "0",
+      "inclusive_count": "9091",
+      "self_share": 0,
+      "inclusive_share": 0.09091
+    },
+    {
+      "frame": {
+        "id": "sampled-method-9f589cabd41b123acb28b45114ec6138be1c47992093efc564dde6a90041468d",
+        "name": "System.Runtime.CompilerServices.AsyncTaskMethodBuilder.Start(!!0&)",
+        "module": "System.Private.CoreLib",
+        "resolution": "managed_rundown",
+        "address": "140723478743148",
+        "method_token": 100696501
+      },
+      "self_count": "0",
+      "inclusive_count": "9091",
+      "self_share": 0,
+      "inclusive_share": 0.09091
+    },
+    {
+      "frame": {
+        "id": "sampled-method-a4db1ae59aeff3359119670f04b2c05099a89bf47d0e6cfb0f83e47f62ea8e1a",
+        "name": "System.IO.SyncTextReader.ReadLineAsync()",
+        "module": "System.Console",
+        "resolution": "managed_rundown",
+        "address": "140726148268492",
+        "method_token": 100663714
+      },
+      "self_count": "0",
+      "inclusive_count": "9091",
+      "self_share": 0,
+      "inclusive_share": 0.09091
+    },
+    {
+      "frame": {
+        "id": "sampled-method-a6a4dcd79a0bc3fb4f90842f4acaaa141d7f0a1564730fdb60aaa7eb43b602cb",
+        "name": "System.Threading.PortableThreadPool+GateThread.GateThreadStart()",
+        "module": "System.Private.CoreLib",
+        "resolution": "managed_rundown",
+        "address": "140723364315301",
+        "method_token": 100680607
+      },
+      "self_count": "1",
+      "inclusive_count": "9091",
+      "self_share": 1e-05,
+      "inclusive_share": 0.09091
+    },
+    {
+      "frame": {
+        "id": "sampled-method-b622f233be767b87b04403a5f1fddbd1f7b174cfa6898b6b02119e59db01cd55",
+        "name": "System.ConsolePal+WindowsConsoleStream.Read(value class System.Span`1<unsigned int8>)",
+        "module": "System.Console",
+        "resolution": "managed_rundown",
+        "address": "140726148254379",
+        "method_token": 100663562
+      },
+      "self_count": "0",
+      "inclusive_count": "9091",
+      "self_share": 0,
+      "inclusive_share": 0.09091
+    },
+    {
+      "frame": {
+        "id": "sampled-method-c272d79ada087ba18b2490a24d33139761587ae2e26d3e256ae90588cc07f02f",
+        "name": "System.ConsolePal+WindowsConsoleStream.ReadFileNative(int,value class System.Span`1<unsigned int8>,bool,int32&,bool)",
+        "module": "System.Console",
+        "resolution": "managed_rundown",
+        "address": "140726148254688",
+        "method_token": 100663565
+      },
+      "self_count": "0",
+      "inclusive_count": "9091",
+      "self_share": 0,
+      "inclusive_share": 0.09091
+    },
+    {
+      "frame": {
+        "id": "sampled-method-c6b274becb9e6a053d46101c9ccee57d6278fd3755b0ec2eed683000947ced36",
+        "name": "System.IO.SyncTextReader.ReadLine()",
+        "module": "System.Console",
+        "resolution": "managed_rundown",
+        "address": "140726148268313",
+        "method_token": 100663712
+      },
+      "self_count": "0",
+      "inclusive_count": "9091",
+      "self_share": 0,
+      "inclusive_share": 0.09091
+    },
+    {
+      "frame": {
+        "id": "sampled-method-f89fa662eea098d146124788077b1eadb10f4ca45cdc654a6a741ad30576e090",
+        "name": "Program+<<Main>$>d__0.MoveNext()",
+        "module": "WildcardRig",
+        "resolution": "managed_rundown",
+        "address": "140723478744593",
+        "method_token": 100663512
+      },
+      "self_count": "0",
+      "inclusive_count": "9091",
+      "self_share": 0,
+      "inclusive_share": 0.09091
+    }
+  ],
+  "truncated": true,
+  "next_cursor": "stack-analysis-9794074e3d6743cfab28d690b3cb72e0:hotspots-inclusive:20"
+}

@@ -1,0 +1,154 @@
+[
+  {
+    "id": "run-4ca3d1fd81a6405a8a7cd797a00b0f5f",
+    "execution_id": "exec-71326904bd514137a8e7bdf41fd16745",
+    "plan_id": "plan-3f20999cf6d84f84a2719ab42f2b1033",
+    "plan_hash": "f64255478a370675a6e4eab8048949a4d902d5521a88cc64b75ec6ea043f0198",
+    "block_ordinal": 0,
+    "arm_ordinal": 0,
+    "target": {
+      "id": "target-a4ff2fc4881f614bd1071dea",
+      "process_id": 51340,
+      "start_time_utc_ticks": "639276834297844542",
+      "runtime_instance": "target-a4ff2fc4881f614bd1071dea",
+      "runtime_version": "10.0.12",
+      "architecture": "X64",
+      "epoch": "0"
+    },
+    "scenario": {
+      "id": "wildcard-dense-16384",
+      "version": "1",
+      "input_hash": "4f60d2d7e77629fc6c10c2e23ea61cbe6be22d64027dd0287c7e1dcb841eefa8",
+      "reset_level": "logical_state",
+      "affinity": "any",
+      "is_async": false,
+      "completed_work_definition": "One public instance IsMatch call; four inputs cycled in fixed order",
+      "variants": [
+        "baseline",
+        "candidate"
+      ],
+      "mutation_scopes": null,
+      "mutation_invocations_per_operation": null
+    },
+    "profile_hash": "67ba4a8937a4a227d073123cb06165056544e648eb0b092938024f33ad1c7831",
+    "observer_state": "{\"external\":\"other_observers_unknown\",\"probe\":null}",
+    "measurement": {
+      "execution_id": "exec-71326904bd514137a8e7bdf41fd16745",
+      "run_id": "run-4ca3d1fd81a6405a8a7cd797a00b0f5f",
+      "block_id": "exec-71326904bd514137a8e7bdf41fd16745-block-0",
+      "variant": "candidate",
+      "start_ticks": "348719870180",
+      "end_ticks": "348785628572",
+      "frequency": "10000000",
+      "completed_operations": "2048",
+      "process_allocation_bytes": "34464",
+      "thread_allocation_bytes": "0",
+      "start_thread_id": 9,
+      "end_thread_id": 9,
+      "correct": true,
+      "failure": null,
+      "input_hash": "4f60d2d7e77629fc6c10c2e23ea61cbe6be22d64027dd0287c7e1dcb841eefa8",
+      "scenario_version": "1",
+      "quiescent": true,
+      "elapsed_nanoseconds": 6575839200,
+      "nanoseconds_per_operation": 3210858.984375
+    },
+    "runtime": {
+      "entry_assembly_hash": "11bfe6f566514a5e053bc47242a1a7c462798bd3fdb6c3bf5db87266e93447e4",
+      "assembly_hashes": {
+        "DotNetLab.Contracts.dll": "cdcf0104c0d2d414d074673b58baa8963f5bbb8ea797a3f628e7bdfdfd75f980",
+        "DotNetLab.Harness.dll": "b3108b2e0760e7095e1f7cb2dcf2997f09cbf0bbe2c757dbb8e0ccb49240175f",
+        "DotNetLab.Transport.Local.dll": "5d3a0a030579261b9a57a7f03ee975410c08d9cf7f39cc94dc98400975680692",
+        "WildcardRig.dll": "11bfe6f566514a5e053bc47242a1a7c462798bd3fdb6c3bf5db87266e93447e4"
+      },
+      "operating_system": "Microsoft Windows 10.0.26200",
+      "architecture": "X64",
+      "stopwatch_frequency": "10000000",
+      "debugger_attached": false,
+      "native_profiler_present": false,
+      "diagnostics_enabled": "1",
+      "profiling_enabled": "",
+      "startup_hooks": "",
+      "additional_dependencies": "",
+      "owned_process": false,
+      "runtime_configuration_hash": "64f6e92559a3ff326652a277bceee9745d0fe35cde800954bec2d5e16aae7fdd",
+      "operating_system_family": "windows"
+    }
+  },
+  {
+    "id": "run-e19af2507e4b424c8eed30667998fc75",
+    "execution_id": "exec-71326904bd514137a8e7bdf41fd16745",
+    "plan_id": "plan-3f20999cf6d84f84a2719ab42f2b1033",
+    "plan_hash": "f64255478a370675a6e4eab8048949a4d902d5521a88cc64b75ec6ea043f0198",
+    "block_ordinal": 0,
+    "arm_ordinal": 1,
+    "target": {
+      "id": "target-a4ff2fc4881f614bd1071dea",
+      "process_id": 51340,
+      "start_time_utc_ticks": "639276834297844542",
+      "runtime_instance": "target-a4ff2fc4881f614bd1071dea",
+      "runtime_version": "10.0.12",
+      "architecture": "X64",
+      "epoch": "0"
+    },
+    "scenario": {
+      "id": "wildcard-dense-16384",
+      "version": "1",
+      "input_hash": "4f60d2d7e77629fc6c10c2e23ea61cbe6be22d64027dd0287c7e1dcb841eefa8",
+      "reset_level": "logical_state",
+      "affinity": "any",
+      "is_async": false,
+      "completed_work_definition": "One public instance IsMatch call; four inputs cycled in fixed order",
+      "variants": [
+        "baseline",
+        "candidate"
+      ],
+      "mutation_scopes": null,
+      "mutation_invocations_per_operation": null
+    },
+    "profile_hash": "67ba4a8937a4a227d073123cb06165056544e648eb0b092938024f33ad1c7831",
+    "observer_state": "{\"external\":\"other_observers_unknown\",\"probe\":null}",
+    "measurement": {
+      "execution_id": "exec-71326904bd514137a8e7bdf41fd16745",
+      "run_id": "run-e19af2507e4b424c8eed30667998fc75",
+      "block_id": "exec-71326904bd514137a8e7bdf41fd16745-block-0",
+      "variant": "baseline",
+      "start_ticks": "349058131993",
+      "end_ticks": "349192991723",
+      "frequency": "10000000",
+      "completed_operations": "2048",
+      "process_allocation_bytes": "80416",
+      "thread_allocation_bytes": "0",
+      "start_thread_id": 7,
+      "end_thread_id": 7,
+      "correct": true,
+      "failure": null,
+      "input_hash": "4f60d2d7e77629fc6c10c2e23ea61cbe6be22d64027dd0287c7e1dcb841eefa8",
+      "scenario_version": "1",
+      "quiescent": true,
+      "elapsed_nanoseconds": 13485973000,
+      "nanoseconds_per_operation": 6584947.75390625
+    },
+    "runtime": {
+      "entry_assembly_hash": "11bfe6f566514a5e053bc47242a1a7c462798bd3fdb6c3bf5db87266e93447e4",
+      "assembly_hashes": {
+        "DotNetLab.Contracts.dll": "cdcf0104c0d2d414d074673b58baa8963f5bbb8ea797a3f628e7bdfdfd75f980",
+        "DotNetLab.Harness.dll": "b3108b2e0760e7095e1f7cb2dcf2997f09cbf0bbe2c757dbb8e0ccb49240175f",
+        "DotNetLab.Transport.Local.dll": "5d3a0a030579261b9a57a7f03ee975410c08d9cf7f39cc94dc98400975680692",
+        "WildcardRig.dll": "11bfe6f566514a5e053bc47242a1a7c462798bd3fdb6c3bf5db87266e93447e4"
+      },
+      "operating_system": "Microsoft Windows 10.0.26200",
+      "architecture": "X64",
+      "stopwatch_frequency": "10000000",
+      "debugger_attached": false,
+      "native_profiler_present": false,
+      "diagnostics_enabled": "1",
+      "profiling_enabled": "",
+      "startup_hooks": "",
+      "additional_dependencies": "",
+      "owned_process": false,
+      "runtime_configuration_hash": "64f6e92559a3ff326652a277bceee9745d0fe35cde800954bec2d5e16aae7fdd",
+      "operating_system_family": "windows"
+    }
+  }
+]

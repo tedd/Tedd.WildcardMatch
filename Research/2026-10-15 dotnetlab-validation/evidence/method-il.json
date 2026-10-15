@@ -1,0 +1,23 @@
+{
+  "method": {
+    "module_hash": "8c1ed72fcb8c4972e56fdd8a03ca43ffd5ec2b5dbe765ec460443cadeb0a44b5",
+    "module_mvid": "09486179-8e5a-419b-910a-31fbab765d7d",
+    "token": "0x06000037",
+    "declaring_type": "Tedd.CompiledSegments",
+    "name": "Window",
+    "signature_hex": "200102151180dd0103",
+    "generic": false,
+    "constructor": false,
+    "static": false,
+    "has_body": true,
+    "id": "method-32fd215ec39aa959b2cbb45b"
+  },
+  "il_hash": "e6191f71f095de3d7599a01979eff572b85a24f862d910555e261592e4eba24c",
+  "byte_count": 816,
+  "max_stack": 5,
+  "local_signature": "0x1100000c",
+  "init_locals": true,
+  "qualification": "retained_build_not_live_body",
+  "artifact_id": "art-ad4bd54739270884e1f3ef07cd5d553b355222a496d317b145e34c3e6a2dab4d",
+  "preview_hex": "0f01286d00000a027b140000042f02162a160a027b0f0000048e690b160c0f01286d00000a0d027b110000042d2a027b0f000004062517580a8f120000021304"
+}

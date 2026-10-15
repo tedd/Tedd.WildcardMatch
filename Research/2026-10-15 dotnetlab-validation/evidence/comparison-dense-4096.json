@@ -1,0 +1,71 @@
+[
+  {
+    "id": "objectives-961fe8bcd580784977c124b6d8ee8a742f3e145b01c22c57444be5136e90113c",
+    "execution_id": "exec-02c32a72f8c146f6829057b4ee836707",
+    "plan_id": "plan-b4051bbc164e4275ba650b9e26b96807",
+    "plan_hash": "a3746b2ade651e2479f4e4abb598d7d4eba9bf1d923a35162074d2be309469a0",
+    "baseline_variant": "baseline",
+    "candidate_variant": "candidate",
+    "algorithm": "paired-objective-vector/v1",
+    "detail_artifact_id": "art-10210c4f5b0c7f510c3cde73a8a4392ef5ed2cc48b7388c1dfd578c6b8d169a4",
+    "input_run_count": 20,
+    "effects_without_run_ids": [
+      {
+        "metric": "scenario.ns_per_operation",
+        "unit": "ns/operation",
+        "observation_kind": "batch_normalized_mean",
+        "scope": "registered_batch",
+        "policy": {
+          "metric": "scenario.ns_per_operation",
+          "unit": "ns/operation",
+          "observation_kind": "batch_normalized_mean",
+          "direction": "lower_is_better",
+          "scale": "positive_ratio",
+          "equivalence_lower": 0.99,
+          "equivalence_upper": 1.01,
+          "useful_improvement": 0.99,
+          "meaningful_regression": 1.01,
+          "minimum_blocks": 10,
+          "descriptive_only": false
+        },
+        "estimator": "paired-log-ratio/v2",
+        "availability": "available",
+        "effect_class": "inconclusive",
+        "quality": "descriptive_only",
+        "independent_blocks": 0,
+        "effect": 0.8636683350645262,
+        "effect_unit": "ratio",
+        "standard_error": 0.031089440532959062,
+        "standard_error_scale": "log_ratio",
+        "degrees_of_freedom": null,
+        "difference_interval": null,
+        "equivalence_interval": null,
+        "difference_p": null,
+        "tost_p": null,
+        "equivalence_passed": false,
+        "non_inferiority_passed": false,
+        "alpha_family": 0.05,
+        "alpha_local": 0.05,
+        "family_size": 1,
+        "reason_codes": [
+          "insufficient_independent_evidence"
+        ],
+        "assumptions": [
+          "independence_not_established",
+          "fixed_family_and_sample_budget",
+          "no_posthoc_exclusions",
+          "t_model_for_paired_log_costs",
+          "intervals_describe_the_declared_estimand_not_distributional_equivalence"
+        ],
+        "run_ids": []
+      }
+    ],
+    "pareto": "unresolved",
+    "promotion_eligible": false,
+    "reason_codes": [
+      "fresh_normal_build_confirmation_required",
+      "primary_benefit_not_established",
+      "insufficient_independent_evidence"
+    ]
+  }
+]

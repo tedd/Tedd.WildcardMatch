@@ -129,6 +129,9 @@ internal sealed class CompiledSegments
             ref readonly Segment segment = ref _segments[i];
             int max = input.Length - segment.Remaining - segment.Length;
             int candidate = position;
+            // Rejected anchors advance monotonically; check each star-consumed
+            // interval once, including the previous candidate when it is skipped.
+            int checkedUntil = position;
             while (true)
             {
                 if (candidate > max) return false;
@@ -167,7 +170,8 @@ internal sealed class CompiledSegments
                     if (found < 0) return false;
                     candidate += found;
                 }
-                if (!_singleline && input.Slice(position, candidate - position).IndexOf('\n') >= 0) return false;
+                if (!_singleline && input.Slice(checkedUntil, candidate - checkedUntil).IndexOf('\n') >= 0) return false;
+                checkedUntil = candidate;
                 if ((segment.Second < 0 || input[candidate + segment.Second] == _pattern[segment.Offset + segment.Second]) && Matches(input, in segment, candidate)) break;
                 if (segment.Anchor < 0) return false;
                 candidate++;

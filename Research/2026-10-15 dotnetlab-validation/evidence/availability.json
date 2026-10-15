@@ -1,0 +1,25 @@
+{
+  "capture_id": "cap-a7d02300aee4474f90a7c08ebb0f57a6",
+  "profile": "cpu-diagnostic",
+  "profile_hash": "67ba4a8937a4a227d073123cb06165056544e648eb0b092938024f33ad1c7831",
+  "data_classes": [
+    "gc",
+    "suspension",
+    "counters",
+    "markers",
+    "samples"
+  ],
+  "state": "sealed",
+  "quality": {
+    "coverage": "capture_complete_unparsed",
+    "loss_status": "unknown",
+    "parser_version": "unparsed",
+    "warnings": [],
+    "symbol_coverage": null
+  },
+  "artifact_id": "art-1d298e0dc8378dcd86658339a7b72fa2fa9f18f51187935dc5c91abbac50638f",
+  "limitations": [
+    "Sampling does not establish exact method timing or call counts.",
+    "Loss is quantified only by supported parser indicators."
+  ]
+}

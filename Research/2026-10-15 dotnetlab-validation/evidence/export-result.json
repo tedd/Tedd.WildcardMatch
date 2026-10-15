@@ -1,0 +1,13 @@
+{
+  "id": "export-b394d4b0f9fa425fa4c7105e37443868",
+  "operation_id": "op-982338444a744a28bdb63e3216433ee8",
+  "plan_id": "export-plan-d383bbeb60e040b3b4062cc0bfad9a9e",
+  "plan_hash": "cda7e785644ec9a06a51cfcb6cc4228c022cefc6230d2901401e972d6176100b",
+  "artifact_id": "art-d7320f083b024b3b759907b4f6716b02d6f6b98fda7c1d1382282b5e495e442c",
+  "manifest_hash": "beacac7d15cce6b13fcacb42fc2c1ccb25471c508e6c0db9521d9e87610bd11c",
+  "included_records": 226,
+  "included_artifacts": 111,
+  "omitted_payloads": 0,
+  "privacy_filtered": false,
+  "state": "verified"
+}

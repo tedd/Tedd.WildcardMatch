@@ -1,0 +1,24 @@
+{
+  "id": "exec-71326904bd514137a8e7bdf41fd16745",
+  "plan_id": "plan-3f20999cf6d84f84a2719ab42f2b1033",
+  "plan_hash": "f64255478a370675a6e4eab8048949a4d902d5521a88cc64b75ec6ea043f0198",
+  "target": {
+    "id": "target-a4ff2fc4881f614bd1071dea",
+    "process_id": 51340,
+    "start_time_utc_ticks": "639276834297844542",
+    "runtime_instance": "target-a4ff2fc4881f614bd1071dea",
+    "runtime_version": "10.0.12",
+    "architecture": "X64",
+    "epoch": "0"
+  },
+  "state": "completed",
+  "run_ids": [
+    "run-4ca3d1fd81a6405a8a7cd797a00b0f5f",
+    "run-e19af2507e4b424c8eed30667998fc75"
+  ],
+  "started_at": "2026-10-15T17:50:31.895863+00:00",
+  "ended_at": "2026-10-15T17:51:34.1358948+00:00",
+  "failure": null,
+  "capture_id": "cap-a7d02300aee4474f90a7c08ebb0f57a6",
+  "analysis_id": "analysis-13c11920219449d29290a3cc783fb425"
+}

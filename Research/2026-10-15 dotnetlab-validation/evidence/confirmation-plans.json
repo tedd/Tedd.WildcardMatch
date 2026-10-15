@@ -1,0 +1,298 @@
+[
+  {
+    "shape": "dense-4096",
+    "plan": {
+      "id": "confirm-plan-444958c5779547d7a8d9ab20a7709bfd",
+      "selected_candidate_id": "candidate-0aa95abdfd9d43d7811a6018c4da922b",
+      "source_patch_artifact_id": "art-a0a13e0a8baea6cc3d8a9426b8bb7d0dc1fd104b8346cc56251d72efc0d3b936",
+      "source_equivalence_rationale": "For each segment, checkedUntil increases monotonically from position to candidate; every consumed star interval is checked exactly once, with unchanged half-open bounds. Regex oracles validate string and span results. Both complete source snapshots are compiled into entry assemblies with identical harness dependencies.",
+      "baseline_build_id": "build-f90e9b0da84149dd8a6b012bdaa33d60",
+      "candidate_build_id": "build-1b8dde91ae834db9b7e81b3c8a1b55ab",
+      "baseline_variant": "baseline",
+      "candidate_variant": "candidate",
+      "experiment": {
+        "id": "confirm-plan-444958c5779547d7a8d9ab20a7709bfd",
+        "scenario_id": "wildcard-dense-4096",
+        "scenario_version": "1",
+        "input_hash": "0fa1995bf7c30e11d1a2785bf95865ee5c3814f40d7e87e3e21aad0656c3f94a",
+        "variants": [
+          "baseline",
+          "candidate"
+        ],
+        "blocks": 10,
+        "operations_per_run": 512,
+        "warmup_batches": 2,
+        "seed": "20261015",
+        "profile": "quiet-validation",
+        "independent_blocks": true,
+        "independence_justification": "Each randomized paired block uses two fresh sequential processes with identical dependencies and runtime. Fresh processes reset managed state and PGO; no workload overlap or adaptive exclusions. OS load and thermal drift remain uncontrolled; process separation alone does not prove stochastic independence.",
+        "confirmatory": true,
+        "maximum_duration_seconds": 600,
+        "analysis": {
+          "alpha_family": 0.05,
+          "family_size": 4,
+          "equivalence_lower_ratio": 0.99,
+          "equivalence_upper_ratio": 1.01,
+          "useful_improvement_ratio": 0.99,
+          "meaningful_regression_ratio": 1.01,
+          "minimum_blocks": 10
+        },
+        "primary_metric": "scenario.ns_per_operation",
+        "fresh_normal_build": true,
+        "guardrail_metrics": null
+      },
+      "exploratory_evidence_ids": [
+        "exec-02c32a72f8c146f6829057b4ee836707",
+        "exec-c64abf3af3ae4e9ba6f534ea9ad873dd",
+        "exec-aed5e6bcab8f4c6783c4909a3a9290ff",
+        "exec-c0a70f7c86274fc58a0be301e8814b5a"
+      ],
+      "frozen_at": "2026-10-15T17:53:04.0999412+00:00",
+      "frozen_evidence": [
+        {
+          "id": "exec-02c32a72f8c146f6829057b4ee836707",
+          "revision": "22",
+          "hash": "a1482c5580eebec3bfe8d3a4e26505485130d5bd9968778d03cdc4a99863849b"
+        },
+        {
+          "id": "exec-c64abf3af3ae4e9ba6f534ea9ad873dd",
+          "revision": "22",
+          "hash": "710e7f9de10641e667bc9a056084aa63e8d414e353a3a27ce0e8f6f98137901f"
+        },
+        {
+          "id": "exec-aed5e6bcab8f4c6783c4909a3a9290ff",
+          "revision": "22",
+          "hash": "231fa0a51f55a08d76c8745955ed941e1c93929b5c076e6218826f777c615fa7"
+        },
+        {
+          "id": "exec-c0a70f7c86274fc58a0be301e8814b5a",
+          "revision": "22",
+          "hash": "0f942b9719d12eb127a6ff6ada38eb064523970bda53df79f854b7e06c9334a1"
+        }
+      ],
+      "content_hash": "71b306d65d8b64b704e8a61c6126b02d007023462acb7561f54706d2e98efd56"
+    }
+  },
+  {
+    "shape": "dense-16384",
+    "plan": {
+      "id": "confirm-plan-dc8c5c485a71469a8ab5a529b200f9c0",
+      "selected_candidate_id": "candidate-0aa95abdfd9d43d7811a6018c4da922b",
+      "source_patch_artifact_id": "art-a0a13e0a8baea6cc3d8a9426b8bb7d0dc1fd104b8346cc56251d72efc0d3b936",
+      "source_equivalence_rationale": "For each segment, checkedUntil increases monotonically from position to candidate; every consumed star interval is checked exactly once, with unchanged half-open bounds. Regex oracles validate string and span results. Both complete source snapshots are compiled into entry assemblies with identical harness dependencies.",
+      "baseline_build_id": "build-f90e9b0da84149dd8a6b012bdaa33d60",
+      "candidate_build_id": "build-1b8dde91ae834db9b7e81b3c8a1b55ab",
+      "baseline_variant": "baseline",
+      "candidate_variant": "candidate",
+      "experiment": {
+        "id": "confirm-plan-dc8c5c485a71469a8ab5a529b200f9c0",
+        "scenario_id": "wildcard-dense-16384",
+        "scenario_version": "1",
+        "input_hash": "4f60d2d7e77629fc6c10c2e23ea61cbe6be22d64027dd0287c7e1dcb841eefa8",
+        "variants": [
+          "baseline",
+          "candidate"
+        ],
+        "blocks": 10,
+        "operations_per_run": 512,
+        "warmup_batches": 2,
+        "seed": "20261015",
+        "profile": "quiet-validation",
+        "independent_blocks": true,
+        "independence_justification": "Each randomized paired block uses two fresh sequential processes with identical dependencies and runtime. Fresh processes reset managed state and PGO; no workload overlap or adaptive exclusions. OS load and thermal drift remain uncontrolled; process separation alone does not prove stochastic independence.",
+        "confirmatory": true,
+        "maximum_duration_seconds": 600,
+        "analysis": {
+          "alpha_family": 0.05,
+          "family_size": 4,
+          "equivalence_lower_ratio": 0.99,
+          "equivalence_upper_ratio": 1.01,
+          "useful_improvement_ratio": 0.99,
+          "meaningful_regression_ratio": 1.01,
+          "minimum_blocks": 10
+        },
+        "primary_metric": "scenario.ns_per_operation",
+        "fresh_normal_build": true,
+        "guardrail_metrics": null
+      },
+      "exploratory_evidence_ids": [
+        "exec-02c32a72f8c146f6829057b4ee836707",
+        "exec-c64abf3af3ae4e9ba6f534ea9ad873dd",
+        "exec-aed5e6bcab8f4c6783c4909a3a9290ff",
+        "exec-c0a70f7c86274fc58a0be301e8814b5a"
+      ],
+      "frozen_at": "2026-10-15T17:53:04.1863184+00:00",
+      "frozen_evidence": [
+        {
+          "id": "exec-02c32a72f8c146f6829057b4ee836707",
+          "revision": "22",
+          "hash": "a1482c5580eebec3bfe8d3a4e26505485130d5bd9968778d03cdc4a99863849b"
+        },
+        {
+          "id": "exec-c64abf3af3ae4e9ba6f534ea9ad873dd",
+          "revision": "22",
+          "hash": "710e7f9de10641e667bc9a056084aa63e8d414e353a3a27ce0e8f6f98137901f"
+        },
+        {
+          "id": "exec-aed5e6bcab8f4c6783c4909a3a9290ff",
+          "revision": "22",
+          "hash": "231fa0a51f55a08d76c8745955ed941e1c93929b5c076e6218826f777c615fa7"
+        },
+        {
+          "id": "exec-c0a70f7c86274fc58a0be301e8814b5a",
+          "revision": "22",
+          "hash": "0f942b9719d12eb127a6ff6ada38eb064523970bda53df79f854b7e06c9334a1"
+        }
+      ],
+      "content_hash": "118c4629fe59497adf1a27a035a1b16da287b8624f62ad50547326903966c3e9"
+    }
+  },
+  {
+    "shape": "ordinary",
+    "plan": {
+      "id": "confirm-plan-47edae35507a41979baff3f44984daf0",
+      "selected_candidate_id": "candidate-0aa95abdfd9d43d7811a6018c4da922b",
+      "source_patch_artifact_id": "art-a0a13e0a8baea6cc3d8a9426b8bb7d0dc1fd104b8346cc56251d72efc0d3b936",
+      "source_equivalence_rationale": "For each segment, checkedUntil increases monotonically from position to candidate; every consumed star interval is checked exactly once, with unchanged half-open bounds. Regex oracles validate string and span results. Both complete source snapshots are compiled into entry assemblies with identical harness dependencies.",
+      "baseline_build_id": "build-f90e9b0da84149dd8a6b012bdaa33d60",
+      "candidate_build_id": "build-1b8dde91ae834db9b7e81b3c8a1b55ab",
+      "baseline_variant": "baseline",
+      "candidate_variant": "candidate",
+      "experiment": {
+        "id": "confirm-plan-47edae35507a41979baff3f44984daf0",
+        "scenario_id": "wildcard-ordinary",
+        "scenario_version": "1",
+        "input_hash": "05ee092812f06fc40748c75306ab30087b28a28c56250359962099bdf8a111be",
+        "variants": [
+          "baseline",
+          "candidate"
+        ],
+        "blocks": 10,
+        "operations_per_run": 300000,
+        "warmup_batches": 2,
+        "seed": "20261015",
+        "profile": "quiet-validation",
+        "independent_blocks": true,
+        "independence_justification": "Each randomized paired block uses two fresh sequential processes with identical dependencies and runtime. Fresh processes reset managed state and PGO; no workload overlap or adaptive exclusions. OS load and thermal drift remain uncontrolled; process separation alone does not prove stochastic independence.",
+        "confirmatory": true,
+        "maximum_duration_seconds": 600,
+        "analysis": {
+          "alpha_family": 0.05,
+          "family_size": 4,
+          "equivalence_lower_ratio": 0.95,
+          "equivalence_upper_ratio": 1.05,
+          "useful_improvement_ratio": 0.95,
+          "meaningful_regression_ratio": 1.05,
+          "minimum_blocks": 10
+        },
+        "primary_metric": "scenario.ns_per_operation",
+        "fresh_normal_build": true,
+        "guardrail_metrics": null
+      },
+      "exploratory_evidence_ids": [
+        "exec-02c32a72f8c146f6829057b4ee836707",
+        "exec-c64abf3af3ae4e9ba6f534ea9ad873dd",
+        "exec-aed5e6bcab8f4c6783c4909a3a9290ff",
+        "exec-c0a70f7c86274fc58a0be301e8814b5a"
+      ],
+      "frozen_at": "2026-10-15T17:53:04.2488864+00:00",
+      "frozen_evidence": [
+        {
+          "id": "exec-02c32a72f8c146f6829057b4ee836707",
+          "revision": "22",
+          "hash": "a1482c5580eebec3bfe8d3a4e26505485130d5bd9968778d03cdc4a99863849b"
+        },
+        {
+          "id": "exec-c64abf3af3ae4e9ba6f534ea9ad873dd",
+          "revision": "22",
+          "hash": "710e7f9de10641e667bc9a056084aa63e8d414e353a3a27ce0e8f6f98137901f"
+        },
+        {
+          "id": "exec-aed5e6bcab8f4c6783c4909a3a9290ff",
+          "revision": "22",
+          "hash": "231fa0a51f55a08d76c8745955ed941e1c93929b5c076e6218826f777c615fa7"
+        },
+        {
+          "id": "exec-c0a70f7c86274fc58a0be301e8814b5a",
+          "revision": "22",
+          "hash": "0f942b9719d12eb127a6ff6ada38eb064523970bda53df79f854b7e06c9334a1"
+        }
+      ],
+      "content_hash": "64f4a9fe74f7d6be857fd3cbeea7f3a7ab8704f1db69c63a38e14f57e869ec06"
+    }
+  },
+  {
+    "shape": "newline",
+    "plan": {
+      "id": "confirm-plan-3fa07714a3b543d9884fefceea8be935",
+      "selected_candidate_id": "candidate-0aa95abdfd9d43d7811a6018c4da922b",
+      "source_patch_artifact_id": "art-a0a13e0a8baea6cc3d8a9426b8bb7d0dc1fd104b8346cc56251d72efc0d3b936",
+      "source_equivalence_rationale": "For each segment, checkedUntil increases monotonically from position to candidate; every consumed star interval is checked exactly once, with unchanged half-open bounds. Regex oracles validate string and span results. Both complete source snapshots are compiled into entry assemblies with identical harness dependencies.",
+      "baseline_build_id": "build-f90e9b0da84149dd8a6b012bdaa33d60",
+      "candidate_build_id": "build-1b8dde91ae834db9b7e81b3c8a1b55ab",
+      "baseline_variant": "baseline",
+      "candidate_variant": "candidate",
+      "experiment": {
+        "id": "confirm-plan-3fa07714a3b543d9884fefceea8be935",
+        "scenario_id": "wildcard-newline",
+        "scenario_version": "1",
+        "input_hash": "2a1b95fb57879cef09e6ab81f9936591310b48a8377247d8dc571fd07b8e650a",
+        "variants": [
+          "baseline",
+          "candidate"
+        ],
+        "blocks": 10,
+        "operations_per_run": 1000,
+        "warmup_batches": 2,
+        "seed": "20261015",
+        "profile": "quiet-validation",
+        "independent_blocks": true,
+        "independence_justification": "Each randomized paired block uses two fresh sequential processes with identical dependencies and runtime. Fresh processes reset managed state and PGO; no workload overlap or adaptive exclusions. OS load and thermal drift remain uncontrolled; process separation alone does not prove stochastic independence.",
+        "confirmatory": true,
+        "maximum_duration_seconds": 600,
+        "analysis": {
+          "alpha_family": 0.05,
+          "family_size": 4,
+          "equivalence_lower_ratio": 0.95,
+          "equivalence_upper_ratio": 1.05,
+          "useful_improvement_ratio": 0.95,
+          "meaningful_regression_ratio": 1.05,
+          "minimum_blocks": 10
+        },
+        "primary_metric": "scenario.ns_per_operation",
+        "fresh_normal_build": true,
+        "guardrail_metrics": null
+      },
+      "exploratory_evidence_ids": [
+        "exec-02c32a72f8c146f6829057b4ee836707",
+        "exec-c64abf3af3ae4e9ba6f534ea9ad873dd",
+        "exec-aed5e6bcab8f4c6783c4909a3a9290ff",
+        "exec-c0a70f7c86274fc58a0be301e8814b5a"
+      ],
+      "frozen_at": "2026-10-15T17:53:04.3200029+00:00",
+      "frozen_evidence": [
+        {
+          "id": "exec-02c32a72f8c146f6829057b4ee836707",
+          "revision": "22",
+          "hash": "a1482c5580eebec3bfe8d3a4e26505485130d5bd9968778d03cdc4a99863849b"
+        },
+        {
+          "id": "exec-c64abf3af3ae4e9ba6f534ea9ad873dd",
+          "revision": "22",
+          "hash": "710e7f9de10641e667bc9a056084aa63e8d414e353a3a27ce0e8f6f98137901f"
+        },
+        {
+          "id": "exec-aed5e6bcab8f4c6783c4909a3a9290ff",
+          "revision": "22",
+          "hash": "231fa0a51f55a08d76c8745955ed941e1c93929b5c076e6218826f777c615fa7"
+        },
+        {
+          "id": "exec-c0a70f7c86274fc58a0be301e8814b5a",
+          "revision": "22",
+          "hash": "0f942b9719d12eb127a6ff6ada38eb064523970bda53df79f854b7e06c9334a1"
+        }
+      ],
+      "content_hash": "681e173ae69d22d1011522b844b6dfddec25bb11756bdc14a24287355c4fc9e3"
+    }
+  }
+]

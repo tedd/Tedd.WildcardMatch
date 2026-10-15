@@ -1,0 +1,96 @@
+{
+  "target": {
+    "id": "target-a4ff2fc4881f614bd1071dea",
+    "process_id": 51340,
+    "start_time_utc_ticks": "639276834297844542",
+    "runtime_instance": "target-a4ff2fc4881f614bd1071dea",
+    "runtime_version": "10.0.12",
+    "architecture": "X64",
+    "epoch": "0"
+  },
+  "scenarios": [
+    {
+      "id": "wildcard-dense-4096",
+      "version": "1",
+      "input_hash": "0fa1995bf7c30e11d1a2785bf95865ee5c3814f40d7e87e3e21aad0656c3f94a",
+      "reset_level": "logical_state",
+      "affinity": "any",
+      "is_async": false,
+      "completed_work_definition": "One public instance IsMatch call; four inputs cycled in fixed order",
+      "variants": [
+        "baseline",
+        "candidate"
+      ],
+      "mutation_scopes": null,
+      "mutation_invocations_per_operation": null
+    },
+    {
+      "id": "wildcard-dense-16384",
+      "version": "1",
+      "input_hash": "4f60d2d7e77629fc6c10c2e23ea61cbe6be22d64027dd0287c7e1dcb841eefa8",
+      "reset_level": "logical_state",
+      "affinity": "any",
+      "is_async": false,
+      "completed_work_definition": "One public instance IsMatch call; four inputs cycled in fixed order",
+      "variants": [
+        "baseline",
+        "candidate"
+      ],
+      "mutation_scopes": null,
+      "mutation_invocations_per_operation": null
+    },
+    {
+      "id": "wildcard-ordinary",
+      "version": "1",
+      "input_hash": "05ee092812f06fc40748c75306ab30087b28a28c56250359962099bdf8a111be",
+      "reset_level": "logical_state",
+      "affinity": "any",
+      "is_async": false,
+      "completed_work_definition": "One public instance IsMatch call; four inputs cycled in fixed order",
+      "variants": [
+        "baseline",
+        "candidate"
+      ],
+      "mutation_scopes": null,
+      "mutation_invocations_per_operation": null
+    },
+    {
+      "id": "wildcard-newline",
+      "version": "1",
+      "input_hash": "2a1b95fb57879cef09e6ab81f9936591310b48a8377247d8dc571fd07b8e650a",
+      "reset_level": "logical_state",
+      "affinity": "any",
+      "is_async": false,
+      "completed_work_definition": "One public instance IsMatch call; four inputs cycled in fixed order",
+      "variants": [
+        "baseline",
+        "candidate"
+      ],
+      "mutation_scopes": null,
+      "mutation_invocations_per_operation": null
+    }
+  ],
+  "tainted": false,
+  "probe_helper": null,
+  "runtime": {
+    "entry_assembly_hash": "11bfe6f566514a5e053bc47242a1a7c462798bd3fdb6c3bf5db87266e93447e4",
+    "assembly_hashes": {
+      "DotNetLab.Contracts.dll": "cdcf0104c0d2d414d074673b58baa8963f5bbb8ea797a3f628e7bdfdfd75f980",
+      "DotNetLab.Harness.dll": "b3108b2e0760e7095e1f7cb2dcf2997f09cbf0bbe2c757dbb8e0ccb49240175f",
+      "DotNetLab.Transport.Local.dll": "5d3a0a030579261b9a57a7f03ee975410c08d9cf7f39cc94dc98400975680692",
+      "WildcardRig.dll": "11bfe6f566514a5e053bc47242a1a7c462798bd3fdb6c3bf5db87266e93447e4"
+    },
+    "operating_system": "Microsoft Windows 10.0.26200",
+    "architecture": "X64",
+    "stopwatch_frequency": "10000000",
+    "debugger_attached": false,
+    "native_profiler_present": false,
+    "diagnostics_enabled": "1",
+    "profiling_enabled": "",
+    "startup_hooks": "",
+    "additional_dependencies": "",
+    "owned_process": false,
+    "runtime_configuration_hash": "64f6e92559a3ff326652a277bceee9745d0fe35cde800954bec2d5e16aae7fdd",
+    "operating_system_family": "windows"
+  }
+}

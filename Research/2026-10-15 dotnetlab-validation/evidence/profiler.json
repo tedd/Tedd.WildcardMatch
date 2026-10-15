@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "target_id": "target-8c550ecd5d560d7a359245e7",
+  "process_id": 24840,
+  "start_time_utc_ticks": "639276838305164672",
+  "runtime": "10.0.12",
+  "runtime_string": "10.0.12",
+  "architecture": "x64",
+  "epoch": "0",
+  "startup": false,
+  "workspace": "D:\\Workspaces\\AI\\wildcard-dotnetlab-validation\\catalog",
+  "interface": "ICorProfilerInfo12",
+  "native_inspection": "experimental",
+  "rejit": "experimental",
+  "probes": "unsupported",
+  "restore": "experimental",
+  "execution_active": false,
+  "inliner_handling": "verified_noinline_only",
+  "attachment_complete": true,
+  "event_mask_low": 262180
+}

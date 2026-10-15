@@ -1,0 +1,20 @@
+{
+  "id": "attach-plan-f8e2a385b09c4b1492248414169d8ca6",
+  "target": {
+    "id": "target-8c550ecd5d560d7a359245e7",
+    "process_id": 24840,
+    "start_time_utc_ticks": "639276838305164672",
+    "runtime_instance": "target-8c550ecd5d560d7a359245e7",
+    "runtime_version": "10.0.12",
+    "architecture": "x64",
+    "epoch": "0"
+  },
+  "binary_path": "D:\\Workspaces\\AI\\dotnetlab-implementation\\bin\\DotNetLab.Host\\Release\\net10.0\\DotNetLab.Profiler.dll",
+  "binary_hash": "b29372eebc0bc34264f14a68b991094d98a523a1e45697264a89fed273d83a42",
+  "binary_length": "577024",
+  "runtime_hash": "128aee8c62a673d64739e585e3876b61133571cec83a46240a62581d5465639b",
+  "profiler_id": "63ea6b80-5694-4b6b-8d4a-754cb224ae37",
+  "event_mask_low": 262180,
+  "maximum_duration_seconds": 30,
+  "content_hash": "3826da4e6fb3d1ca34d158b95d036ba125e3b2228f9b9849c2eb23934e690250"
+}

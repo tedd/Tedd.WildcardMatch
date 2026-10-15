@@ -1,0 +1,65 @@
+{
+  "id": "cap-a7d02300aee4474f90a7c08ebb0f57a6",
+  "target": {
+    "id": "target-a4ff2fc4881f614bd1071dea",
+    "process_id": 51340,
+    "start_time_utc_ticks": "639276834297844542",
+    "runtime_instance": "target-a4ff2fc4881f614bd1071dea",
+    "runtime_version": "10.0.12",
+    "architecture": "X64",
+    "epoch": "0"
+  },
+  "profile": {
+    "name": "cpu-diagnostic",
+    "version": "net10/1",
+    "providers": [
+      {
+        "name": "Microsoft-Windows-DotNETRuntime",
+        "keywords": "25",
+        "level": 4,
+        "arguments": {}
+      },
+      {
+        "name": "DotNetLab-Harness",
+        "keywords": "-1",
+        "level": 4,
+        "arguments": {}
+      },
+      {
+        "name": "System.Runtime",
+        "keywords": "0",
+        "level": 4,
+        "arguments": {
+          "EventCounterIntervalSec": "1"
+        }
+      },
+      {
+        "name": "Microsoft-DotNETCore-SampleProfiler",
+        "keywords": "0",
+        "level": 4,
+        "arguments": {}
+      }
+    ],
+    "buffer_mi_b": 32,
+    "rundown": true,
+    "data_classes": [
+      "gc",
+      "suspension",
+      "counters",
+      "markers",
+      "samples"
+    ],
+    "hash": "67ba4a8937a4a227d073123cb06165056544e648eb0b092938024f33ad1c7831"
+  },
+  "state": "sealed",
+  "artifact_id": "art-1d298e0dc8378dcd86658339a7b72fa2fa9f18f51187935dc5c91abbac50638f",
+  "quality": {
+    "coverage": "capture_complete_unparsed",
+    "loss_status": "unknown",
+    "parser_version": "unparsed",
+    "warnings": [],
+    "symbol_coverage": null
+  },
+  "created_at": "2026-10-15T17:50:31.9239556+00:00",
+  "reason": null
+}

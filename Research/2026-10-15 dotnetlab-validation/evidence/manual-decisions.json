@@ -1,0 +1,26 @@
+[
+  {
+    "id": "decision-269df2e845514b859c216521cc046717",
+    "comparison_id": "cmp-b286f4b95a7a1726ff7e1ca5ae0893414e9dd8fc1e16d240556a4425c1c60596",
+    "action": "retain",
+    "rationale": "Dense-input primary evidence and ordinary/newline guardrails are assessed jointly; equivalent ordinary cost satisfies its frozen guardrail, without claiming an ordinary-input improvement."
+  },
+  {
+    "id": "decision-0d18a75b03a34b2fb9033dac9c4930ef",
+    "comparison_id": "cmp-5de70497bad0c17bc26e3d705d1feb7fba374b89803827ce1e5ea15510bb9e40",
+    "action": "retain",
+    "rationale": "Dense-input primary evidence and ordinary/newline guardrails are assessed jointly; equivalent ordinary cost satisfies its frozen guardrail, without claiming an ordinary-input improvement."
+  },
+  {
+    "id": "decision-c32eec0ae3b14a4ba769a5da825e35ba",
+    "comparison_id": "cmp-983ababb1690f6992b5d4d98b59d598e97f3dc20fb68febee207f1a662a315b5",
+    "action": "retain",
+    "rationale": "Dense-input primary evidence and ordinary/newline guardrails are assessed jointly; equivalent ordinary cost satisfies its frozen guardrail, without claiming an ordinary-input improvement."
+  },
+  {
+    "id": "decision-3e23f770a49f4042a9f30ce5de5735c9",
+    "comparison_id": "cmp-f10c7f69559d360e3d1d169cc6beef2eb081ed9b49cd3df849a3a649c3b6de83",
+    "action": "retain",
+    "rationale": "Dense-input primary evidence and ordinary/newline guardrails are assessed jointly; equivalent ordinary cost satisfies its frozen guardrail, without claiming an ordinary-input improvement."
+  }
+]

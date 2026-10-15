@@ -1,0 +1,53 @@
+{
+  "baseline": {
+    "id": "baseline-8210a16ffe4f4d649211c5da28d15591",
+    "run_ids": [
+      "run-09726276a51a443b834890daa785d911",
+      "run-1a7aed72dd4049f39dbb498f8f073fc0",
+      "run-20eadda434634d4ea7dc39225460ec61",
+      "run-252ac0bf38b043af98c095c9324b0220",
+      "run-7c59d666f02d4329aac77c9997f9657f",
+      "run-909ad1cb7e614a8cb53eae5fd70aded0",
+      "run-b4cfe8a6b055469da43fb8a4f2e5ec4f",
+      "run-cb3c031076374c6788f2d4381b69993d",
+      "run-f33cd8b73d104924bcea989a52a8af64",
+      "run-f7336e5cbf034232981b9f3526f19e09"
+    ],
+    "role": "historical_anchor",
+    "manifest_artifact_id": "art-130734afddb96a9bb7e1400ac3a0ae4d09ffdd3498087730b7dd353a6f8443ae",
+    "fingerprint": {
+      "scenario_id": "wildcard-ordinary",
+      "scenario_version": "1",
+      "input_hash": "05ee092812f06fc40748c75306ab30087b28a28c56250359962099bdf8a111be",
+      "variant": "baseline",
+      "reset_level": "logical_state",
+      "operations_per_run": 300000,
+      "warmup_batches": 2,
+      "profile_hash": "c66f7cbdc225a2028c31e321073ba473a02766d6b6d2e0114279876ef135a2d5",
+      "observer_state": "{\"external\":\"other_observers_unknown\",\"probe\":null}",
+      "runtime_version": "10.0.12",
+      "architecture": "X64",
+      "code_identity_hash": "d8b29f2520c990f89ee82bcfc84a2ee781bd3e420d71ed91298dacd00bdcf870",
+      "runtime_settings_hash": "046cc1910f622e3bb11347a47c38ccb7a6f35330039098066e94b9917062e70f",
+      "epoch": "0",
+      "compilation_regime": "normal_compile/cooperative_process",
+      "native_process_scope": null
+    },
+    "unknown_fields": [
+      "cpu_model",
+      "affinity",
+      "power_policy",
+      "runtime_tier",
+      "pgo_history",
+      "background_load"
+    ]
+  },
+  "alias": {
+    "id": "baseline-alias-05d26b91a29199357736fd7fbaec060a",
+    "kind": "baseline_alias",
+    "revision": "1",
+    "hash": "80254c6e72c13577a194f86e1c0314008baea5af24acae5791076538147bc244",
+    "json": "{\"id\":\"baseline-alias-05d26b91a29199357736fd7fbaec060a\",\"name\":\"wildcard-ordinary\",\"baseline_id\":\"baseline-8210a16ffe4f4d649211c5da28d15591\",\"baseline_revision\":\"1\",\"baseline_hash\":\"276db88e7aa1bff881f2b83f68aa610102fbb82b7eab0a8da21943828fb289e7\"}",
+    "created_at": "2026-10-15T17:52:04.3008759+00:00"
+  }
+}

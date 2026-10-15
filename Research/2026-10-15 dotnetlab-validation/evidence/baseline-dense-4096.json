@@ -1,0 +1,53 @@
+{
+  "baseline": {
+    "id": "baseline-8e2e55c5c05b47aaa330e78c93b26831",
+    "run_ids": [
+      "run-17841372ea754b1ea693fe1f67ada503",
+      "run-25f25ab691434158adc32878bbec5a41",
+      "run-79980ba926bb419fa2109380d3a1ffe9",
+      "run-8dd138e8c9ff428cabc509d597f4806e",
+      "run-a79c4f4dd60f45c09dede21e529bb92a",
+      "run-b91bc0fdaf274f90bed1e7b57ac81ff0",
+      "run-c0249031b164497cb6be84c89747dcef",
+      "run-c6094521655841529b6b22d3fe7c21cd",
+      "run-c6d6ab6e4cf7421aa24eaa8291dcd164",
+      "run-d6fe8ea3ce2e4a74852eb4dd967ec520"
+    ],
+    "role": "historical_anchor",
+    "manifest_artifact_id": "art-f29dde85b3182512bf1ca62314f6c68d323cbab898df3582ba358c80c0ab7623",
+    "fingerprint": {
+      "scenario_id": "wildcard-dense-4096",
+      "scenario_version": "1",
+      "input_hash": "0fa1995bf7c30e11d1a2785bf95865ee5c3814f40d7e87e3e21aad0656c3f94a",
+      "variant": "baseline",
+      "reset_level": "logical_state",
+      "operations_per_run": 512,
+      "warmup_batches": 2,
+      "profile_hash": "c66f7cbdc225a2028c31e321073ba473a02766d6b6d2e0114279876ef135a2d5",
+      "observer_state": "{\"external\":\"other_observers_unknown\",\"probe\":null}",
+      "runtime_version": "10.0.12",
+      "architecture": "X64",
+      "code_identity_hash": "d8b29f2520c990f89ee82bcfc84a2ee781bd3e420d71ed91298dacd00bdcf870",
+      "runtime_settings_hash": "046cc1910f622e3bb11347a47c38ccb7a6f35330039098066e94b9917062e70f",
+      "epoch": "0",
+      "compilation_regime": "normal_compile/cooperative_process",
+      "native_process_scope": null
+    },
+    "unknown_fields": [
+      "cpu_model",
+      "affinity",
+      "power_policy",
+      "runtime_tier",
+      "pgo_history",
+      "background_load"
+    ]
+  },
+  "alias": {
+    "id": "baseline-alias-3a29facb9f6666f82d68870c234a13c6",
+    "kind": "baseline_alias",
+    "revision": "1",
+    "hash": "2282308e9ae8645c8ee7a1b08d40c7ad8f96c4cd93777da574349ff90d7c9722",
+    "json": "{\"id\":\"baseline-alias-3a29facb9f6666f82d68870c234a13c6\",\"name\":\"wildcard-dense-4096\",\"baseline_id\":\"baseline-8e2e55c5c05b47aaa330e78c93b26831\",\"baseline_revision\":\"1\",\"baseline_hash\":\"a7a163469001d02a8d7c299297118ecce97bcff31f692353319263fadf01c20b\"}",
+    "created_at": "2026-10-15T17:52:03.750431+00:00"
+  }
+}

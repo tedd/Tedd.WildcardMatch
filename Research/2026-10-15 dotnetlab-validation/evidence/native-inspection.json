@@ -1,0 +1,25 @@
+{
+  "id": "inspection-894d4a5f128d46d49dc993f7b8e612e6",
+  "target": {
+    "id": "target-8c550ecd5d560d7a359245e7",
+    "process_id": 24840,
+    "start_time_utc_ticks": "639276838305164672",
+    "runtime_instance": "target-8c550ecd5d560d7a359245e7",
+    "runtime_version": "10.0.12",
+    "architecture": "x64",
+    "epoch": "0"
+  },
+  "method_id": "method-32fd215ec39aa959b2cbb45b",
+  "artifact_ids": [
+    "art-8ed6db42bcfc007e340f3c9521ecc619ca374161b0b7c7ec86d869fcec1c4ef3",
+    "art-9bb269bb820f933b01fa145e8a89055e460d2f1e13b90ba940cceb1c6aa260db"
+  ],
+  "manifest_artifact_id": "art-0c919acef0eecaba336a39c9d90e67a300930a8f16b7190ce399908a15b03c56",
+  "perturbation": {
+    "runtime_suspended": false,
+    "worker_registered_with_runtime": true,
+    "inspection_outside_measurement_required": true
+  },
+  "qualification": "verified_live_acquisition",
+  "proves_earlier_run_code": false
+}

@@ -1,0 +1,16 @@
+{
+  "id": "analysis-13c11920219449d29290a3cc783fb425",
+  "capture_id": "cap-a7d02300aee4474f90a7c08ebb0f57a6",
+  "artifact_id": "art-7de95f7516b973046798045cb2714f1e7987586e01527cb411901e7f0adc0eaf",
+  "parser_version": "traceevent-runtime/3",
+  "quality": {
+    "coverage": "partial",
+    "loss_status": "none_reported",
+    "parser_version": "traceevent-runtime/3",
+    "warnings": [
+      "provider_coverage_requires_stimulus",
+      "stack_symbolization_not_qualified"
+    ],
+    "symbol_coverage": null
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "identity": {
+    "id": "target-a4ff2fc4881f614bd1071dea",
+    "process_id": 51340,
+    "start_time_utc_ticks": "639276834297844542",
+    "runtime_instance": "target-a4ff2fc4881f614bd1071dea",
+    "runtime_version": "unknown",
+    "architecture": "unknown",
+    "epoch": "0"
+  },
+  "name": "dotnet",
+  "capabilities": {
+    "eventpipe": {
+      "state": "unknown",
+      "reason": "Diagnostic endpoint published; session permission/provider validation required."
+    },
+    "harness": {
+      "state": "unknown",
+      "reason": "Cooperative handshake required."
+    },
+    "method_metadata": {
+      "state": "unsupported",
+      "reason": "Live metadata adapter not qualified."
+    },
+    "native_inspection": {
+      "state": "unsupported",
+      "reason": "No certified native profiler."
+    },
+    "counters": {
+      "state": "unknown",
+      "reason": "Provider coverage must be verified."
+    },
+    "timing_probes": {
+      "state": "unsupported",
+      "reason": "No certified native profiler."
+    },
+    "rejit": {
+      "state": "unsupported",
+      "reason": "No certified native profiler."
+    },
+    "inliner_handling": {
+      "state": "unsupported",
+      "reason": "No certified native profiler."
+    },
+    "restore": {
+      "state": "unsupported",
+      "reason": "No certified native profiler."
+    }
+  },
+  "observer_state": "other_observers_unknown"
+}

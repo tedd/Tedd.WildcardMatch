@@ -1,0 +1,193 @@
+[
+  {
+    "name": "quiet-validation",
+    "capability": "managed",
+    "manifest": {
+      "name": "quiet-validation",
+      "version": "net10/1",
+      "providers": [],
+      "buffer_mi_b": 32,
+      "rundown": false,
+      "data_classes": [
+        "harness"
+      ],
+      "hash": "c66f7cbdc225a2028c31e321073ba473a02766d6b6d2e0114279876ef135a2d5"
+    }
+  },
+  {
+    "name": "baseline-context",
+    "capability": "managed",
+    "manifest": {
+      "name": "baseline-context",
+      "version": "net10/1",
+      "providers": [
+        {
+          "name": "Microsoft-Windows-DotNETRuntime",
+          "keywords": "1",
+          "level": 4,
+          "arguments": {}
+        },
+        {
+          "name": "DotNetLab-Harness",
+          "keywords": "-1",
+          "level": 4,
+          "arguments": {}
+        },
+        {
+          "name": "System.Runtime",
+          "keywords": "0",
+          "level": 4,
+          "arguments": {
+            "EventCounterIntervalSec": "1"
+          }
+        }
+      ],
+      "buffer_mi_b": 32,
+      "rundown": false,
+      "data_classes": [
+        "gc",
+        "suspension",
+        "counters",
+        "markers"
+      ],
+      "hash": "2acf8c00c479080596bf3d5b357d2cfebc35a9265c99f17c49059caca178231d"
+    }
+  },
+  {
+    "name": "cpu-diagnostic",
+    "capability": "managed",
+    "manifest": {
+      "name": "cpu-diagnostic",
+      "version": "net10/1",
+      "providers": [
+        {
+          "name": "Microsoft-Windows-DotNETRuntime",
+          "keywords": "25",
+          "level": 4,
+          "arguments": {}
+        },
+        {
+          "name": "DotNetLab-Harness",
+          "keywords": "-1",
+          "level": 4,
+          "arguments": {}
+        },
+        {
+          "name": "System.Runtime",
+          "keywords": "0",
+          "level": 4,
+          "arguments": {
+            "EventCounterIntervalSec": "1"
+          }
+        },
+        {
+          "name": "Microsoft-DotNETCore-SampleProfiler",
+          "keywords": "0",
+          "level": 4,
+          "arguments": {}
+        }
+      ],
+      "buffer_mi_b": 32,
+      "rundown": true,
+      "data_classes": [
+        "gc",
+        "suspension",
+        "counters",
+        "markers",
+        "samples"
+      ],
+      "hash": "67ba4a8937a4a227d073123cb06165056544e648eb0b092938024f33ad1c7831"
+    }
+  },
+  {
+    "name": "allocation-diagnostic",
+    "capability": "managed",
+    "manifest": {
+      "name": "allocation-diagnostic",
+      "version": "net10/1",
+      "providers": [
+        {
+          "name": "Microsoft-Windows-DotNETRuntime",
+          "keywords": "1",
+          "level": 5,
+          "arguments": {}
+        },
+        {
+          "name": "DotNetLab-Harness",
+          "keywords": "-1",
+          "level": 4,
+          "arguments": {}
+        },
+        {
+          "name": "System.Runtime",
+          "keywords": "0",
+          "level": 4,
+          "arguments": {
+            "EventCounterIntervalSec": "1"
+          }
+        }
+      ],
+      "buffer_mi_b": 32,
+      "rundown": false,
+      "data_classes": [
+        "gc",
+        "suspension",
+        "counters",
+        "markers",
+        "allocation_samples"
+      ],
+      "hash": "b6a39dbfb18aa470d88e8ecfb3e48d8898ce2a107bf42482df2ad41b873e2b6c"
+    }
+  },
+  {
+    "name": "targeted-probes",
+    "capability": "requires_verified_probe_plan",
+    "manifest": {
+      "name": "targeted-probes",
+      "version": "selected-probes/net10/1",
+      "providers": [],
+      "buffer_mi_b": 32,
+      "rundown": false,
+      "data_classes": [
+        "harness",
+        "selected_probes"
+      ],
+      "hash": "afa3ee06fe71b85d92fdcc3a2eb189150844fbc8c4d0a03264d664a6e02fa6f8"
+    }
+  },
+  {
+    "name": "runtime-metrics-context",
+    "capability": "managed",
+    "manifest": {
+      "name": "runtime-metrics-context",
+      "version": "net10/metrics/1",
+      "providers": [
+        {
+          "name": "System.Diagnostics.Metrics",
+          "keywords": "6",
+          "level": 4,
+          "arguments": {
+            "Metrics": "System.Runtime",
+            "RefreshInterval": "1",
+            "MaxTimeSeries": "1000",
+            "MaxHistograms": "20"
+          }
+        },
+        {
+          "name": "DotNetLab-Harness",
+          "keywords": "-1",
+          "level": 4,
+          "arguments": {}
+        }
+      ],
+      "buffer_mi_b": 32,
+      "rundown": false,
+      "data_classes": [
+        "counters",
+        "modern_runtime_metrics",
+        "markers"
+      ],
+      "hash": "f235d836886b33335e59c5cb72846a6d9da22282ec5d6c5be21b57b40d92a513"
+    }
+  }
+]

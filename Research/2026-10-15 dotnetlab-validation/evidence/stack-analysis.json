@@ -1,0 +1,20 @@
+{
+  "id": "stack-analysis-9794074e3d6743cfab28d690b3cb72e0",
+  "capture_id": "cap-a7d02300aee4474f90a7c08ebb0f57a6",
+  "artifact_id": "art-7808940e6e1db030b0ca8fddbc138d8f8a53658a550654c94cef4ce71d14aac9",
+  "observed_samples": "100000",
+  "methods": 147,
+  "symbol_coverage": 0.9999978173944929,
+  "quality": {
+    "coverage": "partial",
+    "loss_status": "unknown",
+    "parser_version": "traceevent-stack/1",
+    "warnings": [
+      "stack_conversion_event_cap",
+      "stack_loss_status_unknown",
+      "stack_sample_cap",
+      "unresolved_stack_frames"
+    ],
+    "symbol_coverage": 0.9999978173944929
+  }
+}
