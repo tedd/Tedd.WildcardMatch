@@ -1,0 +1,22 @@
+[
+  {
+    "name": "krauss",
+    "revision": "924b8a5b9d8104492e29448ef56e8fd872fd26b5",
+    "url": "https://github.com/kirkjkrauss/MatchingWildcards.git"
+  },
+  {
+    "name": "wildcards",
+    "revision": "5662507f01f5d0a4ec22f45749214276ed366d1b",
+    "url": "https://github.com/zemasoft/wildcards.git"
+  },
+  {
+    "name": "git-source",
+    "revision": "6de20f6092dcf9bdb1c8efe03db4b70c82b423dd",
+    "url": "https://github.com/git/git.git"
+  },
+  {
+    "name": "pcre2",
+    "revision": "13e1da98d8d30f54e96afa5829fe335c6115aa45",
+    "url": "https://github.com/PCRE2Project/pcre2.git"
+  }
+]

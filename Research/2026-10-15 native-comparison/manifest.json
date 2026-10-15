@@ -1,0 +1,152 @@
+[
+  {
+    "path": "benchmark.txt",
+    "length": 876575,
+    "sha256": "a85501832938076871b6b234eb049dfed4ccca119e959f4bfc3b4cce60e1c370"
+  },
+  {
+    "path": "environment.json",
+    "length": 891,
+    "sha256": "718e5a97ceafa4065e94e1c22de85496b704f17b0db1a40ce264eaf7bd4c8b16"
+  },
+  {
+    "path": "managed-build.txt",
+    "length": 66139,
+    "sha256": "b114486353f471a26e2116e135615d3ea4d9b7d5583aeaf52bb2e6a854d0660a"
+  },
+  {
+    "path": "matching-summary.json",
+    "length": 50110,
+    "sha256": "e445acfc8c0395bbc30d201f170c7230f77cf1b3dc594106280f16fdbc6872ec"
+  },
+  {
+    "path": "native-build.txt",
+    "length": 5624,
+    "sha256": "b883443c20efd5afeb1a7cc27ad457856d8c0cf318e4c174ebaa1fd508f29f62"
+  },
+  {
+    "path": "native-compiler-flags.txt",
+    "length": 1291,
+    "sha256": "57eb8718b2ad1771040b7cb1f6ddd15b8625bb5d30ac0840f3f93bab6d218094"
+  },
+  {
+    "path": "native-source-hashes.json",
+    "length": 1343,
+    "sha256": "1c4cbcfc28029eb2f6bc96ddaf7d72f3f8af60b92b76c1521cb01639e8a1f074"
+  },
+  {
+    "path": "native-sources.json",
+    "length": 615,
+    "sha256": "52abb046070069408e94687d1741fc826f8d4d35b59d7c23578cbcb82bb89776"
+  },
+  {
+    "path": "native-validation.json",
+    "length": 2210,
+    "sha256": "abe8e54cfc7921a349bc70667622899dcea8c1774a5384b24de46ea1a9ace514"
+  },
+  {
+    "path": "README.md",
+    "length": 7201,
+    "sha256": "44320a5fef1b27a48ad7effc8edb74c1b8263c67376ccfe15880ab3fefa044fd"
+  },
+  {
+    "path": "results-table.md",
+    "length": 1371,
+    "sha256": "73947767762d4c73979dcb8becad09a27c298601b21d127cf533579f1f716943"
+  },
+  {
+    "path": "source-hashes.json",
+    "length": 5840,
+    "sha256": "2521549471399fcb3f2f11232da4ed94f640af7ea8cec2eca0fe17dce0c59c64"
+  },
+  {
+    "path": "tests.txt",
+    "length": 1092,
+    "sha256": "147116996ce2ef27c862f3e2eedd1e508d827ecdb36e12d87ca4f4a475828bf5"
+  },
+  {
+    "path": "validation.json",
+    "length": 5851,
+    "sha256": "40db83c90096893db58d5faca037d531d8daa140e1de71939c1f6503d07040e3"
+  },
+  {
+    "path": "licenses/Git-GPL-2.0.txt",
+    "length": 18765,
+    "sha256": "5b2198d1645f767585e8a88ac0499b04472164c0d2da22e75ecf97ef443ab32e"
+  },
+  {
+    "path": "licenses/Krauss-Apache-2.0.txt",
+    "length": 11357,
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  {
+    "path": "licenses/PCRE2-LICENCE.md",
+    "length": 4011,
+    "sha256": "197d8a73ffee0d6b09adba2f9c677b5f5aede24edf89258a68e48248d010d811"
+  },
+  {
+    "path": "licenses/Zema-BSL-1.0.txt",
+    "length": 1338,
+    "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
+  },
+  {
+    "path": "results/Tedd.WildcardMatchBenchmark.ConstructionBenchmarks-report-full.json",
+    "length": 301249,
+    "sha256": "9b76dbe86ed6a3d582a303eae8323d4e759719f3410376fd5a5348ffdb22077a"
+  },
+  {
+    "path": "results/Tedd.WildcardMatchBenchmark.ConstructionBenchmarks-report-github.md",
+    "length": 2057,
+    "sha256": "3aeec1d361be009099b7b1dfeb5059a852b465775d668d8313c266a7aecdfee6"
+  },
+  {
+    "path": "results/Tedd.WildcardMatchBenchmark.ConstructionBenchmarks-report.csv",
+    "length": 4380,
+    "sha256": "6e3f7163ddb51a685ebab616fb2f665ba6c1fb810f61a0e456c0d9469186b3df"
+  },
+  {
+    "path": "results/Tedd.WildcardMatchBenchmark.ConstructionBenchmarks-report.html",
+    "length": 2695,
+    "sha256": "99c27ff96e977f74859eaae19f11113851be6631239251a04d4f90c4676d2cd8"
+  },
+  {
+    "path": "results/Tedd.WildcardMatchBenchmark.MatchingBenchmarks-report-full.json",
+    "length": 1414898,
+    "sha256": "c617d25a829218acb39a04d7302a5a0c47c87536c06e7765f3518b735828ae47"
+  },
+  {
+    "path": "results/Tedd.WildcardMatchBenchmark.MatchingBenchmarks-report-github.md",
+    "length": 5425,
+    "sha256": "606ee113fa95b1a8b47cba254324bc367a0254839962503969ad9431c693c005"
+  },
+  {
+    "path": "results/Tedd.WildcardMatchBenchmark.MatchingBenchmarks-report.csv",
+    "length": 15252,
+    "sha256": "aada7de3ed604cbd32420794fd4a29e5bd5f9bfcb39b3872e4e3b20a0bcb30b8"
+  },
+  {
+    "path": "results/Tedd.WildcardMatchBenchmark.MatchingBenchmarks-report.html",
+    "length": 6021,
+    "sha256": "2832441fa20a35d1da626eadb3930d96a2b01fa084ddd191dac094c229f78060"
+  },
+  {
+    "path": "results/Tedd.WildcardMatchBenchmark.NativeMatchingBenchmarks-report-full.json",
+    "length": 718621,
+    "sha256": "6af98156735b46531d1e859b3050bc0b60aae1d0376b4887201e592663057e9f"
+  },
+  {
+    "path": "results/Tedd.WildcardMatchBenchmark.NativeMatchingBenchmarks-report-github.md",
+    "length": 2863,
+    "sha256": "2360b0b1ebb98cf5357c39b864752a27f922f34ffbf9f13275795c7a81c23df5"
+  },
+  {
+    "path": "results/Tedd.WildcardMatchBenchmark.NativeMatchingBenchmarks-report.csv",
+    "length": 7783,
+    "sha256": "f6935a84261b1da6e199ecc828d64b92dca59bed79aef6303ac9cbbd5c86a131"
+  },
+  {
+    "path": "results/Tedd.WildcardMatchBenchmark.NativeMatchingBenchmarks-report.html",
+    "length": 3387,
+    "sha256": "2c1c50e7d07b44abd36e63c0ca259414134786f2e57bb2e59c8c613252accbbf"
+  }
+]

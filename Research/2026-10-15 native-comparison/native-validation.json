@@ -1,0 +1,122 @@
+[
+  {
+    "Library": "Krauss",
+    "Workload": "Literal",
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Krauss",
+    "Workload": "Simple",
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Krauss",
+    "Workload": "MultiStar",
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Krauss",
+    "Workload": "LongText",
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Krauss",
+    "Workload": "SeededAscii",
+    "Checked": 16000,
+    "Failures": 0
+  },
+  {
+    "Library": "GitWildmatch",
+    "Workload": "Literal",
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "GitWildmatch",
+    "Workload": "Simple",
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "GitWildmatch",
+    "Workload": "MultiStar",
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "GitWildmatch",
+    "Workload": "LongText",
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "GitWildmatch",
+    "Workload": "SeededAscii",
+    "Checked": 16000,
+    "Failures": 0
+  },
+  {
+    "Library": "ZemaWildcards",
+    "Workload": "Literal",
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "ZemaWildcards",
+    "Workload": "Simple",
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "ZemaWildcards",
+    "Workload": "MultiStar",
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "ZemaWildcards",
+    "Workload": "LongText",
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "ZemaWildcards",
+    "Workload": "SeededAscii",
+    "Checked": 16000,
+    "Failures": 0
+  },
+  {
+    "Library": "Pcre2Jit",
+    "Workload": "Literal",
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Pcre2Jit",
+    "Workload": "Simple",
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Pcre2Jit",
+    "Workload": "MultiStar",
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Pcre2Jit",
+    "Workload": "LongText",
+    "Checked": 256,
+    "Failures": 0
+  },
+  {
+    "Library": "Pcre2Jit",
+    "Workload": "SeededAscii",
+    "Checked": 16000,
+    "Failures": 0
+  }
+]

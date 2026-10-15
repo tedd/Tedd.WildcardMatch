@@ -1,0 +1,115 @@
+-- The C compiler identification is MSVC 19.52.37025.0
+-- The CXX compiler identification is MSVC 19.52.37025.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.52.37025/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.52.37025/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Using CMake version 4.3.1-msvc1 (C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cmake.exe)
+-- Could NOT find BZip2 (missing: BZIP2_LIBRARIES BZIP2_INCLUDE_DIR) 
+-- Could NOT find ZLIB (missing: ZLIB_LIBRARY ZLIB_INCLUDE_DIR) 
+-- Could NOT find Readline (missing: READLINE_LIBRARY READLINE_INCLUDE_DIR) 
+-- Could NOT find Editline (missing: EDITLINE_LIBRARY EDITLINE_INCLUDE_DIR) 
+-- Looking for assert.h
+-- Looking for assert.h - found
+-- Looking for dirent.h
+-- Looking for dirent.h - not found
+-- Looking for sys/stat.h
+-- Looking for sys/stat.h - found
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for unistd.h
+-- Looking for unistd.h - not found
+-- Looking for windows.h
+-- Looking for windows.h - found
+-- Looking for memfd_create
+-- Looking for memfd_create - not found
+-- Looking for secure_getenv
+-- Looking for secure_getenv - not found
+-- Looking for setrlimit
+-- Looking for setrlimit - not found
+-- Performing Test HAVE_STDATOMIC_H
+-- Performing Test HAVE_STDATOMIC_H - Failed
+-- Performing Test HAVE_REALPATH
+-- Performing Test HAVE_REALPATH - Failed
+-- Performing Test HAVE_ATTRIBUTE_UNINITIALIZED
+-- Performing Test HAVE_ATTRIBUTE_UNINITIALIZED - Failed
+-- Performing Test HAVE_BUILTIN_ASSUME
+-- Performing Test HAVE_BUILTIN_ASSUME - Success
+-- Performing Test HAVE_BUILTIN_MUL_OVERFLOW
+-- Performing Test HAVE_BUILTIN_MUL_OVERFLOW - Failed
+-- Performing Test HAVE_BUILTIN_UNREACHABLE
+-- Performing Test HAVE_BUILTIN_UNREACHABLE - Failed
+-- Performing Test INTEL_CET_ENABLED
+-- Performing Test INTEL_CET_ENABLED - Failed
+-- 
+-- 
+-- PCRE2-10.50 configuration summary:
+-- 
+--   Install prefix .................... : C:/Program Files (x86)/wildcard_native
+--   C compiler ........................ : C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.52.37025/bin/Hostx64/x64/cl.exe
+--   C compiler flags .................. : /DWIN32 /D_WINDOWS /O2 /Ob2 /DNDEBUG
+-- 
+--   Build type ........................ : Release
+--   Build 8 bit pcre2 library ......... : ON
+--   Build 16 bit pcre2 library ........ : OFF
+--   Build 32 bit pcre2 library ........ : OFF
+--   Include debugging code ............ : IfDebugBuild
+--   Enable JIT compiling support ...... : ON
+--   Use SELinux allocator in JIT ...... : IGNORE
+--   Enable Unicode support ............ : ON
+--   Newline char/sequence ............. : LF
+--   \R matches only ANYCRLF ........... : OFF
+--   \C is disabled .................... : OFF
+--   EBCDIC coding ..................... : OFF
+--   EBCDIC code for NL ................ : n/a
+--   EBCDIC coding ignoring compiler ... : OFF
+--   Rebuild char tables ............... : OFF
+--   Internal link size ................ : 2
+--   Maximum variable lookbehind ....... : 255
+--   Nested parentheses limit .......... : 250
+--   Heap limit ........................ : 20000000
+--   Match limit ....................... : 10000000
+--   Match depth limit ................. : MATCH_LIMIT
+--   Build shared libs ................. : OFF
+--       with symbol versioning ........ : n/a
+--   Build static libs ................. : ON
+--       with PIC enabled .............. : OFF
+--   Build pcre2grep ................... : OFF
+--   Enable JIT in pcre2grep ........... : ON
+--   Enable callouts in pcre2grep ...... : ON
+--   Enable callout fork in pcre2grep .. : ON
+--   Initial buffer size for pcre2grep . : 20480
+--   Maximum buffer size for pcre2grep . : 1048576
+--   Build tests (implies pcre2test .... : OFF
+--                and pcre2grep)
+--   Link pcre2grep with libz .......... : Library not found
+--   Link pcre2grep with libbz2 ........ : Library not found
+--   Link pcre2test with libeditline ... : Library not found
+--   Link pcre2test with libreadline ... : Library not found
+--   Enable Valgrind support ........... : OFF
+--   Fuzzer support .................... : OFF
+--   Differential fuzzer support ....... : OFF
+--   Use %zu and %td ................... : AUTO
+--   Install MSVC .pdb files ........... : OFF
+-- 
+-- Configuring done (8.0s)
+-- Generating done (0.1s)
+-- Build files have been written to: D:/Workspaces/AI/wildcard-native-benchmarks/native-build
+[ 86%] Built target pcre2-8-static
+[ 89%] Building CXX object CMakeFiles/wildcard_native.dir/native.cpp.obj
+native.cpp
+[ 91%] Building C object CMakeFiles/wildcard_native.dir/D_/Workspaces/AI/wildcard-native-benchmarks/git-standalone/wildmatch.c.obj
+wildmatch.c
+[ 94%] Linking CXX shared library wildcard_native.dll
+[ 94%] Built target wildcard_native
+[ 97%] Building C object pcre2/CMakeFiles/pcre2-posix-static.dir/src/pcre2posix.c.obj
+pcre2posix.c
+[100%] Linking C static library pcre2-posix-static.lib
+[100%] Built target pcre2-posix-static
+D:\Workspaces\AI\wildcard-native-benchmarks\native-build\wildcard_native.dll

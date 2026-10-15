@@ -1,0 +1,31 @@
+{
+  "recordedAt": "2026-10-15T20:26:47.5273693+02:00",
+  "sourceRevision": "5de155b6a832cec5438d0d6711ad294e4b0a32dd",
+  "integrationBranch": "main",
+  "initialWorkingTree": "clean",
+  "compiler": "MSVC 19.52.37025.0",
+  "cmake": "4.3.1-msvc1",
+  "windowsSdk": "10.0.22621.0",
+  "pcre2Version": "10.50-DEV",
+  "sljitRevision": "39c508d1b8fbae332d60c7450db20236913089da",
+  "processor": {
+    "Name": "AMD Ryzen 9 5950X 16-Core Processor            ",
+    "NumberOfCores": 16,
+    "NumberOfLogicalProcessors": 32
+  },
+  "os": {
+    "Caption": "Microsoft Windows 11 Pro",
+    "Version": "10.0.26200",
+    "BuildNumber": "26200"
+  },
+  "benchmark": {
+    "operationsPerInvoke": 256,
+    "warmupCount": 3,
+    "tieredCompilation": 0,
+    "iterationTimeMs": 100,
+    "launchCount": 3,
+    "iterationCount": 10,
+    "affinity": 1073741824,
+    "processor": 30
+  }
+}

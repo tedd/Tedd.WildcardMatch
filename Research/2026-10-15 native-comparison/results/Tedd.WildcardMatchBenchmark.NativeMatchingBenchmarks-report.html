@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Tedd.WildcardMatchBenchmark.NativeMatchingBenchmarks-20261015-203017</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.15.8, Windows 11 (10.0.26200.9711/25H2/2025Update/HudsonValley2)
+AMD Ryzen 9 5950X 3.40GHz, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 11.0.100-rc.2.26504.105
+  [Host]     : .NET 10.0.13 (10.0.13, 10.0.1326.50504), X64 RyuJIT x86-64-v3
+  Job-ZMHJYT : .NET 10.0.13 (10.0.13, 10.0.1326.50504), X64 RyuJIT x86-64-v3
+</code></pre>
+<pre><code>Affinity=01000000000000000000000000000000  EnvironmentVariables=DOTNET_TieredCompilation=0  IterationCount=10  
+IterationTime=100ms  LaunchCount=3  WarmupCount=3  
+</code></pre>
+
+<table>
+<thead><tr><th>Method</th><th>Case          </th><th>Mean   </th><th>Error</th><th>StdDev</th><th>Median </th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>Match</td><td>Literal/GitWildmatch</td><td>29.012 ns</td><td>0.2122 ns</td><td>0.3177 ns</td><td>28.871 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>Literal/Krauss</td><td>9.466 ns</td><td>0.0200 ns</td><td>0.0287 ns</td><td>9.472 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>Literal/Pcre2Jit</td><td>16.394 ns</td><td>0.0065 ns</td><td>0.0093 ns</td><td>16.394 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>Liter(...)cards [21]</td><td>75.468 ns</td><td>1.0856 ns</td><td>1.5570 ns</td><td>74.759 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>LongT(...)match [21]</td><td>656.424 ns</td><td>2.5905 ns</td><td>3.8773 ns</td><td>654.865 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>LongText/Krauss</td><td>231.400 ns</td><td>0.7016 ns</td><td>1.0284 ns</td><td>231.051 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>LongText/Pcre2Jit</td><td>1,460.878 ns</td><td>10.3308 ns</td><td>15.1428 ns</td><td>1,458.354 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>LongT(...)cards [22]</td><td>21,857.509 ns</td><td>12.2298 ns</td><td>17.1444 ns</td><td>21,853.772 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>Multi(...)match [22]</td><td>29.831 ns</td><td>0.2011 ns</td><td>0.2948 ns</td><td>29.943 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>MultiStar/Krauss</td><td>8.120 ns</td><td>0.0541 ns</td><td>0.0759 ns</td><td>8.117 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>MultiStar/Pcre2Jit</td><td>22.946 ns</td><td>0.0579 ns</td><td>0.0866 ns</td><td>22.949 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>Multi(...)cards [23]</td><td>152.819 ns</td><td>0.2680 ns</td><td>0.3929 ns</td><td>153.007 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>Simple/GitWildmatch</td><td>32.818 ns</td><td>0.3295 ns</td><td>0.4830 ns</td><td>32.530 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>Simple/Krauss</td><td>9.560 ns</td><td>0.0156 ns</td><td>0.0218 ns</td><td>9.549 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>Simple/Pcre2Jit</td><td>16.567 ns</td><td>0.0221 ns</td><td>0.0302 ns</td><td>16.561 ns</td><td>-</td>
+</tr><tr><td>Match</td><td>Simple/ZemaWildcards</td><td>79.937 ns</td><td>0.1682 ns</td><td>0.2357 ns</td><td>79.933 ns</td><td>-</td>
+</tr></tbody></table>
+</body>
+</html>

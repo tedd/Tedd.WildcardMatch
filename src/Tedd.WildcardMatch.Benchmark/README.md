@@ -61,3 +61,28 @@ To export a complete run with this configuration to the site:
 The exporter writes JSON, correctness results, detailed Markdown reports, and separate short- and long-string throughput charts. Detailed tables remain in the linked reports. Each chart includes every tested library and API. It requires all 32 matching cases and eight construction cases to have valid measurements and matching correctness records. A partial run fails instead of producing a misleading snapshot.
 
 Record the tested library source revision. The short-string selector switches among its three patterns; the long-string comparison remains visible alongside it. Both default charts and links to detailed reports remain available without JavaScript.
+
+## Native C/C++ comparison
+
+`Run-Comparisons.ps1` builds pinned upstream sources, copies the managed sources to the designated temporary workspace, runs tests and correctness checks, and measures all managed, construction and native cases:
+
+```powershell
+./src/Tedd.WildcardMatch.Benchmark/Run-Comparisons.ps1
+```
+
+The Windows x64 build requires Git, MSVC, a Windows SDK and CMake. `Native/Build-Native.ps1` accepts the Visual Studio installation path and records upstream revisions. Its defaults select Visual Studio 2026 Insiders and Windows SDK 10.0.22621.0. All generated files reside under `D:\Workspaces\AI\wildcard-native-benchmarks`. The affinity parameter defaults to processor 30; select an available processor on another host.
+
+| Native candidate | API and lifetime | Upstream license |
+| --- | --- | --- |
+| [Krauss MatchingWildcards](https://github.com/kirkjkrauss/MatchingWildcards) | Pointer-based `FastWildCompare`, pattern interpreted per match | Apache-2.0 |
+| [Git wildmatch](https://github.com/git/git/blob/master/wildmatch.c) | `wildmatch`, flags 0, pattern interpreted per match | Git COPYING, GPL-2.0 |
+| [Zema wildcards](https://github.com/zemasoft/wildcards) | `wildcards::match` with string views, pattern interpreted per match | BSL-1.0 |
+| [PCRE2](https://github.com/PCRE2Project/pcre2) | Anchored wildcard translation, retained JIT code and match data | BSD-3-Clause and bundled notices |
+
+The candidate set includes a performance-focused wildcard implementation, a widely deployed C matcher, a general C++ wildcard library and a native regex JIT. The suite identifies the fastest tested candidate per workload; it does not establish an exhaustive ranking of open-source libraries. File-system glob walkers and substring-only matchers do not perform equivalent work.
+
+Native cases use the same 256 inputs and independent dynamic-programming oracle as managed cases. A separate `--validate-native` mode also checks 16,000 deterministic pattern/input pairs per library, including empty strings and adjacent stars. Incorrect native results abort the comparison. The common syntax is case-sensitive, NUL-free ASCII with `*` and `?`; this comparison does not test Unicode or extended glob syntax.
+
+`WILDCARD_NATIVE_LIBRARY` selects the absolute adapter DLL path and enables `NativeMatchingBenchmarks`. Each timed call crosses into native code once, loops over 256 pre-encoded inputs, dispatches through a native function pointer and returns the match count. Times are normalized per match. Encoding, allocation, pattern translation and PCRE2 JIT compilation occur during setup. Managed cases dispatch through a managed delegate once per input. Both paths include loop and dispatch costs; differences in dispatch, encoding width and runtime remain part of this throughput comparison. It is not an end-to-end measurement of calling a C library from a .NET application.
+
+Git's `wildmatch.c` and `wildmatch.h` remain unchanged. A standalone compatibility header supplies standard C character functions and Git's four-character glob-special predicate. The native adapter uses MSVC `/O2 /Ob2`; PCRE2 uses a Release static build with JIT enabled and its default CPU detection. MemoryDiagnoser reports managed allocations only, and does not account for native setup allocations. Native results remain separate from the managed website snapshot and its exporter.

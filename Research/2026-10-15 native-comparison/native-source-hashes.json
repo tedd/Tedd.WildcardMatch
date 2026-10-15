@@ -1,0 +1,42 @@
+[
+  {
+    "path": "krauss/Listing1.cpp",
+    "sha256": "4bfd97f663a3f7bb558b28168c04e6309e6eb448cd682726c25c13c1519cf5bf"
+  },
+  {
+    "path": "krauss/LICENSE",
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  {
+    "path": "wildcards/single_include/wildcards.hpp",
+    "sha256": "8833659fcb40ca0db8c08675d836e935fcdf3ed2727207d2cce86dbecf509419"
+  },
+  {
+    "path": "wildcards/LICENSE_1_0.txt",
+    "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
+  },
+  {
+    "path": "git-source/wildmatch.c",
+    "sha256": "58541e5550a0689bba35cf839cc387823dd716fbde9636c52a06ff6b3babcf40"
+  },
+  {
+    "path": "git-source/wildmatch.h",
+    "sha256": "aceeb5402e256c5ae43f3e7f6714b27c5d3a62292d4720b5f681001aa3924fed"
+  },
+  {
+    "path": "git-source/COPYING",
+    "sha256": "5b2198d1645f767585e8a88ac0499b04472164c0d2da22e75ecf97ef443ab32e"
+  },
+  {
+    "path": "git-standalone/git-compat-util.h",
+    "sha256": "b7fe3a4bc21989872c04c334522f4c784a2626b4a491421cb6468590b3e72518"
+  },
+  {
+    "path": "pcre2/LICENCE.md",
+    "sha256": "197d8a73ffee0d6b09adba2f9c677b5f5aede24edf89258a68e48248d010d811"
+  },
+  {
+    "path": "native-build/wildcard_native.dll",
+    "sha256": "71d66842d8f50d98a88f1f36796c3cac673259c2d396b9f9d9b4761909ffa939"
+  }
+]
