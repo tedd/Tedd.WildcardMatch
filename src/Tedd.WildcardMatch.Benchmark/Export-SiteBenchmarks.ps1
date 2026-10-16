@@ -136,7 +136,8 @@ if ($interopControl.Count -ne 2 -or @($interopControl.mode | Sort-Object -Unique
 $matching += $nativeMatching
 # Charts choose the lowest measured native call/storage mode per implementation;
 # the complete table and downloads preserve every mode, including slower ones.
-$chartMatching = @($matching | Group-Object workload,library | ForEach-Object { $_.Group | Sort-Object meanNs | Select-Object -First 1 })
+$chartMatching = @($matching | Where-Object { -not $_.library.StartsWith('Tedd') -or $_.library -eq 'TeddDirectReused' } |
+    Group-Object workload,library | ForEach-Object { $_.Group | Sort-Object meanNs | Select-Object -First 1 })
 $assets = Join-Path $SiteDirectory 'assets'
 $null = New-Item -ItemType Directory -Force -Path $assets
 $data = [ordered]@{
@@ -193,7 +194,6 @@ foreach ($group in $inputGroups) {
     $null = $builder.AppendLine(('</div></figure><p class="chart-summary">Reusable direct matcher: <strong data-direct-speedup>{0}×</strong> the throughput of the next-fastest tested library on this workload.</p></div>' -f (Number ($competitor.meanNs / $direct.meanNs) 'F2')))
 }
 $null = $builder.AppendLine('</div>')
-$null = $builder.AppendLine('<div class="comparison-exclusion"><strong>Scope and API lifetime</strong><p>Reusable Tedd matching has the lowest mean on all four fixtures in this run. Static Tedd calls remain slower than Krauss on short fixtures. Across earlier native builds, the conservative MultiStar advantage is 18.33%; a uniform 20% reduction is not established. Earlier-build samples are separate and are not pooled into this run.</p></div>')
 $null = $builder.AppendLine('<div class="results-panel"><div class="results-heading"><h3>All matching comparisons</h3><p>100 cases · lower time is better</p></div><div class="table-scroll"><table><caption>Every managed and native matching call and storage mode</caption><thead><tr><th scope="col">Workload</th><th scope="col">Implementation</th><th scope="col">Call / storage</th><th scope="col">Mean ns</th><th scope="col">Error ± ns</th><th scope="col">Managed B/match</th></tr></thead><tbody>')
 foreach ($workload in $workloads) { foreach ($row in ($matching | Where-Object workload -eq $workload.name | Sort-Object meanNs)) {
     $class = if ($row.library.StartsWith('Tedd')) { ' class="comparison-ours"' } else { '' }

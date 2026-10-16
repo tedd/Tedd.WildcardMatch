@@ -32,7 +32,8 @@ if (comparisonCharts.length) {
         const data = await dataRequest;
         const workload = data.workloads.find((item) => item.name === fixtureSelect.value && item.inputGroup === chart.dataset.comparisonChart);
         const bestByLibrary = new Map();
-        data.matching.filter((item) => item.workload === workload.name).forEach((row) => {
+        data.matching.filter((item) => item.workload === workload.name &&
+          (!item.library.startsWith("Tedd") || item.library === "TeddDirectReused")).forEach((row) => {
           if (!bestByLibrary.has(row.library) || row.meanNs < bestByLibrary.get(row.library).meanNs) {
             bestByLibrary.set(row.library, row);
           }

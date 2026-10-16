@@ -11,7 +11,7 @@
   <title>Tedd.WildcardMatch — wildcard matching for .NET</title>
   <link rel="icon" href="assets/wildcard-icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css?v=2.3.0">
-  <script src="app.js?v=2.3.0" defer></script>
+  <script src="app.js?v=2.3.0-1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -121,7 +121,7 @@ bool third = matcher.IsMatch(input);</code></pre></div>
     <section class="section-shell benchmark-section" id="benchmarks">
       <div class="section-intro"><div><p class="eyebrow">Measured on .NET 10</p><h2>Short strings.<br>Long strings.</h2></div><p>Compare matching throughput across short inputs and strings over 1,000 characters. Select a short-string pattern to see literal, question-mark, and multi-star workloads. Higher bars mean faster matching.</p></div>
       <p class="model-note">Compare direct static and reused calls, Regex static, reused and compiled calls, three managed packages, and native Krauss, Git wildmatch, Zema wildcards and PCRE2 JIT. Reused instances are prepared before timing; static calls include their per-call setup.</p>
-      <p class="model-note">Each graph shows every managed API and the fastest measured call/storage mode for each native library. The tables include all 110 cases: 100 matching comparisons, eight construction cases and two transition controls. Native buffer modes and suppressed calls remain individually visible.</p>
+      <p class="model-note">Each graph compares the reusable direct Tedd matcher with the managed competitors and the fastest measured call/storage mode for each native library. The tables include all 110 cases: 100 matching comparisons, eight construction cases and two transition controls. Native buffer modes and suppressed calls remain individually visible.</p>
       <!-- BENCHMARK_CONTENT_START -->
 <div class="chart-grid">
 <div class="benchmark-chart" data-comparison-chart="short"><div class="benchmark-controls"><label for="comparison-fixture-short">Short strings</label><select id="comparison-fixture-short" data-fixture-select>
@@ -132,34 +132,25 @@ bool third = matcher.IsMatch(input);</code></pre></div>
 <div class="bar-row comparison-ours"><span>Tedd direct &#183; reused</span><div class="bar-track"><i class="bar ours" style="width:100.00%"></i></div><b>219.18</b></div>
 <div class="bar-row"><span>Krauss &#183; batch_cloned</span><div class="bar-track"><i class="bar other" style="width:47.74%"></i></div><b>104.63</b></div>
 <div class="bar-row"><span>PCRE2 JIT &#183; batch_cloned</span><div class="bar-track"><i class="bar other" style="width:28.19%"></i></div><b>61.79</b></div>
-<div class="bar-row comparison-ours"><span>Tedd direct &#183; static</span><div class="bar-track"><i class="bar ours" style="width:23.82%"></i></div><b>52.21</b></div>
 <div class="bar-row"><span>DotNet.Glob</span><div class="bar-track"><i class="bar other" style="width:20.55%"></i></div><b>45.05</b></div>
 <div class="bar-row"><span>Git wildmatch &#183; batch_cloned</span><div class="bar-track"><i class="bar other" style="width:15.76%"></i></div><b>34.54</b></div>
 <div class="bar-row"><span>WildcardMatch</span><div class="bar-track"><i class="bar other" style="width:13.03%"></i></div><b>28.55</b></div>
-<div class="bar-row comparison-ours"><span>Tedd Regex &#183; compiled</span><div class="bar-track"><i class="bar ours" style="width:12.19%"></i></div><b>26.71</b></div>
 <div class="bar-row"><span>Zema wildcards &#183; batch_cloned</span><div class="bar-track"><i class="bar other" style="width:5.62%"></i></div><b>12.31</b></div>
-<div class="bar-row comparison-ours"><span>Tedd Regex &#183; reused</span><div class="bar-track"><i class="bar ours" style="width:5.54%"></i></div><b>12.14</b></div>
 <div class="bar-row"><span>FastWildcard</span><div class="bar-track"><i class="bar other" style="width:5.48%"></i></div><b>12.00</b></div>
-<div class="bar-row comparison-ours"><span>Tedd Regex &#183; static</span><div class="bar-track"><i class="bar ours" style="width:2.73%"></i></div><b>5.98</b></div>
 </div></figure><p class="chart-summary">Reusable direct matcher: <strong data-direct-speedup>2.09×</strong> the throughput of the next-fastest tested library on this workload.</p></div>
 <div class="benchmark-chart" data-comparison-chart="long"><div class="benchmark-controls"><label for="comparison-fixture-long">Long strings</label><select id="comparison-fixture-long" data-fixture-select>
 <option value="LongText" selected>Long text</option>
 </select><span>Every input exceeds 1,000 UTF-16 code units</span></div><figure class="bar-chart package-chart"><figcaption><span>Long strings · matching throughput</span><strong data-chart-workload>Long text</strong><small>Pattern: <code data-chart-pattern>*alpha*beta??*omega*</code> · millions of matches/s</small></figcaption><div data-chart-rows aria-live="polite">
 <div class="bar-row comparison-ours"><span>Tedd direct &#183; reused</span><div class="bar-track"><i class="bar ours" style="width:100.00%"></i></div><b>5.45</b></div>
-<div class="bar-row comparison-ours"><span>Tedd direct &#183; static</span><div class="bar-track"><i class="bar ours" style="width:82.50%"></i></div><b>4.50</b></div>
 <div class="bar-row"><span>Krauss &#183; batch_shared</span><div class="bar-track"><i class="bar other" style="width:78.28%"></i></div><b>4.27</b></div>
 <div class="bar-row"><span>FastWildcard</span><div class="bar-track"><i class="bar other" style="width:65.12%"></i></div><b>3.55</b></div>
-<div class="bar-row comparison-ours"><span>Tedd Regex &#183; compiled</span><div class="bar-track"><i class="bar ours" style="width:46.32%"></i></div><b>2.53</b></div>
 <div class="bar-row"><span>Git wildmatch &#183; batch_shared</span><div class="bar-track"><i class="bar other" style="width:21.80%"></i></div><b>1.19</b></div>
 <div class="bar-row"><span>PCRE2 JIT &#183; batch_shared</span><div class="bar-track"><i class="bar other" style="width:12.51%"></i></div><b>0.68</b></div>
 <div class="bar-row"><span>DotNet.Glob</span><div class="bar-track"><i class="bar other" style="width:2.51%"></i></div><b>0.14</b></div>
 <div class="bar-row"><span>WildcardMatch</span><div class="bar-track"><i class="bar other" style="width:1.36%"></i></div><b>0.07</b></div>
 <div class="bar-row"><span>Zema wildcards &#183; batch_shared</span><div class="bar-track"><i class="bar other" style="width:0.83%"></i></div><b>0.05</b></div>
-<div class="bar-row comparison-ours"><span>Tedd Regex &#183; reused</span><div class="bar-track"><i class="bar ours" style="width:0.75%"></i></div><b>0.04</b></div>
-<div class="bar-row comparison-ours"><span>Tedd Regex &#183; static</span><div class="bar-track"><i class="bar ours" style="width:0.75%"></i></div><b>0.04</b></div>
 </div></figure><p class="chart-summary">Reusable direct matcher: <strong data-direct-speedup>1.28×</strong> the throughput of the next-fastest tested library on this workload.</p></div>
 </div>
-<div class="comparison-exclusion"><strong>Scope and API lifetime</strong><p>Reusable Tedd matching has the lowest mean on all four fixtures in this run. Static Tedd calls remain slower than Krauss on short fixtures. Across earlier native builds, the conservative MultiStar advantage is 18.33%; a uniform 20% reduction is not established. Earlier-build samples are separate and are not pooled into this run.</p></div>
 <div class="results-panel"><div class="results-heading"><h3>All matching comparisons</h3><p>100 cases · lower time is better</p></div><div class="table-scroll"><table><caption>Every managed and native matching call and storage mode</caption><thead><tr><th scope="col">Workload</th><th scope="col">Implementation</th><th scope="col">Call / storage</th><th scope="col">Mean ns</th><th scope="col">Error ± ns</th><th scope="col">Managed B/match</th></tr></thead><tbody>
 <tr class="comparison-ours"><th scope="row">Literal</th><td>Tedd direct &#183; reused</td><td>managed</td><td>5.233</td><td>0.002</td><td>0</td></tr>
 <tr><th scope="row">Literal</th><td>Krauss</td><td>batch_shared</td><td>9.325</td><td>0.003</td><td>0</td></tr>
