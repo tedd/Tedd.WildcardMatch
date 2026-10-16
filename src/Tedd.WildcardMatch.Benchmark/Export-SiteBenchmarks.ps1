@@ -38,12 +38,12 @@ $libraries = [ordered]@{
     TeddRegexStatic = @{ label = 'Tedd Regex · static'; package = 'Tedd.WildcardMatch'; version = $PackageVersion; mode = 'Translation and Regex cache lookup per call' }
     TeddRegexReused = @{ label = 'Tedd Regex · reused'; package = 'Tedd.WildcardMatch'; version = $PackageVersion; mode = 'Reusable interpreted Regex' }
     TeddRegexCompiled = @{ label = 'Tedd Regex · compiled'; package = 'Tedd.WildcardMatch'; version = $PackageVersion; mode = 'Reusable compiled Regex' }
-    FastWildcard = @{ label = 'FastWildcard'; package = 'FastWildcard'; version = '3.1.0'; mode = 'Static call, reused settings' }
-    WildcardMatch = @{ label = 'WildcardMatch'; package = 'WildcardMatch'; version = '1.0.7'; mode = 'Static extension call' }
-    DotNetGlob = @{ label = 'DotNet.Glob'; package = 'DotNet.Glob'; version = '3.1.3'; mode = 'Reusable parsed glob' }
+    FastWildcard = @{ label = 'FastWildcard (C#)'; package = 'FastWildcard'; version = '3.1.0'; mode = 'Static call, reused settings' }
+    WildcardMatch = @{ label = 'WildcardMatch (C#)'; package = 'WildcardMatch'; version = '1.0.7'; mode = 'Static extension call' }
+    DotNetGlob = @{ label = 'DotNet.Glob (C#)'; package = 'DotNet.Glob'; version = '3.1.3'; mode = 'Reusable parsed glob' }
 }
 foreach ($key in @($libraries.Keys)) { if ($key.StartsWith('Tedd')) { $libraries[$key].version = $MeasuredPackageVersion } }
-$nativeNames = [ordered]@{ Krauss = 'Krauss'; GitWildmatch = 'Git wildmatch'; ZemaWildcards = 'Zema wildcards'; Pcre2Jit = 'PCRE2 JIT' }
+$nativeNames = [ordered]@{ Krauss = 'Krauss (C++)'; GitWildmatch = 'Git wildmatch (C)'; ZemaWildcards = 'Zema wildcards (C++)'; Pcre2Jit = 'PCRE2 JIT (C)' }
 $pinNames = @{ Krauss = 'krauss'; GitWildmatch = 'git-source'; ZemaWildcards = 'wildcards'; Pcre2Jit = 'pcre2' }
 foreach ($key in $nativeNames.Keys) {
     $pin = @($nativeSources | Where-Object name -eq $pinNames[$key])

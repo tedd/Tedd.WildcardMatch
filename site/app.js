@@ -20,7 +20,7 @@ document.querySelectorAll("[data-copy-target]").forEach((button) => {
 
 const comparisonCharts = document.querySelectorAll("[data-comparison-chart]");
 if (comparisonCharts.length) {
-  const dataRequest = fetch("assets/package-comparison.json?v=2.3.0").then((response) => {
+  const dataRequest = fetch("assets/package-comparison.json?v=2.3.0-2").then((response) => {
     if (!response.ok) throw new Error("Comparison data unavailable");
     return response.json();
   });
