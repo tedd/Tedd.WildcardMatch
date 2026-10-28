@@ -44,7 +44,7 @@ Reuse an instance when a pattern is applied to multiple inputs:
 using System;
 using Tedd;
 
-WildcardMatch matcher = new(
+var matcher = new WildcardMatch(
     "report-*.txt",
     WildcardOptions.CultureInvariant,
     TimeSpan.FromMilliseconds(100));
@@ -69,27 +69,9 @@ Static span calls borrow both slices; reusable matchers borrow the input for eac
 
 Constructors accept span patterns and copy them once into owned strings. Subsequent changes to the source buffer do not change the matcher. A timeout creates strings for the exception's input and pattern diagnostics. On .NET 11, numeric `IgnorePatternWhitespace` options with vertical tabs require normalization scratch: bounded stack storage for small patterns and pooled storage for larger ones.
 
-## Architectural Execution Flow and Matching Behavior
+## Matching behavior
 
-The framework enforces full-string matches through automated boundary anchoring (`^` and `$`). The direct engine evaluates the wildcard pattern iteratively, guaranteeing deterministic execution. The Regex engine translates the pattern by escaping literal characters, translating `*` to `.*` and `?` to `.`, and implicitly appending `^` and `$` boundaries. Both engines ensure matching semantics are identical.
-
-**Implemented Capabilities:**
-* Mathematical enforcement of full-string boundaries. Substring matches are only executed when boundary wildcards are explicitly defined.
-* `?` precisely consumes one UTF-16 code unit, including an isolated surrogate.
-* Backslashes are evaluated as literals.
-
-**Planned Roadmap Hypotheses:**
-* *(No speculative features or hypothetical capabilities are currently scheduled for integration.)*
-
-To evaluate substring matches, explicitly include `*` tokens at both the beginning and end of the pattern:
-
-```csharp
-// Full-string match failure: "Lorem ipsum" does not exactly equal the pattern boundaries
-bool partial = "Lorem ipsum".IsWildcardMatch("or*ips?m"); // false
-
-// Substring match success: explicit wildcard boundaries permit interior evaluation
-bool full = "Lorem ipsum".IsWildcardMatch("*or*ips?m*"); // true
-```
+The direct engine interprets the wildcard pattern itself. The Regex engine escapes literal characters, translates `*` to `.*` and `?` to `.`, and applies `^` / `$` anchors. Both engines use the same matching semantics. Use stars at both ends for substring matching. Backslashes are literal, and `?` consumes one UTF-16 code unit, including an isolated surrogate.
 
 `WildcardRegex` exposes the equivalent Regex expression on either engine; the direct engine generates it lazily. Ignoring case uses Regex-compatible Unicode lowercase groups and culture rules. Instances capture the construction-time culture; static calls use the current culture.
 
