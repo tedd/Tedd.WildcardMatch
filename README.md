@@ -44,7 +44,7 @@ Reuse an instance when a pattern is applied to multiple inputs:
 using System;
 using Tedd;
 
-var matcher = new WildcardMatch(
+WildcardMatch matcher = new(
     "report-*.txt",
     WildcardOptions.CultureInvariant,
     TimeSpan.FromMilliseconds(100));
@@ -68,6 +68,19 @@ bool third = matcher.IsMatch(input);
 Static span calls borrow both slices; reusable matchers borrow the input for each call. Ordinary matching does not materialize strings. `Span<char>` converts to `ReadOnlySpan<char>` and supports the extension method directly; `ReadOnlyMemory<char>` callers use `.Span`. The caller must keep the underlying buffers stable during a match. Default spans represent empty text.
 
 Constructors accept span patterns and copy them once into owned strings. Subsequent changes to the source buffer do not change the matcher. A timeout creates strings for the exception's input and pattern diagnostics. On .NET 11, numeric `IgnorePatternWhitespace` options with vertical tabs require normalization scratch: bounded stack storage for small patterns and pooled storage for larger ones.
+
+## Architectural Execution Flow
+
+The framework operates purely as a deterministic transpilation engine incorporating strict boundaries anchoring and fast-path pattern classification. It does *not* utilize hierarchical data binding and routed event infrastructure.
+
+**Established Framework Capabilities:**
+- **Deterministic Transpilation**: Wildcard sequences are mathematically translated into anchored `.NET Regex` execution plans.
+- **Fast-Path Classification**: Pre-computation offsets (`GetPrefix`, `GetSuffix`) avoid polynomial matching delays on literal-heavy patterns.
+- **Span-Based Slicing**: Avoids string materializations for substrings utilizing `ReadOnlySpan<char>` constructs.
+
+**Hypotheses (Planned Future Enhancements):**
+- Dynamic code generation (via `ILGenerator` or source generators) to further amortize standard `.NET Regex` compilation overhead.
+- Extended compatibility paradigms for vectorization over structural elements.
 
 ## Matching behavior
 
